@@ -1,0 +1,116 @@
+# Write your query or mutation here
+fragment UserFields on User {
+  id
+  name
+  phone
+  toPay
+  toReceive
+}
+
+fragment GroupFields on Group {
+  id
+  name
+  creator {
+    ...UserFields
+  }
+  members {
+    ...UserFields
+  }
+  toPay
+  toReceive
+  createdAt
+}
+
+fragment ExpenseFields on Expense {
+  id
+  title
+  createdAt
+  creator {
+    ...UserFields
+  }
+  amount
+  toPay
+  toReceive
+  splits {
+    ...SplitFields
+  }
+}
+
+fragment SplitFields on Split {
+  id
+  amount
+  amountSettled
+  fromUser {
+    ...UserFields
+  }
+  toUser {
+    ...UserFields
+  }
+  isSettled
+}
+
+fragment GroupWithExpenses on Group {
+  ...GroupFields
+  expenses(skip: $skip, limit: $limit) {
+    ...ExpenseFields
+  }
+}
+
+fragment SelfUserFields on User {
+  groups {
+    ...GroupFields
+  }
+}
+
+query user {
+  user {
+    __typename
+    ... on Registered {
+      user {
+        ...UserFields
+        ...SelfUserFields
+      }
+    }
+    ... on Unregistered {
+      phone
+    }
+  }
+}
+
+query group($skip: Int!, $limit: Int!, $groupId: String!) {
+  group(id: $groupId) {
+    ...GroupWithExpenses
+  }
+}
+
+mutation signup($name: String!) {
+  signup(name: $name) {
+    id
+  }
+}
+
+mutation create_group($name: String!) {
+  createGroup(name: $name) {
+    ...GroupFields
+  }
+}
+
+mutation add_to_group($phone: String!, $groupId: String!) {
+  addToGroup(phone: $phone, groupId: $groupId)
+}
+
+mutation add_expense(
+  $title: String!
+  $amount: Int!
+  $splits: [SplitInput!]!
+  $groupId: String!
+) {
+  addExpense(
+    title: $title
+    amount: $amount
+    splits: $splits
+    groupId: $groupId
+  ) {
+    ...ExpenseFields
+  }
+}

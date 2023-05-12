@@ -1,0 +1,74 @@
+type Expense {
+  id: String!
+  title: String!
+  createdAt: String!
+  creator: User!
+  group: Group!
+  amount: Int!
+  splits: [Split!]!
+  toPay: Int!
+  toReceive: Int!
+}
+
+type Group {
+  id: String!
+  name: String!
+  createdAt: String!
+  creator: User!
+  members: [User!]!
+  expenses(skip: Int! = 0, limit: Int! = 10): [Expense!]!
+  toPay: Int!
+  toReceive: Int!
+}
+
+type Mutation {
+  signup(name: String!): User!
+  createGroup(name: String!): Group!
+  addToGroup(groupId: String!, phone: String!): String!
+  addExpense(
+    groupId: String!
+    title: String!
+    amount: Int!
+    splits: [SplitInput!]!
+  ): Expense!
+}
+
+type Query {
+  ping: String!
+  user: UserAuth!
+  group(id: String!): Group!
+}
+
+type Registered {
+  user: User!
+}
+
+type Split {
+  id: String!
+  expense: Expense!
+  amount: Int!
+  amountSettled: Int!
+  fromUser: User!
+  toUser: User!
+  isSettled: Boolean!
+}
+
+input SplitInput {
+  amount: Int!
+  userId: String!
+}
+
+type Unregistered {
+  phone: String!
+}
+
+type User {
+  id: String!
+  name: String!
+  phone: String!
+  groups: [Group!]!
+  toPay: Int!
+  toReceive: Int!
+}
+
+union UserAuth = Unregistered | Registered

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "897128199289",
+    "project_id": "split-buddy",
+    "storage_bucket": "split-buddy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897128199289:android:cea8e6b2f84459d2cf10a8",
+        "android_client_info": {
+          "package_name": "app.splitbuddy.splitbuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897128199289-cokqoq1jbv8ftb080us2nv195kk6is62.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtvVOWqJnvU7yKUrWxluKb3C9uX_kwUKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "897128199289-cokqoq1jbv8ftb080us2nv195kk6is62.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
