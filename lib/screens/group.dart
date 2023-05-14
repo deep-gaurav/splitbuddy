@@ -168,6 +168,11 @@ class _GroupState extends State<Group> {
                                 expenseGrouped[entry]!.length - 1 - index];
                             var isSelf = expense.creator.id ==
                                 context.read<AppState>().user!.id;
+
+                            var isSettled = expense.splits.every(
+                              (element) =>
+                                  element.amountSettled >= element.amount,
+                            );
                             return FractionallySizedBox(
                               widthFactor: 0.7,
                               alignment: isSelf
@@ -178,7 +183,7 @@ class _GroupState extends State<Group> {
                                     ? Alignment.centerRight
                                     : Alignment.centerLeft,
                                 child: Card(
-                                  elevation: 4.0,
+                                  elevation: isSettled ? 1.0 : 4.0,
                                   child: Container(
                                     // decoration: BoxDecoration(
                                     //   color:
@@ -191,20 +196,21 @@ class _GroupState extends State<Group> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.stretch,
                                         children: [
-                                          Row(
-                                            children: [
-                                              const Icon(Icons.payments),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                expense.title,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodySmall,
-                                              )
-                                            ],
-                                          ),
+                                          if (!isSettled)
+                                            Row(
+                                              children: [
+                                                const Icon(Icons.receipt_long),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  expense.title,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall,
+                                                )
+                                              ],
+                                            ),
                                           Row(
                                             children: [
                                               Text(
@@ -217,12 +223,30 @@ class _GroupState extends State<Group> {
                                                             FontWeight.w800),
                                               ),
                                               const Spacer(),
-                                              Text(
-                                                DateFormat("h:mm a").format(
-                                                  DateTime.parse(
-                                                          expense.createdAt)
-                                                      .toLocal(),
-                                                ),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  if (isSettled)
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 8.0),
+                                                      child: Text(
+                                                        expense.title,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodySmall,
+                                                      ),
+                                                    ),
+                                                  Text(
+                                                    DateFormat("h:mm a").format(
+                                                      DateTime.parse(
+                                                              expense.createdAt)
+                                                          .toLocal(),
+                                                    ),
+                                                  ),
+                                                ],
                                               )
                                             ],
                                           ),
@@ -230,71 +254,74 @@ class _GroupState extends State<Group> {
                                           //   expense.title,
                                           //   style: Theme.of(context).textTheme.labelLarge,
                                           // ),
-                                          const Divider(),
-                                          ...expense.splits.map(
-                                            (e) {
-                                              var isPaid =
-                                                  e.amountSettled >= e.amount;
-                                              return Stack(
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      Icon(
-                                                        isSelf
-                                                            ? Icons
-                                                                .call_received
-                                                            : Icons.call_made,
-                                                        size: 14,
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 5,
-                                                      ),
-                                                      Text.rich(
-                                                        TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                                text: e.fromUser
-                                                                    .name,
-                                                                style: const TextStyle(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold)),
-                                                            const TextSpan(
-                                                                text:
-                                                                    " to pay"),
-                                                          ],
+                                          if (!isSettled) ...[
+                                            const Divider(),
+                                            ...expense.splits.map(
+                                              (e) {
+                                                var isPaid =
+                                                    e.amountSettled >= e.amount;
+                                                return Stack(
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        Icon(
+                                                          isSelf
+                                                              ? Icons
+                                                                  .call_received
+                                                              : Icons.call_made,
+                                                          size: 14,
                                                         ),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 20,
-                                                      ),
-                                                      const Spacer(),
-                                                      if (isPaid)
-                                                        Text("${e.amount}")
-                                                      else
-                                                        Text(
-                                                            "${e.amount - e.amountSettled}/${e.amount}")
-                                                    ],
-                                                  ),
-                                                  if (isPaid)
-                                                    Positioned(
-                                                      top: 0,
-                                                      bottom: 0,
-                                                      left: 0,
-                                                      right: 0,
-                                                      child: Center(
-                                                        child: Container(
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .dividerColor,
-                                                          height: 1,
+                                                        const SizedBox(
+                                                          width: 5,
                                                         ),
-                                                      ),
-                                                    )
-                                                ],
-                                              );
-                                            },
-                                          )
+                                                        Text.rich(
+                                                          TextSpan(
+                                                            children: [
+                                                              TextSpan(
+                                                                  text: e
+                                                                      .fromUser
+                                                                      .name,
+                                                                  style: const TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold)),
+                                                              const TextSpan(
+                                                                  text:
+                                                                      " to pay"),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 20,
+                                                        ),
+                                                        const Spacer(),
+                                                        if (isPaid)
+                                                          Text("${e.amount}")
+                                                        else
+                                                          Text(
+                                                              "${e.amount - e.amountSettled}/${e.amount}")
+                                                      ],
+                                                    ),
+                                                    if (isPaid)
+                                                      Positioned(
+                                                        top: 0,
+                                                        bottom: 0,
+                                                        left: 0,
+                                                        right: 0,
+                                                        child: Center(
+                                                          child: Container(
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .dividerColor,
+                                                            height: 1,
+                                                          ),
+                                                        ),
+                                                      )
+                                                  ],
+                                                );
+                                              },
+                                            )
+                                          ]
                                         ],
                                       ),
                                     ),
@@ -312,10 +339,11 @@ class _GroupState extends State<Group> {
               ],
             ),
           )),
+          const Divider(),
           ButtonBar(
             children: [
               ElevatedButton.icon(
-                icon: const Icon(Icons.wallet),
+                icon: const Icon(Icons.sell),
                 onPressed: () async {
                   var expense = await Navigator.of(context).push(
                     MaterialPageRoute(

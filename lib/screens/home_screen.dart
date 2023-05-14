@@ -18,7 +18,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 700),
+        switchInCurve: Curves.easeIn,
+        switchOutCurve: Curves.easeOut,
+        duration: const Duration(milliseconds: 300),
+        transitionBuilder: (child, animation) => SlideTransition(
+          position: Tween(
+                  begin: Offset((child is HomePage) ? -1 : 1, 0),
+                  end: const Offset(0, 0))
+              .animate(animation),
+          child: child,
+        ),
         child: currentIndex == 0 ? const HomePage() : const GroupsPage(),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -71,7 +80,9 @@ class _GroupNameDialogState extends State<GroupNameDialog> {
   var formKey = GlobalKey<FormState>();
 
   onSubmit(String name) {
-    Navigator.of(context).pop(name);
+    if (formKey.currentState?.validate() == true) {
+      Navigator.of(context).pop(name);
+    }
   }
 
   @override
