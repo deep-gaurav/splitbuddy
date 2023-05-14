@@ -10,11 +10,6 @@ mixin UserFieldsMixin {
   late String id;
   late String name;
   late String phone;
-  late int toPay;
-  late int toReceive;
-}
-mixin SelfUserFieldsMixin {
-  late List<SelfUserFieldsMixin$Group> groups;
 }
 mixin GroupFieldsMixin {
   late String id;
@@ -24,6 +19,11 @@ mixin GroupFieldsMixin {
   late int toPay;
   late int toReceive;
   late String createdAt;
+}
+mixin UserPaysFieldsMixin {
+  late List<String> upiIds;
+  late int toPay;
+  late int toReceive;
 }
 mixin GroupWithExpensesMixin {
   late List<GroupWithExpensesMixin$Expense> expenses;
@@ -49,7 +49,7 @@ mixin SplitFieldsMixin {
 
 @JsonSerializable(explicitToJson: true)
 class User$Query$UserAuth$Registered$User extends JsonSerializable
-    with EquatableMixin, UserFieldsMixin, SelfUserFieldsMixin {
+    with EquatableMixin, UserFieldsMixin {
   User$Query$UserAuth$Registered$User();
 
   factory User$Query$UserAuth$Registered$User.fromJson(
@@ -57,7 +57,7 @@ class User$Query$UserAuth$Registered$User extends JsonSerializable
       _$User$Query$UserAuth$Registered$UserFromJson(json);
 
   @override
-  List<Object?> get props => [id, name, phone, toPay, toReceive, groups];
+  List<Object?> get props => [id, name, phone];
   @override
   Map<String, dynamic> toJson() =>
       _$User$Query$UserAuth$Registered$UserToJson(this);
@@ -146,18 +146,33 @@ class User$Query extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class SelfUserFieldsMixin$Group extends JsonSerializable
+class Groups$Query$Group extends JsonSerializable
     with EquatableMixin, GroupFieldsMixin {
-  SelfUserFieldsMixin$Group();
+  Groups$Query$Group();
 
-  factory SelfUserFieldsMixin$Group.fromJson(Map<String, dynamic> json) =>
-      _$SelfUserFieldsMixin$GroupFromJson(json);
+  factory Groups$Query$Group.fromJson(Map<String, dynamic> json) =>
+      _$Groups$Query$GroupFromJson(json);
 
   @override
   List<Object?> get props =>
       [id, name, creator, members, toPay, toReceive, createdAt];
   @override
-  Map<String, dynamic> toJson() => _$SelfUserFieldsMixin$GroupToJson(this);
+  Map<String, dynamic> toJson() => _$Groups$Query$GroupToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Groups$Query extends JsonSerializable with EquatableMixin {
+  Groups$Query();
+
+  factory Groups$Query.fromJson(Map<String, dynamic> json) =>
+      _$Groups$QueryFromJson(json);
+
+  late List<Groups$Query$Group> groups;
+
+  @override
+  List<Object?> get props => [groups];
+  @override
+  Map<String, dynamic> toJson() => _$Groups$QueryToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -169,9 +184,38 @@ class GroupFieldsMixin$User extends JsonSerializable
       _$GroupFieldsMixin$UserFromJson(json);
 
   @override
-  List<Object?> get props => [id, name, phone, toPay, toReceive];
+  List<Object?> get props => [id, name, phone];
   @override
   Map<String, dynamic> toJson() => _$GroupFieldsMixin$UserToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class InteractedUsers$Query$User extends JsonSerializable
+    with EquatableMixin, UserFieldsMixin, UserPaysFieldsMixin {
+  InteractedUsers$Query$User();
+
+  factory InteractedUsers$Query$User.fromJson(Map<String, dynamic> json) =>
+      _$InteractedUsers$Query$UserFromJson(json);
+
+  @override
+  List<Object?> get props => [id, name, phone, upiIds, toPay, toReceive];
+  @override
+  Map<String, dynamic> toJson() => _$InteractedUsers$Query$UserToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class InteractedUsers$Query extends JsonSerializable with EquatableMixin {
+  InteractedUsers$Query();
+
+  factory InteractedUsers$Query.fromJson(Map<String, dynamic> json) =>
+      _$InteractedUsers$QueryFromJson(json);
+
+  late List<InteractedUsers$Query$User> interactedUsers;
+
+  @override
+  List<Object?> get props => [interactedUsers];
+  @override
+  Map<String, dynamic> toJson() => _$InteractedUsers$QueryToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -228,7 +272,7 @@ class ExpenseFieldsMixin$User extends JsonSerializable
       _$ExpenseFieldsMixin$UserFromJson(json);
 
   @override
-  List<Object?> get props => [id, name, phone, toPay, toReceive];
+  List<Object?> get props => [id, name, phone];
   @override
   Map<String, dynamic> toJson() => _$ExpenseFieldsMixin$UserToJson(this);
 }
@@ -257,7 +301,7 @@ class SplitFieldsMixin$User extends JsonSerializable
       _$SplitFieldsMixin$UserFromJson(json);
 
   @override
-  List<Object?> get props => [id, name, phone, toPay, toReceive];
+  List<Object?> get props => [id, name, phone];
   @override
   Map<String, dynamic> toJson() => _$SplitFieldsMixin$UserToJson(this);
 }
@@ -387,6 +431,51 @@ class SplitInput extends JsonSerializable with EquatableMixin {
   Map<String, dynamic> toJson() => _$SplitInputToJson(this);
 }
 
+@JsonSerializable(explicitToJson: true)
+class SettleUser$Mutation extends JsonSerializable with EquatableMixin {
+  SettleUser$Mutation();
+
+  factory SettleUser$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$SettleUser$MutationFromJson(json);
+
+  late String settleUser;
+
+  @override
+  List<Object?> get props => [settleUser];
+  @override
+  Map<String, dynamic> toJson() => _$SettleUser$MutationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class SettleExpense$Mutation$Expense extends JsonSerializable
+    with EquatableMixin, ExpenseFieldsMixin {
+  SettleExpense$Mutation$Expense();
+
+  factory SettleExpense$Mutation$Expense.fromJson(Map<String, dynamic> json) =>
+      _$SettleExpense$Mutation$ExpenseFromJson(json);
+
+  @override
+  List<Object?> get props =>
+      [id, title, createdAt, creator, amount, toPay, toReceive, splits];
+  @override
+  Map<String, dynamic> toJson() => _$SettleExpense$Mutation$ExpenseToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class SettleExpense$Mutation extends JsonSerializable with EquatableMixin {
+  SettleExpense$Mutation();
+
+  factory SettleExpense$Mutation.fromJson(Map<String, dynamic> json) =>
+      _$SettleExpense$MutationFromJson(json);
+
+  late SettleExpense$Mutation$Expense settleExpense;
+
+  @override
+  List<Object?> get props => [settleExpense];
+  @override
+  Map<String, dynamic> toJson() => _$SettleExpense$MutationToJson(this);
+}
+
 final USER_QUERY_DOCUMENT_OPERATION_NAME = 'user';
 final USER_QUERY_DOCUMENT = DocumentNode(definitions: [
   OperationDefinitionNode(
@@ -425,11 +514,7 @@ final USER_QUERY_DOCUMENT = DocumentNode(definitions: [
                   FragmentSpreadNode(
                     name: NameNode(value: 'UserFields'),
                     directives: [],
-                  ),
-                  FragmentSpreadNode(
-                    name: NameNode(value: 'SelfUserFields'),
-                    directives: [],
-                  ),
+                  )
                 ]),
               )
             ]),
@@ -485,29 +570,31 @@ final USER_QUERY_DOCUMENT = DocumentNode(definitions: [
         directives: [],
         selectionSet: null,
       ),
-      FieldNode(
-        name: NameNode(value: 'toPay'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-      FieldNode(
-        name: NameNode(value: 'toReceive'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
     ]),
   ),
-  FragmentDefinitionNode(
-    name: NameNode(value: 'SelfUserFields'),
-    typeCondition: TypeConditionNode(
-        on: NamedTypeNode(
-      name: NameNode(value: 'User'),
-      isNonNull: false,
-    )),
+]);
+
+class UserQuery extends GraphQLQuery<User$Query, JsonSerializable> {
+  UserQuery();
+
+  @override
+  final DocumentNode document = USER_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = USER_QUERY_DOCUMENT_OPERATION_NAME;
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  User$Query parse(Map<String, dynamic> json) => User$Query.fromJson(json);
+}
+
+final GROUPS_QUERY_DOCUMENT_OPERATION_NAME = 'groups';
+final GROUPS_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'groups'),
+    variableDefinitions: [],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
       FieldNode(
@@ -594,21 +681,162 @@ final USER_QUERY_DOCUMENT = DocumentNode(definitions: [
       ),
     ]),
   ),
+  FragmentDefinitionNode(
+    name: NameNode(value: 'UserFields'),
+    typeCondition: TypeConditionNode(
+        on: NamedTypeNode(
+      name: NameNode(value: 'User'),
+      isNonNull: false,
+    )),
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'id'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'name'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'phone'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
 ]);
 
-class UserQuery extends GraphQLQuery<User$Query, JsonSerializable> {
-  UserQuery();
+class GroupsQuery extends GraphQLQuery<Groups$Query, JsonSerializable> {
+  GroupsQuery();
 
   @override
-  final DocumentNode document = USER_QUERY_DOCUMENT;
+  final DocumentNode document = GROUPS_QUERY_DOCUMENT;
 
   @override
-  final String operationName = USER_QUERY_DOCUMENT_OPERATION_NAME;
+  final String operationName = GROUPS_QUERY_DOCUMENT_OPERATION_NAME;
 
   @override
   List<Object?> get props => [document, operationName];
   @override
-  User$Query parse(Map<String, dynamic> json) => User$Query.fromJson(json);
+  Groups$Query parse(Map<String, dynamic> json) => Groups$Query.fromJson(json);
+}
+
+final INTERACTED_USERS_QUERY_DOCUMENT_OPERATION_NAME = 'interacted_users';
+final INTERACTED_USERS_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.query,
+    name: NameNode(value: 'interacted_users'),
+    variableDefinitions: [],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'interactedUsers'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FragmentSpreadNode(
+            name: NameNode(value: 'UserFields'),
+            directives: [],
+          ),
+          FragmentSpreadNode(
+            name: NameNode(value: 'UserPaysFields'),
+            directives: [],
+          ),
+        ]),
+      )
+    ]),
+  ),
+  FragmentDefinitionNode(
+    name: NameNode(value: 'UserFields'),
+    typeCondition: TypeConditionNode(
+        on: NamedTypeNode(
+      name: NameNode(value: 'User'),
+      isNonNull: false,
+    )),
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'id'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'name'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'phone'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+  FragmentDefinitionNode(
+    name: NameNode(value: 'UserPaysFields'),
+    typeCondition: TypeConditionNode(
+        on: NamedTypeNode(
+      name: NameNode(value: 'User'),
+      isNonNull: false,
+    )),
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'upiIds'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'toPay'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'toReceive'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+
+class InteractedUsersQuery
+    extends GraphQLQuery<InteractedUsers$Query, JsonSerializable> {
+  InteractedUsersQuery();
+
+  @override
+  final DocumentNode document = INTERACTED_USERS_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = INTERACTED_USERS_QUERY_DOCUMENT_OPERATION_NAME;
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  InteractedUsers$Query parse(Map<String, dynamic> json) =>
+      InteractedUsers$Query.fromJson(json);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -833,20 +1061,6 @@ final GROUP_QUERY_DOCUMENT = DocumentNode(definitions: [
         directives: [],
         selectionSet: null,
       ),
-      FieldNode(
-        name: NameNode(value: 'toPay'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-      FieldNode(
-        name: NameNode(value: 'toReceive'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
     ]),
   ),
   FragmentDefinitionNode(
@@ -1004,7 +1218,10 @@ class GroupQuery extends GraphQLQuery<Group$Query, GroupArguments> {
 
 @JsonSerializable(explicitToJson: true)
 class SignupArguments extends JsonSerializable with EquatableMixin {
-  SignupArguments({required this.name});
+  SignupArguments({
+    required this.name,
+    this.upi_id,
+  });
 
   @override
   factory SignupArguments.fromJson(Map<String, dynamic> json) =>
@@ -1012,8 +1229,10 @@ class SignupArguments extends JsonSerializable with EquatableMixin {
 
   late String name;
 
+  final String? upi_id;
+
   @override
-  List<Object?> get props => [name];
+  List<Object?> get props => [name, upi_id];
   @override
   Map<String, dynamic> toJson() => _$SignupArgumentsToJson(this);
 }
@@ -1032,7 +1251,16 @@ final SIGNUP_MUTATION_DOCUMENT = DocumentNode(definitions: [
         ),
         defaultValue: DefaultValueNode(value: null),
         directives: [],
-      )
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'upi_id')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: false,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
     ],
     directives: [],
     selectionSet: SelectionSetNode(selections: [
@@ -1043,7 +1271,11 @@ final SIGNUP_MUTATION_DOCUMENT = DocumentNode(definitions: [
           ArgumentNode(
             name: NameNode(value: 'name'),
             value: VariableNode(name: NameNode(value: 'name')),
-          )
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'upiId'),
+            value: VariableNode(name: NameNode(value: 'upi_id')),
+          ),
         ],
         directives: [],
         selectionSet: SelectionSetNode(selections: [
@@ -1227,20 +1459,6 @@ final CREATE_GROUP_MUTATION_DOCUMENT = DocumentNode(definitions: [
       ),
       FieldNode(
         name: NameNode(value: 'phone'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-      FieldNode(
-        name: NameNode(value: 'toPay'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-      FieldNode(
-        name: NameNode(value: 'toReceive'),
         alias: null,
         arguments: [],
         directives: [],
@@ -1571,20 +1789,6 @@ final ADD_EXPENSE_MUTATION_DOCUMENT = DocumentNode(definitions: [
         directives: [],
         selectionSet: null,
       ),
-      FieldNode(
-        name: NameNode(value: 'toPay'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
-      FieldNode(
-        name: NameNode(value: 'toReceive'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
     ]),
   ),
   FragmentDefinitionNode(
@@ -1670,4 +1874,357 @@ class AddExpenseMutation
   @override
   AddExpense$Mutation parse(Map<String, dynamic> json) =>
       AddExpense$Mutation.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class SettleUserArguments extends JsonSerializable with EquatableMixin {
+  SettleUserArguments({
+    required this.amount,
+    required this.userId,
+  });
+
+  @override
+  factory SettleUserArguments.fromJson(Map<String, dynamic> json) =>
+      _$SettleUserArgumentsFromJson(json);
+
+  late int amount;
+
+  late String userId;
+
+  @override
+  List<Object?> get props => [amount, userId];
+  @override
+  Map<String, dynamic> toJson() => _$SettleUserArgumentsToJson(this);
+}
+
+final SETTLE_USER_MUTATION_DOCUMENT_OPERATION_NAME = 'settle_user';
+final SETTLE_USER_MUTATION_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'settle_user'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'amount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'userId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'settleUser'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'amount'),
+            value: VariableNode(name: NameNode(value: 'amount')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'userId'),
+            value: VariableNode(name: NameNode(value: 'userId')),
+          ),
+        ],
+        directives: [],
+        selectionSet: null,
+      )
+    ]),
+  )
+]);
+
+class SettleUserMutation
+    extends GraphQLQuery<SettleUser$Mutation, SettleUserArguments> {
+  SettleUserMutation({required this.variables});
+
+  @override
+  final DocumentNode document = SETTLE_USER_MUTATION_DOCUMENT;
+
+  @override
+  final String operationName = SETTLE_USER_MUTATION_DOCUMENT_OPERATION_NAME;
+
+  @override
+  final SettleUserArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  SettleUser$Mutation parse(Map<String, dynamic> json) =>
+      SettleUser$Mutation.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class SettleExpenseArguments extends JsonSerializable with EquatableMixin {
+  SettleExpenseArguments({
+    required this.amount,
+    required this.expenseId,
+  });
+
+  @override
+  factory SettleExpenseArguments.fromJson(Map<String, dynamic> json) =>
+      _$SettleExpenseArgumentsFromJson(json);
+
+  late int amount;
+
+  late String expenseId;
+
+  @override
+  List<Object?> get props => [amount, expenseId];
+  @override
+  Map<String, dynamic> toJson() => _$SettleExpenseArgumentsToJson(this);
+}
+
+final SETTLE_EXPENSE_MUTATION_DOCUMENT_OPERATION_NAME = 'settle_expense';
+final SETTLE_EXPENSE_MUTATION_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+    type: OperationType.mutation,
+    name: NameNode(value: 'settle_expense'),
+    variableDefinitions: [
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'amount')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'Int'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+      VariableDefinitionNode(
+        variable: VariableNode(name: NameNode(value: 'expenseId')),
+        type: NamedTypeNode(
+          name: NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        defaultValue: DefaultValueNode(value: null),
+        directives: [],
+      ),
+    ],
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'settleExpense'),
+        alias: null,
+        arguments: [
+          ArgumentNode(
+            name: NameNode(value: 'expenseId'),
+            value: VariableNode(name: NameNode(value: 'expenseId')),
+          ),
+          ArgumentNode(
+            name: NameNode(value: 'amount'),
+            value: VariableNode(name: NameNode(value: 'amount')),
+          ),
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FragmentSpreadNode(
+            name: NameNode(value: 'ExpenseFields'),
+            directives: [],
+          )
+        ]),
+      )
+    ]),
+  ),
+  FragmentDefinitionNode(
+    name: NameNode(value: 'ExpenseFields'),
+    typeCondition: TypeConditionNode(
+        on: NamedTypeNode(
+      name: NameNode(value: 'Expense'),
+      isNonNull: false,
+    )),
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'id'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'title'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'createdAt'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'creator'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FragmentSpreadNode(
+            name: NameNode(value: 'UserFields'),
+            directives: [],
+          )
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'amount'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'toPay'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'toReceive'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'splits'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FragmentSpreadNode(
+            name: NameNode(value: 'SplitFields'),
+            directives: [],
+          )
+        ]),
+      ),
+    ]),
+  ),
+  FragmentDefinitionNode(
+    name: NameNode(value: 'UserFields'),
+    typeCondition: TypeConditionNode(
+        on: NamedTypeNode(
+      name: NameNode(value: 'User'),
+      isNonNull: false,
+    )),
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'id'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'name'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'phone'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+  FragmentDefinitionNode(
+    name: NameNode(value: 'SplitFields'),
+    typeCondition: TypeConditionNode(
+        on: NamedTypeNode(
+      name: NameNode(value: 'Split'),
+      isNonNull: false,
+    )),
+    directives: [],
+    selectionSet: SelectionSetNode(selections: [
+      FieldNode(
+        name: NameNode(value: 'id'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'amount'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'amountSettled'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+      FieldNode(
+        name: NameNode(value: 'fromUser'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FragmentSpreadNode(
+            name: NameNode(value: 'UserFields'),
+            directives: [],
+          )
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'toUser'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FragmentSpreadNode(
+            name: NameNode(value: 'UserFields'),
+            directives: [],
+          )
+        ]),
+      ),
+      FieldNode(
+        name: NameNode(value: 'isSettled'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
+    ]),
+  ),
+]);
+
+class SettleExpenseMutation
+    extends GraphQLQuery<SettleExpense$Mutation, SettleExpenseArguments> {
+  SettleExpenseMutation({required this.variables});
+
+  @override
+  final DocumentNode document = SETTLE_EXPENSE_MUTATION_DOCUMENT;
+
+  @override
+  final String operationName = SETTLE_EXPENSE_MUTATION_DOCUMENT_OPERATION_NAME;
+
+  @override
+  final SettleExpenseArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  SettleExpense$Mutation parse(Map<String, dynamic> json) =>
+      SettleExpense$Mutation.fromJson(json);
 }

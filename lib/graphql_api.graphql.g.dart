@@ -11,13 +11,7 @@ User$Query$UserAuth$Registered$User
         User$Query$UserAuth$Registered$User()
           ..id = json['id'] as String
           ..name = json['name'] as String
-          ..phone = json['phone'] as String
-          ..toPay = json['toPay'] as int
-          ..toReceive = json['toReceive'] as int
-          ..groups = (json['groups'] as List<dynamic>)
-              .map((e) =>
-                  SelfUserFieldsMixin$Group.fromJson(e as Map<String, dynamic>))
-              .toList();
+          ..phone = json['phone'] as String;
 
 Map<String, dynamic> _$User$Query$UserAuth$Registered$UserToJson(
         User$Query$UserAuth$Registered$User instance) =>
@@ -25,9 +19,6 @@ Map<String, dynamic> _$User$Query$UserAuth$Registered$UserToJson(
       'id': instance.id,
       'name': instance.name,
       'phone': instance.phone,
-      'toPay': instance.toPay,
-      'toReceive': instance.toReceive,
-      'groups': instance.groups.map((e) => e.toJson()).toList(),
     };
 
 User$Query$UserAuth$Registered _$User$Query$UserAuth$RegisteredFromJson(
@@ -74,9 +65,8 @@ Map<String, dynamic> _$User$QueryToJson(User$Query instance) =>
       'user': instance.user.toJson(),
     };
 
-SelfUserFieldsMixin$Group _$SelfUserFieldsMixin$GroupFromJson(
-        Map<String, dynamic> json) =>
-    SelfUserFieldsMixin$Group()
+Groups$Query$Group _$Groups$Query$GroupFromJson(Map<String, dynamic> json) =>
+    Groups$Query$Group()
       ..id = json['id'] as String
       ..name = json['name'] as String
       ..creator = GroupFieldsMixin$User.fromJson(
@@ -88,8 +78,7 @@ SelfUserFieldsMixin$Group _$SelfUserFieldsMixin$GroupFromJson(
       ..toReceive = json['toReceive'] as int
       ..createdAt = json['createdAt'] as String;
 
-Map<String, dynamic> _$SelfUserFieldsMixin$GroupToJson(
-        SelfUserFieldsMixin$Group instance) =>
+Map<String, dynamic> _$Groups$Query$GroupToJson(Groups$Query$Group instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -100,14 +89,22 @@ Map<String, dynamic> _$SelfUserFieldsMixin$GroupToJson(
       'createdAt': instance.createdAt,
     };
 
+Groups$Query _$Groups$QueryFromJson(Map<String, dynamic> json) => Groups$Query()
+  ..groups = (json['groups'] as List<dynamic>)
+      .map((e) => Groups$Query$Group.fromJson(e as Map<String, dynamic>))
+      .toList();
+
+Map<String, dynamic> _$Groups$QueryToJson(Groups$Query instance) =>
+    <String, dynamic>{
+      'groups': instance.groups.map((e) => e.toJson()).toList(),
+    };
+
 GroupFieldsMixin$User _$GroupFieldsMixin$UserFromJson(
         Map<String, dynamic> json) =>
     GroupFieldsMixin$User()
       ..id = json['id'] as String
       ..name = json['name'] as String
-      ..phone = json['phone'] as String
-      ..toPay = json['toPay'] as int
-      ..toReceive = json['toReceive'] as int;
+      ..phone = json['phone'] as String;
 
 Map<String, dynamic> _$GroupFieldsMixin$UserToJson(
         GroupFieldsMixin$User instance) =>
@@ -115,8 +112,43 @@ Map<String, dynamic> _$GroupFieldsMixin$UserToJson(
       'id': instance.id,
       'name': instance.name,
       'phone': instance.phone,
+    };
+
+InteractedUsers$Query$User _$InteractedUsers$Query$UserFromJson(
+        Map<String, dynamic> json) =>
+    InteractedUsers$Query$User()
+      ..id = json['id'] as String
+      ..name = json['name'] as String
+      ..phone = json['phone'] as String
+      ..upiIds =
+          (json['upiIds'] as List<dynamic>).map((e) => e as String).toList()
+      ..toPay = json['toPay'] as int
+      ..toReceive = json['toReceive'] as int;
+
+Map<String, dynamic> _$InteractedUsers$Query$UserToJson(
+        InteractedUsers$Query$User instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'phone': instance.phone,
+      'upiIds': instance.upiIds,
       'toPay': instance.toPay,
       'toReceive': instance.toReceive,
+    };
+
+InteractedUsers$Query _$InteractedUsers$QueryFromJson(
+        Map<String, dynamic> json) =>
+    InteractedUsers$Query()
+      ..interactedUsers = (json['interactedUsers'] as List<dynamic>)
+          .map((e) =>
+              InteractedUsers$Query$User.fromJson(e as Map<String, dynamic>))
+          .toList();
+
+Map<String, dynamic> _$InteractedUsers$QueryToJson(
+        InteractedUsers$Query instance) =>
+    <String, dynamic>{
+      'interactedUsers':
+          instance.interactedUsers.map((e) => e.toJson()).toList(),
     };
 
 Group$Query$Group _$Group$Query$GroupFromJson(Map<String, dynamic> json) =>
@@ -190,9 +222,7 @@ ExpenseFieldsMixin$User _$ExpenseFieldsMixin$UserFromJson(
     ExpenseFieldsMixin$User()
       ..id = json['id'] as String
       ..name = json['name'] as String
-      ..phone = json['phone'] as String
-      ..toPay = json['toPay'] as int
-      ..toReceive = json['toReceive'] as int;
+      ..phone = json['phone'] as String;
 
 Map<String, dynamic> _$ExpenseFieldsMixin$UserToJson(
         ExpenseFieldsMixin$User instance) =>
@@ -200,8 +230,6 @@ Map<String, dynamic> _$ExpenseFieldsMixin$UserToJson(
       'id': instance.id,
       'name': instance.name,
       'phone': instance.phone,
-      'toPay': instance.toPay,
-      'toReceive': instance.toReceive,
     };
 
 ExpenseFieldsMixin$Split _$ExpenseFieldsMixin$SplitFromJson(
@@ -232,9 +260,7 @@ SplitFieldsMixin$User _$SplitFieldsMixin$UserFromJson(
     SplitFieldsMixin$User()
       ..id = json['id'] as String
       ..name = json['name'] as String
-      ..phone = json['phone'] as String
-      ..toPay = json['toPay'] as int
-      ..toReceive = json['toReceive'] as int;
+      ..phone = json['phone'] as String;
 
 Map<String, dynamic> _$SplitFieldsMixin$UserToJson(
         SplitFieldsMixin$User instance) =>
@@ -242,8 +268,6 @@ Map<String, dynamic> _$SplitFieldsMixin$UserToJson(
       'id': instance.id,
       'name': instance.name,
       'phone': instance.phone,
-      'toPay': instance.toPay,
-      'toReceive': instance.toReceive,
     };
 
 Signup$Mutation$User _$Signup$Mutation$UserFromJson(
@@ -364,6 +388,56 @@ Map<String, dynamic> _$SplitInputToJson(SplitInput instance) =>
       'userId': instance.userId,
     };
 
+SettleUser$Mutation _$SettleUser$MutationFromJson(Map<String, dynamic> json) =>
+    SettleUser$Mutation()..settleUser = json['settleUser'] as String;
+
+Map<String, dynamic> _$SettleUser$MutationToJson(
+        SettleUser$Mutation instance) =>
+    <String, dynamic>{
+      'settleUser': instance.settleUser,
+    };
+
+SettleExpense$Mutation$Expense _$SettleExpense$Mutation$ExpenseFromJson(
+        Map<String, dynamic> json) =>
+    SettleExpense$Mutation$Expense()
+      ..id = json['id'] as String
+      ..title = json['title'] as String
+      ..createdAt = json['createdAt'] as String
+      ..creator = ExpenseFieldsMixin$User.fromJson(
+          json['creator'] as Map<String, dynamic>)
+      ..amount = json['amount'] as int
+      ..toPay = json['toPay'] as int
+      ..toReceive = json['toReceive'] as int
+      ..splits = (json['splits'] as List<dynamic>)
+          .map((e) =>
+              ExpenseFieldsMixin$Split.fromJson(e as Map<String, dynamic>))
+          .toList();
+
+Map<String, dynamic> _$SettleExpense$Mutation$ExpenseToJson(
+        SettleExpense$Mutation$Expense instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'createdAt': instance.createdAt,
+      'creator': instance.creator.toJson(),
+      'amount': instance.amount,
+      'toPay': instance.toPay,
+      'toReceive': instance.toReceive,
+      'splits': instance.splits.map((e) => e.toJson()).toList(),
+    };
+
+SettleExpense$Mutation _$SettleExpense$MutationFromJson(
+        Map<String, dynamic> json) =>
+    SettleExpense$Mutation()
+      ..settleExpense = SettleExpense$Mutation$Expense.fromJson(
+          json['settleExpense'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$SettleExpense$MutationToJson(
+        SettleExpense$Mutation instance) =>
+    <String, dynamic>{
+      'settleExpense': instance.settleExpense.toJson(),
+    };
+
 GroupArguments _$GroupArgumentsFromJson(Map<String, dynamic> json) =>
     GroupArguments(
       skip: json['skip'] as int,
@@ -381,11 +455,13 @@ Map<String, dynamic> _$GroupArgumentsToJson(GroupArguments instance) =>
 SignupArguments _$SignupArgumentsFromJson(Map<String, dynamic> json) =>
     SignupArguments(
       name: json['name'] as String,
+      upi_id: json['upi_id'] as String?,
     );
 
 Map<String, dynamic> _$SignupArgumentsToJson(SignupArguments instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'upi_id': instance.upi_id,
     };
 
 CreateGroupArguments _$CreateGroupArgumentsFromJson(
@@ -430,4 +506,31 @@ Map<String, dynamic> _$AddExpenseArgumentsToJson(
       'amount': instance.amount,
       'splits': instance.splits.map((e) => e.toJson()).toList(),
       'groupId': instance.groupId,
+    };
+
+SettleUserArguments _$SettleUserArgumentsFromJson(Map<String, dynamic> json) =>
+    SettleUserArguments(
+      amount: json['amount'] as int,
+      userId: json['userId'] as String,
+    );
+
+Map<String, dynamic> _$SettleUserArgumentsToJson(
+        SettleUserArguments instance) =>
+    <String, dynamic>{
+      'amount': instance.amount,
+      'userId': instance.userId,
+    };
+
+SettleExpenseArguments _$SettleExpenseArgumentsFromJson(
+        Map<String, dynamic> json) =>
+    SettleExpenseArguments(
+      amount: json['amount'] as int,
+      expenseId: json['expenseId'] as String,
+    );
+
+Map<String, dynamic> _$SettleExpenseArgumentsToJson(
+        SettleExpenseArguments instance) =>
+    <String, dynamic>{
+      'amount': instance.amount,
+      'expenseId': instance.expenseId,
     };

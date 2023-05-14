@@ -13,11 +13,12 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   TextEditingController controller = TextEditingController();
+  TextEditingController upiIdController = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
   onSubmit(String value) async {
     if (formKey.currentState?.validate() == true) {
-      context.read<AppState>().signup(value);
+      context.read<AppState>().signup(value, upiIdController.text);
     }
   }
 
@@ -41,25 +42,50 @@ class _SignupScreenState extends State<SignupScreen> {
           const SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Form(
-              key: formKey,
-              child: TextFormField(
-                controller: controller,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Name cant be empty";
-                  } else {
-                    return null;
-                  }
-                },
-                onFieldSubmitted: onSubmit,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Name',
+          Form(
+            key: formKey,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: TextFormField(
+                    controller: controller,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Name cant be empty";
+                      } else {
+                        return null;
+                      }
+                    },
+                    onFieldSubmitted: onSubmit,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Name',
+                    ),
+                  ),
                 ),
-              ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: TextFormField(
+                    controller: upiIdController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "UPI ID cant be empty";
+                      } else {
+                        return null;
+                      }
+                    },
+                    onFieldSubmitted: onSubmit,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'UPI Id',
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(

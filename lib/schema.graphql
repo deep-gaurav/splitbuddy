@@ -22,7 +22,7 @@ type Group {
 }
 
 type Mutation {
-  signup(name: String!): User!
+  signup(name: String!, upiId: String): User!
   createGroup(name: String!): Group!
   addToGroup(groupId: String!, phone: String!): String!
   addExpense(
@@ -31,12 +31,17 @@ type Mutation {
     amount: Int!
     splits: [SplitInput!]!
   ): Expense!
+  settleExpense(expenseId: String!, amount: Int!): Expense!
+  settleUser(userId: String!, amount: Int!): String!
 }
 
 type Query {
   ping: String!
   user: UserAuth!
   group(id: String!): Group!
+  userById(id: String!): User!
+  interactedUsers: [User!]!
+  groups: [Group!]!
 }
 
 type Registered {
@@ -66,8 +71,8 @@ type User {
   id: String!
   name: String!
   phone: String!
-  groups: [Group!]!
   toPay: Int!
+  upiIds: [String!]!
   toReceive: Int!
 }
 

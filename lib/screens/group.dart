@@ -143,137 +143,174 @@ class _GroupState extends State<Group> {
             ),
           ),
           Expanded(
-              child: CustomScrollView(
-            physics: const MaintiningScrollPhysics(),
-            controller: _scrollController,
-            slivers: [
-              ...dates.map(
-                (entry) => MultiSliver(
-                  pushPinnedChildren: true,
-                  children: [
-                    SliverPersistentHeader(
-                      delegate: DateHeader(entry),
-                      pinned: true,
-                    ),
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          if (index >= expenseGrouped[entry]!.length) {
-                            return null;
-                          }
-                          var expense = expenseGrouped[entry]![
-                              expenseGrouped[entry]!.length - 1 - index];
-                          var isSelf = expense.creator.id ==
-                              context.read<AppState>().user!.id;
-                          return FractionallySizedBox(
-                            widthFactor: 0.7,
-                            alignment: isSelf
-                                ? Alignment.centerRight
-                                : Alignment.centerLeft,
-                            child: Align(
+              child: Container(
+            alignment: Alignment.bottomCenter,
+            child: CustomScrollView(
+              shrinkWrap: true,
+              physics: const MaintiningScrollPhysics(),
+              controller: _scrollController,
+              slivers: [
+                ...dates.map(
+                  (entry) => MultiSliver(
+                    pushPinnedChildren: true,
+                    children: [
+                      SliverPersistentHeader(
+                        delegate: DateHeader(entry),
+                        pinned: true,
+                      ),
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            if (index >= expenseGrouped[entry]!.length) {
+                              return null;
+                            }
+                            var expense = expenseGrouped[entry]![
+                                expenseGrouped[entry]!.length - 1 - index];
+                            var isSelf = expense.creator.id ==
+                                context.read<AppState>().user!.id;
+                            return FractionallySizedBox(
+                              widthFactor: 0.7,
                               alignment: isSelf
                                   ? Alignment.centerRight
                                   : Alignment.centerLeft,
-                              child: Card(
-                                elevation: 4.0,
-                                child: Container(
-                                  // decoration: BoxDecoration(
-                                  //   color:
-                                  //       Theme.of(context).colorScheme.surfaceVariant,
-                                  // ),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 10),
-                                  child: IntrinsicWidth(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            const Icon(Icons.attach_money),
-                                            Text(
-                                              expense.title,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall,
-                                            )
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              "${expense.amount}",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .displaySmall
-                                                  ?.copyWith(
-                                                      fontWeight:
-                                                          FontWeight.w800),
-                                            ),
-                                            const Spacer(),
-                                            Text(
-                                              DateFormat("h:mm a").format(
-                                                DateTime.parse(
-                                                        expense.createdAt)
-                                                    .toLocal(),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        // Text(
-                                        //   expense.title,
-                                        //   style: Theme.of(context).textTheme.labelLarge,
-                                        // ),
-                                        const Divider(),
-                                        ...expense.splits.map(
-                                          (e) => Row(
+                              child: Align(
+                                alignment: isSelf
+                                    ? Alignment.centerRight
+                                    : Alignment.centerLeft,
+                                child: Card(
+                                  elevation: 4.0,
+                                  child: Container(
+                                    // decoration: BoxDecoration(
+                                    //   color:
+                                    //       Theme.of(context).colorScheme.surfaceVariant,
+                                    // ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 10),
+                                    child: IntrinsicWidth(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: [
+                                          Row(
                                             children: [
-                                              Icon(
-                                                isSelf
-                                                    ? Icons.call_received
-                                                    : Icons.call_made,
-                                                size: 14,
-                                              ),
+                                              const Icon(Icons.payments),
                                               const SizedBox(
                                                 width: 5,
                                               ),
-                                              Text.rich(
-                                                TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                        text: e.fromUser.name,
-                                                        style: const TextStyle(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold)),
-                                                    const TextSpan(
-                                                        text: " to pay"),
-                                                  ],
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 20,
-                                              ),
-                                              const Spacer(),
-                                              Text("${e.amount}")
+                                              Text(
+                                                expense.title,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodySmall,
+                                              )
                                             ],
                                           ),
-                                        )
-                                      ],
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "${expense.amount}",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .displaySmall
+                                                    ?.copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w800),
+                                              ),
+                                              const Spacer(),
+                                              Text(
+                                                DateFormat("h:mm a").format(
+                                                  DateTime.parse(
+                                                          expense.createdAt)
+                                                      .toLocal(),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          // Text(
+                                          //   expense.title,
+                                          //   style: Theme.of(context).textTheme.labelLarge,
+                                          // ),
+                                          const Divider(),
+                                          ...expense.splits.map(
+                                            (e) {
+                                              var isPaid =
+                                                  e.amountSettled >= e.amount;
+                                              return Stack(
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Icon(
+                                                        isSelf
+                                                            ? Icons
+                                                                .call_received
+                                                            : Icons.call_made,
+                                                        size: 14,
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 5,
+                                                      ),
+                                                      Text.rich(
+                                                        TextSpan(
+                                                          children: [
+                                                            TextSpan(
+                                                                text: e.fromUser
+                                                                    .name,
+                                                                style: const TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold)),
+                                                            const TextSpan(
+                                                                text:
+                                                                    " to pay"),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 20,
+                                                      ),
+                                                      const Spacer(),
+                                                      if (isPaid)
+                                                        Text("${e.amount}")
+                                                      else
+                                                        Text(
+                                                            "${e.amount - e.amountSettled}/${e.amount}")
+                                                    ],
+                                                  ),
+                                                  if (isPaid)
+                                                    Positioned(
+                                                      top: 0,
+                                                      bottom: 0,
+                                                      left: 0,
+                                                      right: 0,
+                                                      child: Center(
+                                                        child: Container(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .dividerColor,
+                                                          height: 1,
+                                                        ),
+                                                      ),
+                                                    )
+                                                ],
+                                              );
+                                            },
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                        childCount: expenseGrouped[entry]!.length,
+                            );
+                          },
+                          childCount: expenseGrouped[entry]!.length,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )),
           ButtonBar(
             children: [
@@ -360,26 +397,6 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                       selected: context.read<AppState>().user!.id == member.id,
                       leading: const Icon(Icons.person),
                       title: Text(member.name),
-                      subtitle: Row(
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                const Icon(Icons.call_received),
-                                Text(member.toReceive.toString())
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Row(
-                              children: [
-                                const Icon(Icons.call_made),
-                                Text(member.toPay.toString())
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
                     ),
                   ),
                 );

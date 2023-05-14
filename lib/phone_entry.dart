@@ -48,20 +48,20 @@ class _PhoneEntryScreenState extends State<PhoneEntryScreen> {
               keyboardType: TextInputType.phone,
               enabled: !otpSent,
               textInputAction: TextInputAction.go,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 prefixText: '+91 ',
                 labelText: 'Enter Phone Number',
               ),
             ),
             AnimatedSize(
-              duration: Duration(milliseconds: 700),
+              duration: const Duration(milliseconds: 700),
               child: otpSent
                   ? TextField(
                       onSubmitted: verifyOTP,
                       autofocus: true,
                       keyboardType: TextInputType.phone,
                       textInputAction: TextInputAction.go,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'enter OTP',
                       ),
                     )

@@ -3,6 +3,10 @@ fragment UserFields on User {
   id
   name
   phone
+}
+
+fragment UserPaysFields on User{
+  upiIds
   toPay
   toReceive
 }
@@ -56,11 +60,6 @@ fragment GroupWithExpenses on Group {
   }
 }
 
-fragment SelfUserFields on User {
-  groups {
-    ...GroupFields
-  }
-}
 
 query user {
   user {
@@ -68,12 +67,24 @@ query user {
     ... on Registered {
       user {
         ...UserFields
-        ...SelfUserFields
       }
     }
     ... on Unregistered {
       phone
     }
+  }
+}
+
+query groups {
+  groups{
+    ...GroupFields
+  }
+}
+
+query interacted_users {
+  interactedUsers{
+    ...UserFields
+    ...UserPaysFields
   }
 }
 
@@ -83,8 +94,8 @@ query group($skip: Int!, $limit: Int!, $groupId: String!) {
   }
 }
 
-mutation signup($name: String!) {
-  signup(name: $name) {
+mutation signup($name: String!, $upi_id:String) {
+  signup(name: $name,upiId:$upi_id) {
     id
   }
 }
@@ -111,6 +122,16 @@ mutation add_expense(
     splits: $splits
     groupId: $groupId
   ) {
+    ...ExpenseFields
+  }
+}
+
+mutation settle_user($amount: Int!, $userId:String!){
+  settleUser(amount:$amount,userId:$userId)
+}
+
+mutation settle_expense($amount:Int!, $expenseId: String!){
+  settleExpense(expenseId:$expenseId, amount:$amount){
     ...ExpenseFields
   }
 }

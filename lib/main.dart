@@ -1,3 +1,4 @@
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -50,37 +51,55 @@ class _MyAppState extends State<MyApp> {
         future: context.read<AuthState>().user!.getIdToken(),
         builder: (context, ass) {
           if (ass.data == null) {
-            return MaterialApp(
-              theme: appTheme,
-              home: const Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
+            return DynamicColorBuilder(
+              builder: (lightDynamic, darkDynamic) => MaterialApp(
+                theme: ThemeData(colorScheme: lightDynamic, useMaterial3: true),
+                darkTheme: ThemeData(
+                  colorScheme: darkDynamic,
+                  useMaterial3: true,
+                ),
+                home: const Scaffold(
+                  body: Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 ),
               ),
             );
           } else {
-            return MultiProvider(
-              providers: [
-                ChangeNotifierProvider(
-                  create: (context) => AppState(),
-                )
-              ],
-              child: Selector<AppState, String?>(
-                  builder: (context, userId, child) {
-                    if (userId == null) {
-                      return MaterialApp(
-                        theme: appTheme,
-                        home: const SignupScreen(),
-                      );
-                    } else {
-                      return MaterialApp(
-                        theme: appTheme,
-                        home: const HomeScreen(),
-                      );
-                    }
-                  },
-                  selector: (_, appstate) => appstate.user?.id),
-            );
+            return DynamicColorBuilder(builder: (light, dark) {
+              return MultiProvider(
+                providers: [
+                  ChangeNotifierProvider(
+                    create: (context) => AppState(),
+                  )
+                ],
+                child: Selector<AppState, String?>(
+                    builder: (context, userId, child) {
+                      if (userId == null) {
+                        return MaterialApp(
+                          theme:
+                              ThemeData(colorScheme: light, useMaterial3: true),
+                          darkTheme: ThemeData(
+                            colorScheme: dark,
+                            useMaterial3: true,
+                          ),
+                          home: const SignupScreen(),
+                        );
+                      } else {
+                        return MaterialApp(
+                          theme:
+                              ThemeData(colorScheme: light, useMaterial3: true),
+                          darkTheme: ThemeData(
+                            colorScheme: dark,
+                            useMaterial3: true,
+                          ),
+                          home: const HomeScreen(),
+                        );
+                      }
+                    },
+                    selector: (_, appstate) => appstate.user?.id),
+              );
+            });
           }
         },
       );

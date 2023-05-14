@@ -37,23 +37,37 @@ class AppState extends ChangeNotifier {
 
   List<GroupFieldsMixin> _userGroups = [];
 
+  List<InteractedUsers$Query$User> _interactedUsers = [];
+
+  UnmodifiableListView<InteractedUsers$Query$User> get interactedUsers =>
+      UnmodifiableListView(_interactedUsers);
+
   Future<ArtemisClient> get client => _getClient();
 
   refresh(ArtemisClient client) {
     client.execute(UserQuery()).then((value) {
       _auth = value.data?.user;
-      if (_auth is User$Query$UserAuth$Registered) {
-        _userGroups = [];
-        _userGroups
-            .addAll((_auth as User$Query$UserAuth$Registered).user.groups);
-      }
+
+      notifyListeners();
+    });
+    client.execute(GroupsQuery()).then((value) {
+      _userGroups = [];
+      _userGroups.addAll(value.data?.groups ?? []);
+
+      notifyListeners();
+    });
+
+    client.execute(InteractedUsersQuery()).then((value) {
+      _interactedUsers = [];
+      _interactedUsers.addAll(value.data?.interactedUsers ?? []);
+
       notifyListeners();
     });
   }
 
-  Future<SelfUserFieldsMixin> signup(String name) async {
-    var result = await (await _getClient())
-        .execute(SignupMutation(variables: SignupArguments(name: name)));
+  Future<UserFieldsMixin> signup(String name, String upiId) async {
+    var result = await (await _getClient()).execute(
+        SignupMutation(variables: SignupArguments(name: name, upi_id: upiId)));
     if (result.data != null) {
       // Optimize
       var result = await (await _getClient()).execute(UserQuery());
@@ -93,6 +107,8 @@ class AppState extends ChangeNotifier {
       var index =
           _userGroups.indexWhere((e) => e.id == newgroup.data!.group.id);
       _userGroups[index] = newgroup.data!.group;
+
+      refresh(await _getClient());
 
       notifyListeners();
       return newgroup.data!.group;
