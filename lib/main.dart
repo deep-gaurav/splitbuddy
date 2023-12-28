@@ -36,6 +36,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  ThemeData _buildTheme(Brightness brightness, ColorScheme? colorScheme) {
+    var baseTheme = ThemeData(
+        brightness: brightness, colorScheme: colorScheme, useMaterial3: true);
+
+    return baseTheme.copyWith(
+      textTheme: GoogleFonts.oxygenTextTheme(baseTheme.textTheme),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DynamicColorBuilder(builder: (light, dark) {
@@ -43,12 +52,8 @@ class _MyAppState extends State<MyApp> {
         builder: (context, val, child) {
           return DynamicColorBuilder(
             builder: (lightDynamic, darkDynamic) => MaterialApp(
-              theme: ThemeData(colorScheme: lightDynamic, useMaterial3: true)
-                  .copyWith(textTheme: GoogleFonts.oxygenTextTheme()),
-              darkTheme: ThemeData(
-                colorScheme: darkDynamic,
-                useMaterial3: true,
-              ).copyWith(textTheme: GoogleFonts.oxygenTextTheme()),
+              theme: _buildTheme(Brightness.light, lightDynamic),
+              darkTheme: _buildTheme(Brightness.dark, darkDynamic),
               home: switch (val) {
                 AuthStates.Loading => const Scaffold(
                     body: Center(
