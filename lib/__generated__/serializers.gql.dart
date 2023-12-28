@@ -12,6 +12,7 @@ import 'package:splitbuddy/__generated__/schema.schema.gql.dart'
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart'
     show
         GuserData_user,
+        Gverify_email_otpData_verifyOtp,
         GExpenseFieldsData,
         GExpenseFieldsData_creator,
         GExpenseFieldsData_splits,
@@ -59,6 +60,9 @@ import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart'
         GgroupsData_groups_members,
         Ginteracted_usersData,
         Ginteracted_usersData_interactedUsers,
+        Grefresh_tokenData,
+        Grefresh_tokenData_refreshToken,
+        Gsend_email_otpData,
         Gsettle_expenseData,
         Gsettle_expenseData_settleExpense,
         Gsettle_expenseData_settleExpense_creator,
@@ -68,11 +72,17 @@ import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart'
         Gsettle_userData,
         GsignupData,
         GsignupData_signup,
+        GsignupData_signup_tokens,
+        GsignupData_signup_user,
         GuserData,
         GuserData_user__asRegistered,
         GuserData_user__asRegistered_user,
         GuserData_user__asUnregistered,
-        GuserData_user__base;
+        GuserData_user__base,
+        Gverify_email_otpData,
+        Gverify_email_otpData_verifyOtp__asUserNotSignedUp,
+        Gverify_email_otpData_verifyOtp__asUserSignedUp,
+        Gverify_email_otpData_verifyOtp__base;
 import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart'
     show
         GExpenseFieldsReq,
@@ -87,10 +97,13 @@ import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart'
         GgroupReq,
         GgroupsReq,
         Ginteracted_usersReq,
+        Grefresh_tokenReq,
+        Gsend_email_otpReq,
         Gsettle_expenseReq,
         Gsettle_userReq,
         GsignupReq,
-        GuserReq;
+        GuserReq,
+        Gverify_email_otpReq;
 import 'package:splitbuddy/graphql/__generated__/queries.var.gql.dart'
     show
         GExpenseFieldsVars,
@@ -105,16 +118,20 @@ import 'package:splitbuddy/graphql/__generated__/queries.var.gql.dart'
         GgroupVars,
         GgroupsVars,
         Ginteracted_usersVars,
+        Grefresh_tokenVars,
+        Gsend_email_otpVars,
         Gsettle_expenseVars,
         Gsettle_userVars,
         GsignupVars,
-        GuserVars;
+        GuserVars,
+        Gverify_email_otpVars;
 
 part 'serializers.gql.g.dart';
 
 final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..add(OperationSerializer())
   ..add(GuserData_user.serializer)
+  ..add(Gverify_email_otpData_verifyOtp.serializer)
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
   GExpenseFieldsData,
@@ -189,6 +206,13 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   Ginteracted_usersData_interactedUsers,
   Ginteracted_usersReq,
   Ginteracted_usersVars,
+  Grefresh_tokenData,
+  Grefresh_tokenData_refreshToken,
+  Grefresh_tokenReq,
+  Grefresh_tokenVars,
+  Gsend_email_otpData,
+  Gsend_email_otpReq,
+  Gsend_email_otpVars,
   Gsettle_expenseData,
   Gsettle_expenseData_settleExpense,
   Gsettle_expenseData_settleExpense_creator,
@@ -202,6 +226,8 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   Gsettle_userVars,
   GsignupData,
   GsignupData_signup,
+  GsignupData_signup_tokens,
+  GsignupData_signup_user,
   GsignupReq,
   GsignupVars,
   GuserData,
@@ -211,5 +237,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GuserData_user__base,
   GuserReq,
   GuserVars,
+  Gverify_email_otpData,
+  Gverify_email_otpData_verifyOtp__asUserNotSignedUp,
+  Gverify_email_otpData_verifyOtp__asUserSignedUp,
+  Gverify_email_otpData_verifyOtp__base,
+  Gverify_email_otpReq,
+  Gverify_email_otpVars,
 ])
 final Serializers serializers = _serializersBuilder.build();

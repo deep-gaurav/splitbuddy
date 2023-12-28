@@ -748,6 +748,230 @@ abstract class Gsettle_expenseReq
       );
 }
 
+abstract class Gsend_email_otpReq
+    implements
+        Built<Gsend_email_otpReq, Gsend_email_otpReqBuilder>,
+        _i1.OperationRequest<_i2.Gsend_email_otpData, _i3.Gsend_email_otpVars> {
+  Gsend_email_otpReq._();
+
+  factory Gsend_email_otpReq([Function(Gsend_email_otpReqBuilder b) updates]) =
+      _$Gsend_email_otpReq;
+
+  static void _initializeBuilder(Gsend_email_otpReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'send_email_otp',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.Gsend_email_otpVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.Gsend_email_otpData? Function(
+    _i2.Gsend_email_otpData?,
+    _i2.Gsend_email_otpData?,
+  )? get updateResult;
+  @override
+  _i2.Gsend_email_otpData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.Gsend_email_otpData? parseData(Map<String, dynamic> json) =>
+      _i2.Gsend_email_otpData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.Gsend_email_otpData, _i3.Gsend_email_otpVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<Gsend_email_otpReq> get serializer =>
+      _$gsendEmailOtpReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        Gsend_email_otpReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Gsend_email_otpReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        Gsend_email_otpReq.serializer,
+        json,
+      );
+}
+
+abstract class Gverify_email_otpReq
+    implements
+        Built<Gverify_email_otpReq, Gverify_email_otpReqBuilder>,
+        _i1.OperationRequest<_i2.Gverify_email_otpData,
+            _i3.Gverify_email_otpVars> {
+  Gverify_email_otpReq._();
+
+  factory Gverify_email_otpReq(
+          [Function(Gverify_email_otpReqBuilder b) updates]) =
+      _$Gverify_email_otpReq;
+
+  static void _initializeBuilder(Gverify_email_otpReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'verify_email_otp',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.Gverify_email_otpVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.Gverify_email_otpData? Function(
+    _i2.Gverify_email_otpData?,
+    _i2.Gverify_email_otpData?,
+  )? get updateResult;
+  @override
+  _i2.Gverify_email_otpData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.Gverify_email_otpData? parseData(Map<String, dynamic> json) =>
+      _i2.Gverify_email_otpData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.Gverify_email_otpData, _i3.Gverify_email_otpVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<Gverify_email_otpReq> get serializer =>
+      _$gverifyEmailOtpReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        Gverify_email_otpReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Gverify_email_otpReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        Gverify_email_otpReq.serializer,
+        json,
+      );
+}
+
+abstract class Grefresh_tokenReq
+    implements
+        Built<Grefresh_tokenReq, Grefresh_tokenReqBuilder>,
+        _i1.OperationRequest<_i2.Grefresh_tokenData, _i3.Grefresh_tokenVars> {
+  Grefresh_tokenReq._();
+
+  factory Grefresh_tokenReq([Function(Grefresh_tokenReqBuilder b) updates]) =
+      _$Grefresh_tokenReq;
+
+  static void _initializeBuilder(Grefresh_tokenReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'refresh_token',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.Grefresh_tokenVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.Grefresh_tokenData? Function(
+    _i2.Grefresh_tokenData?,
+    _i2.Grefresh_tokenData?,
+  )? get updateResult;
+  @override
+  _i2.Grefresh_tokenData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.Grefresh_tokenData? parseData(Map<String, dynamic> json) =>
+      _i2.Grefresh_tokenData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.Grefresh_tokenData, _i3.Grefresh_tokenVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<Grefresh_tokenReq> get serializer =>
+      _$grefreshTokenReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        Grefresh_tokenReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Grefresh_tokenReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        Grefresh_tokenReq.serializer,
+        json,
+      );
+}
+
 abstract class GUserFieldsReq
     implements
         Built<GUserFieldsReq, GUserFieldsReqBuilder>,

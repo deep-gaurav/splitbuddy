@@ -34,6 +34,13 @@ const UserFields = _i1.FragmentDefinitionNode(
       directives: [],
       selectionSet: null,
     ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'email'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
   ]),
 );
 const UserPaysFields = _i1.FragmentDefinitionNode(
@@ -514,12 +521,39 @@ const signup = _i1.OperationDefinitionNode(
       directives: [],
       selectionSet: _i1.SelectionSetNode(selections: [
         _i1.FieldNode(
-          name: _i1.NameNode(value: 'id'),
+          name: _i1.NameNode(value: 'user'),
           alias: null,
           arguments: [],
           directives: [],
-          selectionSet: null,
-        )
+          selectionSet: _i1.SelectionSetNode(selections: [
+            _i1.FragmentSpreadNode(
+              name: _i1.NameNode(value: 'UserFields'),
+              directives: [],
+            )
+          ]),
+        ),
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'tokens'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: _i1.SelectionSetNode(selections: [
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'accessToken'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'refreshToken'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        ),
       ]),
     )
   ]),
@@ -564,7 +598,7 @@ const add_to_group = _i1.OperationDefinitionNode(
   name: _i1.NameNode(value: 'add_to_group'),
   variableDefinitions: [
     _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'phone')),
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'email')),
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'String'),
         isNonNull: true,
@@ -585,12 +619,12 @@ const add_to_group = _i1.OperationDefinitionNode(
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
     _i1.FieldNode(
-      name: _i1.NameNode(value: 'addToGroup'),
+      name: _i1.NameNode(value: 'addToGroupByEmail'),
       alias: null,
       arguments: [
         _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'phone'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'phone')),
+          name: _i1.NameNode(value: 'email'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'email')),
         ),
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'groupId'),
@@ -770,6 +804,173 @@ const settle_expense = _i1.OperationDefinitionNode(
     )
   ]),
 );
+const send_email_otp = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.mutation,
+  name: _i1.NameNode(value: 'send_email_otp'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'email')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    )
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'sendEmailOtp'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'email'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'email')),
+        )
+      ],
+      directives: [],
+      selectionSet: null,
+    )
+  ]),
+);
+const verify_email_otp = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.mutation,
+  name: _i1.NameNode(value: 'verify_email_otp'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'email')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'otp')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'verifyOtp'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'email'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'email')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'otp'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'otp')),
+        ),
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FieldNode(
+          name: _i1.NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        _i1.InlineFragmentNode(
+          typeCondition: _i1.TypeConditionNode(
+              on: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'UserSignedUp'),
+            isNonNull: false,
+          )),
+          directives: [],
+          selectionSet: _i1.SelectionSetNode(selections: [
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'accessToken'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'refreshToken'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        ),
+        _i1.InlineFragmentNode(
+          typeCondition: _i1.TypeConditionNode(
+              on: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'UserNotSignedUp'),
+            isNonNull: false,
+          )),
+          directives: [],
+          selectionSet: _i1.SelectionSetNode(selections: [
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'signupToken'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            )
+          ]),
+        ),
+      ]),
+    )
+  ]),
+);
+const refresh_token = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.mutation,
+  name: _i1.NameNode(value: 'refresh_token'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'refresh_token')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    )
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'refreshToken'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'refreshToken'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'refresh_token')),
+        )
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'accessToken'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'refreshToken'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+      ]),
+    )
+  ]),
+);
 const document = _i1.DocumentNode(definitions: [
   UserFields,
   UserPaysFields,
@@ -787,4 +988,7 @@ const document = _i1.DocumentNode(definitions: [
   add_expense,
   settle_user,
   settle_expense,
+  send_email_otp,
+  verify_email_otp,
+  refresh_token,
 ]);

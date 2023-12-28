@@ -1,49 +1,51 @@
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:ferry/ferry.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import 'package:splitbuddy/__generated__/schema.schema.gql.dart';
+import 'package:splitbuddy/auth/reauth_client.dart';
+import 'package:splitbuddy/auth/secure_storage.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
 import 'package:splitbuddy/utils/headerclient.dart';
 import 'package:http/http.dart' as http;
 
+enum AuthStates {
+  Loading,
+  UnAuthorized,
+  AuthorizedRequiresSignup,
+  Authorized,
+}
+
 class AppState extends ChangeNotifier {
-  Future<Client> _getClient() async {
-    String? token;
-    try {
-      token = await FirebaseAuth.instance.currentUser!.getIdToken();
-    } catch (e) {
-      // donotthing
-    }
-    return Client(
-      link: HttpLink(
-        const String.fromEnvironment(
-          'ENDPOINT',
-          defaultValue: 'https://split-be.deepwith.in',
-        ),
-        httpClient: token == null
-            ? http.Client()
-            : HttpClientWithToken("Bearer $token"),
+  static Client unAuthorizedClient = Client(
+    link: HttpLink(
+      const String.fromEnvironment(
+        'ENDPOINT',
+        defaultValue: 'https://split-be.deepwith.in',
       ),
-    );
+    ),
+  );
+
+  ReAuthClient? _reAuthClient;
+  Future<ReAuthClient> _getClient() async {
+    _reAuthClient ??= await ReAuthClient.getClient(logout);
+    return _reAuthClient!;
   }
 
   AppState() {
     _getClient().then(refresh);
-    FirebaseAuth.instance.idTokenChanges().listen((event) async {
+    unawaited(() async {
       refresh(await _getClient());
-    });
+    }());
   }
 
   GuserData_user? _auth;
 
-  bool get isSignedUp => _auth is! GuserData_user__asRegistered;
-
-  bool isLoading = true;
+  AuthStates authState = AuthStates.Loading;
 
   GUserFields? get user => (_auth is GuserData_user__asRegistered)
       ? (_auth as GuserData_user__asRegistered).user
@@ -59,25 +61,28 @@ class AppState extends ChangeNotifier {
   UnmodifiableListView<Ginteracted_usersData_interactedUsers>
       get interactedUsers => UnmodifiableListView(_interactedUsers);
 
-  Future<Client> get client => _getClient();
+  Future<ReAuthClient> get client => _getClient();
 
-  refresh(Client client) {
-    client.request(GuserReq()).listen((value) {
-      client;
+  refresh(ReAuthClient client) {
+    client.execute(GuserReq()).then((value) {
       _auth = value.data?.user;
-      if (isLoading == true) {
-        isLoading = false;
+      if (value.data?.user == null) {
+        authState = AuthStates.UnAuthorized;
+      } else if (value.data?.user is GuserData_user__asUnregistered) {
+        authState = AuthStates.AuthorizedRequiresSignup;
+      } else if (value.data?.user is GuserData_user__asRegistered) {
+        authState = AuthStates.Authorized;
       }
       notifyListeners();
     });
-    client.request(GgroupsReq()).listen((value) {
+    client.execute(GgroupsReq()).then((value) {
       _userGroups = [];
       _userGroups.addAll(value.data?.groups.toList() ?? []);
 
       notifyListeners();
     });
 
-    client.request(Ginteracted_usersReq()).listen((value) {
+    client.execute(Ginteracted_usersReq()).then((value) {
       _interactedUsers = [];
       _interactedUsers.addAll(value.data?.interactedUsers ?? []);
 
@@ -86,19 +91,20 @@ class AppState extends ChangeNotifier {
   }
 
   Future<GUserFields> signup(String name, String upiId) async {
-    var user =
-        await FirebaseAuth.instance.signInWithProvider(GoogleAuthProvider());
-    var result = await (await _getClient())
-        .request(GsignupReq((b) => b.vars
+    var result = await (await _getClient()).execute(
+      GsignupReq(
+        (b) => b.vars
           ..name = name
-          ..upi_id = upiId))
-        .first;
-    if (result.data != null) {
-      // Optimize
-      var result = await (await _getClient()).request(GuserReq()).first;
-      _auth = result.data!.user;
-      notifyListeners();
-      return (_auth as GuserData_user__asRegistered).user;
+          ..upi_id = upiId,
+      ),
+    );
+    if (result.data?.signup != null) {
+      await SecureStorageHelper.getInstance().storeTokens(
+          accessToken: result.data!.signup.tokens.accessToken,
+          refreshToken: result.data!.signup.tokens.refreshToken);
+      _reAuthClient = null;
+      refresh(await _getClient());
+      return result.data!.signup.user;
     } else {
       throw result;
     }
@@ -106,8 +112,7 @@ class AppState extends ChangeNotifier {
 
   Future<GGroupFields> createGroup(String name) async {
     var result = await (await _getClient())
-        .request(Gcreate_groupReq((b) => b.vars..name = name))
-        .first;
+        .execute(Gcreate_groupReq((b) => b.vars..name = name));
 
     if (result.data != null) {
       var newgroup = <GGroupFields>[
@@ -122,21 +127,17 @@ class AppState extends ChangeNotifier {
     }
   }
 
-  Future<GGroupFields> addMemberToGroup(String phone, String group) async {
-    var result = await (await _getClient())
-        .request(Gadd_to_groupReq((b) => b.vars
+  Future<GGroupFields> addMemberToGroup(String email, String group) async {
+    var result =
+        await (await _getClient()).execute(Gadd_to_groupReq((b) => b.vars
           ..groupId = group
-          ..phone = phone))
-        .first;
+          ..email = email));
 
     if (result.data != null) {
-      var newgroup = await (await _getClient())
-          .request(GgroupReq((b) => b.vars
-            ..groupId = group
-            ..skip = 0
-            ..limit = 10))
-          .first;
-      _userGroups = [...userGroups];
+      var newgroup = await (await _getClient()).execute(GgroupReq((b) => b.vars
+        ..groupId = group
+        ..skip = 0
+        ..limit = 10));
       var index =
           _userGroups.indexWhere((e) => e.id == newgroup.data!.group.id);
       _userGroups[index] = newgroup.data!.group;
@@ -153,17 +154,60 @@ class AppState extends ChangeNotifier {
   Future<GExpenseFields> addExpense(String title, int amount, String groupId,
       List<GSplitInput> splits) async {
     var client = await _getClient();
-    var result = await client
-        .request(Gadd_expenseReq((b) => b.vars
-          ..title = title
-          ..amount = amount
-          ..splits = ListBuilder(splits)))
-        .first;
+    var result = await client.execute(Gadd_expenseReq(
+      (b) => b.vars
+        ..title = title
+        ..amount = amount
+        ..splits = ListBuilder(splits)
+        ..groupId = groupId,
+    ));
     if (result.data != null) {
       refresh(client);
       return result.data!.addExpense;
     } else {
       throw result;
     }
+  }
+
+  Future<bool> sendEmailOTP(String email) async {
+    var result = await unAuthorizedClient
+        .request(Gsend_email_otpReq((b) => b.vars..email = email))
+        .first;
+    return result.data?.sendEmailOtp ?? false;
+  }
+
+  Future<bool> verifyEmailOTP(String email, String otp) async {
+    var result = await unAuthorizedClient
+        .request(Gverify_email_otpReq((b) => b.vars
+          ..email = email
+          ..otp = otp))
+        .first;
+    if (result.data?.verifyOtp
+        is Gverify_email_otpData_verifyOtp__asUserSignedUp) {
+      final response = result.data?.verifyOtp
+          as Gverify_email_otpData_verifyOtp__asUserSignedUp;
+      await SecureStorageHelper.getInstance().storeTokens(
+          accessToken: response.accessToken,
+          refreshToken: response.refreshToken);
+      refresh(await _getClient());
+
+      return true;
+    } else if (result.data?.verifyOtp
+        is Gverify_email_otpData_verifyOtp__asUserNotSignedUp) {
+      final response = result.data?.verifyOtp
+          as Gverify_email_otpData_verifyOtp__asUserNotSignedUp;
+      await SecureStorageHelper.getInstance()
+          .storeTokens(accessToken: response.signupToken, refreshToken: null);
+
+      _reAuthClient = null;
+      refresh(await _getClient());
+      return true;
+    }
+    return false;
+  }
+
+  logout() {
+    authState = AuthStates.UnAuthorized;
+    notifyListeners();
   }
 }

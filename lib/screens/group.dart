@@ -46,16 +46,14 @@ class _GroupState extends State<Group> {
     });
     try {
       var client = await context.read<AppState>().client;
-      var result = await client
-          .request(
-            GgroupReq(
-              (b) => b.vars
-                ..groupId = widget.group.id
-                ..limit = 10
-                ..skip = expenses.length,
-            ),
-          )
-          .first;
+      var result = await client.execute(
+        GgroupReq(
+          (b) => b.vars
+            ..groupId = widget.group.id
+            ..limit = 10
+            ..skip = expenses.length,
+        ),
+      );
       if (result.data != null) {
         if (expenses.isEmpty) {
           var pos = _scrollController.position.maxScrollExtent -
@@ -457,15 +455,15 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                   onTap: () async {
                     var appState = context.read<AppState>();
                     var messenger = ScaffoldMessenger.of(context);
-                    var phone = await showDialog(
+                    var email = await showDialog(
                       context: context,
                       builder: (context) =>
-                          NewMemberPhoneDialog(groupName: group.name),
+                          NewMemberEmailDialog(groupName: group.name),
                     );
-                    if (phone is String) {
+                    if (email is String) {
                       try {
                         var res =
-                            await appState.addMemberToGroup(phone, group.id);
+                            await appState.addMemberToGroup(email, group.id);
                         setState(() {
                           group = res;
                         });
@@ -496,24 +494,24 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
   }
 }
 
-class NewMemberPhoneDialog extends StatefulWidget {
+class NewMemberEmailDialog extends StatefulWidget {
   final String groupName;
-  const NewMemberPhoneDialog({
+  const NewMemberEmailDialog({
     super.key,
     required this.groupName,
   });
 
   @override
-  State<NewMemberPhoneDialog> createState() => _NewMemberPhoneDialogState();
+  State<NewMemberEmailDialog> createState() => _NewMemberEmailDialogState();
 }
 
-class _NewMemberPhoneDialogState extends State<NewMemberPhoneDialog> {
+class _NewMemberEmailDialogState extends State<NewMemberEmailDialog> {
   var controller = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
-  onSubmit(String name) {
+  onSubmit(String email) {
     if (formKey.currentState?.validate() == true) {
-      Navigator.of(context).pop("+91$name");
+      Navigator.of(context).pop(email);
     }
   }
 
@@ -541,16 +539,15 @@ class _NewMemberPhoneDialogState extends State<NewMemberPhoneDialog> {
                 controller: controller,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return "Phone cant be empty";
+                    return "Email cant be empty";
                   } else {
                     return null;
                   }
                 },
                 onFieldSubmitted: onSubmit,
                 decoration: const InputDecoration(
-                  prefixText: '+91 ',
                   border: OutlineInputBorder(),
-                  labelText: 'Phone',
+                  labelText: 'Email',
                 ),
               ),
             ),

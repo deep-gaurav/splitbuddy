@@ -22,6 +22,12 @@ Serializer<Gsettle_userReq> _$gsettleUserReqSerializer =
     new _$Gsettle_userReqSerializer();
 Serializer<Gsettle_expenseReq> _$gsettleExpenseReqSerializer =
     new _$Gsettle_expenseReqSerializer();
+Serializer<Gsend_email_otpReq> _$gsendEmailOtpReqSerializer =
+    new _$Gsend_email_otpReqSerializer();
+Serializer<Gverify_email_otpReq> _$gverifyEmailOtpReqSerializer =
+    new _$Gverify_email_otpReqSerializer();
+Serializer<Grefresh_tokenReq> _$grefreshTokenReqSerializer =
+    new _$Grefresh_tokenReqSerializer();
 Serializer<GUserFieldsReq> _$gUserFieldsReqSerializer =
     new _$GUserFieldsReqSerializer();
 Serializer<GUserPaysFieldsReq> _$gUserPaysFieldsReqSerializer =
@@ -1182,6 +1188,365 @@ class _$Gsettle_expenseReqSerializer
           result.optimisticResponse.replace(serializers.deserialize(value,
                   specifiedType: const FullType(_i2.Gsettle_expenseData))!
               as _i2.Gsettle_expenseData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$Gsend_email_otpReqSerializer
+    implements StructuredSerializer<Gsend_email_otpReq> {
+  @override
+  final Iterable<Type> types = const [Gsend_email_otpReq, _$Gsend_email_otpReq];
+  @override
+  final String wireName = 'Gsend_email_otpReq';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, Gsend_email_otpReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.Gsend_email_otpVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.Gsend_email_otpData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  Gsend_email_otpReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new Gsend_email_otpReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.Gsend_email_otpVars))!
+              as _i3.Gsend_email_otpVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.Gsend_email_otpData))!
+              as _i2.Gsend_email_otpData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$Gverify_email_otpReqSerializer
+    implements StructuredSerializer<Gverify_email_otpReq> {
+  @override
+  final Iterable<Type> types = const [
+    Gverify_email_otpReq,
+    _$Gverify_email_otpReq
+  ];
+  @override
+  final String wireName = 'Gverify_email_otpReq';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, Gverify_email_otpReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.Gverify_email_otpVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.Gverify_email_otpData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  Gverify_email_otpReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new Gverify_email_otpReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.Gverify_email_otpVars))!
+              as _i3.Gverify_email_otpVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.Gverify_email_otpData))!
+              as _i2.Gverify_email_otpData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$Grefresh_tokenReqSerializer
+    implements StructuredSerializer<Grefresh_tokenReq> {
+  @override
+  final Iterable<Type> types = const [Grefresh_tokenReq, _$Grefresh_tokenReq];
+  @override
+  final String wireName = 'Grefresh_tokenReq';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Grefresh_tokenReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.Grefresh_tokenVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.Grefresh_tokenData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  Grefresh_tokenReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new Grefresh_tokenReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.Grefresh_tokenVars))!
+              as _i3.Grefresh_tokenVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.Grefresh_tokenData))!
+              as _i2.Grefresh_tokenData);
           break;
         case 'updateCacheHandlerKey':
           result.updateCacheHandlerKey = serializers.deserialize(value,
@@ -3867,6 +4232,685 @@ class Gsettle_expenseReqBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'Gsettle_expenseReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Gsend_email_otpReq extends Gsend_email_otpReq {
+  @override
+  final _i3.Gsend_email_otpVars vars;
+  @override
+  final _i4.Operation operation;
+  @override
+  final String? requestId;
+  @override
+  final _i2.Gsend_email_otpData? Function(
+      _i2.Gsend_email_otpData?, _i2.Gsend_email_otpData?)? updateResult;
+  @override
+  final _i2.Gsend_email_otpData? optimisticResponse;
+  @override
+  final String? updateCacheHandlerKey;
+  @override
+  final Map<String, dynamic>? updateCacheHandlerContext;
+  @override
+  final _i1.FetchPolicy? fetchPolicy;
+  @override
+  final bool executeOnListen;
+
+  factory _$Gsend_email_otpReq(
+          [void Function(Gsend_email_otpReqBuilder)? updates]) =>
+      (new Gsend_email_otpReqBuilder()..update(updates))._build();
+
+  _$Gsend_email_otpReq._(
+      {required this.vars,
+      required this.operation,
+      this.requestId,
+      this.updateResult,
+      this.optimisticResponse,
+      this.updateCacheHandlerKey,
+      this.updateCacheHandlerContext,
+      this.fetchPolicy,
+      required this.executeOnListen})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(vars, r'Gsend_email_otpReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, r'Gsend_email_otpReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, r'Gsend_email_otpReq', 'executeOnListen');
+  }
+
+  @override
+  Gsend_email_otpReq rebuild(
+          void Function(Gsend_email_otpReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  Gsend_email_otpReqBuilder toBuilder() =>
+      new Gsend_email_otpReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is Gsend_email_otpReq &&
+        vars == other.vars &&
+        operation == other.operation &&
+        requestId == other.requestId &&
+        updateResult == _$dynamicOther.updateResult &&
+        optimisticResponse == other.optimisticResponse &&
+        updateCacheHandlerKey == other.updateCacheHandlerKey &&
+        updateCacheHandlerContext == other.updateCacheHandlerContext &&
+        fetchPolicy == other.fetchPolicy &&
+        executeOnListen == other.executeOnListen;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, operation.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, updateResult.hashCode);
+    _$hash = $jc(_$hash, optimisticResponse.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerKey.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerContext.hashCode);
+    _$hash = $jc(_$hash, fetchPolicy.hashCode);
+    _$hash = $jc(_$hash, executeOnListen.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'Gsend_email_otpReq')
+          ..add('vars', vars)
+          ..add('operation', operation)
+          ..add('requestId', requestId)
+          ..add('updateResult', updateResult)
+          ..add('optimisticResponse', optimisticResponse)
+          ..add('updateCacheHandlerKey', updateCacheHandlerKey)
+          ..add('updateCacheHandlerContext', updateCacheHandlerContext)
+          ..add('fetchPolicy', fetchPolicy)
+          ..add('executeOnListen', executeOnListen))
+        .toString();
+  }
+}
+
+class Gsend_email_otpReqBuilder
+    implements Builder<Gsend_email_otpReq, Gsend_email_otpReqBuilder> {
+  _$Gsend_email_otpReq? _$v;
+
+  _i3.Gsend_email_otpVarsBuilder? _vars;
+  _i3.Gsend_email_otpVarsBuilder get vars =>
+      _$this._vars ??= new _i3.Gsend_email_otpVarsBuilder();
+  set vars(_i3.Gsend_email_otpVarsBuilder? vars) => _$this._vars = vars;
+
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
+  _i2.Gsend_email_otpData? Function(
+      _i2.Gsend_email_otpData?, _i2.Gsend_email_otpData?)? _updateResult;
+  _i2.Gsend_email_otpData? Function(
+          _i2.Gsend_email_otpData?, _i2.Gsend_email_otpData?)?
+      get updateResult => _$this._updateResult;
+  set updateResult(
+          _i2.Gsend_email_otpData? Function(
+                  _i2.Gsend_email_otpData?, _i2.Gsend_email_otpData?)?
+              updateResult) =>
+      _$this._updateResult = updateResult;
+
+  _i2.Gsend_email_otpDataBuilder? _optimisticResponse;
+  _i2.Gsend_email_otpDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.Gsend_email_otpDataBuilder();
+  set optimisticResponse(_i2.Gsend_email_otpDataBuilder? optimisticResponse) =>
+      _$this._optimisticResponse = optimisticResponse;
+
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
+      _$this._updateCacheHandlerKey = updateCacheHandlerKey;
+
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
+      _$this._updateCacheHandlerContext;
+  set updateCacheHandlerContext(
+          Map<String, dynamic>? updateCacheHandlerContext) =>
+      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
+      _$this._fetchPolicy = fetchPolicy;
+
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
+      _$this._executeOnListen = executeOnListen;
+
+  Gsend_email_otpReqBuilder() {
+    Gsend_email_otpReq._initializeBuilder(this);
+  }
+
+  Gsend_email_otpReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Gsend_email_otpReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Gsend_email_otpReq;
+  }
+
+  @override
+  void update(void Function(Gsend_email_otpReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  Gsend_email_otpReq build() => _build();
+
+  _$Gsend_email_otpReq _build() {
+    _$Gsend_email_otpReq _$result;
+    try {
+      _$result = _$v ??
+          new _$Gsend_email_otpReq._(
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'Gsend_email_otpReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, r'Gsend_email_otpReq', 'executeOnListen'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+
+        _$failedField = 'optimisticResponse';
+        _optimisticResponse?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Gsend_email_otpReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Gverify_email_otpReq extends Gverify_email_otpReq {
+  @override
+  final _i3.Gverify_email_otpVars vars;
+  @override
+  final _i4.Operation operation;
+  @override
+  final String? requestId;
+  @override
+  final _i2.Gverify_email_otpData? Function(
+      _i2.Gverify_email_otpData?, _i2.Gverify_email_otpData?)? updateResult;
+  @override
+  final _i2.Gverify_email_otpData? optimisticResponse;
+  @override
+  final String? updateCacheHandlerKey;
+  @override
+  final Map<String, dynamic>? updateCacheHandlerContext;
+  @override
+  final _i1.FetchPolicy? fetchPolicy;
+  @override
+  final bool executeOnListen;
+
+  factory _$Gverify_email_otpReq(
+          [void Function(Gverify_email_otpReqBuilder)? updates]) =>
+      (new Gverify_email_otpReqBuilder()..update(updates))._build();
+
+  _$Gverify_email_otpReq._(
+      {required this.vars,
+      required this.operation,
+      this.requestId,
+      this.updateResult,
+      this.optimisticResponse,
+      this.updateCacheHandlerKey,
+      this.updateCacheHandlerContext,
+      this.fetchPolicy,
+      required this.executeOnListen})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        vars, r'Gverify_email_otpReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, r'Gverify_email_otpReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, r'Gverify_email_otpReq', 'executeOnListen');
+  }
+
+  @override
+  Gverify_email_otpReq rebuild(
+          void Function(Gverify_email_otpReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  Gverify_email_otpReqBuilder toBuilder() =>
+      new Gverify_email_otpReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is Gverify_email_otpReq &&
+        vars == other.vars &&
+        operation == other.operation &&
+        requestId == other.requestId &&
+        updateResult == _$dynamicOther.updateResult &&
+        optimisticResponse == other.optimisticResponse &&
+        updateCacheHandlerKey == other.updateCacheHandlerKey &&
+        updateCacheHandlerContext == other.updateCacheHandlerContext &&
+        fetchPolicy == other.fetchPolicy &&
+        executeOnListen == other.executeOnListen;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, operation.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, updateResult.hashCode);
+    _$hash = $jc(_$hash, optimisticResponse.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerKey.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerContext.hashCode);
+    _$hash = $jc(_$hash, fetchPolicy.hashCode);
+    _$hash = $jc(_$hash, executeOnListen.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'Gverify_email_otpReq')
+          ..add('vars', vars)
+          ..add('operation', operation)
+          ..add('requestId', requestId)
+          ..add('updateResult', updateResult)
+          ..add('optimisticResponse', optimisticResponse)
+          ..add('updateCacheHandlerKey', updateCacheHandlerKey)
+          ..add('updateCacheHandlerContext', updateCacheHandlerContext)
+          ..add('fetchPolicy', fetchPolicy)
+          ..add('executeOnListen', executeOnListen))
+        .toString();
+  }
+}
+
+class Gverify_email_otpReqBuilder
+    implements Builder<Gverify_email_otpReq, Gverify_email_otpReqBuilder> {
+  _$Gverify_email_otpReq? _$v;
+
+  _i3.Gverify_email_otpVarsBuilder? _vars;
+  _i3.Gverify_email_otpVarsBuilder get vars =>
+      _$this._vars ??= new _i3.Gverify_email_otpVarsBuilder();
+  set vars(_i3.Gverify_email_otpVarsBuilder? vars) => _$this._vars = vars;
+
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
+  _i2.Gverify_email_otpData? Function(
+      _i2.Gverify_email_otpData?, _i2.Gverify_email_otpData?)? _updateResult;
+  _i2.Gverify_email_otpData? Function(
+          _i2.Gverify_email_otpData?, _i2.Gverify_email_otpData?)?
+      get updateResult => _$this._updateResult;
+  set updateResult(
+          _i2.Gverify_email_otpData? Function(
+                  _i2.Gverify_email_otpData?, _i2.Gverify_email_otpData?)?
+              updateResult) =>
+      _$this._updateResult = updateResult;
+
+  _i2.Gverify_email_otpDataBuilder? _optimisticResponse;
+  _i2.Gverify_email_otpDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.Gverify_email_otpDataBuilder();
+  set optimisticResponse(
+          _i2.Gverify_email_otpDataBuilder? optimisticResponse) =>
+      _$this._optimisticResponse = optimisticResponse;
+
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
+      _$this._updateCacheHandlerKey = updateCacheHandlerKey;
+
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
+      _$this._updateCacheHandlerContext;
+  set updateCacheHandlerContext(
+          Map<String, dynamic>? updateCacheHandlerContext) =>
+      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
+      _$this._fetchPolicy = fetchPolicy;
+
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
+      _$this._executeOnListen = executeOnListen;
+
+  Gverify_email_otpReqBuilder() {
+    Gverify_email_otpReq._initializeBuilder(this);
+  }
+
+  Gverify_email_otpReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Gverify_email_otpReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Gverify_email_otpReq;
+  }
+
+  @override
+  void update(void Function(Gverify_email_otpReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  Gverify_email_otpReq build() => _build();
+
+  _$Gverify_email_otpReq _build() {
+    _$Gverify_email_otpReq _$result;
+    try {
+      _$result = _$v ??
+          new _$Gverify_email_otpReq._(
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'Gverify_email_otpReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, r'Gverify_email_otpReq', 'executeOnListen'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+
+        _$failedField = 'optimisticResponse';
+        _optimisticResponse?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Gverify_email_otpReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Grefresh_tokenReq extends Grefresh_tokenReq {
+  @override
+  final _i3.Grefresh_tokenVars vars;
+  @override
+  final _i4.Operation operation;
+  @override
+  final String? requestId;
+  @override
+  final _i2.Grefresh_tokenData? Function(
+      _i2.Grefresh_tokenData?, _i2.Grefresh_tokenData?)? updateResult;
+  @override
+  final _i2.Grefresh_tokenData? optimisticResponse;
+  @override
+  final String? updateCacheHandlerKey;
+  @override
+  final Map<String, dynamic>? updateCacheHandlerContext;
+  @override
+  final _i1.FetchPolicy? fetchPolicy;
+  @override
+  final bool executeOnListen;
+
+  factory _$Grefresh_tokenReq(
+          [void Function(Grefresh_tokenReqBuilder)? updates]) =>
+      (new Grefresh_tokenReqBuilder()..update(updates))._build();
+
+  _$Grefresh_tokenReq._(
+      {required this.vars,
+      required this.operation,
+      this.requestId,
+      this.updateResult,
+      this.optimisticResponse,
+      this.updateCacheHandlerKey,
+      this.updateCacheHandlerContext,
+      this.fetchPolicy,
+      required this.executeOnListen})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(vars, r'Grefresh_tokenReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, r'Grefresh_tokenReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, r'Grefresh_tokenReq', 'executeOnListen');
+  }
+
+  @override
+  Grefresh_tokenReq rebuild(void Function(Grefresh_tokenReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  Grefresh_tokenReqBuilder toBuilder() =>
+      new Grefresh_tokenReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is Grefresh_tokenReq &&
+        vars == other.vars &&
+        operation == other.operation &&
+        requestId == other.requestId &&
+        updateResult == _$dynamicOther.updateResult &&
+        optimisticResponse == other.optimisticResponse &&
+        updateCacheHandlerKey == other.updateCacheHandlerKey &&
+        updateCacheHandlerContext == other.updateCacheHandlerContext &&
+        fetchPolicy == other.fetchPolicy &&
+        executeOnListen == other.executeOnListen;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, operation.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, updateResult.hashCode);
+    _$hash = $jc(_$hash, optimisticResponse.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerKey.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerContext.hashCode);
+    _$hash = $jc(_$hash, fetchPolicy.hashCode);
+    _$hash = $jc(_$hash, executeOnListen.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'Grefresh_tokenReq')
+          ..add('vars', vars)
+          ..add('operation', operation)
+          ..add('requestId', requestId)
+          ..add('updateResult', updateResult)
+          ..add('optimisticResponse', optimisticResponse)
+          ..add('updateCacheHandlerKey', updateCacheHandlerKey)
+          ..add('updateCacheHandlerContext', updateCacheHandlerContext)
+          ..add('fetchPolicy', fetchPolicy)
+          ..add('executeOnListen', executeOnListen))
+        .toString();
+  }
+}
+
+class Grefresh_tokenReqBuilder
+    implements Builder<Grefresh_tokenReq, Grefresh_tokenReqBuilder> {
+  _$Grefresh_tokenReq? _$v;
+
+  _i3.Grefresh_tokenVarsBuilder? _vars;
+  _i3.Grefresh_tokenVarsBuilder get vars =>
+      _$this._vars ??= new _i3.Grefresh_tokenVarsBuilder();
+  set vars(_i3.Grefresh_tokenVarsBuilder? vars) => _$this._vars = vars;
+
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
+  _i2.Grefresh_tokenData? Function(
+      _i2.Grefresh_tokenData?, _i2.Grefresh_tokenData?)? _updateResult;
+  _i2.Grefresh_tokenData? Function(
+          _i2.Grefresh_tokenData?, _i2.Grefresh_tokenData?)?
+      get updateResult => _$this._updateResult;
+  set updateResult(
+          _i2.Grefresh_tokenData? Function(
+                  _i2.Grefresh_tokenData?, _i2.Grefresh_tokenData?)?
+              updateResult) =>
+      _$this._updateResult = updateResult;
+
+  _i2.Grefresh_tokenDataBuilder? _optimisticResponse;
+  _i2.Grefresh_tokenDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.Grefresh_tokenDataBuilder();
+  set optimisticResponse(_i2.Grefresh_tokenDataBuilder? optimisticResponse) =>
+      _$this._optimisticResponse = optimisticResponse;
+
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
+      _$this._updateCacheHandlerKey = updateCacheHandlerKey;
+
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
+      _$this._updateCacheHandlerContext;
+  set updateCacheHandlerContext(
+          Map<String, dynamic>? updateCacheHandlerContext) =>
+      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
+      _$this._fetchPolicy = fetchPolicy;
+
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
+      _$this._executeOnListen = executeOnListen;
+
+  Grefresh_tokenReqBuilder() {
+    Grefresh_tokenReq._initializeBuilder(this);
+  }
+
+  Grefresh_tokenReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Grefresh_tokenReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Grefresh_tokenReq;
+  }
+
+  @override
+  void update(void Function(Grefresh_tokenReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  Grefresh_tokenReq build() => _build();
+
+  _$Grefresh_tokenReq _build() {
+    _$Grefresh_tokenReq _$result;
+    try {
+      _$result = _$v ??
+          new _$Grefresh_tokenReq._(
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'Grefresh_tokenReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, r'Grefresh_tokenReq', 'executeOnListen'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+
+        _$failedField = 'optimisticResponse';
+        _optimisticResponse?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Grefresh_tokenReq', _$failedField, e.toString());
       }
       rethrow;
     }

@@ -149,7 +149,9 @@ abstract class GuserData_user__asRegistered_user
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GuserData_user__asRegistered_user> get serializer =>
       _$guserDataUserAsRegisteredUserSerializer;
 
@@ -184,7 +186,7 @@ abstract class GuserData_user__asUnregistered
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  String get phone;
+  String? get phone;
   static Serializer<GuserData_user__asUnregistered> get serializer =>
       _$guserDataUserAsUnregisteredSerializer;
 
@@ -293,7 +295,9 @@ abstract class GgroupsData_groups_creator
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GgroupsData_groups_creator> get serializer =>
       _$ggroupsDataGroupsCreatorSerializer;
 
@@ -332,7 +336,9 @@ abstract class GgroupsData_groups_members
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GgroupsData_groups_members> get serializer =>
       _$ggroupsDataGroupsMembersSerializer;
 
@@ -402,7 +408,9 @@ abstract class Ginteracted_usersData_interactedUsers
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   @override
   BuiltList<String> get upiIds;
   @override
@@ -571,7 +579,9 @@ abstract class GgroupData_group_expenses_creator
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GgroupData_group_expenses_creator> get serializer =>
       _$ggroupDataGroupExpensesCreatorSerializer;
 
@@ -663,7 +673,9 @@ abstract class GgroupData_group_expenses_splits_fromUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GgroupData_group_expenses_splits_fromUser> get serializer =>
       _$ggroupDataGroupExpensesSplitsFromUserSerializer;
 
@@ -707,7 +719,9 @@ abstract class GgroupData_group_expenses_splits_toUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GgroupData_group_expenses_splits_toUser> get serializer =>
       _$ggroupDataGroupExpensesSplitsToUserSerializer;
 
@@ -747,7 +761,9 @@ abstract class GgroupData_group_creator
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GgroupData_group_creator> get serializer =>
       _$ggroupDataGroupCreatorSerializer;
 
@@ -786,7 +802,9 @@ abstract class GgroupData_group_members
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GgroupData_group_members> get serializer =>
       _$ggroupDataGroupMembersSerializer;
 
@@ -836,11 +854,12 @@ abstract class GsignupData_signup
       _$GsignupData_signup;
 
   static void _initializeBuilder(GsignupData_signupBuilder b) =>
-      b..G__typename = 'User';
+      b..G__typename = 'SignupSuccess';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  String get id;
+  GsignupData_signup_user get user;
+  GsignupData_signup_tokens get tokens;
   static Serializer<GsignupData_signup> get serializer =>
       _$gsignupDataSignupSerializer;
 
@@ -852,6 +871,77 @@ abstract class GsignupData_signup
   static GsignupData_signup? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GsignupData_signup.serializer,
+        json,
+      );
+}
+
+abstract class GsignupData_signup_user
+    implements
+        Built<GsignupData_signup_user, GsignupData_signup_userBuilder>,
+        GUserFields {
+  GsignupData_signup_user._();
+
+  factory GsignupData_signup_user(
+          [Function(GsignupData_signup_userBuilder b) updates]) =
+      _$GsignupData_signup_user;
+
+  static void _initializeBuilder(GsignupData_signup_userBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  static Serializer<GsignupData_signup_user> get serializer =>
+      _$gsignupDataSignupUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsignupData_signup_user.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsignupData_signup_user? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsignupData_signup_user.serializer,
+        json,
+      );
+}
+
+abstract class GsignupData_signup_tokens
+    implements
+        Built<GsignupData_signup_tokens, GsignupData_signup_tokensBuilder> {
+  GsignupData_signup_tokens._();
+
+  factory GsignupData_signup_tokens(
+          [Function(GsignupData_signup_tokensBuilder b) updates]) =
+      _$GsignupData_signup_tokens;
+
+  static void _initializeBuilder(GsignupData_signup_tokensBuilder b) =>
+      b..G__typename = 'UserSignedUp';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get accessToken;
+  String get refreshToken;
+  static Serializer<GsignupData_signup_tokens> get serializer =>
+      _$gsignupDataSignupTokensSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsignupData_signup_tokens.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsignupData_signup_tokens? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsignupData_signup_tokens.serializer,
         json,
       );
 }
@@ -955,7 +1045,9 @@ abstract class Gcreate_groupData_createGroup_creator
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<Gcreate_groupData_createGroup_creator> get serializer =>
       _$gcreateGroupDataCreateGroupCreatorSerializer;
 
@@ -997,7 +1089,9 @@ abstract class Gcreate_groupData_createGroup_members
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<Gcreate_groupData_createGroup_members> get serializer =>
       _$gcreateGroupDataCreateGroupMembersSerializer;
 
@@ -1027,7 +1121,7 @@ abstract class Gadd_to_groupData
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  String get addToGroup;
+  String get addToGroupByEmail;
   static Serializer<Gadd_to_groupData> get serializer =>
       _$gaddToGroupDataSerializer;
 
@@ -1143,7 +1237,9 @@ abstract class Gadd_expenseData_addExpense_creator
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<Gadd_expenseData_addExpense_creator> get serializer =>
       _$gaddExpenseDataAddExpenseCreatorSerializer;
 
@@ -1233,7 +1329,9 @@ abstract class Gadd_expenseData_addExpense_splits_fromUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<Gadd_expenseData_addExpense_splits_fromUser>
       get serializer => _$gaddExpenseDataAddExpenseSplitsFromUserSerializer;
 
@@ -1276,7 +1374,9 @@ abstract class Gadd_expenseData_addExpense_splits_toUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<Gadd_expenseData_addExpense_splits_toUser> get serializer =>
       _$gaddExpenseDataAddExpenseSplitsToUserSerializer;
 
@@ -1424,7 +1524,9 @@ abstract class Gsettle_expenseData_settleExpense_creator
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<Gsettle_expenseData_settleExpense_creator> get serializer =>
       _$gsettleExpenseDataSettleExpenseCreatorSerializer;
 
@@ -1515,7 +1617,9 @@ abstract class Gsettle_expenseData_settleExpense_splits_fromUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<Gsettle_expenseData_settleExpense_splits_fromUser>
       get serializer =>
           _$gsettleExpenseDataSettleExpenseSplitsFromUserSerializer;
@@ -1559,7 +1663,9 @@ abstract class Gsettle_expenseData_settleExpense_splits_toUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<Gsettle_expenseData_settleExpense_splits_toUser>
       get serializer => _$gsettleExpenseDataSettleExpenseSplitsToUserSerializer;
 
@@ -1577,11 +1683,263 @@ abstract class Gsettle_expenseData_settleExpense_splits_toUser
       );
 }
 
+abstract class Gsend_email_otpData
+    implements Built<Gsend_email_otpData, Gsend_email_otpDataBuilder> {
+  Gsend_email_otpData._();
+
+  factory Gsend_email_otpData(
+      [Function(Gsend_email_otpDataBuilder b) updates]) = _$Gsend_email_otpData;
+
+  static void _initializeBuilder(Gsend_email_otpDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  bool get sendEmailOtp;
+  static Serializer<Gsend_email_otpData> get serializer =>
+      _$gsendEmailOtpDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        Gsend_email_otpData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Gsend_email_otpData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        Gsend_email_otpData.serializer,
+        json,
+      );
+}
+
+abstract class Gverify_email_otpData
+    implements Built<Gverify_email_otpData, Gverify_email_otpDataBuilder> {
+  Gverify_email_otpData._();
+
+  factory Gverify_email_otpData(
+          [Function(Gverify_email_otpDataBuilder b) updates]) =
+      _$Gverify_email_otpData;
+
+  static void _initializeBuilder(Gverify_email_otpDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  Gverify_email_otpData_verifyOtp get verifyOtp;
+  static Serializer<Gverify_email_otpData> get serializer =>
+      _$gverifyEmailOtpDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        Gverify_email_otpData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Gverify_email_otpData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        Gverify_email_otpData.serializer,
+        json,
+      );
+}
+
+abstract class Gverify_email_otpData_verifyOtp {
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  static Serializer<Gverify_email_otpData_verifyOtp> get serializer =>
+      _i2.InlineFragmentSerializer<Gverify_email_otpData_verifyOtp>(
+        'Gverify_email_otpData_verifyOtp',
+        Gverify_email_otpData_verifyOtp__base,
+        {
+          'UserSignedUp': Gverify_email_otpData_verifyOtp__asUserSignedUp,
+          'UserNotSignedUp': Gverify_email_otpData_verifyOtp__asUserNotSignedUp,
+        },
+      );
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        Gverify_email_otpData_verifyOtp.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Gverify_email_otpData_verifyOtp? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        Gverify_email_otpData_verifyOtp.serializer,
+        json,
+      );
+}
+
+abstract class Gverify_email_otpData_verifyOtp__base
+    implements
+        Built<Gverify_email_otpData_verifyOtp__base,
+            Gverify_email_otpData_verifyOtp__baseBuilder>,
+        Gverify_email_otpData_verifyOtp {
+  Gverify_email_otpData_verifyOtp__base._();
+
+  factory Gverify_email_otpData_verifyOtp__base(
+          [Function(Gverify_email_otpData_verifyOtp__baseBuilder b) updates]) =
+      _$Gverify_email_otpData_verifyOtp__base;
+
+  static void _initializeBuilder(
+          Gverify_email_otpData_verifyOtp__baseBuilder b) =>
+      b..G__typename = 'AuthResult';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  static Serializer<Gverify_email_otpData_verifyOtp__base> get serializer =>
+      _$gverifyEmailOtpDataVerifyOtpBaseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        Gverify_email_otpData_verifyOtp__base.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Gverify_email_otpData_verifyOtp__base? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        Gverify_email_otpData_verifyOtp__base.serializer,
+        json,
+      );
+}
+
+abstract class Gverify_email_otpData_verifyOtp__asUserSignedUp
+    implements
+        Built<Gverify_email_otpData_verifyOtp__asUserSignedUp,
+            Gverify_email_otpData_verifyOtp__asUserSignedUpBuilder>,
+        Gverify_email_otpData_verifyOtp {
+  Gverify_email_otpData_verifyOtp__asUserSignedUp._();
+
+  factory Gverify_email_otpData_verifyOtp__asUserSignedUp(
+      [Function(Gverify_email_otpData_verifyOtp__asUserSignedUpBuilder b)
+          updates]) = _$Gverify_email_otpData_verifyOtp__asUserSignedUp;
+
+  static void _initializeBuilder(
+          Gverify_email_otpData_verifyOtp__asUserSignedUpBuilder b) =>
+      b..G__typename = 'UserSignedUp';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get accessToken;
+  String get refreshToken;
+  static Serializer<Gverify_email_otpData_verifyOtp__asUserSignedUp>
+      get serializer => _$gverifyEmailOtpDataVerifyOtpAsUserSignedUpSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        Gverify_email_otpData_verifyOtp__asUserSignedUp.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Gverify_email_otpData_verifyOtp__asUserSignedUp? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        Gverify_email_otpData_verifyOtp__asUserSignedUp.serializer,
+        json,
+      );
+}
+
+abstract class Gverify_email_otpData_verifyOtp__asUserNotSignedUp
+    implements
+        Built<Gverify_email_otpData_verifyOtp__asUserNotSignedUp,
+            Gverify_email_otpData_verifyOtp__asUserNotSignedUpBuilder>,
+        Gverify_email_otpData_verifyOtp {
+  Gverify_email_otpData_verifyOtp__asUserNotSignedUp._();
+
+  factory Gverify_email_otpData_verifyOtp__asUserNotSignedUp(
+      [Function(Gverify_email_otpData_verifyOtp__asUserNotSignedUpBuilder b)
+          updates]) = _$Gverify_email_otpData_verifyOtp__asUserNotSignedUp;
+
+  static void _initializeBuilder(
+          Gverify_email_otpData_verifyOtp__asUserNotSignedUpBuilder b) =>
+      b..G__typename = 'UserNotSignedUp';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get signupToken;
+  static Serializer<Gverify_email_otpData_verifyOtp__asUserNotSignedUp>
+      get serializer =>
+          _$gverifyEmailOtpDataVerifyOtpAsUserNotSignedUpSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        Gverify_email_otpData_verifyOtp__asUserNotSignedUp.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Gverify_email_otpData_verifyOtp__asUserNotSignedUp? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        Gverify_email_otpData_verifyOtp__asUserNotSignedUp.serializer,
+        json,
+      );
+}
+
+abstract class Grefresh_tokenData
+    implements Built<Grefresh_tokenData, Grefresh_tokenDataBuilder> {
+  Grefresh_tokenData._();
+
+  factory Grefresh_tokenData([Function(Grefresh_tokenDataBuilder b) updates]) =
+      _$Grefresh_tokenData;
+
+  static void _initializeBuilder(Grefresh_tokenDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  Grefresh_tokenData_refreshToken get refreshToken;
+  static Serializer<Grefresh_tokenData> get serializer =>
+      _$grefreshTokenDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        Grefresh_tokenData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Grefresh_tokenData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        Grefresh_tokenData.serializer,
+        json,
+      );
+}
+
+abstract class Grefresh_tokenData_refreshToken
+    implements
+        Built<Grefresh_tokenData_refreshToken,
+            Grefresh_tokenData_refreshTokenBuilder> {
+  Grefresh_tokenData_refreshToken._();
+
+  factory Grefresh_tokenData_refreshToken(
+          [Function(Grefresh_tokenData_refreshTokenBuilder b) updates]) =
+      _$Grefresh_tokenData_refreshToken;
+
+  static void _initializeBuilder(Grefresh_tokenData_refreshTokenBuilder b) =>
+      b..G__typename = 'UserSignedUp';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get accessToken;
+  String get refreshToken;
+  static Serializer<Grefresh_tokenData_refreshToken> get serializer =>
+      _$grefreshTokenDataRefreshTokenSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        Grefresh_tokenData_refreshToken.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Grefresh_tokenData_refreshToken? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        Grefresh_tokenData_refreshToken.serializer,
+        json,
+      );
+}
+
 abstract class GUserFields {
   String get G__typename;
   String get id;
   String get name;
-  String get phone;
+  String? get phone;
+  String? get email;
   Map<String, dynamic> toJson();
 }
 
@@ -1603,7 +1961,9 @@ abstract class GUserFieldsData
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GUserFieldsData> get serializer =>
       _$gUserFieldsDataSerializer;
 
@@ -1685,7 +2045,9 @@ abstract class GGroupFields_creator implements GUserFields {
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   @override
   Map<String, dynamic> toJson();
 }
@@ -1698,7 +2060,9 @@ abstract class GGroupFields_members implements GUserFields {
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   @override
   Map<String, dynamic> toJson();
 }
@@ -1768,7 +2132,9 @@ abstract class GGroupFieldsData_creator
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GGroupFieldsData_creator> get serializer =>
       _$gGroupFieldsDataCreatorSerializer;
 
@@ -1807,7 +2173,9 @@ abstract class GGroupFieldsData_members
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GGroupFieldsData_members> get serializer =>
       _$gGroupFieldsDataMembersSerializer;
 
@@ -1845,7 +2213,9 @@ abstract class GExpenseFields_creator implements GUserFields {
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   @override
   Map<String, dynamic> toJson();
 }
@@ -1878,7 +2248,9 @@ abstract class GExpenseFields_splits_fromUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   @override
   Map<String, dynamic> toJson();
 }
@@ -1892,7 +2264,9 @@ abstract class GExpenseFields_splits_toUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   @override
   Map<String, dynamic> toJson();
 }
@@ -1966,7 +2340,9 @@ abstract class GExpenseFieldsData_creator
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GExpenseFieldsData_creator> get serializer =>
       _$gExpenseFieldsDataCreatorSerializer;
 
@@ -2052,7 +2428,9 @@ abstract class GExpenseFieldsData_splits_fromUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GExpenseFieldsData_splits_fromUser> get serializer =>
       _$gExpenseFieldsDataSplitsFromUserSerializer;
 
@@ -2094,7 +2472,9 @@ abstract class GExpenseFieldsData_splits_toUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GExpenseFieldsData_splits_toUser> get serializer =>
       _$gExpenseFieldsDataSplitsToUserSerializer;
 
@@ -2131,7 +2511,9 @@ abstract class GSplitFields_fromUser implements GUserFields {
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   @override
   Map<String, dynamic> toJson();
 }
@@ -2144,7 +2526,9 @@ abstract class GSplitFields_toUser implements GUserFields {
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   @override
   Map<String, dynamic> toJson();
 }
@@ -2212,7 +2596,9 @@ abstract class GSplitFieldsData_fromUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GSplitFieldsData_fromUser> get serializer =>
       _$gSplitFieldsDataFromUserSerializer;
 
@@ -2251,7 +2637,9 @@ abstract class GSplitFieldsData_toUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GSplitFieldsData_toUser> get serializer =>
       _$gSplitFieldsDataToUserSerializer;
 
@@ -2299,7 +2687,9 @@ abstract class GGroupWithExpenses_creator
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   @override
   Map<String, dynamic> toJson();
 }
@@ -2313,7 +2703,9 @@ abstract class GGroupWithExpenses_members
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   @override
   Map<String, dynamic> toJson();
 }
@@ -2350,7 +2742,9 @@ abstract class GGroupWithExpenses_expenses_creator
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   @override
   Map<String, dynamic> toJson();
 }
@@ -2387,7 +2781,9 @@ abstract class GGroupWithExpenses_expenses_splits_fromUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   @override
   Map<String, dynamic> toJson();
 }
@@ -2401,7 +2797,9 @@ abstract class GGroupWithExpenses_expenses_splits_toUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   @override
   Map<String, dynamic> toJson();
 }
@@ -2479,7 +2877,9 @@ abstract class GGroupWithExpensesData_creator
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GGroupWithExpensesData_creator> get serializer =>
       _$gGroupWithExpensesDataCreatorSerializer;
 
@@ -2520,7 +2920,9 @@ abstract class GGroupWithExpensesData_members
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GGroupWithExpensesData_members> get serializer =>
       _$gGroupWithExpensesDataMembersSerializer;
 
@@ -2612,7 +3014,9 @@ abstract class GGroupWithExpensesData_expenses_creator
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GGroupWithExpensesData_expenses_creator> get serializer =>
       _$gGroupWithExpensesDataExpensesCreatorSerializer;
 
@@ -2705,7 +3109,9 @@ abstract class GGroupWithExpensesData_expenses_splits_fromUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GGroupWithExpensesData_expenses_splits_fromUser>
       get serializer =>
           _$gGroupWithExpensesDataExpensesSplitsFromUserSerializer;
@@ -2750,7 +3156,9 @@ abstract class GGroupWithExpensesData_expenses_splits_toUser
   @override
   String get name;
   @override
-  String get phone;
+  String? get phone;
+  @override
+  String? get email;
   static Serializer<GGroupWithExpensesData_expenses_splits_toUser>
       get serializer => _$gGroupWithExpensesDataExpensesSplitsToUserSerializer;
 

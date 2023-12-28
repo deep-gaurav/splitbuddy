@@ -3,6 +3,7 @@ fragment UserFields on User {
   id
   name
   phone
+  email
 }
 
 fragment UserPaysFields on User{
@@ -96,7 +97,13 @@ query group($skip: Int!, $limit: Int!, $groupId: String!) {
 
 mutation signup($name: String!, $upi_id:String) {
   signup(name: $name,upiId:$upi_id) {
-    id
+    user{
+      ...UserFields
+    }
+    tokens{
+      accessToken
+      refreshToken
+    }
   }
 }
 
@@ -106,8 +113,8 @@ mutation create_group($name: String!) {
   }
 }
 
-mutation add_to_group($phone: String!, $groupId: String!) {
-  addToGroup(phone: $phone, groupId: $groupId)
+mutation add_to_group($email: String!, $groupId: String!) {
+  addToGroupByEmail(email: $email, groupId: $groupId)
 }
 
 mutation add_expense(
@@ -133,5 +140,29 @@ mutation settle_user($amount: Int!, $userId:String!){
 mutation settle_expense($amount:Int!, $expenseId: String!){
   settleExpense(expenseId:$expenseId, amount:$amount){
     ...ExpenseFields
+  }
+}
+
+mutation send_email_otp($email: String!){
+  sendEmailOtp(email:$email)
+}
+
+mutation verify_email_otp($email:String!, $otp:String!){
+  verifyOtp(email:$email, otp:$otp){
+    __typename
+    ... on UserSignedUp{
+      accessToken,
+      refreshToken
+    }
+    ... on UserNotSignedUp{
+      signupToken
+    }
+  }
+}
+
+mutation refresh_token($refresh_token: String!){
+  refreshToken(refreshToken:$refresh_token){
+    accessToken
+    refreshToken
   }
 }

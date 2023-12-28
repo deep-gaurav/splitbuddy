@@ -22,6 +22,12 @@ Serializer<Gsettle_userVars> _$gsettleUserVarsSerializer =
     new _$Gsettle_userVarsSerializer();
 Serializer<Gsettle_expenseVars> _$gsettleExpenseVarsSerializer =
     new _$Gsettle_expenseVarsSerializer();
+Serializer<Gsend_email_otpVars> _$gsendEmailOtpVarsSerializer =
+    new _$Gsend_email_otpVarsSerializer();
+Serializer<Gverify_email_otpVars> _$gverifyEmailOtpVarsSerializer =
+    new _$Gverify_email_otpVarsSerializer();
+Serializer<Grefresh_tokenVars> _$grefreshTokenVarsSerializer =
+    new _$Grefresh_tokenVarsSerializer();
 Serializer<GUserFieldsVars> _$gUserFieldsVarsSerializer =
     new _$GUserFieldsVarsSerializer();
 Serializer<GUserPaysFieldsVars> _$gUserPaysFieldsVarsSerializer =
@@ -252,8 +258,8 @@ class _$Gadd_to_groupVarsSerializer
   Iterable<Object?> serialize(Serializers serializers, Gadd_to_groupVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'phone',
-      serializers.serialize(object.phone,
+      'email',
+      serializers.serialize(object.email,
           specifiedType: const FullType(String)),
       'groupId',
       serializers.serialize(object.groupId,
@@ -275,8 +281,8 @@ class _$Gadd_to_groupVarsSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'phone':
-          result.phone = serializers.deserialize(value,
+        case 'email':
+          result.email = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'groupId':
@@ -446,6 +452,147 @@ class _$Gsettle_expenseVarsSerializer
           break;
         case 'expenseId':
           result.expenseId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$Gsend_email_otpVarsSerializer
+    implements StructuredSerializer<Gsend_email_otpVars> {
+  @override
+  final Iterable<Type> types = const [
+    Gsend_email_otpVars,
+    _$Gsend_email_otpVars
+  ];
+  @override
+  final String wireName = 'Gsend_email_otpVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, Gsend_email_otpVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'email',
+      serializers.serialize(object.email,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  Gsend_email_otpVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new Gsend_email_otpVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$Gverify_email_otpVarsSerializer
+    implements StructuredSerializer<Gverify_email_otpVars> {
+  @override
+  final Iterable<Type> types = const [
+    Gverify_email_otpVars,
+    _$Gverify_email_otpVars
+  ];
+  @override
+  final String wireName = 'Gverify_email_otpVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, Gverify_email_otpVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'email',
+      serializers.serialize(object.email,
+          specifiedType: const FullType(String)),
+      'otp',
+      serializers.serialize(object.otp, specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  Gverify_email_otpVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new Gverify_email_otpVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'otp':
+          result.otp = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$Grefresh_tokenVarsSerializer
+    implements StructuredSerializer<Grefresh_tokenVars> {
+  @override
+  final Iterable<Type> types = const [Grefresh_tokenVars, _$Grefresh_tokenVars];
+  @override
+  final String wireName = 'Grefresh_tokenVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, Grefresh_tokenVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'refresh_token',
+      serializers.serialize(object.refresh_token,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  Grefresh_tokenVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new Grefresh_tokenVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'refresh_token':
+          result.refresh_token = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
       }
@@ -1078,7 +1225,7 @@ class Gcreate_groupVarsBuilder
 
 class _$Gadd_to_groupVars extends Gadd_to_groupVars {
   @override
-  final String phone;
+  final String email;
   @override
   final String groupId;
 
@@ -1086,9 +1233,9 @@ class _$Gadd_to_groupVars extends Gadd_to_groupVars {
           [void Function(Gadd_to_groupVarsBuilder)? updates]) =>
       (new Gadd_to_groupVarsBuilder()..update(updates))._build();
 
-  _$Gadd_to_groupVars._({required this.phone, required this.groupId})
+  _$Gadd_to_groupVars._({required this.email, required this.groupId})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(phone, r'Gadd_to_groupVars', 'phone');
+    BuiltValueNullFieldError.checkNotNull(email, r'Gadd_to_groupVars', 'email');
     BuiltValueNullFieldError.checkNotNull(
         groupId, r'Gadd_to_groupVars', 'groupId');
   }
@@ -1105,14 +1252,14 @@ class _$Gadd_to_groupVars extends Gadd_to_groupVars {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is Gadd_to_groupVars &&
-        phone == other.phone &&
+        email == other.email &&
         groupId == other.groupId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -1121,7 +1268,7 @@ class _$Gadd_to_groupVars extends Gadd_to_groupVars {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'Gadd_to_groupVars')
-          ..add('phone', phone)
+          ..add('email', email)
           ..add('groupId', groupId))
         .toString();
   }
@@ -1131,9 +1278,9 @@ class Gadd_to_groupVarsBuilder
     implements Builder<Gadd_to_groupVars, Gadd_to_groupVarsBuilder> {
   _$Gadd_to_groupVars? _$v;
 
-  String? _phone;
-  String? get phone => _$this._phone;
-  set phone(String? phone) => _$this._phone = phone;
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
 
   String? _groupId;
   String? get groupId => _$this._groupId;
@@ -1144,7 +1291,7 @@ class Gadd_to_groupVarsBuilder
   Gadd_to_groupVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _phone = $v.phone;
+      _email = $v.email;
       _groupId = $v.groupId;
       _$v = null;
     }
@@ -1168,8 +1315,8 @@ class Gadd_to_groupVarsBuilder
   _$Gadd_to_groupVars _build() {
     final _$result = _$v ??
         new _$Gadd_to_groupVars._(
-            phone: BuiltValueNullFieldError.checkNotNull(
-                phone, r'Gadd_to_groupVars', 'phone'),
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'Gadd_to_groupVars', 'email'),
             groupId: BuiltValueNullFieldError.checkNotNull(
                 groupId, r'Gadd_to_groupVars', 'groupId'));
     replace(_$result);
@@ -1523,6 +1670,283 @@ class Gsettle_expenseVarsBuilder
                 amount, r'Gsettle_expenseVars', 'amount'),
             expenseId: BuiltValueNullFieldError.checkNotNull(
                 expenseId, r'Gsettle_expenseVars', 'expenseId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Gsend_email_otpVars extends Gsend_email_otpVars {
+  @override
+  final String email;
+
+  factory _$Gsend_email_otpVars(
+          [void Function(Gsend_email_otpVarsBuilder)? updates]) =>
+      (new Gsend_email_otpVarsBuilder()..update(updates))._build();
+
+  _$Gsend_email_otpVars._({required this.email}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        email, r'Gsend_email_otpVars', 'email');
+  }
+
+  @override
+  Gsend_email_otpVars rebuild(
+          void Function(Gsend_email_otpVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  Gsend_email_otpVarsBuilder toBuilder() =>
+      new Gsend_email_otpVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Gsend_email_otpVars && email == other.email;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'Gsend_email_otpVars')
+          ..add('email', email))
+        .toString();
+  }
+}
+
+class Gsend_email_otpVarsBuilder
+    implements Builder<Gsend_email_otpVars, Gsend_email_otpVarsBuilder> {
+  _$Gsend_email_otpVars? _$v;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  Gsend_email_otpVarsBuilder();
+
+  Gsend_email_otpVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _email = $v.email;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Gsend_email_otpVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Gsend_email_otpVars;
+  }
+
+  @override
+  void update(void Function(Gsend_email_otpVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  Gsend_email_otpVars build() => _build();
+
+  _$Gsend_email_otpVars _build() {
+    final _$result = _$v ??
+        new _$Gsend_email_otpVars._(
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'Gsend_email_otpVars', 'email'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Gverify_email_otpVars extends Gverify_email_otpVars {
+  @override
+  final String email;
+  @override
+  final String otp;
+
+  factory _$Gverify_email_otpVars(
+          [void Function(Gverify_email_otpVarsBuilder)? updates]) =>
+      (new Gverify_email_otpVarsBuilder()..update(updates))._build();
+
+  _$Gverify_email_otpVars._({required this.email, required this.otp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        email, r'Gverify_email_otpVars', 'email');
+    BuiltValueNullFieldError.checkNotNull(otp, r'Gverify_email_otpVars', 'otp');
+  }
+
+  @override
+  Gverify_email_otpVars rebuild(
+          void Function(Gverify_email_otpVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  Gverify_email_otpVarsBuilder toBuilder() =>
+      new Gverify_email_otpVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Gverify_email_otpVars &&
+        email == other.email &&
+        otp == other.otp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, otp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'Gverify_email_otpVars')
+          ..add('email', email)
+          ..add('otp', otp))
+        .toString();
+  }
+}
+
+class Gverify_email_otpVarsBuilder
+    implements Builder<Gverify_email_otpVars, Gverify_email_otpVarsBuilder> {
+  _$Gverify_email_otpVars? _$v;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  String? _otp;
+  String? get otp => _$this._otp;
+  set otp(String? otp) => _$this._otp = otp;
+
+  Gverify_email_otpVarsBuilder();
+
+  Gverify_email_otpVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _email = $v.email;
+      _otp = $v.otp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Gverify_email_otpVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Gverify_email_otpVars;
+  }
+
+  @override
+  void update(void Function(Gverify_email_otpVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  Gverify_email_otpVars build() => _build();
+
+  _$Gverify_email_otpVars _build() {
+    final _$result = _$v ??
+        new _$Gverify_email_otpVars._(
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'Gverify_email_otpVars', 'email'),
+            otp: BuiltValueNullFieldError.checkNotNull(
+                otp, r'Gverify_email_otpVars', 'otp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Grefresh_tokenVars extends Grefresh_tokenVars {
+  @override
+  final String refresh_token;
+
+  factory _$Grefresh_tokenVars(
+          [void Function(Grefresh_tokenVarsBuilder)? updates]) =>
+      (new Grefresh_tokenVarsBuilder()..update(updates))._build();
+
+  _$Grefresh_tokenVars._({required this.refresh_token}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        refresh_token, r'Grefresh_tokenVars', 'refresh_token');
+  }
+
+  @override
+  Grefresh_tokenVars rebuild(
+          void Function(Grefresh_tokenVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  Grefresh_tokenVarsBuilder toBuilder() =>
+      new Grefresh_tokenVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Grefresh_tokenVars && refresh_token == other.refresh_token;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, refresh_token.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'Grefresh_tokenVars')
+          ..add('refresh_token', refresh_token))
+        .toString();
+  }
+}
+
+class Grefresh_tokenVarsBuilder
+    implements Builder<Grefresh_tokenVars, Grefresh_tokenVarsBuilder> {
+  _$Grefresh_tokenVars? _$v;
+
+  String? _refresh_token;
+  String? get refresh_token => _$this._refresh_token;
+  set refresh_token(String? refresh_token) =>
+      _$this._refresh_token = refresh_token;
+
+  Grefresh_tokenVarsBuilder();
+
+  Grefresh_tokenVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _refresh_token = $v.refresh_token;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Grefresh_tokenVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Grefresh_tokenVars;
+  }
+
+  @override
+  void update(void Function(Grefresh_tokenVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  Grefresh_tokenVars build() => _build();
+
+  _$Grefresh_tokenVars _build() {
+    final _$result = _$v ??
+        new _$Grefresh_tokenVars._(
+            refresh_token: BuiltValueNullFieldError.checkNotNull(
+                refresh_token, r'Grefresh_tokenVars', 'refresh_token'));
     replace(_$result);
     return _$result;
   }

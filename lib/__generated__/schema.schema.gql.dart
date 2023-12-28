@@ -30,8 +30,12 @@ abstract class GSplitInput implements Built<GSplitInput, GSplitInputBuilder> {
 }
 
 const Map<String, Set<String>> possibleTypesMap = {
+  'AuthResult': {
+    'UserNotSignedUp',
+    'UserSignedUp',
+  },
   'UserAuth': {
     'Unregistered',
     'Registered',
-  }
+  },
 };

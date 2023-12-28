@@ -1,3 +1,5 @@
+union AuthResult = UserNotSignedUp | UserSignedUp
+
 type Expense {
   id: String!
   title: String!
@@ -22,9 +24,12 @@ type Group {
 }
 
 type Mutation {
-  signup(name: String!, upiId: String): User!
+  sendEmailOtp(email: String!): Boolean!
+  verifyOtp(email: String!, otp: String!): AuthResult!
+  refreshToken(refreshToken: String!): UserSignedUp!
+  signup(name: String!, upiId: String): SignupSuccess!
   createGroup(name: String!): Group!
-  addToGroup(groupId: String!, phone: String!): String!
+  addToGroupByEmail(groupId: String!, email: String!): String!
   addExpense(
     groupId: String!
     title: String!
@@ -40,12 +45,22 @@ type Query {
   user: UserAuth!
   group(id: String!): Group!
   userById(id: String!): User!
+  expensesCreatedByUser(
+    userId: String!
+    skip: Int! = 0
+    limit: Int! = 10
+  ): [Expense!]!
   interactedUsers: [User!]!
   groups: [Group!]!
 }
 
 type Registered {
   user: User!
+}
+
+type SignupSuccess {
+  user: User!
+  tokens: UserSignedUp!
 }
 
 type Split {
@@ -64,16 +79,27 @@ input SplitInput {
 }
 
 type Unregistered {
-  phone: String!
+  phone: String
+  email: String
 }
 
 type User {
   id: String!
   name: String!
-  phone: String!
+  phone: String
+  email: String
   toPay: Int!
   upiIds: [String!]!
   toReceive: Int!
 }
 
 union UserAuth = Unregistered | Registered
+
+type UserNotSignedUp {
+  signupToken: String!
+}
+
+type UserSignedUp {
+  accessToken: String!
+  refreshToken: String!
+}

@@ -144,7 +144,7 @@ abstract class Gadd_to_groupVars
   factory Gadd_to_groupVars([Function(Gadd_to_groupVarsBuilder b) updates]) =
       _$Gadd_to_groupVars;
 
-  String get phone;
+  String get email;
   String get groupId;
   static Serializer<Gadd_to_groupVars> get serializer =>
       _$gaddToGroupVarsSerializer;
@@ -231,6 +231,77 @@ abstract class Gsettle_expenseVars
   static Gsettle_expenseVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         Gsettle_expenseVars.serializer,
+        json,
+      );
+}
+
+abstract class Gsend_email_otpVars
+    implements Built<Gsend_email_otpVars, Gsend_email_otpVarsBuilder> {
+  Gsend_email_otpVars._();
+
+  factory Gsend_email_otpVars(
+      [Function(Gsend_email_otpVarsBuilder b) updates]) = _$Gsend_email_otpVars;
+
+  String get email;
+  static Serializer<Gsend_email_otpVars> get serializer =>
+      _$gsendEmailOtpVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        Gsend_email_otpVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Gsend_email_otpVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        Gsend_email_otpVars.serializer,
+        json,
+      );
+}
+
+abstract class Gverify_email_otpVars
+    implements Built<Gverify_email_otpVars, Gverify_email_otpVarsBuilder> {
+  Gverify_email_otpVars._();
+
+  factory Gverify_email_otpVars(
+          [Function(Gverify_email_otpVarsBuilder b) updates]) =
+      _$Gverify_email_otpVars;
+
+  String get email;
+  String get otp;
+  static Serializer<Gverify_email_otpVars> get serializer =>
+      _$gverifyEmailOtpVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        Gverify_email_otpVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Gverify_email_otpVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        Gverify_email_otpVars.serializer,
+        json,
+      );
+}
+
+abstract class Grefresh_tokenVars
+    implements Built<Grefresh_tokenVars, Grefresh_tokenVarsBuilder> {
+  Grefresh_tokenVars._();
+
+  factory Grefresh_tokenVars([Function(Grefresh_tokenVarsBuilder b) updates]) =
+      _$Grefresh_tokenVars;
+
+  String get refresh_token;
+  static Serializer<Grefresh_tokenVars> get serializer =>
+      _$grefreshTokenVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        Grefresh_tokenVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Grefresh_tokenVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        Grefresh_tokenVars.serializer,
         json,
       );
 }
