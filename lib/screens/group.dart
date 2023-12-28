@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sliver_tools/sliver_tools.dart';
-import 'package:splitbuddy/graphql_api.graphql.dart';
+import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
+import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
 import 'package:splitbuddy/screens/create_expense_page.dart';
 import 'package:splitbuddy/state/app_state.dart';
 
 class Group extends StatefulWidget {
-  final GroupFieldsMixin group;
+  final GGroupFields group;
   const Group({super.key, required this.group});
 
   @override
@@ -15,7 +16,7 @@ class Group extends StatefulWidget {
 }
 
 class _GroupState extends State<Group> {
-  List<ExpenseFieldsMixin> expenses = [];
+  List<GExpenseFields> expenses = [];
 
   final ScrollController _scrollController = ScrollController();
 
@@ -45,15 +46,16 @@ class _GroupState extends State<Group> {
     });
     try {
       var client = await context.read<AppState>().client;
-      var result = await client.execute(
-        GroupQuery(
-          variables: GroupArguments(
-            groupId: widget.group.id,
-            skip: expenses.length,
-            limit: 10,
-          ),
-        ),
-      );
+      var result = await client
+          .request(
+            GgroupReq(
+              (b) => b.vars
+                ..groupId = widget.group.id
+                ..limit = 10
+                ..skip = expenses.length,
+            ),
+          )
+          .first;
       if (result.data != null) {
         if (expenses.isEmpty) {
           var pos = _scrollController.position.maxScrollExtent -
@@ -81,11 +83,11 @@ class _GroupState extends State<Group> {
 
   @override
   Widget build(BuildContext context) {
-    var group = context.select<AppState, GroupFieldsMixin>((value) => value
+    var group = context.select<AppState, GGroupFields>((value) => value
         .userGroups
         .firstWhere((element) => element.id == widget.group.id));
 
-    Map<String, List<ExpenseFieldsMixin>> expenseGrouped = {};
+    Map<String, List<GExpenseFields>> expenseGrouped = {};
 
     for (var expense in expenses) {
       var date = DateFormat('d MMM y')
@@ -110,7 +112,7 @@ class _GroupState extends State<Group> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => GroupMembersPage(
-                          group: group,
+                          initialGroup: group,
                         ),
                       ),
                     );
@@ -207,7 +209,10 @@ class _GroupState extends State<Group> {
                                                   expense.title,
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .bodySmall,
+                                                      .bodyMedium
+                                                      ?.copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold),
                                                 )
                                               ],
                                             ),
@@ -236,7 +241,11 @@ class _GroupState extends State<Group> {
                                                         expense.title,
                                                         style: Theme.of(context)
                                                             .textTheme
-                                                            .bodySmall,
+                                                            .bodyMedium
+                                                            ?.copyWith(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
                                                       ),
                                                     ),
                                                   Text(
@@ -350,7 +359,7 @@ class _GroupState extends State<Group> {
                       builder: (context) => CreateExpensePage(group: group),
                     ),
                   );
-                  if (expense is ExpenseFieldsMixin) {
+                  if (expense is GExpenseFields) {
                     expenses.insert(0, expense);
                     setState(() {});
                   }
@@ -395,10 +404,10 @@ class DateHeader extends SliverPersistentHeaderDelegate {
 }
 
 class GroupMembersPage extends StatefulWidget {
-  final GroupFieldsMixin group;
+  final GGroupFields initialGroup;
   const GroupMembersPage({
     super.key,
-    required this.group,
+    required this.initialGroup,
   });
 
   @override
@@ -406,18 +415,26 @@ class GroupMembersPage extends StatefulWidget {
 }
 
 class _GroupMembersPageState extends State<GroupMembersPage> {
+  late GGroupFields group;
+
+  @override
+  void initState() {
+    group = widget.initialGroup;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar.large(
-            title: Text(widget.group.name),
+            title: Text(group.name),
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                var member = widget.group.members[index];
+                var member = group.members[index];
                 return Container(
                   margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
                   child: Card(
@@ -429,7 +446,7 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                   ),
                 );
               },
-              childCount: widget.group.members.length,
+              childCount: group.members.length,
             ),
           ),
           SliverToBoxAdapter(
@@ -443,14 +460,14 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                     var phone = await showDialog(
                       context: context,
                       builder: (context) =>
-                          NewMemberPhoneDialog(groupName: widget.group.name),
+                          NewMemberPhoneDialog(groupName: group.name),
                     );
                     if (phone is String) {
                       try {
-                        var res = await appState.addMemberToGroup(
-                            phone, widget.group.id);
+                        var res =
+                            await appState.addMemberToGroup(phone, group.id);
                         setState(() {
-                          widget.group.members = res.members;
+                          group = res;
                         });
 
                         messenger.showSnackBar(

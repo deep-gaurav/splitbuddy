@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:splitbuddy/graphql_api.graphql.dart';
+import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/state/app_state.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,10 +10,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var users = context
-        .select<AppState, UnmodifiableListView<InteractedUsers$Query$User>>(
-            (state) => state.interactedUsers);
-    InteractedUsers$Query$User? selfUser;
+    var users = context.select<AppState,
+            UnmodifiableListView<Ginteracted_usersData_interactedUsers>>(
+        (state) => state.interactedUsers);
+    Ginteracted_usersData_interactedUsers? selfUser;
     try {
       selfUser = users.firstWhere(
           (element) => element.id == context.read<AppState>().user?.id);
@@ -25,8 +25,8 @@ class HomePage extends StatelessWidget {
     );
     return CustomScrollView(
       slivers: [
-        SliverAppBar.medium(
-          title: const Text(
+        const SliverAppBar.medium(
+          title: Text(
             "Home",
           ),
         ),

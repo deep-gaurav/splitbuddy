@@ -14,6 +14,9 @@ class _PhoneEntryScreenState extends State<PhoneEntryScreen> {
   bool get otpSent => otpVerificationId != null;
 
   sendPhone(String phone) async {
+    var credentials =
+        await FirebaseAuth.instance.signInWithProvider(GoogleAuthProvider());
+    print(credentials);
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: '+91 $phone',
       verificationCompleted: (PhoneAuthCredential credential) {},

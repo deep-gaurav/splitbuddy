@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:splitbuddy/graphql_api.graphql.dart';
+import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/screens/group.dart';
 import 'package:splitbuddy/state/app_state.dart';
 
@@ -11,12 +11,12 @@ class GroupsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverAppBar.medium(
-          title: const Text(
+        const SliverAppBar.medium(
+          title: Text(
             "Groups",
           ),
         ),
-        Selector<AppState, List<GroupFieldsMixin>>(
+        Selector<AppState, List<GGroupFields>>(
           selector: (context, state) => state.userGroups,
           builder: (context, groups, child) {
             return SliverList(

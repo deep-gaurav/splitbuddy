@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:splitbuddy/graphql_api.graphql.dart';
+import 'package:splitbuddy/__generated__/schema.schema.gql.dart';
+import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/state/app_state.dart';
 
 class CreateExpensePage extends StatefulWidget {
-  final GroupFieldsMixin group;
+  final GGroupFields group;
 
   const CreateExpensePage({super.key, required this.group});
 
@@ -278,8 +279,13 @@ class _CreateExpensePageState extends State<CreateExpensePage> {
               widget.group.id,
               amountDistribution.entries
                   .where((element) => element.key != appstate.user!.id)
-                  .map((e) => SplitInput(
-                      amount: int.parse(e.value.text), userId: e.key))
+                  .map(
+                    (e) => GSplitInput(
+                      (b) => b
+                        ..amount = int.parse(e.value.text)
+                        ..userId = e.key,
+                    ),
+                  )
                   .toList(),
             );
             nav.pop(expense);

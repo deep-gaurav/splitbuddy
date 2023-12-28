@@ -32,7 +32,10 @@ class _SignupScreenState extends State<SignupScreen> {
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(width: 3),
+              border: Border.all(
+                width: 3,
+                color: Theme.of(context).iconTheme.color!,
+              ),
             ),
             child: const Icon(
               Icons.person,
@@ -44,48 +47,61 @@ class _SignupScreenState extends State<SignupScreen> {
           ),
           Form(
             key: formKey,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: TextFormField(
-                    controller: controller,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Name cant be empty";
-                      } else {
-                        return null;
-                      }
-                    },
-                    onFieldSubmitted: onSubmit,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Name',
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 500),
+                switchInCurve: Curves.elasticOut,
+                child: Card(
+                  elevation: 4,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 20),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: TextFormField(
+                            controller: controller,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Name cant be empty";
+                              } else {
+                                return null;
+                              }
+                            },
+                            onFieldSubmitted: onSubmit,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Name',
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: TextFormField(
+                            controller: upiIdController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "UPI ID cant be empty";
+                              } else {
+                                return null;
+                              }
+                            },
+                            onFieldSubmitted: onSubmit,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'UPI Id',
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: TextFormField(
-                    controller: upiIdController,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "UPI ID cant be empty";
-                      } else {
-                        return null;
-                      }
-                    },
-                    onFieldSubmitted: onSubmit,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'UPI Id',
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
           const SizedBox(
@@ -95,6 +111,7 @@ class _SignupScreenState extends State<SignupScreen> {
             onPressed: () => onSubmit(controller.text),
             icon: const Icon(Icons.done),
             label: const Text("Signup"),
+            style: ElevatedButton.styleFrom(elevation: 4),
           ),
           const Spacer()
         ],

@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -40,26 +40,31 @@ dependencies:
   provider: ^6.0.5
 
 
-  artemis: '>=7.0.0 <8.0.0'
+  # artemis: '>=7.0.0 <8.0.0'
   json_annotation: ^4.3.0
   equatable: ^2.0.3
-  gql: ^0.14.0
-  http: ^0.13.6
+  gql: ^1.0.0
+  http: ^1.1.2
   system_theme: ^2.1.0
-  intl: ^0.17.0
+  intl: ^0.19.0
   sliver_tools: ^0.2.10
   dynamic_color: ^1.6.3
+  ferry: ^0.15.0+1
+  gql_http_link: ^1.0.1+1
+  built_collection: ^5.1.1
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  ferry_generator: ^0.8.2
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
   build_runner: ^2.1.4
   json_serializable: ^6.0.1
