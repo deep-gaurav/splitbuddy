@@ -28,6 +28,10 @@ Serializer<Gverify_email_otpReq> _$gverifyEmailOtpReqSerializer =
     new _$Gverify_email_otpReqSerializer();
 Serializer<Grefresh_tokenReq> _$grefreshTokenReqSerializer =
     new _$Grefresh_tokenReqSerializer();
+Serializer<GsearchUserByEmailReq> _$gsearchUserByEmailReqSerializer =
+    new _$GsearchUserByEmailReqSerializer();
+Serializer<GcreateNonGroupExpenseReq> _$gcreateNonGroupExpenseReqSerializer =
+    new _$GcreateNonGroupExpenseReqSerializer();
 Serializer<GUserFieldsReq> _$gUserFieldsReqSerializer =
     new _$GUserFieldsReqSerializer();
 Serializer<GUserPaysFieldsReq> _$gUserPaysFieldsReqSerializer =
@@ -1547,6 +1551,252 @@ class _$Grefresh_tokenReqSerializer
           result.optimisticResponse.replace(serializers.deserialize(value,
                   specifiedType: const FullType(_i2.Grefresh_tokenData))!
               as _i2.Grefresh_tokenData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsearchUserByEmailReqSerializer
+    implements StructuredSerializer<GsearchUserByEmailReq> {
+  @override
+  final Iterable<Type> types = const [
+    GsearchUserByEmailReq,
+    _$GsearchUserByEmailReq
+  ];
+  @override
+  final String wireName = 'GsearchUserByEmailReq';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsearchUserByEmailReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GsearchUserByEmailVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.GsearchUserByEmailData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  GsearchUserByEmailReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsearchUserByEmailReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GsearchUserByEmailVars))!
+              as _i3.GsearchUserByEmailVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.GsearchUserByEmailData))!
+              as _i2.GsearchUserByEmailData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcreateNonGroupExpenseReqSerializer
+    implements StructuredSerializer<GcreateNonGroupExpenseReq> {
+  @override
+  final Iterable<Type> types = const [
+    GcreateNonGroupExpenseReq,
+    _$GcreateNonGroupExpenseReq
+  ];
+  @override
+  final String wireName = 'GcreateNonGroupExpenseReq';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GcreateNonGroupExpenseReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GcreateNonGroupExpenseVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.GcreateNonGroupExpenseData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  GcreateNonGroupExpenseReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcreateNonGroupExpenseReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(_i3.GcreateNonGroupExpenseVars))!
+              as _i3.GcreateNonGroupExpenseVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(_i2.GcreateNonGroupExpenseData))!
+              as _i2.GcreateNonGroupExpenseData);
           break;
         case 'updateCacheHandlerKey':
           result.updateCacheHandlerKey = serializers.deserialize(value,
@@ -4911,6 +5161,471 @@ class Grefresh_tokenReqBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'Grefresh_tokenReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsearchUserByEmailReq extends GsearchUserByEmailReq {
+  @override
+  final _i3.GsearchUserByEmailVars vars;
+  @override
+  final _i4.Operation operation;
+  @override
+  final String? requestId;
+  @override
+  final _i2.GsearchUserByEmailData? Function(
+      _i2.GsearchUserByEmailData?, _i2.GsearchUserByEmailData?)? updateResult;
+  @override
+  final _i2.GsearchUserByEmailData? optimisticResponse;
+  @override
+  final String? updateCacheHandlerKey;
+  @override
+  final Map<String, dynamic>? updateCacheHandlerContext;
+  @override
+  final _i1.FetchPolicy? fetchPolicy;
+  @override
+  final bool executeOnListen;
+
+  factory _$GsearchUserByEmailReq(
+          [void Function(GsearchUserByEmailReqBuilder)? updates]) =>
+      (new GsearchUserByEmailReqBuilder()..update(updates))._build();
+
+  _$GsearchUserByEmailReq._(
+      {required this.vars,
+      required this.operation,
+      this.requestId,
+      this.updateResult,
+      this.optimisticResponse,
+      this.updateCacheHandlerKey,
+      this.updateCacheHandlerContext,
+      this.fetchPolicy,
+      required this.executeOnListen})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        vars, r'GsearchUserByEmailReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, r'GsearchUserByEmailReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, r'GsearchUserByEmailReq', 'executeOnListen');
+  }
+
+  @override
+  GsearchUserByEmailReq rebuild(
+          void Function(GsearchUserByEmailReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsearchUserByEmailReqBuilder toBuilder() =>
+      new GsearchUserByEmailReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is GsearchUserByEmailReq &&
+        vars == other.vars &&
+        operation == other.operation &&
+        requestId == other.requestId &&
+        updateResult == _$dynamicOther.updateResult &&
+        optimisticResponse == other.optimisticResponse &&
+        updateCacheHandlerKey == other.updateCacheHandlerKey &&
+        updateCacheHandlerContext == other.updateCacheHandlerContext &&
+        fetchPolicy == other.fetchPolicy &&
+        executeOnListen == other.executeOnListen;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, operation.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, updateResult.hashCode);
+    _$hash = $jc(_$hash, optimisticResponse.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerKey.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerContext.hashCode);
+    _$hash = $jc(_$hash, fetchPolicy.hashCode);
+    _$hash = $jc(_$hash, executeOnListen.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GsearchUserByEmailReq')
+          ..add('vars', vars)
+          ..add('operation', operation)
+          ..add('requestId', requestId)
+          ..add('updateResult', updateResult)
+          ..add('optimisticResponse', optimisticResponse)
+          ..add('updateCacheHandlerKey', updateCacheHandlerKey)
+          ..add('updateCacheHandlerContext', updateCacheHandlerContext)
+          ..add('fetchPolicy', fetchPolicy)
+          ..add('executeOnListen', executeOnListen))
+        .toString();
+  }
+}
+
+class GsearchUserByEmailReqBuilder
+    implements Builder<GsearchUserByEmailReq, GsearchUserByEmailReqBuilder> {
+  _$GsearchUserByEmailReq? _$v;
+
+  _i3.GsearchUserByEmailVarsBuilder? _vars;
+  _i3.GsearchUserByEmailVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GsearchUserByEmailVarsBuilder();
+  set vars(_i3.GsearchUserByEmailVarsBuilder? vars) => _$this._vars = vars;
+
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
+  _i2.GsearchUserByEmailData? Function(
+      _i2.GsearchUserByEmailData?, _i2.GsearchUserByEmailData?)? _updateResult;
+  _i2.GsearchUserByEmailData? Function(
+          _i2.GsearchUserByEmailData?, _i2.GsearchUserByEmailData?)?
+      get updateResult => _$this._updateResult;
+  set updateResult(
+          _i2.GsearchUserByEmailData? Function(
+                  _i2.GsearchUserByEmailData?, _i2.GsearchUserByEmailData?)?
+              updateResult) =>
+      _$this._updateResult = updateResult;
+
+  _i2.GsearchUserByEmailDataBuilder? _optimisticResponse;
+  _i2.GsearchUserByEmailDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.GsearchUserByEmailDataBuilder();
+  set optimisticResponse(
+          _i2.GsearchUserByEmailDataBuilder? optimisticResponse) =>
+      _$this._optimisticResponse = optimisticResponse;
+
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
+      _$this._updateCacheHandlerKey = updateCacheHandlerKey;
+
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
+      _$this._updateCacheHandlerContext;
+  set updateCacheHandlerContext(
+          Map<String, dynamic>? updateCacheHandlerContext) =>
+      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
+      _$this._fetchPolicy = fetchPolicy;
+
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
+      _$this._executeOnListen = executeOnListen;
+
+  GsearchUserByEmailReqBuilder() {
+    GsearchUserByEmailReq._initializeBuilder(this);
+  }
+
+  GsearchUserByEmailReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsearchUserByEmailReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsearchUserByEmailReq;
+  }
+
+  @override
+  void update(void Function(GsearchUserByEmailReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsearchUserByEmailReq build() => _build();
+
+  _$GsearchUserByEmailReq _build() {
+    _$GsearchUserByEmailReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GsearchUserByEmailReq._(
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GsearchUserByEmailReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen,
+                  r'GsearchUserByEmailReq',
+                  'executeOnListen'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+
+        _$failedField = 'optimisticResponse';
+        _optimisticResponse?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GsearchUserByEmailReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcreateNonGroupExpenseReq extends GcreateNonGroupExpenseReq {
+  @override
+  final _i3.GcreateNonGroupExpenseVars vars;
+  @override
+  final _i4.Operation operation;
+  @override
+  final String? requestId;
+  @override
+  final _i2.GcreateNonGroupExpenseData? Function(
+          _i2.GcreateNonGroupExpenseData?, _i2.GcreateNonGroupExpenseData?)?
+      updateResult;
+  @override
+  final _i2.GcreateNonGroupExpenseData? optimisticResponse;
+  @override
+  final String? updateCacheHandlerKey;
+  @override
+  final Map<String, dynamic>? updateCacheHandlerContext;
+  @override
+  final _i1.FetchPolicy? fetchPolicy;
+  @override
+  final bool executeOnListen;
+
+  factory _$GcreateNonGroupExpenseReq(
+          [void Function(GcreateNonGroupExpenseReqBuilder)? updates]) =>
+      (new GcreateNonGroupExpenseReqBuilder()..update(updates))._build();
+
+  _$GcreateNonGroupExpenseReq._(
+      {required this.vars,
+      required this.operation,
+      this.requestId,
+      this.updateResult,
+      this.optimisticResponse,
+      this.updateCacheHandlerKey,
+      this.updateCacheHandlerContext,
+      this.fetchPolicy,
+      required this.executeOnListen})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        vars, r'GcreateNonGroupExpenseReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, r'GcreateNonGroupExpenseReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, r'GcreateNonGroupExpenseReq', 'executeOnListen');
+  }
+
+  @override
+  GcreateNonGroupExpenseReq rebuild(
+          void Function(GcreateNonGroupExpenseReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcreateNonGroupExpenseReqBuilder toBuilder() =>
+      new GcreateNonGroupExpenseReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is GcreateNonGroupExpenseReq &&
+        vars == other.vars &&
+        operation == other.operation &&
+        requestId == other.requestId &&
+        updateResult == _$dynamicOther.updateResult &&
+        optimisticResponse == other.optimisticResponse &&
+        updateCacheHandlerKey == other.updateCacheHandlerKey &&
+        updateCacheHandlerContext == other.updateCacheHandlerContext &&
+        fetchPolicy == other.fetchPolicy &&
+        executeOnListen == other.executeOnListen;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, operation.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, updateResult.hashCode);
+    _$hash = $jc(_$hash, optimisticResponse.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerKey.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerContext.hashCode);
+    _$hash = $jc(_$hash, fetchPolicy.hashCode);
+    _$hash = $jc(_$hash, executeOnListen.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GcreateNonGroupExpenseReq')
+          ..add('vars', vars)
+          ..add('operation', operation)
+          ..add('requestId', requestId)
+          ..add('updateResult', updateResult)
+          ..add('optimisticResponse', optimisticResponse)
+          ..add('updateCacheHandlerKey', updateCacheHandlerKey)
+          ..add('updateCacheHandlerContext', updateCacheHandlerContext)
+          ..add('fetchPolicy', fetchPolicy)
+          ..add('executeOnListen', executeOnListen))
+        .toString();
+  }
+}
+
+class GcreateNonGroupExpenseReqBuilder
+    implements
+        Builder<GcreateNonGroupExpenseReq, GcreateNonGroupExpenseReqBuilder> {
+  _$GcreateNonGroupExpenseReq? _$v;
+
+  _i3.GcreateNonGroupExpenseVarsBuilder? _vars;
+  _i3.GcreateNonGroupExpenseVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GcreateNonGroupExpenseVarsBuilder();
+  set vars(_i3.GcreateNonGroupExpenseVarsBuilder? vars) => _$this._vars = vars;
+
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
+  _i2.GcreateNonGroupExpenseData? Function(
+          _i2.GcreateNonGroupExpenseData?, _i2.GcreateNonGroupExpenseData?)?
+      _updateResult;
+  _i2.GcreateNonGroupExpenseData? Function(
+          _i2.GcreateNonGroupExpenseData?, _i2.GcreateNonGroupExpenseData?)?
+      get updateResult => _$this._updateResult;
+  set updateResult(
+          _i2.GcreateNonGroupExpenseData? Function(
+                  _i2.GcreateNonGroupExpenseData?,
+                  _i2.GcreateNonGroupExpenseData?)?
+              updateResult) =>
+      _$this._updateResult = updateResult;
+
+  _i2.GcreateNonGroupExpenseDataBuilder? _optimisticResponse;
+  _i2.GcreateNonGroupExpenseDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??=
+          new _i2.GcreateNonGroupExpenseDataBuilder();
+  set optimisticResponse(
+          _i2.GcreateNonGroupExpenseDataBuilder? optimisticResponse) =>
+      _$this._optimisticResponse = optimisticResponse;
+
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
+      _$this._updateCacheHandlerKey = updateCacheHandlerKey;
+
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
+      _$this._updateCacheHandlerContext;
+  set updateCacheHandlerContext(
+          Map<String, dynamic>? updateCacheHandlerContext) =>
+      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
+      _$this._fetchPolicy = fetchPolicy;
+
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
+      _$this._executeOnListen = executeOnListen;
+
+  GcreateNonGroupExpenseReqBuilder() {
+    GcreateNonGroupExpenseReq._initializeBuilder(this);
+  }
+
+  GcreateNonGroupExpenseReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcreateNonGroupExpenseReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcreateNonGroupExpenseReq;
+  }
+
+  @override
+  void update(void Function(GcreateNonGroupExpenseReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcreateNonGroupExpenseReq build() => _build();
+
+  _$GcreateNonGroupExpenseReq _build() {
+    _$GcreateNonGroupExpenseReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GcreateNonGroupExpenseReq._(
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GcreateNonGroupExpenseReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen,
+                  r'GcreateNonGroupExpenseReq',
+                  'executeOnListen'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+
+        _$failedField = 'optimisticResponse';
+        _optimisticResponse?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GcreateNonGroupExpenseReq', _$failedField, e.toString());
       }
       rethrow;
     }

@@ -14,7 +14,7 @@ type Expense {
 
 type Group {
   id: String!
-  name: String!
+  name: String
   createdAt: String!
   creator: User!
   members: [User!]!
@@ -30,6 +30,11 @@ type Mutation {
   signup(name: String!, upiId: String): SignupSuccess!
   createGroup(name: String!): Group!
   addToGroupByEmail(groupId: String!, email: String!): String!
+  addNonGroupExpense(
+    title: String!
+    amount: Int!
+    splits: [SplitInputNonGroup!]!
+  ): NonGroupExpense!
   addExpense(
     groupId: String!
     title: String!
@@ -38,6 +43,11 @@ type Mutation {
   ): Expense!
   settleExpense(expenseId: String!, amount: Int!): Expense!
   settleUser(userId: String!, amount: Int!): String!
+}
+
+type NonGroupExpense {
+  group: Group!
+  expense: Expense!
 }
 
 type Query {
@@ -52,6 +62,7 @@ type Query {
   ): [Expense!]!
   interactedUsers: [User!]!
   groups: [Group!]!
+  findUserByEmail(email: String!): User!
 }
 
 type Registered {
@@ -78,6 +89,12 @@ input SplitInput {
   userId: String!
 }
 
+input SplitInputNonGroup {
+  amount: Int!
+  email: String
+  userId: String
+}
+
 type Unregistered {
   phone: String
   email: String
@@ -85,9 +102,10 @@ type Unregistered {
 
 type User {
   id: String!
-  name: String!
+  name: String
   phone: String
   email: String
+  isSignedUp: Boolean!
   toPay: Int!
   upiIds: [String!]!
   toReceive: Int!

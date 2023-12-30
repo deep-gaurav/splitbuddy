@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:splitbuddy/__generated__/schema.schema.gql.dart';
+import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/state/app_state.dart';
 
@@ -162,7 +163,7 @@ class _CreateExpensePageState extends State<CreateExpensePage> {
                         selected:
                             context.read<AppState>().user!.id == member.id,
                         leading: const Icon(Icons.person),
-                        title: Text(member.name),
+                        title: Text(member.displayName),
                         subtitle: Slider(
                             value:
                                 percentDistribution[member.id]?.toDouble() ?? 0,

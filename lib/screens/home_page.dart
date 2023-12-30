@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/state/app_state.dart';
 
@@ -69,7 +70,7 @@ class HomePage extends StatelessWidget {
               child: ListTile(
                 onTap: () {},
                 leading: const Icon(Icons.account_circle),
-                title: Text(user.name),
+                title: Text(user.displayName),
                 subtitle: Row(
                   children: [
                     Expanded(

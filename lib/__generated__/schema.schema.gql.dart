@@ -29,6 +29,31 @@ abstract class GSplitInput implements Built<GSplitInput, GSplitInputBuilder> {
       );
 }
 
+abstract class GSplitInputNonGroup
+    implements Built<GSplitInputNonGroup, GSplitInputNonGroupBuilder> {
+  GSplitInputNonGroup._();
+
+  factory GSplitInputNonGroup(
+      [Function(GSplitInputNonGroupBuilder b) updates]) = _$GSplitInputNonGroup;
+
+  int get amount;
+  String? get email;
+  String? get userId;
+  static Serializer<GSplitInputNonGroup> get serializer =>
+      _$gSplitInputNonGroupSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitInputNonGroup.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitInputNonGroup? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitInputNonGroup.serializer,
+        json,
+      );
+}
+
 const Map<String, Set<String>> possibleTypesMap = {
   'AuthResult': {
     'UserNotSignedUp',

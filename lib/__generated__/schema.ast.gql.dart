@@ -129,7 +129,7 @@ const Group = _i1.ObjectTypeDefinitionNode(
       args: [],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'String'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -360,6 +360,46 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'addNonGroupExpense'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'title'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'amount'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'splits'),
+          directives: [],
+          type: _i1.ListTypeNode(
+            type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'SplitInputNonGroup'),
+              isNonNull: true,
+            ),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+      ],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'NonGroupExpense'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
       name: _i1.NameNode(value: 'addExpense'),
       directives: [],
       args: [
@@ -461,6 +501,31 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
+const NonGroupExpense = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'NonGroupExpense'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'group'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Group'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'expense'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Expense'),
         isNonNull: true,
       ),
     ),
@@ -588,6 +653,25 @@ const Query = _i1.ObjectTypeDefinitionNode(
           name: _i1.NameNode(value: 'Group'),
           isNonNull: true,
         ),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'findUserByEmail'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'email'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        )
+      ],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'User'),
         isNonNull: true,
       ),
     ),
@@ -728,6 +812,39 @@ const SplitInput = _i1.InputObjectTypeDefinitionNode(
     ),
   ],
 );
+const SplitInputNonGroup = _i1.InputObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'SplitInputNonGroup'),
+  directives: [],
+  fields: [
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'amount'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'email'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'userId'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+  ],
+);
 const Unregistered = _i1.ObjectTypeDefinitionNode(
   name: _i1.NameNode(value: 'Unregistered'),
   directives: [],
@@ -773,7 +890,7 @@ const User = _i1.ObjectTypeDefinitionNode(
       args: [],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'String'),
-        isNonNull: true,
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -792,6 +909,15 @@ const User = _i1.ObjectTypeDefinitionNode(
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'String'),
         isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'isSignedUp'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Boolean'),
+        isNonNull: true,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -886,11 +1012,13 @@ const document = _i1.DocumentNode(definitions: [
   Expense,
   Group,
   Mutation,
+  NonGroupExpense,
   Query,
   Registered,
   SignupSuccess,
   Split,
   SplitInput,
+  SplitInputNonGroup,
   Unregistered,
   User,
   UserAuth,

@@ -972,6 +972,159 @@ abstract class Grefresh_tokenReq
       );
 }
 
+abstract class GsearchUserByEmailReq
+    implements
+        Built<GsearchUserByEmailReq, GsearchUserByEmailReqBuilder>,
+        _i1.OperationRequest<_i2.GsearchUserByEmailData,
+            _i3.GsearchUserByEmailVars> {
+  GsearchUserByEmailReq._();
+
+  factory GsearchUserByEmailReq(
+          [Function(GsearchUserByEmailReqBuilder b) updates]) =
+      _$GsearchUserByEmailReq;
+
+  static void _initializeBuilder(GsearchUserByEmailReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'searchUserByEmail',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GsearchUserByEmailVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GsearchUserByEmailData? Function(
+    _i2.GsearchUserByEmailData?,
+    _i2.GsearchUserByEmailData?,
+  )? get updateResult;
+  @override
+  _i2.GsearchUserByEmailData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GsearchUserByEmailData? parseData(Map<String, dynamic> json) =>
+      _i2.GsearchUserByEmailData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GsearchUserByEmailData, _i3.GsearchUserByEmailVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GsearchUserByEmailReq> get serializer =>
+      _$gsearchUserByEmailReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GsearchUserByEmailReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsearchUserByEmailReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GsearchUserByEmailReq.serializer,
+        json,
+      );
+}
+
+abstract class GcreateNonGroupExpenseReq
+    implements
+        Built<GcreateNonGroupExpenseReq, GcreateNonGroupExpenseReqBuilder>,
+        _i1.OperationRequest<_i2.GcreateNonGroupExpenseData,
+            _i3.GcreateNonGroupExpenseVars> {
+  GcreateNonGroupExpenseReq._();
+
+  factory GcreateNonGroupExpenseReq(
+          [Function(GcreateNonGroupExpenseReqBuilder b) updates]) =
+      _$GcreateNonGroupExpenseReq;
+
+  static void _initializeBuilder(GcreateNonGroupExpenseReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'createNonGroupExpense',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GcreateNonGroupExpenseVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GcreateNonGroupExpenseData? Function(
+    _i2.GcreateNonGroupExpenseData?,
+    _i2.GcreateNonGroupExpenseData?,
+  )? get updateResult;
+  @override
+  _i2.GcreateNonGroupExpenseData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GcreateNonGroupExpenseData? parseData(Map<String, dynamic> json) =>
+      _i2.GcreateNonGroupExpenseData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GcreateNonGroupExpenseData,
+      _i3.GcreateNonGroupExpenseVars> transformOperation(
+          _i4.Operation Function(_i4.Operation) transform) =>
+      this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GcreateNonGroupExpenseReq> get serializer =>
+      _$gcreateNonGroupExpenseReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GcreateNonGroupExpenseReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcreateNonGroupExpenseReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GcreateNonGroupExpenseReq.serializer,
+        json,
+      );
+}
+
 abstract class GUserFieldsReq
     implements
         Built<GUserFieldsReq, GUserFieldsReqBuilder>,

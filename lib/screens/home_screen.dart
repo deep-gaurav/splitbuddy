@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:splitbuddy/screens/find_people.dart';
 import 'package:splitbuddy/screens/groups_page.dart';
 import 'package:splitbuddy/screens/home_page.dart';
 import 'package:splitbuddy/state/app_state.dart';
@@ -49,7 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       floatingActionButton: currentIndex == 1
-          ? FloatingActionButton(
+          ? FloatingActionButton.extended(
+              icon: const Icon(Icons.group_add),
               onPressed: () async {
                 var appstate = context.read<AppState>();
                 var groupName = await showDialog(
@@ -59,9 +61,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   appstate.createGroup(groupName);
                 }
               },
-              child: const Icon(Icons.add),
+              label: const Text('Create Group'),
             )
-          : null,
+          : FloatingActionButton.extended(
+              icon: const Icon(Icons.add_shopping_cart),
+              onPressed: () async {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const FindPeople(searchGroup: true)));
+              },
+              label: const Text('Create Expense'),
+            ),
     );
   }
 }

@@ -7,6 +7,8 @@ part of 'schema.schema.gql.dart';
 // **************************************************************************
 
 Serializer<GSplitInput> _$gSplitInputSerializer = new _$GSplitInputSerializer();
+Serializer<GSplitInputNonGroup> _$gSplitInputNonGroupSerializer =
+    new _$GSplitInputNonGroupSerializer();
 
 class _$GSplitInputSerializer implements StructuredSerializer<GSplitInput> {
   @override
@@ -46,6 +48,73 @@ class _$GSplitInputSerializer implements StructuredSerializer<GSplitInput> {
         case 'userId':
           result.userId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GSplitInputNonGroupSerializer
+    implements StructuredSerializer<GSplitInputNonGroup> {
+  @override
+  final Iterable<Type> types = const [
+    GSplitInputNonGroup,
+    _$GSplitInputNonGroup
+  ];
+  @override
+  final String wireName = 'GSplitInputNonGroup';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GSplitInputNonGroup object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+    ];
+    Object? value;
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.userId;
+    if (value != null) {
+      result
+        ..add('userId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GSplitInputNonGroup deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GSplitInputNonGroupBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'userId':
+          result.userId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -145,6 +214,117 @@ class GSplitInputBuilder implements Builder<GSplitInput, GSplitInputBuilder> {
                 amount, r'GSplitInput', 'amount'),
             userId: BuiltValueNullFieldError.checkNotNull(
                 userId, r'GSplitInput', 'userId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GSplitInputNonGroup extends GSplitInputNonGroup {
+  @override
+  final int amount;
+  @override
+  final String? email;
+  @override
+  final String? userId;
+
+  factory _$GSplitInputNonGroup(
+          [void Function(GSplitInputNonGroupBuilder)? updates]) =>
+      (new GSplitInputNonGroupBuilder()..update(updates))._build();
+
+  _$GSplitInputNonGroup._({required this.amount, this.email, this.userId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GSplitInputNonGroup', 'amount');
+  }
+
+  @override
+  GSplitInputNonGroup rebuild(
+          void Function(GSplitInputNonGroupBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GSplitInputNonGroupBuilder toBuilder() =>
+      new GSplitInputNonGroupBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GSplitInputNonGroup &&
+        amount == other.amount &&
+        email == other.email &&
+        userId == other.userId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, userId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GSplitInputNonGroup')
+          ..add('amount', amount)
+          ..add('email', email)
+          ..add('userId', userId))
+        .toString();
+  }
+}
+
+class GSplitInputNonGroupBuilder
+    implements Builder<GSplitInputNonGroup, GSplitInputNonGroupBuilder> {
+  _$GSplitInputNonGroup? _$v;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  String? _userId;
+  String? get userId => _$this._userId;
+  set userId(String? userId) => _$this._userId = userId;
+
+  GSplitInputNonGroupBuilder();
+
+  GSplitInputNonGroupBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _amount = $v.amount;
+      _email = $v.email;
+      _userId = $v.userId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GSplitInputNonGroup other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GSplitInputNonGroup;
+  }
+
+  @override
+  void update(void Function(GSplitInputNonGroupBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GSplitInputNonGroup build() => _build();
+
+  _$GSplitInputNonGroup _build() {
+    final _$result = _$v ??
+        new _$GSplitInputNonGroup._(
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount, r'GSplitInputNonGroup', 'amount'),
+            email: email,
+            userId: userId);
     replace(_$result);
     return _$result;
   }

@@ -123,6 +123,41 @@ Serializer<Grefresh_tokenData> _$grefreshTokenDataSerializer =
 Serializer<Grefresh_tokenData_refreshToken>
     _$grefreshTokenDataRefreshTokenSerializer =
     new _$Grefresh_tokenData_refreshTokenSerializer();
+Serializer<GsearchUserByEmailData> _$gsearchUserByEmailDataSerializer =
+    new _$GsearchUserByEmailDataSerializer();
+Serializer<GsearchUserByEmailData_findUserByEmail>
+    _$gsearchUserByEmailDataFindUserByEmailSerializer =
+    new _$GsearchUserByEmailData_findUserByEmailSerializer();
+Serializer<GcreateNonGroupExpenseData> _$gcreateNonGroupExpenseDataSerializer =
+    new _$GcreateNonGroupExpenseDataSerializer();
+Serializer<GcreateNonGroupExpenseData_addNonGroupExpense>
+    _$gcreateNonGroupExpenseDataAddNonGroupExpenseSerializer =
+    new _$GcreateNonGroupExpenseData_addNonGroupExpenseSerializer();
+Serializer<GcreateNonGroupExpenseData_addNonGroupExpense_group>
+    _$gcreateNonGroupExpenseDataAddNonGroupExpenseGroupSerializer =
+    new _$GcreateNonGroupExpenseData_addNonGroupExpense_groupSerializer();
+Serializer<GcreateNonGroupExpenseData_addNonGroupExpense_group_creator>
+    _$gcreateNonGroupExpenseDataAddNonGroupExpenseGroupCreatorSerializer =
+    new _$GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorSerializer();
+Serializer<GcreateNonGroupExpenseData_addNonGroupExpense_group_members>
+    _$gcreateNonGroupExpenseDataAddNonGroupExpenseGroupMembersSerializer =
+    new _$GcreateNonGroupExpenseData_addNonGroupExpense_group_membersSerializer();
+Serializer<GcreateNonGroupExpenseData_addNonGroupExpense_expense>
+    _$gcreateNonGroupExpenseDataAddNonGroupExpenseExpenseSerializer =
+    new _$GcreateNonGroupExpenseData_addNonGroupExpense_expenseSerializer();
+Serializer<GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator>
+    _$gcreateNonGroupExpenseDataAddNonGroupExpenseExpenseCreatorSerializer =
+    new _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorSerializer();
+Serializer<GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits>
+    _$gcreateNonGroupExpenseDataAddNonGroupExpenseExpenseSplitsSerializer =
+    new _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsSerializer();
+Serializer<
+        GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser>
+    _$gcreateNonGroupExpenseDataAddNonGroupExpenseExpenseSplitsFromUserSerializer =
+    new _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserSerializer();
+Serializer<GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser>
+    _$gcreateNonGroupExpenseDataAddNonGroupExpenseExpenseSplitsToUserSerializer =
+    new _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserSerializer();
 Serializer<GUserFieldsData> _$gUserFieldsDataSerializer =
     new _$GUserFieldsDataSerializer();
 Serializer<GUserPaysFieldsData> _$gUserPaysFieldsDataSerializer =
@@ -343,10 +378,18 @@ class _$GuserData_user__asRegistered_userSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -386,7 +429,7 @@ class _$GuserData_user__asRegistered_userSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -395,6 +438,10 @@ class _$GuserData_user__asRegistered_userSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -527,8 +574,6 @@ class _$GgroupsData_groupsSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
       'creator',
       serializers.serialize(object.creator,
           specifiedType: const FullType(GgroupsData_groups_creator)),
@@ -545,7 +590,14 @@ class _$GgroupsData_groupsSerializer
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -571,7 +623,7 @@ class _$GgroupsData_groupsSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'creator':
           result.creator.replace(serializers.deserialize(value,
@@ -623,10 +675,18 @@ class _$GgroupsData_groups_creatorSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -666,7 +726,7 @@ class _$GgroupsData_groups_creatorSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -675,6 +735,10 @@ class _$GgroupsData_groups_creatorSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -703,10 +767,18 @@ class _$GgroupsData_groups_membersSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -746,7 +818,7 @@ class _$GgroupsData_groups_membersSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -755,6 +827,10 @@ class _$GgroupsData_groups_membersSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -839,8 +915,9 @@ class _$Ginteracted_usersData_interactedUsersSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
       'upiIds',
       serializers.serialize(object.upiIds,
           specifiedType:
@@ -852,6 +929,13 @@ class _$Ginteracted_usersData_interactedUsersSerializer
           specifiedType: const FullType(int)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -891,7 +975,7 @@ class _$Ginteracted_usersData_interactedUsersSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -900,6 +984,10 @@ class _$Ginteracted_usersData_interactedUsersSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
         case 'upiIds':
           result.upiIds.replace(serializers.deserialize(value,
@@ -990,8 +1078,6 @@ class _$GgroupData_groupSerializer
               BuiltList, const [const FullType(GgroupData_group_expenses)])),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
       'creator',
       serializers.serialize(object.creator,
           specifiedType: const FullType(GgroupData_group_creator)),
@@ -1008,7 +1094,14 @@ class _$GgroupData_groupSerializer
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -1040,7 +1133,7 @@ class _$GgroupData_groupSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'creator':
           result.creator.replace(serializers.deserialize(value,
@@ -1196,10 +1289,18 @@ class _$GgroupData_group_expenses_creatorSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -1239,7 +1340,7 @@ class _$GgroupData_group_expenses_creatorSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -1248,6 +1349,10 @@ class _$GgroupData_group_expenses_creatorSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -1368,10 +1473,18 @@ class _$GgroupData_group_expenses_splits_fromUserSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -1411,7 +1524,7 @@ class _$GgroupData_group_expenses_splits_fromUserSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -1420,6 +1533,10 @@ class _$GgroupData_group_expenses_splits_fromUserSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -1448,10 +1565,18 @@ class _$GgroupData_group_expenses_splits_toUserSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -1491,7 +1616,7 @@ class _$GgroupData_group_expenses_splits_toUserSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -1500,6 +1625,10 @@ class _$GgroupData_group_expenses_splits_toUserSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -1528,10 +1657,18 @@ class _$GgroupData_group_creatorSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -1571,7 +1708,7 @@ class _$GgroupData_group_creatorSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -1580,6 +1717,10 @@ class _$GgroupData_group_creatorSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -1608,10 +1749,18 @@ class _$GgroupData_group_membersSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -1651,7 +1800,7 @@ class _$GgroupData_group_membersSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -1660,6 +1809,10 @@ class _$GgroupData_group_membersSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -1795,10 +1948,18 @@ class _$GsignupData_signup_userSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -1838,7 +1999,7 @@ class _$GsignupData_signup_userSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -1847,6 +2008,10 @@ class _$GsignupData_signup_userSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -1985,8 +2150,6 @@ class _$Gcreate_groupData_createGroupSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
       'creator',
       serializers.serialize(object.creator,
           specifiedType: const FullType(Gcreate_groupData_createGroup_creator)),
@@ -2003,7 +2166,14 @@ class _$Gcreate_groupData_createGroupSerializer
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -2029,7 +2199,7 @@ class _$Gcreate_groupData_createGroupSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'creator':
           result.creator.replace(serializers.deserialize(value,
@@ -2082,10 +2252,18 @@ class _$Gcreate_groupData_createGroup_creatorSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -2125,7 +2303,7 @@ class _$Gcreate_groupData_createGroup_creatorSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -2134,6 +2312,10 @@ class _$Gcreate_groupData_createGroup_creatorSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -2162,10 +2344,18 @@ class _$Gcreate_groupData_createGroup_membersSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -2205,7 +2395,7 @@ class _$Gcreate_groupData_createGroup_membersSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -2214,6 +2404,10 @@ class _$Gcreate_groupData_createGroup_membersSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -2445,10 +2639,18 @@ class _$Gadd_expenseData_addExpense_creatorSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -2488,7 +2690,7 @@ class _$Gadd_expenseData_addExpense_creatorSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -2497,6 +2699,10 @@ class _$Gadd_expenseData_addExpense_creatorSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -2618,10 +2824,18 @@ class _$Gadd_expenseData_addExpense_splits_fromUserSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -2661,7 +2875,7 @@ class _$Gadd_expenseData_addExpense_splits_fromUserSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -2670,6 +2884,10 @@ class _$Gadd_expenseData_addExpense_splits_fromUserSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -2698,10 +2916,18 @@ class _$Gadd_expenseData_addExpense_splits_toUserSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -2741,7 +2967,7 @@ class _$Gadd_expenseData_addExpense_splits_toUserSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -2750,6 +2976,10 @@ class _$Gadd_expenseData_addExpense_splits_toUserSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -2988,10 +3218,18 @@ class _$Gsettle_expenseData_settleExpense_creatorSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -3031,7 +3269,7 @@ class _$Gsettle_expenseData_settleExpense_creatorSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -3040,6 +3278,10 @@ class _$Gsettle_expenseData_settleExpense_creatorSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -3162,10 +3404,18 @@ class _$Gsettle_expenseData_settleExpense_splits_fromUserSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -3206,7 +3456,7 @@ class _$Gsettle_expenseData_settleExpense_splits_fromUserSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -3215,6 +3465,10 @@ class _$Gsettle_expenseData_settleExpense_splits_fromUserSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -3244,10 +3498,18 @@ class _$Gsettle_expenseData_settleExpense_splits_toUserSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -3287,7 +3549,7 @@ class _$Gsettle_expenseData_settleExpense_splits_toUserSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -3296,6 +3558,10 @@ class _$Gsettle_expenseData_settleExpense_splits_toUserSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -3687,6 +3953,1078 @@ class _$Grefresh_tokenData_refreshTokenSerializer
   }
 }
 
+class _$GsearchUserByEmailDataSerializer
+    implements StructuredSerializer<GsearchUserByEmailData> {
+  @override
+  final Iterable<Type> types = const [
+    GsearchUserByEmailData,
+    _$GsearchUserByEmailData
+  ];
+  @override
+  final String wireName = 'GsearchUserByEmailData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsearchUserByEmailData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'findUserByEmail',
+      serializers.serialize(object.findUserByEmail,
+          specifiedType:
+              const FullType(GsearchUserByEmailData_findUserByEmail)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GsearchUserByEmailData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsearchUserByEmailDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'findUserByEmail':
+          result.findUserByEmail.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GsearchUserByEmailData_findUserByEmail))!
+              as GsearchUserByEmailData_findUserByEmail);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsearchUserByEmailData_findUserByEmailSerializer
+    implements StructuredSerializer<GsearchUserByEmailData_findUserByEmail> {
+  @override
+  final Iterable<Type> types = const [
+    GsearchUserByEmailData_findUserByEmail,
+    _$GsearchUserByEmailData_findUserByEmail
+  ];
+  @override
+  final String wireName = 'GsearchUserByEmailData_findUserByEmail';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsearchUserByEmailData_findUserByEmail object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GsearchUserByEmailData_findUserByEmail deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsearchUserByEmailData_findUserByEmailBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcreateNonGroupExpenseDataSerializer
+    implements StructuredSerializer<GcreateNonGroupExpenseData> {
+  @override
+  final Iterable<Type> types = const [
+    GcreateNonGroupExpenseData,
+    _$GcreateNonGroupExpenseData
+  ];
+  @override
+  final String wireName = 'GcreateNonGroupExpenseData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GcreateNonGroupExpenseData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'addNonGroupExpense',
+      serializers.serialize(object.addNonGroupExpense,
+          specifiedType:
+              const FullType(GcreateNonGroupExpenseData_addNonGroupExpense)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GcreateNonGroupExpenseData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcreateNonGroupExpenseDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'addNonGroupExpense':
+          result.addNonGroupExpense.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcreateNonGroupExpenseData_addNonGroupExpense))!
+              as GcreateNonGroupExpenseData_addNonGroupExpense);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpenseSerializer
+    implements
+        StructuredSerializer<GcreateNonGroupExpenseData_addNonGroupExpense> {
+  @override
+  final Iterable<Type> types = const [
+    GcreateNonGroupExpenseData_addNonGroupExpense,
+    _$GcreateNonGroupExpenseData_addNonGroupExpense
+  ];
+  @override
+  final String wireName = 'GcreateNonGroupExpenseData_addNonGroupExpense';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcreateNonGroupExpenseData_addNonGroupExpense object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'group',
+      serializers.serialize(object.group,
+          specifiedType: const FullType(
+              GcreateNonGroupExpenseData_addNonGroupExpense_group)),
+      'expense',
+      serializers.serialize(object.expense,
+          specifiedType: const FullType(
+              GcreateNonGroupExpenseData_addNonGroupExpense_expense)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcreateNonGroupExpenseData_addNonGroupExpenseBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'group':
+          result.group.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcreateNonGroupExpenseData_addNonGroupExpense_group))!
+              as GcreateNonGroupExpenseData_addNonGroupExpense_group);
+          break;
+        case 'expense':
+          result.expense.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcreateNonGroupExpenseData_addNonGroupExpense_expense))!
+              as GcreateNonGroupExpenseData_addNonGroupExpense_expense);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_groupSerializer
+    implements
+        StructuredSerializer<
+            GcreateNonGroupExpenseData_addNonGroupExpense_group> {
+  @override
+  final Iterable<Type> types = const [
+    GcreateNonGroupExpenseData_addNonGroupExpense_group,
+    _$GcreateNonGroupExpenseData_addNonGroupExpense_group
+  ];
+  @override
+  final String wireName = 'GcreateNonGroupExpenseData_addNonGroupExpense_group';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcreateNonGroupExpenseData_addNonGroupExpense_group object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'creator',
+      serializers.serialize(object.creator,
+          specifiedType: const FullType(
+              GcreateNonGroupExpenseData_addNonGroupExpense_group_creator)),
+      'members',
+      serializers.serialize(object.members,
+          specifiedType: const FullType(BuiltList, const [
+            const FullType(
+                GcreateNonGroupExpenseData_addNonGroupExpense_group_members)
+          ])),
+      'toPay',
+      serializers.serialize(object.toPay, specifiedType: const FullType(int)),
+      'toReceive',
+      serializers.serialize(object.toReceive,
+          specifiedType: const FullType(int)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_group deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'creator':
+          result.creator.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcreateNonGroupExpenseData_addNonGroupExpense_group_creator))!
+              as GcreateNonGroupExpenseData_addNonGroupExpense_group_creator);
+          break;
+        case 'members':
+          result.members.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(
+                    GcreateNonGroupExpenseData_addNonGroupExpense_group_members)
+              ]))! as BuiltList<Object?>);
+          break;
+        case 'toPay':
+          result.toPay = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'toReceive':
+          result.toReceive = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorSerializer
+    implements
+        StructuredSerializer<
+            GcreateNonGroupExpenseData_addNonGroupExpense_group_creator> {
+  @override
+  final Iterable<Type> types = const [
+    GcreateNonGroupExpenseData_addNonGroupExpense_group_creator,
+    _$GcreateNonGroupExpenseData_addNonGroupExpense_group_creator
+  ];
+  @override
+  final String wireName =
+      'GcreateNonGroupExpenseData_addNonGroupExpense_group_creator';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcreateNonGroupExpenseData_addNonGroupExpense_group_creator object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_creator deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_group_membersSerializer
+    implements
+        StructuredSerializer<
+            GcreateNonGroupExpenseData_addNonGroupExpense_group_members> {
+  @override
+  final Iterable<Type> types = const [
+    GcreateNonGroupExpenseData_addNonGroupExpense_group_members,
+    _$GcreateNonGroupExpenseData_addNonGroupExpense_group_members
+  ];
+  @override
+  final String wireName =
+      'GcreateNonGroupExpenseData_addNonGroupExpense_group_members';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcreateNonGroupExpenseData_addNonGroupExpense_group_members object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_members deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GcreateNonGroupExpenseData_addNonGroupExpense_group_membersBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_expenseSerializer
+    implements
+        StructuredSerializer<
+            GcreateNonGroupExpenseData_addNonGroupExpense_expense> {
+  @override
+  final Iterable<Type> types = const [
+    GcreateNonGroupExpenseData_addNonGroupExpense_expense,
+    _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
+  ];
+  @override
+  final String wireName =
+      'GcreateNonGroupExpenseData_addNonGroupExpense_expense';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcreateNonGroupExpenseData_addNonGroupExpense_expense object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'creator',
+      serializers.serialize(object.creator,
+          specifiedType: const FullType(
+              GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'toPay',
+      serializers.serialize(object.toPay, specifiedType: const FullType(int)),
+      'toReceive',
+      serializers.serialize(object.toReceive,
+          specifiedType: const FullType(int)),
+      'splits',
+      serializers.serialize(object.splits,
+          specifiedType: const FullType(BuiltList, const [
+            const FullType(
+                GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits)
+          ])),
+    ];
+
+    return result;
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creator':
+          result.creator.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator))!
+              as GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator);
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'toPay':
+          result.toPay = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'toReceive':
+          result.toReceive = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'splits':
+          result.splits.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(
+                    GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits)
+              ]))! as BuiltList<Object?>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorSerializer
+    implements
+        StructuredSerializer<
+            GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator> {
+  @override
+  final Iterable<Type> types = const [
+    GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator,
+    _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator
+  ];
+  @override
+  final String wireName =
+      'GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsSerializer
+    implements
+        StructuredSerializer<
+            GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits> {
+  @override
+  final Iterable<Type> types = const [
+    GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits,
+    _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
+  ];
+  @override
+  final String wireName =
+      'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'amountSettled',
+      serializers.serialize(object.amountSettled,
+          specifiedType: const FullType(int)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType: const FullType(
+              GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType: const FullType(
+              GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser)),
+      'isSettled',
+      serializers.serialize(object.isSettled,
+          specifiedType: const FullType(bool)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'amountSettled':
+          result.amountSettled = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser))!
+              as GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser))!
+              as GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser);
+          break;
+        case 'isSettled':
+          result.isSettled = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserSerializer
+    implements
+        StructuredSerializer<
+            GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser> {
+  @override
+  final Iterable<Type> types = const [
+    GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser,
+    _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
+  ];
+  @override
+  final String wireName =
+      'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers,
+      GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
+          object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
+      deserialize(Serializers serializers, Iterable<Object?> serialized,
+          {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserSerializer
+    implements
+        StructuredSerializer<
+            GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser> {
+  @override
+  final Iterable<Type> types = const [
+    GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser,
+    _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
+  ];
+  @override
+  final String wireName =
+      'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers,
+      GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
+          object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
+      deserialize(Serializers serializers, Iterable<Object?> serialized,
+          {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GUserFieldsDataSerializer
     implements StructuredSerializer<GUserFieldsData> {
   @override
@@ -3703,10 +5041,18 @@ class _$GUserFieldsDataSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -3746,7 +5092,7 @@ class _$GUserFieldsDataSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -3755,6 +5101,10 @@ class _$GUserFieldsDataSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -3848,8 +5198,6 @@ class _$GGroupFieldsDataSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
       'creator',
       serializers.serialize(object.creator,
           specifiedType: const FullType(GGroupFieldsData_creator)),
@@ -3866,7 +5214,14 @@ class _$GGroupFieldsDataSerializer
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -3892,7 +5247,7 @@ class _$GGroupFieldsDataSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'creator':
           result.creator.replace(serializers.deserialize(value,
@@ -3944,10 +5299,18 @@ class _$GGroupFieldsData_creatorSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -3987,7 +5350,7 @@ class _$GGroupFieldsData_creatorSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -3996,6 +5359,10 @@ class _$GGroupFieldsData_creatorSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -4024,10 +5391,18 @@ class _$GGroupFieldsData_membersSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -4067,7 +5442,7 @@ class _$GGroupFieldsData_membersSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -4076,6 +5451,10 @@ class _$GGroupFieldsData_membersSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -4204,10 +5583,18 @@ class _$GExpenseFieldsData_creatorSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -4247,7 +5634,7 @@ class _$GExpenseFieldsData_creatorSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -4256,6 +5643,10 @@ class _$GExpenseFieldsData_creatorSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -4374,10 +5765,18 @@ class _$GExpenseFieldsData_splits_fromUserSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -4417,7 +5816,7 @@ class _$GExpenseFieldsData_splits_fromUserSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -4426,6 +5825,10 @@ class _$GExpenseFieldsData_splits_fromUserSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -4454,10 +5857,18 @@ class _$GExpenseFieldsData_splits_toUserSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -4497,7 +5908,7 @@ class _$GExpenseFieldsData_splits_toUserSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -4506,6 +5917,10 @@ class _$GExpenseFieldsData_splits_toUserSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -4618,10 +6033,18 @@ class _$GSplitFieldsData_fromUserSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -4661,7 +6084,7 @@ class _$GSplitFieldsData_fromUserSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -4670,6 +6093,10 @@ class _$GSplitFieldsData_fromUserSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -4698,10 +6125,18 @@ class _$GSplitFieldsData_toUserSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -4741,7 +6176,7 @@ class _$GSplitFieldsData_toUserSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -4750,6 +6185,10 @@ class _$GSplitFieldsData_toUserSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -4778,8 +6217,6 @@ class _$GGroupWithExpensesDataSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
       'creator',
       serializers.serialize(object.creator,
           specifiedType: const FullType(GGroupWithExpensesData_creator)),
@@ -4800,7 +6237,14 @@ class _$GGroupWithExpensesDataSerializer
           specifiedType: const FullType(BuiltList,
               const [const FullType(GGroupWithExpensesData_expenses)])),
     ];
-
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -4826,7 +6270,7 @@ class _$GGroupWithExpensesDataSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'creator':
           result.creator.replace(serializers.deserialize(value,
@@ -4885,10 +6329,18 @@ class _$GGroupWithExpensesData_creatorSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -4928,7 +6380,7 @@ class _$GGroupWithExpensesData_creatorSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -4937,6 +6389,10 @@ class _$GGroupWithExpensesData_creatorSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -4965,10 +6421,18 @@ class _$GGroupWithExpensesData_membersSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -5008,7 +6472,7 @@ class _$GGroupWithExpensesData_membersSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -5017,6 +6481,10 @@ class _$GGroupWithExpensesData_membersSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -5150,10 +6618,18 @@ class _$GGroupWithExpensesData_expenses_creatorSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -5193,7 +6669,7 @@ class _$GGroupWithExpensesData_expenses_creatorSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -5202,6 +6678,10 @@ class _$GGroupWithExpensesData_expenses_creatorSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -5323,10 +6803,18 @@ class _$GGroupWithExpensesData_expenses_splits_fromUserSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -5366,7 +6854,7 @@ class _$GGroupWithExpensesData_expenses_splits_fromUserSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -5375,6 +6863,10 @@ class _$GGroupWithExpensesData_expenses_splits_fromUserSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -5404,10 +6896,18 @@ class _$GGroupWithExpensesData_expenses_splits_toUserSerializer
           specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.phone;
     if (value != null) {
       result
@@ -5447,7 +6947,7 @@ class _$GGroupWithExpensesData_expenses_splits_toUserSerializer
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'phone':
           result.phone = serializers.deserialize(value,
@@ -5456,6 +6956,10 @@ class _$GGroupWithExpensesData_expenses_splits_toUserSerializer
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -5781,11 +7285,13 @@ class _$GuserData_user__asRegistered_user
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GuserData_user__asRegistered_user(
           [void Function(GuserData_user__asRegistered_userBuilder)? updates]) =>
@@ -5795,16 +7301,17 @@ class _$GuserData_user__asRegistered_user
   _$GuserData_user__asRegistered_user._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GuserData_user__asRegistered_user', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GuserData_user__asRegistered_user', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GuserData_user__asRegistered_user', 'name');
+        isSignedUp, r'GuserData_user__asRegistered_user', 'isSignedUp');
   }
 
   @override
@@ -5824,7 +7331,8 @@ class _$GuserData_user__asRegistered_user
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -5835,6 +7343,7 @@ class _$GuserData_user__asRegistered_user
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -5846,7 +7355,8 @@ class _$GuserData_user__asRegistered_user
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -5877,6 +7387,10 @@ class GuserData_user__asRegistered_userBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GuserData_user__asRegistered_userBuilder() {
     GuserData_user__asRegistered_user._initializeBuilder(this);
   }
@@ -5889,6 +7403,7 @@ class GuserData_user__asRegistered_userBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -5916,10 +7431,11 @@ class GuserData_user__asRegistered_userBuilder
                 r'GuserData_user__asRegistered_user', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GuserData_user__asRegistered_user', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GuserData_user__asRegistered_user', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GuserData_user__asRegistered_user', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -6149,7 +7665,7 @@ class _$GgroupsData_groups extends GgroupsData_groups {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final GgroupsData_groups_creator creator;
   @override
@@ -6168,7 +7684,7 @@ class _$GgroupsData_groups extends GgroupsData_groups {
   _$GgroupsData_groups._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       required this.creator,
       required this.members,
       required this.toPay,
@@ -6178,7 +7694,6 @@ class _$GgroupsData_groups extends GgroupsData_groups {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgroupsData_groups', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(id, r'GgroupsData_groups', 'id');
-    BuiltValueNullFieldError.checkNotNull(name, r'GgroupsData_groups', 'name');
     BuiltValueNullFieldError.checkNotNull(
         creator, r'GgroupsData_groups', 'creator');
     BuiltValueNullFieldError.checkNotNull(
@@ -6327,8 +7842,7 @@ class GgroupsData_groupsBuilder
                   G__typename, r'GgroupsData_groups', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GgroupsData_groups', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GgroupsData_groups', 'name'),
+              name: name,
               creator: creator.build(),
               members: members.build(),
               toPay: BuiltValueNullFieldError.checkNotNull(
@@ -6361,11 +7875,13 @@ class _$GgroupsData_groups_creator extends GgroupsData_groups_creator {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GgroupsData_groups_creator(
           [void Function(GgroupsData_groups_creatorBuilder)? updates]) =>
@@ -6374,16 +7890,17 @@ class _$GgroupsData_groups_creator extends GgroupsData_groups_creator {
   _$GgroupsData_groups_creator._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgroupsData_groups_creator', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GgroupsData_groups_creator', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GgroupsData_groups_creator', 'name');
+        isSignedUp, r'GgroupsData_groups_creator', 'isSignedUp');
   }
 
   @override
@@ -6403,7 +7920,8 @@ class _$GgroupsData_groups_creator extends GgroupsData_groups_creator {
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -6414,6 +7932,7 @@ class _$GgroupsData_groups_creator extends GgroupsData_groups_creator {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -6425,7 +7944,8 @@ class _$GgroupsData_groups_creator extends GgroupsData_groups_creator {
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -6455,6 +7975,10 @@ class GgroupsData_groups_creatorBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GgroupsData_groups_creatorBuilder() {
     GgroupsData_groups_creator._initializeBuilder(this);
   }
@@ -6467,6 +7991,7 @@ class GgroupsData_groups_creatorBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -6493,10 +8018,11 @@ class GgroupsData_groups_creatorBuilder
                 G__typename, r'GgroupsData_groups_creator', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GgroupsData_groups_creator', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GgroupsData_groups_creator', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GgroupsData_groups_creator', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -6508,11 +8034,13 @@ class _$GgroupsData_groups_members extends GgroupsData_groups_members {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GgroupsData_groups_members(
           [void Function(GgroupsData_groups_membersBuilder)? updates]) =>
@@ -6521,16 +8049,17 @@ class _$GgroupsData_groups_members extends GgroupsData_groups_members {
   _$GgroupsData_groups_members._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgroupsData_groups_members', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GgroupsData_groups_members', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GgroupsData_groups_members', 'name');
+        isSignedUp, r'GgroupsData_groups_members', 'isSignedUp');
   }
 
   @override
@@ -6550,7 +8079,8 @@ class _$GgroupsData_groups_members extends GgroupsData_groups_members {
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -6561,6 +8091,7 @@ class _$GgroupsData_groups_members extends GgroupsData_groups_members {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -6572,7 +8103,8 @@ class _$GgroupsData_groups_members extends GgroupsData_groups_members {
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -6602,6 +8134,10 @@ class GgroupsData_groups_membersBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GgroupsData_groups_membersBuilder() {
     GgroupsData_groups_members._initializeBuilder(this);
   }
@@ -6614,6 +8150,7 @@ class GgroupsData_groups_membersBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -6640,10 +8177,11 @@ class GgroupsData_groups_membersBuilder
                 G__typename, r'GgroupsData_groups_members', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GgroupsData_groups_members', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GgroupsData_groups_members', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GgroupsData_groups_members', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -6779,11 +8317,13 @@ class _$Ginteracted_usersData_interactedUsers
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
   @override
   final BuiltList<String> upiIds;
   @override
@@ -6800,9 +8340,10 @@ class _$Ginteracted_usersData_interactedUsers
   _$Ginteracted_usersData_interactedUsers._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
       this.email,
+      required this.isSignedUp,
       required this.upiIds,
       required this.toPay,
       required this.toReceive})
@@ -6812,7 +8353,7 @@ class _$Ginteracted_usersData_interactedUsers
     BuiltValueNullFieldError.checkNotNull(
         id, r'Ginteracted_usersData_interactedUsers', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'Ginteracted_usersData_interactedUsers', 'name');
+        isSignedUp, r'Ginteracted_usersData_interactedUsers', 'isSignedUp');
     BuiltValueNullFieldError.checkNotNull(
         upiIds, r'Ginteracted_usersData_interactedUsers', 'upiIds');
     BuiltValueNullFieldError.checkNotNull(
@@ -6840,6 +8381,7 @@ class _$Ginteracted_usersData_interactedUsers
         name == other.name &&
         phone == other.phone &&
         email == other.email &&
+        isSignedUp == other.isSignedUp &&
         upiIds == other.upiIds &&
         toPay == other.toPay &&
         toReceive == other.toReceive;
@@ -6853,6 +8395,7 @@ class _$Ginteracted_usersData_interactedUsers
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jc(_$hash, upiIds.hashCode);
     _$hash = $jc(_$hash, toPay.hashCode);
     _$hash = $jc(_$hash, toReceive.hashCode);
@@ -6869,6 +8412,7 @@ class _$Ginteracted_usersData_interactedUsers
           ..add('name', name)
           ..add('phone', phone)
           ..add('email', email)
+          ..add('isSignedUp', isSignedUp)
           ..add('upiIds', upiIds)
           ..add('toPay', toPay)
           ..add('toReceive', toReceive))
@@ -6902,6 +8446,10 @@ class Ginteracted_usersData_interactedUsersBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   ListBuilder<String>? _upiIds;
   ListBuilder<String> get upiIds =>
       _$this._upiIds ??= new ListBuilder<String>();
@@ -6927,6 +8475,7 @@ class Ginteracted_usersData_interactedUsersBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _upiIds = $v.upiIds.toBuilder();
       _toPay = $v.toPay;
       _toReceive = $v.toReceive;
@@ -6959,10 +8508,11 @@ class Ginteracted_usersData_interactedUsersBuilder
                   r'Ginteracted_usersData_interactedUsers', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'Ginteracted_usersData_interactedUsers', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'Ginteracted_usersData_interactedUsers', 'name'),
+              name: name,
               phone: phone,
               email: email,
+              isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                  r'Ginteracted_usersData_interactedUsers', 'isSignedUp'),
               upiIds: upiIds.build(),
               toPay: BuiltValueNullFieldError.checkNotNull(
                   toPay, r'Ginteracted_usersData_interactedUsers', 'toPay'),
@@ -7106,7 +8656,7 @@ class _$GgroupData_group extends GgroupData_group {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final GgroupData_group_creator creator;
   @override
@@ -7126,7 +8676,7 @@ class _$GgroupData_group extends GgroupData_group {
       {required this.G__typename,
       required this.expenses,
       required this.id,
-      required this.name,
+      this.name,
       required this.creator,
       required this.members,
       required this.toPay,
@@ -7138,7 +8688,6 @@ class _$GgroupData_group extends GgroupData_group {
     BuiltValueNullFieldError.checkNotNull(
         expenses, r'GgroupData_group', 'expenses');
     BuiltValueNullFieldError.checkNotNull(id, r'GgroupData_group', 'id');
-    BuiltValueNullFieldError.checkNotNull(name, r'GgroupData_group', 'name');
     BuiltValueNullFieldError.checkNotNull(
         creator, r'GgroupData_group', 'creator');
     BuiltValueNullFieldError.checkNotNull(
@@ -7296,8 +8845,7 @@ class GgroupData_groupBuilder
               expenses: expenses.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GgroupData_group', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GgroupData_group', 'name'),
+              name: name,
               creator: creator.build(),
               members: members.build(),
               toPay: BuiltValueNullFieldError.checkNotNull(
@@ -7565,11 +9113,13 @@ class _$GgroupData_group_expenses_creator
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GgroupData_group_expenses_creator(
           [void Function(GgroupData_group_expenses_creatorBuilder)? updates]) =>
@@ -7579,16 +9129,17 @@ class _$GgroupData_group_expenses_creator
   _$GgroupData_group_expenses_creator._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgroupData_group_expenses_creator', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GgroupData_group_expenses_creator', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GgroupData_group_expenses_creator', 'name');
+        isSignedUp, r'GgroupData_group_expenses_creator', 'isSignedUp');
   }
 
   @override
@@ -7608,7 +9159,8 @@ class _$GgroupData_group_expenses_creator
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -7619,6 +9171,7 @@ class _$GgroupData_group_expenses_creator
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -7630,7 +9183,8 @@ class _$GgroupData_group_expenses_creator
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -7661,6 +9215,10 @@ class GgroupData_group_expenses_creatorBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GgroupData_group_expenses_creatorBuilder() {
     GgroupData_group_expenses_creator._initializeBuilder(this);
   }
@@ -7673,6 +9231,7 @@ class GgroupData_group_expenses_creatorBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -7700,10 +9259,11 @@ class GgroupData_group_expenses_creatorBuilder
                 r'GgroupData_group_expenses_creator', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GgroupData_group_expenses_creator', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GgroupData_group_expenses_creator', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GgroupData_group_expenses_creator', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -7922,11 +9482,13 @@ class _$GgroupData_group_expenses_splits_fromUser
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GgroupData_group_expenses_splits_fromUser(
           [void Function(GgroupData_group_expenses_splits_fromUserBuilder)?
@@ -7937,16 +9499,17 @@ class _$GgroupData_group_expenses_splits_fromUser
   _$GgroupData_group_expenses_splits_fromUser._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GgroupData_group_expenses_splits_fromUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GgroupData_group_expenses_splits_fromUser', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GgroupData_group_expenses_splits_fromUser', 'name');
+        isSignedUp, r'GgroupData_group_expenses_splits_fromUser', 'isSignedUp');
   }
 
   @override
@@ -7967,7 +9530,8 @@ class _$GgroupData_group_expenses_splits_fromUser
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -7978,6 +9542,7 @@ class _$GgroupData_group_expenses_splits_fromUser
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -7990,7 +9555,8 @@ class _$GgroupData_group_expenses_splits_fromUser
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -8021,6 +9587,10 @@ class GgroupData_group_expenses_splits_fromUserBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GgroupData_group_expenses_splits_fromUserBuilder() {
     GgroupData_group_expenses_splits_fromUser._initializeBuilder(this);
   }
@@ -8033,6 +9603,7 @@ class GgroupData_group_expenses_splits_fromUserBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -8061,10 +9632,11 @@ class GgroupData_group_expenses_splits_fromUserBuilder
                 r'GgroupData_group_expenses_splits_fromUser', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GgroupData_group_expenses_splits_fromUser', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GgroupData_group_expenses_splits_fromUser', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GgroupData_group_expenses_splits_fromUser', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -8077,11 +9649,13 @@ class _$GgroupData_group_expenses_splits_toUser
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GgroupData_group_expenses_splits_toUser(
           [void Function(GgroupData_group_expenses_splits_toUserBuilder)?
@@ -8092,16 +9666,17 @@ class _$GgroupData_group_expenses_splits_toUser
   _$GgroupData_group_expenses_splits_toUser._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgroupData_group_expenses_splits_toUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GgroupData_group_expenses_splits_toUser', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GgroupData_group_expenses_splits_toUser', 'name');
+        isSignedUp, r'GgroupData_group_expenses_splits_toUser', 'isSignedUp');
   }
 
   @override
@@ -8122,7 +9697,8 @@ class _$GgroupData_group_expenses_splits_toUser
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -8133,6 +9709,7 @@ class _$GgroupData_group_expenses_splits_toUser
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -8145,7 +9722,8 @@ class _$GgroupData_group_expenses_splits_toUser
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -8176,6 +9754,10 @@ class GgroupData_group_expenses_splits_toUserBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GgroupData_group_expenses_splits_toUserBuilder() {
     GgroupData_group_expenses_splits_toUser._initializeBuilder(this);
   }
@@ -8188,6 +9770,7 @@ class GgroupData_group_expenses_splits_toUserBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -8215,10 +9798,11 @@ class GgroupData_group_expenses_splits_toUserBuilder
                 r'GgroupData_group_expenses_splits_toUser', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GgroupData_group_expenses_splits_toUser', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GgroupData_group_expenses_splits_toUser', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GgroupData_group_expenses_splits_toUser', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -8230,11 +9814,13 @@ class _$GgroupData_group_creator extends GgroupData_group_creator {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GgroupData_group_creator(
           [void Function(GgroupData_group_creatorBuilder)? updates]) =>
@@ -8243,16 +9829,17 @@ class _$GgroupData_group_creator extends GgroupData_group_creator {
   _$GgroupData_group_creator._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgroupData_group_creator', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GgroupData_group_creator', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GgroupData_group_creator', 'name');
+        isSignedUp, r'GgroupData_group_creator', 'isSignedUp');
   }
 
   @override
@@ -8272,7 +9859,8 @@ class _$GgroupData_group_creator extends GgroupData_group_creator {
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -8283,6 +9871,7 @@ class _$GgroupData_group_creator extends GgroupData_group_creator {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -8294,7 +9883,8 @@ class _$GgroupData_group_creator extends GgroupData_group_creator {
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -8324,6 +9914,10 @@ class GgroupData_group_creatorBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GgroupData_group_creatorBuilder() {
     GgroupData_group_creator._initializeBuilder(this);
   }
@@ -8336,6 +9930,7 @@ class GgroupData_group_creatorBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -8362,10 +9957,11 @@ class GgroupData_group_creatorBuilder
                 G__typename, r'GgroupData_group_creator', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GgroupData_group_creator', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GgroupData_group_creator', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GgroupData_group_creator', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -8377,11 +9973,13 @@ class _$GgroupData_group_members extends GgroupData_group_members {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GgroupData_group_members(
           [void Function(GgroupData_group_membersBuilder)? updates]) =>
@@ -8390,16 +9988,17 @@ class _$GgroupData_group_members extends GgroupData_group_members {
   _$GgroupData_group_members._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgroupData_group_members', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GgroupData_group_members', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GgroupData_group_members', 'name');
+        isSignedUp, r'GgroupData_group_members', 'isSignedUp');
   }
 
   @override
@@ -8419,7 +10018,8 @@ class _$GgroupData_group_members extends GgroupData_group_members {
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -8430,6 +10030,7 @@ class _$GgroupData_group_members extends GgroupData_group_members {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -8441,7 +10042,8 @@ class _$GgroupData_group_members extends GgroupData_group_members {
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -8471,6 +10073,10 @@ class GgroupData_group_membersBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GgroupData_group_membersBuilder() {
     GgroupData_group_members._initializeBuilder(this);
   }
@@ -8483,6 +10089,7 @@ class GgroupData_group_membersBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -8509,10 +10116,11 @@ class GgroupData_group_membersBuilder
                 G__typename, r'GgroupData_group_members', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GgroupData_group_members', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GgroupData_group_members', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GgroupData_group_members', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -8772,11 +10380,13 @@ class _$GsignupData_signup_user extends GsignupData_signup_user {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GsignupData_signup_user(
           [void Function(GsignupData_signup_userBuilder)? updates]) =>
@@ -8785,15 +10395,16 @@ class _$GsignupData_signup_user extends GsignupData_signup_user {
   _$GsignupData_signup_user._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GsignupData_signup_user', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(id, r'GsignupData_signup_user', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GsignupData_signup_user', 'name');
+        isSignedUp, r'GsignupData_signup_user', 'isSignedUp');
   }
 
   @override
@@ -8813,7 +10424,8 @@ class _$GsignupData_signup_user extends GsignupData_signup_user {
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -8824,6 +10436,7 @@ class _$GsignupData_signup_user extends GsignupData_signup_user {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -8835,7 +10448,8 @@ class _$GsignupData_signup_user extends GsignupData_signup_user {
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -8865,6 +10479,10 @@ class GsignupData_signup_userBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GsignupData_signup_userBuilder() {
     GsignupData_signup_user._initializeBuilder(this);
   }
@@ -8877,6 +10495,7 @@ class GsignupData_signup_userBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -8903,10 +10522,11 @@ class GsignupData_signup_userBuilder
                 G__typename, r'GsignupData_signup_user', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GsignupData_signup_user', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GsignupData_signup_user', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GsignupData_signup_user', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -9159,7 +10779,7 @@ class _$Gcreate_groupData_createGroup extends Gcreate_groupData_createGroup {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final Gcreate_groupData_createGroup_creator creator;
   @override
@@ -9178,7 +10798,7 @@ class _$Gcreate_groupData_createGroup extends Gcreate_groupData_createGroup {
   _$Gcreate_groupData_createGroup._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       required this.creator,
       required this.members,
       required this.toPay,
@@ -9189,8 +10809,6 @@ class _$Gcreate_groupData_createGroup extends Gcreate_groupData_createGroup {
         G__typename, r'Gcreate_groupData_createGroup', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'Gcreate_groupData_createGroup', 'id');
-    BuiltValueNullFieldError.checkNotNull(
-        name, r'Gcreate_groupData_createGroup', 'name');
     BuiltValueNullFieldError.checkNotNull(
         creator, r'Gcreate_groupData_createGroup', 'creator');
     BuiltValueNullFieldError.checkNotNull(
@@ -9342,8 +10960,7 @@ class Gcreate_groupData_createGroupBuilder
                   G__typename, r'Gcreate_groupData_createGroup', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'Gcreate_groupData_createGroup', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'Gcreate_groupData_createGroup', 'name'),
+              name: name,
               creator: creator.build(),
               members: members.build(),
               toPay: BuiltValueNullFieldError.checkNotNull(
@@ -9377,11 +10994,13 @@ class _$Gcreate_groupData_createGroup_creator
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$Gcreate_groupData_createGroup_creator(
           [void Function(Gcreate_groupData_createGroup_creatorBuilder)?
@@ -9392,16 +11011,17 @@ class _$Gcreate_groupData_createGroup_creator
   _$Gcreate_groupData_createGroup_creator._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'Gcreate_groupData_createGroup_creator', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'Gcreate_groupData_createGroup_creator', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'Gcreate_groupData_createGroup_creator', 'name');
+        isSignedUp, r'Gcreate_groupData_createGroup_creator', 'isSignedUp');
   }
 
   @override
@@ -9422,7 +11042,8 @@ class _$Gcreate_groupData_createGroup_creator
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -9433,6 +11054,7 @@ class _$Gcreate_groupData_createGroup_creator
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -9445,7 +11067,8 @@ class _$Gcreate_groupData_createGroup_creator
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -9476,6 +11099,10 @@ class Gcreate_groupData_createGroup_creatorBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   Gcreate_groupData_createGroup_creatorBuilder() {
     Gcreate_groupData_createGroup_creator._initializeBuilder(this);
   }
@@ -9488,6 +11115,7 @@ class Gcreate_groupData_createGroup_creatorBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -9515,10 +11143,11 @@ class Gcreate_groupData_createGroup_creatorBuilder
                 r'Gcreate_groupData_createGroup_creator', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'Gcreate_groupData_createGroup_creator', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'Gcreate_groupData_createGroup_creator', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'Gcreate_groupData_createGroup_creator', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -9531,11 +11160,13 @@ class _$Gcreate_groupData_createGroup_members
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$Gcreate_groupData_createGroup_members(
           [void Function(Gcreate_groupData_createGroup_membersBuilder)?
@@ -9546,16 +11177,17 @@ class _$Gcreate_groupData_createGroup_members
   _$Gcreate_groupData_createGroup_members._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'Gcreate_groupData_createGroup_members', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'Gcreate_groupData_createGroup_members', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'Gcreate_groupData_createGroup_members', 'name');
+        isSignedUp, r'Gcreate_groupData_createGroup_members', 'isSignedUp');
   }
 
   @override
@@ -9576,7 +11208,8 @@ class _$Gcreate_groupData_createGroup_members
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -9587,6 +11220,7 @@ class _$Gcreate_groupData_createGroup_members
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -9599,7 +11233,8 @@ class _$Gcreate_groupData_createGroup_members
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -9630,6 +11265,10 @@ class Gcreate_groupData_createGroup_membersBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   Gcreate_groupData_createGroup_membersBuilder() {
     Gcreate_groupData_createGroup_members._initializeBuilder(this);
   }
@@ -9642,6 +11281,7 @@ class Gcreate_groupData_createGroup_membersBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -9669,10 +11309,11 @@ class Gcreate_groupData_createGroup_membersBuilder
                 r'Gcreate_groupData_createGroup_members', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'Gcreate_groupData_createGroup_members', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'Gcreate_groupData_createGroup_members', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'Gcreate_groupData_createGroup_members', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -10141,11 +11782,13 @@ class _$Gadd_expenseData_addExpense_creator
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$Gadd_expenseData_addExpense_creator(
           [void Function(Gadd_expenseData_addExpense_creatorBuilder)?
@@ -10156,16 +11799,17 @@ class _$Gadd_expenseData_addExpense_creator
   _$Gadd_expenseData_addExpense_creator._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'Gadd_expenseData_addExpense_creator', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'Gadd_expenseData_addExpense_creator', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'Gadd_expenseData_addExpense_creator', 'name');
+        isSignedUp, r'Gadd_expenseData_addExpense_creator', 'isSignedUp');
   }
 
   @override
@@ -10185,7 +11829,8 @@ class _$Gadd_expenseData_addExpense_creator
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -10196,6 +11841,7 @@ class _$Gadd_expenseData_addExpense_creator
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -10207,7 +11853,8 @@ class _$Gadd_expenseData_addExpense_creator
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -10238,6 +11885,10 @@ class Gadd_expenseData_addExpense_creatorBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   Gadd_expenseData_addExpense_creatorBuilder() {
     Gadd_expenseData_addExpense_creator._initializeBuilder(this);
   }
@@ -10250,6 +11901,7 @@ class Gadd_expenseData_addExpense_creatorBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -10277,10 +11929,11 @@ class Gadd_expenseData_addExpense_creatorBuilder
                 r'Gadd_expenseData_addExpense_creator', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'Gadd_expenseData_addExpense_creator', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'Gadd_expenseData_addExpense_creator', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'Gadd_expenseData_addExpense_creator', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -10502,11 +12155,13 @@ class _$Gadd_expenseData_addExpense_splits_fromUser
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$Gadd_expenseData_addExpense_splits_fromUser(
           [void Function(Gadd_expenseData_addExpense_splits_fromUserBuilder)?
@@ -10518,16 +12173,17 @@ class _$Gadd_expenseData_addExpense_splits_fromUser
   _$Gadd_expenseData_addExpense_splits_fromUser._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'Gadd_expenseData_addExpense_splits_fromUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'Gadd_expenseData_addExpense_splits_fromUser', 'id');
-    BuiltValueNullFieldError.checkNotNull(
-        name, r'Gadd_expenseData_addExpense_splits_fromUser', 'name');
+    BuiltValueNullFieldError.checkNotNull(isSignedUp,
+        r'Gadd_expenseData_addExpense_splits_fromUser', 'isSignedUp');
   }
 
   @override
@@ -10548,7 +12204,8 @@ class _$Gadd_expenseData_addExpense_splits_fromUser
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -10559,6 +12216,7 @@ class _$Gadd_expenseData_addExpense_splits_fromUser
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -10571,7 +12229,8 @@ class _$Gadd_expenseData_addExpense_splits_fromUser
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -10602,6 +12261,10 @@ class Gadd_expenseData_addExpense_splits_fromUserBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   Gadd_expenseData_addExpense_splits_fromUserBuilder() {
     Gadd_expenseData_addExpense_splits_fromUser._initializeBuilder(this);
   }
@@ -10614,6 +12277,7 @@ class Gadd_expenseData_addExpense_splits_fromUserBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -10642,10 +12306,11 @@ class Gadd_expenseData_addExpense_splits_fromUserBuilder
                 r'Gadd_expenseData_addExpense_splits_fromUser', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'Gadd_expenseData_addExpense_splits_fromUser', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'Gadd_expenseData_addExpense_splits_fromUser', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'Gadd_expenseData_addExpense_splits_fromUser', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -10658,11 +12323,13 @@ class _$Gadd_expenseData_addExpense_splits_toUser
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$Gadd_expenseData_addExpense_splits_toUser(
           [void Function(Gadd_expenseData_addExpense_splits_toUserBuilder)?
@@ -10673,16 +12340,17 @@ class _$Gadd_expenseData_addExpense_splits_toUser
   _$Gadd_expenseData_addExpense_splits_toUser._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'Gadd_expenseData_addExpense_splits_toUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'Gadd_expenseData_addExpense_splits_toUser', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'Gadd_expenseData_addExpense_splits_toUser', 'name');
+        isSignedUp, r'Gadd_expenseData_addExpense_splits_toUser', 'isSignedUp');
   }
 
   @override
@@ -10703,7 +12371,8 @@ class _$Gadd_expenseData_addExpense_splits_toUser
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -10714,6 +12383,7 @@ class _$Gadd_expenseData_addExpense_splits_toUser
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -10726,7 +12396,8 @@ class _$Gadd_expenseData_addExpense_splits_toUser
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -10757,6 +12428,10 @@ class Gadd_expenseData_addExpense_splits_toUserBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   Gadd_expenseData_addExpense_splits_toUserBuilder() {
     Gadd_expenseData_addExpense_splits_toUser._initializeBuilder(this);
   }
@@ -10769,6 +12444,7 @@ class Gadd_expenseData_addExpense_splits_toUserBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -10797,10 +12473,11 @@ class Gadd_expenseData_addExpense_splits_toUserBuilder
                 r'Gadd_expenseData_addExpense_splits_toUser', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'Gadd_expenseData_addExpense_splits_toUser', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'Gadd_expenseData_addExpense_splits_toUser', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'Gadd_expenseData_addExpense_splits_toUser', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -11274,11 +12951,13 @@ class _$Gsettle_expenseData_settleExpense_creator
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$Gsettle_expenseData_settleExpense_creator(
           [void Function(Gsettle_expenseData_settleExpense_creatorBuilder)?
@@ -11289,16 +12968,17 @@ class _$Gsettle_expenseData_settleExpense_creator
   _$Gsettle_expenseData_settleExpense_creator._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'Gsettle_expenseData_settleExpense_creator', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'Gsettle_expenseData_settleExpense_creator', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'Gsettle_expenseData_settleExpense_creator', 'name');
+        isSignedUp, r'Gsettle_expenseData_settleExpense_creator', 'isSignedUp');
   }
 
   @override
@@ -11319,7 +12999,8 @@ class _$Gsettle_expenseData_settleExpense_creator
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -11330,6 +13011,7 @@ class _$Gsettle_expenseData_settleExpense_creator
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -11342,7 +13024,8 @@ class _$Gsettle_expenseData_settleExpense_creator
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -11373,6 +13056,10 @@ class Gsettle_expenseData_settleExpense_creatorBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   Gsettle_expenseData_settleExpense_creatorBuilder() {
     Gsettle_expenseData_settleExpense_creator._initializeBuilder(this);
   }
@@ -11385,6 +13072,7 @@ class Gsettle_expenseData_settleExpense_creatorBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -11413,10 +13101,11 @@ class Gsettle_expenseData_settleExpense_creatorBuilder
                 r'Gsettle_expenseData_settleExpense_creator', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'Gsettle_expenseData_settleExpense_creator', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'Gsettle_expenseData_settleExpense_creator', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'Gsettle_expenseData_settleExpense_creator', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -11644,11 +13333,13 @@ class _$Gsettle_expenseData_settleExpense_splits_fromUser
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$Gsettle_expenseData_settleExpense_splits_fromUser(
           [void Function(
@@ -11661,16 +13352,17 @@ class _$Gsettle_expenseData_settleExpense_splits_fromUser
   _$Gsettle_expenseData_settleExpense_splits_fromUser._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'Gsettle_expenseData_settleExpense_splits_fromUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'Gsettle_expenseData_settleExpense_splits_fromUser', 'id');
-    BuiltValueNullFieldError.checkNotNull(
-        name, r'Gsettle_expenseData_settleExpense_splits_fromUser', 'name');
+    BuiltValueNullFieldError.checkNotNull(isSignedUp,
+        r'Gsettle_expenseData_settleExpense_splits_fromUser', 'isSignedUp');
   }
 
   @override
@@ -11693,7 +13385,8 @@ class _$Gsettle_expenseData_settleExpense_splits_fromUser
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -11704,6 +13397,7 @@ class _$Gsettle_expenseData_settleExpense_splits_fromUser
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -11716,7 +13410,8 @@ class _$Gsettle_expenseData_settleExpense_splits_fromUser
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -11747,6 +13442,10 @@ class Gsettle_expenseData_settleExpense_splits_fromUserBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   Gsettle_expenseData_settleExpense_splits_fromUserBuilder() {
     Gsettle_expenseData_settleExpense_splits_fromUser._initializeBuilder(this);
   }
@@ -11759,6 +13458,7 @@ class Gsettle_expenseData_settleExpense_splits_fromUserBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -11789,10 +13489,13 @@ class Gsettle_expenseData_settleExpense_splits_fromUserBuilder
                 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'Gsettle_expenseData_settleExpense_splits_fromUser', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(name,
-                r'Gsettle_expenseData_settleExpense_splits_fromUser', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'Gsettle_expenseData_settleExpense_splits_fromUser',
+                'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -11805,11 +13508,13 @@ class _$Gsettle_expenseData_settleExpense_splits_toUser
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$Gsettle_expenseData_settleExpense_splits_toUser(
           [void Function(
@@ -11822,16 +13527,17 @@ class _$Gsettle_expenseData_settleExpense_splits_toUser
   _$Gsettle_expenseData_settleExpense_splits_toUser._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'Gsettle_expenseData_settleExpense_splits_toUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'Gsettle_expenseData_settleExpense_splits_toUser', 'id');
-    BuiltValueNullFieldError.checkNotNull(
-        name, r'Gsettle_expenseData_settleExpense_splits_toUser', 'name');
+    BuiltValueNullFieldError.checkNotNull(isSignedUp,
+        r'Gsettle_expenseData_settleExpense_splits_toUser', 'isSignedUp');
   }
 
   @override
@@ -11853,7 +13559,8 @@ class _$Gsettle_expenseData_settleExpense_splits_toUser
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -11864,6 +13571,7 @@ class _$Gsettle_expenseData_settleExpense_splits_toUser
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -11876,7 +13584,8 @@ class _$Gsettle_expenseData_settleExpense_splits_toUser
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -11907,6 +13616,10 @@ class Gsettle_expenseData_settleExpense_splits_toUserBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   Gsettle_expenseData_settleExpense_splits_toUserBuilder() {
     Gsettle_expenseData_settleExpense_splits_toUser._initializeBuilder(this);
   }
@@ -11919,6 +13632,7 @@ class Gsettle_expenseData_settleExpense_splits_toUserBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -11949,10 +13663,13 @@ class Gsettle_expenseData_settleExpense_splits_toUserBuilder
                 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'Gsettle_expenseData_settleExpense_splits_toUser', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(name,
-                r'Gsettle_expenseData_settleExpense_splits_toUser', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'Gsettle_expenseData_settleExpense_splits_toUser',
+                'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -12778,17 +14495,2298 @@ class Grefresh_tokenData_refreshTokenBuilder
   }
 }
 
+class _$GsearchUserByEmailData extends GsearchUserByEmailData {
+  @override
+  final String G__typename;
+  @override
+  final GsearchUserByEmailData_findUserByEmail findUserByEmail;
+
+  factory _$GsearchUserByEmailData(
+          [void Function(GsearchUserByEmailDataBuilder)? updates]) =>
+      (new GsearchUserByEmailDataBuilder()..update(updates))._build();
+
+  _$GsearchUserByEmailData._(
+      {required this.G__typename, required this.findUserByEmail})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GsearchUserByEmailData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        findUserByEmail, r'GsearchUserByEmailData', 'findUserByEmail');
+  }
+
+  @override
+  GsearchUserByEmailData rebuild(
+          void Function(GsearchUserByEmailDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsearchUserByEmailDataBuilder toBuilder() =>
+      new GsearchUserByEmailDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsearchUserByEmailData &&
+        G__typename == other.G__typename &&
+        findUserByEmail == other.findUserByEmail;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, findUserByEmail.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GsearchUserByEmailData')
+          ..add('G__typename', G__typename)
+          ..add('findUserByEmail', findUserByEmail))
+        .toString();
+  }
+}
+
+class GsearchUserByEmailDataBuilder
+    implements Builder<GsearchUserByEmailData, GsearchUserByEmailDataBuilder> {
+  _$GsearchUserByEmailData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GsearchUserByEmailData_findUserByEmailBuilder? _findUserByEmail;
+  GsearchUserByEmailData_findUserByEmailBuilder get findUserByEmail =>
+      _$this._findUserByEmail ??=
+          new GsearchUserByEmailData_findUserByEmailBuilder();
+  set findUserByEmail(
+          GsearchUserByEmailData_findUserByEmailBuilder? findUserByEmail) =>
+      _$this._findUserByEmail = findUserByEmail;
+
+  GsearchUserByEmailDataBuilder() {
+    GsearchUserByEmailData._initializeBuilder(this);
+  }
+
+  GsearchUserByEmailDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _findUserByEmail = $v.findUserByEmail.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsearchUserByEmailData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsearchUserByEmailData;
+  }
+
+  @override
+  void update(void Function(GsearchUserByEmailDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsearchUserByEmailData build() => _build();
+
+  _$GsearchUserByEmailData _build() {
+    _$GsearchUserByEmailData _$result;
+    try {
+      _$result = _$v ??
+          new _$GsearchUserByEmailData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GsearchUserByEmailData', 'G__typename'),
+              findUserByEmail: findUserByEmail.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'findUserByEmail';
+        findUserByEmail.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GsearchUserByEmailData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsearchUserByEmailData_findUserByEmail
+    extends GsearchUserByEmailData_findUserByEmail {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GsearchUserByEmailData_findUserByEmail(
+          [void Function(GsearchUserByEmailData_findUserByEmailBuilder)?
+              updates]) =>
+      (new GsearchUserByEmailData_findUserByEmailBuilder()..update(updates))
+          ._build();
+
+  _$GsearchUserByEmailData_findUserByEmail._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GsearchUserByEmailData_findUserByEmail', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GsearchUserByEmailData_findUserByEmail', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GsearchUserByEmailData_findUserByEmail', 'isSignedUp');
+  }
+
+  @override
+  GsearchUserByEmailData_findUserByEmail rebuild(
+          void Function(GsearchUserByEmailData_findUserByEmailBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsearchUserByEmailData_findUserByEmailBuilder toBuilder() =>
+      new GsearchUserByEmailData_findUserByEmailBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsearchUserByEmailData_findUserByEmail &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GsearchUserByEmailData_findUserByEmail')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GsearchUserByEmailData_findUserByEmailBuilder
+    implements
+        Builder<GsearchUserByEmailData_findUserByEmail,
+            GsearchUserByEmailData_findUserByEmailBuilder> {
+  _$GsearchUserByEmailData_findUserByEmail? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GsearchUserByEmailData_findUserByEmailBuilder() {
+    GsearchUserByEmailData_findUserByEmail._initializeBuilder(this);
+  }
+
+  GsearchUserByEmailData_findUserByEmailBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsearchUserByEmailData_findUserByEmail other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsearchUserByEmailData_findUserByEmail;
+  }
+
+  @override
+  void update(
+      void Function(GsearchUserByEmailData_findUserByEmailBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsearchUserByEmailData_findUserByEmail build() => _build();
+
+  _$GsearchUserByEmailData_findUserByEmail _build() {
+    final _$result = _$v ??
+        new _$GsearchUserByEmailData_findUserByEmail._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GsearchUserByEmailData_findUserByEmail', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GsearchUserByEmailData_findUserByEmail', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GsearchUserByEmailData_findUserByEmail', 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcreateNonGroupExpenseData extends GcreateNonGroupExpenseData {
+  @override
+  final String G__typename;
+  @override
+  final GcreateNonGroupExpenseData_addNonGroupExpense addNonGroupExpense;
+
+  factory _$GcreateNonGroupExpenseData(
+          [void Function(GcreateNonGroupExpenseDataBuilder)? updates]) =>
+      (new GcreateNonGroupExpenseDataBuilder()..update(updates))._build();
+
+  _$GcreateNonGroupExpenseData._(
+      {required this.G__typename, required this.addNonGroupExpense})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GcreateNonGroupExpenseData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(addNonGroupExpense,
+        r'GcreateNonGroupExpenseData', 'addNonGroupExpense');
+  }
+
+  @override
+  GcreateNonGroupExpenseData rebuild(
+          void Function(GcreateNonGroupExpenseDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcreateNonGroupExpenseDataBuilder toBuilder() =>
+      new GcreateNonGroupExpenseDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcreateNonGroupExpenseData &&
+        G__typename == other.G__typename &&
+        addNonGroupExpense == other.addNonGroupExpense;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, addNonGroupExpense.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GcreateNonGroupExpenseData')
+          ..add('G__typename', G__typename)
+          ..add('addNonGroupExpense', addNonGroupExpense))
+        .toString();
+  }
+}
+
+class GcreateNonGroupExpenseDataBuilder
+    implements
+        Builder<GcreateNonGroupExpenseData, GcreateNonGroupExpenseDataBuilder> {
+  _$GcreateNonGroupExpenseData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GcreateNonGroupExpenseData_addNonGroupExpenseBuilder? _addNonGroupExpense;
+  GcreateNonGroupExpenseData_addNonGroupExpenseBuilder get addNonGroupExpense =>
+      _$this._addNonGroupExpense ??=
+          new GcreateNonGroupExpenseData_addNonGroupExpenseBuilder();
+  set addNonGroupExpense(
+          GcreateNonGroupExpenseData_addNonGroupExpenseBuilder?
+              addNonGroupExpense) =>
+      _$this._addNonGroupExpense = addNonGroupExpense;
+
+  GcreateNonGroupExpenseDataBuilder() {
+    GcreateNonGroupExpenseData._initializeBuilder(this);
+  }
+
+  GcreateNonGroupExpenseDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _addNonGroupExpense = $v.addNonGroupExpense.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcreateNonGroupExpenseData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcreateNonGroupExpenseData;
+  }
+
+  @override
+  void update(void Function(GcreateNonGroupExpenseDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcreateNonGroupExpenseData build() => _build();
+
+  _$GcreateNonGroupExpenseData _build() {
+    _$GcreateNonGroupExpenseData _$result;
+    try {
+      _$result = _$v ??
+          new _$GcreateNonGroupExpenseData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GcreateNonGroupExpenseData', 'G__typename'),
+              addNonGroupExpense: addNonGroupExpense.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'addNonGroupExpense';
+        addNonGroupExpense.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GcreateNonGroupExpenseData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense
+    extends GcreateNonGroupExpenseData_addNonGroupExpense {
+  @override
+  final String G__typename;
+  @override
+  final GcreateNonGroupExpenseData_addNonGroupExpense_group group;
+  @override
+  final GcreateNonGroupExpenseData_addNonGroupExpense_expense expense;
+
+  factory _$GcreateNonGroupExpenseData_addNonGroupExpense(
+          [void Function(GcreateNonGroupExpenseData_addNonGroupExpenseBuilder)?
+              updates]) =>
+      (new GcreateNonGroupExpenseData_addNonGroupExpenseBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense._(
+      {required this.G__typename, required this.group, required this.expense})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        group, r'GcreateNonGroupExpenseData_addNonGroupExpense', 'group');
+    BuiltValueNullFieldError.checkNotNull(
+        expense, r'GcreateNonGroupExpenseData_addNonGroupExpense', 'expense');
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense rebuild(
+          void Function(GcreateNonGroupExpenseData_addNonGroupExpenseBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpenseBuilder toBuilder() =>
+      new GcreateNonGroupExpenseData_addNonGroupExpenseBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcreateNonGroupExpenseData_addNonGroupExpense &&
+        G__typename == other.G__typename &&
+        group == other.group &&
+        expense == other.expense;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, group.hashCode);
+    _$hash = $jc(_$hash, expense.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcreateNonGroupExpenseData_addNonGroupExpense')
+          ..add('G__typename', G__typename)
+          ..add('group', group)
+          ..add('expense', expense))
+        .toString();
+  }
+}
+
+class GcreateNonGroupExpenseData_addNonGroupExpenseBuilder
+    implements
+        Builder<GcreateNonGroupExpenseData_addNonGroupExpense,
+            GcreateNonGroupExpenseData_addNonGroupExpenseBuilder> {
+  _$GcreateNonGroupExpenseData_addNonGroupExpense? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder? _group;
+  GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder get group =>
+      _$this._group ??=
+          new GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder();
+  set group(
+          GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder? group) =>
+      _$this._group = group;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder? _expense;
+  GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder get expense =>
+      _$this._expense ??=
+          new GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder();
+  set expense(
+          GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder?
+              expense) =>
+      _$this._expense = expense;
+
+  GcreateNonGroupExpenseData_addNonGroupExpenseBuilder() {
+    GcreateNonGroupExpenseData_addNonGroupExpense._initializeBuilder(this);
+  }
+
+  GcreateNonGroupExpenseData_addNonGroupExpenseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _group = $v.group.toBuilder();
+      _expense = $v.expense.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcreateNonGroupExpenseData_addNonGroupExpense other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcreateNonGroupExpenseData_addNonGroupExpense;
+  }
+
+  @override
+  void update(
+      void Function(GcreateNonGroupExpenseData_addNonGroupExpenseBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense build() => _build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense _build() {
+    _$GcreateNonGroupExpenseData_addNonGroupExpense _$result;
+    try {
+      _$result = _$v ??
+          new _$GcreateNonGroupExpenseData_addNonGroupExpense._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GcreateNonGroupExpenseData_addNonGroupExpense',
+                  'G__typename'),
+              group: group.build(),
+              expense: expense.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'group';
+        group.build();
+        _$failedField = 'expense';
+        expense.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GcreateNonGroupExpenseData_addNonGroupExpense',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_group
+    extends GcreateNonGroupExpenseData_addNonGroupExpense_group {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final GcreateNonGroupExpenseData_addNonGroupExpense_group_creator creator;
+  @override
+  final BuiltList<GcreateNonGroupExpenseData_addNonGroupExpense_group_members>
+      members;
+  @override
+  final int toPay;
+  @override
+  final int toReceive;
+  @override
+  final String createdAt;
+
+  factory _$GcreateNonGroupExpenseData_addNonGroupExpense_group(
+          [void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder)?
+              updates]) =>
+      (new GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_group._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      required this.creator,
+      required this.members,
+      required this.toPay,
+      required this.toReceive,
+      required this.createdAt})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_group', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GcreateNonGroupExpenseData_addNonGroupExpense_group', 'id');
+    BuiltValueNullFieldError.checkNotNull(creator,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_group', 'creator');
+    BuiltValueNullFieldError.checkNotNull(members,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_group', 'members');
+    BuiltValueNullFieldError.checkNotNull(
+        toPay, r'GcreateNonGroupExpenseData_addNonGroupExpense_group', 'toPay');
+    BuiltValueNullFieldError.checkNotNull(toReceive,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_group', 'toReceive');
+    BuiltValueNullFieldError.checkNotNull(createdAt,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_group', 'createdAt');
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_group rebuild(
+          void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder toBuilder() =>
+      new GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcreateNonGroupExpenseData_addNonGroupExpense_group &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        creator == other.creator &&
+        members == other.members &&
+        toPay == other.toPay &&
+        toReceive == other.toReceive &&
+        createdAt == other.createdAt;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, creator.hashCode);
+    _$hash = $jc(_$hash, members.hashCode);
+    _$hash = $jc(_$hash, toPay.hashCode);
+    _$hash = $jc(_$hash, toReceive.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcreateNonGroupExpenseData_addNonGroupExpense_group')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('creator', creator)
+          ..add('members', members)
+          ..add('toPay', toPay)
+          ..add('toReceive', toReceive)
+          ..add('createdAt', createdAt))
+        .toString();
+  }
+}
+
+class GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder
+    implements
+        Builder<GcreateNonGroupExpenseData_addNonGroupExpense_group,
+            GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder> {
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_group? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder? _creator;
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder
+      get creator => _$this._creator ??=
+          new GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder();
+  set creator(
+          GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder?
+              creator) =>
+      _$this._creator = creator;
+
+  ListBuilder<GcreateNonGroupExpenseData_addNonGroupExpense_group_members>?
+      _members;
+  ListBuilder<GcreateNonGroupExpenseData_addNonGroupExpense_group_members>
+      get members => _$this._members ??= new ListBuilder<
+          GcreateNonGroupExpenseData_addNonGroupExpense_group_members>();
+  set members(
+          ListBuilder<
+                  GcreateNonGroupExpenseData_addNonGroupExpense_group_members>?
+              members) =>
+      _$this._members = members;
+
+  int? _toPay;
+  int? get toPay => _$this._toPay;
+  set toPay(int? toPay) => _$this._toPay = toPay;
+
+  int? _toReceive;
+  int? get toReceive => _$this._toReceive;
+  set toReceive(int? toReceive) => _$this._toReceive = toReceive;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder() {
+    GcreateNonGroupExpenseData_addNonGroupExpense_group._initializeBuilder(
+        this);
+  }
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _creator = $v.creator.toBuilder();
+      _members = $v.members.toBuilder();
+      _toPay = $v.toPay;
+      _toReceive = $v.toReceive;
+      _createdAt = $v.createdAt;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcreateNonGroupExpenseData_addNonGroupExpense_group other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcreateNonGroupExpenseData_addNonGroupExpense_group;
+  }
+
+  @override
+  void update(
+      void Function(GcreateNonGroupExpenseData_addNonGroupExpense_groupBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_group build() => _build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_group _build() {
+    _$GcreateNonGroupExpenseData_addNonGroupExpense_group _$result;
+    try {
+      _$result = _$v ??
+          new _$GcreateNonGroupExpenseData_addNonGroupExpense_group._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GcreateNonGroupExpenseData_addNonGroupExpense_group',
+                  'G__typename'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GcreateNonGroupExpenseData_addNonGroupExpense_group', 'id'),
+              name: name,
+              creator: creator.build(),
+              members: members.build(),
+              toPay: BuiltValueNullFieldError.checkNotNull(
+                  toPay,
+                  r'GcreateNonGroupExpenseData_addNonGroupExpense_group',
+                  'toPay'),
+              toReceive: BuiltValueNullFieldError.checkNotNull(
+                  toReceive,
+                  r'GcreateNonGroupExpenseData_addNonGroupExpense_group',
+                  'toReceive'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt,
+                  r'GcreateNonGroupExpenseData_addNonGroupExpense_group',
+                  'createdAt'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'creator';
+        creator.build();
+        _$failedField = 'members';
+        members.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GcreateNonGroupExpenseData_addNonGroupExpense_group',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_group_creator
+    extends GcreateNonGroupExpenseData_addNonGroupExpense_group_creator {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GcreateNonGroupExpenseData_addNonGroupExpense_group_creator(
+          [void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder)?
+              updates]) =>
+      (new GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_group_creator._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_group_creator',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(id,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_group_creator', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_group_creator',
+        'isSignedUp');
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_creator rebuild(
+          void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder
+      toBuilder() =>
+          new GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GcreateNonGroupExpenseData_addNonGroupExpense_group_creator &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcreateNonGroupExpenseData_addNonGroupExpense_group_creator')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder
+    implements
+        Builder<GcreateNonGroupExpenseData_addNonGroupExpense_group_creator,
+            GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder> {
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_group_creator? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder() {
+    GcreateNonGroupExpenseData_addNonGroupExpense_group_creator
+        ._initializeBuilder(this);
+  }
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GcreateNonGroupExpenseData_addNonGroupExpense_group_creator other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v =
+        other as _$GcreateNonGroupExpenseData_addNonGroupExpense_group_creator;
+  }
+
+  @override
+  void update(
+      void Function(
+              GcreateNonGroupExpenseData_addNonGroupExpense_group_creatorBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_creator build() =>
+      _build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_group_creator _build() {
+    final _$result = _$v ??
+        new _$GcreateNonGroupExpenseData_addNonGroupExpense_group_creator._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_group_creator',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_group_creator',
+                'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_group_creator',
+                'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_group_members
+    extends GcreateNonGroupExpenseData_addNonGroupExpense_group_members {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GcreateNonGroupExpenseData_addNonGroupExpense_group_members(
+          [void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_group_membersBuilder)?
+              updates]) =>
+      (new GcreateNonGroupExpenseData_addNonGroupExpense_group_membersBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_group_members._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_group_members',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(id,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_group_members', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_group_members',
+        'isSignedUp');
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_members rebuild(
+          void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_group_membersBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_membersBuilder
+      toBuilder() =>
+          new GcreateNonGroupExpenseData_addNonGroupExpense_group_membersBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GcreateNonGroupExpenseData_addNonGroupExpense_group_members &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcreateNonGroupExpenseData_addNonGroupExpense_group_members')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GcreateNonGroupExpenseData_addNonGroupExpense_group_membersBuilder
+    implements
+        Builder<GcreateNonGroupExpenseData_addNonGroupExpense_group_members,
+            GcreateNonGroupExpenseData_addNonGroupExpense_group_membersBuilder> {
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_group_members? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_membersBuilder() {
+    GcreateNonGroupExpenseData_addNonGroupExpense_group_members
+        ._initializeBuilder(this);
+  }
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_membersBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GcreateNonGroupExpenseData_addNonGroupExpense_group_members other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v =
+        other as _$GcreateNonGroupExpenseData_addNonGroupExpense_group_members;
+  }
+
+  @override
+  void update(
+      void Function(
+              GcreateNonGroupExpenseData_addNonGroupExpense_group_membersBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_members build() =>
+      _build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_group_members _build() {
+    final _$result = _$v ??
+        new _$GcreateNonGroupExpenseData_addNonGroupExpense_group_members._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_group_members',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_group_members',
+                'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_group_members',
+                'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
+    extends GcreateNonGroupExpenseData_addNonGroupExpense_expense {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String title;
+  @override
+  final String createdAt;
+  @override
+  final GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator creator;
+  @override
+  final int amount;
+  @override
+  final int toPay;
+  @override
+  final int toReceive;
+  @override
+  final BuiltList<GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits>
+      splits;
+
+  factory _$GcreateNonGroupExpenseData_addNonGroupExpense_expense(
+          [void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder)?
+              updates]) =>
+      (new GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense._(
+      {required this.G__typename,
+      required this.id,
+      required this.title,
+      required this.createdAt,
+      required this.creator,
+      required this.amount,
+      required this.toPay,
+      required this.toReceive,
+      required this.splits})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'id');
+    BuiltValueNullFieldError.checkNotNull(title,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'title');
+    BuiltValueNullFieldError.checkNotNull(createdAt,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(creator,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'creator');
+    BuiltValueNullFieldError.checkNotNull(amount,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'amount');
+    BuiltValueNullFieldError.checkNotNull(toPay,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'toPay');
+    BuiltValueNullFieldError.checkNotNull(toReceive,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'toReceive');
+    BuiltValueNullFieldError.checkNotNull(splits,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'splits');
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense rebuild(
+          void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder toBuilder() =>
+      new GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcreateNonGroupExpenseData_addNonGroupExpense_expense &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        title == other.title &&
+        createdAt == other.createdAt &&
+        creator == other.creator &&
+        amount == other.amount &&
+        toPay == other.toPay &&
+        toReceive == other.toReceive &&
+        splits == other.splits;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, creator.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, toPay.hashCode);
+    _$hash = $jc(_$hash, toReceive.hashCode);
+    _$hash = $jc(_$hash, splits.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcreateNonGroupExpenseData_addNonGroupExpense_expense')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('title', title)
+          ..add('createdAt', createdAt)
+          ..add('creator', creator)
+          ..add('amount', amount)
+          ..add('toPay', toPay)
+          ..add('toReceive', toReceive)
+          ..add('splits', splits))
+        .toString();
+  }
+}
+
+class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
+    implements
+        Builder<GcreateNonGroupExpenseData_addNonGroupExpense_expense,
+            GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder> {
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder?
+      _creator;
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder
+      get creator => _$this._creator ??=
+          new GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder();
+  set creator(
+          GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder?
+              creator) =>
+      _$this._creator = creator;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  int? _toPay;
+  int? get toPay => _$this._toPay;
+  set toPay(int? toPay) => _$this._toPay = toPay;
+
+  int? _toReceive;
+  int? get toReceive => _$this._toReceive;
+  set toReceive(int? toReceive) => _$this._toReceive = toReceive;
+
+  ListBuilder<GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits>?
+      _splits;
+  ListBuilder<GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits>
+      get splits => _$this._splits ??= new ListBuilder<
+          GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits>();
+  set splits(
+          ListBuilder<
+                  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits>?
+              splits) =>
+      _$this._splits = splits;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder() {
+    GcreateNonGroupExpenseData_addNonGroupExpense_expense._initializeBuilder(
+        this);
+  }
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _title = $v.title;
+      _createdAt = $v.createdAt;
+      _creator = $v.creator.toBuilder();
+      _amount = $v.amount;
+      _toPay = $v.toPay;
+      _toReceive = $v.toReceive;
+      _splits = $v.splits.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcreateNonGroupExpenseData_addNonGroupExpense_expense other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcreateNonGroupExpenseData_addNonGroupExpense_expense;
+  }
+
+  @override
+  void update(
+      void Function(
+              GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense build() => _build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense _build() {
+    _$GcreateNonGroupExpenseData_addNonGroupExpense_expense _$result;
+    try {
+      _$result = _$v ??
+          new _$GcreateNonGroupExpenseData_addNonGroupExpense_expense._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'G__typename'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'id'),
+              title: BuiltValueNullFieldError.checkNotNull(
+                  title, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'title'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'createdAt'),
+              creator: creator.build(),
+              amount: BuiltValueNullFieldError.checkNotNull(
+                  amount, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'amount'),
+              toPay: BuiltValueNullFieldError.checkNotNull(
+                  toPay, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'toPay'),
+              toReceive: BuiltValueNullFieldError.checkNotNull(
+                  toReceive, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'toReceive'),
+              splits: splits.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'creator';
+        creator.build();
+
+        _$failedField = 'splits';
+        splits.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GcreateNonGroupExpenseData_addNonGroupExpense_expense',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator
+    extends GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator(
+          [void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder)?
+              updates]) =>
+      (new GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(id,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator',
+        'isSignedUp');
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator rebuild(
+          void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder
+      toBuilder() =>
+          new GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder
+    implements
+        Builder<GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator,
+            GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder> {
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder() {
+    GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator
+        ._initializeBuilder(this);
+  }
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other
+        as _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator;
+  }
+
+  @override
+  void update(
+      void Function(
+              GcreateNonGroupExpenseData_addNonGroupExpense_expense_creatorBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator build() =>
+      _build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator _build() {
+    final _$result = _$v ??
+        new _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator',
+                'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator',
+                'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
+    extends GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final int amount;
+  @override
+  final int amountSettled;
+  @override
+  final GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
+      fromUser;
+  @override
+  final GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
+      toUser;
+  @override
+  final bool isSettled;
+
+  factory _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits(
+          [void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder)?
+              updates]) =>
+      (new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits._(
+      {required this.G__typename,
+      required this.id,
+      required this.amount,
+      required this.amountSettled,
+      required this.fromUser,
+      required this.toUser,
+      required this.isSettled})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(id,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        amount,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+        'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        amountSettled,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+        'amountSettled');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+        'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+        'toUser');
+    BuiltValueNullFieldError.checkNotNull(
+        isSettled,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+        'isSettled');
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits rebuild(
+          void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
+      toBuilder() =>
+          new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        amount == other.amount &&
+        amountSettled == other.amountSettled &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
+        isSettled == other.isSettled;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, amountSettled.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, isSettled.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('amount', amount)
+          ..add('amountSettled', amountSettled)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
+          ..add('isSettled', isSettled))
+        .toString();
+  }
+}
+
+class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
+    implements
+        Builder<GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits,
+            GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder> {
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  int? _amountSettled;
+  int? get amountSettled => _$this._amountSettled;
+  set amountSettled(int? amountSettled) =>
+      _$this._amountSettled = amountSettled;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder?
+      _fromUser;
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder
+      get fromUser => _$this._fromUser ??=
+          new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder();
+  set fromUser(
+          GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder?
+              fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder?
+      _toUser;
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder
+      get toUser => _$this._toUser ??=
+          new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder();
+  set toUser(
+          GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder?
+              toUser) =>
+      _$this._toUser = toUser;
+
+  bool? _isSettled;
+  bool? get isSettled => _$this._isSettled;
+  set isSettled(bool? isSettled) => _$this._isSettled = isSettled;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder() {
+    GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
+        ._initializeBuilder(this);
+  }
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _amount = $v.amount;
+      _amountSettled = $v.amountSettled;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
+      _isSettled = $v.isSettled;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v =
+        other as _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits;
+  }
+
+  @override
+  void update(
+      void Function(
+              GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits build() =>
+      _build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits _build() {
+    _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits _$result;
+    try {
+      _$result = _$v ??
+          new _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+                  'G__typename'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'id'),
+              amount: BuiltValueNullFieldError.checkNotNull(
+                  amount, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'amount'),
+              amountSettled: BuiltValueNullFieldError.checkNotNull(
+                  amountSettled,
+                  r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+                  'amountSettled'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
+              isSettled: BuiltValueNullFieldError.checkNotNull(
+                  isSettled,
+                  r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+                  'isSettled'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'fromUser';
+        fromUser.build();
+        _$failedField = 'toUser';
+        toUser.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
+    extends GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser(
+          [void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder)?
+              updates]) =>
+      (new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser',
+        'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser',
+        'isSignedUp');
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser rebuild(
+          void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder
+      toBuilder() =>
+          new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder
+    implements
+        Builder<
+            GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser,
+            GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder> {
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder() {
+    GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
+        ._initializeBuilder(this);
+  }
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
+          other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other
+        as _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser;
+  }
+
+  @override
+  void update(
+      void Function(
+              GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
+      build() => _build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
+      _build() {
+    final _$result = _$v ??
+        new _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
+            ._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser',
+                'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser',
+                'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
+    extends GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser(
+          [void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder)?
+              updates]) =>
+      (new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser',
+        'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser',
+        'isSignedUp');
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser rebuild(
+          void Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder
+      toBuilder() =>
+          new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder
+    implements
+        Builder<
+            GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser,
+            GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder> {
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder() {
+    GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
+        ._initializeBuilder(this);
+  }
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
+          other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other
+        as _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser;
+  }
+
+  @override
+  void update(
+      void Function(
+              GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser build() =>
+      _build();
+
+  _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
+      _build() {
+    final _$result = _$v ??
+        new _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
+            ._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser',
+                'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser',
+                'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GUserFieldsData extends GUserFieldsData {
   @override
   final String G__typename;
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GUserFieldsData([void Function(GUserFieldsDataBuilder)? updates]) =>
       (new GUserFieldsDataBuilder()..update(updates))._build();
@@ -12796,14 +16794,16 @@ class _$GUserFieldsData extends GUserFieldsData {
   _$GUserFieldsData._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GUserFieldsData', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(id, r'GUserFieldsData', 'id');
-    BuiltValueNullFieldError.checkNotNull(name, r'GUserFieldsData', 'name');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GUserFieldsData', 'isSignedUp');
   }
 
   @override
@@ -12822,7 +16822,8 @@ class _$GUserFieldsData extends GUserFieldsData {
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -12833,6 +16834,7 @@ class _$GUserFieldsData extends GUserFieldsData {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -12844,7 +16846,8 @@ class _$GUserFieldsData extends GUserFieldsData {
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -12873,6 +16876,10 @@ class GUserFieldsDataBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GUserFieldsDataBuilder() {
     GUserFieldsData._initializeBuilder(this);
   }
@@ -12885,6 +16892,7 @@ class GUserFieldsDataBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -12911,10 +16919,11 @@ class GUserFieldsDataBuilder
                 G__typename, r'GUserFieldsData', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GUserFieldsData', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GUserFieldsData', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GUserFieldsData', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -13076,7 +17085,7 @@ class _$GGroupFieldsData extends GGroupFieldsData {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final GGroupFieldsData_creator creator;
   @override
@@ -13095,7 +17104,7 @@ class _$GGroupFieldsData extends GGroupFieldsData {
   _$GGroupFieldsData._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       required this.creator,
       required this.members,
       required this.toPay,
@@ -13105,7 +17114,6 @@ class _$GGroupFieldsData extends GGroupFieldsData {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGroupFieldsData', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(id, r'GGroupFieldsData', 'id');
-    BuiltValueNullFieldError.checkNotNull(name, r'GGroupFieldsData', 'name');
     BuiltValueNullFieldError.checkNotNull(
         creator, r'GGroupFieldsData', 'creator');
     BuiltValueNullFieldError.checkNotNull(
@@ -13252,8 +17260,7 @@ class GGroupFieldsDataBuilder
                   G__typename, r'GGroupFieldsData', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GGroupFieldsData', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GGroupFieldsData', 'name'),
+              name: name,
               creator: creator.build(),
               members: members.build(),
               toPay: BuiltValueNullFieldError.checkNotNull(
@@ -13286,11 +17293,13 @@ class _$GGroupFieldsData_creator extends GGroupFieldsData_creator {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GGroupFieldsData_creator(
           [void Function(GGroupFieldsData_creatorBuilder)? updates]) =>
@@ -13299,16 +17308,17 @@ class _$GGroupFieldsData_creator extends GGroupFieldsData_creator {
   _$GGroupFieldsData_creator._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGroupFieldsData_creator', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GGroupFieldsData_creator', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GGroupFieldsData_creator', 'name');
+        isSignedUp, r'GGroupFieldsData_creator', 'isSignedUp');
   }
 
   @override
@@ -13328,7 +17338,8 @@ class _$GGroupFieldsData_creator extends GGroupFieldsData_creator {
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -13339,6 +17350,7 @@ class _$GGroupFieldsData_creator extends GGroupFieldsData_creator {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -13350,7 +17362,8 @@ class _$GGroupFieldsData_creator extends GGroupFieldsData_creator {
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -13380,6 +17393,10 @@ class GGroupFieldsData_creatorBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GGroupFieldsData_creatorBuilder() {
     GGroupFieldsData_creator._initializeBuilder(this);
   }
@@ -13392,6 +17409,7 @@ class GGroupFieldsData_creatorBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -13418,10 +17436,11 @@ class GGroupFieldsData_creatorBuilder
                 G__typename, r'GGroupFieldsData_creator', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GGroupFieldsData_creator', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GGroupFieldsData_creator', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GGroupFieldsData_creator', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -13433,11 +17452,13 @@ class _$GGroupFieldsData_members extends GGroupFieldsData_members {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GGroupFieldsData_members(
           [void Function(GGroupFieldsData_membersBuilder)? updates]) =>
@@ -13446,16 +17467,17 @@ class _$GGroupFieldsData_members extends GGroupFieldsData_members {
   _$GGroupFieldsData_members._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGroupFieldsData_members', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GGroupFieldsData_members', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GGroupFieldsData_members', 'name');
+        isSignedUp, r'GGroupFieldsData_members', 'isSignedUp');
   }
 
   @override
@@ -13475,7 +17497,8 @@ class _$GGroupFieldsData_members extends GGroupFieldsData_members {
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -13486,6 +17509,7 @@ class _$GGroupFieldsData_members extends GGroupFieldsData_members {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -13497,7 +17521,8 @@ class _$GGroupFieldsData_members extends GGroupFieldsData_members {
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -13527,6 +17552,10 @@ class GGroupFieldsData_membersBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GGroupFieldsData_membersBuilder() {
     GGroupFieldsData_members._initializeBuilder(this);
   }
@@ -13539,6 +17568,7 @@ class GGroupFieldsData_membersBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -13565,10 +17595,11 @@ class GGroupFieldsData_membersBuilder
                 G__typename, r'GGroupFieldsData_members', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GGroupFieldsData_members', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GGroupFieldsData_members', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GGroupFieldsData_members', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -13809,11 +17840,13 @@ class _$GExpenseFieldsData_creator extends GExpenseFieldsData_creator {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GExpenseFieldsData_creator(
           [void Function(GExpenseFieldsData_creatorBuilder)? updates]) =>
@@ -13822,16 +17855,17 @@ class _$GExpenseFieldsData_creator extends GExpenseFieldsData_creator {
   _$GExpenseFieldsData_creator._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GExpenseFieldsData_creator', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GExpenseFieldsData_creator', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GExpenseFieldsData_creator', 'name');
+        isSignedUp, r'GExpenseFieldsData_creator', 'isSignedUp');
   }
 
   @override
@@ -13851,7 +17885,8 @@ class _$GExpenseFieldsData_creator extends GExpenseFieldsData_creator {
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -13862,6 +17897,7 @@ class _$GExpenseFieldsData_creator extends GExpenseFieldsData_creator {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -13873,7 +17909,8 @@ class _$GExpenseFieldsData_creator extends GExpenseFieldsData_creator {
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -13903,6 +17940,10 @@ class GExpenseFieldsData_creatorBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GExpenseFieldsData_creatorBuilder() {
     GExpenseFieldsData_creator._initializeBuilder(this);
   }
@@ -13915,6 +17956,7 @@ class GExpenseFieldsData_creatorBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -13941,10 +17983,11 @@ class GExpenseFieldsData_creatorBuilder
                 G__typename, r'GExpenseFieldsData_creator', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GExpenseFieldsData_creator', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GExpenseFieldsData_creator', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GExpenseFieldsData_creator', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -14158,11 +18201,13 @@ class _$GExpenseFieldsData_splits_fromUser
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GExpenseFieldsData_splits_fromUser(
           [void Function(GExpenseFieldsData_splits_fromUserBuilder)?
@@ -14173,16 +18218,17 @@ class _$GExpenseFieldsData_splits_fromUser
   _$GExpenseFieldsData_splits_fromUser._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GExpenseFieldsData_splits_fromUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GExpenseFieldsData_splits_fromUser', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GExpenseFieldsData_splits_fromUser', 'name');
+        isSignedUp, r'GExpenseFieldsData_splits_fromUser', 'isSignedUp');
   }
 
   @override
@@ -14202,7 +18248,8 @@ class _$GExpenseFieldsData_splits_fromUser
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -14213,6 +18260,7 @@ class _$GExpenseFieldsData_splits_fromUser
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -14224,7 +18272,8 @@ class _$GExpenseFieldsData_splits_fromUser
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -14255,6 +18304,10 @@ class GExpenseFieldsData_splits_fromUserBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GExpenseFieldsData_splits_fromUserBuilder() {
     GExpenseFieldsData_splits_fromUser._initializeBuilder(this);
   }
@@ -14267,6 +18320,7 @@ class GExpenseFieldsData_splits_fromUserBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -14294,10 +18348,11 @@ class GExpenseFieldsData_splits_fromUserBuilder
                 r'GExpenseFieldsData_splits_fromUser', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GExpenseFieldsData_splits_fromUser', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GExpenseFieldsData_splits_fromUser', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GExpenseFieldsData_splits_fromUser', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -14310,11 +18365,13 @@ class _$GExpenseFieldsData_splits_toUser
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GExpenseFieldsData_splits_toUser(
           [void Function(GExpenseFieldsData_splits_toUserBuilder)? updates]) =>
@@ -14323,16 +18380,17 @@ class _$GExpenseFieldsData_splits_toUser
   _$GExpenseFieldsData_splits_toUser._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GExpenseFieldsData_splits_toUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GExpenseFieldsData_splits_toUser', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GExpenseFieldsData_splits_toUser', 'name');
+        isSignedUp, r'GExpenseFieldsData_splits_toUser', 'isSignedUp');
   }
 
   @override
@@ -14352,7 +18410,8 @@ class _$GExpenseFieldsData_splits_toUser
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -14363,6 +18422,7 @@ class _$GExpenseFieldsData_splits_toUser
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -14374,7 +18434,8 @@ class _$GExpenseFieldsData_splits_toUser
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -14405,6 +18466,10 @@ class GExpenseFieldsData_splits_toUserBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GExpenseFieldsData_splits_toUserBuilder() {
     GExpenseFieldsData_splits_toUser._initializeBuilder(this);
   }
@@ -14417,6 +18482,7 @@ class GExpenseFieldsData_splits_toUserBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -14443,10 +18509,11 @@ class GExpenseFieldsData_splits_toUserBuilder
                 r'GExpenseFieldsData_splits_toUser', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GExpenseFieldsData_splits_toUser', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GExpenseFieldsData_splits_toUser', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GExpenseFieldsData_splits_toUser', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -14655,11 +18722,13 @@ class _$GSplitFieldsData_fromUser extends GSplitFieldsData_fromUser {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GSplitFieldsData_fromUser(
           [void Function(GSplitFieldsData_fromUserBuilder)? updates]) =>
@@ -14668,16 +18737,17 @@ class _$GSplitFieldsData_fromUser extends GSplitFieldsData_fromUser {
   _$GSplitFieldsData_fromUser._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GSplitFieldsData_fromUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GSplitFieldsData_fromUser', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GSplitFieldsData_fromUser', 'name');
+        isSignedUp, r'GSplitFieldsData_fromUser', 'isSignedUp');
   }
 
   @override
@@ -14697,7 +18767,8 @@ class _$GSplitFieldsData_fromUser extends GSplitFieldsData_fromUser {
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -14708,6 +18779,7 @@ class _$GSplitFieldsData_fromUser extends GSplitFieldsData_fromUser {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -14719,7 +18791,8 @@ class _$GSplitFieldsData_fromUser extends GSplitFieldsData_fromUser {
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -14749,6 +18822,10 @@ class GSplitFieldsData_fromUserBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GSplitFieldsData_fromUserBuilder() {
     GSplitFieldsData_fromUser._initializeBuilder(this);
   }
@@ -14761,6 +18838,7 @@ class GSplitFieldsData_fromUserBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -14787,10 +18865,11 @@ class GSplitFieldsData_fromUserBuilder
                 G__typename, r'GSplitFieldsData_fromUser', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GSplitFieldsData_fromUser', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GSplitFieldsData_fromUser', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GSplitFieldsData_fromUser', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -14802,11 +18881,13 @@ class _$GSplitFieldsData_toUser extends GSplitFieldsData_toUser {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GSplitFieldsData_toUser(
           [void Function(GSplitFieldsData_toUserBuilder)? updates]) =>
@@ -14815,15 +18896,16 @@ class _$GSplitFieldsData_toUser extends GSplitFieldsData_toUser {
   _$GSplitFieldsData_toUser._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GSplitFieldsData_toUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(id, r'GSplitFieldsData_toUser', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GSplitFieldsData_toUser', 'name');
+        isSignedUp, r'GSplitFieldsData_toUser', 'isSignedUp');
   }
 
   @override
@@ -14843,7 +18925,8 @@ class _$GSplitFieldsData_toUser extends GSplitFieldsData_toUser {
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -14854,6 +18937,7 @@ class _$GSplitFieldsData_toUser extends GSplitFieldsData_toUser {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -14865,7 +18949,8 @@ class _$GSplitFieldsData_toUser extends GSplitFieldsData_toUser {
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -14895,6 +18980,10 @@ class GSplitFieldsData_toUserBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GSplitFieldsData_toUserBuilder() {
     GSplitFieldsData_toUser._initializeBuilder(this);
   }
@@ -14907,6 +18996,7 @@ class GSplitFieldsData_toUserBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -14933,10 +19023,11 @@ class GSplitFieldsData_toUserBuilder
                 G__typename, r'GSplitFieldsData_toUser', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GSplitFieldsData_toUser', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GSplitFieldsData_toUser', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GSplitFieldsData_toUser', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -14948,7 +19039,7 @@ class _$GGroupWithExpensesData extends GGroupWithExpensesData {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final GGroupWithExpensesData_creator creator;
   @override
@@ -14969,7 +19060,7 @@ class _$GGroupWithExpensesData extends GGroupWithExpensesData {
   _$GGroupWithExpensesData._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       required this.creator,
       required this.members,
       required this.toPay,
@@ -14980,8 +19071,6 @@ class _$GGroupWithExpensesData extends GGroupWithExpensesData {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGroupWithExpensesData', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(id, r'GGroupWithExpensesData', 'id');
-    BuiltValueNullFieldError.checkNotNull(
-        name, r'GGroupWithExpensesData', 'name');
     BuiltValueNullFieldError.checkNotNull(
         creator, r'GGroupWithExpensesData', 'creator');
     BuiltValueNullFieldError.checkNotNull(
@@ -15142,8 +19231,7 @@ class GGroupWithExpensesDataBuilder
                   G__typename, r'GGroupWithExpensesData', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GGroupWithExpensesData', 'id'),
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'GGroupWithExpensesData', 'name'),
+              name: name,
               creator: creator.build(),
               members: members.build(),
               toPay: BuiltValueNullFieldError.checkNotNull(
@@ -15180,11 +19268,13 @@ class _$GGroupWithExpensesData_creator extends GGroupWithExpensesData_creator {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GGroupWithExpensesData_creator(
           [void Function(GGroupWithExpensesData_creatorBuilder)? updates]) =>
@@ -15193,16 +19283,17 @@ class _$GGroupWithExpensesData_creator extends GGroupWithExpensesData_creator {
   _$GGroupWithExpensesData_creator._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGroupWithExpensesData_creator', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GGroupWithExpensesData_creator', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GGroupWithExpensesData_creator', 'name');
+        isSignedUp, r'GGroupWithExpensesData_creator', 'isSignedUp');
   }
 
   @override
@@ -15222,7 +19313,8 @@ class _$GGroupWithExpensesData_creator extends GGroupWithExpensesData_creator {
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -15233,6 +19325,7 @@ class _$GGroupWithExpensesData_creator extends GGroupWithExpensesData_creator {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -15244,7 +19337,8 @@ class _$GGroupWithExpensesData_creator extends GGroupWithExpensesData_creator {
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -15275,6 +19369,10 @@ class GGroupWithExpensesData_creatorBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GGroupWithExpensesData_creatorBuilder() {
     GGroupWithExpensesData_creator._initializeBuilder(this);
   }
@@ -15287,6 +19385,7 @@ class GGroupWithExpensesData_creatorBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -15313,10 +19412,11 @@ class GGroupWithExpensesData_creatorBuilder
                 G__typename, r'GGroupWithExpensesData_creator', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GGroupWithExpensesData_creator', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GGroupWithExpensesData_creator', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GGroupWithExpensesData_creator', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -15328,11 +19428,13 @@ class _$GGroupWithExpensesData_members extends GGroupWithExpensesData_members {
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GGroupWithExpensesData_members(
           [void Function(GGroupWithExpensesData_membersBuilder)? updates]) =>
@@ -15341,16 +19443,17 @@ class _$GGroupWithExpensesData_members extends GGroupWithExpensesData_members {
   _$GGroupWithExpensesData_members._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGroupWithExpensesData_members', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GGroupWithExpensesData_members', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GGroupWithExpensesData_members', 'name');
+        isSignedUp, r'GGroupWithExpensesData_members', 'isSignedUp');
   }
 
   @override
@@ -15370,7 +19473,8 @@ class _$GGroupWithExpensesData_members extends GGroupWithExpensesData_members {
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -15381,6 +19485,7 @@ class _$GGroupWithExpensesData_members extends GGroupWithExpensesData_members {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -15392,7 +19497,8 @@ class _$GGroupWithExpensesData_members extends GGroupWithExpensesData_members {
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -15423,6 +19529,10 @@ class GGroupWithExpensesData_membersBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GGroupWithExpensesData_membersBuilder() {
     GGroupWithExpensesData_members._initializeBuilder(this);
   }
@@ -15435,6 +19545,7 @@ class GGroupWithExpensesData_membersBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -15461,10 +19572,11 @@ class GGroupWithExpensesData_membersBuilder
                 G__typename, r'GGroupWithExpensesData_members', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GGroupWithExpensesData_members', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GGroupWithExpensesData_members', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GGroupWithExpensesData_members', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -15711,11 +19823,13 @@ class _$GGroupWithExpensesData_expenses_creator
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GGroupWithExpensesData_expenses_creator(
           [void Function(GGroupWithExpensesData_expenses_creatorBuilder)?
@@ -15726,16 +19840,17 @@ class _$GGroupWithExpensesData_expenses_creator
   _$GGroupWithExpensesData_expenses_creator._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGroupWithExpensesData_expenses_creator', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GGroupWithExpensesData_expenses_creator', 'id');
     BuiltValueNullFieldError.checkNotNull(
-        name, r'GGroupWithExpensesData_expenses_creator', 'name');
+        isSignedUp, r'GGroupWithExpensesData_expenses_creator', 'isSignedUp');
   }
 
   @override
@@ -15756,7 +19871,8 @@ class _$GGroupWithExpensesData_expenses_creator
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -15767,6 +19883,7 @@ class _$GGroupWithExpensesData_expenses_creator
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -15779,7 +19896,8 @@ class _$GGroupWithExpensesData_expenses_creator
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -15810,6 +19928,10 @@ class GGroupWithExpensesData_expenses_creatorBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GGroupWithExpensesData_expenses_creatorBuilder() {
     GGroupWithExpensesData_expenses_creator._initializeBuilder(this);
   }
@@ -15822,6 +19944,7 @@ class GGroupWithExpensesData_expenses_creatorBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -15849,10 +19972,11 @@ class GGroupWithExpensesData_expenses_creatorBuilder
                 r'GGroupWithExpensesData_expenses_creator', 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GGroupWithExpensesData_expenses_creator', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GGroupWithExpensesData_expenses_creator', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GGroupWithExpensesData_expenses_creator', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -16080,11 +20204,13 @@ class _$GGroupWithExpensesData_expenses_splits_fromUser
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GGroupWithExpensesData_expenses_splits_fromUser(
           [void Function(
@@ -16097,16 +20223,17 @@ class _$GGroupWithExpensesData_expenses_splits_fromUser
   _$GGroupWithExpensesData_expenses_splits_fromUser._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GGroupWithExpensesData_expenses_splits_fromUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GGroupWithExpensesData_expenses_splits_fromUser', 'id');
-    BuiltValueNullFieldError.checkNotNull(
-        name, r'GGroupWithExpensesData_expenses_splits_fromUser', 'name');
+    BuiltValueNullFieldError.checkNotNull(isSignedUp,
+        r'GGroupWithExpensesData_expenses_splits_fromUser', 'isSignedUp');
   }
 
   @override
@@ -16128,7 +20255,8 @@ class _$GGroupWithExpensesData_expenses_splits_fromUser
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -16139,6 +20267,7 @@ class _$GGroupWithExpensesData_expenses_splits_fromUser
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -16151,7 +20280,8 @@ class _$GGroupWithExpensesData_expenses_splits_fromUser
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -16182,6 +20312,10 @@ class GGroupWithExpensesData_expenses_splits_fromUserBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GGroupWithExpensesData_expenses_splits_fromUserBuilder() {
     GGroupWithExpensesData_expenses_splits_fromUser._initializeBuilder(this);
   }
@@ -16194,6 +20328,7 @@ class GGroupWithExpensesData_expenses_splits_fromUserBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -16224,10 +20359,13 @@ class GGroupWithExpensesData_expenses_splits_fromUserBuilder
                 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GGroupWithExpensesData_expenses_splits_fromUser', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(name,
-                r'GGroupWithExpensesData_expenses_splits_fromUser', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GGroupWithExpensesData_expenses_splits_fromUser',
+                'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -16240,11 +20378,13 @@ class _$GGroupWithExpensesData_expenses_splits_toUser
   @override
   final String id;
   @override
-  final String name;
+  final String? name;
   @override
   final String? phone;
   @override
   final String? email;
+  @override
+  final bool isSignedUp;
 
   factory _$GGroupWithExpensesData_expenses_splits_toUser(
           [void Function(GGroupWithExpensesData_expenses_splits_toUserBuilder)?
@@ -16256,16 +20396,17 @@ class _$GGroupWithExpensesData_expenses_splits_toUser
   _$GGroupWithExpensesData_expenses_splits_toUser._(
       {required this.G__typename,
       required this.id,
-      required this.name,
+      this.name,
       this.phone,
-      this.email})
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GGroupWithExpensesData_expenses_splits_toUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GGroupWithExpensesData_expenses_splits_toUser', 'id');
-    BuiltValueNullFieldError.checkNotNull(
-        name, r'GGroupWithExpensesData_expenses_splits_toUser', 'name');
+    BuiltValueNullFieldError.checkNotNull(isSignedUp,
+        r'GGroupWithExpensesData_expenses_splits_toUser', 'isSignedUp');
   }
 
   @override
@@ -16286,7 +20427,8 @@ class _$GGroupWithExpensesData_expenses_splits_toUser
         id == other.id &&
         name == other.name &&
         phone == other.phone &&
-        email == other.email;
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -16297,6 +20439,7 @@ class _$GGroupWithExpensesData_expenses_splits_toUser
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -16309,7 +20452,8 @@ class _$GGroupWithExpensesData_expenses_splits_toUser
           ..add('id', id)
           ..add('name', name)
           ..add('phone', phone)
-          ..add('email', email))
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
@@ -16340,6 +20484,10 @@ class GGroupWithExpensesData_expenses_splits_toUserBuilder
   String? get email => _$this._email;
   set email(String? email) => _$this._email = email;
 
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
   GGroupWithExpensesData_expenses_splits_toUserBuilder() {
     GGroupWithExpensesData_expenses_splits_toUser._initializeBuilder(this);
   }
@@ -16352,6 +20500,7 @@ class GGroupWithExpensesData_expenses_splits_toUserBuilder
       _name = $v.name;
       _phone = $v.phone;
       _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
@@ -16382,10 +20531,13 @@ class GGroupWithExpensesData_expenses_splits_toUserBuilder
                 'G__typename'),
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GGroupWithExpensesData_expenses_splits_toUser', 'id'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GGroupWithExpensesData_expenses_splits_toUser', 'name'),
+            name: name,
             phone: phone,
-            email: email);
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GGroupWithExpensesData_expenses_splits_toUser',
+                'isSignedUp'));
     replace(_$result);
     return _$result;
   }

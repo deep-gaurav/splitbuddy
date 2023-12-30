@@ -28,6 +28,10 @@ Serializer<Gverify_email_otpVars> _$gverifyEmailOtpVarsSerializer =
     new _$Gverify_email_otpVarsSerializer();
 Serializer<Grefresh_tokenVars> _$grefreshTokenVarsSerializer =
     new _$Grefresh_tokenVarsSerializer();
+Serializer<GsearchUserByEmailVars> _$gsearchUserByEmailVarsSerializer =
+    new _$GsearchUserByEmailVarsSerializer();
+Serializer<GcreateNonGroupExpenseVars> _$gcreateNonGroupExpenseVarsSerializer =
+    new _$GcreateNonGroupExpenseVarsSerializer();
 Serializer<GUserFieldsVars> _$gUserFieldsVarsSerializer =
     new _$GUserFieldsVarsSerializer();
 Serializer<GUserPaysFieldsVars> _$gUserPaysFieldsVarsSerializer =
@@ -594,6 +598,114 @@ class _$Grefresh_tokenVarsSerializer
         case 'refresh_token':
           result.refresh_token = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsearchUserByEmailVarsSerializer
+    implements StructuredSerializer<GsearchUserByEmailVars> {
+  @override
+  final Iterable<Type> types = const [
+    GsearchUserByEmailVars,
+    _$GsearchUserByEmailVars
+  ];
+  @override
+  final String wireName = 'GsearchUserByEmailVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsearchUserByEmailVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'email',
+      serializers.serialize(object.email,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GsearchUserByEmailVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsearchUserByEmailVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcreateNonGroupExpenseVarsSerializer
+    implements StructuredSerializer<GcreateNonGroupExpenseVars> {
+  @override
+  final Iterable<Type> types = const [
+    GcreateNonGroupExpenseVars,
+    _$GcreateNonGroupExpenseVars
+  ];
+  @override
+  final String wireName = 'GcreateNonGroupExpenseVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GcreateNonGroupExpenseVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'splitsNonGroup',
+      serializers.serialize(object.splitsNonGroup,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType(_i2.GSplitInputNonGroup)])),
+    ];
+
+    return result;
+  }
+
+  @override
+  GcreateNonGroupExpenseVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcreateNonGroupExpenseVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'splitsNonGroup':
+          result.splitsNonGroup.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(_i2.GSplitInputNonGroup)
+              ]))! as BuiltList<Object?>);
           break;
       }
     }
@@ -1947,6 +2059,226 @@ class Grefresh_tokenVarsBuilder
         new _$Grefresh_tokenVars._(
             refresh_token: BuiltValueNullFieldError.checkNotNull(
                 refresh_token, r'Grefresh_tokenVars', 'refresh_token'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsearchUserByEmailVars extends GsearchUserByEmailVars {
+  @override
+  final String email;
+
+  factory _$GsearchUserByEmailVars(
+          [void Function(GsearchUserByEmailVarsBuilder)? updates]) =>
+      (new GsearchUserByEmailVarsBuilder()..update(updates))._build();
+
+  _$GsearchUserByEmailVars._({required this.email}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        email, r'GsearchUserByEmailVars', 'email');
+  }
+
+  @override
+  GsearchUserByEmailVars rebuild(
+          void Function(GsearchUserByEmailVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsearchUserByEmailVarsBuilder toBuilder() =>
+      new GsearchUserByEmailVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsearchUserByEmailVars && email == other.email;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GsearchUserByEmailVars')
+          ..add('email', email))
+        .toString();
+  }
+}
+
+class GsearchUserByEmailVarsBuilder
+    implements Builder<GsearchUserByEmailVars, GsearchUserByEmailVarsBuilder> {
+  _$GsearchUserByEmailVars? _$v;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  GsearchUserByEmailVarsBuilder();
+
+  GsearchUserByEmailVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _email = $v.email;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsearchUserByEmailVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsearchUserByEmailVars;
+  }
+
+  @override
+  void update(void Function(GsearchUserByEmailVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsearchUserByEmailVars build() => _build();
+
+  _$GsearchUserByEmailVars _build() {
+    final _$result = _$v ??
+        new _$GsearchUserByEmailVars._(
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, r'GsearchUserByEmailVars', 'email'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
+  @override
+  final String title;
+  @override
+  final int amount;
+  @override
+  final BuiltList<_i2.GSplitInputNonGroup> splitsNonGroup;
+
+  factory _$GcreateNonGroupExpenseVars(
+          [void Function(GcreateNonGroupExpenseVarsBuilder)? updates]) =>
+      (new GcreateNonGroupExpenseVarsBuilder()..update(updates))._build();
+
+  _$GcreateNonGroupExpenseVars._(
+      {required this.title, required this.amount, required this.splitsNonGroup})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        title, r'GcreateNonGroupExpenseVars', 'title');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GcreateNonGroupExpenseVars', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        splitsNonGroup, r'GcreateNonGroupExpenseVars', 'splitsNonGroup');
+  }
+
+  @override
+  GcreateNonGroupExpenseVars rebuild(
+          void Function(GcreateNonGroupExpenseVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcreateNonGroupExpenseVarsBuilder toBuilder() =>
+      new GcreateNonGroupExpenseVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcreateNonGroupExpenseVars &&
+        title == other.title &&
+        amount == other.amount &&
+        splitsNonGroup == other.splitsNonGroup;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, splitsNonGroup.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GcreateNonGroupExpenseVars')
+          ..add('title', title)
+          ..add('amount', amount)
+          ..add('splitsNonGroup', splitsNonGroup))
+        .toString();
+  }
+}
+
+class GcreateNonGroupExpenseVarsBuilder
+    implements
+        Builder<GcreateNonGroupExpenseVars, GcreateNonGroupExpenseVarsBuilder> {
+  _$GcreateNonGroupExpenseVars? _$v;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  ListBuilder<_i2.GSplitInputNonGroup>? _splitsNonGroup;
+  ListBuilder<_i2.GSplitInputNonGroup> get splitsNonGroup =>
+      _$this._splitsNonGroup ??= new ListBuilder<_i2.GSplitInputNonGroup>();
+  set splitsNonGroup(ListBuilder<_i2.GSplitInputNonGroup>? splitsNonGroup) =>
+      _$this._splitsNonGroup = splitsNonGroup;
+
+  GcreateNonGroupExpenseVarsBuilder();
+
+  GcreateNonGroupExpenseVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _title = $v.title;
+      _amount = $v.amount;
+      _splitsNonGroup = $v.splitsNonGroup.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcreateNonGroupExpenseVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcreateNonGroupExpenseVars;
+  }
+
+  @override
+  void update(void Function(GcreateNonGroupExpenseVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcreateNonGroupExpenseVars build() => _build();
+
+  _$GcreateNonGroupExpenseVars _build() {
+    _$GcreateNonGroupExpenseVars _$result;
+    try {
+      _$result = _$v ??
+          new _$GcreateNonGroupExpenseVars._(
+              title: BuiltValueNullFieldError.checkNotNull(
+                  title, r'GcreateNonGroupExpenseVars', 'title'),
+              amount: BuiltValueNullFieldError.checkNotNull(
+                  amount, r'GcreateNonGroupExpenseVars', 'amount'),
+              splitsNonGroup: splitsNonGroup.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'splitsNonGroup';
+        splitsNonGroup.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GcreateNonGroupExpenseVars', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

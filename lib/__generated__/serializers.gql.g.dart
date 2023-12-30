@@ -36,6 +36,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GSplitFieldsReq.serializer)
       ..add(GSplitFieldsVars.serializer)
       ..add(GSplitInput.serializer)
+      ..add(GSplitInputNonGroup.serializer)
       ..add(GUserFieldsData.serializer)
       ..add(GUserFieldsReq.serializer)
       ..add(GUserFieldsVars.serializer)
@@ -53,6 +54,25 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Gadd_to_groupData.serializer)
       ..add(Gadd_to_groupReq.serializer)
       ..add(Gadd_to_groupVars.serializer)
+      ..add(GcreateNonGroupExpenseData.serializer)
+      ..add(GcreateNonGroupExpenseData_addNonGroupExpense.serializer)
+      ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense.serializer)
+      ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator
+          .serializer)
+      ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
+          .serializer)
+      ..add(
+          GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
+              .serializer)
+      ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
+          .serializer)
+      ..add(GcreateNonGroupExpenseData_addNonGroupExpense_group.serializer)
+      ..add(GcreateNonGroupExpenseData_addNonGroupExpense_group_creator
+          .serializer)
+      ..add(GcreateNonGroupExpenseData_addNonGroupExpense_group_members
+          .serializer)
+      ..add(GcreateNonGroupExpenseReq.serializer)
+      ..add(GcreateNonGroupExpenseVars.serializer)
       ..add(Gcreate_groupData.serializer)
       ..add(Gcreate_groupData_createGroup.serializer)
       ..add(Gcreate_groupData_createGroup_creator.serializer)
@@ -84,6 +104,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Grefresh_tokenData_refreshToken.serializer)
       ..add(Grefresh_tokenReq.serializer)
       ..add(Grefresh_tokenVars.serializer)
+      ..add(GsearchUserByEmailData.serializer)
+      ..add(GsearchUserByEmailData_findUserByEmail.serializer)
+      ..add(GsearchUserByEmailReq.serializer)
+      ..add(GsearchUserByEmailVars.serializer)
       ..add(Gsend_email_otpData.serializer)
       ..add(Gsend_email_otpReq.serializer)
       ..add(Gsend_email_otpVars.serializer)
@@ -141,9 +165,27 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(GSplitInput)]),
           () => new ListBuilder<GSplitInput>())
       ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GSplitInputNonGroup)]),
+          () => new ListBuilder<GSplitInputNonGroup>())
+      ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(Gadd_expenseData_addExpense_splits)]),
           () => new ListBuilder<Gadd_expenseData_addExpense_splits>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits)
+          ]),
+          () => new ListBuilder<
+              GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GcreateNonGroupExpenseData_addNonGroupExpense_group_members)
+          ]),
+          () => new ListBuilder<
+              GcreateNonGroupExpenseData_addNonGroupExpense_group_members>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(Gcreate_groupData_createGroup_members)]),

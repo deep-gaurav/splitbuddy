@@ -4,6 +4,7 @@ fragment UserFields on User {
   name
   phone
   email
+  isSignedUp
 }
 
 fragment UserPaysFields on User{
@@ -164,5 +165,22 @@ mutation refresh_token($refresh_token: String!){
   refreshToken(refreshToken:$refresh_token){
     accessToken
     refreshToken
+  }
+}
+
+query searchUserByEmail($email:String!){
+  findUserByEmail(email:$email){
+    ...UserFields
+  }
+}
+
+mutation createNonGroupExpense($title: String!, $amount: Int!, $splitsNonGroup:[SplitInputNonGroup!]!){
+  addNonGroupExpense(title:$title, amount:$amount, splits: $splitsNonGroup){
+    group{
+      ...GroupFields
+    }
+    expense{
+      ...ExpenseFields
+    }
   }
 }

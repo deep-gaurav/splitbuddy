@@ -69,6 +69,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 decoration: const InputDecoration(
                   labelText: 'Name',
                 ),
+                keyboardType: TextInputType.name,
+                autofocus: true,
               ),
             ),
             const SizedBox(

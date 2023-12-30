@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sliver_tools/sliver_tools.dart';
+import 'package:splitbuddy/extensions/group_extension.dart';
+import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
 import 'package:splitbuddy/screens/create_expense_page.dart';
@@ -117,7 +119,7 @@ class _GroupState extends State<Group> {
                   },
                   icon: const Icon(Icons.people))
             ],
-            title: Text(group.name),
+            title: Text(group.displayName),
           ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 30),
@@ -427,7 +429,7 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar.large(
-            title: Text(group.name),
+            title: Text(group.displayName),
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
@@ -439,7 +441,7 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                     child: ListTile(
                       selected: context.read<AppState>().user!.id == member.id,
                       leading: const Icon(Icons.person),
-                      title: Text(member.name),
+                      title: Text(member.displayName),
                     ),
                   ),
                 );
@@ -458,7 +460,7 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                     var email = await showDialog(
                       context: context,
                       builder: (context) =>
-                          NewMemberEmailDialog(groupName: group.name),
+                          NewMemberEmailDialog(groupName: group.displayName),
                     );
                     if (email is String) {
                       try {

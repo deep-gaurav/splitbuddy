@@ -41,6 +41,13 @@ const UserFields = _i1.FragmentDefinitionNode(
       directives: [],
       selectionSet: null,
     ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'isSignedUp'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
   ]),
 );
 const UserPaysFields = _i1.FragmentDefinitionNode(
@@ -971,6 +978,125 @@ const refresh_token = _i1.OperationDefinitionNode(
     )
   ]),
 );
+const searchUserByEmail = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.query,
+  name: _i1.NameNode(value: 'searchUserByEmail'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'email')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    )
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'findUserByEmail'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'email'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'email')),
+        )
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'UserFields'),
+          directives: [],
+        )
+      ]),
+    )
+  ]),
+);
+const createNonGroupExpense = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.mutation,
+  name: _i1.NameNode(value: 'createNonGroupExpense'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'title')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'amount')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'splitsNonGroup')),
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'SplitInputNonGroup'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'addNonGroupExpense'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'title'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'title')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'amount'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'amount')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'splits'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'splitsNonGroup')),
+        ),
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'group'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: _i1.SelectionSetNode(selections: [
+            _i1.FragmentSpreadNode(
+              name: _i1.NameNode(value: 'GroupFields'),
+              directives: [],
+            )
+          ]),
+        ),
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'expense'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: _i1.SelectionSetNode(selections: [
+            _i1.FragmentSpreadNode(
+              name: _i1.NameNode(value: 'ExpenseFields'),
+              directives: [],
+            )
+          ]),
+        ),
+      ]),
+    )
+  ]),
+);
 const document = _i1.DocumentNode(definitions: [
   UserFields,
   UserPaysFields,
@@ -991,4 +1117,6 @@ const document = _i1.DocumentNode(definitions: [
   send_email_otp,
   verify_email_otp,
   refresh_token,
+  searchUserByEmail,
+  createNonGroupExpense,
 ]);

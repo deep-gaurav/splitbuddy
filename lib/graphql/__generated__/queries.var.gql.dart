@@ -306,6 +306,57 @@ abstract class Grefresh_tokenVars
       );
 }
 
+abstract class GsearchUserByEmailVars
+    implements Built<GsearchUserByEmailVars, GsearchUserByEmailVarsBuilder> {
+  GsearchUserByEmailVars._();
+
+  factory GsearchUserByEmailVars(
+          [Function(GsearchUserByEmailVarsBuilder b) updates]) =
+      _$GsearchUserByEmailVars;
+
+  String get email;
+  static Serializer<GsearchUserByEmailVars> get serializer =>
+      _$gsearchUserByEmailVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsearchUserByEmailVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsearchUserByEmailVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsearchUserByEmailVars.serializer,
+        json,
+      );
+}
+
+abstract class GcreateNonGroupExpenseVars
+    implements
+        Built<GcreateNonGroupExpenseVars, GcreateNonGroupExpenseVarsBuilder> {
+  GcreateNonGroupExpenseVars._();
+
+  factory GcreateNonGroupExpenseVars(
+          [Function(GcreateNonGroupExpenseVarsBuilder b) updates]) =
+      _$GcreateNonGroupExpenseVars;
+
+  String get title;
+  int get amount;
+  BuiltList<_i2.GSplitInputNonGroup> get splitsNonGroup;
+  static Serializer<GcreateNonGroupExpenseVars> get serializer =>
+      _$gcreateNonGroupExpenseVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcreateNonGroupExpenseVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcreateNonGroupExpenseVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcreateNonGroupExpenseVars.serializer,
+        json,
+      );
+}
+
 abstract class GUserFieldsVars
     implements Built<GUserFieldsVars, GUserFieldsVarsBuilder> {
   GUserFieldsVars._();
