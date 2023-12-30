@@ -103,6 +103,7 @@ class _FindPeopleState extends State<FindPeople> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               sliver: SliverToBoxAdapter(
                 child: SearchAnchor(
+                  viewHintText: 'Enter name or email',
                   builder: (context, controller) => ValueListenableBuilder(
                       valueListenable: expenseWith,
                       builder: (context, val, child) {
