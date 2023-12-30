@@ -25,96 +25,66 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const Spacer(),
-          Container(
-            padding: const EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                width: 3,
-                color: Theme.of(context).iconTheme.color!,
-              ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Spacer(),
+            Text(
+              "Sign Up",
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
-            child: const Icon(
-              Icons.person,
-              size: 80,
+            const SizedBox(
+              height: 20,
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Form(
-            key: formKey,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 500),
-                switchInCurve: Curves.elasticOut,
-                child: Card(
-                  elevation: 4,
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(vertical: 20),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: TextFormField(
-                            controller: controller,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Name cant be empty";
-                              } else {
-                                return null;
-                              }
-                            },
-                            onFieldSubmitted: onSubmit,
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Name',
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: TextFormField(
-                            controller: upiIdController,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "UPI ID cant be empty";
-                              } else {
-                                return null;
-                              }
-                            },
-                            onFieldSubmitted: onSubmit,
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'UPI Id',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: 300,
+                ),
+                child: Text(
+                  "Looks like you are new here.\n\nTell us your name to get you signed up!",
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(),
                 ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton.icon(
-            onPressed: () => onSubmit(controller.text),
-            icon: const Icon(Icons.done),
-            label: const Text("Signup"),
-            style: ElevatedButton.styleFrom(elevation: 4),
-          ),
-          const Spacer()
-        ],
+            // const Spacer(),
+            const SizedBox(
+              height: 10,
+            ),
+            Form(
+              key: formKey,
+              child: TextFormField(
+                controller: controller,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Name cant be empty";
+                  } else {
+                    return null;
+                  }
+                },
+                onFieldSubmitted: onSubmit,
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            FilledButton.icon(
+              onPressed: () => onSubmit(controller.text),
+              icon: const Icon(Icons.done),
+              label: const Text("Sign Up"),
+              style: ElevatedButton.styleFrom(elevation: 4),
+            ),
+            const SizedBox(
+              height: 20,
+            )
+          ],
+        ),
       ),
     );
   }

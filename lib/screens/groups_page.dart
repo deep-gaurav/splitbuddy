@@ -9,63 +9,67 @@ class GroupsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        const SliverAppBar.medium(
-          title: Text(
-            "Groups",
+    return RefreshIndicator(
+      onRefresh: () => context.read<AppState>().getGroups(),
+      child: CustomScrollView(
+        slivers: [
+          const SliverAppBar.medium(
+            title: Text(
+              "Groups",
+            ),
           ),
-        ),
-        Selector<AppState, List<GGroupFields>>(
-          selector: (context, state) => state.userGroups,
-          builder: (context, groups, child) {
-            return SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  var group = groups[index];
-                  return Container(
-                    margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                    child: Card(
-                      child: ListTile(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => Group(group: group),
-                            ),
-                          );
-                        },
-                        leading: const Icon(Icons.group),
-                        title: Text(group.name),
-                        subtitle: Row(
-                          children: [
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.call_received),
-                                  Text(group.toReceive.toString())
-                                ],
+          Selector<AppState, List<GGroupFields>>(
+            selector: (context, state) => state.userGroups,
+            builder: (context, groups, child) {
+              return SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    var group = groups[index];
+                    return Container(
+                      margin:
+                          const EdgeInsets.only(top: 10, left: 20, right: 20),
+                      child: Card(
+                        child: ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => Group(group: group),
                               ),
-                            ),
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.call_made),
-                                  Text(group.toPay.toString())
-                                ],
+                            );
+                          },
+                          leading: const Icon(Icons.group),
+                          title: Text(group.name),
+                          subtitle: Row(
+                            children: [
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    const Icon(Icons.call_received),
+                                    Text(group.toReceive.toString())
+                                  ],
+                                ),
                               ),
-                            )
-                          ],
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    const Icon(Icons.call_made),
+                                    Text(group.toPay.toString())
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
-                childCount: groups.length,
-              ),
-            );
-          },
-        )
-      ],
+                    );
+                  },
+                  childCount: groups.length,
+                ),
+              );
+            },
+          )
+        ],
+      ),
     );
   }
 }

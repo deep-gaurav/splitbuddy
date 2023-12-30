@@ -90,6 +90,13 @@ class AppState extends ChangeNotifier {
     });
   }
 
+  Future<List<GGroupFields>> getGroups() async {
+    final groups = await (await _getClient()).execute(GgroupsReq());
+    _userGroups = groups.data?.groups.toList() ?? _userGroups;
+    notifyListeners();
+    return _userGroups;
+  }
+
   Future<GUserFields> signup(String name, String upiId) async {
     var result = await (await _getClient()).execute(
       GsignupReq(
@@ -189,6 +196,7 @@ class AppState extends ChangeNotifier {
       await SecureStorageHelper.getInstance().storeTokens(
           accessToken: response.accessToken,
           refreshToken: response.refreshToken);
+      _reAuthClient = null;
       refresh(await _getClient());
 
       return true;
