@@ -102,17 +102,50 @@ class _FindPeopleState extends State<FindPeople> {
             SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               sliver: SliverToBoxAdapter(
-                child: SearchAnchor.bar(
-                  barElevation: MaterialStateProperty.all(2),
-                  barHintText: 'Enter name or email',
-                  barLeading: SearchBarChips(
-                    expenseWith: expenseWith,
-                    isOut: true,
-                  ),
-                  viewLeading: SearchBarChips(
-                    expenseWith: expenseWith,
-                    isOut: false,
-                  ),
+                child: SearchAnchor(
+                  builder: (context, controller) => ValueListenableBuilder(
+                      valueListenable: expenseWith,
+                      builder: (context, val, child) {
+                        if (val != null && val.lengthOfUsers > 0) {
+                          return ElevatedButton(
+                            onPressed: controller.openView,
+                            child: SearchBarChips(
+                                expenseWith: expenseWith, isOut: true),
+                          );
+                        }
+                        return ElevatedButton.icon(
+                          onPressed: controller.openView,
+                          icon: const Icon(Icons.search),
+                          label: const Text('Enter name or email'),
+                        );
+                      }),
+                  viewBuilder: (suggestions) {
+                    return MediaQuery.removePadding(
+                      context: context,
+                      removeTop: true,
+                      child: Scaffold(
+                        backgroundColor: Colors.transparent,
+                        body: ListView(children: [
+                          SearchBarChips(
+                              expenseWith: expenseWith, isOut: false),
+                          ...suggestions
+                        ]),
+                        floatingActionButton: ValueListenableBuilder(
+                            valueListenable: expenseWith,
+                            builder: (context, val, child) {
+                              if (val != null && val.lengthOfUsers > 0) {
+                                return FloatingActionButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Icon(Icons.check),
+                                );
+                              }
+                              return const SizedBox();
+                            }),
+                      ),
+                    );
+                  },
                   suggestionsBuilder: (BuildContext context,
                       SearchController controller) async {
                     final AppState appState = context.read<AppState>();
@@ -141,6 +174,45 @@ class _FindPeopleState extends State<FindPeople> {
                                 child: ListTile(
                                   leading: const Icon(Icons.group),
                                   title: Text(element.displayName),
+                                ),
+                              ),
+                            ),
+                          )
+                    ];
+                    final users = appState.interactedUsers;
+                    final currentUser = appState.user!;
+                    final List<Widget> usersList = <Widget>[
+                      ...users
+                          .where((element) =>
+                              element.id != currentUser.id &&
+                              element.displayName
+                                  .toLowerCase()
+                                  .contains(controller.text.toLowerCase()))
+                          .map(
+                            (searchUser) => InkWell(
+                              onTap: () {
+                                if (expenseWith.value
+                                    case ExpenseWithPeople(users: var users)) {
+                                  if (!users.any((element) =>
+                                      (element is UserWithUser) &&
+                                      element.user.id == searchUser.id)) {
+                                    expenseWith.value =
+                                        ExpenseWithPeople(users: [
+                                      ...users,
+                                      UserWithUser(user: searchUser),
+                                    ]);
+                                  }
+                                } else {
+                                  expenseWith.value = ExpenseWithPeople(users: [
+                                    UserWithUser(user: searchUser),
+                                  ]);
+                                }
+                                controller.clear();
+                              },
+                              child: Card(
+                                child: ListTile(
+                                  leading: const Icon(Icons.person),
+                                  title: Text(searchUser.displayName),
                                 ),
                               ),
                             ),
@@ -202,6 +274,13 @@ class _FindPeopleState extends State<FindPeople> {
                             ),
                           ),
                         ),
+                      if (usersList.isNotEmpty) ...[
+                        const ListTile(
+                          dense: true,
+                          title: Text('Friends'),
+                        ),
+                        ...usersList
+                      ],
                       if (groupsList.isNotEmpty) ...[
                         const ListTile(
                           dense: true,
@@ -505,16 +584,8 @@ class SearchBarChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ValueListenableBuilder(
       valueListenable: expenseWith,
-      builder: (context, expenseWithValue, child) => Row(
-            mainAxisSize: MainAxisSize.min,
+      builder: (context, expenseWithValue, child) => Wrap(
             children: [
-              if (!isOut)
-                IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: const Icon(Icons.arrow_back),
-                ),
               if (expenseWithValue case ExpenseWithPeople(users: var users))
                 ...users.map(
                   (e) => Chip(
