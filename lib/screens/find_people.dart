@@ -275,19 +275,19 @@ class _FindPeopleState extends State<FindPeople> {
                             ),
                           ),
                         ),
-                      if (usersList.isNotEmpty) ...[
-                        const ListTile(
-                          dense: true,
-                          title: Text('Friends'),
-                        ),
-                        ...usersList
-                      ],
                       if (groupsList.isNotEmpty) ...[
                         const ListTile(
                           dense: true,
                           title: Text('Groups'),
                         ),
                         ...groupsList
+                      ],
+                      if (usersList.isNotEmpty) ...[
+                        const ListTile(
+                          dense: true,
+                          title: Text('Friends'),
+                        ),
+                        ...usersList
                       ],
                     ];
                     return searchOptions;
