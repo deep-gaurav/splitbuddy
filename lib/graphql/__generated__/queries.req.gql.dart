@@ -600,154 +600,6 @@ abstract class Gadd_expenseReq
       );
 }
 
-abstract class Gsettle_userReq
-    implements
-        Built<Gsettle_userReq, Gsettle_userReqBuilder>,
-        _i1.OperationRequest<_i2.Gsettle_userData, _i3.Gsettle_userVars> {
-  Gsettle_userReq._();
-
-  factory Gsettle_userReq([Function(Gsettle_userReqBuilder b) updates]) =
-      _$Gsettle_userReq;
-
-  static void _initializeBuilder(Gsettle_userReqBuilder b) => b
-    ..operation = _i4.Operation(
-      document: _i5.document,
-      operationName: 'settle_user',
-    )
-    ..executeOnListen = true;
-
-  @override
-  _i3.Gsettle_userVars get vars;
-  @override
-  _i4.Operation get operation;
-  @override
-  _i4.Request get execRequest => _i4.Request(
-        operation: operation,
-        variables: vars.toJson(),
-      );
-
-  @override
-  String? get requestId;
-  @override
-  @BuiltValueField(serialize: false)
-  _i2.Gsettle_userData? Function(
-    _i2.Gsettle_userData?,
-    _i2.Gsettle_userData?,
-  )? get updateResult;
-  @override
-  _i2.Gsettle_userData? get optimisticResponse;
-  @override
-  String? get updateCacheHandlerKey;
-  @override
-  Map<String, dynamic>? get updateCacheHandlerContext;
-  @override
-  _i1.FetchPolicy? get fetchPolicy;
-  @override
-  bool get executeOnListen;
-  @override
-  _i2.Gsettle_userData? parseData(Map<String, dynamic> json) =>
-      _i2.Gsettle_userData.fromJson(json);
-
-  @override
-  Map<String, dynamic> varsToJson() => vars.toJson();
-
-  @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
-
-  @override
-  _i1.OperationRequest<_i2.Gsettle_userData, _i3.Gsettle_userVars>
-      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-          this.rebuild((b) => b..operation = transform(operation));
-
-  static Serializer<Gsettle_userReq> get serializer =>
-      _$gsettleUserReqSerializer;
-
-  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        Gsettle_userReq.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static Gsettle_userReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(
-        Gsettle_userReq.serializer,
-        json,
-      );
-}
-
-abstract class Gsettle_expenseReq
-    implements
-        Built<Gsettle_expenseReq, Gsettle_expenseReqBuilder>,
-        _i1.OperationRequest<_i2.Gsettle_expenseData, _i3.Gsettle_expenseVars> {
-  Gsettle_expenseReq._();
-
-  factory Gsettle_expenseReq([Function(Gsettle_expenseReqBuilder b) updates]) =
-      _$Gsettle_expenseReq;
-
-  static void _initializeBuilder(Gsettle_expenseReqBuilder b) => b
-    ..operation = _i4.Operation(
-      document: _i5.document,
-      operationName: 'settle_expense',
-    )
-    ..executeOnListen = true;
-
-  @override
-  _i3.Gsettle_expenseVars get vars;
-  @override
-  _i4.Operation get operation;
-  @override
-  _i4.Request get execRequest => _i4.Request(
-        operation: operation,
-        variables: vars.toJson(),
-      );
-
-  @override
-  String? get requestId;
-  @override
-  @BuiltValueField(serialize: false)
-  _i2.Gsettle_expenseData? Function(
-    _i2.Gsettle_expenseData?,
-    _i2.Gsettle_expenseData?,
-  )? get updateResult;
-  @override
-  _i2.Gsettle_expenseData? get optimisticResponse;
-  @override
-  String? get updateCacheHandlerKey;
-  @override
-  Map<String, dynamic>? get updateCacheHandlerContext;
-  @override
-  _i1.FetchPolicy? get fetchPolicy;
-  @override
-  bool get executeOnListen;
-  @override
-  _i2.Gsettle_expenseData? parseData(Map<String, dynamic> json) =>
-      _i2.Gsettle_expenseData.fromJson(json);
-
-  @override
-  Map<String, dynamic> varsToJson() => vars.toJson();
-
-  @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
-
-  @override
-  _i1.OperationRequest<_i2.Gsettle_expenseData, _i3.Gsettle_expenseVars>
-      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-          this.rebuild((b) => b..operation = transform(operation));
-
-  static Serializer<Gsettle_expenseReq> get serializer =>
-      _$gsettleExpenseReqSerializer;
-
-  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        Gsettle_expenseReq.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static Gsettle_expenseReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(
-        Gsettle_expenseReq.serializer,
-        json,
-      );
-}
-
 abstract class Gsend_email_otpReq
     implements
         Built<Gsend_email_otpReq, Gsend_email_otpReqBuilder>,
@@ -1125,6 +977,307 @@ abstract class GcreateNonGroupExpenseReq
       );
 }
 
+abstract class GsettleInGroupReq
+    implements
+        Built<GsettleInGroupReq, GsettleInGroupReqBuilder>,
+        _i1.OperationRequest<_i2.GsettleInGroupData, _i3.GsettleInGroupVars> {
+  GsettleInGroupReq._();
+
+  factory GsettleInGroupReq([Function(GsettleInGroupReqBuilder b) updates]) =
+      _$GsettleInGroupReq;
+
+  static void _initializeBuilder(GsettleInGroupReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'settleInGroup',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GsettleInGroupVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GsettleInGroupData? Function(
+    _i2.GsettleInGroupData?,
+    _i2.GsettleInGroupData?,
+  )? get updateResult;
+  @override
+  _i2.GsettleInGroupData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GsettleInGroupData? parseData(Map<String, dynamic> json) =>
+      _i2.GsettleInGroupData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GsettleInGroupData, _i3.GsettleInGroupVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GsettleInGroupReq> get serializer =>
+      _$gsettleInGroupReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GsettleInGroupReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsettleInGroupReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GsettleInGroupReq.serializer,
+        json,
+      );
+}
+
+abstract class GsimplifyUserReq
+    implements
+        Built<GsimplifyUserReq, GsimplifyUserReqBuilder>,
+        _i1.OperationRequest<_i2.GsimplifyUserData, _i3.GsimplifyUserVars> {
+  GsimplifyUserReq._();
+
+  factory GsimplifyUserReq([Function(GsimplifyUserReqBuilder b) updates]) =
+      _$GsimplifyUserReq;
+
+  static void _initializeBuilder(GsimplifyUserReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'simplifyUser',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GsimplifyUserVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GsimplifyUserData? Function(
+    _i2.GsimplifyUserData?,
+    _i2.GsimplifyUserData?,
+  )? get updateResult;
+  @override
+  _i2.GsimplifyUserData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GsimplifyUserData? parseData(Map<String, dynamic> json) =>
+      _i2.GsimplifyUserData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GsimplifyUserData, _i3.GsimplifyUserVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GsimplifyUserReq> get serializer =>
+      _$gsimplifyUserReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GsimplifyUserReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsimplifyUserReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GsimplifyUserReq.serializer,
+        json,
+      );
+}
+
+abstract class GautoSettleWithUserReq
+    implements
+        Built<GautoSettleWithUserReq, GautoSettleWithUserReqBuilder>,
+        _i1.OperationRequest<_i2.GautoSettleWithUserData,
+            _i3.GautoSettleWithUserVars> {
+  GautoSettleWithUserReq._();
+
+  factory GautoSettleWithUserReq(
+          [Function(GautoSettleWithUserReqBuilder b) updates]) =
+      _$GautoSettleWithUserReq;
+
+  static void _initializeBuilder(GautoSettleWithUserReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'autoSettleWithUser',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GautoSettleWithUserVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GautoSettleWithUserData? Function(
+    _i2.GautoSettleWithUserData?,
+    _i2.GautoSettleWithUserData?,
+  )? get updateResult;
+  @override
+  _i2.GautoSettleWithUserData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GautoSettleWithUserData? parseData(Map<String, dynamic> json) =>
+      _i2.GautoSettleWithUserData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GautoSettleWithUserData, _i3.GautoSettleWithUserVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GautoSettleWithUserReq> get serializer =>
+      _$gautoSettleWithUserReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GautoSettleWithUserReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GautoSettleWithUserReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GautoSettleWithUserReq.serializer,
+        json,
+      );
+}
+
+abstract class GtransactionWithUserReq
+    implements
+        Built<GtransactionWithUserReq, GtransactionWithUserReqBuilder>,
+        _i1.OperationRequest<_i2.GtransactionWithUserData,
+            _i3.GtransactionWithUserVars> {
+  GtransactionWithUserReq._();
+
+  factory GtransactionWithUserReq(
+          [Function(GtransactionWithUserReqBuilder b) updates]) =
+      _$GtransactionWithUserReq;
+
+  static void _initializeBuilder(GtransactionWithUserReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'transactionWithUser',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GtransactionWithUserVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GtransactionWithUserData? Function(
+    _i2.GtransactionWithUserData?,
+    _i2.GtransactionWithUserData?,
+  )? get updateResult;
+  @override
+  _i2.GtransactionWithUserData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GtransactionWithUserData? parseData(Map<String, dynamic> json) =>
+      _i2.GtransactionWithUserData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GtransactionWithUserData,
+      _i3.GtransactionWithUserVars> transformOperation(
+          _i4.Operation Function(_i4.Operation) transform) =>
+      this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GtransactionWithUserReq> get serializer =>
+      _$gtransactionWithUserReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GtransactionWithUserReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GtransactionWithUserReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GtransactionWithUserReq.serializer,
+        json,
+      );
+}
+
 abstract class GUserFieldsReq
     implements
         Built<GUserFieldsReq, GUserFieldsReqBuilder>,
@@ -1217,6 +1370,52 @@ abstract class GUserPaysFieldsReq
       );
 }
 
+abstract class GGroupBasicReq
+    implements
+        Built<GGroupBasicReq, GGroupBasicReqBuilder>,
+        _i1.FragmentRequest<_i2.GGroupBasicData, _i3.GGroupBasicVars> {
+  GGroupBasicReq._();
+
+  factory GGroupBasicReq([Function(GGroupBasicReqBuilder b) updates]) =
+      _$GGroupBasicReq;
+
+  static void _initializeBuilder(GGroupBasicReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'GroupBasic';
+
+  @override
+  _i3.GGroupBasicVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GGroupBasicData? parseData(Map<String, dynamic> json) =>
+      _i2.GGroupBasicData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  static Serializer<GGroupBasicReq> get serializer =>
+      _$gGroupBasicReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GGroupBasicReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GGroupBasicReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GGroupBasicReq.serializer,
+        json,
+      );
+}
+
 abstract class GGroupFieldsReq
     implements
         Built<GGroupFieldsReq, GGroupFieldsReqBuilder>,
@@ -1259,6 +1458,52 @@ abstract class GGroupFieldsReq
   static GGroupFieldsReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GGroupFieldsReq.serializer,
+        json,
+      );
+}
+
+abstract class GExpenseBasicReq
+    implements
+        Built<GExpenseBasicReq, GExpenseBasicReqBuilder>,
+        _i1.FragmentRequest<_i2.GExpenseBasicData, _i3.GExpenseBasicVars> {
+  GExpenseBasicReq._();
+
+  factory GExpenseBasicReq([Function(GExpenseBasicReqBuilder b) updates]) =
+      _$GExpenseBasicReq;
+
+  static void _initializeBuilder(GExpenseBasicReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'ExpenseBasic';
+
+  @override
+  _i3.GExpenseBasicVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GExpenseBasicData? parseData(Map<String, dynamic> json) =>
+      _i2.GExpenseBasicData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  static Serializer<GExpenseBasicReq> get serializer =>
+      _$gExpenseBasicReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GExpenseBasicReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GExpenseBasicReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GExpenseBasicReq.serializer,
         json,
       );
 }
@@ -1351,6 +1596,54 @@ abstract class GSplitFieldsReq
   static GSplitFieldsReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GSplitFieldsReq.serializer,
+        json,
+      );
+}
+
+abstract class GSplitTransactionFieldsReq
+    implements
+        Built<GSplitTransactionFieldsReq, GSplitTransactionFieldsReqBuilder>,
+        _i1.FragmentRequest<_i2.GSplitTransactionFieldsData,
+            _i3.GSplitTransactionFieldsVars> {
+  GSplitTransactionFieldsReq._();
+
+  factory GSplitTransactionFieldsReq(
+          [Function(GSplitTransactionFieldsReqBuilder b) updates]) =
+      _$GSplitTransactionFieldsReq;
+
+  static void _initializeBuilder(GSplitTransactionFieldsReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'SplitTransactionFields';
+
+  @override
+  _i3.GSplitTransactionFieldsVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GSplitTransactionFieldsData? parseData(Map<String, dynamic> json) =>
+      _i2.GSplitTransactionFieldsData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  static Serializer<GSplitTransactionFieldsReq> get serializer =>
+      _$gSplitTransactionFieldsReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GSplitTransactionFieldsReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitTransactionFieldsReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GSplitTransactionFieldsReq.serializer,
         json,
       );
 }

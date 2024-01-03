@@ -2,6 +2,7 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:splitbuddy/__generated__/serializers.gql.dart' as _i1;
@@ -52,6 +53,25 @@ abstract class GSplitInputNonGroup
         GSplitInputNonGroup.serializer,
         json,
       );
+}
+
+class GTransactionType extends EnumClass {
+  const GTransactionType._(String name) : super(name);
+
+  static const GTransactionType EXPENSE_SPLIT = _$gTransactionTypeEXPENSE_SPLIT;
+
+  static const GTransactionType CROSS_GROUP_SETTLEMENT =
+      _$gTransactionTypeCROSS_GROUP_SETTLEMENT;
+
+  static const GTransactionType CASH_PAID = _$gTransactionTypeCASH_PAID;
+
+  static Serializer<GTransactionType> get serializer =>
+      _$gTransactionTypeSerializer;
+
+  static BuiltSet<GTransactionType> get values => _$gTransactionTypeValues;
+
+  static GTransactionType valueOf(String name) =>
+      _$gTransactionTypeValueOf(name);
 }
 
 const Map<String, Set<String>> possibleTypesMap = {

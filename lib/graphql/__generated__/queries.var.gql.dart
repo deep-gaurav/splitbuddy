@@ -187,54 +187,6 @@ abstract class Gadd_expenseVars
       );
 }
 
-abstract class Gsettle_userVars
-    implements Built<Gsettle_userVars, Gsettle_userVarsBuilder> {
-  Gsettle_userVars._();
-
-  factory Gsettle_userVars([Function(Gsettle_userVarsBuilder b) updates]) =
-      _$Gsettle_userVars;
-
-  int get amount;
-  String get userId;
-  static Serializer<Gsettle_userVars> get serializer =>
-      _$gsettleUserVarsSerializer;
-
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        Gsettle_userVars.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static Gsettle_userVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        Gsettle_userVars.serializer,
-        json,
-      );
-}
-
-abstract class Gsettle_expenseVars
-    implements Built<Gsettle_expenseVars, Gsettle_expenseVarsBuilder> {
-  Gsettle_expenseVars._();
-
-  factory Gsettle_expenseVars(
-      [Function(Gsettle_expenseVarsBuilder b) updates]) = _$Gsettle_expenseVars;
-
-  int get amount;
-  String get expenseId;
-  static Serializer<Gsettle_expenseVars> get serializer =>
-      _$gsettleExpenseVarsSerializer;
-
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        Gsettle_expenseVars.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static Gsettle_expenseVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        Gsettle_expenseVars.serializer,
-        json,
-      );
-}
-
 abstract class Gsend_email_otpVars
     implements Built<Gsend_email_otpVars, Gsend_email_otpVarsBuilder> {
   Gsend_email_otpVars._();
@@ -341,7 +293,7 @@ abstract class GcreateNonGroupExpenseVars
 
   String get title;
   int get amount;
-  BuiltList<_i2.GSplitInputNonGroup> get splitsNonGroup;
+  BuiltList<_i2.GSplitInputNonGroup> get nonGroupSplit;
   static Serializer<GcreateNonGroupExpenseVars> get serializer =>
       _$gcreateNonGroupExpenseVarsSerializer;
 
@@ -353,6 +305,106 @@ abstract class GcreateNonGroupExpenseVars
   static GcreateNonGroupExpenseVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GcreateNonGroupExpenseVars.serializer,
+        json,
+      );
+}
+
+abstract class GsettleInGroupVars
+    implements Built<GsettleInGroupVars, GsettleInGroupVarsBuilder> {
+  GsettleInGroupVars._();
+
+  factory GsettleInGroupVars([Function(GsettleInGroupVarsBuilder b) updates]) =
+      _$GsettleInGroupVars;
+
+  String get withUser;
+  String get groupId;
+  int get amount;
+  static Serializer<GsettleInGroupVars> get serializer =>
+      _$gsettleInGroupVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsettleInGroupVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsettleInGroupVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsettleInGroupVars.serializer,
+        json,
+      );
+}
+
+abstract class GsimplifyUserVars
+    implements Built<GsimplifyUserVars, GsimplifyUserVarsBuilder> {
+  GsimplifyUserVars._();
+
+  factory GsimplifyUserVars([Function(GsimplifyUserVarsBuilder b) updates]) =
+      _$GsimplifyUserVars;
+
+  String get withUser;
+  static Serializer<GsimplifyUserVars> get serializer =>
+      _$gsimplifyUserVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsimplifyUserVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsimplifyUserVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsimplifyUserVars.serializer,
+        json,
+      );
+}
+
+abstract class GautoSettleWithUserVars
+    implements Built<GautoSettleWithUserVars, GautoSettleWithUserVarsBuilder> {
+  GautoSettleWithUserVars._();
+
+  factory GautoSettleWithUserVars(
+          [Function(GautoSettleWithUserVarsBuilder b) updates]) =
+      _$GautoSettleWithUserVars;
+
+  String get withUser;
+  int get amount;
+  static Serializer<GautoSettleWithUserVars> get serializer =>
+      _$gautoSettleWithUserVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GautoSettleWithUserVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GautoSettleWithUserVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GautoSettleWithUserVars.serializer,
+        json,
+      );
+}
+
+abstract class GtransactionWithUserVars
+    implements
+        Built<GtransactionWithUserVars, GtransactionWithUserVarsBuilder> {
+  GtransactionWithUserVars._();
+
+  factory GtransactionWithUserVars(
+          [Function(GtransactionWithUserVarsBuilder b) updates]) =
+      _$GtransactionWithUserVars;
+
+  String get withUser;
+  int get skip;
+  int get limit;
+  static Serializer<GtransactionWithUserVars> get serializer =>
+      _$gtransactionWithUserVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GtransactionWithUserVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GtransactionWithUserVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GtransactionWithUserVars.serializer,
         json,
       );
 }
@@ -401,6 +453,28 @@ abstract class GUserPaysFieldsVars
       );
 }
 
+abstract class GGroupBasicVars
+    implements Built<GGroupBasicVars, GGroupBasicVarsBuilder> {
+  GGroupBasicVars._();
+
+  factory GGroupBasicVars([Function(GGroupBasicVarsBuilder b) updates]) =
+      _$GGroupBasicVars;
+
+  static Serializer<GGroupBasicVars> get serializer =>
+      _$gGroupBasicVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GGroupBasicVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GGroupBasicVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GGroupBasicVars.serializer,
+        json,
+      );
+}
+
 abstract class GGroupFieldsVars
     implements Built<GGroupFieldsVars, GGroupFieldsVarsBuilder> {
   GGroupFieldsVars._();
@@ -419,6 +493,28 @@ abstract class GGroupFieldsVars
   static GGroupFieldsVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GGroupFieldsVars.serializer,
+        json,
+      );
+}
+
+abstract class GExpenseBasicVars
+    implements Built<GExpenseBasicVars, GExpenseBasicVarsBuilder> {
+  GExpenseBasicVars._();
+
+  factory GExpenseBasicVars([Function(GExpenseBasicVarsBuilder b) updates]) =
+      _$GExpenseBasicVars;
+
+  static Serializer<GExpenseBasicVars> get serializer =>
+      _$gExpenseBasicVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GExpenseBasicVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GExpenseBasicVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GExpenseBasicVars.serializer,
         json,
       );
 }
@@ -463,6 +559,30 @@ abstract class GSplitFieldsVars
   static GSplitFieldsVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GSplitFieldsVars.serializer,
+        json,
+      );
+}
+
+abstract class GSplitTransactionFieldsVars
+    implements
+        Built<GSplitTransactionFieldsVars, GSplitTransactionFieldsVarsBuilder> {
+  GSplitTransactionFieldsVars._();
+
+  factory GSplitTransactionFieldsVars(
+          [Function(GSplitTransactionFieldsVarsBuilder b) updates]) =
+      _$GSplitTransactionFieldsVars;
+
+  static Serializer<GSplitTransactionFieldsVars> get serializer =>
+      _$gSplitTransactionFieldsVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitTransactionFieldsVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitTransactionFieldsVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitTransactionFieldsVars.serializer,
         json,
       );
 }

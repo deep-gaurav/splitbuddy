@@ -6,7 +6,7 @@ import 'package:splitbuddy/extensions/group_extension.dart';
 import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
-import 'package:splitbuddy/screens/create_expense_page.dart';
+import 'package:splitbuddy/screens/groups_page.dart';
 import 'package:splitbuddy/state/app_state.dart';
 
 class Group extends StatefulWidget {
@@ -119,7 +119,15 @@ class _GroupState extends State<Group> {
                   },
                   icon: const Icon(Icons.people))
             ],
-            title: Text(group.displayName),
+            title: Row(
+              children: [
+                GroupIconWidget(group: group),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(group.displayName),
+              ],
+            ),
           ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 30),
@@ -171,10 +179,6 @@ class _GroupState extends State<Group> {
                             var isSelf = expense.creator.id ==
                                 context.read<AppState>().user!.id;
 
-                            var isSettled = expense.splits.every(
-                              (element) =>
-                                  element.amountSettled >= element.amount,
-                            );
                             return FractionallySizedBox(
                               widthFactor: 0.7,
                               alignment: isSelf
@@ -185,7 +189,7 @@ class _GroupState extends State<Group> {
                                     ? Alignment.centerRight
                                     : Alignment.centerLeft,
                                 child: Card(
-                                  elevation: isSettled ? 1.0 : 4.0,
+                                  elevation: 1.0,
                                   child: Container(
                                     // decoration: BoxDecoration(
                                     //   color:
@@ -198,24 +202,6 @@ class _GroupState extends State<Group> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.stretch,
                                         children: [
-                                          if (!isSettled)
-                                            Row(
-                                              children: [
-                                                const Icon(Icons.receipt_long),
-                                                const SizedBox(
-                                                  width: 5,
-                                                ),
-                                                Text(
-                                                  expense.title,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyMedium
-                                                      ?.copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                )
-                                              ],
-                                            ),
                                           Row(
                                             children: [
                                               Text(
@@ -232,22 +218,21 @@ class _GroupState extends State<Group> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.end,
                                                 children: [
-                                                  if (isSettled)
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 8.0),
-                                                      child: Text(
-                                                        expense.title,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyMedium
-                                                            ?.copyWith(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 8.0),
+                                                    child: Text(
+                                                      expense.title,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium
+                                                          ?.copyWith(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
                                                     ),
+                                                  ),
                                                   Text(
                                                     DateFormat("h:mm a").format(
                                                       DateTime.parse(
@@ -259,78 +244,6 @@ class _GroupState extends State<Group> {
                                               )
                                             ],
                                           ),
-                                          // Text(
-                                          //   expense.title,
-                                          //   style: Theme.of(context).textTheme.labelLarge,
-                                          // ),
-                                          if (!isSettled) ...[
-                                            const Divider(),
-                                            ...expense.splits.map(
-                                              (e) {
-                                                var isPaid =
-                                                    e.amountSettled >= e.amount;
-                                                return Stack(
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        Icon(
-                                                          isSelf
-                                                              ? Icons
-                                                                  .call_received
-                                                              : Icons.call_made,
-                                                          size: 14,
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 5,
-                                                        ),
-                                                        Text.rich(
-                                                          TextSpan(
-                                                            children: [
-                                                              TextSpan(
-                                                                  text: e
-                                                                      .fromUser
-                                                                      .name,
-                                                                  style: const TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold)),
-                                                              const TextSpan(
-                                                                  text:
-                                                                      " to pay"),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 20,
-                                                        ),
-                                                        const Spacer(),
-                                                        if (isPaid)
-                                                          Text("${e.amount}")
-                                                        else
-                                                          Text(
-                                                              "${e.amount - e.amountSettled}/${e.amount}")
-                                                      ],
-                                                    ),
-                                                    if (isPaid)
-                                                      Positioned(
-                                                        top: 0,
-                                                        bottom: 0,
-                                                        left: 0,
-                                                        right: 0,
-                                                        child: Center(
-                                                          child: Container(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .dividerColor,
-                                                            height: 1,
-                                                          ),
-                                                        ),
-                                                      )
-                                                  ],
-                                                );
-                                              },
-                                            )
-                                          ]
                                         ],
                                       ),
                                     ),
@@ -354,15 +267,15 @@ class _GroupState extends State<Group> {
               ElevatedButton.icon(
                 icon: const Icon(Icons.sell),
                 onPressed: () async {
-                  var expense = await Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => CreateExpensePage(group: group),
-                    ),
-                  );
-                  if (expense is GExpenseFields) {
-                    expenses.insert(0, expense);
-                    setState(() {});
-                  }
+                  // var expense = await Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) => CreateExpensePage(group: group),
+                  //   ),
+                  // );
+                  // if (expense is GExpenseFields) {
+                  //   expenses.insert(0, expense);
+                  //   setState(() {});
+                  // }
                 },
                 label: const Text(
                   "Add Expense",
@@ -439,9 +352,10 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                   margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
                   child: Card(
                     child: ListTile(
-                      selected: context.read<AppState>().user!.id == member.id,
+                      selected:
+                          context.read<AppState>().user!.id == member.member.id,
                       leading: const Icon(Icons.person),
-                      title: Text(member.displayName),
+                      title: Text(member.member.displayName),
                     ),
                   ),
                 );

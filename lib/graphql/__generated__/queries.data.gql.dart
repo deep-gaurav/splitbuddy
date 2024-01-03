@@ -7,6 +7,7 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:gql_code_builder/src/serializers/inline_fragment_serializer.dart'
     as _i2;
+import 'package:splitbuddy/__generated__/schema.schema.gql.dart' as _i3;
 import 'package:splitbuddy/__generated__/serializers.gql.dart' as _i1;
 
 part 'queries.data.gql.g.dart';
@@ -246,19 +247,17 @@ abstract class GgroupsData_groups
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  String get id;
-  @override
-  String? get name;
-  @override
   GgroupsData_groups_creator get creator;
   @override
   BuiltList<GgroupsData_groups_members> get members;
   @override
-  int get toPay;
-  @override
-  int get toReceive;
+  int get owed;
   @override
   String get createdAt;
+  @override
+  String get id;
+  @override
+  String? get name;
   static Serializer<GgroupsData_groups> get serializer =>
       _$ggroupsDataGroupsSerializer;
 
@@ -321,8 +320,7 @@ abstract class GgroupsData_groups_creator
 abstract class GgroupsData_groups_members
     implements
         Built<GgroupsData_groups_members, GgroupsData_groups_membersBuilder>,
-        GGroupFields_members,
-        GUserFields {
+        GGroupFields_members {
   GgroupsData_groups_members._();
 
   factory GgroupsData_groups_members(
@@ -330,6 +328,44 @@ abstract class GgroupsData_groups_members
       _$GgroupsData_groups_members;
 
   static void _initializeBuilder(GgroupsData_groups_membersBuilder b) =>
+      b..G__typename = 'GroupMember';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get owedInGroup;
+  @override
+  GgroupsData_groups_members_member get member;
+  static Serializer<GgroupsData_groups_members> get serializer =>
+      _$ggroupsDataGroupsMembersSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgroupsData_groups_members.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgroupsData_groups_members? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgroupsData_groups_members.serializer,
+        json,
+      );
+}
+
+abstract class GgroupsData_groups_members_member
+    implements
+        Built<GgroupsData_groups_members_member,
+            GgroupsData_groups_members_memberBuilder>,
+        GGroupFields_members_member,
+        GUserFields {
+  GgroupsData_groups_members_member._();
+
+  factory GgroupsData_groups_members_member(
+          [Function(GgroupsData_groups_members_memberBuilder b) updates]) =
+      _$GgroupsData_groups_members_member;
+
+  static void _initializeBuilder(GgroupsData_groups_members_memberBuilder b) =>
       b..G__typename = 'User';
 
   @override
@@ -345,18 +381,19 @@ abstract class GgroupsData_groups_members
   String? get email;
   @override
   bool get isSignedUp;
-  static Serializer<GgroupsData_groups_members> get serializer =>
-      _$ggroupsDataGroupsMembersSerializer;
+  static Serializer<GgroupsData_groups_members_member> get serializer =>
+      _$ggroupsDataGroupsMembersMemberSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GgroupsData_groups_members.serializer,
+        GgroupsData_groups_members_member.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GgroupsData_groups_members? fromJson(Map<String, dynamic> json) =>
+  static GgroupsData_groups_members_member? fromJson(
+          Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GgroupsData_groups_members.serializer,
+        GgroupsData_groups_members_member.serializer,
         json,
       );
 }
@@ -394,7 +431,6 @@ abstract class Ginteracted_usersData_interactedUsers
     implements
         Built<Ginteracted_usersData_interactedUsers,
             Ginteracted_usersData_interactedUsersBuilder>,
-        GUserFields,
         GUserPaysFields {
   Ginteracted_usersData_interactedUsers._();
 
@@ -410,6 +446,10 @@ abstract class Ginteracted_usersData_interactedUsers
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
+  BuiltList<String> get upiIds;
+  @override
+  BuiltList<Ginteracted_usersData_interactedUsers_owes> get owes;
+  @override
   String get id;
   @override
   String? get name;
@@ -419,12 +459,6 @@ abstract class Ginteracted_usersData_interactedUsers
   String? get email;
   @override
   bool get isSignedUp;
-  @override
-  BuiltList<String> get upiIds;
-  @override
-  int get toPay;
-  @override
-  int get toReceive;
   static Serializer<Ginteracted_usersData_interactedUsers> get serializer =>
       _$ginteractedUsersDataInteractedUsersSerializer;
 
@@ -438,6 +472,45 @@ abstract class Ginteracted_usersData_interactedUsers
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         Ginteracted_usersData_interactedUsers.serializer,
+        json,
+      );
+}
+
+abstract class Ginteracted_usersData_interactedUsers_owes
+    implements
+        Built<Ginteracted_usersData_interactedUsers_owes,
+            Ginteracted_usersData_interactedUsers_owesBuilder>,
+        GUserPaysFields_owes {
+  Ginteracted_usersData_interactedUsers_owes._();
+
+  factory Ginteracted_usersData_interactedUsers_owes(
+      [Function(Ginteracted_usersData_interactedUsers_owesBuilder b)
+          updates]) = _$Ginteracted_usersData_interactedUsers_owes;
+
+  static void _initializeBuilder(
+          Ginteracted_usersData_interactedUsers_owesBuilder b) =>
+      b..G__typename = 'OwedInGroup';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get groupId;
+  @override
+  int get amount;
+  static Serializer<Ginteracted_usersData_interactedUsers_owes>
+      get serializer => _$ginteractedUsersDataInteractedUsersOwesSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        Ginteracted_usersData_interactedUsers_owes.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Ginteracted_usersData_interactedUsers_owes? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        Ginteracted_usersData_interactedUsers_owes.serializer,
         json,
       );
 }
@@ -485,19 +558,17 @@ abstract class GgroupData_group
   @override
   BuiltList<GgroupData_group_expenses> get expenses;
   @override
-  String get id;
-  @override
-  String? get name;
-  @override
   GgroupData_group_creator get creator;
   @override
   BuiltList<GgroupData_group_members> get members;
   @override
-  int get toPay;
-  @override
-  int get toReceive;
+  int get owed;
   @override
   String get createdAt;
+  @override
+  String get id;
+  @override
+  String? get name;
   static Serializer<GgroupData_group> get serializer =>
       _$ggroupDataGroupSerializer;
 
@@ -532,21 +603,17 @@ abstract class GgroupData_group_expenses
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
+  GgroupData_group_expenses_creator get creator;
+  @override
+  BuiltList<GgroupData_group_expenses_splits> get splits;
+  @override
   String get id;
   @override
   String get title;
   @override
   String get createdAt;
   @override
-  GgroupData_group_expenses_creator get creator;
-  @override
   int get amount;
-  @override
-  int get toPay;
-  @override
-  int get toReceive;
-  @override
-  BuiltList<GgroupData_group_expenses_splits> get splits;
   static Serializer<GgroupData_group_expenses> get serializer =>
       _$ggroupDataGroupExpensesSerializer;
 
@@ -633,13 +700,15 @@ abstract class GgroupData_group_expenses_splits
   @override
   int get amount;
   @override
-  int get amountSettled;
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
   @override
   GgroupData_group_expenses_splits_fromUser get fromUser;
   @override
   GgroupData_group_expenses_splits_toUser get toUser;
-  @override
-  bool get isSettled;
   static Serializer<GgroupData_group_expenses_splits> get serializer =>
       _$ggroupDataGroupExpensesSplitsSerializer;
 
@@ -799,8 +868,7 @@ abstract class GgroupData_group_creator
 abstract class GgroupData_group_members
     implements
         Built<GgroupData_group_members, GgroupData_group_membersBuilder>,
-        GGroupWithExpenses_members,
-        GUserFields {
+        GGroupWithExpenses_members {
   GgroupData_group_members._();
 
   factory GgroupData_group_members(
@@ -808,6 +876,44 @@ abstract class GgroupData_group_members
       _$GgroupData_group_members;
 
   static void _initializeBuilder(GgroupData_group_membersBuilder b) =>
+      b..G__typename = 'GroupMember';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get owedInGroup;
+  @override
+  GgroupData_group_members_member get member;
+  static Serializer<GgroupData_group_members> get serializer =>
+      _$ggroupDataGroupMembersSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgroupData_group_members.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgroupData_group_members? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgroupData_group_members.serializer,
+        json,
+      );
+}
+
+abstract class GgroupData_group_members_member
+    implements
+        Built<GgroupData_group_members_member,
+            GgroupData_group_members_memberBuilder>,
+        GGroupWithExpenses_members_member,
+        GUserFields {
+  GgroupData_group_members_member._();
+
+  factory GgroupData_group_members_member(
+          [Function(GgroupData_group_members_memberBuilder b) updates]) =
+      _$GgroupData_group_members_member;
+
+  static void _initializeBuilder(GgroupData_group_members_memberBuilder b) =>
       b..G__typename = 'User';
 
   @override
@@ -823,18 +929,18 @@ abstract class GgroupData_group_members
   String? get email;
   @override
   bool get isSignedUp;
-  static Serializer<GgroupData_group_members> get serializer =>
-      _$ggroupDataGroupMembersSerializer;
+  static Serializer<GgroupData_group_members_member> get serializer =>
+      _$ggroupDataGroupMembersMemberSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GgroupData_group_members.serializer,
+        GgroupData_group_members_member.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GgroupData_group_members? fromJson(Map<String, dynamic> json) =>
+  static GgroupData_group_members_member? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GgroupData_group_members.serializer,
+        GgroupData_group_members_member.serializer,
         json,
       );
 }
@@ -1012,19 +1118,17 @@ abstract class Gcreate_groupData_createGroup
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  String get id;
-  @override
-  String? get name;
-  @override
   Gcreate_groupData_createGroup_creator get creator;
   @override
   BuiltList<Gcreate_groupData_createGroup_members> get members;
   @override
-  int get toPay;
-  @override
-  int get toReceive;
+  int get owed;
   @override
   String get createdAt;
+  @override
+  String get id;
+  @override
+  String? get name;
   static Serializer<Gcreate_groupData_createGroup> get serializer =>
       _$gcreateGroupDataCreateGroupSerializer;
 
@@ -1091,8 +1195,7 @@ abstract class Gcreate_groupData_createGroup_members
     implements
         Built<Gcreate_groupData_createGroup_members,
             Gcreate_groupData_createGroup_membersBuilder>,
-        GGroupFields_members,
-        GUserFields {
+        GGroupFields_members {
   Gcreate_groupData_createGroup_members._();
 
   factory Gcreate_groupData_createGroup_members(
@@ -1101,6 +1204,46 @@ abstract class Gcreate_groupData_createGroup_members
 
   static void _initializeBuilder(
           Gcreate_groupData_createGroup_membersBuilder b) =>
+      b..G__typename = 'GroupMember';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get owedInGroup;
+  @override
+  Gcreate_groupData_createGroup_members_member get member;
+  static Serializer<Gcreate_groupData_createGroup_members> get serializer =>
+      _$gcreateGroupDataCreateGroupMembersSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        Gcreate_groupData_createGroup_members.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static Gcreate_groupData_createGroup_members? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        Gcreate_groupData_createGroup_members.serializer,
+        json,
+      );
+}
+
+abstract class Gcreate_groupData_createGroup_members_member
+    implements
+        Built<Gcreate_groupData_createGroup_members_member,
+            Gcreate_groupData_createGroup_members_memberBuilder>,
+        GGroupFields_members_member,
+        GUserFields {
+  Gcreate_groupData_createGroup_members_member._();
+
+  factory Gcreate_groupData_createGroup_members_member(
+      [Function(Gcreate_groupData_createGroup_members_memberBuilder b)
+          updates]) = _$Gcreate_groupData_createGroup_members_member;
+
+  static void _initializeBuilder(
+          Gcreate_groupData_createGroup_members_memberBuilder b) =>
       b..G__typename = 'User';
 
   @override
@@ -1116,19 +1259,19 @@ abstract class Gcreate_groupData_createGroup_members
   String? get email;
   @override
   bool get isSignedUp;
-  static Serializer<Gcreate_groupData_createGroup_members> get serializer =>
-      _$gcreateGroupDataCreateGroupMembersSerializer;
+  static Serializer<Gcreate_groupData_createGroup_members_member>
+      get serializer => _$gcreateGroupDataCreateGroupMembersMemberSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        Gcreate_groupData_createGroup_members.serializer,
+        Gcreate_groupData_createGroup_members_member.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static Gcreate_groupData_createGroup_members? fromJson(
+  static Gcreate_groupData_createGroup_members_member? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        Gcreate_groupData_createGroup_members.serializer,
+        Gcreate_groupData_createGroup_members_member.serializer,
         json,
       );
 }
@@ -1206,21 +1349,17 @@ abstract class Gadd_expenseData_addExpense
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
+  Gadd_expenseData_addExpense_creator get creator;
+  @override
+  BuiltList<Gadd_expenseData_addExpense_splits> get splits;
+  @override
   String get id;
   @override
   String get title;
   @override
   String get createdAt;
   @override
-  Gadd_expenseData_addExpense_creator get creator;
-  @override
   int get amount;
-  @override
-  int get toPay;
-  @override
-  int get toReceive;
-  @override
-  BuiltList<Gadd_expenseData_addExpense_splits> get splits;
   static Serializer<Gadd_expenseData_addExpense> get serializer =>
       _$gaddExpenseDataAddExpenseSerializer;
 
@@ -1306,13 +1445,15 @@ abstract class Gadd_expenseData_addExpense_splits
   @override
   int get amount;
   @override
-  int get amountSettled;
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
   @override
   Gadd_expenseData_addExpense_splits_fromUser get fromUser;
   @override
   Gadd_expenseData_addExpense_splits_toUser get toUser;
-  @override
-  bool get isSettled;
   static Serializer<Gadd_expenseData_addExpense_splits> get serializer =>
       _$gaddExpenseDataAddExpenseSplitsSerializer;
 
@@ -1420,301 +1561,6 @@ abstract class Gadd_expenseData_addExpense_splits_toUser
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         Gadd_expenseData_addExpense_splits_toUser.serializer,
-        json,
-      );
-}
-
-abstract class Gsettle_userData
-    implements Built<Gsettle_userData, Gsettle_userDataBuilder> {
-  Gsettle_userData._();
-
-  factory Gsettle_userData([Function(Gsettle_userDataBuilder b) updates]) =
-      _$Gsettle_userData;
-
-  static void _initializeBuilder(Gsettle_userDataBuilder b) =>
-      b..G__typename = 'Mutation';
-
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  String get settleUser;
-  static Serializer<Gsettle_userData> get serializer =>
-      _$gsettleUserDataSerializer;
-
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        Gsettle_userData.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static Gsettle_userData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        Gsettle_userData.serializer,
-        json,
-      );
-}
-
-abstract class Gsettle_expenseData
-    implements Built<Gsettle_expenseData, Gsettle_expenseDataBuilder> {
-  Gsettle_expenseData._();
-
-  factory Gsettle_expenseData(
-      [Function(Gsettle_expenseDataBuilder b) updates]) = _$Gsettle_expenseData;
-
-  static void _initializeBuilder(Gsettle_expenseDataBuilder b) =>
-      b..G__typename = 'Mutation';
-
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  Gsettle_expenseData_settleExpense get settleExpense;
-  static Serializer<Gsettle_expenseData> get serializer =>
-      _$gsettleExpenseDataSerializer;
-
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        Gsettle_expenseData.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static Gsettle_expenseData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        Gsettle_expenseData.serializer,
-        json,
-      );
-}
-
-abstract class Gsettle_expenseData_settleExpense
-    implements
-        Built<Gsettle_expenseData_settleExpense,
-            Gsettle_expenseData_settleExpenseBuilder>,
-        GExpenseFields {
-  Gsettle_expenseData_settleExpense._();
-
-  factory Gsettle_expenseData_settleExpense(
-          [Function(Gsettle_expenseData_settleExpenseBuilder b) updates]) =
-      _$Gsettle_expenseData_settleExpense;
-
-  static void _initializeBuilder(Gsettle_expenseData_settleExpenseBuilder b) =>
-      b..G__typename = 'Expense';
-
-  @override
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  @override
-  String get id;
-  @override
-  String get title;
-  @override
-  String get createdAt;
-  @override
-  Gsettle_expenseData_settleExpense_creator get creator;
-  @override
-  int get amount;
-  @override
-  int get toPay;
-  @override
-  int get toReceive;
-  @override
-  BuiltList<Gsettle_expenseData_settleExpense_splits> get splits;
-  static Serializer<Gsettle_expenseData_settleExpense> get serializer =>
-      _$gsettleExpenseDataSettleExpenseSerializer;
-
-  @override
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        Gsettle_expenseData_settleExpense.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static Gsettle_expenseData_settleExpense? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        Gsettle_expenseData_settleExpense.serializer,
-        json,
-      );
-}
-
-abstract class Gsettle_expenseData_settleExpense_creator
-    implements
-        Built<Gsettle_expenseData_settleExpense_creator,
-            Gsettle_expenseData_settleExpense_creatorBuilder>,
-        GExpenseFields_creator,
-        GUserFields {
-  Gsettle_expenseData_settleExpense_creator._();
-
-  factory Gsettle_expenseData_settleExpense_creator(
-      [Function(Gsettle_expenseData_settleExpense_creatorBuilder b)
-          updates]) = _$Gsettle_expenseData_settleExpense_creator;
-
-  static void _initializeBuilder(
-          Gsettle_expenseData_settleExpense_creatorBuilder b) =>
-      b..G__typename = 'User';
-
-  @override
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  @override
-  String get id;
-  @override
-  String? get name;
-  @override
-  String? get phone;
-  @override
-  String? get email;
-  @override
-  bool get isSignedUp;
-  static Serializer<Gsettle_expenseData_settleExpense_creator> get serializer =>
-      _$gsettleExpenseDataSettleExpenseCreatorSerializer;
-
-  @override
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        Gsettle_expenseData_settleExpense_creator.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static Gsettle_expenseData_settleExpense_creator? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        Gsettle_expenseData_settleExpense_creator.serializer,
-        json,
-      );
-}
-
-abstract class Gsettle_expenseData_settleExpense_splits
-    implements
-        Built<Gsettle_expenseData_settleExpense_splits,
-            Gsettle_expenseData_settleExpense_splitsBuilder>,
-        GExpenseFields_splits,
-        GSplitFields {
-  Gsettle_expenseData_settleExpense_splits._();
-
-  factory Gsettle_expenseData_settleExpense_splits(
-      [Function(Gsettle_expenseData_settleExpense_splitsBuilder b)
-          updates]) = _$Gsettle_expenseData_settleExpense_splits;
-
-  static void _initializeBuilder(
-          Gsettle_expenseData_settleExpense_splitsBuilder b) =>
-      b..G__typename = 'Split';
-
-  @override
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  @override
-  String get id;
-  @override
-  int get amount;
-  @override
-  int get amountSettled;
-  @override
-  Gsettle_expenseData_settleExpense_splits_fromUser get fromUser;
-  @override
-  Gsettle_expenseData_settleExpense_splits_toUser get toUser;
-  @override
-  bool get isSettled;
-  static Serializer<Gsettle_expenseData_settleExpense_splits> get serializer =>
-      _$gsettleExpenseDataSettleExpenseSplitsSerializer;
-
-  @override
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        Gsettle_expenseData_settleExpense_splits.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static Gsettle_expenseData_settleExpense_splits? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        Gsettle_expenseData_settleExpense_splits.serializer,
-        json,
-      );
-}
-
-abstract class Gsettle_expenseData_settleExpense_splits_fromUser
-    implements
-        Built<Gsettle_expenseData_settleExpense_splits_fromUser,
-            Gsettle_expenseData_settleExpense_splits_fromUserBuilder>,
-        GExpenseFields_splits_fromUser,
-        GSplitFields_fromUser,
-        GUserFields {
-  Gsettle_expenseData_settleExpense_splits_fromUser._();
-
-  factory Gsettle_expenseData_settleExpense_splits_fromUser(
-      [Function(Gsettle_expenseData_settleExpense_splits_fromUserBuilder b)
-          updates]) = _$Gsettle_expenseData_settleExpense_splits_fromUser;
-
-  static void _initializeBuilder(
-          Gsettle_expenseData_settleExpense_splits_fromUserBuilder b) =>
-      b..G__typename = 'User';
-
-  @override
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  @override
-  String get id;
-  @override
-  String? get name;
-  @override
-  String? get phone;
-  @override
-  String? get email;
-  @override
-  bool get isSignedUp;
-  static Serializer<Gsettle_expenseData_settleExpense_splits_fromUser>
-      get serializer =>
-          _$gsettleExpenseDataSettleExpenseSplitsFromUserSerializer;
-
-  @override
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        Gsettle_expenseData_settleExpense_splits_fromUser.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static Gsettle_expenseData_settleExpense_splits_fromUser? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        Gsettle_expenseData_settleExpense_splits_fromUser.serializer,
-        json,
-      );
-}
-
-abstract class Gsettle_expenseData_settleExpense_splits_toUser
-    implements
-        Built<Gsettle_expenseData_settleExpense_splits_toUser,
-            Gsettle_expenseData_settleExpense_splits_toUserBuilder>,
-        GExpenseFields_splits_toUser,
-        GSplitFields_toUser,
-        GUserFields {
-  Gsettle_expenseData_settleExpense_splits_toUser._();
-
-  factory Gsettle_expenseData_settleExpense_splits_toUser(
-      [Function(Gsettle_expenseData_settleExpense_splits_toUserBuilder b)
-          updates]) = _$Gsettle_expenseData_settleExpense_splits_toUser;
-
-  static void _initializeBuilder(
-          Gsettle_expenseData_settleExpense_splits_toUserBuilder b) =>
-      b..G__typename = 'User';
-
-  @override
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  @override
-  String get id;
-  @override
-  String? get name;
-  @override
-  String? get phone;
-  @override
-  String? get email;
-  @override
-  bool get isSignedUp;
-  static Serializer<Gsettle_expenseData_settleExpense_splits_toUser>
-      get serializer => _$gsettleExpenseDataSettleExpenseSplitsToUserSerializer;
-
-  @override
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        Gsettle_expenseData_settleExpense_splits_toUser.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static Gsettle_expenseData_settleExpense_splits_toUser? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        Gsettle_expenseData_settleExpense_splits_toUser.serializer,
         json,
       );
 }
@@ -2128,20 +1974,18 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_group
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  String get id;
-  @override
-  String? get name;
-  @override
   GcreateNonGroupExpenseData_addNonGroupExpense_group_creator get creator;
   @override
   BuiltList<GcreateNonGroupExpenseData_addNonGroupExpense_group_members>
       get members;
   @override
-  int get toPay;
-  @override
-  int get toReceive;
+  int get owed;
   @override
   String get createdAt;
+  @override
+  String get id;
+  @override
+  String? get name;
   static Serializer<GcreateNonGroupExpenseData_addNonGroupExpense_group>
       get serializer =>
           _$gcreateNonGroupExpenseDataAddNonGroupExpenseGroupSerializer;
@@ -2214,8 +2058,7 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_group_members
     implements
         Built<GcreateNonGroupExpenseData_addNonGroupExpense_group_members,
             GcreateNonGroupExpenseData_addNonGroupExpense_group_membersBuilder>,
-        GGroupFields_members,
-        GUserFields {
+        GGroupFields_members {
   GcreateNonGroupExpenseData_addNonGroupExpense_group_members._();
 
   factory GcreateNonGroupExpenseData_addNonGroupExpense_group_members(
@@ -2227,21 +2070,15 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_group_members
   static void _initializeBuilder(
           GcreateNonGroupExpenseData_addNonGroupExpense_group_membersBuilder
               b) =>
-      b..G__typename = 'User';
+      b..G__typename = 'GroupMember';
 
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  String get id;
+  int get owedInGroup;
   @override
-  String? get name;
-  @override
-  String? get phone;
-  @override
-  String? get email;
-  @override
-  bool get isSignedUp;
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_members_member get member;
   static Serializer<GcreateNonGroupExpenseData_addNonGroupExpense_group_members>
       get serializer =>
           _$gcreateNonGroupExpenseDataAddNonGroupExpenseGroupMembersSerializer;
@@ -2258,6 +2095,60 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_group_members
         GcreateNonGroupExpenseData_addNonGroupExpense_group_members.serializer,
         json,
       );
+}
+
+abstract class GcreateNonGroupExpenseData_addNonGroupExpense_group_members_member
+    implements
+        Built<
+            GcreateNonGroupExpenseData_addNonGroupExpense_group_members_member,
+            GcreateNonGroupExpenseData_addNonGroupExpense_group_members_memberBuilder>,
+        GGroupFields_members_member,
+        GUserFields {
+  GcreateNonGroupExpenseData_addNonGroupExpense_group_members_member._();
+
+  factory GcreateNonGroupExpenseData_addNonGroupExpense_group_members_member(
+          [Function(
+                  GcreateNonGroupExpenseData_addNonGroupExpense_group_members_memberBuilder
+                      b)
+              updates]) =
+      _$GcreateNonGroupExpenseData_addNonGroupExpense_group_members_member;
+
+  static void _initializeBuilder(
+          GcreateNonGroupExpenseData_addNonGroupExpense_group_members_memberBuilder
+              b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<
+          GcreateNonGroupExpenseData_addNonGroupExpense_group_members_member>
+      get serializer =>
+          _$gcreateNonGroupExpenseDataAddNonGroupExpenseGroupMembersMemberSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcreateNonGroupExpenseData_addNonGroupExpense_group_members_member
+            .serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcreateNonGroupExpenseData_addNonGroupExpense_group_members_member?
+      fromJson(Map<String, dynamic> json) => _i1.serializers.deserializeWith(
+            GcreateNonGroupExpenseData_addNonGroupExpense_group_members_member
+                .serializer,
+            json,
+          );
 }
 
 abstract class GcreateNonGroupExpenseData_addNonGroupExpense_expense
@@ -2279,22 +2170,18 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_expense
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator get creator;
+  @override
+  BuiltList<GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits>
+      get splits;
+  @override
   String get id;
   @override
   String get title;
   @override
   String get createdAt;
   @override
-  GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator get creator;
-  @override
   int get amount;
-  @override
-  int get toPay;
-  @override
-  int get toReceive;
-  @override
-  BuiltList<GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits>
-      get splits;
   static Serializer<GcreateNonGroupExpenseData_addNonGroupExpense_expense>
       get serializer =>
           _$gcreateNonGroupExpenseDataAddNonGroupExpenseExpenseSerializer;
@@ -2394,15 +2281,17 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
   @override
   int get amount;
   @override
-  int get amountSettled;
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
   @override
   GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
       get fromUser;
   @override
   GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
       get toUser;
-  @override
-  bool get isSettled;
   static Serializer<
           GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits>
       get serializer =>
@@ -2532,6 +2421,834 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUs
           );
 }
 
+abstract class GsettleInGroupData
+    implements Built<GsettleInGroupData, GsettleInGroupDataBuilder> {
+  GsettleInGroupData._();
+
+  factory GsettleInGroupData([Function(GsettleInGroupDataBuilder b) updates]) =
+      _$GsettleInGroupData;
+
+  static void _initializeBuilder(GsettleInGroupDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GsettleInGroupData_settleInGroup get settleInGroup;
+  static Serializer<GsettleInGroupData> get serializer =>
+      _$gsettleInGroupDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsettleInGroupData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsettleInGroupData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsettleInGroupData.serializer,
+        json,
+      );
+}
+
+abstract class GsettleInGroupData_settleInGroup
+    implements
+        Built<GsettleInGroupData_settleInGroup,
+            GsettleInGroupData_settleInGroupBuilder>,
+        GSplitFields {
+  GsettleInGroupData_settleInGroup._();
+
+  factory GsettleInGroupData_settleInGroup(
+          [Function(GsettleInGroupData_settleInGroupBuilder b) updates]) =
+      _$GsettleInGroupData_settleInGroup;
+
+  static void _initializeBuilder(GsettleInGroupData_settleInGroupBuilder b) =>
+      b..G__typename = 'Split';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  int get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  GsettleInGroupData_settleInGroup_fromUser get fromUser;
+  @override
+  GsettleInGroupData_settleInGroup_toUser get toUser;
+  static Serializer<GsettleInGroupData_settleInGroup> get serializer =>
+      _$gsettleInGroupDataSettleInGroupSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsettleInGroupData_settleInGroup.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsettleInGroupData_settleInGroup? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsettleInGroupData_settleInGroup.serializer,
+        json,
+      );
+}
+
+abstract class GsettleInGroupData_settleInGroup_fromUser
+    implements
+        Built<GsettleInGroupData_settleInGroup_fromUser,
+            GsettleInGroupData_settleInGroup_fromUserBuilder>,
+        GSplitFields_fromUser,
+        GUserFields {
+  GsettleInGroupData_settleInGroup_fromUser._();
+
+  factory GsettleInGroupData_settleInGroup_fromUser(
+      [Function(GsettleInGroupData_settleInGroup_fromUserBuilder b)
+          updates]) = _$GsettleInGroupData_settleInGroup_fromUser;
+
+  static void _initializeBuilder(
+          GsettleInGroupData_settleInGroup_fromUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GsettleInGroupData_settleInGroup_fromUser> get serializer =>
+      _$gsettleInGroupDataSettleInGroupFromUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsettleInGroupData_settleInGroup_fromUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsettleInGroupData_settleInGroup_fromUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsettleInGroupData_settleInGroup_fromUser.serializer,
+        json,
+      );
+}
+
+abstract class GsettleInGroupData_settleInGroup_toUser
+    implements
+        Built<GsettleInGroupData_settleInGroup_toUser,
+            GsettleInGroupData_settleInGroup_toUserBuilder>,
+        GSplitFields_toUser,
+        GUserFields {
+  GsettleInGroupData_settleInGroup_toUser._();
+
+  factory GsettleInGroupData_settleInGroup_toUser(
+      [Function(GsettleInGroupData_settleInGroup_toUserBuilder b)
+          updates]) = _$GsettleInGroupData_settleInGroup_toUser;
+
+  static void _initializeBuilder(
+          GsettleInGroupData_settleInGroup_toUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GsettleInGroupData_settleInGroup_toUser> get serializer =>
+      _$gsettleInGroupDataSettleInGroupToUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsettleInGroupData_settleInGroup_toUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsettleInGroupData_settleInGroup_toUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsettleInGroupData_settleInGroup_toUser.serializer,
+        json,
+      );
+}
+
+abstract class GsimplifyUserData
+    implements Built<GsimplifyUserData, GsimplifyUserDataBuilder> {
+  GsimplifyUserData._();
+
+  factory GsimplifyUserData([Function(GsimplifyUserDataBuilder b) updates]) =
+      _$GsimplifyUserData;
+
+  static void _initializeBuilder(GsimplifyUserDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  BuiltList<GsimplifyUserData_simplifyCrossGroup> get simplifyCrossGroup;
+  static Serializer<GsimplifyUserData> get serializer =>
+      _$gsimplifyUserDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsimplifyUserData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsimplifyUserData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsimplifyUserData.serializer,
+        json,
+      );
+}
+
+abstract class GsimplifyUserData_simplifyCrossGroup
+    implements
+        Built<GsimplifyUserData_simplifyCrossGroup,
+            GsimplifyUserData_simplifyCrossGroupBuilder>,
+        GSplitFields {
+  GsimplifyUserData_simplifyCrossGroup._();
+
+  factory GsimplifyUserData_simplifyCrossGroup(
+          [Function(GsimplifyUserData_simplifyCrossGroupBuilder b) updates]) =
+      _$GsimplifyUserData_simplifyCrossGroup;
+
+  static void _initializeBuilder(
+          GsimplifyUserData_simplifyCrossGroupBuilder b) =>
+      b..G__typename = 'Split';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  int get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  GsimplifyUserData_simplifyCrossGroup_fromUser get fromUser;
+  @override
+  GsimplifyUserData_simplifyCrossGroup_toUser get toUser;
+  static Serializer<GsimplifyUserData_simplifyCrossGroup> get serializer =>
+      _$gsimplifyUserDataSimplifyCrossGroupSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsimplifyUserData_simplifyCrossGroup.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsimplifyUserData_simplifyCrossGroup? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsimplifyUserData_simplifyCrossGroup.serializer,
+        json,
+      );
+}
+
+abstract class GsimplifyUserData_simplifyCrossGroup_fromUser
+    implements
+        Built<GsimplifyUserData_simplifyCrossGroup_fromUser,
+            GsimplifyUserData_simplifyCrossGroup_fromUserBuilder>,
+        GSplitFields_fromUser,
+        GUserFields {
+  GsimplifyUserData_simplifyCrossGroup_fromUser._();
+
+  factory GsimplifyUserData_simplifyCrossGroup_fromUser(
+      [Function(GsimplifyUserData_simplifyCrossGroup_fromUserBuilder b)
+          updates]) = _$GsimplifyUserData_simplifyCrossGroup_fromUser;
+
+  static void _initializeBuilder(
+          GsimplifyUserData_simplifyCrossGroup_fromUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GsimplifyUserData_simplifyCrossGroup_fromUser>
+      get serializer => _$gsimplifyUserDataSimplifyCrossGroupFromUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsimplifyUserData_simplifyCrossGroup_fromUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsimplifyUserData_simplifyCrossGroup_fromUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsimplifyUserData_simplifyCrossGroup_fromUser.serializer,
+        json,
+      );
+}
+
+abstract class GsimplifyUserData_simplifyCrossGroup_toUser
+    implements
+        Built<GsimplifyUserData_simplifyCrossGroup_toUser,
+            GsimplifyUserData_simplifyCrossGroup_toUserBuilder>,
+        GSplitFields_toUser,
+        GUserFields {
+  GsimplifyUserData_simplifyCrossGroup_toUser._();
+
+  factory GsimplifyUserData_simplifyCrossGroup_toUser(
+      [Function(GsimplifyUserData_simplifyCrossGroup_toUserBuilder b)
+          updates]) = _$GsimplifyUserData_simplifyCrossGroup_toUser;
+
+  static void _initializeBuilder(
+          GsimplifyUserData_simplifyCrossGroup_toUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GsimplifyUserData_simplifyCrossGroup_toUser>
+      get serializer => _$gsimplifyUserDataSimplifyCrossGroupToUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsimplifyUserData_simplifyCrossGroup_toUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsimplifyUserData_simplifyCrossGroup_toUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsimplifyUserData_simplifyCrossGroup_toUser.serializer,
+        json,
+      );
+}
+
+abstract class GautoSettleWithUserData
+    implements Built<GautoSettleWithUserData, GautoSettleWithUserDataBuilder> {
+  GautoSettleWithUserData._();
+
+  factory GautoSettleWithUserData(
+          [Function(GautoSettleWithUserDataBuilder b) updates]) =
+      _$GautoSettleWithUserData;
+
+  static void _initializeBuilder(GautoSettleWithUserDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  BuiltList<GautoSettleWithUserData_autoSettleWithUser> get autoSettleWithUser;
+  static Serializer<GautoSettleWithUserData> get serializer =>
+      _$gautoSettleWithUserDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GautoSettleWithUserData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GautoSettleWithUserData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GautoSettleWithUserData.serializer,
+        json,
+      );
+}
+
+abstract class GautoSettleWithUserData_autoSettleWithUser
+    implements
+        Built<GautoSettleWithUserData_autoSettleWithUser,
+            GautoSettleWithUserData_autoSettleWithUserBuilder>,
+        GSplitFields {
+  GautoSettleWithUserData_autoSettleWithUser._();
+
+  factory GautoSettleWithUserData_autoSettleWithUser(
+      [Function(GautoSettleWithUserData_autoSettleWithUserBuilder b)
+          updates]) = _$GautoSettleWithUserData_autoSettleWithUser;
+
+  static void _initializeBuilder(
+          GautoSettleWithUserData_autoSettleWithUserBuilder b) =>
+      b..G__typename = 'Split';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  int get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_fromUser get fromUser;
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_toUser get toUser;
+  static Serializer<GautoSettleWithUserData_autoSettleWithUser>
+      get serializer => _$gautoSettleWithUserDataAutoSettleWithUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GautoSettleWithUserData_autoSettleWithUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GautoSettleWithUserData_autoSettleWithUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GautoSettleWithUserData_autoSettleWithUser.serializer,
+        json,
+      );
+}
+
+abstract class GautoSettleWithUserData_autoSettleWithUser_fromUser
+    implements
+        Built<GautoSettleWithUserData_autoSettleWithUser_fromUser,
+            GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder>,
+        GSplitFields_fromUser,
+        GUserFields {
+  GautoSettleWithUserData_autoSettleWithUser_fromUser._();
+
+  factory GautoSettleWithUserData_autoSettleWithUser_fromUser(
+      [Function(GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder b)
+          updates]) = _$GautoSettleWithUserData_autoSettleWithUser_fromUser;
+
+  static void _initializeBuilder(
+          GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GautoSettleWithUserData_autoSettleWithUser_fromUser>
+      get serializer =>
+          _$gautoSettleWithUserDataAutoSettleWithUserFromUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GautoSettleWithUserData_autoSettleWithUser_fromUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GautoSettleWithUserData_autoSettleWithUser_fromUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GautoSettleWithUserData_autoSettleWithUser_fromUser.serializer,
+        json,
+      );
+}
+
+abstract class GautoSettleWithUserData_autoSettleWithUser_toUser
+    implements
+        Built<GautoSettleWithUserData_autoSettleWithUser_toUser,
+            GautoSettleWithUserData_autoSettleWithUser_toUserBuilder>,
+        GSplitFields_toUser,
+        GUserFields {
+  GautoSettleWithUserData_autoSettleWithUser_toUser._();
+
+  factory GautoSettleWithUserData_autoSettleWithUser_toUser(
+      [Function(GautoSettleWithUserData_autoSettleWithUser_toUserBuilder b)
+          updates]) = _$GautoSettleWithUserData_autoSettleWithUser_toUser;
+
+  static void _initializeBuilder(
+          GautoSettleWithUserData_autoSettleWithUser_toUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GautoSettleWithUserData_autoSettleWithUser_toUser>
+      get serializer =>
+          _$gautoSettleWithUserDataAutoSettleWithUserToUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GautoSettleWithUserData_autoSettleWithUser_toUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GautoSettleWithUserData_autoSettleWithUser_toUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GautoSettleWithUserData_autoSettleWithUser_toUser.serializer,
+        json,
+      );
+}
+
+abstract class GtransactionWithUserData
+    implements
+        Built<GtransactionWithUserData, GtransactionWithUserDataBuilder> {
+  GtransactionWithUserData._();
+
+  factory GtransactionWithUserData(
+          [Function(GtransactionWithUserDataBuilder b) updates]) =
+      _$GtransactionWithUserData;
+
+  static void _initializeBuilder(GtransactionWithUserDataBuilder b) =>
+      b..G__typename = 'Query';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  BuiltList<GtransactionWithUserData_getTransactionsWithUser>
+      get getTransactionsWithUser;
+  static Serializer<GtransactionWithUserData> get serializer =>
+      _$gtransactionWithUserDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GtransactionWithUserData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GtransactionWithUserData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GtransactionWithUserData.serializer,
+        json,
+      );
+}
+
+abstract class GtransactionWithUserData_getTransactionsWithUser
+    implements
+        Built<GtransactionWithUserData_getTransactionsWithUser,
+            GtransactionWithUserData_getTransactionsWithUserBuilder>,
+        GSplitTransactionFields {
+  GtransactionWithUserData_getTransactionsWithUser._();
+
+  factory GtransactionWithUserData_getTransactionsWithUser(
+      [Function(GtransactionWithUserData_getTransactionsWithUserBuilder b)
+          updates]) = _$GtransactionWithUserData_getTransactionsWithUser;
+
+  static void _initializeBuilder(
+          GtransactionWithUserData_getTransactionsWithUserBuilder b) =>
+      b..G__typename = 'Split';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  GtransactionWithUserData_getTransactionsWithUser_expense? get expense;
+  @override
+  GtransactionWithUserData_getTransactionsWithUser_group get group;
+  @override
+  GtransactionWithUserData_getTransactionsWithUser_creator get creator;
+  @override
+  String get id;
+  @override
+  int get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  GtransactionWithUserData_getTransactionsWithUser_fromUser get fromUser;
+  @override
+  GtransactionWithUserData_getTransactionsWithUser_toUser get toUser;
+  static Serializer<GtransactionWithUserData_getTransactionsWithUser>
+      get serializer =>
+          _$gtransactionWithUserDataGetTransactionsWithUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GtransactionWithUserData_getTransactionsWithUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GtransactionWithUserData_getTransactionsWithUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GtransactionWithUserData_getTransactionsWithUser.serializer,
+        json,
+      );
+}
+
+abstract class GtransactionWithUserData_getTransactionsWithUser_expense
+    implements
+        Built<GtransactionWithUserData_getTransactionsWithUser_expense,
+            GtransactionWithUserData_getTransactionsWithUser_expenseBuilder>,
+        GSplitTransactionFields_expense,
+        GExpenseBasic {
+  GtransactionWithUserData_getTransactionsWithUser_expense._();
+
+  factory GtransactionWithUserData_getTransactionsWithUser_expense(
+      [Function(
+              GtransactionWithUserData_getTransactionsWithUser_expenseBuilder b)
+          updates]) = _$GtransactionWithUserData_getTransactionsWithUser_expense;
+
+  static void _initializeBuilder(
+          GtransactionWithUserData_getTransactionsWithUser_expenseBuilder b) =>
+      b..G__typename = 'Expense';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  int get amount;
+  static Serializer<GtransactionWithUserData_getTransactionsWithUser_expense>
+      get serializer =>
+          _$gtransactionWithUserDataGetTransactionsWithUserExpenseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GtransactionWithUserData_getTransactionsWithUser_expense.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GtransactionWithUserData_getTransactionsWithUser_expense? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GtransactionWithUserData_getTransactionsWithUser_expense.serializer,
+        json,
+      );
+}
+
+abstract class GtransactionWithUserData_getTransactionsWithUser_group
+    implements
+        Built<GtransactionWithUserData_getTransactionsWithUser_group,
+            GtransactionWithUserData_getTransactionsWithUser_groupBuilder>,
+        GSplitTransactionFields_group,
+        GGroupBasic {
+  GtransactionWithUserData_getTransactionsWithUser_group._();
+
+  factory GtransactionWithUserData_getTransactionsWithUser_group(
+      [Function(GtransactionWithUserData_getTransactionsWithUser_groupBuilder b)
+          updates]) = _$GtransactionWithUserData_getTransactionsWithUser_group;
+
+  static void _initializeBuilder(
+          GtransactionWithUserData_getTransactionsWithUser_groupBuilder b) =>
+      b..G__typename = 'Group';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  static Serializer<GtransactionWithUserData_getTransactionsWithUser_group>
+      get serializer =>
+          _$gtransactionWithUserDataGetTransactionsWithUserGroupSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GtransactionWithUserData_getTransactionsWithUser_group.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GtransactionWithUserData_getTransactionsWithUser_group? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GtransactionWithUserData_getTransactionsWithUser_group.serializer,
+        json,
+      );
+}
+
+abstract class GtransactionWithUserData_getTransactionsWithUser_creator
+    implements
+        Built<GtransactionWithUserData_getTransactionsWithUser_creator,
+            GtransactionWithUserData_getTransactionsWithUser_creatorBuilder>,
+        GSplitTransactionFields_creator,
+        GUserFields {
+  GtransactionWithUserData_getTransactionsWithUser_creator._();
+
+  factory GtransactionWithUserData_getTransactionsWithUser_creator(
+      [Function(
+              GtransactionWithUserData_getTransactionsWithUser_creatorBuilder b)
+          updates]) = _$GtransactionWithUserData_getTransactionsWithUser_creator;
+
+  static void _initializeBuilder(
+          GtransactionWithUserData_getTransactionsWithUser_creatorBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GtransactionWithUserData_getTransactionsWithUser_creator>
+      get serializer =>
+          _$gtransactionWithUserDataGetTransactionsWithUserCreatorSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GtransactionWithUserData_getTransactionsWithUser_creator.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GtransactionWithUserData_getTransactionsWithUser_creator? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GtransactionWithUserData_getTransactionsWithUser_creator.serializer,
+        json,
+      );
+}
+
+abstract class GtransactionWithUserData_getTransactionsWithUser_fromUser
+    implements
+        Built<GtransactionWithUserData_getTransactionsWithUser_fromUser,
+            GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder>,
+        GSplitTransactionFields_fromUser,
+        GUserFields {
+  GtransactionWithUserData_getTransactionsWithUser_fromUser._();
+
+  factory GtransactionWithUserData_getTransactionsWithUser_fromUser(
+      [Function(
+              GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder
+                  b)
+          updates]) = _$GtransactionWithUserData_getTransactionsWithUser_fromUser;
+
+  static void _initializeBuilder(
+          GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GtransactionWithUserData_getTransactionsWithUser_fromUser>
+      get serializer =>
+          _$gtransactionWithUserDataGetTransactionsWithUserFromUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GtransactionWithUserData_getTransactionsWithUser_fromUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GtransactionWithUserData_getTransactionsWithUser_fromUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GtransactionWithUserData_getTransactionsWithUser_fromUser.serializer,
+        json,
+      );
+}
+
+abstract class GtransactionWithUserData_getTransactionsWithUser_toUser
+    implements
+        Built<GtransactionWithUserData_getTransactionsWithUser_toUser,
+            GtransactionWithUserData_getTransactionsWithUser_toUserBuilder>,
+        GSplitTransactionFields_toUser,
+        GUserFields {
+  GtransactionWithUserData_getTransactionsWithUser_toUser._();
+
+  factory GtransactionWithUserData_getTransactionsWithUser_toUser(
+      [Function(
+              GtransactionWithUserData_getTransactionsWithUser_toUserBuilder b)
+          updates]) = _$GtransactionWithUserData_getTransactionsWithUser_toUser;
+
+  static void _initializeBuilder(
+          GtransactionWithUserData_getTransactionsWithUser_toUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GtransactionWithUserData_getTransactionsWithUser_toUser>
+      get serializer =>
+          _$gtransactionWithUserDataGetTransactionsWithUserToUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GtransactionWithUserData_getTransactionsWithUser_toUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GtransactionWithUserData_getTransactionsWithUser_toUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GtransactionWithUserData_getTransactionsWithUser_toUser.serializer,
+        json,
+      );
+}
+
 abstract class GUserFields {
   String get G__typename;
   String get id;
@@ -2581,18 +3298,37 @@ abstract class GUserFieldsData
       );
 }
 
-abstract class GUserPaysFields {
+abstract class GUserPaysFields implements GUserFields {
+  @override
   String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
   BuiltList<String> get upiIds;
-  int get toPay;
-  int get toReceive;
+  BuiltList<GUserPaysFields_owes> get owes;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GUserPaysFields_owes {
+  String get G__typename;
+  String get groupId;
+  int get amount;
   Map<String, dynamic> toJson();
 }
 
 abstract class GUserPaysFieldsData
     implements
         Built<GUserPaysFieldsData, GUserPaysFieldsDataBuilder>,
-        GUserPaysFields {
+        GUserPaysFields,
+        GUserFields {
   GUserPaysFieldsData._();
 
   factory GUserPaysFieldsData(
@@ -2605,11 +3341,19 @@ abstract class GUserPaysFieldsData
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  @override
   BuiltList<String> get upiIds;
   @override
-  int get toPay;
-  @override
-  int get toReceive;
+  BuiltList<GUserPaysFieldsData_owes> get owes;
   static Serializer<GUserPaysFieldsData> get serializer =>
       _$gUserPaysFieldsDataSerializer;
 
@@ -2626,15 +3370,94 @@ abstract class GUserPaysFieldsData
       );
 }
 
-abstract class GGroupFields {
+abstract class GUserPaysFieldsData_owes
+    implements
+        Built<GUserPaysFieldsData_owes, GUserPaysFieldsData_owesBuilder>,
+        GUserPaysFields_owes {
+  GUserPaysFieldsData_owes._();
+
+  factory GUserPaysFieldsData_owes(
+          [Function(GUserPaysFieldsData_owesBuilder b) updates]) =
+      _$GUserPaysFieldsData_owes;
+
+  static void _initializeBuilder(GUserPaysFieldsData_owesBuilder b) =>
+      b..G__typename = 'OwedInGroup';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get groupId;
+  @override
+  int get amount;
+  static Serializer<GUserPaysFieldsData_owes> get serializer =>
+      _$gUserPaysFieldsDataOwesSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GUserPaysFieldsData_owes.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GUserPaysFieldsData_owes? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GUserPaysFieldsData_owes.serializer,
+        json,
+      );
+}
+
+abstract class GGroupBasic {
   String get G__typename;
   String get id;
   String? get name;
+  Map<String, dynamic> toJson();
+}
+
+abstract class GGroupBasicData
+    implements Built<GGroupBasicData, GGroupBasicDataBuilder>, GGroupBasic {
+  GGroupBasicData._();
+
+  factory GGroupBasicData([Function(GGroupBasicDataBuilder b) updates]) =
+      _$GGroupBasicData;
+
+  static void _initializeBuilder(GGroupBasicDataBuilder b) =>
+      b..G__typename = 'Group';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  static Serializer<GGroupBasicData> get serializer =>
+      _$gGroupBasicDataSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GGroupBasicData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GGroupBasicData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GGroupBasicData.serializer,
+        json,
+      );
+}
+
+abstract class GGroupFields implements GGroupBasic {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
   GGroupFields_creator get creator;
   BuiltList<GGroupFields_members> get members;
-  int get toPay;
-  int get toReceive;
+  int get owed;
   String get createdAt;
+  @override
   Map<String, dynamic> toJson();
 }
 
@@ -2655,7 +3478,14 @@ abstract class GGroupFields_creator implements GUserFields {
   Map<String, dynamic> toJson();
 }
 
-abstract class GGroupFields_members implements GUserFields {
+abstract class GGroupFields_members {
+  String get G__typename;
+  int get owedInGroup;
+  GGroupFields_members_member get member;
+  Map<String, dynamic> toJson();
+}
+
+abstract class GGroupFields_members_member implements GUserFields {
   @override
   String get G__typename;
   @override
@@ -2673,7 +3503,10 @@ abstract class GGroupFields_members implements GUserFields {
 }
 
 abstract class GGroupFieldsData
-    implements Built<GGroupFieldsData, GGroupFieldsDataBuilder>, GGroupFields {
+    implements
+        Built<GGroupFieldsData, GGroupFieldsDataBuilder>,
+        GGroupFields,
+        GGroupBasic {
   GGroupFieldsData._();
 
   factory GGroupFieldsData([Function(GGroupFieldsDataBuilder b) updates]) =
@@ -2694,9 +3527,7 @@ abstract class GGroupFieldsData
   @override
   BuiltList<GGroupFieldsData_members> get members;
   @override
-  int get toPay;
-  @override
-  int get toReceive;
+  int get owed;
   @override
   String get createdAt;
   static Serializer<GGroupFieldsData> get serializer =>
@@ -2761,8 +3592,7 @@ abstract class GGroupFieldsData_creator
 abstract class GGroupFieldsData_members
     implements
         Built<GGroupFieldsData_members, GGroupFieldsData_membersBuilder>,
-        GGroupFields_members,
-        GUserFields {
+        GGroupFields_members {
   GGroupFieldsData_members._();
 
   factory GGroupFieldsData_members(
@@ -2770,21 +3600,15 @@ abstract class GGroupFieldsData_members
       _$GGroupFieldsData_members;
 
   static void _initializeBuilder(GGroupFieldsData_membersBuilder b) =>
-      b..G__typename = 'User';
+      b..G__typename = 'GroupMember';
 
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  String get id;
+  int get owedInGroup;
   @override
-  String? get name;
-  @override
-  String? get phone;
-  @override
-  String? get email;
-  @override
-  bool get isSignedUp;
+  GGroupFieldsData_members_member get member;
   static Serializer<GGroupFieldsData_members> get serializer =>
       _$gGroupFieldsDataMembersSerializer;
 
@@ -2801,16 +3625,112 @@ abstract class GGroupFieldsData_members
       );
 }
 
-abstract class GExpenseFields {
+abstract class GGroupFieldsData_members_member
+    implements
+        Built<GGroupFieldsData_members_member,
+            GGroupFieldsData_members_memberBuilder>,
+        GGroupFields_members_member,
+        GUserFields {
+  GGroupFieldsData_members_member._();
+
+  factory GGroupFieldsData_members_member(
+          [Function(GGroupFieldsData_members_memberBuilder b) updates]) =
+      _$GGroupFieldsData_members_member;
+
+  static void _initializeBuilder(GGroupFieldsData_members_memberBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GGroupFieldsData_members_member> get serializer =>
+      _$gGroupFieldsDataMembersMemberSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GGroupFieldsData_members_member.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GGroupFieldsData_members_member? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GGroupFieldsData_members_member.serializer,
+        json,
+      );
+}
+
+abstract class GExpenseBasic {
   String get G__typename;
   String get id;
   String get title;
   String get createdAt;
-  GExpenseFields_creator get creator;
   int get amount;
-  int get toPay;
-  int get toReceive;
+  Map<String, dynamic> toJson();
+}
+
+abstract class GExpenseBasicData
+    implements
+        Built<GExpenseBasicData, GExpenseBasicDataBuilder>,
+        GExpenseBasic {
+  GExpenseBasicData._();
+
+  factory GExpenseBasicData([Function(GExpenseBasicDataBuilder b) updates]) =
+      _$GExpenseBasicData;
+
+  static void _initializeBuilder(GExpenseBasicDataBuilder b) =>
+      b..G__typename = 'Expense';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  int get amount;
+  static Serializer<GExpenseBasicData> get serializer =>
+      _$gExpenseBasicDataSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GExpenseBasicData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GExpenseBasicData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GExpenseBasicData.serializer,
+        json,
+      );
+}
+
+abstract class GExpenseFields implements GExpenseBasic {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  int get amount;
+  GExpenseFields_creator get creator;
   BuiltList<GExpenseFields_splits> get splits;
+  @override
   Map<String, dynamic> toJson();
 }
 
@@ -2839,13 +3759,15 @@ abstract class GExpenseFields_splits implements GSplitFields {
   @override
   int get amount;
   @override
-  int get amountSettled;
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
   @override
   GExpenseFields_splits_fromUser get fromUser;
   @override
   GExpenseFields_splits_toUser get toUser;
-  @override
-  bool get isSettled;
   @override
   Map<String, dynamic> toJson();
 }
@@ -2889,7 +3811,8 @@ abstract class GExpenseFields_splits_toUser
 abstract class GExpenseFieldsData
     implements
         Built<GExpenseFieldsData, GExpenseFieldsDataBuilder>,
-        GExpenseFields {
+        GExpenseFields,
+        GExpenseBasic {
   GExpenseFieldsData._();
 
   factory GExpenseFieldsData([Function(GExpenseFieldsDataBuilder b) updates]) =
@@ -2908,13 +3831,9 @@ abstract class GExpenseFieldsData
   @override
   String get createdAt;
   @override
-  GExpenseFieldsData_creator get creator;
-  @override
   int get amount;
   @override
-  int get toPay;
-  @override
-  int get toReceive;
+  GExpenseFieldsData_creator get creator;
   @override
   BuiltList<GExpenseFieldsData_splits> get splits;
   static Serializer<GExpenseFieldsData> get serializer =>
@@ -2998,13 +3917,15 @@ abstract class GExpenseFieldsData_splits
   @override
   int get amount;
   @override
-  int get amountSettled;
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
   @override
   GExpenseFieldsData_splits_fromUser get fromUser;
   @override
   GExpenseFieldsData_splits_toUser get toUser;
-  @override
-  bool get isSettled;
   static Serializer<GExpenseFieldsData_splits> get serializer =>
       _$gExpenseFieldsDataSplitsSerializer;
 
@@ -3117,10 +4038,11 @@ abstract class GSplitFields {
   String get G__typename;
   String get id;
   int get amount;
-  int get amountSettled;
+  _i3.GTransactionType get transactionType;
+  String get createdAt;
+  String? get transactionPartGroupId;
   GSplitFields_fromUser get fromUser;
   GSplitFields_toUser get toUser;
-  bool get isSettled;
   Map<String, dynamic> toJson();
 }
 
@@ -3176,13 +4098,15 @@ abstract class GSplitFieldsData
   @override
   int get amount;
   @override
-  int get amountSettled;
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
   @override
   GSplitFieldsData_fromUser get fromUser;
   @override
   GSplitFieldsData_toUser get toUser;
-  @override
-  bool get isSettled;
   static Serializer<GSplitFieldsData> get serializer =>
       _$gSplitFieldsDataSerializer;
 
@@ -3285,7 +4209,32 @@ abstract class GSplitFieldsData_toUser
       );
 }
 
-abstract class GGroupWithExpenses implements GGroupFields {
+abstract class GSplitTransactionFields implements GSplitFields {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  int get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  GSplitTransactionFields_fromUser get fromUser;
+  @override
+  GSplitTransactionFields_toUser get toUser;
+  GSplitTransactionFields_expense? get expense;
+  GSplitTransactionFields_group get group;
+  GSplitTransactionFields_creator get creator;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitTransactionFields_fromUser
+    implements GSplitFields_fromUser, GUserFields {
   @override
   String get G__typename;
   @override
@@ -3293,15 +4242,366 @@ abstract class GGroupWithExpenses implements GGroupFields {
   @override
   String? get name;
   @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitTransactionFields_toUser
+    implements GSplitFields_toUser, GUserFields {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitTransactionFields_expense implements GExpenseBasic {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  int get amount;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitTransactionFields_group implements GGroupBasic {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitTransactionFields_creator implements GUserFields {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitTransactionFieldsData
+    implements
+        Built<GSplitTransactionFieldsData, GSplitTransactionFieldsDataBuilder>,
+        GSplitTransactionFields,
+        GSplitFields {
+  GSplitTransactionFieldsData._();
+
+  factory GSplitTransactionFieldsData(
+          [Function(GSplitTransactionFieldsDataBuilder b) updates]) =
+      _$GSplitTransactionFieldsData;
+
+  static void _initializeBuilder(GSplitTransactionFieldsDataBuilder b) =>
+      b..G__typename = 'Split';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  int get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  GSplitTransactionFieldsData_fromUser get fromUser;
+  @override
+  GSplitTransactionFieldsData_toUser get toUser;
+  @override
+  GSplitTransactionFieldsData_expense? get expense;
+  @override
+  GSplitTransactionFieldsData_group get group;
+  @override
+  GSplitTransactionFieldsData_creator get creator;
+  static Serializer<GSplitTransactionFieldsData> get serializer =>
+      _$gSplitTransactionFieldsDataSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitTransactionFieldsData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitTransactionFieldsData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitTransactionFieldsData.serializer,
+        json,
+      );
+}
+
+abstract class GSplitTransactionFieldsData_fromUser
+    implements
+        Built<GSplitTransactionFieldsData_fromUser,
+            GSplitTransactionFieldsData_fromUserBuilder>,
+        GSplitTransactionFields_fromUser,
+        GSplitFields_fromUser,
+        GUserFields {
+  GSplitTransactionFieldsData_fromUser._();
+
+  factory GSplitTransactionFieldsData_fromUser(
+          [Function(GSplitTransactionFieldsData_fromUserBuilder b) updates]) =
+      _$GSplitTransactionFieldsData_fromUser;
+
+  static void _initializeBuilder(
+          GSplitTransactionFieldsData_fromUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GSplitTransactionFieldsData_fromUser> get serializer =>
+      _$gSplitTransactionFieldsDataFromUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitTransactionFieldsData_fromUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitTransactionFieldsData_fromUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitTransactionFieldsData_fromUser.serializer,
+        json,
+      );
+}
+
+abstract class GSplitTransactionFieldsData_toUser
+    implements
+        Built<GSplitTransactionFieldsData_toUser,
+            GSplitTransactionFieldsData_toUserBuilder>,
+        GSplitTransactionFields_toUser,
+        GSplitFields_toUser,
+        GUserFields {
+  GSplitTransactionFieldsData_toUser._();
+
+  factory GSplitTransactionFieldsData_toUser(
+          [Function(GSplitTransactionFieldsData_toUserBuilder b) updates]) =
+      _$GSplitTransactionFieldsData_toUser;
+
+  static void _initializeBuilder(GSplitTransactionFieldsData_toUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GSplitTransactionFieldsData_toUser> get serializer =>
+      _$gSplitTransactionFieldsDataToUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitTransactionFieldsData_toUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitTransactionFieldsData_toUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitTransactionFieldsData_toUser.serializer,
+        json,
+      );
+}
+
+abstract class GSplitTransactionFieldsData_expense
+    implements
+        Built<GSplitTransactionFieldsData_expense,
+            GSplitTransactionFieldsData_expenseBuilder>,
+        GSplitTransactionFields_expense,
+        GExpenseBasic {
+  GSplitTransactionFieldsData_expense._();
+
+  factory GSplitTransactionFieldsData_expense(
+          [Function(GSplitTransactionFieldsData_expenseBuilder b) updates]) =
+      _$GSplitTransactionFieldsData_expense;
+
+  static void _initializeBuilder(
+          GSplitTransactionFieldsData_expenseBuilder b) =>
+      b..G__typename = 'Expense';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  int get amount;
+  static Serializer<GSplitTransactionFieldsData_expense> get serializer =>
+      _$gSplitTransactionFieldsDataExpenseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitTransactionFieldsData_expense.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitTransactionFieldsData_expense? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitTransactionFieldsData_expense.serializer,
+        json,
+      );
+}
+
+abstract class GSplitTransactionFieldsData_group
+    implements
+        Built<GSplitTransactionFieldsData_group,
+            GSplitTransactionFieldsData_groupBuilder>,
+        GSplitTransactionFields_group,
+        GGroupBasic {
+  GSplitTransactionFieldsData_group._();
+
+  factory GSplitTransactionFieldsData_group(
+          [Function(GSplitTransactionFieldsData_groupBuilder b) updates]) =
+      _$GSplitTransactionFieldsData_group;
+
+  static void _initializeBuilder(GSplitTransactionFieldsData_groupBuilder b) =>
+      b..G__typename = 'Group';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  static Serializer<GSplitTransactionFieldsData_group> get serializer =>
+      _$gSplitTransactionFieldsDataGroupSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitTransactionFieldsData_group.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitTransactionFieldsData_group? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitTransactionFieldsData_group.serializer,
+        json,
+      );
+}
+
+abstract class GSplitTransactionFieldsData_creator
+    implements
+        Built<GSplitTransactionFieldsData_creator,
+            GSplitTransactionFieldsData_creatorBuilder>,
+        GSplitTransactionFields_creator,
+        GUserFields {
+  GSplitTransactionFieldsData_creator._();
+
+  factory GSplitTransactionFieldsData_creator(
+          [Function(GSplitTransactionFieldsData_creatorBuilder b) updates]) =
+      _$GSplitTransactionFieldsData_creator;
+
+  static void _initializeBuilder(
+          GSplitTransactionFieldsData_creatorBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GSplitTransactionFieldsData_creator> get serializer =>
+      _$gSplitTransactionFieldsDataCreatorSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitTransactionFieldsData_creator.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitTransactionFieldsData_creator? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitTransactionFieldsData_creator.serializer,
+        json,
+      );
+}
+
+abstract class GGroupWithExpenses implements GGroupFields {
+  @override
+  String get G__typename;
+  @override
   GGroupWithExpenses_creator get creator;
   @override
   BuiltList<GGroupWithExpenses_members> get members;
   @override
-  int get toPay;
-  @override
-  int get toReceive;
+  int get owed;
   @override
   String get createdAt;
+  @override
+  String get id;
+  @override
+  String? get name;
   BuiltList<GGroupWithExpenses_expenses> get expenses;
   @override
   Map<String, dynamic> toJson();
@@ -3325,8 +4625,19 @@ abstract class GGroupWithExpenses_creator
   Map<String, dynamic> toJson();
 }
 
-abstract class GGroupWithExpenses_members
-    implements GGroupFields_members, GUserFields {
+abstract class GGroupWithExpenses_members implements GGroupFields_members {
+  @override
+  String get G__typename;
+  @override
+  int get owedInGroup;
+  @override
+  GGroupWithExpenses_members_member get member;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GGroupWithExpenses_members_member
+    implements GGroupFields_members_member, GUserFields {
   @override
   String get G__typename;
   @override
@@ -3347,21 +4658,17 @@ abstract class GGroupWithExpenses_expenses implements GExpenseFields {
   @override
   String get G__typename;
   @override
+  GGroupWithExpenses_expenses_creator get creator;
+  @override
+  BuiltList<GGroupWithExpenses_expenses_splits> get splits;
+  @override
   String get id;
   @override
   String get title;
   @override
   String get createdAt;
   @override
-  GGroupWithExpenses_expenses_creator get creator;
-  @override
   int get amount;
-  @override
-  int get toPay;
-  @override
-  int get toReceive;
-  @override
-  BuiltList<GGroupWithExpenses_expenses_splits> get splits;
   @override
   Map<String, dynamic> toJson();
 }
@@ -3393,13 +4700,15 @@ abstract class GGroupWithExpenses_expenses_splits
   @override
   int get amount;
   @override
-  int get amountSettled;
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
   @override
   GGroupWithExpenses_expenses_splits_fromUser get fromUser;
   @override
   GGroupWithExpenses_expenses_splits_toUser get toUser;
-  @override
-  bool get isSettled;
   @override
   Map<String, dynamic> toJson();
 }
@@ -3461,19 +4770,17 @@ abstract class GGroupWithExpensesData
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  String get id;
-  @override
-  String? get name;
-  @override
   GGroupWithExpensesData_creator get creator;
   @override
   BuiltList<GGroupWithExpensesData_members> get members;
   @override
-  int get toPay;
-  @override
-  int get toReceive;
+  int get owed;
   @override
   String get createdAt;
+  @override
+  String get id;
+  @override
+  String? get name;
   @override
   BuiltList<GGroupWithExpensesData_expenses> get expenses;
   static Serializer<GGroupWithExpensesData> get serializer =>
@@ -3542,8 +4849,7 @@ abstract class GGroupWithExpensesData_members
         Built<GGroupWithExpensesData_members,
             GGroupWithExpensesData_membersBuilder>,
         GGroupWithExpenses_members,
-        GGroupFields_members,
-        GUserFields {
+        GGroupFields_members {
   GGroupWithExpensesData_members._();
 
   factory GGroupWithExpensesData_members(
@@ -3551,6 +4857,46 @@ abstract class GGroupWithExpensesData_members
       _$GGroupWithExpensesData_members;
 
   static void _initializeBuilder(GGroupWithExpensesData_membersBuilder b) =>
+      b..G__typename = 'GroupMember';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get owedInGroup;
+  @override
+  GGroupWithExpensesData_members_member get member;
+  static Serializer<GGroupWithExpensesData_members> get serializer =>
+      _$gGroupWithExpensesDataMembersSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GGroupWithExpensesData_members.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GGroupWithExpensesData_members? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GGroupWithExpensesData_members.serializer,
+        json,
+      );
+}
+
+abstract class GGroupWithExpensesData_members_member
+    implements
+        Built<GGroupWithExpensesData_members_member,
+            GGroupWithExpensesData_members_memberBuilder>,
+        GGroupWithExpenses_members_member,
+        GGroupFields_members_member,
+        GUserFields {
+  GGroupWithExpensesData_members_member._();
+
+  factory GGroupWithExpensesData_members_member(
+          [Function(GGroupWithExpensesData_members_memberBuilder b) updates]) =
+      _$GGroupWithExpensesData_members_member;
+
+  static void _initializeBuilder(
+          GGroupWithExpensesData_members_memberBuilder b) =>
       b..G__typename = 'User';
 
   @override
@@ -3566,18 +4912,19 @@ abstract class GGroupWithExpensesData_members
   String? get email;
   @override
   bool get isSignedUp;
-  static Serializer<GGroupWithExpensesData_members> get serializer =>
-      _$gGroupWithExpensesDataMembersSerializer;
+  static Serializer<GGroupWithExpensesData_members_member> get serializer =>
+      _$gGroupWithExpensesDataMembersMemberSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGroupWithExpensesData_members.serializer,
+        GGroupWithExpensesData_members_member.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGroupWithExpensesData_members? fromJson(Map<String, dynamic> json) =>
+  static GGroupWithExpensesData_members_member? fromJson(
+          Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GGroupWithExpensesData_members.serializer,
+        GGroupWithExpensesData_members_member.serializer,
         json,
       );
 }
@@ -3601,21 +4948,17 @@ abstract class GGroupWithExpensesData_expenses
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
+  GGroupWithExpensesData_expenses_creator get creator;
+  @override
+  BuiltList<GGroupWithExpensesData_expenses_splits> get splits;
+  @override
   String get id;
   @override
   String get title;
   @override
   String get createdAt;
   @override
-  GGroupWithExpensesData_expenses_creator get creator;
-  @override
   int get amount;
-  @override
-  int get toPay;
-  @override
-  int get toReceive;
-  @override
-  BuiltList<GGroupWithExpensesData_expenses_splits> get splits;
   static Serializer<GGroupWithExpensesData_expenses> get serializer =>
       _$gGroupWithExpensesDataExpensesSerializer;
 
@@ -3704,13 +5047,15 @@ abstract class GGroupWithExpensesData_expenses_splits
   @override
   int get amount;
   @override
-  int get amountSettled;
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
   @override
   GGroupWithExpensesData_expenses_splits_fromUser get fromUser;
   @override
   GGroupWithExpensesData_expenses_splits_toUser get toUser;
-  @override
-  bool get isSettled;
   static Serializer<GGroupWithExpensesData_expenses_splits> get serializer =>
       _$gGroupWithExpensesDataExpensesSplitsSerializer;
 

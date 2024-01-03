@@ -33,7 +33,7 @@ class _FindPeopleState extends State<FindPeople> {
   @override
   void initState() {
     amountController.addListener(() {
-      // resetPercentage();
+      resetPercentage();
     });
     expenseWith.addListener(reinitDistribution);
     super.initState();
@@ -44,8 +44,8 @@ class _FindPeopleState extends State<FindPeople> {
     amountDistribution.clear();
     if (expenseWith.value case ExpenseWithGroup(group: var group)) {
       for (var user in group.members) {
-        percentDistribution[user.id] = 1 / group.members.length;
-        amountDistribution[user.id] = TextEditingController();
+        percentDistribution[user.member.id] = 1 / group.members.length;
+        amountDistribution[user.member.id] = TextEditingController();
       }
     } else if (expenseWith.value case ExpenseWithPeople(users: var users)) {
       final currentUser = context.read<AppState>().user!;
@@ -382,7 +382,8 @@ class _FindPeopleState extends State<FindPeople> {
                         ShareableUser member;
                         switch (expenseWithValue) {
                           case ExpenseWithGroup(group: var group):
-                            member = UserWithUser(user: group.members[index]);
+                            member =
+                                UserWithUser(user: group.members[index].member);
 
                           case ExpenseWithPeople(users: var users):
                             member = [
@@ -544,7 +545,7 @@ class _FindPeopleState extends State<FindPeople> {
                   (b) => b.vars
                     ..amount = int.parse(amountController.text)
                     ..title = nameController.text
-                    ..splitsNonGroup = ListBuilder(
+                    ..nonGroupSplit = ListBuilder(
                       users
                           .map(
                             (e) => GSplitInputNonGroup(

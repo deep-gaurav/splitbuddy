@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:splitbuddy/extensions/group_extension.dart';
+import 'package:splitbuddy/extensions/interable_extension.dart';
+import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/screens/group.dart';
 import 'package:splitbuddy/state/app_state.dart';
@@ -29,37 +31,35 @@ class GroupsPage extends StatelessWidget {
                     return Container(
                       margin:
                           const EdgeInsets.only(top: 10, left: 20, right: 20),
-                      child: Card(
-                        child: ListTile(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => Group(group: group),
+                      child: ListTile(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => Group(group: group),
+                            ),
+                          );
+                        },
+                        leading: GroupIconWidget(group: group),
+                        title: Text(group.displayName),
+                        subtitle: Row(
+                          children: [
+                            Expanded(
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.call_received),
+                                  Text(group.toReceive.toString())
+                                ],
                               ),
-                            );
-                          },
-                          leading: const Icon(Icons.group),
-                          title: Text(group.displayName),
-                          subtitle: Row(
-                            children: [
-                              Expanded(
-                                child: Row(
-                                  children: [
-                                    const Icon(Icons.call_received),
-                                    Text(group.toReceive.toString())
-                                  ],
-                                ),
+                            ),
+                            Expanded(
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.call_made),
+                                  Text(group.toPay.toString())
+                                ],
                               ),
-                              Expanded(
-                                child: Row(
-                                  children: [
-                                    const Icon(Icons.call_made),
-                                    Text(group.toPay.toString())
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
+                            )
+                          ],
                         ),
                       ),
                     );
@@ -71,6 +71,144 @@ class GroupsPage extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class GroupIconWidget extends StatelessWidget {
+  const GroupIconWidget({
+    super.key,
+    required this.group,
+  });
+
+  final GGroupFields group;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 40,
+      height: 40,
+      child: group.name != null
+          ? DecoratedBox(
+              decoration: BoxDecoration(
+                color: group.getBackgroudColor(Theme.of(context).brightness),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Center(
+                child: Text(
+                  group.displayName
+                          .trim()
+                          .characters
+                          .firstOrNull
+                          ?.toUpperCase() ??
+                      '?',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: group.getMainColor(Theme.of(context).brightness),
+                  ),
+                ),
+              ),
+            )
+          : ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        ...List.generate(
+                                group.members.length ~/ 2, (index) => index)
+                            .map<Widget>(
+                              (index) => Expanded(
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    color: group
+                                        .members[index].member.getMainColor,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      group.members[index].member.displayName
+                                              .characters
+                                              .toUpperCase()
+                                              .firstOrNull ??
+                                          '?',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: ThemeData
+                                                    .estimateBrightnessForColor(
+                                                        group
+                                                            .members[index]
+                                                            .member
+                                                            .getMainColor) ==
+                                                Brightness.light
+                                            ? Colors.black
+                                            : Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                            .intersperse(
+                              const SizedBox(
+                                height: 2,
+                              ),
+                            ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 2,
+                  ),
+                  Expanded(
+                      child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      ...List.generate(
+                              group.members.length -
+                                  (group.members.length ~/ 2),
+                              (index) => (group.members.length ~/ 2) + index)
+                          .map<Widget>(
+                            (index) => Expanded(
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color:
+                                      group.members[index].member.getMainColor,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    group.members[index].member.displayName
+                                            .characters
+                                            .toUpperCase()
+                                            .firstOrNull ??
+                                        '?',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color:
+                                          ThemeData.estimateBrightnessForColor(
+                                                      group
+                                                          .members[index]
+                                                          .member
+                                                          .getMainColor) ==
+                                                  Brightness.light
+                                              ? Colors.black
+                                              : Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                          .intersperse(const SizedBox(
+                            height: 2,
+                          )),
+                    ],
+                  ))
+                ],
+              ),
+            ),
     );
   }
 }

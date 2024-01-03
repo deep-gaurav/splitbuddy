@@ -7,36 +7,46 @@ fragment UserFields on User {
   isSignedUp
 }
 
-fragment UserPaysFields on User{
+fragment UserPaysFields on User {
+  ...UserFields
   upiIds
-  toPay
-  toReceive
+  owes {
+    groupId
+    amount
+  }
+}
+
+fragment GroupBasic on Group {
+  id
+  name
 }
 
 fragment GroupFields on Group {
-  id
-  name
+  ...GroupBasic
   creator {
     ...UserFields
   }
   members {
-    ...UserFields
+    owedInGroup
+    member {
+      ...UserFields
+    }
   }
-  toPay
-  toReceive
+  owed
   createdAt
 }
-
-fragment ExpenseFields on Expense {
+fragment ExpenseBasic on Expense {
   id
   title
   createdAt
+  amount
+}
+
+fragment ExpenseFields on Expense {
+  ...ExpenseBasic
   creator {
     ...UserFields
   }
-  amount
-  toPay
-  toReceive
   splits {
     ...SplitFields
   }
@@ -45,14 +55,28 @@ fragment ExpenseFields on Expense {
 fragment SplitFields on Split {
   id
   amount
-  amountSettled
+  transactionType
+  createdAt
+  transactionPartGroupId
   fromUser {
     ...UserFields
   }
   toUser {
     ...UserFields
   }
-  isSettled
+}
+
+fragment SplitTransactionFields on Split {
+  ...SplitFields
+  expense {
+    ...ExpenseBasic
+  }
+  group {
+    ...GroupBasic
+  }
+  creator {
+    ...UserFields
+  }
 }
 
 fragment GroupWithExpenses on Group {
@@ -61,7 +85,6 @@ fragment GroupWithExpenses on Group {
     ...ExpenseFields
   }
 }
-
 
 query user {
   user {
@@ -78,14 +101,13 @@ query user {
 }
 
 query groups {
-  groups{
+  groups {
     ...GroupFields
   }
 }
 
 query interacted_users {
-  interactedUsers{
-    ...UserFields
+  interactedUsers {
     ...UserPaysFields
   }
 }
@@ -96,12 +118,12 @@ query group($skip: Int!, $limit: Int!, $groupId: String!) {
   }
 }
 
-mutation signup($name: String!, $upi_id:String) {
-  signup(name: $name,upiId:$upi_id) {
-    user{
+mutation signup($name: String!, $upi_id: String) {
+  signup(name: $name, upiId: $upi_id) {
+    user {
       ...UserFields
     }
-    tokens{
+    tokens {
       accessToken
       refreshToken
     }
@@ -134,53 +156,71 @@ mutation add_expense(
   }
 }
 
-mutation settle_user($amount: Int!, $userId:String!){
-  settleUser(amount:$amount,userId:$userId)
+mutation send_email_otp($email: String!) {
+  sendEmailOtp(email: $email)
 }
 
-mutation settle_expense($amount:Int!, $expenseId: String!){
-  settleExpense(expenseId:$expenseId, amount:$amount){
-    ...ExpenseFields
-  }
-}
-
-mutation send_email_otp($email: String!){
-  sendEmailOtp(email:$email)
-}
-
-mutation verify_email_otp($email:String!, $otp:String!){
-  verifyOtp(email:$email, otp:$otp){
+mutation verify_email_otp($email: String!, $otp: String!) {
+  verifyOtp(email: $email, otp: $otp) {
     __typename
-    ... on UserSignedUp{
-      accessToken,
+    ... on UserSignedUp {
+      accessToken
       refreshToken
     }
-    ... on UserNotSignedUp{
+    ... on UserNotSignedUp {
       signupToken
     }
   }
 }
 
-mutation refresh_token($refresh_token: String!){
-  refreshToken(refreshToken:$refresh_token){
+mutation refresh_token($refresh_token: String!) {
+  refreshToken(refreshToken: $refresh_token) {
     accessToken
     refreshToken
   }
 }
 
-query searchUserByEmail($email:String!){
-  findUserByEmail(email:$email){
+query searchUserByEmail($email: String!) {
+  findUserByEmail(email: $email) {
     ...UserFields
   }
 }
 
-mutation createNonGroupExpense($title: String!, $amount: Int!, $splitsNonGroup:[SplitInputNonGroup!]!){
-  addNonGroupExpense(title:$title, amount:$amount, splits: $splitsNonGroup){
-    group{
+mutation createNonGroupExpense(
+  $title: String!
+  $amount: Int!
+  $nonGroupSplit: [SplitInputNonGroup!]!
+) {
+  addNonGroupExpense(title: $title, amount: $amount, splits: $nonGroupSplit) {
+    group {
       ...GroupFields
     }
-    expense{
+    expense {
       ...ExpenseFields
     }
+  }
+}
+
+mutation settleInGroup($withUser: String!, $groupId: String!, $amount: Int!) {
+  settleInGroup(toUser: $withUser, groupId: $groupId, amount: $amount) {
+    ...SplitFields
+  }
+}
+
+mutation simplifyUser($withUser: String!) {
+  simplifyCrossGroup(withUser: $withUser) {
+    ...SplitFields
+  }
+}
+
+mutation autoSettleWithUser($withUser: String!, $amount: Int!) {
+  autoSettleWithUser(withUser: $withUser, amount: $amount) {
+    ...SplitFields
+  }
+}
+
+query transactionWithUser($withUser: String!, $skip: Int!, $limit: Int!) {
+  getTransactionsWithUser(withUser: $withUser, skip: $skip, limit: $limit) {
+    ...SplitTransactionFields
   }
 }

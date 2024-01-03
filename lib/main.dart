@@ -7,7 +7,6 @@ import 'package:splitbuddy/phone_entry.dart';
 import 'package:splitbuddy/screens/home_screen.dart';
 import 'package:splitbuddy/screens/signup_screen.dart';
 import 'package:splitbuddy/state/app_state.dart';
-import 'package:system_theme/system_theme.dart';
 
 import 'firebase_options.dart';
 
@@ -55,14 +54,14 @@ class _MyAppState extends State<MyApp> {
               theme: _buildTheme(Brightness.light, lightDynamic),
               darkTheme: _buildTheme(Brightness.dark, darkDynamic),
               home: switch (val) {
-                AuthStates.Loading => const Scaffold(
+                AuthStates.loading => const Scaffold(
                     body: Center(
                       child: CircularProgressIndicator(),
                     ),
                   ),
-                AuthStates.UnAuthorized => const PhoneEntryScreen(),
-                AuthStates.AuthorizedRequiresSignup => const SignupScreen(),
-                AuthStates.Authorized => const HomeScreen(),
+                AuthStates.unAuthorized => const PhoneEntryScreen(),
+                AuthStates.authorizedRequiresSignup => const SignupScreen(),
+                AuthStates.authorized => const HomeScreen(),
               },
             ),
           );

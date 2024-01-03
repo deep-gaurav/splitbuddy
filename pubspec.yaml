@@ -54,6 +54,7 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   google_fonts: ^6.1.0
   email_validator: ^2.1.17
+  collection: ^1.18.0
 
 dev_dependencies:
   flutter_test:

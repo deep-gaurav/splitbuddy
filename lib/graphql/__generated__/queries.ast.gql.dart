@@ -59,6 +59,10 @@ const UserPaysFields = _i1.FragmentDefinitionNode(
   )),
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FragmentSpreadNode(
+      name: _i1.NameNode(value: 'UserFields'),
+      directives: [],
+    ),
     _i1.FieldNode(
       name: _i1.NameNode(value: 'upiIds'),
       alias: null,
@@ -67,23 +71,31 @@ const UserPaysFields = _i1.FragmentDefinitionNode(
       selectionSet: null,
     ),
     _i1.FieldNode(
-      name: _i1.NameNode(value: 'toPay'),
+      name: _i1.NameNode(value: 'owes'),
       alias: null,
       arguments: [],
       directives: [],
-      selectionSet: null,
-    ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'toReceive'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'groupId'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'amount'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+      ]),
     ),
   ]),
 );
-const GroupFields = _i1.FragmentDefinitionNode(
-  name: _i1.NameNode(value: 'GroupFields'),
+const GroupBasic = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'GroupBasic'),
   typeCondition: _i1.TypeConditionNode(
       on: _i1.NamedTypeNode(
     name: _i1.NameNode(value: 'Group'),
@@ -105,6 +117,21 @@ const GroupFields = _i1.FragmentDefinitionNode(
       directives: [],
       selectionSet: null,
     ),
+  ]),
+);
+const GroupFields = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'GroupFields'),
+  typeCondition: _i1.TypeConditionNode(
+      on: _i1.NamedTypeNode(
+    name: _i1.NameNode(value: 'Group'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FragmentSpreadNode(
+      name: _i1.NameNode(value: 'GroupBasic'),
+      directives: [],
+    ),
     _i1.FieldNode(
       name: _i1.NameNode(value: 'creator'),
       alias: null,
@@ -123,21 +150,29 @@ const GroupFields = _i1.FragmentDefinitionNode(
       arguments: [],
       directives: [],
       selectionSet: _i1.SelectionSetNode(selections: [
-        _i1.FragmentSpreadNode(
-          name: _i1.NameNode(value: 'UserFields'),
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'owedInGroup'),
+          alias: null,
+          arguments: [],
           directives: [],
-        )
+          selectionSet: null,
+        ),
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'member'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: _i1.SelectionSetNode(selections: [
+            _i1.FragmentSpreadNode(
+              name: _i1.NameNode(value: 'UserFields'),
+              directives: [],
+            )
+          ]),
+        ),
       ]),
     ),
     _i1.FieldNode(
-      name: _i1.NameNode(value: 'toPay'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'toReceive'),
+      name: _i1.NameNode(value: 'owed'),
       alias: null,
       arguments: [],
       directives: [],
@@ -152,8 +187,8 @@ const GroupFields = _i1.FragmentDefinitionNode(
     ),
   ]),
 );
-const ExpenseFields = _i1.FragmentDefinitionNode(
-  name: _i1.NameNode(value: 'ExpenseFields'),
+const ExpenseBasic = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'ExpenseBasic'),
   typeCondition: _i1.TypeConditionNode(
       on: _i1.NamedTypeNode(
     name: _i1.NameNode(value: 'Expense'),
@@ -183,6 +218,28 @@ const ExpenseFields = _i1.FragmentDefinitionNode(
       selectionSet: null,
     ),
     _i1.FieldNode(
+      name: _i1.NameNode(value: 'amount'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+  ]),
+);
+const ExpenseFields = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'ExpenseFields'),
+  typeCondition: _i1.TypeConditionNode(
+      on: _i1.NamedTypeNode(
+    name: _i1.NameNode(value: 'Expense'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FragmentSpreadNode(
+      name: _i1.NameNode(value: 'ExpenseBasic'),
+      directives: [],
+    ),
+    _i1.FieldNode(
       name: _i1.NameNode(value: 'creator'),
       alias: null,
       arguments: [],
@@ -193,27 +250,6 @@ const ExpenseFields = _i1.FragmentDefinitionNode(
           directives: [],
         )
       ]),
-    ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'amount'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'toPay'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'toReceive'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
     ),
     _i1.FieldNode(
       name: _i1.NameNode(value: 'splits'),
@@ -253,7 +289,21 @@ const SplitFields = _i1.FragmentDefinitionNode(
       selectionSet: null,
     ),
     _i1.FieldNode(
-      name: _i1.NameNode(value: 'amountSettled'),
+      name: _i1.NameNode(value: 'transactionType'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'createdAt'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'transactionPartGroupId'),
       alias: null,
       arguments: [],
       directives: [],
@@ -283,12 +333,56 @@ const SplitFields = _i1.FragmentDefinitionNode(
         )
       ]),
     ),
+  ]),
+);
+const SplitTransactionFields = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'SplitTransactionFields'),
+  typeCondition: _i1.TypeConditionNode(
+      on: _i1.NamedTypeNode(
+    name: _i1.NameNode(value: 'Split'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FragmentSpreadNode(
+      name: _i1.NameNode(value: 'SplitFields'),
+      directives: [],
+    ),
     _i1.FieldNode(
-      name: _i1.NameNode(value: 'isSettled'),
+      name: _i1.NameNode(value: 'expense'),
       alias: null,
       arguments: [],
       directives: [],
-      selectionSet: null,
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'ExpenseBasic'),
+          directives: [],
+        )
+      ]),
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'group'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'GroupBasic'),
+          directives: [],
+        )
+      ]),
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'creator'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'UserFields'),
+          directives: [],
+        )
+      ]),
     ),
   ]),
 );
@@ -423,13 +517,9 @@ const interacted_users = _i1.OperationDefinitionNode(
       directives: [],
       selectionSet: _i1.SelectionSetNode(selections: [
         _i1.FragmentSpreadNode(
-          name: _i1.NameNode(value: 'UserFields'),
-          directives: [],
-        ),
-        _i1.FragmentSpreadNode(
           name: _i1.NameNode(value: 'UserPaysFields'),
           directives: [],
-        ),
+        )
       ]),
     )
   ]),
@@ -720,97 +810,6 @@ const add_expense = _i1.OperationDefinitionNode(
     )
   ]),
 );
-const settle_user = _i1.OperationDefinitionNode(
-  type: _i1.OperationType.mutation,
-  name: _i1.NameNode(value: 'settle_user'),
-  variableDefinitions: [
-    _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'amount')),
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
-        isNonNull: true,
-      ),
-      defaultValue: _i1.DefaultValueNode(value: null),
-      directives: [],
-    ),
-    _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'userId')),
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
-        isNonNull: true,
-      ),
-      defaultValue: _i1.DefaultValueNode(value: null),
-      directives: [],
-    ),
-  ],
-  directives: [],
-  selectionSet: _i1.SelectionSetNode(selections: [
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'settleUser'),
-      alias: null,
-      arguments: [
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'amount'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'amount')),
-        ),
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'userId'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'userId')),
-        ),
-      ],
-      directives: [],
-      selectionSet: null,
-    )
-  ]),
-);
-const settle_expense = _i1.OperationDefinitionNode(
-  type: _i1.OperationType.mutation,
-  name: _i1.NameNode(value: 'settle_expense'),
-  variableDefinitions: [
-    _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'amount')),
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
-        isNonNull: true,
-      ),
-      defaultValue: _i1.DefaultValueNode(value: null),
-      directives: [],
-    ),
-    _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'expenseId')),
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
-        isNonNull: true,
-      ),
-      defaultValue: _i1.DefaultValueNode(value: null),
-      directives: [],
-    ),
-  ],
-  directives: [],
-  selectionSet: _i1.SelectionSetNode(selections: [
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'settleExpense'),
-      alias: null,
-      arguments: [
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'expenseId'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'expenseId')),
-        ),
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'amount'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'amount')),
-        ),
-      ],
-      directives: [],
-      selectionSet: _i1.SelectionSetNode(selections: [
-        _i1.FragmentSpreadNode(
-          name: _i1.NameNode(value: 'ExpenseFields'),
-          directives: [],
-        )
-      ]),
-    )
-  ]),
-);
 const send_email_otp = _i1.OperationDefinitionNode(
   type: _i1.OperationType.mutation,
   name: _i1.NameNode(value: 'send_email_otp'),
@@ -1036,7 +1035,7 @@ const createNonGroupExpense = _i1.OperationDefinitionNode(
       directives: [],
     ),
     _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'splitsNonGroup')),
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'nonGroupSplit')),
       type: _i1.ListTypeNode(
         type: _i1.NamedTypeNode(
           name: _i1.NameNode(value: 'SplitInputNonGroup'),
@@ -1064,7 +1063,7 @@ const createNonGroupExpense = _i1.OperationDefinitionNode(
         ),
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'splits'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'splitsNonGroup')),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'nonGroupSplit')),
         ),
       ],
       directives: [],
@@ -1097,12 +1096,220 @@ const createNonGroupExpense = _i1.OperationDefinitionNode(
     )
   ]),
 );
+const settleInGroup = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.mutation,
+  name: _i1.NameNode(value: 'settleInGroup'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'withUser')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'groupId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'amount')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'settleInGroup'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'toUser'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'withUser')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'groupId'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'groupId')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'amount'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'amount')),
+        ),
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'SplitFields'),
+          directives: [],
+        )
+      ]),
+    )
+  ]),
+);
+const simplifyUser = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.mutation,
+  name: _i1.NameNode(value: 'simplifyUser'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'withUser')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    )
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'simplifyCrossGroup'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'withUser'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'withUser')),
+        )
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'SplitFields'),
+          directives: [],
+        )
+      ]),
+    )
+  ]),
+);
+const autoSettleWithUser = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.mutation,
+  name: _i1.NameNode(value: 'autoSettleWithUser'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'withUser')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'amount')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'autoSettleWithUser'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'withUser'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'withUser')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'amount'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'amount')),
+        ),
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'SplitFields'),
+          directives: [],
+        )
+      ]),
+    )
+  ]),
+);
+const transactionWithUser = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.query,
+  name: _i1.NameNode(value: 'transactionWithUser'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'withUser')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'skip')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'limit')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'getTransactionsWithUser'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'withUser'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'withUser')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'skip'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'skip')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'limit'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'limit')),
+        ),
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'SplitTransactionFields'),
+          directives: [],
+        )
+      ]),
+    )
+  ]),
+);
 const document = _i1.DocumentNode(definitions: [
   UserFields,
   UserPaysFields,
+  GroupBasic,
   GroupFields,
+  ExpenseBasic,
   ExpenseFields,
   SplitFields,
+  SplitTransactionFields,
   GroupWithExpenses,
   user,
   groups,
@@ -1112,11 +1319,13 @@ const document = _i1.DocumentNode(definitions: [
   create_group,
   add_to_group,
   add_expense,
-  settle_user,
-  settle_expense,
   send_email_otp,
   verify_email_otp,
   refresh_token,
   searchUserByEmail,
   createNonGroupExpense,
+  settleInGroup,
+  simplifyUser,
+  autoSettleWithUser,
+  transactionWithUser,
 ]);

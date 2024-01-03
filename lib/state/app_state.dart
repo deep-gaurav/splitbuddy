@@ -8,16 +8,15 @@ import 'package:gql_http_link/gql_http_link.dart';
 import 'package:splitbuddy/__generated__/schema.schema.gql.dart';
 import 'package:splitbuddy/auth/reauth_client.dart';
 import 'package:splitbuddy/auth/secure_storage.dart';
+import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
-import 'package:splitbuddy/utils/headerclient.dart';
-import 'package:http/http.dart' as http;
 
 enum AuthStates {
-  Loading,
-  UnAuthorized,
-  AuthorizedRequiresSignup,
-  Authorized,
+  loading,
+  unAuthorized,
+  authorizedRequiresSignup,
+  authorized,
 }
 
 class AppState extends ChangeNotifier {
@@ -45,7 +44,7 @@ class AppState extends ChangeNotifier {
 
   GuserData_user? _auth;
 
-  AuthStates authState = AuthStates.Loading;
+  AuthStates authState = AuthStates.loading;
 
   GUserFields? get user => (_auth is GuserData_user__asRegistered)
       ? (_auth as GuserData_user__asRegistered).user
@@ -58,36 +57,47 @@ class AppState extends ChangeNotifier {
 
   List<Ginteracted_usersData_interactedUsers> _interactedUsers = [];
 
+  int get toPay => _interactedUsers.fold(
+      0, (previousValue, element) => previousValue + element.toPay);
+
+  int get toReceive => _interactedUsers.fold(
+      0, (previousValue, element) => previousValue + element.toReceive);
+
   UnmodifiableListView<Ginteracted_usersData_interactedUsers>
       get interactedUsers => UnmodifiableListView(_interactedUsers);
 
   Future<ReAuthClient> get client => _getClient();
 
-  refresh(ReAuthClient client) {
+  refresh(
+    ReAuthClient client, {
+    bool onlyUser = false,
+  }) {
     client.execute(GuserReq()).then((value) {
       _auth = value.data?.user;
       if (value.data?.user == null) {
-        authState = AuthStates.UnAuthorized;
+        authState = AuthStates.unAuthorized;
       } else if (value.data?.user is GuserData_user__asUnregistered) {
-        authState = AuthStates.AuthorizedRequiresSignup;
+        authState = AuthStates.authorizedRequiresSignup;
       } else if (value.data?.user is GuserData_user__asRegistered) {
-        authState = AuthStates.Authorized;
+        authState = AuthStates.authorized;
       }
       notifyListeners();
     });
-    client.execute(GgroupsReq()).then((value) {
-      _userGroups = [];
-      _userGroups.addAll(value.data?.groups.toList() ?? []);
+    if (!onlyUser) {
+      client.execute(GgroupsReq()).then((value) {
+        _userGroups = [];
+        _userGroups.addAll(value.data?.groups.toList() ?? []);
 
-      notifyListeners();
-    });
+        notifyListeners();
+      });
 
-    client.execute(Ginteracted_usersReq()).then((value) {
-      _interactedUsers = [];
-      _interactedUsers.addAll(value.data?.interactedUsers ?? []);
+      client.execute(Ginteracted_usersReq()).then((value) {
+        _interactedUsers = [];
+        _interactedUsers.addAll(value.data?.interactedUsers ?? []);
 
-      notifyListeners();
-    });
+        notifyListeners();
+      });
+    }
   }
 
   Future<List<GGroupFields>> getGroups() async {
@@ -208,14 +218,14 @@ class AppState extends ChangeNotifier {
           .storeTokens(accessToken: response.signupToken, refreshToken: null);
 
       _reAuthClient = null;
-      refresh(await _getClient());
+      refresh(await _getClient(), onlyUser: true);
       return true;
     }
     return false;
   }
 
   logout() {
-    authState = AuthStates.UnAuthorized;
+    authState = AuthStates.unAuthorized;
     notifyListeners();
   }
 }

@@ -6,9 +6,38 @@ part of 'schema.schema.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const GTransactionType _$gTransactionTypeEXPENSE_SPLIT =
+    const GTransactionType._('EXPENSE_SPLIT');
+const GTransactionType _$gTransactionTypeCROSS_GROUP_SETTLEMENT =
+    const GTransactionType._('CROSS_GROUP_SETTLEMENT');
+const GTransactionType _$gTransactionTypeCASH_PAID =
+    const GTransactionType._('CASH_PAID');
+
+GTransactionType _$gTransactionTypeValueOf(String name) {
+  switch (name) {
+    case 'EXPENSE_SPLIT':
+      return _$gTransactionTypeEXPENSE_SPLIT;
+    case 'CROSS_GROUP_SETTLEMENT':
+      return _$gTransactionTypeCROSS_GROUP_SETTLEMENT;
+    case 'CASH_PAID':
+      return _$gTransactionTypeCASH_PAID;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<GTransactionType> _$gTransactionTypeValues =
+    new BuiltSet<GTransactionType>(const <GTransactionType>[
+  _$gTransactionTypeEXPENSE_SPLIT,
+  _$gTransactionTypeCROSS_GROUP_SETTLEMENT,
+  _$gTransactionTypeCASH_PAID,
+]);
+
 Serializer<GSplitInput> _$gSplitInputSerializer = new _$GSplitInputSerializer();
 Serializer<GSplitInputNonGroup> _$gSplitInputNonGroupSerializer =
     new _$GSplitInputNonGroupSerializer();
+Serializer<GTransactionType> _$gTransactionTypeSerializer =
+    new _$GTransactionTypeSerializer();
 
 class _$GSplitInputSerializer implements StructuredSerializer<GSplitInput> {
   @override
@@ -121,6 +150,24 @@ class _$GSplitInputNonGroupSerializer
 
     return result.build();
   }
+}
+
+class _$GTransactionTypeSerializer
+    implements PrimitiveSerializer<GTransactionType> {
+  @override
+  final Iterable<Type> types = const <Type>[GTransactionType];
+  @override
+  final String wireName = 'GTransactionType';
+
+  @override
+  Object serialize(Serializers serializers, GTransactionType object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.name;
+
+  @override
+  GTransactionType deserialize(Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      GTransactionType.valueOf(serialized as String);
 }
 
 class _$GSplitInput extends GSplitInput {

@@ -8,8 +8,6 @@ type Expense {
   group: Group!
   amount: Int!
   splits: [Split!]!
-  toPay: Int!
-  toReceive: Int!
 }
 
 type Group {
@@ -17,10 +15,14 @@ type Group {
   name: String
   createdAt: String!
   creator: User!
-  members: [User!]!
+  members: [GroupMember!]!
   expenses(skip: Int! = 0, limit: Int! = 10): [Expense!]!
-  toPay: Int!
-  toReceive: Int!
+  owed: Int!
+}
+
+type GroupMember {
+  member: User!
+  owedInGroup: Int!
 }
 
 type Mutation {
@@ -41,8 +43,9 @@ type Mutation {
     amount: Int!
     splits: [SplitInput!]!
   ): Expense!
-  settleExpense(expenseId: String!, amount: Int!): Expense!
-  settleUser(userId: String!, amount: Int!): String!
+  settleInGroup(toUser: String!, groupId: String!, amount: Int!): Split!
+  simplifyCrossGroup(withUser: String!): [Split!]!
+  autoSettleWithUser(withUser: String!, amount: Int!): [Split!]!
 }
 
 type NonGroupExpense {
@@ -50,12 +53,17 @@ type NonGroupExpense {
   expense: Expense!
 }
 
+type OwedInGroup {
+  groupId: String!
+  amount: Int!
+}
+
 type Query {
   ping: String!
   user: UserAuth!
   group(id: String!): Group!
   userById(id: String!): User!
-  expensesCreatedByUser(
+  expensesWithUser(
     userId: String!
     skip: Int! = 0
     limit: Int! = 10
@@ -63,6 +71,8 @@ type Query {
   interactedUsers: [User!]!
   groups: [Group!]!
   findUserByEmail(email: String!): User!
+  overallOwed: Int!
+  getTransactionsWithUser(withUser: String!, skip: Int!, limit: Int!): [Split!]!
 }
 
 type Registered {
@@ -76,12 +86,15 @@ type SignupSuccess {
 
 type Split {
   id: String!
-  expense: Expense!
+  expense: Expense
+  group: Group!
   amount: Int!
-  amountSettled: Int!
   fromUser: User!
   toUser: User!
-  isSettled: Boolean!
+  transactionType: TransactionType!
+  createdAt: String!
+  creator: User!
+  transactionPartGroupId: String
 }
 
 input SplitInput {
@@ -95,6 +108,12 @@ input SplitInputNonGroup {
   userId: String
 }
 
+enum TransactionType {
+  EXPENSE_SPLIT
+  CROSS_GROUP_SETTLEMENT
+  CASH_PAID
+}
+
 type Unregistered {
   phone: String
   email: String
@@ -106,9 +125,8 @@ type User {
   phone: String
   email: String
   isSignedUp: Boolean!
-  toPay: Int!
+  owes: [OwedInGroup!]!
   upiIds: [String!]!
-  toReceive: Int!
 }
 
 union UserAuth = Unregistered | Registered

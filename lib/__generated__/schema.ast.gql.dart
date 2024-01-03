@@ -89,24 +89,6 @@ const Expense = _i1.ObjectTypeDefinitionNode(
         isNonNull: true,
       ),
     ),
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'toPay'),
-      directives: [],
-      args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
-        isNonNull: true,
-      ),
-    ),
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'toReceive'),
-      directives: [],
-      args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
-        isNonNull: true,
-      ),
-    ),
   ],
 );
 const Group = _i1.ObjectTypeDefinitionNode(
@@ -156,7 +138,7 @@ const Group = _i1.ObjectTypeDefinitionNode(
       args: [],
       type: _i1.ListTypeNode(
         type: _i1.NamedTypeNode(
-          name: _i1.NameNode(value: 'User'),
+          name: _i1.NameNode(value: 'GroupMember'),
           isNonNull: true,
         ),
         isNonNull: true,
@@ -194,7 +176,7 @@ const Group = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'toPay'),
+      name: _i1.NameNode(value: 'owed'),
       directives: [],
       args: [],
       type: _i1.NamedTypeNode(
@@ -202,8 +184,24 @@ const Group = _i1.ObjectTypeDefinitionNode(
         isNonNull: true,
       ),
     ),
+  ],
+);
+const GroupMember = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'GroupMember'),
+  directives: [],
+  interfaces: [],
+  fields: [
     _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'toReceive'),
+      name: _i1.NameNode(value: 'member'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'User'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'owedInGroup'),
       directives: [],
       args: [],
       type: _i1.NamedTypeNode(
@@ -449,11 +447,20 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'settleExpense'),
+      name: _i1.NameNode(value: 'settleInGroup'),
       directives: [],
       args: [
         _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'expenseId'),
+          name: _i1.NameNode(value: 'toUser'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'groupId'),
           directives: [],
           type: _i1.NamedTypeNode(
             name: _i1.NameNode(value: 'String'),
@@ -472,16 +479,38 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
         ),
       ],
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Expense'),
+        name: _i1.NameNode(value: 'Split'),
         isNonNull: true,
       ),
     ),
     _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'settleUser'),
+      name: _i1.NameNode(value: 'simplifyCrossGroup'),
       directives: [],
       args: [
         _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'userId'),
+          name: _i1.NameNode(value: 'withUser'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        )
+      ],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'Split'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'autoSettleWithUser'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'withUser'),
           directives: [],
           type: _i1.NamedTypeNode(
             name: _i1.NameNode(value: 'String'),
@@ -499,8 +528,11 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
           defaultValue: null,
         ),
       ],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'Split'),
+          isNonNull: true,
+        ),
         isNonNull: true,
       ),
     ),
@@ -526,6 +558,31 @@ const NonGroupExpense = _i1.ObjectTypeDefinitionNode(
       args: [],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Expense'),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
+const OwedInGroup = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'OwedInGroup'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'groupId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'amount'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
         isNonNull: true,
       ),
     ),
@@ -593,7 +650,7 @@ const Query = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'expensesCreatedByUser'),
+      name: _i1.NameNode(value: 'expensesWithUser'),
       directives: [],
       args: [
         _i1.InputValueDefinitionNode(
@@ -675,6 +732,55 @@ const Query = _i1.ObjectTypeDefinitionNode(
         isNonNull: true,
       ),
     ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'overallOwed'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'getTransactionsWithUser'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'withUser'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'skip'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'limit'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+      ],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'Split'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+    ),
   ],
 );
 const Registered = _i1.ObjectTypeDefinitionNode(
@@ -738,20 +844,20 @@ const Split = _i1.ObjectTypeDefinitionNode(
       args: [],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Expense'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'group'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Group'),
         isNonNull: true,
       ),
     ),
     _i1.FieldDefinitionNode(
       name: _i1.NameNode(value: 'amount'),
-      directives: [],
-      args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
-        isNonNull: true,
-      ),
-    ),
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'amountSettled'),
       directives: [],
       args: [],
       type: _i1.NamedTypeNode(
@@ -778,12 +884,39 @@ const Split = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'isSettled'),
+      name: _i1.NameNode(value: 'transactionType'),
       directives: [],
       args: [],
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Boolean'),
+        name: _i1.NameNode(value: 'TransactionType'),
         isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'createdAt'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'creator'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'User'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'transactionPartGroupId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
       ),
     ),
   ],
@@ -842,6 +975,24 @@ const SplitInputNonGroup = _i1.InputObjectTypeDefinitionNode(
         isNonNull: false,
       ),
       defaultValue: null,
+    ),
+  ],
+);
+const TransactionType = _i1.EnumTypeDefinitionNode(
+  name: _i1.NameNode(value: 'TransactionType'),
+  directives: [],
+  values: [
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'EXPENSE_SPLIT'),
+      directives: [],
+    ),
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'CROSS_GROUP_SETTLEMENT'),
+      directives: [],
+    ),
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'CASH_PAID'),
+      directives: [],
     ),
   ],
 );
@@ -921,11 +1072,14 @@ const User = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'toPay'),
+      name: _i1.NameNode(value: 'owes'),
       directives: [],
       args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'OwedInGroup'),
+          isNonNull: true,
+        ),
         isNonNull: true,
       ),
     ),
@@ -938,15 +1092,6 @@ const User = _i1.ObjectTypeDefinitionNode(
           name: _i1.NameNode(value: 'String'),
           isNonNull: true,
         ),
-        isNonNull: true,
-      ),
-    ),
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'toReceive'),
-      directives: [],
-      args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
         isNonNull: true,
       ),
     ),
@@ -1011,14 +1156,17 @@ const document = _i1.DocumentNode(definitions: [
   AuthResult,
   Expense,
   Group,
+  GroupMember,
   Mutation,
   NonGroupExpense,
+  OwedInGroup,
   Query,
   Registered,
   SignupSuccess,
   Split,
   SplitInput,
   SplitInputNonGroup,
+  TransactionType,
   Unregistered,
   User,
   UserAuth,

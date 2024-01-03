@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
+import 'package:splitbuddy/screens/user.dart';
 import 'package:splitbuddy/state/app_state.dart';
 
 class HomePage extends StatelessWidget {
@@ -38,7 +39,7 @@ class HomePage extends StatelessWidget {
                   child: Column(
                 children: [
                   Text(
-                    (selfUser?.toPay ?? 0).toString(),
+                    context.read<AppState>().toPay.toString(),
                     style: Theme.of(context).textTheme.displayLarge,
                   ),
                   const Text(
@@ -50,7 +51,7 @@ class HomePage extends StatelessWidget {
                   child: Column(
                 children: [
                   Text(
-                    (selfUser?.toReceive ?? 0).toString(),
+                    context.read<AppState>().toReceive.toString(),
                     style: Theme.of(context).textTheme.displayLarge,
                   ),
                   const Text(
@@ -66,36 +67,72 @@ class HomePage extends StatelessWidget {
           var user = nonSelfUsrs.elementAt(index);
           return Container(
             margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-            child: Card(
-              child: ListTile(
-                onTap: () {},
-                leading: const Icon(Icons.account_circle),
-                title: Text(user.displayName),
-                subtitle: Row(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          const Icon(Icons.call_received),
-                          Text(user.toReceive.toString())
-                        ],
-                      ),
+            child: ListTile(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => UserPage(initialUser: user)));
+              },
+              leading: UserIconWidget(user: user),
+              title: Text(user.displayName),
+              subtitle: Row(
+                children: [
+                  Expanded(
+                    child: Row(
+                      children: [
+                        const Icon(Icons.call_received),
+                        Text(user.toReceive.toString())
+                      ],
                     ),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          const Icon(Icons.call_made),
-                          Text(user.toPay.toString())
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        const Icon(Icons.call_made),
+                        Text(user.toPay.toString())
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           );
         }, childCount: nonSelfUsrs.length)),
       ],
+    );
+  }
+}
+
+class UserIconWidget extends StatelessWidget {
+  const UserIconWidget({
+    super.key,
+    required this.user,
+  });
+
+  final GUserFields user;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 40,
+      height: 40,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: user.getMainColor,
+          shape: BoxShape.circle,
+        ),
+        child: Center(
+          child: Text(
+            user.displayName.characters.toUpperCase().firstOrNull ?? '?',
+            style: TextStyle(
+              fontSize: 20,
+              color: ThemeData.estimateBrightnessForColor(user.getMainColor) ==
+                      Brightness.light
+                  ? Colors.black
+                  : Colors.white,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
