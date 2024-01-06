@@ -550,6 +550,9 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
                               ),
                               const Divider(),
                               ...group.members
+                                  .sorted((a, b) => b.owedInGroup
+                                      .abs()
+                                      .compareTo(a.owedInGroup.abs()))
                                   .where((p0) =>
                                       p0.member.id !=
                                       context.read<AppState>().user!.id)
@@ -633,17 +636,6 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
                                                     color: neutralBlue.primary,
                                                   ),
                                                 ),
-                                                TextSpan(
-                                                  text: '${member.owedInGroup}',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .titleMedium
-                                                      ?.copyWith(
-                                                          color: neutralBlue
-                                                              .primary,
-                                                          fontWeight:
-                                                              FontWeight.w800),
-                                                ),
                                               ],
                                             ),
                                           )
@@ -661,7 +653,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
                               const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text('View complete'),
+                                  Text('Full summary'),
                                   Icon(Icons.chevron_right),
                                 ],
                               )
