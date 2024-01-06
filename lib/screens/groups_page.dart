@@ -40,7 +40,7 @@ class GroupsPage extends StatelessWidget {
                           );
                         },
                         leading: GroupIconWidget(group: group),
-                        title: Text(group.displayName),
+                        title: Text(group.getDisplayName(context.read())),
                         subtitle: Row(
                           children: [
                             Expanded(
@@ -96,7 +96,8 @@ class GroupIconWidget extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  group.displayName
+                  group
+                          .getDisplayName(context.read())
                           .trim()
                           .characters
                           .firstOrNull
@@ -110,7 +111,7 @@ class GroupIconWidget extends StatelessWidget {
               ),
             )
           : ClipRRect(
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(group.name == null ? 50 : 5),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [

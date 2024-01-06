@@ -1,12 +1,24 @@
 import 'dart:math';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:splitbuddy/extensions/string_extension.dart';
 import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
+import 'package:splitbuddy/state/app_state.dart';
 
 extension GroupExtension on GGroupFields {
-  String get displayName =>
-      name ?? members.map((p0) => p0.member.shortName).join(", ");
+  String getDisplayName(AppState appState) =>
+      name ??
+      (members.length == 2
+          ? members
+              .firstWhereOrNull(
+                  (element) => element.member.id != appState.user!.id)
+              ?.member
+              .shortName
+              .concatOrNull(' (Direct Payment)')
+          : null) ??
+      members.map((p0) => p0.member.shortName).join(", ");
 
   Color getMainColor(Brightness brightness) => HSVColor.fromAHSV(
           1,

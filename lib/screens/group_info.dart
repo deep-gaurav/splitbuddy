@@ -44,7 +44,7 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                 const SizedBox(
                   width: 10,
                 ),
-                Text(group.displayName),
+                Text(group.getDisplayName(context.read())),
               ],
             ),
           ),
@@ -117,8 +117,8 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                     var messenger = ScaffoldMessenger.of(context);
                     var email = await showDialog(
                       context: context,
-                      builder: (context) =>
-                          NewMemberEmailDialog(groupName: group.displayName),
+                      builder: (context) => NewMemberEmailDialog(
+                          groupName: group.getDisplayName(context.read())),
                     );
                     if (email is String) {
                       try {

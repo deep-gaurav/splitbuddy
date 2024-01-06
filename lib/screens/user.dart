@@ -7,11 +7,13 @@ import 'package:sliver_tools/sliver_tools.dart';
 import 'package:splitbuddy/__generated__/schema.ast.gql.dart';
 import 'package:splitbuddy/__generated__/schema.schema.gql.dart';
 import 'package:splitbuddy/extensions/group_extension.dart';
+import 'package:splitbuddy/extensions/interable_extension.dart';
 import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
 import 'package:splitbuddy/models/transaction_group_types.dart';
 import 'package:splitbuddy/screens/group.dart';
+import 'package:splitbuddy/screens/groups_page.dart';
 import 'package:splitbuddy/screens/home_page.dart';
 import 'package:splitbuddy/state/app_state.dart';
 import 'package:splitbuddy/utils/color_utils.dart';
@@ -219,6 +221,15 @@ class _UserPageState extends State<UserPage> {
                       ),
                     ),
                   ],
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: UserSummaryWidget(
+                    user: user,
+                  ),
                 ),
               ),
             ],
@@ -720,6 +731,208 @@ class TransactionCard extends StatelessWidget {
               ),
             ),
         ],
+      ),
+    );
+  }
+}
+
+class UserSummaryWidget extends StatelessWidget {
+  const UserSummaryWidget({
+    super.key,
+    required this.user,
+  });
+
+  final Ginteracted_usersData_interactedUsers user;
+
+  @override
+  Widget build(BuildContext context) {
+    ColorScheme scheme = ColorUtils.getMainScheme(context);
+    ColorScheme neutralYellow = ColorUtils.getNeutralYellow(context);
+    ColorScheme neutralBlue = ColorUtils.getNeutralBlue(context);
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: Column(
+          children: [
+            Text(
+              'User Summary',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                    child: Row(
+                  children: [
+                    const Spacer(),
+                    Icon(
+                      Icons.call_received,
+                      color: scheme.primary,
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      user.toReceive.toString(),
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: scheme.primary,
+                          ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'To Receive',
+                      style: TextStyle(color: scheme.primary),
+                    ),
+                    const Spacer(),
+                  ],
+                )),
+                Expanded(
+                  child: Row(
+                    children: [
+                      const Spacer(),
+                      Icon(
+                        Icons.call_made,
+                        color: scheme.error,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        user.toPay.toString(),
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: scheme.error,
+                            ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'To Pay',
+                        style: TextStyle(
+                          color: scheme.error,
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            const Divider(),
+            ...user.owes
+                .sorted((a, b) => b.amount.abs().compareTo(a.amount.abs()))
+                .map<Widget>(
+              (member) {
+                var group = context
+                    .read<AppState>()
+                    .userGroups
+                    .firstWhere((element) => element.id == member.groupId);
+
+                return Row(
+                  children: [
+                    SizedBox(
+                      height: 25,
+                      width: 25,
+                      child: FittedBox(
+                        child: GroupIconWidget(
+                          group: group,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      group.getDisplayName(context.read()),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    if (member.amount < 0)
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'owes you ',
+                              style: TextStyle(
+                                color: scheme.primary,
+                              ),
+                            ),
+                            TextSpan(
+                              text: '${-member.amount}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(
+                                      color: scheme.primary,
+                                      fontWeight: FontWeight.w800),
+                            ),
+                          ],
+                        ),
+                      )
+                    else if (member.amount > 0)
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'you owe ',
+                              style: TextStyle(
+                                color: scheme.error,
+                              ),
+                            ),
+                            TextSpan(
+                              text: '${member.amount}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(
+                                      color: scheme.error,
+                                      fontWeight: FontWeight.w800),
+                            ),
+                          ],
+                        ),
+                      )
+                    else
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'settled with you ',
+                              style: TextStyle(
+                                color: neutralBlue.primary,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                  ],
+                );
+              },
+            ).intersperse(
+              const SizedBox(
+                height: 10,
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Full summary'),
+                Icon(Icons.chevron_right),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

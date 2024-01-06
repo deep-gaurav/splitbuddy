@@ -73,7 +73,7 @@ class AppState extends ChangeNotifier {
   String getGroupName(String groupId) =>
       userGroups
           .firstWhereOrNull((element) => element.id == groupId)
-          ?.displayName ??
+          ?.getDisplayName(this) ??
       groupId;
 
   GUserFields? getUser(String id) => interactedUsers.firstWhereOrNull(

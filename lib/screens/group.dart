@@ -268,7 +268,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
                       const SizedBox(
                         width: 10,
                       ),
-                      Text(group.displayName),
+                      Text(group.getDisplayName(context.read())),
                     ],
                   ),
                 ),

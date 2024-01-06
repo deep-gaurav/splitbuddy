@@ -161,7 +161,8 @@ class _FindPeopleState extends State<FindPeople> {
                     final groups = appState.userGroups;
                     final List<Widget> groupsList = <Widget>[
                       ...groups
-                          .where((element) => element.displayName
+                          .where((element) => element
+                              .getDisplayName(context.read())
                               .toLowerCase()
                               .contains(controller.text.toLowerCase()))
                           .map(
@@ -174,7 +175,8 @@ class _FindPeopleState extends State<FindPeople> {
                               child: Card(
                                 child: ListTile(
                                   leading: const Icon(Icons.group),
-                                  title: Text(element.displayName),
+                                  title: Text(
+                                      element.getDisplayName(context.read())),
                                 ),
                               ),
                             ),
@@ -600,7 +602,7 @@ class SearchBarChips extends StatelessWidget {
                 )
               else if (expenseWithValue case ExpenseWithGroup(group: var group))
                 Chip(
-                  label: Text(group.displayName),
+                  label: Text(group.getDisplayName(context.read())),
                   onDeleted: () {
                     expenseWith.value = null;
                   },
