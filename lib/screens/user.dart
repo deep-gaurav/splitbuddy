@@ -157,92 +157,53 @@ class _UserPageState extends State<UserPage> {
     return Scaffold(
       body: Column(
         children: [
-          AppBar(
-            title: Row(
-              children: [
-                UserIconWidget(
-                  user: user,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(user.displayName),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 30),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Row(
-                    children: [
-                      const Icon(Icons.call_received),
-                      Text(user.toReceive.toString())
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Row(
-                    children: [
-                      const Icon(Icons.call_made),
-                      Text(user.toPay.toString())
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
           Expanded(
-              child: Container(
-            alignment: Alignment.bottomCenter,
-            child: CustomScrollView(
-              shrinkWrap: true,
-              physics: const MaintiningScrollPhysics(),
-              controller: _scrollController,
-              slivers: [
-                ...dates.map(
-                  (entry) => MultiSliver(
-                    pushPinnedChildren: true,
-                    children: [
-                      SliverPersistentHeader(
-                        delegate: DateHeader(entry),
-                        pinned: true,
-                      ),
-                      SliverList(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            if (index >= expenseGrouped[entry]!.length) {
-                              return null;
-                            }
-                            var transaction = expenseGrouped[entry]![
-                                expenseGrouped[entry]!.length - 1 - index];
-                            var ourUser = context.read<AppState>().user!;
+              child: CustomScrollView(
+            shrinkWrap: true,
+            physics: const MaintiningScrollPhysics(),
+            controller: _scrollController,
+            slivers: [
+              ...dates.map(
+                (entry) => MultiSliver(
+                  pushPinnedChildren: true,
+                  children: [
+                    SliverPersistentHeader(
+                      delegate: DateHeader(entry),
+                      pinned: true,
+                    ),
+                    SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          if (index >= expenseGrouped[entry]!.length) {
+                            return null;
+                          }
+                          var transaction = expenseGrouped[entry]![
+                              expenseGrouped[entry]!.length - 1 - index];
+                          var ourUser = context.read<AppState>().user!;
 
-                            return UserTransactionCard(
-                              maybeGroupTransaction: transaction,
-                              userGroup: context
-                                  .read<AppState>()
-                                  .userGroups
-                                  .firstWhereOrNull(
-                                    (element) =>
-                                        element.name == null &&
-                                        element.members.length == 2 &&
-                                        element.members.any((p0) =>
-                                            p0.member.id == ourUser.id) &&
-                                        element.members.any(
-                                            (p0) => p0.member.id == user.id),
-                                  ),
-                            );
-                          },
-                          childCount: expenseGrouped[entry]!.length,
-                        ),
+                          return UserTransactionCard(
+                            maybeGroupTransaction: transaction,
+                            userGroup: context
+                                .read<AppState>()
+                                .userGroups
+                                .firstWhereOrNull(
+                                  (element) =>
+                                      element.name == null &&
+                                      element.members.length == 2 &&
+                                      element.members.any(
+                                          (p0) => p0.member.id == ourUser.id) &&
+                                      element.members
+                                          .any((p0) => p0.member.id == user.id),
+                                ),
+                          );
+                        },
+                        childCount: expenseGrouped[entry]!.length,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           )),
           const Divider(),
           ButtonBar(

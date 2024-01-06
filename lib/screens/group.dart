@@ -234,438 +234,233 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
       body: Column(
         children: [
           Expanded(
-              child: Container(
-            alignment: Alignment.bottomCenter,
-            child: CustomScrollView(
-              shrinkWrap: true,
-              physics: const MaintiningScrollPhysics(),
-              controller: _scrollController,
-              slivers: [
-                SliverAppBar(
-                  primary: true,
-                  pinned: true,
-                  actions: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => GroupMembersPage(
-                              initialGroup: group,
-                            ),
-                          ),
-                        );
-                      },
-                      icon: const Icon(Icons.settings),
-                    )
-                  ],
-                  title: SizedBox(
-                    height: 40,
-                    child: Row(
-                      children: [
-                        GroupIconWidget(group: group),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(group.displayName),
-                      ],
-                    ),
-                  ),
-                ),
-                if (expenseGrouped.isEmpty)
-                  const SliverFillRemaining()
-                else
-                  ...dates.map(
-                    (entry) => MultiSliver(
-                      pushPinnedChildren: true,
-                      children: [
-                        SliverPersistentHeader(
-                          delegate: DateHeader(entry),
-                          pinned: true,
-                        ),
-                        SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              if (index >= expenseGrouped[entry]!.length) {
-                                return null;
-                              }
-                              var mix = expenseGrouped[entry]![
-                                  expenseGrouped[entry]!.length - 1 - index];
-                              var isSelf = mix.creatorId ==
-                                  context.read<AppState>().user!.id;
-
-                              var creator = context
-                                  .read<AppState>()
-                                  .getUser(mix.creatorId);
-                              bool isInvoled = (mix is Split) ||
-                                  (mix is Expense && mix.splits.isNotEmpty);
-
-                              return FractionallySizedBox(
-                                widthFactor: 0.7,
-                                alignment: isSelf
-                                    ? Alignment.centerRight
-                                    : Alignment.centerLeft,
-                                child: Align(
-                                  alignment: isSelf
-                                      ? Alignment.centerRight
-                                      : Alignment.centerLeft,
-                                  child: IntrinsicWidth(
-                                    child: Stack(
-                                      fit: StackFit.passthrough,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 10),
-                                          child: ChatBubble(
-                                            clipper: ChatBubbleClipper1(
-                                              type: isSelf
-                                                  ? BubbleType.sendBubble
-                                                  : BubbleType.receiverBubble,
-                                            ),
-                                            backGroundColor: Color.alphaBlend(
-                                                Theme.of(context)
-                                                    .colorScheme
-                                                    .surfaceTint
-                                                    .withOpacity(
-                                                        isSelf ? 0.5 : 0.2),
-                                                Theme.of(context).cardColor),
-                                            padding: EdgeInsets.only(
-                                              left: isSelf ? 0 : 20,
-                                              right: !isSelf ? 0 : 15,
-                                            ),
-                                            elevation: isInvoled ? 3 : 0,
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(5),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.stretch,
-                                                children: [
-                                                  const SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  if (creator != null &&
-                                                      !isSelf) ...[
-                                                    Row(
-                                                      children: [
-                                                        SizedBox(
-                                                          height: 20,
-                                                          width: 20,
-                                                          child: FittedBox(
-                                                            child:
-                                                                UserIconWidget(
-                                                              user: creator,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Text(
-                                                          creator.displayName,
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .labelMedium,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                  ],
-                                                  if (mix is Expense) ...[
-                                                    ExpenseCard(
-                                                        expense: mix.expense),
-                                                    const SizedBox(
-                                                      height: 5,
-                                                      width: 5,
-                                                      child: DottedLine(),
-                                                    ),
-                                                    if (mix
-                                                        .splits.isNotEmpty) ...[
-                                                      ...mix.splits.map(
-                                                        (split) =>
-                                                            TransactionCard(
-                                                          title: getTitle(
-                                                                  context,
-                                                                  split)
-                                                              .$1,
-                                                          amountColor: getTitle(
-                                                                  context,
-                                                                  split)
-                                                              .$2,
-                                                          amount: split.amount,
-                                                          elevation: 0,
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .symmetric(
-                                                                  horizontal:
-                                                                      20),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                        height: 5,
-                                                      )
-                                                    ] else
-                                                      const TransactionCard(
-                                                          title: TextSpan(
-                                                              text:
-                                                                  'Not Involved')),
-                                                  ] else if (mix is Split)
-                                                    TransactionCard(
-                                                      title: getTitle(context,
-                                                              mix.split)
-                                                          .$1,
-                                                      amountColor: getTitle(
-                                                              context,
-                                                              mix.split)
-                                                          .$2,
-                                                      amount: mix.split.amount,
-                                                      elevation: 0,
-                                                    ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          bottom: 5,
-                                          right: 20,
-                                          child: Text(
-                                            DateFormat("h:mm a").format(
-                                              DateTime.parse(mix.createdAt)
-                                                  .toLocal(),
-                                            ),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .labelSmall,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                            childCount: expenseGrouped[entry]!.length,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 20),
-                    child: InkWell(
-                      onTap: () => Navigator.of(context).push(
+              child: CustomScrollView(
+            physics: const MaintiningScrollPhysics(),
+            controller: _scrollController,
+            slivers: [
+              SliverAppBar(
+                primary: true,
+                pinned: true,
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => GroupMembersPage(
                             initialGroup: group,
                           ),
                         ),
+                      );
+                    },
+                    icon: const Icon(Icons.settings),
+                  )
+                ],
+                title: SizedBox(
+                  height: 40,
+                  child: Row(
+                    children: [
+                      GroupIconWidget(group: group),
+                      const SizedBox(
+                        width: 10,
                       ),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Group Summary',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                      child: Row(
+                      Text(group.displayName),
+                    ],
+                  ),
+                ),
+              ),
+              if (expenseGrouped.isEmpty)
+                const SliverFillRemaining()
+              else ...[
+                const SliverPadding(padding: EdgeInsets.only(top: 40)),
+                ...dates.map(
+                  (entry) => MultiSliver(
+                    pushPinnedChildren: true,
+                    children: [
+                      SliverPersistentHeader(
+                        delegate: DateHeader(entry),
+                        pinned: true,
+                      ),
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            if (index >= expenseGrouped[entry]!.length) {
+                              return null;
+                            }
+                            var mix = expenseGrouped[entry]![
+                                expenseGrouped[entry]!.length - 1 - index];
+                            var isSelf = mix.creatorId ==
+                                context.read<AppState>().user!.id;
+
+                            var creator =
+                                context.read<AppState>().getUser(mix.creatorId);
+                            bool isInvoled = (mix is Split) ||
+                                (mix is Expense && mix.splits.isNotEmpty);
+
+                            return FractionallySizedBox(
+                              widthFactor: 0.7,
+                              alignment: isSelf
+                                  ? Alignment.centerRight
+                                  : Alignment.centerLeft,
+                              child: Align(
+                                alignment: isSelf
+                                    ? Alignment.centerRight
+                                    : Alignment.centerLeft,
+                                child: IntrinsicWidth(
+                                  child: Stack(
+                                    fit: StackFit.passthrough,
                                     children: [
-                                      const Spacer(),
-                                      Icon(
-                                        Icons.call_received,
-                                        color: scheme.primary,
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        group.toReceive.toString(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleLarge
-                                            ?.copyWith(
-                                              fontWeight: FontWeight.bold,
-                                              color: scheme.primary,
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 10),
+                                        child: ChatBubble(
+                                          clipper: ChatBubbleClipper1(
+                                            type: isSelf
+                                                ? BubbleType.sendBubble
+                                                : BubbleType.receiverBubble,
+                                          ),
+                                          backGroundColor: Color.alphaBlend(
+                                              Theme.of(context)
+                                                  .colorScheme
+                                                  .surfaceTint
+                                                  .withOpacity(
+                                                      isSelf ? 0.5 : 0.2),
+                                              Theme.of(context).cardColor),
+                                          padding: EdgeInsets.only(
+                                            left: isSelf ? 0 : 20,
+                                            right: !isSelf ? 0 : 15,
+                                          ),
+                                          elevation: isInvoled ? 3 : 0,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(5),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.stretch,
+                                              children: [
+                                                const SizedBox(
+                                                  height: 5,
+                                                ),
+                                                if (creator != null &&
+                                                    !isSelf) ...[
+                                                  Row(
+                                                    children: [
+                                                      SizedBox(
+                                                        height: 20,
+                                                        width: 20,
+                                                        child: FittedBox(
+                                                          child: UserIconWidget(
+                                                            user: creator,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 10,
+                                                      ),
+                                                      Text(
+                                                        creator.displayName,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .labelMedium,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                ],
+                                                if (mix is Expense) ...[
+                                                  ExpenseCard(
+                                                      expense: mix.expense),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                    width: 5,
+                                                    child: DottedLine(),
+                                                  ),
+                                                  if (mix
+                                                      .splits.isNotEmpty) ...[
+                                                    ...mix.splits.map(
+                                                      (split) =>
+                                                          TransactionCard(
+                                                        title: getTitle(
+                                                                context, split)
+                                                            .$1,
+                                                        amountColor: getTitle(
+                                                                context, split)
+                                                            .$2,
+                                                        amount: split.amount,
+                                                        elevation: 0,
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                horizontal: 20),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 5,
+                                                    )
+                                                  ] else
+                                                    const TransactionCard(
+                                                        title: TextSpan(
+                                                            text:
+                                                                'Not Involved')),
+                                                ] else if (mix is Split)
+                                                  TransactionCard(
+                                                    title: getTitle(
+                                                            context, mix.split)
+                                                        .$1,
+                                                    amountColor: getTitle(
+                                                            context, mix.split)
+                                                        .$2,
+                                                    amount: mix.split.amount,
+                                                    elevation: 0,
+                                                  ),
+                                              ],
                                             ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        'To Receive',
-                                        style: TextStyle(color: scheme.primary),
-                                      ),
-                                      const Spacer(),
-                                    ],
-                                  )),
-                                  Expanded(
-                                    child: Row(
-                                      children: [
-                                        const Spacer(),
-                                        Icon(
-                                          Icons.call_made,
-                                          color: scheme.error,
+                                          ),
                                         ),
-                                        const SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                          group.toPay.toString(),
+                                      ),
+                                      Positioned(
+                                        bottom: 5,
+                                        right: 20,
+                                        child: Text(
+                                          DateFormat("h:mm a").format(
+                                            DateTime.parse(mix.createdAt)
+                                                .toLocal(),
+                                          ),
                                           style: Theme.of(context)
                                               .textTheme
-                                              .titleLarge
-                                              ?.copyWith(
-                                                fontWeight: FontWeight.bold,
-                                                color: scheme.error,
-                                              ),
+                                              .labelSmall,
                                         ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          'To Pay',
-                                          style: TextStyle(
-                                            color: scheme.error,
-                                          ),
-                                        ),
-                                        const Spacer(),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                              const Divider(),
-                              ...group.members
-                                  .sorted((a, b) => b.owedInGroup
-                                      .abs()
-                                      .compareTo(a.owedInGroup.abs()))
-                                  .where((p0) =>
-                                      p0.member.id !=
-                                      context.read<AppState>().user!.id)
-                                  .map<Widget>(
-                                    (member) => Row(
-                                      children: [
-                                        SizedBox(
-                                          height: 25,
-                                          width: 25,
-                                          child: FittedBox(
-                                            child: UserIconWidget(
-                                                user: member.member),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          member.member.shortName,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        if (member.owedInGroup < 0)
-                                          Text.rich(
-                                            TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: 'owes you ',
-                                                  style: TextStyle(
-                                                    color: scheme.primary,
-                                                  ),
-                                                ),
-                                                TextSpan(
-                                                  text:
-                                                      '${-member.owedInGroup}',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .titleMedium
-                                                      ?.copyWith(
-                                                          color: scheme.primary,
-                                                          fontWeight:
-                                                              FontWeight.w800),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        else if (member.owedInGroup > 0)
-                                          Text.rich(
-                                            TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: 'you owe ',
-                                                  style: TextStyle(
-                                                    color: scheme.error,
-                                                  ),
-                                                ),
-                                                TextSpan(
-                                                  text: '${member.owedInGroup}',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .titleMedium
-                                                      ?.copyWith(
-                                                          color: scheme.error,
-                                                          fontWeight:
-                                                              FontWeight.w800),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        else
-                                          Text.rich(
-                                            TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: 'settled with you ',
-                                                  style: TextStyle(
-                                                    color: neutralBlue.primary,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                      ],
-                                    ),
-                                  )
-                                  .intersperse(
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                              const SizedBox(
-                                height: 20,
+                                ),
                               ),
-                              const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text('Full summary'),
-                                  Icon(Icons.chevron_right),
-                                ],
-                              )
-                            ],
-                          ),
+                            );
+                          },
+                          childCount: expenseGrouped[entry]!.length,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: InkWell(
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => GroupMembersPage(
+                          initialGroup: group,
                         ),
                       ),
                     ),
+                    child: GroupSummaryWidget(
+                        scheme: scheme, group: group, neutralBlue: neutralBlue),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           )),
           const Divider(),
           ButtonBar(
@@ -690,6 +485,204 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class GroupSummaryWidget extends StatelessWidget {
+  const GroupSummaryWidget({
+    super.key,
+    required this.scheme,
+    required this.group,
+    required this.neutralBlue,
+  });
+
+  final ColorScheme scheme;
+  final GGroupFields group;
+  final ColorScheme neutralBlue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: Column(
+          children: [
+            Text(
+              'Group Summary',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                    child: Row(
+                  children: [
+                    const Spacer(),
+                    Icon(
+                      Icons.call_received,
+                      color: scheme.primary,
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      group.toReceive.toString(),
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: scheme.primary,
+                          ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'To Receive',
+                      style: TextStyle(color: scheme.primary),
+                    ),
+                    const Spacer(),
+                  ],
+                )),
+                Expanded(
+                  child: Row(
+                    children: [
+                      const Spacer(),
+                      Icon(
+                        Icons.call_made,
+                        color: scheme.error,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        group.toPay.toString(),
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: scheme.error,
+                            ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'To Pay',
+                        style: TextStyle(
+                          color: scheme.error,
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            const Divider(),
+            ...group.members
+                .sorted((a, b) =>
+                    b.owedInGroup.abs().compareTo(a.owedInGroup.abs()))
+                .where(
+                    (p0) => p0.member.id != context.read<AppState>().user!.id)
+                .map<Widget>(
+                  (member) => Row(
+                    children: [
+                      SizedBox(
+                        height: 25,
+                        width: 25,
+                        child: FittedBox(
+                          child: UserIconWidget(user: member.member),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        member.member.shortName,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      if (member.owedInGroup < 0)
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'owes you ',
+                                style: TextStyle(
+                                  color: scheme.primary,
+                                ),
+                              ),
+                              TextSpan(
+                                text: '${-member.owedInGroup}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                        color: scheme.primary,
+                                        fontWeight: FontWeight.w800),
+                              ),
+                            ],
+                          ),
+                        )
+                      else if (member.owedInGroup > 0)
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'you owe ',
+                                style: TextStyle(
+                                  color: scheme.error,
+                                ),
+                              ),
+                              TextSpan(
+                                text: '${member.owedInGroup}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                        color: scheme.error,
+                                        fontWeight: FontWeight.w800),
+                              ),
+                            ],
+                          ),
+                        )
+                      else
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'settled with you ',
+                                style: TextStyle(
+                                  color: neutralBlue.primary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                    ],
+                  ),
+                )
+                .intersperse(
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Full summary'),
+                Icon(Icons.chevron_right),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
