@@ -64,7 +64,7 @@ class _UserPageState extends State<UserPage> {
           (b) => b.vars
             ..withUser = user.id
             ..limit = 10
-            ..skip = transactions.length,
+            ..fromTime = transactions.lastOrNull?.createdAt,
         ),
       );
       if (result.data != null) {
@@ -317,14 +317,7 @@ class UserTransactionCard extends StatelessWidget {
           BuildContext context, GSplitTransactionFields transaction) =>
       transaction.group.id == userGroup?.id
           ? 'Direct Payment'
-          : context
-                  .read<AppState>()
-                  .userGroups
-                  .firstWhereOrNull(
-                      (element) => element.id == transaction.group.id)
-                  ?.displayName ??
-              transaction.group.name ??
-              transaction.group.id;
+          : context.read<AppState>().getGroupName(transaction.group.id);
 
   @override
   Widget build(BuildContext context) {
@@ -352,9 +345,9 @@ class UserTransactionCard extends StatelessWidget {
                 createdAt: var createdAt
               ) =>
                 transactions.length > 1
-                    ? buildTransactionCard(
-                        context: context,
-                        title: getTitle(context, transactions.first),
+                    ? TransactionCard(
+                        title: TextSpan(
+                            text: getTitle(context, transactions.first)),
                         amount: total,
                         createdAt: createdAt,
                         subtitle: 'Payment split into',
@@ -442,49 +435,9 @@ class UserTransactionCard extends StatelessWidget {
           height: 5,
         ),
         if (transaction.expense != null)
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-              color: Theme.of(context).splashColor,
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(5)),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: Column(
-                children: [
-                  Text(
-                    transaction.expense!.title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(fontWeight: FontWeight.w600),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text('Expense\nAmount',
-                          textAlign: TextAlign.end,
-                          style: Theme.of(context).textTheme.labelSmall),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        transaction.expense!.amount.toString(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineSmall
-                            ?.copyWith(fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        buildTransactionCard(
-          context: context,
-          title: getTitle(context, transaction),
+          ExpenseCard(expense: transaction.expense!),
+        TransactionCard(
+          title: TextSpan(text: getTitle(context, transaction)),
           amount: transaction.amount,
           createdAt: transaction.createdAt,
           subtitle: subTitle(context, transaction),
@@ -492,86 +445,148 @@ class UserTransactionCard extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget buildTransactionCard({
-    required BuildContext context,
-    required String title,
-    required int amount,
-    String? subtitle,
-    required String createdAt,
-    double elevation = 2.0,
-    List<Widget> body = const <Widget>[],
-  }) {
-    return Card(
-      margin: const EdgeInsets.only(
-        left: 5,
-        right: 5,
-        bottom: 5,
+class ExpenseCard extends StatelessWidget {
+  final GExpenseBasic expense;
+
+  const ExpenseCard({super.key, required this.expense});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      decoration: const BoxDecoration(
+        // color: Theme.of(context).highlightColor,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(5)),
       ),
-      elevation: elevation,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Stack(
-          clipBehavior: Clip.none,
-          fit: StackFit.passthrough,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Column(
           children: [
-            IntrinsicWidth(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  IntrinsicWidth(
-                    child: IntrinsicHeight(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
+            Text(
+              expense.title,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium
+                  ?.copyWith(fontWeight: FontWeight.w600),
+            ),
+            const Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('Expense\nAmount',
+                    textAlign: TextAlign.end,
+                    style: Theme.of(context).textTheme.labelSmall),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  expense.amount.toString(),
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).colorScheme.onSurface),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TransactionCard extends StatelessWidget {
+  final double elevation;
+  final TextSpan title;
+  final int? amount;
+  final String? subtitle;
+  final String? createdAt;
+  final List<Widget> body;
+  final EdgeInsets padding;
+  final Color? amountColor;
+
+  const TransactionCard({
+    super.key,
+    this.elevation = 2.0,
+    required this.title,
+    this.amount,
+    this.subtitle,
+    this.createdAt,
+    this.padding = const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+    this.body = const <Widget>[],
+    this.amountColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: padding,
+      child: Stack(
+        clipBehavior: Clip.none,
+        fit: StackFit.passthrough,
+        children: [
+          IntrinsicWidth(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                IntrinsicWidth(
+                  child: IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        if (amount != null) ...[
                           Text(
                             "$amount",
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
-                                ?.copyWith(fontWeight: FontWeight.w800),
-                          ),
-                          const Spacer(),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          const Spacer(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(title),
-                              if (subtitle != null)
-                                Text(
-                                  subtitle,
-                                  style:
-                                      Theme.of(context).textTheme.labelMedium,
+                                ?.copyWith(
+                                  fontWeight: FontWeight.w800,
+                                  color: amountColor,
                                 ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                            ],
                           ),
+                          const Spacer(),
                         ],
-                      ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        const Spacer(),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text.rich(title),
+                            if (subtitle != null)
+                              Text(
+                                subtitle!,
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  ...body,
-                ],
-              ),
+                ),
+                ...body,
+              ],
             ),
+          ),
+          if (createdAt != null)
             Positioned(
               bottom: -5,
               right: -5,
               child: Text(
                 DateFormat("h:mm a").format(
-                  DateTime.parse(createdAt).toLocal(),
+                  DateTime.parse(createdAt!).toLocal(),
                 ),
                 style: Theme.of(context).textTheme.labelSmall,
               ),
             ),
-          ],
-        ),
+        ],
       ),
     );
   }

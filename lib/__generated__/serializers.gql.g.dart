@@ -18,6 +18,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GExpenseFieldsData_splits_toUser.serializer)
       ..add(GExpenseFieldsReq.serializer)
       ..add(GExpenseFieldsVars.serializer)
+      ..add(GExpenseMixSplitFieldsData.serializer)
+      ..add(GExpenseMixSplitFieldsData_expense.serializer)
+      ..add(GExpenseMixSplitFieldsData_split.serializer)
+      ..add(GExpenseMixSplitFieldsData_split_fromUser.serializer)
+      ..add(GExpenseMixSplitFieldsData_split_toUser.serializer)
+      ..add(GExpenseMixSplitFieldsReq.serializer)
+      ..add(GExpenseMixSplitFieldsVars.serializer)
       ..add(GGroupBasicData.serializer)
       ..add(GGroupBasicReq.serializer)
       ..add(GGroupBasicVars.serializer)
@@ -38,6 +45,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GGroupWithExpensesData_members_member.serializer)
       ..add(GGroupWithExpensesReq.serializer)
       ..add(GGroupWithExpensesVars.serializer)
+      ..add(GSplitFieldsBasicsData.serializer)
+      ..add(GSplitFieldsBasicsReq.serializer)
+      ..add(GSplitFieldsBasicsVars.serializer)
       ..add(GSplitFieldsData.serializer)
       ..add(GSplitFieldsData_fromUser.serializer)
       ..add(GSplitFieldsData_toUser.serializer)
@@ -159,6 +169,22 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GsimplifyUserData_simplifyCrossGroup_toUser.serializer)
       ..add(GsimplifyUserReq.serializer)
       ..add(GsimplifyUserVars.serializer)
+      ..add(GtransactionMixExpenseData.serializer)
+      ..add(GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup
+          .serializer)
+      ..add(
+          GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
+              .serializer)
+      ..add(GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
+          .serializer)
+      ..add(
+          GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser
+              .serializer)
+      ..add(
+          GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser
+              .serializer)
+      ..add(GtransactionMixExpenseReq.serializer)
+      ..add(GtransactionMixExpenseVars.serializer)
       ..add(GtransactionWithUserData.serializer)
       ..add(GtransactionWithUserData_getTransactionsWithUser.serializer)
       ..add(GtransactionWithUserData_getTransactionsWithUser_creator.serializer)
@@ -263,6 +289,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(GsimplifyUserData_simplifyCrossGroup)]),
           () => new ListBuilder<GsimplifyUserData_simplifyCrossGroup>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup)
+          ]),
+          () => new ListBuilder<
+              GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(GtransactionWithUserData_getTransactionsWithUser)

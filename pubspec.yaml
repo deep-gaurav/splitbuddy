@@ -55,7 +55,9 @@ dependencies:
   google_fonts: ^6.1.0
   email_validator: ^2.1.17
   collection: ^1.18.0
-
+  flutter_chat_bubble: ^2.0.2
+  dotted_line: ^3.2.2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

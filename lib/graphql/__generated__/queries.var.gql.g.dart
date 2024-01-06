@@ -36,6 +36,8 @@ Serializer<GautoSettleWithUserVars> _$gautoSettleWithUserVarsSerializer =
     new _$GautoSettleWithUserVarsSerializer();
 Serializer<GtransactionWithUserVars> _$gtransactionWithUserVarsSerializer =
     new _$GtransactionWithUserVarsSerializer();
+Serializer<GtransactionMixExpenseVars> _$gtransactionMixExpenseVarsSerializer =
+    new _$GtransactionMixExpenseVarsSerializer();
 Serializer<GUserFieldsVars> _$gUserFieldsVarsSerializer =
     new _$GUserFieldsVarsSerializer();
 Serializer<GUserPaysFieldsVars> _$gUserPaysFieldsVarsSerializer =
@@ -48,6 +50,8 @@ Serializer<GExpenseBasicVars> _$gExpenseBasicVarsSerializer =
     new _$GExpenseBasicVarsSerializer();
 Serializer<GExpenseFieldsVars> _$gExpenseFieldsVarsSerializer =
     new _$GExpenseFieldsVarsSerializer();
+Serializer<GSplitFieldsBasicsVars> _$gSplitFieldsBasicsVarsSerializer =
+    new _$GSplitFieldsBasicsVarsSerializer();
 Serializer<GSplitFieldsVars> _$gSplitFieldsVarsSerializer =
     new _$GSplitFieldsVarsSerializer();
 Serializer<GSplitTransactionFieldsVars>
@@ -55,6 +59,8 @@ Serializer<GSplitTransactionFieldsVars>
     new _$GSplitTransactionFieldsVarsSerializer();
 Serializer<GGroupWithExpensesVars> _$gGroupWithExpensesVarsSerializer =
     new _$GGroupWithExpensesVarsSerializer();
+Serializer<GExpenseMixSplitFieldsVars> _$gExpenseMixSplitFieldsVarsSerializer =
+    new _$GExpenseMixSplitFieldsVarsSerializer();
 
 class _$GuserVarsSerializer implements StructuredSerializer<GuserVars> {
   @override
@@ -129,15 +135,20 @@ class _$GgroupVarsSerializer implements StructuredSerializer<GgroupVars> {
   Iterable<Object?> serialize(Serializers serializers, GgroupVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'skip',
-      serializers.serialize(object.skip, specifiedType: const FullType(int)),
       'limit',
       serializers.serialize(object.limit, specifiedType: const FullType(int)),
       'groupId',
       serializers.serialize(object.groupId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.fromTime;
+    if (value != null) {
+      result
+        ..add('fromTime')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -152,9 +163,9 @@ class _$GgroupVarsSerializer implements StructuredSerializer<GgroupVars> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'skip':
-          result.skip = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+        case 'fromTime':
+          result.fromTime = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'limit':
           result.limit = serializers.deserialize(value,
@@ -793,12 +804,17 @@ class _$GtransactionWithUserVarsSerializer
       'withUser',
       serializers.serialize(object.withUser,
           specifiedType: const FullType(String)),
-      'skip',
-      serializers.serialize(object.skip, specifiedType: const FullType(int)),
       'limit',
       serializers.serialize(object.limit, specifiedType: const FullType(int)),
     ];
-
+    Object? value;
+    value = object.fromTime;
+    if (value != null) {
+      result
+        ..add('fromTime')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -818,9 +834,72 @@ class _$GtransactionWithUserVarsSerializer
           result.withUser = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
-        case 'skip':
-          result.skip = serializers.deserialize(value,
+        case 'fromTime':
+          result.fromTime = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'limit':
+          result.limit = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GtransactionMixExpenseVarsSerializer
+    implements StructuredSerializer<GtransactionMixExpenseVars> {
+  @override
+  final Iterable<Type> types = const [
+    GtransactionMixExpenseVars,
+    _$GtransactionMixExpenseVars
+  ];
+  @override
+  final String wireName = 'GtransactionMixExpenseVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GtransactionMixExpenseVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
+      'limit',
+      serializers.serialize(object.limit, specifiedType: const FullType(int)),
+    ];
+    Object? value;
+    value = object.fromTime;
+    if (value != null) {
+      result
+        ..add('fromTime')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GtransactionMixExpenseVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GtransactionMixExpenseVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'fromTime':
+          result.fromTime = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'limit':
           result.limit = serializers.deserialize(value,
@@ -964,6 +1043,31 @@ class _$GExpenseFieldsVarsSerializer
   }
 }
 
+class _$GSplitFieldsBasicsVarsSerializer
+    implements StructuredSerializer<GSplitFieldsBasicsVars> {
+  @override
+  final Iterable<Type> types = const [
+    GSplitFieldsBasicsVars,
+    _$GSplitFieldsBasicsVars
+  ];
+  @override
+  final String wireName = 'GSplitFieldsBasicsVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GSplitFieldsBasicsVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GSplitFieldsBasicsVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GSplitFieldsBasicsVarsBuilder().build();
+  }
+}
+
 class _$GSplitFieldsVarsSerializer
     implements StructuredSerializer<GSplitFieldsVars> {
   @override
@@ -1025,12 +1129,17 @@ class _$GGroupWithExpensesVarsSerializer
       Serializers serializers, GGroupWithExpensesVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'skip',
-      serializers.serialize(object.skip, specifiedType: const FullType(int)),
       'limit',
       serializers.serialize(object.limit, specifiedType: const FullType(int)),
     ];
-
+    Object? value;
+    value = object.fromTime;
+    if (value != null) {
+      result
+        ..add('fromTime')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -1046,9 +1155,9 @@ class _$GGroupWithExpensesVarsSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'skip':
-          result.skip = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+        case 'fromTime':
+          result.fromTime = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'limit':
           result.limit = serializers.deserialize(value,
@@ -1058,6 +1167,31 @@ class _$GGroupWithExpensesVarsSerializer
     }
 
     return result.build();
+  }
+}
+
+class _$GExpenseMixSplitFieldsVarsSerializer
+    implements StructuredSerializer<GExpenseMixSplitFieldsVars> {
+  @override
+  final Iterable<Type> types = const [
+    GExpenseMixSplitFieldsVars,
+    _$GExpenseMixSplitFieldsVars
+  ];
+  @override
+  final String wireName = 'GExpenseMixSplitFieldsVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GExpenseMixSplitFieldsVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GExpenseMixSplitFieldsVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GExpenseMixSplitFieldsVarsBuilder().build();
   }
 }
 
@@ -1235,7 +1369,7 @@ class Ginteracted_usersVarsBuilder
 
 class _$GgroupVars extends GgroupVars {
   @override
-  final int skip;
+  final String? fromTime;
   @override
   final int limit;
   @override
@@ -1244,10 +1378,8 @@ class _$GgroupVars extends GgroupVars {
   factory _$GgroupVars([void Function(GgroupVarsBuilder)? updates]) =>
       (new GgroupVarsBuilder()..update(updates))._build();
 
-  _$GgroupVars._(
-      {required this.skip, required this.limit, required this.groupId})
+  _$GgroupVars._({this.fromTime, required this.limit, required this.groupId})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(skip, r'GgroupVars', 'skip');
     BuiltValueNullFieldError.checkNotNull(limit, r'GgroupVars', 'limit');
     BuiltValueNullFieldError.checkNotNull(groupId, r'GgroupVars', 'groupId');
   }
@@ -1263,7 +1395,7 @@ class _$GgroupVars extends GgroupVars {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is GgroupVars &&
-        skip == other.skip &&
+        fromTime == other.fromTime &&
         limit == other.limit &&
         groupId == other.groupId;
   }
@@ -1271,7 +1403,7 @@ class _$GgroupVars extends GgroupVars {
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, skip.hashCode);
+    _$hash = $jc(_$hash, fromTime.hashCode);
     _$hash = $jc(_$hash, limit.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jf(_$hash);
@@ -1281,7 +1413,7 @@ class _$GgroupVars extends GgroupVars {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GgroupVars')
-          ..add('skip', skip)
+          ..add('fromTime', fromTime)
           ..add('limit', limit)
           ..add('groupId', groupId))
         .toString();
@@ -1291,9 +1423,9 @@ class _$GgroupVars extends GgroupVars {
 class GgroupVarsBuilder implements Builder<GgroupVars, GgroupVarsBuilder> {
   _$GgroupVars? _$v;
 
-  int? _skip;
-  int? get skip => _$this._skip;
-  set skip(int? skip) => _$this._skip = skip;
+  String? _fromTime;
+  String? get fromTime => _$this._fromTime;
+  set fromTime(String? fromTime) => _$this._fromTime = fromTime;
 
   int? _limit;
   int? get limit => _$this._limit;
@@ -1308,7 +1440,7 @@ class GgroupVarsBuilder implements Builder<GgroupVars, GgroupVarsBuilder> {
   GgroupVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _skip = $v.skip;
+      _fromTime = $v.fromTime;
       _limit = $v.limit;
       _groupId = $v.groupId;
       _$v = null;
@@ -1333,8 +1465,7 @@ class GgroupVarsBuilder implements Builder<GgroupVars, GgroupVarsBuilder> {
   _$GgroupVars _build() {
     final _$result = _$v ??
         new _$GgroupVars._(
-            skip: BuiltValueNullFieldError.checkNotNull(
-                skip, r'GgroupVars', 'skip'),
+            fromTime: fromTime,
             limit: BuiltValueNullFieldError.checkNotNull(
                 limit, r'GgroupVars', 'limit'),
             groupId: BuiltValueNullFieldError.checkNotNull(
@@ -2577,7 +2708,7 @@ class _$GtransactionWithUserVars extends GtransactionWithUserVars {
   @override
   final String withUser;
   @override
-  final int skip;
+  final String? fromTime;
   @override
   final int limit;
 
@@ -2586,12 +2717,10 @@ class _$GtransactionWithUserVars extends GtransactionWithUserVars {
       (new GtransactionWithUserVarsBuilder()..update(updates))._build();
 
   _$GtransactionWithUserVars._(
-      {required this.withUser, required this.skip, required this.limit})
+      {required this.withUser, this.fromTime, required this.limit})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         withUser, r'GtransactionWithUserVars', 'withUser');
-    BuiltValueNullFieldError.checkNotNull(
-        skip, r'GtransactionWithUserVars', 'skip');
     BuiltValueNullFieldError.checkNotNull(
         limit, r'GtransactionWithUserVars', 'limit');
   }
@@ -2610,7 +2739,7 @@ class _$GtransactionWithUserVars extends GtransactionWithUserVars {
     if (identical(other, this)) return true;
     return other is GtransactionWithUserVars &&
         withUser == other.withUser &&
-        skip == other.skip &&
+        fromTime == other.fromTime &&
         limit == other.limit;
   }
 
@@ -2618,7 +2747,7 @@ class _$GtransactionWithUserVars extends GtransactionWithUserVars {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, withUser.hashCode);
-    _$hash = $jc(_$hash, skip.hashCode);
+    _$hash = $jc(_$hash, fromTime.hashCode);
     _$hash = $jc(_$hash, limit.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -2628,7 +2757,7 @@ class _$GtransactionWithUserVars extends GtransactionWithUserVars {
   String toString() {
     return (newBuiltValueToStringHelper(r'GtransactionWithUserVars')
           ..add('withUser', withUser)
-          ..add('skip', skip)
+          ..add('fromTime', fromTime)
           ..add('limit', limit))
         .toString();
   }
@@ -2643,9 +2772,9 @@ class GtransactionWithUserVarsBuilder
   String? get withUser => _$this._withUser;
   set withUser(String? withUser) => _$this._withUser = withUser;
 
-  int? _skip;
-  int? get skip => _$this._skip;
-  set skip(int? skip) => _$this._skip = skip;
+  String? _fromTime;
+  String? get fromTime => _$this._fromTime;
+  set fromTime(String? fromTime) => _$this._fromTime = fromTime;
 
   int? _limit;
   int? get limit => _$this._limit;
@@ -2657,7 +2786,7 @@ class GtransactionWithUserVarsBuilder
     final $v = _$v;
     if ($v != null) {
       _withUser = $v.withUser;
-      _skip = $v.skip;
+      _fromTime = $v.fromTime;
       _limit = $v.limit;
       _$v = null;
     }
@@ -2683,10 +2812,125 @@ class GtransactionWithUserVarsBuilder
         new _$GtransactionWithUserVars._(
             withUser: BuiltValueNullFieldError.checkNotNull(
                 withUser, r'GtransactionWithUserVars', 'withUser'),
-            skip: BuiltValueNullFieldError.checkNotNull(
-                skip, r'GtransactionWithUserVars', 'skip'),
+            fromTime: fromTime,
             limit: BuiltValueNullFieldError.checkNotNull(
                 limit, r'GtransactionWithUserVars', 'limit'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GtransactionMixExpenseVars extends GtransactionMixExpenseVars {
+  @override
+  final String groupId;
+  @override
+  final String? fromTime;
+  @override
+  final int limit;
+
+  factory _$GtransactionMixExpenseVars(
+          [void Function(GtransactionMixExpenseVarsBuilder)? updates]) =>
+      (new GtransactionMixExpenseVarsBuilder()..update(updates))._build();
+
+  _$GtransactionMixExpenseVars._(
+      {required this.groupId, this.fromTime, required this.limit})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GtransactionMixExpenseVars', 'groupId');
+    BuiltValueNullFieldError.checkNotNull(
+        limit, r'GtransactionMixExpenseVars', 'limit');
+  }
+
+  @override
+  GtransactionMixExpenseVars rebuild(
+          void Function(GtransactionMixExpenseVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GtransactionMixExpenseVarsBuilder toBuilder() =>
+      new GtransactionMixExpenseVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GtransactionMixExpenseVars &&
+        groupId == other.groupId &&
+        fromTime == other.fromTime &&
+        limit == other.limit;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, fromTime.hashCode);
+    _$hash = $jc(_$hash, limit.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GtransactionMixExpenseVars')
+          ..add('groupId', groupId)
+          ..add('fromTime', fromTime)
+          ..add('limit', limit))
+        .toString();
+  }
+}
+
+class GtransactionMixExpenseVarsBuilder
+    implements
+        Builder<GtransactionMixExpenseVars, GtransactionMixExpenseVarsBuilder> {
+  _$GtransactionMixExpenseVars? _$v;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
+
+  String? _fromTime;
+  String? get fromTime => _$this._fromTime;
+  set fromTime(String? fromTime) => _$this._fromTime = fromTime;
+
+  int? _limit;
+  int? get limit => _$this._limit;
+  set limit(int? limit) => _$this._limit = limit;
+
+  GtransactionMixExpenseVarsBuilder();
+
+  GtransactionMixExpenseVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _groupId = $v.groupId;
+      _fromTime = $v.fromTime;
+      _limit = $v.limit;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GtransactionMixExpenseVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GtransactionMixExpenseVars;
+  }
+
+  @override
+  void update(void Function(GtransactionMixExpenseVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GtransactionMixExpenseVars build() => _build();
+
+  _$GtransactionMixExpenseVars _build() {
+    final _$result = _$v ??
+        new _$GtransactionMixExpenseVars._(
+            groupId: BuiltValueNullFieldError.checkNotNull(
+                groupId, r'GtransactionMixExpenseVars', 'groupId'),
+            fromTime: fromTime,
+            limit: BuiltValueNullFieldError.checkNotNull(
+                limit, r'GtransactionMixExpenseVars', 'limit'));
     replace(_$result);
     return _$result;
   }
@@ -3046,6 +3290,66 @@ class GExpenseFieldsVarsBuilder
   }
 }
 
+class _$GSplitFieldsBasicsVars extends GSplitFieldsBasicsVars {
+  factory _$GSplitFieldsBasicsVars(
+          [void Function(GSplitFieldsBasicsVarsBuilder)? updates]) =>
+      (new GSplitFieldsBasicsVarsBuilder()..update(updates))._build();
+
+  _$GSplitFieldsBasicsVars._() : super._();
+
+  @override
+  GSplitFieldsBasicsVars rebuild(
+          void Function(GSplitFieldsBasicsVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GSplitFieldsBasicsVarsBuilder toBuilder() =>
+      new GSplitFieldsBasicsVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GSplitFieldsBasicsVars;
+  }
+
+  @override
+  int get hashCode {
+    return 238362330;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GSplitFieldsBasicsVars').toString();
+  }
+}
+
+class GSplitFieldsBasicsVarsBuilder
+    implements Builder<GSplitFieldsBasicsVars, GSplitFieldsBasicsVarsBuilder> {
+  _$GSplitFieldsBasicsVars? _$v;
+
+  GSplitFieldsBasicsVarsBuilder();
+
+  @override
+  void replace(GSplitFieldsBasicsVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GSplitFieldsBasicsVars;
+  }
+
+  @override
+  void update(void Function(GSplitFieldsBasicsVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GSplitFieldsBasicsVars build() => _build();
+
+  _$GSplitFieldsBasicsVars _build() {
+    final _$result = _$v ?? new _$GSplitFieldsBasicsVars._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GSplitFieldsVars extends GSplitFieldsVars {
   factory _$GSplitFieldsVars(
           [void Function(GSplitFieldsVarsBuilder)? updates]) =>
@@ -3170,7 +3474,7 @@ class GSplitTransactionFieldsVarsBuilder
 
 class _$GGroupWithExpensesVars extends GGroupWithExpensesVars {
   @override
-  final int skip;
+  final String? fromTime;
   @override
   final int limit;
 
@@ -3178,10 +3482,7 @@ class _$GGroupWithExpensesVars extends GGroupWithExpensesVars {
           [void Function(GGroupWithExpensesVarsBuilder)? updates]) =>
       (new GGroupWithExpensesVarsBuilder()..update(updates))._build();
 
-  _$GGroupWithExpensesVars._({required this.skip, required this.limit})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        skip, r'GGroupWithExpensesVars', 'skip');
+  _$GGroupWithExpensesVars._({this.fromTime, required this.limit}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
         limit, r'GGroupWithExpensesVars', 'limit');
   }
@@ -3199,14 +3500,14 @@ class _$GGroupWithExpensesVars extends GGroupWithExpensesVars {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is GGroupWithExpensesVars &&
-        skip == other.skip &&
+        fromTime == other.fromTime &&
         limit == other.limit;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, skip.hashCode);
+    _$hash = $jc(_$hash, fromTime.hashCode);
     _$hash = $jc(_$hash, limit.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -3215,7 +3516,7 @@ class _$GGroupWithExpensesVars extends GGroupWithExpensesVars {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GGroupWithExpensesVars')
-          ..add('skip', skip)
+          ..add('fromTime', fromTime)
           ..add('limit', limit))
         .toString();
   }
@@ -3225,9 +3526,9 @@ class GGroupWithExpensesVarsBuilder
     implements Builder<GGroupWithExpensesVars, GGroupWithExpensesVarsBuilder> {
   _$GGroupWithExpensesVars? _$v;
 
-  int? _skip;
-  int? get skip => _$this._skip;
-  set skip(int? skip) => _$this._skip = skip;
+  String? _fromTime;
+  String? get fromTime => _$this._fromTime;
+  set fromTime(String? fromTime) => _$this._fromTime = fromTime;
 
   int? _limit;
   int? get limit => _$this._limit;
@@ -3238,7 +3539,7 @@ class GGroupWithExpensesVarsBuilder
   GGroupWithExpensesVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _skip = $v.skip;
+      _fromTime = $v.fromTime;
       _limit = $v.limit;
       _$v = null;
     }
@@ -3262,10 +3563,71 @@ class GGroupWithExpensesVarsBuilder
   _$GGroupWithExpensesVars _build() {
     final _$result = _$v ??
         new _$GGroupWithExpensesVars._(
-            skip: BuiltValueNullFieldError.checkNotNull(
-                skip, r'GGroupWithExpensesVars', 'skip'),
+            fromTime: fromTime,
             limit: BuiltValueNullFieldError.checkNotNull(
                 limit, r'GGroupWithExpensesVars', 'limit'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GExpenseMixSplitFieldsVars extends GExpenseMixSplitFieldsVars {
+  factory _$GExpenseMixSplitFieldsVars(
+          [void Function(GExpenseMixSplitFieldsVarsBuilder)? updates]) =>
+      (new GExpenseMixSplitFieldsVarsBuilder()..update(updates))._build();
+
+  _$GExpenseMixSplitFieldsVars._() : super._();
+
+  @override
+  GExpenseMixSplitFieldsVars rebuild(
+          void Function(GExpenseMixSplitFieldsVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GExpenseMixSplitFieldsVarsBuilder toBuilder() =>
+      new GExpenseMixSplitFieldsVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GExpenseMixSplitFieldsVars;
+  }
+
+  @override
+  int get hashCode {
+    return 450198619;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GExpenseMixSplitFieldsVars')
+        .toString();
+  }
+}
+
+class GExpenseMixSplitFieldsVarsBuilder
+    implements
+        Builder<GExpenseMixSplitFieldsVars, GExpenseMixSplitFieldsVarsBuilder> {
+  _$GExpenseMixSplitFieldsVars? _$v;
+
+  GExpenseMixSplitFieldsVarsBuilder();
+
+  @override
+  void replace(GExpenseMixSplitFieldsVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GExpenseMixSplitFieldsVars;
+  }
+
+  @override
+  void update(void Function(GExpenseMixSplitFieldsVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GExpenseMixSplitFieldsVars build() => _build();
+
+  _$GExpenseMixSplitFieldsVars _build() {
+    final _$result = _$v ?? new _$GExpenseMixSplitFieldsVars._();
     replace(_$result);
     return _$result;
   }

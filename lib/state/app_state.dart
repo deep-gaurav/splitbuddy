@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:built_collection/built_collection.dart';
+import 'package:collection/collection.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import 'package:splitbuddy/__generated__/schema.schema.gql.dart';
 import 'package:splitbuddy/auth/reauth_client.dart';
 import 'package:splitbuddy/auth/secure_storage.dart';
+import 'package:splitbuddy/extensions/group_extension.dart';
 import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
@@ -67,6 +69,16 @@ class AppState extends ChangeNotifier {
       get interactedUsers => UnmodifiableListView(_interactedUsers);
 
   Future<ReAuthClient> get client => _getClient();
+
+  String getGroupName(String groupId) =>
+      userGroups
+          .firstWhereOrNull((element) => element.id == groupId)
+          ?.displayName ??
+      groupId;
+
+  GUserFields? getUser(String id) => interactedUsers.firstWhereOrNull(
+        (element) => element.id == id,
+      );
 
   refresh(
     ReAuthClient client, {
@@ -153,7 +165,6 @@ class AppState extends ChangeNotifier {
     if (result.data != null) {
       var newgroup = await (await _getClient()).execute(GgroupReq((b) => b.vars
         ..groupId = group
-        ..skip = 0
         ..limit = 10));
       var index =
           _userGroups.indexWhere((e) => e.id == newgroup.data!.group.id);

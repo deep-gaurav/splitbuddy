@@ -40,6 +40,7 @@ fragment ExpenseBasic on Expense {
   title
   createdAt
   amount
+  creatorId
 }
 
 fragment ExpenseFields on Expense {
@@ -52,12 +53,21 @@ fragment ExpenseFields on Expense {
   }
 }
 
-fragment SplitFields on Split {
+fragment SplitFieldsBasics on Split {
   id
   amount
   transactionType
   createdAt
   transactionPartGroupId
+  fromUserId
+  toUserId
+  creatorId
+  withGroupId
+  groupId
+}
+
+fragment SplitFields on Split {
+  ...SplitFieldsBasics
   fromUser {
     ...UserFields
   }
@@ -81,8 +91,17 @@ fragment SplitTransactionFields on Split {
 
 fragment GroupWithExpenses on Group {
   ...GroupFields
-  expenses(skip: $skip, limit: $limit) {
+  expenses(fromTime: $fromTime, limit: $limit) {
     ...ExpenseFields
+  }
+}
+
+fragment ExpenseMixSplitFields on ExpenseMixSplit{
+  expense{
+    ...ExpenseBasic
+  }
+  split{
+    ...SplitFields
   }
 }
 
@@ -112,7 +131,7 @@ query interacted_users {
   }
 }
 
-query group($skip: Int!, $limit: Int!, $groupId: String!) {
+query group($fromTime: String, $limit: Int!, $groupId: String!) {
   group(id: $groupId) {
     ...GroupWithExpenses
   }
@@ -219,8 +238,18 @@ mutation autoSettleWithUser($withUser: String!, $amount: Int!) {
   }
 }
 
-query transactionWithUser($withUser: String!, $skip: Int!, $limit: Int!) {
-  getTransactionsWithUser(withUser: $withUser, skip: $skip, limit: $limit) {
+query transactionWithUser($withUser: String!, $fromTime: String, $limit: Int!) {
+  getTransactionsWithUser(
+    withUser: $withUser
+    fromTime: $fromTime
+    limit: $limit
+  ) {
     ...SplitTransactionFields
+  }
+}
+
+query transactionMixExpense($groupId: String!, $fromTime: String, $limit: Int!){
+  getTransactionsMixExpenseWithGroup(withGroup: $groupId, fromTime: $fromTime, limit: $limit){
+    ...ExpenseMixSplitFields
   }
 }

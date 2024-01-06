@@ -207,6 +207,26 @@ Serializer<GtransactionWithUserData_getTransactionsWithUser_fromUser>
 Serializer<GtransactionWithUserData_getTransactionsWithUser_toUser>
     _$gtransactionWithUserDataGetTransactionsWithUserToUserSerializer =
     new _$GtransactionWithUserData_getTransactionsWithUser_toUserSerializer();
+Serializer<GtransactionMixExpenseData> _$gtransactionMixExpenseDataSerializer =
+    new _$GtransactionMixExpenseDataSerializer();
+Serializer<GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup>
+    _$gtransactionMixExpenseDataGetTransactionsMixExpenseWithGroupSerializer =
+    new _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroupSerializer();
+Serializer<
+        GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense>
+    _$gtransactionMixExpenseDataGetTransactionsMixExpenseWithGroupExpenseSerializer =
+    new _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseSerializer();
+Serializer<GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split>
+    _$gtransactionMixExpenseDataGetTransactionsMixExpenseWithGroupSplitSerializer =
+    new _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitSerializer();
+Serializer<
+        GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser>
+    _$gtransactionMixExpenseDataGetTransactionsMixExpenseWithGroupSplitFromUserSerializer =
+    new _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserSerializer();
+Serializer<
+        GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser>
+    _$gtransactionMixExpenseDataGetTransactionsMixExpenseWithGroupSplitToUserSerializer =
+    new _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserSerializer();
 Serializer<GUserFieldsData> _$gUserFieldsDataSerializer =
     new _$GUserFieldsDataSerializer();
 Serializer<GUserPaysFieldsData> _$gUserPaysFieldsDataSerializer =
@@ -238,6 +258,8 @@ Serializer<GExpenseFieldsData_splits_fromUser>
 Serializer<GExpenseFieldsData_splits_toUser>
     _$gExpenseFieldsDataSplitsToUserSerializer =
     new _$GExpenseFieldsData_splits_toUserSerializer();
+Serializer<GSplitFieldsBasicsData> _$gSplitFieldsBasicsDataSerializer =
+    new _$GSplitFieldsBasicsDataSerializer();
 Serializer<GSplitFieldsData> _$gSplitFieldsDataSerializer =
     new _$GSplitFieldsDataSerializer();
 Serializer<GSplitFieldsData_fromUser> _$gSplitFieldsDataFromUserSerializer =
@@ -288,6 +310,20 @@ Serializer<GGroupWithExpensesData_expenses_splits_fromUser>
 Serializer<GGroupWithExpensesData_expenses_splits_toUser>
     _$gGroupWithExpensesDataExpensesSplitsToUserSerializer =
     new _$GGroupWithExpensesData_expenses_splits_toUserSerializer();
+Serializer<GExpenseMixSplitFieldsData> _$gExpenseMixSplitFieldsDataSerializer =
+    new _$GExpenseMixSplitFieldsDataSerializer();
+Serializer<GExpenseMixSplitFieldsData_expense>
+    _$gExpenseMixSplitFieldsDataExpenseSerializer =
+    new _$GExpenseMixSplitFieldsData_expenseSerializer();
+Serializer<GExpenseMixSplitFieldsData_split>
+    _$gExpenseMixSplitFieldsDataSplitSerializer =
+    new _$GExpenseMixSplitFieldsData_splitSerializer();
+Serializer<GExpenseMixSplitFieldsData_split_fromUser>
+    _$gExpenseMixSplitFieldsDataSplitFromUserSerializer =
+    new _$GExpenseMixSplitFieldsData_split_fromUserSerializer();
+Serializer<GExpenseMixSplitFieldsData_split_toUser>
+    _$gExpenseMixSplitFieldsDataSplitToUserSerializer =
+    new _$GExpenseMixSplitFieldsData_split_toUserSerializer();
 
 class _$GuserDataSerializer implements StructuredSerializer<GuserData> {
   @override
@@ -1385,6 +1421,9 @@ class _$GgroupData_group_expensesSerializer
           specifiedType: const FullType(String)),
       'amount',
       serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -1433,6 +1472,10 @@ class _$GgroupData_group_expensesSerializer
         case 'amount':
           result.amount = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -1551,6 +1594,14 @@ class _$GgroupData_group_expenses_splitsSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType:
+              const FullType(GgroupData_group_expenses_splits_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType:
+              const FullType(GgroupData_group_expenses_splits_toUser)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'amount',
@@ -1561,20 +1612,31 @@ class _$GgroupData_group_expenses_splitsSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
-      'fromUser',
-      serializers.serialize(object.fromUser,
-          specifiedType:
-              const FullType(GgroupData_group_expenses_splits_fromUser)),
-      'toUser',
-      serializers.serialize(object.toUser,
-          specifiedType:
-              const FullType(GgroupData_group_expenses_splits_toUser)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.transactionPartGroupId;
     if (value != null) {
       result
         ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -1597,6 +1659,18 @@ class _$GgroupData_group_expenses_splitsSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GgroupData_group_expenses_splits_fromUser))!
+              as GgroupData_group_expenses_splits_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GgroupData_group_expenses_splits_toUser))!
+              as GgroupData_group_expenses_splits_toUser);
+          break;
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
@@ -1618,17 +1692,25 @@ class _$GgroupData_group_expenses_splitsSerializer
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'fromUser':
-          result.fromUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GgroupData_group_expenses_splits_fromUser))!
-              as GgroupData_group_expenses_splits_fromUser);
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
-        case 'toUser':
-          result.toUser.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(GgroupData_group_expenses_splits_toUser))!
-              as GgroupData_group_expenses_splits_toUser);
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -2853,6 +2935,9 @@ class _$Gadd_expenseData_addExpenseSerializer
           specifiedType: const FullType(String)),
       'amount',
       serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -2901,6 +2986,10 @@ class _$Gadd_expenseData_addExpenseSerializer
         case 'amount':
           result.amount = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -3019,6 +3108,14 @@ class _$Gadd_expenseData_addExpense_splitsSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType:
+              const FullType(Gadd_expenseData_addExpense_splits_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType:
+              const FullType(Gadd_expenseData_addExpense_splits_toUser)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'amount',
@@ -3029,20 +3126,31 @@ class _$Gadd_expenseData_addExpense_splitsSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
-      'fromUser',
-      serializers.serialize(object.fromUser,
-          specifiedType:
-              const FullType(Gadd_expenseData_addExpense_splits_fromUser)),
-      'toUser',
-      serializers.serialize(object.toUser,
-          specifiedType:
-              const FullType(Gadd_expenseData_addExpense_splits_toUser)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.transactionPartGroupId;
     if (value != null) {
       result
         ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -3065,6 +3173,18 @@ class _$Gadd_expenseData_addExpense_splitsSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      Gadd_expenseData_addExpense_splits_fromUser))!
+              as Gadd_expenseData_addExpense_splits_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      Gadd_expenseData_addExpense_splits_toUser))!
+              as Gadd_expenseData_addExpense_splits_toUser);
+          break;
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
@@ -3086,17 +3206,25 @@ class _$Gadd_expenseData_addExpense_splitsSerializer
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'fromUser':
-          result.fromUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      Gadd_expenseData_addExpense_splits_fromUser))!
-              as Gadd_expenseData_addExpense_splits_fromUser);
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
-        case 'toUser':
-          result.toUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      Gadd_expenseData_addExpense_splits_toUser))!
-              as Gadd_expenseData_addExpense_splits_toUser);
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -4346,6 +4474,9 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expenseSerializer
           specifiedType: const FullType(String)),
       'amount',
       serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -4396,6 +4527,10 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expenseSerializer
         case 'amount':
           result.amount = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -4521,6 +4656,14 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType: const FullType(
+              GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType: const FullType(
+              GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'amount',
@@ -4531,20 +4674,31 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
-      'fromUser',
-      serializers.serialize(object.fromUser,
-          specifiedType: const FullType(
-              GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser)),
-      'toUser',
-      serializers.serialize(object.toUser,
-          specifiedType: const FullType(
-              GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.transactionPartGroupId;
     if (value != null) {
       result
         ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -4568,6 +4722,18 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser))!
+              as GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser))!
+              as GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser);
+          break;
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
@@ -4589,17 +4755,25 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsSerializer
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'fromUser':
-          result.fromUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser))!
-              as GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser);
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
-        case 'toUser':
-          result.toUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser))!
-              as GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser);
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -4874,6 +5048,14 @@ class _$GsettleInGroupData_settleInGroupSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType:
+              const FullType(GsettleInGroupData_settleInGroup_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType:
+              const FullType(GsettleInGroupData_settleInGroup_toUser)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'amount',
@@ -4884,20 +5066,31 @@ class _$GsettleInGroupData_settleInGroupSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
-      'fromUser',
-      serializers.serialize(object.fromUser,
-          specifiedType:
-              const FullType(GsettleInGroupData_settleInGroup_fromUser)),
-      'toUser',
-      serializers.serialize(object.toUser,
-          specifiedType:
-              const FullType(GsettleInGroupData_settleInGroup_toUser)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.transactionPartGroupId;
     if (value != null) {
       result
         ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -4920,6 +5113,18 @@ class _$GsettleInGroupData_settleInGroupSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GsettleInGroupData_settleInGroup_fromUser))!
+              as GsettleInGroupData_settleInGroup_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GsettleInGroupData_settleInGroup_toUser))!
+              as GsettleInGroupData_settleInGroup_toUser);
+          break;
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
@@ -4941,17 +5146,25 @@ class _$GsettleInGroupData_settleInGroupSerializer
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'fromUser':
-          result.fromUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GsettleInGroupData_settleInGroup_fromUser))!
-              as GsettleInGroupData_settleInGroup_fromUser);
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
-        case 'toUser':
-          result.toUser.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(GsettleInGroupData_settleInGroup_toUser))!
-              as GsettleInGroupData_settleInGroup_toUser);
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -5214,6 +5427,14 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType:
+              const FullType(GsimplifyUserData_simplifyCrossGroup_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType:
+              const FullType(GsimplifyUserData_simplifyCrossGroup_toUser)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'amount',
@@ -5224,20 +5445,31 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
-      'fromUser',
-      serializers.serialize(object.fromUser,
-          specifiedType:
-              const FullType(GsimplifyUserData_simplifyCrossGroup_fromUser)),
-      'toUser',
-      serializers.serialize(object.toUser,
-          specifiedType:
-              const FullType(GsimplifyUserData_simplifyCrossGroup_toUser)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.transactionPartGroupId;
     if (value != null) {
       result
         ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -5260,6 +5492,18 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GsimplifyUserData_simplifyCrossGroup_fromUser))!
+              as GsimplifyUserData_simplifyCrossGroup_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GsimplifyUserData_simplifyCrossGroup_toUser))!
+              as GsimplifyUserData_simplifyCrossGroup_toUser);
+          break;
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
@@ -5281,17 +5525,25 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'fromUser':
-          result.fromUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GsimplifyUserData_simplifyCrossGroup_fromUser))!
-              as GsimplifyUserData_simplifyCrossGroup_fromUser);
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
-        case 'toUser':
-          result.toUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GsimplifyUserData_simplifyCrossGroup_toUser))!
-              as GsimplifyUserData_simplifyCrossGroup_toUser);
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -5562,6 +5814,14 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType: const FullType(
+              GautoSettleWithUserData_autoSettleWithUser_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType: const FullType(
+              GautoSettleWithUserData_autoSettleWithUser_toUser)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'amount',
@@ -5572,20 +5832,31 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
-      'fromUser',
-      serializers.serialize(object.fromUser,
-          specifiedType: const FullType(
-              GautoSettleWithUserData_autoSettleWithUser_fromUser)),
-      'toUser',
-      serializers.serialize(object.toUser,
-          specifiedType: const FullType(
-              GautoSettleWithUserData_autoSettleWithUser_toUser)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.transactionPartGroupId;
     if (value != null) {
       result
         ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -5608,6 +5879,18 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GautoSettleWithUserData_autoSettleWithUser_fromUser))!
+              as GautoSettleWithUserData_autoSettleWithUser_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GautoSettleWithUserData_autoSettleWithUser_toUser))!
+              as GautoSettleWithUserData_autoSettleWithUser_toUser);
+          break;
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
@@ -5629,17 +5912,25 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'fromUser':
-          result.fromUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GautoSettleWithUserData_autoSettleWithUser_fromUser))!
-              as GautoSettleWithUserData_autoSettleWithUser_fromUser);
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
-        case 'toUser':
-          result.toUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GautoSettleWithUserData_autoSettleWithUser_toUser))!
-              as GautoSettleWithUserData_autoSettleWithUser_toUser);
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -5922,6 +6213,14 @@ class _$GtransactionWithUserData_getTransactionsWithUserSerializer
       serializers.serialize(object.creator,
           specifiedType: const FullType(
               GtransactionWithUserData_getTransactionsWithUser_creator)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType: const FullType(
+              GtransactionWithUserData_getTransactionsWithUser_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType: const FullType(
+              GtransactionWithUserData_getTransactionsWithUser_toUser)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'amount',
@@ -5932,14 +6231,18 @@ class _$GtransactionWithUserData_getTransactionsWithUserSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
-      'fromUser',
-      serializers.serialize(object.fromUser,
-          specifiedType: const FullType(
-              GtransactionWithUserData_getTransactionsWithUser_fromUser)),
-      'toUser',
-      serializers.serialize(object.toUser,
-          specifiedType: const FullType(
-              GtransactionWithUserData_getTransactionsWithUser_toUser)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.expense;
@@ -5954,6 +6257,13 @@ class _$GtransactionWithUserData_getTransactionsWithUserSerializer
     if (value != null) {
       result
         ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -5995,6 +6305,18 @@ class _$GtransactionWithUserData_getTransactionsWithUserSerializer
                       GtransactionWithUserData_getTransactionsWithUser_creator))!
               as GtransactionWithUserData_getTransactionsWithUser_creator);
           break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GtransactionWithUserData_getTransactionsWithUser_fromUser))!
+              as GtransactionWithUserData_getTransactionsWithUser_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GtransactionWithUserData_getTransactionsWithUser_toUser))!
+              as GtransactionWithUserData_getTransactionsWithUser_toUser);
+          break;
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
@@ -6016,17 +6338,25 @@ class _$GtransactionWithUserData_getTransactionsWithUserSerializer
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'fromUser':
-          result.fromUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GtransactionWithUserData_getTransactionsWithUser_fromUser))!
-              as GtransactionWithUserData_getTransactionsWithUser_fromUser);
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
-        case 'toUser':
-          result.toUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GtransactionWithUserData_getTransactionsWithUser_toUser))!
-              as GtransactionWithUserData_getTransactionsWithUser_toUser);
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -6066,6 +6396,9 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expenseSerializer
           specifiedType: const FullType(String)),
       'amount',
       serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -6103,6 +6436,10 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expenseSerializer
         case 'amount':
           result.amount = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -6428,6 +6765,574 @@ class _$GtransactionWithUserData_getTransactionsWithUser_toUserSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final result =
         new GtransactionWithUserData_getTransactionsWithUser_toUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GtransactionMixExpenseDataSerializer
+    implements StructuredSerializer<GtransactionMixExpenseData> {
+  @override
+  final Iterable<Type> types = const [
+    GtransactionMixExpenseData,
+    _$GtransactionMixExpenseData
+  ];
+  @override
+  final String wireName = 'GtransactionMixExpenseData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GtransactionMixExpenseData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'getTransactionsMixExpenseWithGroup',
+      serializers.serialize(object.getTransactionsMixExpenseWithGroup,
+          specifiedType: const FullType(BuiltList, const [
+            const FullType(
+                GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup)
+          ])),
+    ];
+
+    return result;
+  }
+
+  @override
+  GtransactionMixExpenseData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GtransactionMixExpenseDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'getTransactionsMixExpenseWithGroup':
+          result.getTransactionsMixExpenseWithGroup.replace(serializers
+              .deserialize(value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(
+                        GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup)
+                  ]))! as BuiltList<Object?>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroupSerializer
+    implements
+        StructuredSerializer<
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup> {
+  @override
+  final Iterable<Type> types = const [
+    GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup,
+    _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup
+  ];
+  @override
+  final String wireName =
+      'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.expense;
+    if (value != null) {
+      result
+        ..add('expense')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense)));
+    }
+    value = object.split;
+    if (value != null) {
+      result
+        ..add('split')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split)));
+    }
+    return result;
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroupBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'expense':
+          result.expense.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense))!
+              as GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense);
+          break;
+        case 'split':
+          result.split.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split))!
+              as GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseSerializer
+    implements
+        StructuredSerializer<
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense> {
+  @override
+  final Iterable<Type> types = const [
+    GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense,
+    _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
+  ];
+  @override
+  final String wireName =
+      'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers,
+      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
+          object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
+      deserialize(Serializers serializers, Iterable<Object?> serialized,
+          {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitSerializer
+    implements
+        StructuredSerializer<
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split> {
+  @override
+  final Iterable<Type> types = const [
+    GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split,
+    _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
+  ];
+  @override
+  final String wireName =
+      'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers,
+      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
+          object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType: const FullType(
+              GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType: const FullType(
+              GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'transactionType',
+      serializers.serialize(object.transactionType,
+          specifiedType: const FullType(_i3.GTransactionType)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.transactionPartGroupId;
+    if (value != null) {
+      result
+        ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
+      deserialize(Serializers serializers, Iterable<Object?> serialized,
+          {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser))!
+              as GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser))!
+              as GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser);
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'transactionType':
+          result.transactionType = serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GTransactionType))!
+              as _i3.GTransactionType;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionPartGroupId':
+          result.transactionPartGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserSerializer
+    implements
+        StructuredSerializer<
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser> {
+  @override
+  final Iterable<Type> types = const [
+    GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser,
+    _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser
+  ];
+  @override
+  final String wireName =
+      'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers,
+      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser
+          object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser
+      deserialize(Serializers serializers, Iterable<Object?> serialized,
+          {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserSerializer
+    implements
+        StructuredSerializer<
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser> {
+  @override
+  final Iterable<Type> types = const [
+    GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser,
+    _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser
+  ];
+  @override
+  final String wireName =
+      'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers,
+      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser
+          object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser
+      deserialize(Serializers serializers, Iterable<Object?> serialized,
+          {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -7144,6 +8049,9 @@ class _$GExpenseBasicDataSerializer
           specifiedType: const FullType(String)),
       'amount',
       serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -7181,6 +8089,10 @@ class _$GExpenseBasicDataSerializer
           result.amount = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
           break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
       }
     }
 
@@ -7213,6 +8125,9 @@ class _$GExpenseFieldsDataSerializer
           specifiedType: const FullType(String)),
       'amount',
       serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
       'creator',
       serializers.serialize(object.creator,
           specifiedType: const FullType(GExpenseFieldsData_creator)),
@@ -7256,6 +8171,10 @@ class _$GExpenseFieldsDataSerializer
         case 'amount':
           result.amount = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
         case 'creator':
           result.creator.replace(serializers.deserialize(value,
@@ -7385,6 +8304,12 @@ class _$GExpenseFieldsData_splitsSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType: const FullType(GExpenseFieldsData_splits_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType: const FullType(GExpenseFieldsData_splits_toUser)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'amount',
@@ -7395,18 +8320,31 @@ class _$GExpenseFieldsData_splitsSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
-      'fromUser',
-      serializers.serialize(object.fromUser,
-          specifiedType: const FullType(GExpenseFieldsData_splits_fromUser)),
-      'toUser',
-      serializers.serialize(object.toUser,
-          specifiedType: const FullType(GExpenseFieldsData_splits_toUser)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.transactionPartGroupId;
     if (value != null) {
       result
         ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -7429,6 +8367,18 @@ class _$GExpenseFieldsData_splitsSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GExpenseFieldsData_splits_fromUser))!
+              as GExpenseFieldsData_splits_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GExpenseFieldsData_splits_toUser))!
+              as GExpenseFieldsData_splits_toUser);
+          break;
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
@@ -7450,17 +8400,25 @@ class _$GExpenseFieldsData_splitsSerializer
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'fromUser':
-          result.fromUser.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(GExpenseFieldsData_splits_fromUser))!
-              as GExpenseFieldsData_splits_fromUser);
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
-        case 'toUser':
-          result.toUser.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(GExpenseFieldsData_splits_toUser))!
-              as GExpenseFieldsData_splits_toUser);
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -7653,6 +8611,129 @@ class _$GExpenseFieldsData_splits_toUserSerializer
   }
 }
 
+class _$GSplitFieldsBasicsDataSerializer
+    implements StructuredSerializer<GSplitFieldsBasicsData> {
+  @override
+  final Iterable<Type> types = const [
+    GSplitFieldsBasicsData,
+    _$GSplitFieldsBasicsData
+  ];
+  @override
+  final String wireName = 'GSplitFieldsBasicsData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GSplitFieldsBasicsData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'transactionType',
+      serializers.serialize(object.transactionType,
+          specifiedType: const FullType(_i3.GTransactionType)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.transactionPartGroupId;
+    if (value != null) {
+      result
+        ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GSplitFieldsBasicsData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GSplitFieldsBasicsDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'transactionType':
+          result.transactionType = serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GTransactionType))!
+              as _i3.GTransactionType;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionPartGroupId':
+          result.transactionPartGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GSplitFieldsDataSerializer
     implements StructuredSerializer<GSplitFieldsData> {
   @override
@@ -7677,6 +8758,18 @@ class _$GSplitFieldsDataSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
       'fromUser',
       serializers.serialize(object.fromUser,
           specifiedType: const FullType(GSplitFieldsData_fromUser)),
@@ -7689,6 +8782,13 @@ class _$GSplitFieldsDataSerializer
     if (value != null) {
       result
         ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -7731,6 +8831,26 @@ class _$GSplitFieldsDataSerializer
         case 'transactionPartGroupId':
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
         case 'fromUser':
           result.fromUser.replace(serializers.deserialize(value,
@@ -7951,6 +9071,12 @@ class _$GSplitTransactionFieldsDataSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType: const FullType(GSplitTransactionFieldsData_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType: const FullType(GSplitTransactionFieldsData_toUser)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'amount',
@@ -7961,12 +9087,18 @@ class _$GSplitTransactionFieldsDataSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
-      'fromUser',
-      serializers.serialize(object.fromUser,
-          specifiedType: const FullType(GSplitTransactionFieldsData_fromUser)),
-      'toUser',
-      serializers.serialize(object.toUser,
-          specifiedType: const FullType(GSplitTransactionFieldsData_toUser)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
       'group',
       serializers.serialize(object.group,
           specifiedType: const FullType(GSplitTransactionFieldsData_group)),
@@ -7979,6 +9111,13 @@ class _$GSplitTransactionFieldsDataSerializer
     if (value != null) {
       result
         ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -8009,6 +9148,18 @@ class _$GSplitTransactionFieldsDataSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GSplitTransactionFieldsData_fromUser))!
+              as GSplitTransactionFieldsData_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GSplitTransactionFieldsData_toUser))!
+              as GSplitTransactionFieldsData_toUser);
+          break;
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
@@ -8030,17 +9181,25 @@ class _$GSplitTransactionFieldsDataSerializer
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'fromUser':
-          result.fromUser.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(GSplitTransactionFieldsData_fromUser))!
-              as GSplitTransactionFieldsData_fromUser);
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
-        case 'toUser':
-          result.toUser.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(GSplitTransactionFieldsData_toUser))!
-              as GSplitTransactionFieldsData_toUser);
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
         case 'expense':
           result.expense.replace(serializers.deserialize(value,
@@ -8279,6 +9438,9 @@ class _$GSplitTransactionFieldsData_expenseSerializer
           specifiedType: const FullType(String)),
       'amount',
       serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -8315,6 +9477,10 @@ class _$GSplitTransactionFieldsData_expenseSerializer
         case 'amount':
           result.amount = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -8865,6 +10031,9 @@ class _$GGroupWithExpensesData_expensesSerializer
           specifiedType: const FullType(String)),
       'amount',
       serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -8913,6 +10082,10 @@ class _$GGroupWithExpensesData_expensesSerializer
         case 'amount':
           result.amount = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -9031,6 +10204,14 @@ class _$GGroupWithExpensesData_expenses_splitsSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType:
+              const FullType(GGroupWithExpensesData_expenses_splits_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType:
+              const FullType(GGroupWithExpensesData_expenses_splits_toUser)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'amount',
@@ -9041,20 +10222,31 @@ class _$GGroupWithExpensesData_expenses_splitsSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
-      'fromUser',
-      serializers.serialize(object.fromUser,
-          specifiedType:
-              const FullType(GGroupWithExpensesData_expenses_splits_fromUser)),
-      'toUser',
-      serializers.serialize(object.toUser,
-          specifiedType:
-              const FullType(GGroupWithExpensesData_expenses_splits_toUser)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.transactionPartGroupId;
     if (value != null) {
       result
         ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -9077,6 +10269,18 @@ class _$GGroupWithExpensesData_expenses_splitsSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GGroupWithExpensesData_expenses_splits_fromUser))!
+              as GGroupWithExpensesData_expenses_splits_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GGroupWithExpensesData_expenses_splits_toUser))!
+              as GGroupWithExpensesData_expenses_splits_toUser);
+          break;
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
@@ -9098,17 +10302,25 @@ class _$GGroupWithExpensesData_expenses_splitsSerializer
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'fromUser':
-          result.fromUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GGroupWithExpensesData_expenses_splits_fromUser))!
-              as GGroupWithExpensesData_expenses_splits_fromUser);
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
-        case 'toUser':
-          result.toUser.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GGroupWithExpensesData_expenses_splits_toUser))!
-              as GGroupWithExpensesData_expenses_splits_toUser);
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -9265,6 +10477,484 @@ class _$GGroupWithExpensesData_expenses_splits_toUserSerializer
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GGroupWithExpensesData_expenses_splits_toUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GExpenseMixSplitFieldsDataSerializer
+    implements StructuredSerializer<GExpenseMixSplitFieldsData> {
+  @override
+  final Iterable<Type> types = const [
+    GExpenseMixSplitFieldsData,
+    _$GExpenseMixSplitFieldsData
+  ];
+  @override
+  final String wireName = 'GExpenseMixSplitFieldsData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GExpenseMixSplitFieldsData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.expense;
+    if (value != null) {
+      result
+        ..add('expense')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GExpenseMixSplitFieldsData_expense)));
+    }
+    value = object.split;
+    if (value != null) {
+      result
+        ..add('split')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GExpenseMixSplitFieldsData_split)));
+    }
+    return result;
+  }
+
+  @override
+  GExpenseMixSplitFieldsData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GExpenseMixSplitFieldsDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'expense':
+          result.expense.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GExpenseMixSplitFieldsData_expense))!
+              as GExpenseMixSplitFieldsData_expense);
+          break;
+        case 'split':
+          result.split.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GExpenseMixSplitFieldsData_split))!
+              as GExpenseMixSplitFieldsData_split);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GExpenseMixSplitFieldsData_expenseSerializer
+    implements StructuredSerializer<GExpenseMixSplitFieldsData_expense> {
+  @override
+  final Iterable<Type> types = const [
+    GExpenseMixSplitFieldsData_expense,
+    _$GExpenseMixSplitFieldsData_expense
+  ];
+  @override
+  final String wireName = 'GExpenseMixSplitFieldsData_expense';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GExpenseMixSplitFieldsData_expense object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GExpenseMixSplitFieldsData_expense deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GExpenseMixSplitFieldsData_expenseBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GExpenseMixSplitFieldsData_splitSerializer
+    implements StructuredSerializer<GExpenseMixSplitFieldsData_split> {
+  @override
+  final Iterable<Type> types = const [
+    GExpenseMixSplitFieldsData_split,
+    _$GExpenseMixSplitFieldsData_split
+  ];
+  @override
+  final String wireName = 'GExpenseMixSplitFieldsData_split';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GExpenseMixSplitFieldsData_split object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType:
+              const FullType(GExpenseMixSplitFieldsData_split_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType:
+              const FullType(GExpenseMixSplitFieldsData_split_toUser)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'transactionType',
+      serializers.serialize(object.transactionType,
+          specifiedType: const FullType(_i3.GTransactionType)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.transactionPartGroupId;
+    if (value != null) {
+      result
+        ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GExpenseMixSplitFieldsData_split deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GExpenseMixSplitFieldsData_splitBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GExpenseMixSplitFieldsData_split_fromUser))!
+              as GExpenseMixSplitFieldsData_split_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GExpenseMixSplitFieldsData_split_toUser))!
+              as GExpenseMixSplitFieldsData_split_toUser);
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'transactionType':
+          result.transactionType = serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GTransactionType))!
+              as _i3.GTransactionType;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionPartGroupId':
+          result.transactionPartGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GExpenseMixSplitFieldsData_split_fromUserSerializer
+    implements StructuredSerializer<GExpenseMixSplitFieldsData_split_fromUser> {
+  @override
+  final Iterable<Type> types = const [
+    GExpenseMixSplitFieldsData_split_fromUser,
+    _$GExpenseMixSplitFieldsData_split_fromUser
+  ];
+  @override
+  final String wireName = 'GExpenseMixSplitFieldsData_split_fromUser';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GExpenseMixSplitFieldsData_split_fromUser object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GExpenseMixSplitFieldsData_split_fromUser deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GExpenseMixSplitFieldsData_split_fromUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GExpenseMixSplitFieldsData_split_toUserSerializer
+    implements StructuredSerializer<GExpenseMixSplitFieldsData_split_toUser> {
+  @override
+  final Iterable<Type> types = const [
+    GExpenseMixSplitFieldsData_split_toUser,
+    _$GExpenseMixSplitFieldsData_split_toUser
+  ];
+  @override
+  final String wireName = 'GExpenseMixSplitFieldsData_split_toUser';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GExpenseMixSplitFieldsData_split_toUser object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GExpenseMixSplitFieldsData_split_toUser deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GExpenseMixSplitFieldsData_split_toUserBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -11452,6 +13142,8 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
   final String createdAt;
   @override
   final int amount;
+  @override
+  final String creatorId;
 
   factory _$GgroupData_group_expenses(
           [void Function(GgroupData_group_expensesBuilder)? updates]) =>
@@ -11464,7 +13156,8 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
       required this.id,
       required this.title,
       required this.createdAt,
-      required this.amount})
+      required this.amount,
+      required this.creatorId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgroupData_group_expenses', 'G__typename');
@@ -11480,6 +13173,8 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
         createdAt, r'GgroupData_group_expenses', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
         amount, r'GgroupData_group_expenses', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GgroupData_group_expenses', 'creatorId');
   }
 
   @override
@@ -11501,7 +13196,8 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
-        amount == other.amount;
+        amount == other.amount &&
+        creatorId == other.creatorId;
   }
 
   @override
@@ -11514,6 +13210,7 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -11527,7 +13224,8 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
-          ..add('amount', amount))
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
         .toString();
   }
 }
@@ -11569,6 +13267,10 @@ class GgroupData_group_expensesBuilder
   int? get amount => _$this._amount;
   set amount(int? amount) => _$this._amount = amount;
 
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
   GgroupData_group_expensesBuilder() {
     GgroupData_group_expenses._initializeBuilder(this);
   }
@@ -11583,6 +13285,7 @@ class GgroupData_group_expensesBuilder
       _title = $v.title;
       _createdAt = $v.createdAt;
       _amount = $v.amount;
+      _creatorId = $v.creatorId;
       _$v = null;
     }
     return this;
@@ -11618,7 +13321,9 @@ class GgroupData_group_expensesBuilder
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GgroupData_group_expenses', 'createdAt'),
               amount: BuiltValueNullFieldError.checkNotNull(
-                  amount, r'GgroupData_group_expenses', 'amount'));
+                  amount, r'GgroupData_group_expenses', 'amount'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId, r'GgroupData_group_expenses', 'creatorId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -11805,6 +13510,10 @@ class _$GgroupData_group_expenses_splits
   @override
   final String G__typename;
   @override
+  final GgroupData_group_expenses_splits_fromUser fromUser;
+  @override
+  final GgroupData_group_expenses_splits_toUser toUser;
+  @override
   final String id;
   @override
   final int amount;
@@ -11815,9 +13524,15 @@ class _$GgroupData_group_expenses_splits
   @override
   final String? transactionPartGroupId;
   @override
-  final GgroupData_group_expenses_splits_fromUser fromUser;
+  final String fromUserId;
   @override
-  final GgroupData_group_expenses_splits_toUser toUser;
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
 
   factory _$GgroupData_group_expenses_splits(
           [void Function(GgroupData_group_expenses_splitsBuilder)? updates]) =>
@@ -11825,16 +13540,25 @@ class _$GgroupData_group_expenses_splits
 
   _$GgroupData_group_expenses_splits._(
       {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
       required this.id,
       required this.amount,
       required this.transactionType,
       required this.createdAt,
       this.transactionPartGroupId,
-      required this.fromUser,
-      required this.toUser})
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgroupData_group_expenses_splits', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser, r'GgroupData_group_expenses_splits', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'GgroupData_group_expenses_splits', 'toUser');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GgroupData_group_expenses_splits', 'id');
     BuiltValueNullFieldError.checkNotNull(
@@ -11844,9 +13568,13 @@ class _$GgroupData_group_expenses_splits
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GgroupData_group_expenses_splits', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
-        fromUser, r'GgroupData_group_expenses_splits', 'fromUser');
+        fromUserId, r'GgroupData_group_expenses_splits', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
-        toUser, r'GgroupData_group_expenses_splits', 'toUser');
+        toUserId, r'GgroupData_group_expenses_splits', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GgroupData_group_expenses_splits', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GgroupData_group_expenses_splits', 'groupId');
   }
 
   @override
@@ -11863,26 +13591,36 @@ class _$GgroupData_group_expenses_splits
     if (identical(other, this)) return true;
     return other is GgroupData_group_expenses_splits &&
         G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
         id == other.id &&
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
-        fromUser == other.fromUser &&
-        toUser == other.toUser;
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
-    _$hash = $jc(_$hash, fromUser.hashCode);
-    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -11891,13 +13629,18 @@ class _$GgroupData_group_expenses_splits
   String toString() {
     return (newBuiltValueToStringHelper(r'GgroupData_group_expenses_splits')
           ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
           ..add('id', id)
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
-          ..add('fromUser', fromUser)
-          ..add('toUser', toUser))
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
         .toString();
   }
 }
@@ -11911,6 +13654,19 @@ class GgroupData_group_expenses_splitsBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GgroupData_group_expenses_splits_fromUserBuilder? _fromUser;
+  GgroupData_group_expenses_splits_fromUserBuilder get fromUser =>
+      _$this._fromUser ??=
+          new GgroupData_group_expenses_splits_fromUserBuilder();
+  set fromUser(GgroupData_group_expenses_splits_fromUserBuilder? fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GgroupData_group_expenses_splits_toUserBuilder? _toUser;
+  GgroupData_group_expenses_splits_toUserBuilder get toUser =>
+      _$this._toUser ??= new GgroupData_group_expenses_splits_toUserBuilder();
+  set toUser(GgroupData_group_expenses_splits_toUserBuilder? toUser) =>
+      _$this._toUser = toUser;
 
   String? _id;
   String? get id => _$this._id;
@@ -11934,18 +13690,25 @@ class GgroupData_group_expenses_splitsBuilder
   set transactionPartGroupId(String? transactionPartGroupId) =>
       _$this._transactionPartGroupId = transactionPartGroupId;
 
-  GgroupData_group_expenses_splits_fromUserBuilder? _fromUser;
-  GgroupData_group_expenses_splits_fromUserBuilder get fromUser =>
-      _$this._fromUser ??=
-          new GgroupData_group_expenses_splits_fromUserBuilder();
-  set fromUser(GgroupData_group_expenses_splits_fromUserBuilder? fromUser) =>
-      _$this._fromUser = fromUser;
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
 
-  GgroupData_group_expenses_splits_toUserBuilder? _toUser;
-  GgroupData_group_expenses_splits_toUserBuilder get toUser =>
-      _$this._toUser ??= new GgroupData_group_expenses_splits_toUserBuilder();
-  set toUser(GgroupData_group_expenses_splits_toUserBuilder? toUser) =>
-      _$this._toUser = toUser;
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
 
   GgroupData_group_expenses_splitsBuilder() {
     GgroupData_group_expenses_splits._initializeBuilder(this);
@@ -11955,13 +13718,18 @@ class GgroupData_group_expenses_splitsBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
       _id = $v.id;
       _amount = $v.amount;
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
-      _fromUser = $v.fromUser.toBuilder();
-      _toUser = $v.toUser.toBuilder();
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
       _$v = null;
     }
     return this;
@@ -11986,8 +13754,10 @@ class GgroupData_group_expenses_splitsBuilder
     try {
       _$result = _$v ??
           new _$GgroupData_group_expenses_splits._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GgroupData_group_expenses_splits', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GgroupData_group_expenses_splits', 'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GgroupData_group_expenses_splits', 'id'),
               amount: BuiltValueNullFieldError.checkNotNull(
@@ -11999,8 +13769,13 @@ class GgroupData_group_expenses_splitsBuilder
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GgroupData_group_expenses_splits', 'createdAt'),
               transactionPartGroupId: transactionPartGroupId,
-              fromUser: fromUser.build(),
-              toUser: toUser.build());
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GgroupData_group_expenses_splits', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GgroupData_group_expenses_splits', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GgroupData_group_expenses_splits', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GgroupData_group_expenses_splits', 'groupId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -14375,6 +16150,8 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
   final String createdAt;
   @override
   final int amount;
+  @override
+  final String creatorId;
 
   factory _$Gadd_expenseData_addExpense(
           [void Function(Gadd_expenseData_addExpenseBuilder)? updates]) =>
@@ -14387,7 +16164,8 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
       required this.id,
       required this.title,
       required this.createdAt,
-      required this.amount})
+      required this.amount,
+      required this.creatorId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'Gadd_expenseData_addExpense', 'G__typename');
@@ -14403,6 +16181,8 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
         createdAt, r'Gadd_expenseData_addExpense', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
         amount, r'Gadd_expenseData_addExpense', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'Gadd_expenseData_addExpense', 'creatorId');
   }
 
   @override
@@ -14424,7 +16204,8 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
-        amount == other.amount;
+        amount == other.amount &&
+        creatorId == other.creatorId;
   }
 
   @override
@@ -14437,6 +16218,7 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -14450,7 +16232,8 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
-          ..add('amount', amount))
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
         .toString();
   }
 }
@@ -14493,6 +16276,10 @@ class Gadd_expenseData_addExpenseBuilder
   int? get amount => _$this._amount;
   set amount(int? amount) => _$this._amount = amount;
 
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
   Gadd_expenseData_addExpenseBuilder() {
     Gadd_expenseData_addExpense._initializeBuilder(this);
   }
@@ -14507,6 +16294,7 @@ class Gadd_expenseData_addExpenseBuilder
       _title = $v.title;
       _createdAt = $v.createdAt;
       _amount = $v.amount;
+      _creatorId = $v.creatorId;
       _$v = null;
     }
     return this;
@@ -14542,7 +16330,9 @@ class Gadd_expenseData_addExpenseBuilder
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'Gadd_expenseData_addExpense', 'createdAt'),
               amount: BuiltValueNullFieldError.checkNotNull(
-                  amount, r'Gadd_expenseData_addExpense', 'amount'));
+                  amount, r'Gadd_expenseData_addExpense', 'amount'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId, r'Gadd_expenseData_addExpense', 'creatorId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -14730,6 +16520,10 @@ class _$Gadd_expenseData_addExpense_splits
   @override
   final String G__typename;
   @override
+  final Gadd_expenseData_addExpense_splits_fromUser fromUser;
+  @override
+  final Gadd_expenseData_addExpense_splits_toUser toUser;
+  @override
   final String id;
   @override
   final int amount;
@@ -14740,9 +16534,15 @@ class _$Gadd_expenseData_addExpense_splits
   @override
   final String? transactionPartGroupId;
   @override
-  final Gadd_expenseData_addExpense_splits_fromUser fromUser;
+  final String fromUserId;
   @override
-  final Gadd_expenseData_addExpense_splits_toUser toUser;
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
 
   factory _$Gadd_expenseData_addExpense_splits(
           [void Function(Gadd_expenseData_addExpense_splitsBuilder)?
@@ -14752,16 +16552,25 @@ class _$Gadd_expenseData_addExpense_splits
 
   _$Gadd_expenseData_addExpense_splits._(
       {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
       required this.id,
       required this.amount,
       required this.transactionType,
       required this.createdAt,
       this.transactionPartGroupId,
-      required this.fromUser,
-      required this.toUser})
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'Gadd_expenseData_addExpense_splits', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser, r'Gadd_expenseData_addExpense_splits', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'Gadd_expenseData_addExpense_splits', 'toUser');
     BuiltValueNullFieldError.checkNotNull(
         id, r'Gadd_expenseData_addExpense_splits', 'id');
     BuiltValueNullFieldError.checkNotNull(
@@ -14771,9 +16580,13 @@ class _$Gadd_expenseData_addExpense_splits
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'Gadd_expenseData_addExpense_splits', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
-        fromUser, r'Gadd_expenseData_addExpense_splits', 'fromUser');
+        fromUserId, r'Gadd_expenseData_addExpense_splits', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
-        toUser, r'Gadd_expenseData_addExpense_splits', 'toUser');
+        toUserId, r'Gadd_expenseData_addExpense_splits', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'Gadd_expenseData_addExpense_splits', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'Gadd_expenseData_addExpense_splits', 'groupId');
   }
 
   @override
@@ -14790,26 +16603,36 @@ class _$Gadd_expenseData_addExpense_splits
     if (identical(other, this)) return true;
     return other is Gadd_expenseData_addExpense_splits &&
         G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
         id == other.id &&
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
-        fromUser == other.fromUser &&
-        toUser == other.toUser;
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
-    _$hash = $jc(_$hash, fromUser.hashCode);
-    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -14818,13 +16641,18 @@ class _$Gadd_expenseData_addExpense_splits
   String toString() {
     return (newBuiltValueToStringHelper(r'Gadd_expenseData_addExpense_splits')
           ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
           ..add('id', id)
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
-          ..add('fromUser', fromUser)
-          ..add('toUser', toUser))
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
         .toString();
   }
 }
@@ -14838,6 +16666,19 @@ class Gadd_expenseData_addExpense_splitsBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  Gadd_expenseData_addExpense_splits_fromUserBuilder? _fromUser;
+  Gadd_expenseData_addExpense_splits_fromUserBuilder get fromUser =>
+      _$this._fromUser ??=
+          new Gadd_expenseData_addExpense_splits_fromUserBuilder();
+  set fromUser(Gadd_expenseData_addExpense_splits_fromUserBuilder? fromUser) =>
+      _$this._fromUser = fromUser;
+
+  Gadd_expenseData_addExpense_splits_toUserBuilder? _toUser;
+  Gadd_expenseData_addExpense_splits_toUserBuilder get toUser =>
+      _$this._toUser ??= new Gadd_expenseData_addExpense_splits_toUserBuilder();
+  set toUser(Gadd_expenseData_addExpense_splits_toUserBuilder? toUser) =>
+      _$this._toUser = toUser;
 
   String? _id;
   String? get id => _$this._id;
@@ -14861,18 +16702,25 @@ class Gadd_expenseData_addExpense_splitsBuilder
   set transactionPartGroupId(String? transactionPartGroupId) =>
       _$this._transactionPartGroupId = transactionPartGroupId;
 
-  Gadd_expenseData_addExpense_splits_fromUserBuilder? _fromUser;
-  Gadd_expenseData_addExpense_splits_fromUserBuilder get fromUser =>
-      _$this._fromUser ??=
-          new Gadd_expenseData_addExpense_splits_fromUserBuilder();
-  set fromUser(Gadd_expenseData_addExpense_splits_fromUserBuilder? fromUser) =>
-      _$this._fromUser = fromUser;
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
 
-  Gadd_expenseData_addExpense_splits_toUserBuilder? _toUser;
-  Gadd_expenseData_addExpense_splits_toUserBuilder get toUser =>
-      _$this._toUser ??= new Gadd_expenseData_addExpense_splits_toUserBuilder();
-  set toUser(Gadd_expenseData_addExpense_splits_toUserBuilder? toUser) =>
-      _$this._toUser = toUser;
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
 
   Gadd_expenseData_addExpense_splitsBuilder() {
     Gadd_expenseData_addExpense_splits._initializeBuilder(this);
@@ -14882,13 +16730,18 @@ class Gadd_expenseData_addExpense_splitsBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
       _id = $v.id;
       _amount = $v.amount;
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
-      _fromUser = $v.fromUser.toBuilder();
-      _toUser = $v.toUser.toBuilder();
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
       _$v = null;
     }
     return this;
@@ -14914,8 +16767,10 @@ class Gadd_expenseData_addExpense_splitsBuilder
     try {
       _$result = _$v ??
           new _$Gadd_expenseData_addExpense_splits._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'Gadd_expenseData_addExpense_splits', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'Gadd_expenseData_addExpense_splits', 'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'Gadd_expenseData_addExpense_splits', 'id'),
               amount: BuiltValueNullFieldError.checkNotNull(
@@ -14924,11 +16779,16 @@ class Gadd_expenseData_addExpense_splitsBuilder
                   transactionType,
                   r'Gadd_expenseData_addExpense_splits',
                   'transactionType'),
-              createdAt: BuiltValueNullFieldError.checkNotNull(createdAt,
-                  r'Gadd_expenseData_addExpense_splits', 'createdAt'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'Gadd_expenseData_addExpense_splits', 'createdAt'),
               transactionPartGroupId: transactionPartGroupId,
-              fromUser: fromUser.build(),
-              toUser: toUser.build());
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'Gadd_expenseData_addExpense_splits', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'Gadd_expenseData_addExpense_splits', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'Gadd_expenseData_addExpense_splits', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'Gadd_expenseData_addExpense_splits', 'groupId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -17472,6 +19332,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
   final String createdAt;
   @override
   final int amount;
+  @override
+  final String creatorId;
 
   factory _$GcreateNonGroupExpenseData_addNonGroupExpense_expense(
           [void Function(
@@ -17488,7 +19350,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
       required this.id,
       required this.title,
       required this.createdAt,
-      required this.amount})
+      required this.amount,
+      required this.creatorId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -17506,6 +19369,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(amount,
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'amount');
+    BuiltValueNullFieldError.checkNotNull(creatorId,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'creatorId');
   }
 
   @override
@@ -17530,7 +19395,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
-        amount == other.amount;
+        amount == other.amount &&
+        creatorId == other.creatorId;
   }
 
   @override
@@ -17543,6 +19409,7 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -17557,7 +19424,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
-          ..add('amount', amount))
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
         .toString();
   }
 }
@@ -17609,6 +19477,10 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
   int? get amount => _$this._amount;
   set amount(int? amount) => _$this._amount = amount;
 
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
   GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder() {
     GcreateNonGroupExpenseData_addNonGroupExpense_expense._initializeBuilder(
         this);
@@ -17624,6 +19496,7 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
       _title = $v.title;
       _createdAt = $v.createdAt;
       _amount = $v.amount;
+      _creatorId = $v.creatorId;
       _$v = null;
     }
     return this;
@@ -17662,13 +19535,13 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
-                  createdAt,
-                  r'GcreateNonGroupExpenseData_addNonGroupExpense_expense',
-                  'createdAt'),
+                  createdAt, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'createdAt'),
               amount: BuiltValueNullFieldError.checkNotNull(
-                  amount,
+                  amount, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'amount'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId,
                   r'GcreateNonGroupExpenseData_addNonGroupExpense_expense',
-                  'amount'));
+                  'creatorId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -17883,6 +19756,12 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
   @override
   final String G__typename;
   @override
+  final GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
+      fromUser;
+  @override
+  final GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
+      toUser;
+  @override
   final String id;
   @override
   final int amount;
@@ -17893,11 +19772,15 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
   @override
   final String? transactionPartGroupId;
   @override
-  final GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
-      fromUser;
+  final String fromUserId;
   @override
-  final GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
-      toUser;
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
 
   factory _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits(
           [void Function(
@@ -17909,18 +19792,31 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
 
   _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits._(
       {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
       required this.id,
       required this.amount,
       required this.transactionType,
       required this.createdAt,
       this.transactionPartGroupId,
-      required this.fromUser,
-      required this.toUser})
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
         'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+        'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+        'toUser');
     BuiltValueNullFieldError.checkNotNull(id,
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'id');
     BuiltValueNullFieldError.checkNotNull(
@@ -17936,13 +19832,21 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
         'createdAt');
     BuiltValueNullFieldError.checkNotNull(
-        fromUser,
+        fromUserId,
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
-        'fromUser');
+        'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
-        toUser,
+        toUserId,
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
-        'toUser');
+        'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+        'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+        'groupId');
   }
 
   @override
@@ -17964,26 +19868,36 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
     return other
             is GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits &&
         G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
         id == other.id &&
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
-        fromUser == other.fromUser &&
-        toUser == other.toUser;
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
-    _$hash = $jc(_$hash, fromUser.hashCode);
-    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -17993,13 +19907,18 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
     return (newBuiltValueToStringHelper(
             r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits')
           ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
           ..add('id', id)
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
-          ..add('fromUser', fromUser)
-          ..add('toUser', toUser))
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
         .toString();
   }
 }
@@ -18013,6 +19932,26 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder?
+      _fromUser;
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder
+      get fromUser => _$this._fromUser ??=
+          new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder();
+  set fromUser(
+          GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder?
+              fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder?
+      _toUser;
+  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder
+      get toUser => _$this._toUser ??=
+          new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder();
+  set toUser(
+          GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder?
+              toUser) =>
+      _$this._toUser = toUser;
 
   String? _id;
   String? get id => _$this._id;
@@ -18036,25 +19975,25 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
   set transactionPartGroupId(String? transactionPartGroupId) =>
       _$this._transactionPartGroupId = transactionPartGroupId;
 
-  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder?
-      _fromUser;
-  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder
-      get fromUser => _$this._fromUser ??=
-          new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder();
-  set fromUser(
-          GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUserBuilder?
-              fromUser) =>
-      _$this._fromUser = fromUser;
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
 
-  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder?
-      _toUser;
-  GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder
-      get toUser => _$this._toUser ??=
-          new GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder();
-  set toUser(
-          GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUserBuilder?
-              toUser) =>
-      _$this._toUser = toUser;
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
 
   GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder() {
     GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
@@ -18066,13 +20005,18 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
       _id = $v.id;
       _amount = $v.amount;
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
-      _fromUser = $v.fromUser.toBuilder();
-      _toUser = $v.toUser.toBuilder();
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
       _$v = null;
     }
     return this;
@@ -18107,12 +20051,12 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
                   G__typename,
                   r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
                   'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'id'),
               amount: BuiltValueNullFieldError.checkNotNull(
-                  amount,
-                  r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
-                  'amount'),
+                  amount, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'amount'),
               transactionType: BuiltValueNullFieldError.checkNotNull(
                   transactionType,
                   r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
@@ -18122,8 +20066,11 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
                   r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
                   'createdAt'),
               transactionPartGroupId: transactionPartGroupId,
-              fromUser: fromUser.build(),
-              toUser: toUser.build());
+              fromUserId: BuiltValueNullFieldError.checkNotNull(fromUserId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'groupId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -18659,6 +20606,10 @@ class _$GsettleInGroupData_settleInGroup
   @override
   final String G__typename;
   @override
+  final GsettleInGroupData_settleInGroup_fromUser fromUser;
+  @override
+  final GsettleInGroupData_settleInGroup_toUser toUser;
+  @override
   final String id;
   @override
   final int amount;
@@ -18669,9 +20620,15 @@ class _$GsettleInGroupData_settleInGroup
   @override
   final String? transactionPartGroupId;
   @override
-  final GsettleInGroupData_settleInGroup_fromUser fromUser;
+  final String fromUserId;
   @override
-  final GsettleInGroupData_settleInGroup_toUser toUser;
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
 
   factory _$GsettleInGroupData_settleInGroup(
           [void Function(GsettleInGroupData_settleInGroupBuilder)? updates]) =>
@@ -18679,16 +20636,25 @@ class _$GsettleInGroupData_settleInGroup
 
   _$GsettleInGroupData_settleInGroup._(
       {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
       required this.id,
       required this.amount,
       required this.transactionType,
       required this.createdAt,
       this.transactionPartGroupId,
-      required this.fromUser,
-      required this.toUser})
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GsettleInGroupData_settleInGroup', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser, r'GsettleInGroupData_settleInGroup', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'GsettleInGroupData_settleInGroup', 'toUser');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GsettleInGroupData_settleInGroup', 'id');
     BuiltValueNullFieldError.checkNotNull(
@@ -18698,9 +20664,13 @@ class _$GsettleInGroupData_settleInGroup
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GsettleInGroupData_settleInGroup', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
-        fromUser, r'GsettleInGroupData_settleInGroup', 'fromUser');
+        fromUserId, r'GsettleInGroupData_settleInGroup', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
-        toUser, r'GsettleInGroupData_settleInGroup', 'toUser');
+        toUserId, r'GsettleInGroupData_settleInGroup', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GsettleInGroupData_settleInGroup', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GsettleInGroupData_settleInGroup', 'groupId');
   }
 
   @override
@@ -18717,26 +20687,36 @@ class _$GsettleInGroupData_settleInGroup
     if (identical(other, this)) return true;
     return other is GsettleInGroupData_settleInGroup &&
         G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
         id == other.id &&
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
-        fromUser == other.fromUser &&
-        toUser == other.toUser;
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
-    _$hash = $jc(_$hash, fromUser.hashCode);
-    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -18745,13 +20725,18 @@ class _$GsettleInGroupData_settleInGroup
   String toString() {
     return (newBuiltValueToStringHelper(r'GsettleInGroupData_settleInGroup')
           ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
           ..add('id', id)
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
-          ..add('fromUser', fromUser)
-          ..add('toUser', toUser))
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
         .toString();
   }
 }
@@ -18765,6 +20750,19 @@ class GsettleInGroupData_settleInGroupBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GsettleInGroupData_settleInGroup_fromUserBuilder? _fromUser;
+  GsettleInGroupData_settleInGroup_fromUserBuilder get fromUser =>
+      _$this._fromUser ??=
+          new GsettleInGroupData_settleInGroup_fromUserBuilder();
+  set fromUser(GsettleInGroupData_settleInGroup_fromUserBuilder? fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GsettleInGroupData_settleInGroup_toUserBuilder? _toUser;
+  GsettleInGroupData_settleInGroup_toUserBuilder get toUser =>
+      _$this._toUser ??= new GsettleInGroupData_settleInGroup_toUserBuilder();
+  set toUser(GsettleInGroupData_settleInGroup_toUserBuilder? toUser) =>
+      _$this._toUser = toUser;
 
   String? _id;
   String? get id => _$this._id;
@@ -18788,18 +20786,25 @@ class GsettleInGroupData_settleInGroupBuilder
   set transactionPartGroupId(String? transactionPartGroupId) =>
       _$this._transactionPartGroupId = transactionPartGroupId;
 
-  GsettleInGroupData_settleInGroup_fromUserBuilder? _fromUser;
-  GsettleInGroupData_settleInGroup_fromUserBuilder get fromUser =>
-      _$this._fromUser ??=
-          new GsettleInGroupData_settleInGroup_fromUserBuilder();
-  set fromUser(GsettleInGroupData_settleInGroup_fromUserBuilder? fromUser) =>
-      _$this._fromUser = fromUser;
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
 
-  GsettleInGroupData_settleInGroup_toUserBuilder? _toUser;
-  GsettleInGroupData_settleInGroup_toUserBuilder get toUser =>
-      _$this._toUser ??= new GsettleInGroupData_settleInGroup_toUserBuilder();
-  set toUser(GsettleInGroupData_settleInGroup_toUserBuilder? toUser) =>
-      _$this._toUser = toUser;
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
 
   GsettleInGroupData_settleInGroupBuilder() {
     GsettleInGroupData_settleInGroup._initializeBuilder(this);
@@ -18809,13 +20814,18 @@ class GsettleInGroupData_settleInGroupBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
       _id = $v.id;
       _amount = $v.amount;
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
-      _fromUser = $v.fromUser.toBuilder();
-      _toUser = $v.toUser.toBuilder();
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
       _$v = null;
     }
     return this;
@@ -18840,8 +20850,10 @@ class GsettleInGroupData_settleInGroupBuilder
     try {
       _$result = _$v ??
           new _$GsettleInGroupData_settleInGroup._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GsettleInGroupData_settleInGroup', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GsettleInGroupData_settleInGroup', 'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GsettleInGroupData_settleInGroup', 'id'),
               amount: BuiltValueNullFieldError.checkNotNull(
@@ -18853,8 +20865,13 @@ class GsettleInGroupData_settleInGroupBuilder
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GsettleInGroupData_settleInGroup', 'createdAt'),
               transactionPartGroupId: transactionPartGroupId,
-              fromUser: fromUser.build(),
-              toUser: toUser.build());
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GsettleInGroupData_settleInGroup', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GsettleInGroupData_settleInGroup', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GsettleInGroupData_settleInGroup', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsettleInGroupData_settleInGroup', 'groupId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -19333,6 +21350,10 @@ class _$GsimplifyUserData_simplifyCrossGroup
   @override
   final String G__typename;
   @override
+  final GsimplifyUserData_simplifyCrossGroup_fromUser fromUser;
+  @override
+  final GsimplifyUserData_simplifyCrossGroup_toUser toUser;
+  @override
   final String id;
   @override
   final int amount;
@@ -19343,9 +21364,15 @@ class _$GsimplifyUserData_simplifyCrossGroup
   @override
   final String? transactionPartGroupId;
   @override
-  final GsimplifyUserData_simplifyCrossGroup_fromUser fromUser;
+  final String fromUserId;
   @override
-  final GsimplifyUserData_simplifyCrossGroup_toUser toUser;
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
 
   factory _$GsimplifyUserData_simplifyCrossGroup(
           [void Function(GsimplifyUserData_simplifyCrossGroupBuilder)?
@@ -19355,16 +21382,25 @@ class _$GsimplifyUserData_simplifyCrossGroup
 
   _$GsimplifyUserData_simplifyCrossGroup._(
       {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
       required this.id,
       required this.amount,
       required this.transactionType,
       required this.createdAt,
       this.transactionPartGroupId,
-      required this.fromUser,
-      required this.toUser})
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GsimplifyUserData_simplifyCrossGroup', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser, r'GsimplifyUserData_simplifyCrossGroup', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'GsimplifyUserData_simplifyCrossGroup', 'toUser');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GsimplifyUserData_simplifyCrossGroup', 'id');
     BuiltValueNullFieldError.checkNotNull(
@@ -19374,9 +21410,13 @@ class _$GsimplifyUserData_simplifyCrossGroup
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GsimplifyUserData_simplifyCrossGroup', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
-        fromUser, r'GsimplifyUserData_simplifyCrossGroup', 'fromUser');
+        fromUserId, r'GsimplifyUserData_simplifyCrossGroup', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
-        toUser, r'GsimplifyUserData_simplifyCrossGroup', 'toUser');
+        toUserId, r'GsimplifyUserData_simplifyCrossGroup', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GsimplifyUserData_simplifyCrossGroup', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GsimplifyUserData_simplifyCrossGroup', 'groupId');
   }
 
   @override
@@ -19393,26 +21433,36 @@ class _$GsimplifyUserData_simplifyCrossGroup
     if (identical(other, this)) return true;
     return other is GsimplifyUserData_simplifyCrossGroup &&
         G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
         id == other.id &&
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
-        fromUser == other.fromUser &&
-        toUser == other.toUser;
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
-    _$hash = $jc(_$hash, fromUser.hashCode);
-    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -19421,13 +21471,18 @@ class _$GsimplifyUserData_simplifyCrossGroup
   String toString() {
     return (newBuiltValueToStringHelper(r'GsimplifyUserData_simplifyCrossGroup')
           ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
           ..add('id', id)
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
-          ..add('fromUser', fromUser)
-          ..add('toUser', toUser))
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
         .toString();
   }
 }
@@ -19441,6 +21496,21 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GsimplifyUserData_simplifyCrossGroup_fromUserBuilder? _fromUser;
+  GsimplifyUserData_simplifyCrossGroup_fromUserBuilder get fromUser =>
+      _$this._fromUser ??=
+          new GsimplifyUserData_simplifyCrossGroup_fromUserBuilder();
+  set fromUser(
+          GsimplifyUserData_simplifyCrossGroup_fromUserBuilder? fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GsimplifyUserData_simplifyCrossGroup_toUserBuilder? _toUser;
+  GsimplifyUserData_simplifyCrossGroup_toUserBuilder get toUser =>
+      _$this._toUser ??=
+          new GsimplifyUserData_simplifyCrossGroup_toUserBuilder();
+  set toUser(GsimplifyUserData_simplifyCrossGroup_toUserBuilder? toUser) =>
+      _$this._toUser = toUser;
 
   String? _id;
   String? get id => _$this._id;
@@ -19464,20 +21534,25 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
   set transactionPartGroupId(String? transactionPartGroupId) =>
       _$this._transactionPartGroupId = transactionPartGroupId;
 
-  GsimplifyUserData_simplifyCrossGroup_fromUserBuilder? _fromUser;
-  GsimplifyUserData_simplifyCrossGroup_fromUserBuilder get fromUser =>
-      _$this._fromUser ??=
-          new GsimplifyUserData_simplifyCrossGroup_fromUserBuilder();
-  set fromUser(
-          GsimplifyUserData_simplifyCrossGroup_fromUserBuilder? fromUser) =>
-      _$this._fromUser = fromUser;
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
 
-  GsimplifyUserData_simplifyCrossGroup_toUserBuilder? _toUser;
-  GsimplifyUserData_simplifyCrossGroup_toUserBuilder get toUser =>
-      _$this._toUser ??=
-          new GsimplifyUserData_simplifyCrossGroup_toUserBuilder();
-  set toUser(GsimplifyUserData_simplifyCrossGroup_toUserBuilder? toUser) =>
-      _$this._toUser = toUser;
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
 
   GsimplifyUserData_simplifyCrossGroupBuilder() {
     GsimplifyUserData_simplifyCrossGroup._initializeBuilder(this);
@@ -19487,13 +21562,18 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
       _id = $v.id;
       _amount = $v.amount;
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
-      _fromUser = $v.fromUser.toBuilder();
-      _toUser = $v.toUser.toBuilder();
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
       _$v = null;
     }
     return this;
@@ -19519,21 +21599,26 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
     try {
       _$result = _$v ??
           new _$GsimplifyUserData_simplifyCrossGroup._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GsimplifyUserData_simplifyCrossGroup', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GsimplifyUserData_simplifyCrossGroup', 'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GsimplifyUserData_simplifyCrossGroup', 'id'),
               amount: BuiltValueNullFieldError.checkNotNull(
                   amount, r'GsimplifyUserData_simplifyCrossGroup', 'amount'),
               transactionType: BuiltValueNullFieldError.checkNotNull(
-                  transactionType,
-                  r'GsimplifyUserData_simplifyCrossGroup',
-                  'transactionType'),
-              createdAt: BuiltValueNullFieldError.checkNotNull(createdAt,
-                  r'GsimplifyUserData_simplifyCrossGroup', 'createdAt'),
+                  transactionType, r'GsimplifyUserData_simplifyCrossGroup', 'transactionType'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GsimplifyUserData_simplifyCrossGroup', 'createdAt'),
               transactionPartGroupId: transactionPartGroupId,
-              fromUser: fromUser.build(),
-              toUser: toUser.build());
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GsimplifyUserData_simplifyCrossGroup', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GsimplifyUserData_simplifyCrossGroup', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GsimplifyUserData_simplifyCrossGroup', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsimplifyUserData_simplifyCrossGroup', 'groupId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -20024,6 +22109,10 @@ class _$GautoSettleWithUserData_autoSettleWithUser
   @override
   final String G__typename;
   @override
+  final GautoSettleWithUserData_autoSettleWithUser_fromUser fromUser;
+  @override
+  final GautoSettleWithUserData_autoSettleWithUser_toUser toUser;
+  @override
   final String id;
   @override
   final int amount;
@@ -20034,9 +22123,15 @@ class _$GautoSettleWithUserData_autoSettleWithUser
   @override
   final String? transactionPartGroupId;
   @override
-  final GautoSettleWithUserData_autoSettleWithUser_fromUser fromUser;
+  final String fromUserId;
   @override
-  final GautoSettleWithUserData_autoSettleWithUser_toUser toUser;
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
 
   factory _$GautoSettleWithUserData_autoSettleWithUser(
           [void Function(GautoSettleWithUserData_autoSettleWithUserBuilder)?
@@ -20046,16 +22141,25 @@ class _$GautoSettleWithUserData_autoSettleWithUser
 
   _$GautoSettleWithUserData_autoSettleWithUser._(
       {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
       required this.id,
       required this.amount,
       required this.transactionType,
       required this.createdAt,
       this.transactionPartGroupId,
-      required this.fromUser,
-      required this.toUser})
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GautoSettleWithUserData_autoSettleWithUser', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser, r'GautoSettleWithUserData_autoSettleWithUser', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'GautoSettleWithUserData_autoSettleWithUser', 'toUser');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GautoSettleWithUserData_autoSettleWithUser', 'id');
     BuiltValueNullFieldError.checkNotNull(
@@ -20064,10 +22168,14 @@ class _$GautoSettleWithUserData_autoSettleWithUser
         r'GautoSettleWithUserData_autoSettleWithUser', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GautoSettleWithUserData_autoSettleWithUser', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(fromUserId,
+        r'GautoSettleWithUserData_autoSettleWithUser', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
-        fromUser, r'GautoSettleWithUserData_autoSettleWithUser', 'fromUser');
+        toUserId, r'GautoSettleWithUserData_autoSettleWithUser', 'toUserId');
     BuiltValueNullFieldError.checkNotNull(
-        toUser, r'GautoSettleWithUserData_autoSettleWithUser', 'toUser');
+        creatorId, r'GautoSettleWithUserData_autoSettleWithUser', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GautoSettleWithUserData_autoSettleWithUser', 'groupId');
   }
 
   @override
@@ -20085,26 +22193,36 @@ class _$GautoSettleWithUserData_autoSettleWithUser
     if (identical(other, this)) return true;
     return other is GautoSettleWithUserData_autoSettleWithUser &&
         G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
         id == other.id &&
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
-        fromUser == other.fromUser &&
-        toUser == other.toUser;
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
-    _$hash = $jc(_$hash, fromUser.hashCode);
-    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -20114,13 +22232,18 @@ class _$GautoSettleWithUserData_autoSettleWithUser
     return (newBuiltValueToStringHelper(
             r'GautoSettleWithUserData_autoSettleWithUser')
           ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
           ..add('id', id)
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
-          ..add('fromUser', fromUser)
-          ..add('toUser', toUser))
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
         .toString();
   }
 }
@@ -20134,6 +22257,23 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder? _fromUser;
+  GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder get fromUser =>
+      _$this._fromUser ??=
+          new GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder();
+  set fromUser(
+          GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder?
+              fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GautoSettleWithUserData_autoSettleWithUser_toUserBuilder? _toUser;
+  GautoSettleWithUserData_autoSettleWithUser_toUserBuilder get toUser =>
+      _$this._toUser ??=
+          new GautoSettleWithUserData_autoSettleWithUser_toUserBuilder();
+  set toUser(
+          GautoSettleWithUserData_autoSettleWithUser_toUserBuilder? toUser) =>
+      _$this._toUser = toUser;
 
   String? _id;
   String? get id => _$this._id;
@@ -20157,22 +22297,25 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
   set transactionPartGroupId(String? transactionPartGroupId) =>
       _$this._transactionPartGroupId = transactionPartGroupId;
 
-  GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder? _fromUser;
-  GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder get fromUser =>
-      _$this._fromUser ??=
-          new GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder();
-  set fromUser(
-          GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder?
-              fromUser) =>
-      _$this._fromUser = fromUser;
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
 
-  GautoSettleWithUserData_autoSettleWithUser_toUserBuilder? _toUser;
-  GautoSettleWithUserData_autoSettleWithUser_toUserBuilder get toUser =>
-      _$this._toUser ??=
-          new GautoSettleWithUserData_autoSettleWithUser_toUserBuilder();
-  set toUser(
-          GautoSettleWithUserData_autoSettleWithUser_toUserBuilder? toUser) =>
-      _$this._toUser = toUser;
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
 
   GautoSettleWithUserData_autoSettleWithUserBuilder() {
     GautoSettleWithUserData_autoSettleWithUser._initializeBuilder(this);
@@ -20182,13 +22325,18 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
       _id = $v.id;
       _amount = $v.amount;
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
-      _fromUser = $v.fromUser.toBuilder();
-      _toUser = $v.toUser.toBuilder();
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
       _$v = null;
     }
     return this;
@@ -20215,21 +22363,26 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
     try {
       _$result = _$v ??
           new _$GautoSettleWithUserData_autoSettleWithUser._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GautoSettleWithUserData_autoSettleWithUser', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GautoSettleWithUserData_autoSettleWithUser', 'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GautoSettleWithUserData_autoSettleWithUser', 'id'),
               amount: BuiltValueNullFieldError.checkNotNull(
                   amount, r'GautoSettleWithUserData_autoSettleWithUser', 'amount'),
               transactionType: BuiltValueNullFieldError.checkNotNull(
-                  transactionType,
-                  r'GautoSettleWithUserData_autoSettleWithUser',
-                  'transactionType'),
-              createdAt: BuiltValueNullFieldError.checkNotNull(createdAt,
-                  r'GautoSettleWithUserData_autoSettleWithUser', 'createdAt'),
+                  transactionType, r'GautoSettleWithUserData_autoSettleWithUser', 'transactionType'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GautoSettleWithUserData_autoSettleWithUser', 'createdAt'),
               transactionPartGroupId: transactionPartGroupId,
-              fromUser: fromUser.build(),
-              toUser: toUser.build());
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GautoSettleWithUserData_autoSettleWithUser', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GautoSettleWithUserData_autoSettleWithUser', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GautoSettleWithUserData_autoSettleWithUser', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GautoSettleWithUserData_autoSettleWithUser', 'groupId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -20738,6 +22891,10 @@ class _$GtransactionWithUserData_getTransactionsWithUser
   @override
   final GtransactionWithUserData_getTransactionsWithUser_creator creator;
   @override
+  final GtransactionWithUserData_getTransactionsWithUser_fromUser fromUser;
+  @override
+  final GtransactionWithUserData_getTransactionsWithUser_toUser toUser;
+  @override
   final String id;
   @override
   final int amount;
@@ -20748,9 +22905,15 @@ class _$GtransactionWithUserData_getTransactionsWithUser
   @override
   final String? transactionPartGroupId;
   @override
-  final GtransactionWithUserData_getTransactionsWithUser_fromUser fromUser;
+  final String fromUserId;
   @override
-  final GtransactionWithUserData_getTransactionsWithUser_toUser toUser;
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
 
   factory _$GtransactionWithUserData_getTransactionsWithUser(
           [void Function(
@@ -20765,13 +22928,18 @@ class _$GtransactionWithUserData_getTransactionsWithUser
       this.expense,
       required this.group,
       required this.creator,
+      required this.fromUser,
+      required this.toUser,
       required this.id,
       required this.amount,
       required this.transactionType,
       required this.createdAt,
       this.transactionPartGroupId,
-      required this.fromUser,
-      required this.toUser})
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GtransactionWithUserData_getTransactionsWithUser', 'G__typename');
@@ -20779,6 +22947,10 @@ class _$GtransactionWithUserData_getTransactionsWithUser
         group, r'GtransactionWithUserData_getTransactionsWithUser', 'group');
     BuiltValueNullFieldError.checkNotNull(creator,
         r'GtransactionWithUserData_getTransactionsWithUser', 'creator');
+    BuiltValueNullFieldError.checkNotNull(fromUser,
+        r'GtransactionWithUserData_getTransactionsWithUser', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'GtransactionWithUserData_getTransactionsWithUser', 'toUser');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GtransactionWithUserData_getTransactionsWithUser', 'id');
     BuiltValueNullFieldError.checkNotNull(
@@ -20787,10 +22959,14 @@ class _$GtransactionWithUserData_getTransactionsWithUser
         r'GtransactionWithUserData_getTransactionsWithUser', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(createdAt,
         r'GtransactionWithUserData_getTransactionsWithUser', 'createdAt');
-    BuiltValueNullFieldError.checkNotNull(fromUser,
-        r'GtransactionWithUserData_getTransactionsWithUser', 'fromUser');
-    BuiltValueNullFieldError.checkNotNull(
-        toUser, r'GtransactionWithUserData_getTransactionsWithUser', 'toUser');
+    BuiltValueNullFieldError.checkNotNull(fromUserId,
+        r'GtransactionWithUserData_getTransactionsWithUser', 'fromUserId');
+    BuiltValueNullFieldError.checkNotNull(toUserId,
+        r'GtransactionWithUserData_getTransactionsWithUser', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(creatorId,
+        r'GtransactionWithUserData_getTransactionsWithUser', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(groupId,
+        r'GtransactionWithUserData_getTransactionsWithUser', 'groupId');
   }
 
   @override
@@ -20812,13 +22988,18 @@ class _$GtransactionWithUserData_getTransactionsWithUser
         expense == other.expense &&
         group == other.group &&
         creator == other.creator &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
         id == other.id &&
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
-        fromUser == other.fromUser &&
-        toUser == other.toUser;
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
   }
 
   @override
@@ -20828,13 +23009,18 @@ class _$GtransactionWithUserData_getTransactionsWithUser
     _$hash = $jc(_$hash, expense.hashCode);
     _$hash = $jc(_$hash, group.hashCode);
     _$hash = $jc(_$hash, creator.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
-    _$hash = $jc(_$hash, fromUser.hashCode);
-    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -20847,13 +23033,18 @@ class _$GtransactionWithUserData_getTransactionsWithUser
           ..add('expense', expense)
           ..add('group', group)
           ..add('creator', creator)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
           ..add('id', id)
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
-          ..add('fromUser', fromUser)
-          ..add('toUser', toUser))
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
         .toString();
   }
 }
@@ -20895,6 +23086,24 @@ class GtransactionWithUserData_getTransactionsWithUserBuilder
               creator) =>
       _$this._creator = creator;
 
+  GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder? _fromUser;
+  GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder
+      get fromUser => _$this._fromUser ??=
+          new GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder();
+  set fromUser(
+          GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder?
+              fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GtransactionWithUserData_getTransactionsWithUser_toUserBuilder? _toUser;
+  GtransactionWithUserData_getTransactionsWithUser_toUserBuilder get toUser =>
+      _$this._toUser ??=
+          new GtransactionWithUserData_getTransactionsWithUser_toUserBuilder();
+  set toUser(
+          GtransactionWithUserData_getTransactionsWithUser_toUserBuilder?
+              toUser) =>
+      _$this._toUser = toUser;
+
   String? _id;
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
@@ -20917,23 +23126,25 @@ class GtransactionWithUserData_getTransactionsWithUserBuilder
   set transactionPartGroupId(String? transactionPartGroupId) =>
       _$this._transactionPartGroupId = transactionPartGroupId;
 
-  GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder? _fromUser;
-  GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder
-      get fromUser => _$this._fromUser ??=
-          new GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder();
-  set fromUser(
-          GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder?
-              fromUser) =>
-      _$this._fromUser = fromUser;
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
 
-  GtransactionWithUserData_getTransactionsWithUser_toUserBuilder? _toUser;
-  GtransactionWithUserData_getTransactionsWithUser_toUserBuilder get toUser =>
-      _$this._toUser ??=
-          new GtransactionWithUserData_getTransactionsWithUser_toUserBuilder();
-  set toUser(
-          GtransactionWithUserData_getTransactionsWithUser_toUserBuilder?
-              toUser) =>
-      _$this._toUser = toUser;
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
 
   GtransactionWithUserData_getTransactionsWithUserBuilder() {
     GtransactionWithUserData_getTransactionsWithUser._initializeBuilder(this);
@@ -20946,13 +23157,18 @@ class GtransactionWithUserData_getTransactionsWithUserBuilder
       _expense = $v.expense?.toBuilder();
       _group = $v.group.toBuilder();
       _creator = $v.creator.toBuilder();
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
       _id = $v.id;
       _amount = $v.amount;
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
-      _fromUser = $v.fromUser.toBuilder();
-      _toUser = $v.toUser.toBuilder();
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
       _$v = null;
     }
     return this;
@@ -20980,29 +23196,28 @@ class GtransactionWithUserData_getTransactionsWithUserBuilder
       _$result = _$v ??
           new _$GtransactionWithUserData_getTransactionsWithUser._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GtransactionWithUserData_getTransactionsWithUser',
-                  'G__typename'),
+                  G__typename, r'GtransactionWithUserData_getTransactionsWithUser', 'G__typename'),
               expense: _expense?.build(),
               group: group.build(),
               creator: creator.build(),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GtransactionWithUserData_getTransactionsWithUser', 'id'),
               amount: BuiltValueNullFieldError.checkNotNull(
-                  amount,
-                  r'GtransactionWithUserData_getTransactionsWithUser',
-                  'amount'),
+                  amount, r'GtransactionWithUserData_getTransactionsWithUser', 'amount'),
               transactionType: BuiltValueNullFieldError.checkNotNull(
-                  transactionType,
-                  r'GtransactionWithUserData_getTransactionsWithUser',
-                  'transactionType'),
+                  transactionType, r'GtransactionWithUserData_getTransactionsWithUser', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
-                  createdAt,
-                  r'GtransactionWithUserData_getTransactionsWithUser',
-                  'createdAt'),
+                  createdAt, r'GtransactionWithUserData_getTransactionsWithUser', 'createdAt'),
               transactionPartGroupId: transactionPartGroupId,
-              fromUser: fromUser.build(),
-              toUser: toUser.build());
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GtransactionWithUserData_getTransactionsWithUser', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GtransactionWithUserData_getTransactionsWithUser', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GtransactionWithUserData_getTransactionsWithUser', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GtransactionWithUserData_getTransactionsWithUser', 'groupId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -21012,7 +23227,6 @@ class GtransactionWithUserData_getTransactionsWithUserBuilder
         group.build();
         _$failedField = 'creator';
         creator.build();
-
         _$failedField = 'fromUser';
         fromUser.build();
         _$failedField = 'toUser';
@@ -21042,6 +23256,8 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense
   final String createdAt;
   @override
   final int amount;
+  @override
+  final String creatorId;
 
   factory _$GtransactionWithUserData_getTransactionsWithUser_expense(
           [void Function(
@@ -21056,7 +23272,8 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense
       required this.id,
       required this.title,
       required this.createdAt,
-      required this.amount})
+      required this.amount,
+      required this.creatorId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -21072,6 +23289,10 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense
         'createdAt');
     BuiltValueNullFieldError.checkNotNull(amount,
         r'GtransactionWithUserData_getTransactionsWithUser_expense', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId,
+        r'GtransactionWithUserData_getTransactionsWithUser_expense',
+        'creatorId');
   }
 
   @override
@@ -21094,7 +23315,8 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
-        amount == other.amount;
+        amount == other.amount &&
+        creatorId == other.creatorId;
   }
 
   @override
@@ -21105,6 +23327,7 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -21117,7 +23340,8 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
-          ..add('amount', amount))
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
         .toString();
   }
 }
@@ -21148,6 +23372,10 @@ class GtransactionWithUserData_getTransactionsWithUser_expenseBuilder
   int? get amount => _$this._amount;
   set amount(int? amount) => _$this._amount = amount;
 
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
   GtransactionWithUserData_getTransactionsWithUser_expenseBuilder() {
     GtransactionWithUserData_getTransactionsWithUser_expense._initializeBuilder(
         this);
@@ -21161,6 +23389,7 @@ class GtransactionWithUserData_getTransactionsWithUser_expenseBuilder
       _title = $v.title;
       _createdAt = $v.createdAt;
       _amount = $v.amount;
+      _creatorId = $v.creatorId;
       _$v = null;
     }
     return this;
@@ -21193,17 +23422,15 @@ class GtransactionWithUserData_getTransactionsWithUser_expenseBuilder
             id: BuiltValueNullFieldError.checkNotNull(
                 id, r'GtransactionWithUserData_getTransactionsWithUser_expense', 'id'),
             title: BuiltValueNullFieldError.checkNotNull(
-                title,
-                r'GtransactionWithUserData_getTransactionsWithUser_expense',
-                'title'),
+                title, r'GtransactionWithUserData_getTransactionsWithUser_expense', 'title'),
             createdAt: BuiltValueNullFieldError.checkNotNull(
-                createdAt,
-                r'GtransactionWithUserData_getTransactionsWithUser_expense',
-                'createdAt'),
+                createdAt, r'GtransactionWithUserData_getTransactionsWithUser_expense', 'createdAt'),
             amount: BuiltValueNullFieldError.checkNotNull(
-                amount,
+                amount, r'GtransactionWithUserData_getTransactionsWithUser_expense', 'amount'),
+            creatorId: BuiltValueNullFieldError.checkNotNull(
+                creatorId,
                 r'GtransactionWithUserData_getTransactionsWithUser_expense',
-                'amount'));
+                'creatorId'));
     replace(_$result);
     return _$result;
   }
@@ -21892,6 +24119,1257 @@ class GtransactionWithUserData_getTransactionsWithUser_toUserBuilder
             isSignedUp: BuiltValueNullFieldError.checkNotNull(
                 isSignedUp,
                 r'GtransactionWithUserData_getTransactionsWithUser_toUser',
+                'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GtransactionMixExpenseData extends GtransactionMixExpenseData {
+  @override
+  final String G__typename;
+  @override
+  final BuiltList<GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup>
+      getTransactionsMixExpenseWithGroup;
+
+  factory _$GtransactionMixExpenseData(
+          [void Function(GtransactionMixExpenseDataBuilder)? updates]) =>
+      (new GtransactionMixExpenseDataBuilder()..update(updates))._build();
+
+  _$GtransactionMixExpenseData._(
+      {required this.G__typename,
+      required this.getTransactionsMixExpenseWithGroup})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GtransactionMixExpenseData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(getTransactionsMixExpenseWithGroup,
+        r'GtransactionMixExpenseData', 'getTransactionsMixExpenseWithGroup');
+  }
+
+  @override
+  GtransactionMixExpenseData rebuild(
+          void Function(GtransactionMixExpenseDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GtransactionMixExpenseDataBuilder toBuilder() =>
+      new GtransactionMixExpenseDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GtransactionMixExpenseData &&
+        G__typename == other.G__typename &&
+        getTransactionsMixExpenseWithGroup ==
+            other.getTransactionsMixExpenseWithGroup;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, getTransactionsMixExpenseWithGroup.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GtransactionMixExpenseData')
+          ..add('G__typename', G__typename)
+          ..add('getTransactionsMixExpenseWithGroup',
+              getTransactionsMixExpenseWithGroup))
+        .toString();
+  }
+}
+
+class GtransactionMixExpenseDataBuilder
+    implements
+        Builder<GtransactionMixExpenseData, GtransactionMixExpenseDataBuilder> {
+  _$GtransactionMixExpenseData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  ListBuilder<GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup>?
+      _getTransactionsMixExpenseWithGroup;
+  ListBuilder<GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup>
+      get getTransactionsMixExpenseWithGroup =>
+          _$this._getTransactionsMixExpenseWithGroup ??= new ListBuilder<
+              GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup>();
+  set getTransactionsMixExpenseWithGroup(
+          ListBuilder<
+                  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup>?
+              getTransactionsMixExpenseWithGroup) =>
+      _$this._getTransactionsMixExpenseWithGroup =
+          getTransactionsMixExpenseWithGroup;
+
+  GtransactionMixExpenseDataBuilder() {
+    GtransactionMixExpenseData._initializeBuilder(this);
+  }
+
+  GtransactionMixExpenseDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _getTransactionsMixExpenseWithGroup =
+          $v.getTransactionsMixExpenseWithGroup.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GtransactionMixExpenseData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GtransactionMixExpenseData;
+  }
+
+  @override
+  void update(void Function(GtransactionMixExpenseDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GtransactionMixExpenseData build() => _build();
+
+  _$GtransactionMixExpenseData _build() {
+    _$GtransactionMixExpenseData _$result;
+    try {
+      _$result = _$v ??
+          new _$GtransactionMixExpenseData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GtransactionMixExpenseData', 'G__typename'),
+              getTransactionsMixExpenseWithGroup:
+                  getTransactionsMixExpenseWithGroup.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'getTransactionsMixExpenseWithGroup';
+        getTransactionsMixExpenseWithGroup.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GtransactionMixExpenseData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup
+    extends GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup {
+  @override
+  final String G__typename;
+  @override
+  final GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense?
+      expense;
+  @override
+  final GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split?
+      split;
+
+  factory _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup(
+          [void Function(
+                  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroupBuilder)?
+              updates]) =>
+      (new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroupBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup._(
+      {required this.G__typename, this.expense, this.split})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup',
+        'G__typename');
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup rebuild(
+          void Function(
+                  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroupBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroupBuilder
+      toBuilder() =>
+          new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroupBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup &&
+        G__typename == other.G__typename &&
+        expense == other.expense &&
+        split == other.split;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, expense.hashCode);
+    _$hash = $jc(_$hash, split.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup')
+          ..add('G__typename', G__typename)
+          ..add('expense', expense)
+          ..add('split', split))
+        .toString();
+  }
+}
+
+class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroupBuilder
+    implements
+        Builder<GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup,
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroupBuilder> {
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder?
+      _expense;
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder
+      get expense => _$this._expense ??=
+          new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder();
+  set expense(
+          GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder?
+              expense) =>
+      _$this._expense = expense;
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder?
+      _split;
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder
+      get split => _$this._split ??=
+          new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder();
+  set split(
+          GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder?
+              split) =>
+      _$this._split = split;
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroupBuilder() {
+    GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup
+        ._initializeBuilder(this);
+  }
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroupBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _expense = $v.expense?.toBuilder();
+      _split = $v.split?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other
+        as _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup;
+  }
+
+  @override
+  void update(
+      void Function(
+              GtransactionMixExpenseData_getTransactionsMixExpenseWithGroupBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup build() =>
+      _build();
+
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup _build() {
+    _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup _$result;
+    try {
+      _$result = _$v ??
+          new _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup',
+                  'G__typename'),
+              expense: _expense?.build(),
+              split: _split?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'expense';
+        _expense?.build();
+        _$failedField = 'split';
+        _split?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
+    extends GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String title;
+  @override
+  final String createdAt;
+  @override
+  final int amount;
+  @override
+  final String creatorId;
+
+  factory _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense(
+          [void Function(
+                  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder)?
+              updates]) =>
+      (new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense._(
+      {required this.G__typename,
+      required this.id,
+      required this.title,
+      required this.createdAt,
+      required this.amount,
+      required this.creatorId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
+        'id');
+    BuiltValueNullFieldError.checkNotNull(
+        title,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
+        'title');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
+        'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        amount,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
+        'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
+        'creatorId');
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense rebuild(
+          void Function(
+                  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder
+      toBuilder() =>
+          new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        title == other.title &&
+        createdAt == other.createdAt &&
+        amount == other.amount &&
+        creatorId == other.creatorId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('title', title)
+          ..add('createdAt', createdAt)
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
+        .toString();
+  }
+}
+
+class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder
+    implements
+        Builder<
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense,
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder> {
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder() {
+    GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
+        ._initializeBuilder(this);
+  }
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _title = $v.title;
+      _createdAt = $v.createdAt;
+      _amount = $v.amount;
+      _creatorId = $v.creatorId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
+          other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other
+        as _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense;
+  }
+
+  @override
+  void update(
+      void Function(
+              GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
+      build() => _build();
+
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
+      _build() {
+    final _$result = _$v ??
+        new _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense', 'id'),
+            title: BuiltValueNullFieldError.checkNotNull(
+                title, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense', 'title'),
+            createdAt: BuiltValueNullFieldError.checkNotNull(
+                createdAt, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense', 'createdAt'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense', 'amount'),
+            creatorId: BuiltValueNullFieldError.checkNotNull(
+                creatorId,
+                r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
+                'creatorId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
+    extends GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split {
+  @override
+  final String G__typename;
+  @override
+  final GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser
+      fromUser;
+  @override
+  final GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser
+      toUser;
+  @override
+  final String id;
+  @override
+  final int amount;
+  @override
+  final _i3.GTransactionType transactionType;
+  @override
+  final String createdAt;
+  @override
+  final String? transactionPartGroupId;
+  @override
+  final String fromUserId;
+  @override
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
+
+  factory _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split(
+          [void Function(
+                  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder)?
+              updates]) =>
+      (new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split._(
+      {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
+      required this.id,
+      required this.amount,
+      required this.transactionType,
+      required this.createdAt,
+      this.transactionPartGroupId,
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+        'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+        'toUser');
+    BuiltValueNullFieldError.checkNotNull(
+        id,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+        'id');
+    BuiltValueNullFieldError.checkNotNull(
+        amount,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+        'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionType,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+        'transactionType');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+        'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUserId,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+        'fromUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        toUserId,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+        'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+        'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+        'groupId');
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split rebuild(
+          void Function(
+                  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder
+      toBuilder() =>
+          new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split &&
+        G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
+        id == other.id &&
+        amount == other.amount &&
+        transactionType == other.transactionType &&
+        createdAt == other.createdAt &&
+        transactionPartGroupId == other.transactionPartGroupId &&
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, transactionType.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split')
+          ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
+          ..add('id', id)
+          ..add('amount', amount)
+          ..add('transactionType', transactionType)
+          ..add('createdAt', createdAt)
+          ..add('transactionPartGroupId', transactionPartGroupId)
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
+        .toString();
+  }
+}
+
+class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder
+    implements
+        Builder<
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split,
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder> {
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder?
+      _fromUser;
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder
+      get fromUser => _$this._fromUser ??=
+          new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder();
+  set fromUser(
+          GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder?
+              fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder?
+      _toUser;
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder
+      get toUser => _$this._toUser ??=
+          new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder();
+  set toUser(
+          GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder?
+              toUser) =>
+      _$this._toUser = toUser;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  _i3.GTransactionType? _transactionType;
+  _i3.GTransactionType? get transactionType => _$this._transactionType;
+  set transactionType(_i3.GTransactionType? transactionType) =>
+      _$this._transactionType = transactionType;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _transactionPartGroupId;
+  String? get transactionPartGroupId => _$this._transactionPartGroupId;
+  set transactionPartGroupId(String? transactionPartGroupId) =>
+      _$this._transactionPartGroupId = transactionPartGroupId;
+
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
+
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder() {
+    GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
+        ._initializeBuilder(this);
+  }
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
+      _id = $v.id;
+      _amount = $v.amount;
+      _transactionType = $v.transactionType;
+      _createdAt = $v.createdAt;
+      _transactionPartGroupId = $v.transactionPartGroupId;
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
+          other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other
+        as _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split;
+  }
+
+  @override
+  void update(
+      void Function(
+              GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split build() =>
+      _build();
+
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
+      _build() {
+    _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
+        _$result;
+    try {
+      _$result = _$v ??
+          new _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+                  'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'id'),
+              amount: BuiltValueNullFieldError.checkNotNull(
+                  amount, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'amount'),
+              transactionType: BuiltValueNullFieldError.checkNotNull(
+                  transactionType,
+                  r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+                  'transactionType'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt,
+                  r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+                  'createdAt'),
+              transactionPartGroupId: transactionPartGroupId,
+              fromUserId: BuiltValueNullFieldError.checkNotNull(fromUserId, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'groupId'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'fromUser';
+        fromUser.build();
+        _$failedField = 'toUser';
+        toUser.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser
+    extends GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser(
+          [void Function(
+                  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder)?
+              updates]) =>
+      (new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser',
+        'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser',
+        'isSignedUp');
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser
+      rebuild(
+              void Function(
+                      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder)
+                  updates) =>
+          (toBuilder()..update(updates)).build();
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder
+      toBuilder() =>
+          new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder
+    implements
+        Builder<
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser,
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder> {
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser?
+      _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder() {
+    GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser
+        ._initializeBuilder(this);
+  }
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser
+          other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other
+        as _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser;
+  }
+
+  @override
+  void update(
+      void Function(
+              GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser
+      build() => _build();
+
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser
+      _build() {
+    final _$result = _$v ??
+        new _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser
+            ._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id,
+                r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser',
+                'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser',
+                'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser
+    extends GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser(
+          [void Function(
+                  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder)?
+              updates]) =>
+      (new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser',
+        'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser',
+        'isSignedUp');
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser
+      rebuild(
+              void Function(
+                      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder)
+                  updates) =>
+          (toBuilder()..update(updates)).build();
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder
+      toBuilder() =>
+          new GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder
+    implements
+        Builder<
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser,
+            GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder> {
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser?
+      _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder() {
+    GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser
+        ._initializeBuilder(this);
+  }
+
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser
+          other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other
+        as _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser;
+  }
+
+  @override
+  void update(
+      void Function(
+              GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser
+      build() => _build();
+
+  _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser
+      _build() {
+    final _$result = _$v ??
+        new _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser
+            ._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id,
+                r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser',
+                'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_toUser',
                 'isSignedUp'));
     replace(_$result);
     return _$result;
@@ -23149,6 +26627,8 @@ class _$GExpenseBasicData extends GExpenseBasicData {
   final String createdAt;
   @override
   final int amount;
+  @override
+  final String creatorId;
 
   factory _$GExpenseBasicData(
           [void Function(GExpenseBasicDataBuilder)? updates]) =>
@@ -23159,7 +26639,8 @@ class _$GExpenseBasicData extends GExpenseBasicData {
       required this.id,
       required this.title,
       required this.createdAt,
-      required this.amount})
+      required this.amount,
+      required this.creatorId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GExpenseBasicData', 'G__typename');
@@ -23169,6 +26650,8 @@ class _$GExpenseBasicData extends GExpenseBasicData {
         createdAt, r'GExpenseBasicData', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
         amount, r'GExpenseBasicData', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GExpenseBasicData', 'creatorId');
   }
 
   @override
@@ -23187,7 +26670,8 @@ class _$GExpenseBasicData extends GExpenseBasicData {
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
-        amount == other.amount;
+        amount == other.amount &&
+        creatorId == other.creatorId;
   }
 
   @override
@@ -23198,6 +26682,7 @@ class _$GExpenseBasicData extends GExpenseBasicData {
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -23209,7 +26694,8 @@ class _$GExpenseBasicData extends GExpenseBasicData {
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
-          ..add('amount', amount))
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
         .toString();
   }
 }
@@ -23238,6 +26724,10 @@ class GExpenseBasicDataBuilder
   int? get amount => _$this._amount;
   set amount(int? amount) => _$this._amount = amount;
 
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
   GExpenseBasicDataBuilder() {
     GExpenseBasicData._initializeBuilder(this);
   }
@@ -23250,6 +26740,7 @@ class GExpenseBasicDataBuilder
       _title = $v.title;
       _createdAt = $v.createdAt;
       _amount = $v.amount;
+      _creatorId = $v.creatorId;
       _$v = null;
     }
     return this;
@@ -23281,7 +26772,9 @@ class GExpenseBasicDataBuilder
             createdAt: BuiltValueNullFieldError.checkNotNull(
                 createdAt, r'GExpenseBasicData', 'createdAt'),
             amount: BuiltValueNullFieldError.checkNotNull(
-                amount, r'GExpenseBasicData', 'amount'));
+                amount, r'GExpenseBasicData', 'amount'),
+            creatorId: BuiltValueNullFieldError.checkNotNull(
+                creatorId, r'GExpenseBasicData', 'creatorId'));
     replace(_$result);
     return _$result;
   }
@@ -23299,6 +26792,8 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
   @override
   final int amount;
   @override
+  final String creatorId;
+  @override
   final GExpenseFieldsData_creator creator;
   @override
   final BuiltList<GExpenseFieldsData_splits> splits;
@@ -23313,6 +26808,7 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
       required this.title,
       required this.createdAt,
       required this.amount,
+      required this.creatorId,
       required this.creator,
       required this.splits})
       : super._() {
@@ -23325,6 +26821,8 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
         createdAt, r'GExpenseFieldsData', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
         amount, r'GExpenseFieldsData', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GExpenseFieldsData', 'creatorId');
     BuiltValueNullFieldError.checkNotNull(
         creator, r'GExpenseFieldsData', 'creator');
     BuiltValueNullFieldError.checkNotNull(
@@ -23349,6 +26847,7 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
         title == other.title &&
         createdAt == other.createdAt &&
         amount == other.amount &&
+        creatorId == other.creatorId &&
         creator == other.creator &&
         splits == other.splits;
   }
@@ -23361,6 +26860,7 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, creator.hashCode);
     _$hash = $jc(_$hash, splits.hashCode);
     _$hash = $jf(_$hash);
@@ -23375,6 +26875,7 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
           ..add('title', title)
           ..add('createdAt', createdAt)
           ..add('amount', amount)
+          ..add('creatorId', creatorId)
           ..add('creator', creator)
           ..add('splits', splits))
         .toString();
@@ -23405,6 +26906,10 @@ class GExpenseFieldsDataBuilder
   int? get amount => _$this._amount;
   set amount(int? amount) => _$this._amount = amount;
 
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
   GExpenseFieldsData_creatorBuilder? _creator;
   GExpenseFieldsData_creatorBuilder get creator =>
       _$this._creator ??= new GExpenseFieldsData_creatorBuilder();
@@ -23429,6 +26934,7 @@ class GExpenseFieldsDataBuilder
       _title = $v.title;
       _createdAt = $v.createdAt;
       _amount = $v.amount;
+      _creatorId = $v.creatorId;
       _creator = $v.creator.toBuilder();
       _splits = $v.splits.toBuilder();
       _$v = null;
@@ -23465,6 +26971,8 @@ class GExpenseFieldsDataBuilder
                   createdAt, r'GExpenseFieldsData', 'createdAt'),
               amount: BuiltValueNullFieldError.checkNotNull(
                   amount, r'GExpenseFieldsData', 'amount'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId, r'GExpenseFieldsData', 'creatorId'),
               creator: creator.build(),
               splits: splits.build());
     } catch (_) {
@@ -23648,6 +27156,10 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
   @override
   final String G__typename;
   @override
+  final GExpenseFieldsData_splits_fromUser fromUser;
+  @override
+  final GExpenseFieldsData_splits_toUser toUser;
+  @override
   final String id;
   @override
   final int amount;
@@ -23658,9 +27170,15 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
   @override
   final String? transactionPartGroupId;
   @override
-  final GExpenseFieldsData_splits_fromUser fromUser;
+  final String fromUserId;
   @override
-  final GExpenseFieldsData_splits_toUser toUser;
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
 
   factory _$GExpenseFieldsData_splits(
           [void Function(GExpenseFieldsData_splitsBuilder)? updates]) =>
@@ -23668,16 +27186,25 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
 
   _$GExpenseFieldsData_splits._(
       {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
       required this.id,
       required this.amount,
       required this.transactionType,
       required this.createdAt,
       this.transactionPartGroupId,
-      required this.fromUser,
-      required this.toUser})
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GExpenseFieldsData_splits', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser, r'GExpenseFieldsData_splits', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'GExpenseFieldsData_splits', 'toUser');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GExpenseFieldsData_splits', 'id');
     BuiltValueNullFieldError.checkNotNull(
@@ -23687,9 +27214,13 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GExpenseFieldsData_splits', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
-        fromUser, r'GExpenseFieldsData_splits', 'fromUser');
+        fromUserId, r'GExpenseFieldsData_splits', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
-        toUser, r'GExpenseFieldsData_splits', 'toUser');
+        toUserId, r'GExpenseFieldsData_splits', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GExpenseFieldsData_splits', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GExpenseFieldsData_splits', 'groupId');
   }
 
   @override
@@ -23706,26 +27237,36 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
     if (identical(other, this)) return true;
     return other is GExpenseFieldsData_splits &&
         G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
         id == other.id &&
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
-        fromUser == other.fromUser &&
-        toUser == other.toUser;
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
-    _$hash = $jc(_$hash, fromUser.hashCode);
-    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -23734,13 +27275,18 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
   String toString() {
     return (newBuiltValueToStringHelper(r'GExpenseFieldsData_splits')
           ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
           ..add('id', id)
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
-          ..add('fromUser', fromUser)
-          ..add('toUser', toUser))
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
         .toString();
   }
 }
@@ -23753,6 +27299,18 @@ class GExpenseFieldsData_splitsBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GExpenseFieldsData_splits_fromUserBuilder? _fromUser;
+  GExpenseFieldsData_splits_fromUserBuilder get fromUser =>
+      _$this._fromUser ??= new GExpenseFieldsData_splits_fromUserBuilder();
+  set fromUser(GExpenseFieldsData_splits_fromUserBuilder? fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GExpenseFieldsData_splits_toUserBuilder? _toUser;
+  GExpenseFieldsData_splits_toUserBuilder get toUser =>
+      _$this._toUser ??= new GExpenseFieldsData_splits_toUserBuilder();
+  set toUser(GExpenseFieldsData_splits_toUserBuilder? toUser) =>
+      _$this._toUser = toUser;
 
   String? _id;
   String? get id => _$this._id;
@@ -23776,17 +27334,25 @@ class GExpenseFieldsData_splitsBuilder
   set transactionPartGroupId(String? transactionPartGroupId) =>
       _$this._transactionPartGroupId = transactionPartGroupId;
 
-  GExpenseFieldsData_splits_fromUserBuilder? _fromUser;
-  GExpenseFieldsData_splits_fromUserBuilder get fromUser =>
-      _$this._fromUser ??= new GExpenseFieldsData_splits_fromUserBuilder();
-  set fromUser(GExpenseFieldsData_splits_fromUserBuilder? fromUser) =>
-      _$this._fromUser = fromUser;
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
 
-  GExpenseFieldsData_splits_toUserBuilder? _toUser;
-  GExpenseFieldsData_splits_toUserBuilder get toUser =>
-      _$this._toUser ??= new GExpenseFieldsData_splits_toUserBuilder();
-  set toUser(GExpenseFieldsData_splits_toUserBuilder? toUser) =>
-      _$this._toUser = toUser;
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
 
   GExpenseFieldsData_splitsBuilder() {
     GExpenseFieldsData_splits._initializeBuilder(this);
@@ -23796,13 +27362,18 @@ class GExpenseFieldsData_splitsBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
       _id = $v.id;
       _amount = $v.amount;
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
-      _fromUser = $v.fromUser.toBuilder();
-      _toUser = $v.toUser.toBuilder();
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
       _$v = null;
     }
     return this;
@@ -23829,19 +27400,25 @@ class GExpenseFieldsData_splitsBuilder
           new _$GExpenseFieldsData_splits._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename, r'GExpenseFieldsData_splits', 'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GExpenseFieldsData_splits', 'id'),
               amount: BuiltValueNullFieldError.checkNotNull(
                   amount, r'GExpenseFieldsData_splits', 'amount'),
               transactionType: BuiltValueNullFieldError.checkNotNull(
-                  transactionType,
-                  r'GExpenseFieldsData_splits',
-                  'transactionType'),
+                  transactionType, r'GExpenseFieldsData_splits', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GExpenseFieldsData_splits', 'createdAt'),
               transactionPartGroupId: transactionPartGroupId,
-              fromUser: fromUser.build(),
-              toUser: toUser.build());
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GExpenseFieldsData_splits', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GExpenseFieldsData_splits', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId, r'GExpenseFieldsData_splits', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GExpenseFieldsData_splits', 'groupId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -24185,6 +27762,242 @@ class GExpenseFieldsData_splits_toUserBuilder
   }
 }
 
+class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final int amount;
+  @override
+  final _i3.GTransactionType transactionType;
+  @override
+  final String createdAt;
+  @override
+  final String? transactionPartGroupId;
+  @override
+  final String fromUserId;
+  @override
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
+
+  factory _$GSplitFieldsBasicsData(
+          [void Function(GSplitFieldsBasicsDataBuilder)? updates]) =>
+      (new GSplitFieldsBasicsDataBuilder()..update(updates))._build();
+
+  _$GSplitFieldsBasicsData._(
+      {required this.G__typename,
+      required this.id,
+      required this.amount,
+      required this.transactionType,
+      required this.createdAt,
+      this.transactionPartGroupId,
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GSplitFieldsBasicsData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(id, r'GSplitFieldsBasicsData', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GSplitFieldsBasicsData', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionType, r'GSplitFieldsBasicsData', 'transactionType');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt, r'GSplitFieldsBasicsData', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUserId, r'GSplitFieldsBasicsData', 'fromUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        toUserId, r'GSplitFieldsBasicsData', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GSplitFieldsBasicsData', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GSplitFieldsBasicsData', 'groupId');
+  }
+
+  @override
+  GSplitFieldsBasicsData rebuild(
+          void Function(GSplitFieldsBasicsDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GSplitFieldsBasicsDataBuilder toBuilder() =>
+      new GSplitFieldsBasicsDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GSplitFieldsBasicsData &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        amount == other.amount &&
+        transactionType == other.transactionType &&
+        createdAt == other.createdAt &&
+        transactionPartGroupId == other.transactionPartGroupId &&
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, transactionType.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GSplitFieldsBasicsData')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('amount', amount)
+          ..add('transactionType', transactionType)
+          ..add('createdAt', createdAt)
+          ..add('transactionPartGroupId', transactionPartGroupId)
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
+        .toString();
+  }
+}
+
+class GSplitFieldsBasicsDataBuilder
+    implements Builder<GSplitFieldsBasicsData, GSplitFieldsBasicsDataBuilder> {
+  _$GSplitFieldsBasicsData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  _i3.GTransactionType? _transactionType;
+  _i3.GTransactionType? get transactionType => _$this._transactionType;
+  set transactionType(_i3.GTransactionType? transactionType) =>
+      _$this._transactionType = transactionType;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _transactionPartGroupId;
+  String? get transactionPartGroupId => _$this._transactionPartGroupId;
+  set transactionPartGroupId(String? transactionPartGroupId) =>
+      _$this._transactionPartGroupId = transactionPartGroupId;
+
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
+
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
+
+  GSplitFieldsBasicsDataBuilder() {
+    GSplitFieldsBasicsData._initializeBuilder(this);
+  }
+
+  GSplitFieldsBasicsDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _amount = $v.amount;
+      _transactionType = $v.transactionType;
+      _createdAt = $v.createdAt;
+      _transactionPartGroupId = $v.transactionPartGroupId;
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GSplitFieldsBasicsData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GSplitFieldsBasicsData;
+  }
+
+  @override
+  void update(void Function(GSplitFieldsBasicsDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GSplitFieldsBasicsData build() => _build();
+
+  _$GSplitFieldsBasicsData _build() {
+    final _$result = _$v ??
+        new _$GSplitFieldsBasicsData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GSplitFieldsBasicsData', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GSplitFieldsBasicsData', 'id'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount, r'GSplitFieldsBasicsData', 'amount'),
+            transactionType: BuiltValueNullFieldError.checkNotNull(
+                transactionType, r'GSplitFieldsBasicsData', 'transactionType'),
+            createdAt: BuiltValueNullFieldError.checkNotNull(
+                createdAt, r'GSplitFieldsBasicsData', 'createdAt'),
+            transactionPartGroupId: transactionPartGroupId,
+            fromUserId: BuiltValueNullFieldError.checkNotNull(
+                fromUserId, r'GSplitFieldsBasicsData', 'fromUserId'),
+            toUserId: BuiltValueNullFieldError.checkNotNull(
+                toUserId, r'GSplitFieldsBasicsData', 'toUserId'),
+            creatorId: BuiltValueNullFieldError.checkNotNull(
+                creatorId, r'GSplitFieldsBasicsData', 'creatorId'),
+            withGroupId: withGroupId,
+            groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GSplitFieldsBasicsData', 'groupId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GSplitFieldsData extends GSplitFieldsData {
   @override
   final String G__typename;
@@ -24198,6 +28011,16 @@ class _$GSplitFieldsData extends GSplitFieldsData {
   final String createdAt;
   @override
   final String? transactionPartGroupId;
+  @override
+  final String fromUserId;
+  @override
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
   @override
   final GSplitFieldsData_fromUser fromUser;
   @override
@@ -24214,6 +28037,11 @@ class _$GSplitFieldsData extends GSplitFieldsData {
       required this.transactionType,
       required this.createdAt,
       this.transactionPartGroupId,
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId,
       required this.fromUser,
       required this.toUser})
       : super._() {
@@ -24226,6 +28054,14 @@ class _$GSplitFieldsData extends GSplitFieldsData {
         transactionType, r'GSplitFieldsData', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GSplitFieldsData', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUserId, r'GSplitFieldsData', 'fromUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        toUserId, r'GSplitFieldsData', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GSplitFieldsData', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GSplitFieldsData', 'groupId');
     BuiltValueNullFieldError.checkNotNull(
         fromUser, r'GSplitFieldsData', 'fromUser');
     BuiltValueNullFieldError.checkNotNull(
@@ -24250,6 +28086,11 @@ class _$GSplitFieldsData extends GSplitFieldsData {
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId &&
         fromUser == other.fromUser &&
         toUser == other.toUser;
   }
@@ -24263,6 +28104,11 @@ class _$GSplitFieldsData extends GSplitFieldsData {
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, fromUser.hashCode);
     _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jf(_$hash);
@@ -24278,6 +28124,11 @@ class _$GSplitFieldsData extends GSplitFieldsData {
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId)
           ..add('fromUser', fromUser)
           ..add('toUser', toUser))
         .toString();
@@ -24314,6 +28165,26 @@ class GSplitFieldsDataBuilder
   set transactionPartGroupId(String? transactionPartGroupId) =>
       _$this._transactionPartGroupId = transactionPartGroupId;
 
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
+
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
+
   GSplitFieldsData_fromUserBuilder? _fromUser;
   GSplitFieldsData_fromUserBuilder get fromUser =>
       _$this._fromUser ??= new GSplitFieldsData_fromUserBuilder();
@@ -24338,6 +28209,11 @@ class GSplitFieldsDataBuilder
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
       _fromUser = $v.fromUser.toBuilder();
       _toUser = $v.toUser.toBuilder();
       _$v = null;
@@ -24375,6 +28251,15 @@ class GSplitFieldsDataBuilder
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GSplitFieldsData', 'createdAt'),
               transactionPartGroupId: transactionPartGroupId,
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GSplitFieldsData', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GSplitFieldsData', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId, r'GSplitFieldsData', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId:
+                  BuiltValueNullFieldError.checkNotNull(groupId, r'GSplitFieldsData', 'groupId'),
               fromUser: fromUser.build(),
               toUser: toUser.build());
     } catch (_) {
@@ -24716,6 +28601,10 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
   @override
   final String G__typename;
   @override
+  final GSplitTransactionFieldsData_fromUser fromUser;
+  @override
+  final GSplitTransactionFieldsData_toUser toUser;
+  @override
   final String id;
   @override
   final int amount;
@@ -24726,9 +28615,15 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
   @override
   final String? transactionPartGroupId;
   @override
-  final GSplitTransactionFieldsData_fromUser fromUser;
+  final String fromUserId;
   @override
-  final GSplitTransactionFieldsData_toUser toUser;
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
   @override
   final GSplitTransactionFieldsData_expense? expense;
   @override
@@ -24742,19 +28637,28 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
 
   _$GSplitTransactionFieldsData._(
       {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
       required this.id,
       required this.amount,
       required this.transactionType,
       required this.createdAt,
       this.transactionPartGroupId,
-      required this.fromUser,
-      required this.toUser,
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId,
       this.expense,
       required this.group,
       required this.creator})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GSplitTransactionFieldsData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser, r'GSplitTransactionFieldsData', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'GSplitTransactionFieldsData', 'toUser');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GSplitTransactionFieldsData', 'id');
     BuiltValueNullFieldError.checkNotNull(
@@ -24764,9 +28668,13 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GSplitTransactionFieldsData', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
-        fromUser, r'GSplitTransactionFieldsData', 'fromUser');
+        fromUserId, r'GSplitTransactionFieldsData', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
-        toUser, r'GSplitTransactionFieldsData', 'toUser');
+        toUserId, r'GSplitTransactionFieldsData', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GSplitTransactionFieldsData', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GSplitTransactionFieldsData', 'groupId');
     BuiltValueNullFieldError.checkNotNull(
         group, r'GSplitTransactionFieldsData', 'group');
     BuiltValueNullFieldError.checkNotNull(
@@ -24787,13 +28695,18 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
     if (identical(other, this)) return true;
     return other is GSplitTransactionFieldsData &&
         G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
         id == other.id &&
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
-        fromUser == other.fromUser &&
-        toUser == other.toUser &&
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId &&
         expense == other.expense &&
         group == other.group &&
         creator == other.creator;
@@ -24803,13 +28716,18 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
-    _$hash = $jc(_$hash, fromUser.hashCode);
-    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, expense.hashCode);
     _$hash = $jc(_$hash, group.hashCode);
     _$hash = $jc(_$hash, creator.hashCode);
@@ -24821,13 +28739,18 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
   String toString() {
     return (newBuiltValueToStringHelper(r'GSplitTransactionFieldsData')
           ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
           ..add('id', id)
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
-          ..add('fromUser', fromUser)
-          ..add('toUser', toUser)
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId)
           ..add('expense', expense)
           ..add('group', group)
           ..add('creator', creator))
@@ -24844,6 +28767,18 @@ class GSplitTransactionFieldsDataBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GSplitTransactionFieldsData_fromUserBuilder? _fromUser;
+  GSplitTransactionFieldsData_fromUserBuilder get fromUser =>
+      _$this._fromUser ??= new GSplitTransactionFieldsData_fromUserBuilder();
+  set fromUser(GSplitTransactionFieldsData_fromUserBuilder? fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GSplitTransactionFieldsData_toUserBuilder? _toUser;
+  GSplitTransactionFieldsData_toUserBuilder get toUser =>
+      _$this._toUser ??= new GSplitTransactionFieldsData_toUserBuilder();
+  set toUser(GSplitTransactionFieldsData_toUserBuilder? toUser) =>
+      _$this._toUser = toUser;
 
   String? _id;
   String? get id => _$this._id;
@@ -24867,17 +28802,25 @@ class GSplitTransactionFieldsDataBuilder
   set transactionPartGroupId(String? transactionPartGroupId) =>
       _$this._transactionPartGroupId = transactionPartGroupId;
 
-  GSplitTransactionFieldsData_fromUserBuilder? _fromUser;
-  GSplitTransactionFieldsData_fromUserBuilder get fromUser =>
-      _$this._fromUser ??= new GSplitTransactionFieldsData_fromUserBuilder();
-  set fromUser(GSplitTransactionFieldsData_fromUserBuilder? fromUser) =>
-      _$this._fromUser = fromUser;
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
 
-  GSplitTransactionFieldsData_toUserBuilder? _toUser;
-  GSplitTransactionFieldsData_toUserBuilder get toUser =>
-      _$this._toUser ??= new GSplitTransactionFieldsData_toUserBuilder();
-  set toUser(GSplitTransactionFieldsData_toUserBuilder? toUser) =>
-      _$this._toUser = toUser;
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
 
   GSplitTransactionFieldsData_expenseBuilder? _expense;
   GSplitTransactionFieldsData_expenseBuilder get expense =>
@@ -24905,13 +28848,18 @@ class GSplitTransactionFieldsDataBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
       _id = $v.id;
       _amount = $v.amount;
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
-      _fromUser = $v.fromUser.toBuilder();
-      _toUser = $v.toUser.toBuilder();
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
       _expense = $v.expense?.toBuilder();
       _group = $v.group.toBuilder();
       _creator = $v.creator.toBuilder();
@@ -24941,19 +28889,25 @@ class GSplitTransactionFieldsDataBuilder
           new _$GSplitTransactionFieldsData._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename, r'GSplitTransactionFieldsData', 'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GSplitTransactionFieldsData', 'id'),
               amount: BuiltValueNullFieldError.checkNotNull(
                   amount, r'GSplitTransactionFieldsData', 'amount'),
               transactionType: BuiltValueNullFieldError.checkNotNull(
-                  transactionType,
-                  r'GSplitTransactionFieldsData',
-                  'transactionType'),
+                  transactionType, r'GSplitTransactionFieldsData', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GSplitTransactionFieldsData', 'createdAt'),
               transactionPartGroupId: transactionPartGroupId,
-              fromUser: fromUser.build(),
-              toUser: toUser.build(),
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GSplitTransactionFieldsData', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GSplitTransactionFieldsData', 'toUserId'),
+              creatorId:
+                  BuiltValueNullFieldError.checkNotNull(creatorId, r'GSplitTransactionFieldsData', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GSplitTransactionFieldsData', 'groupId'),
               expense: _expense?.build(),
               group: group.build(),
               creator: creator.build());
@@ -24964,6 +28918,7 @@ class GSplitTransactionFieldsDataBuilder
         fromUser.build();
         _$failedField = 'toUser';
         toUser.build();
+
         _$failedField = 'expense';
         _expense?.build();
         _$failedField = 'group';
@@ -25321,6 +29276,8 @@ class _$GSplitTransactionFieldsData_expense
   final String createdAt;
   @override
   final int amount;
+  @override
+  final String creatorId;
 
   factory _$GSplitTransactionFieldsData_expense(
           [void Function(GSplitTransactionFieldsData_expenseBuilder)?
@@ -25333,7 +29290,8 @@ class _$GSplitTransactionFieldsData_expense
       required this.id,
       required this.title,
       required this.createdAt,
-      required this.amount})
+      required this.amount,
+      required this.creatorId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GSplitTransactionFieldsData_expense', 'G__typename');
@@ -25345,6 +29303,8 @@ class _$GSplitTransactionFieldsData_expense
         createdAt, r'GSplitTransactionFieldsData_expense', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
         amount, r'GSplitTransactionFieldsData_expense', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GSplitTransactionFieldsData_expense', 'creatorId');
   }
 
   @override
@@ -25364,7 +29324,8 @@ class _$GSplitTransactionFieldsData_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
-        amount == other.amount;
+        amount == other.amount &&
+        creatorId == other.creatorId;
   }
 
   @override
@@ -25375,6 +29336,7 @@ class _$GSplitTransactionFieldsData_expense
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -25386,7 +29348,8 @@ class _$GSplitTransactionFieldsData_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
-          ..add('amount', amount))
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
         .toString();
   }
 }
@@ -25417,6 +29380,10 @@ class GSplitTransactionFieldsData_expenseBuilder
   int? get amount => _$this._amount;
   set amount(int? amount) => _$this._amount = amount;
 
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
   GSplitTransactionFieldsData_expenseBuilder() {
     GSplitTransactionFieldsData_expense._initializeBuilder(this);
   }
@@ -25429,6 +29396,7 @@ class GSplitTransactionFieldsData_expenseBuilder
       _title = $v.title;
       _createdAt = $v.createdAt;
       _amount = $v.amount;
+      _creatorId = $v.creatorId;
       _$v = null;
     }
     return this;
@@ -25461,7 +29429,9 @@ class GSplitTransactionFieldsData_expenseBuilder
             createdAt: BuiltValueNullFieldError.checkNotNull(
                 createdAt, r'GSplitTransactionFieldsData_expense', 'createdAt'),
             amount: BuiltValueNullFieldError.checkNotNull(
-                amount, r'GSplitTransactionFieldsData_expense', 'amount'));
+                amount, r'GSplitTransactionFieldsData_expense', 'amount'),
+            creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
+                r'GSplitTransactionFieldsData_expense', 'creatorId'));
     replace(_$result);
     return _$result;
   }
@@ -26447,6 +30417,8 @@ class _$GGroupWithExpensesData_expenses
   final String createdAt;
   @override
   final int amount;
+  @override
+  final String creatorId;
 
   factory _$GGroupWithExpensesData_expenses(
           [void Function(GGroupWithExpensesData_expensesBuilder)? updates]) =>
@@ -26459,7 +30431,8 @@ class _$GGroupWithExpensesData_expenses
       required this.id,
       required this.title,
       required this.createdAt,
-      required this.amount})
+      required this.amount,
+      required this.creatorId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGroupWithExpensesData_expenses', 'G__typename');
@@ -26475,6 +30448,8 @@ class _$GGroupWithExpensesData_expenses
         createdAt, r'GGroupWithExpensesData_expenses', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
         amount, r'GGroupWithExpensesData_expenses', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GGroupWithExpensesData_expenses', 'creatorId');
   }
 
   @override
@@ -26496,7 +30471,8 @@ class _$GGroupWithExpensesData_expenses
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
-        amount == other.amount;
+        amount == other.amount &&
+        creatorId == other.creatorId;
   }
 
   @override
@@ -26509,6 +30485,7 @@ class _$GGroupWithExpensesData_expenses
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -26522,7 +30499,8 @@ class _$GGroupWithExpensesData_expenses
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
-          ..add('amount', amount))
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
         .toString();
   }
 }
@@ -26566,6 +30544,10 @@ class GGroupWithExpensesData_expensesBuilder
   int? get amount => _$this._amount;
   set amount(int? amount) => _$this._amount = amount;
 
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
   GGroupWithExpensesData_expensesBuilder() {
     GGroupWithExpensesData_expenses._initializeBuilder(this);
   }
@@ -26580,6 +30562,7 @@ class GGroupWithExpensesData_expensesBuilder
       _title = $v.title;
       _createdAt = $v.createdAt;
       _amount = $v.amount;
+      _creatorId = $v.creatorId;
       _$v = null;
     }
     return this;
@@ -26615,7 +30598,9 @@ class GGroupWithExpensesData_expensesBuilder
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GGroupWithExpensesData_expenses', 'createdAt'),
               amount: BuiltValueNullFieldError.checkNotNull(
-                  amount, r'GGroupWithExpensesData_expenses', 'amount'));
+                  amount, r'GGroupWithExpensesData_expenses', 'amount'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId, r'GGroupWithExpensesData_expenses', 'creatorId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -26805,6 +30790,10 @@ class _$GGroupWithExpensesData_expenses_splits
   @override
   final String G__typename;
   @override
+  final GGroupWithExpensesData_expenses_splits_fromUser fromUser;
+  @override
+  final GGroupWithExpensesData_expenses_splits_toUser toUser;
+  @override
   final String id;
   @override
   final int amount;
@@ -26815,9 +30804,15 @@ class _$GGroupWithExpensesData_expenses_splits
   @override
   final String? transactionPartGroupId;
   @override
-  final GGroupWithExpensesData_expenses_splits_fromUser fromUser;
+  final String fromUserId;
   @override
-  final GGroupWithExpensesData_expenses_splits_toUser toUser;
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
 
   factory _$GGroupWithExpensesData_expenses_splits(
           [void Function(GGroupWithExpensesData_expenses_splitsBuilder)?
@@ -26827,16 +30822,25 @@ class _$GGroupWithExpensesData_expenses_splits
 
   _$GGroupWithExpensesData_expenses_splits._(
       {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
       required this.id,
       required this.amount,
       required this.transactionType,
       required this.createdAt,
       this.transactionPartGroupId,
-      required this.fromUser,
-      required this.toUser})
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGroupWithExpensesData_expenses_splits', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser, r'GGroupWithExpensesData_expenses_splits', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'GGroupWithExpensesData_expenses_splits', 'toUser');
     BuiltValueNullFieldError.checkNotNull(
         id, r'GGroupWithExpensesData_expenses_splits', 'id');
     BuiltValueNullFieldError.checkNotNull(
@@ -26846,9 +30850,13 @@ class _$GGroupWithExpensesData_expenses_splits
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GGroupWithExpensesData_expenses_splits', 'createdAt');
     BuiltValueNullFieldError.checkNotNull(
-        fromUser, r'GGroupWithExpensesData_expenses_splits', 'fromUser');
+        fromUserId, r'GGroupWithExpensesData_expenses_splits', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
-        toUser, r'GGroupWithExpensesData_expenses_splits', 'toUser');
+        toUserId, r'GGroupWithExpensesData_expenses_splits', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GGroupWithExpensesData_expenses_splits', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GGroupWithExpensesData_expenses_splits', 'groupId');
   }
 
   @override
@@ -26866,26 +30874,36 @@ class _$GGroupWithExpensesData_expenses_splits
     if (identical(other, this)) return true;
     return other is GGroupWithExpensesData_expenses_splits &&
         G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
         id == other.id &&
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
-        fromUser == other.fromUser &&
-        toUser == other.toUser;
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
-    _$hash = $jc(_$hash, fromUser.hashCode);
-    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -26895,13 +30913,18 @@ class _$GGroupWithExpensesData_expenses_splits
     return (newBuiltValueToStringHelper(
             r'GGroupWithExpensesData_expenses_splits')
           ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
           ..add('id', id)
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
-          ..add('fromUser', fromUser)
-          ..add('toUser', toUser))
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
         .toString();
   }
 }
@@ -26915,6 +30938,21 @@ class GGroupWithExpensesData_expenses_splitsBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GGroupWithExpensesData_expenses_splits_fromUserBuilder? _fromUser;
+  GGroupWithExpensesData_expenses_splits_fromUserBuilder get fromUser =>
+      _$this._fromUser ??=
+          new GGroupWithExpensesData_expenses_splits_fromUserBuilder();
+  set fromUser(
+          GGroupWithExpensesData_expenses_splits_fromUserBuilder? fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GGroupWithExpensesData_expenses_splits_toUserBuilder? _toUser;
+  GGroupWithExpensesData_expenses_splits_toUserBuilder get toUser =>
+      _$this._toUser ??=
+          new GGroupWithExpensesData_expenses_splits_toUserBuilder();
+  set toUser(GGroupWithExpensesData_expenses_splits_toUserBuilder? toUser) =>
+      _$this._toUser = toUser;
 
   String? _id;
   String? get id => _$this._id;
@@ -26938,20 +30976,25 @@ class GGroupWithExpensesData_expenses_splitsBuilder
   set transactionPartGroupId(String? transactionPartGroupId) =>
       _$this._transactionPartGroupId = transactionPartGroupId;
 
-  GGroupWithExpensesData_expenses_splits_fromUserBuilder? _fromUser;
-  GGroupWithExpensesData_expenses_splits_fromUserBuilder get fromUser =>
-      _$this._fromUser ??=
-          new GGroupWithExpensesData_expenses_splits_fromUserBuilder();
-  set fromUser(
-          GGroupWithExpensesData_expenses_splits_fromUserBuilder? fromUser) =>
-      _$this._fromUser = fromUser;
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
 
-  GGroupWithExpensesData_expenses_splits_toUserBuilder? _toUser;
-  GGroupWithExpensesData_expenses_splits_toUserBuilder get toUser =>
-      _$this._toUser ??=
-          new GGroupWithExpensesData_expenses_splits_toUserBuilder();
-  set toUser(GGroupWithExpensesData_expenses_splits_toUserBuilder? toUser) =>
-      _$this._toUser = toUser;
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
 
   GGroupWithExpensesData_expenses_splitsBuilder() {
     GGroupWithExpensesData_expenses_splits._initializeBuilder(this);
@@ -26961,13 +31004,18 @@ class GGroupWithExpensesData_expenses_splitsBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
       _id = $v.id;
       _amount = $v.amount;
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
-      _fromUser = $v.fromUser.toBuilder();
-      _toUser = $v.toUser.toBuilder();
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
       _$v = null;
     }
     return this;
@@ -26993,21 +31041,26 @@ class GGroupWithExpensesData_expenses_splitsBuilder
     try {
       _$result = _$v ??
           new _$GGroupWithExpensesData_expenses_splits._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GGroupWithExpensesData_expenses_splits', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GGroupWithExpensesData_expenses_splits', 'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GGroupWithExpensesData_expenses_splits', 'id'),
               amount: BuiltValueNullFieldError.checkNotNull(
                   amount, r'GGroupWithExpensesData_expenses_splits', 'amount'),
               transactionType: BuiltValueNullFieldError.checkNotNull(
-                  transactionType,
-                  r'GGroupWithExpensesData_expenses_splits',
-                  'transactionType'),
-              createdAt: BuiltValueNullFieldError.checkNotNull(createdAt,
-                  r'GGroupWithExpensesData_expenses_splits', 'createdAt'),
+                  transactionType, r'GGroupWithExpensesData_expenses_splits', 'transactionType'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GGroupWithExpensesData_expenses_splits', 'createdAt'),
               transactionPartGroupId: transactionPartGroupId,
-              fromUser: fromUser.build(),
-              toUser: toUser.build());
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GGroupWithExpensesData_expenses_splits', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GGroupWithExpensesData_expenses_splits', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GGroupWithExpensesData_expenses_splits', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GGroupWithExpensesData_expenses_splits', 'groupId'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -27369,6 +31422,935 @@ class GGroupWithExpensesData_expenses_splits_toUserBuilder
                 isSignedUp,
                 r'GGroupWithExpensesData_expenses_splits_toUser',
                 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GExpenseMixSplitFieldsData extends GExpenseMixSplitFieldsData {
+  @override
+  final String G__typename;
+  @override
+  final GExpenseMixSplitFieldsData_expense? expense;
+  @override
+  final GExpenseMixSplitFieldsData_split? split;
+
+  factory _$GExpenseMixSplitFieldsData(
+          [void Function(GExpenseMixSplitFieldsDataBuilder)? updates]) =>
+      (new GExpenseMixSplitFieldsDataBuilder()..update(updates))._build();
+
+  _$GExpenseMixSplitFieldsData._(
+      {required this.G__typename, this.expense, this.split})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GExpenseMixSplitFieldsData', 'G__typename');
+  }
+
+  @override
+  GExpenseMixSplitFieldsData rebuild(
+          void Function(GExpenseMixSplitFieldsDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GExpenseMixSplitFieldsDataBuilder toBuilder() =>
+      new GExpenseMixSplitFieldsDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GExpenseMixSplitFieldsData &&
+        G__typename == other.G__typename &&
+        expense == other.expense &&
+        split == other.split;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, expense.hashCode);
+    _$hash = $jc(_$hash, split.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GExpenseMixSplitFieldsData')
+          ..add('G__typename', G__typename)
+          ..add('expense', expense)
+          ..add('split', split))
+        .toString();
+  }
+}
+
+class GExpenseMixSplitFieldsDataBuilder
+    implements
+        Builder<GExpenseMixSplitFieldsData, GExpenseMixSplitFieldsDataBuilder> {
+  _$GExpenseMixSplitFieldsData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GExpenseMixSplitFieldsData_expenseBuilder? _expense;
+  GExpenseMixSplitFieldsData_expenseBuilder get expense =>
+      _$this._expense ??= new GExpenseMixSplitFieldsData_expenseBuilder();
+  set expense(GExpenseMixSplitFieldsData_expenseBuilder? expense) =>
+      _$this._expense = expense;
+
+  GExpenseMixSplitFieldsData_splitBuilder? _split;
+  GExpenseMixSplitFieldsData_splitBuilder get split =>
+      _$this._split ??= new GExpenseMixSplitFieldsData_splitBuilder();
+  set split(GExpenseMixSplitFieldsData_splitBuilder? split) =>
+      _$this._split = split;
+
+  GExpenseMixSplitFieldsDataBuilder() {
+    GExpenseMixSplitFieldsData._initializeBuilder(this);
+  }
+
+  GExpenseMixSplitFieldsDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _expense = $v.expense?.toBuilder();
+      _split = $v.split?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GExpenseMixSplitFieldsData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GExpenseMixSplitFieldsData;
+  }
+
+  @override
+  void update(void Function(GExpenseMixSplitFieldsDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GExpenseMixSplitFieldsData build() => _build();
+
+  _$GExpenseMixSplitFieldsData _build() {
+    _$GExpenseMixSplitFieldsData _$result;
+    try {
+      _$result = _$v ??
+          new _$GExpenseMixSplitFieldsData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GExpenseMixSplitFieldsData', 'G__typename'),
+              expense: _expense?.build(),
+              split: _split?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'expense';
+        _expense?.build();
+        _$failedField = 'split';
+        _split?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GExpenseMixSplitFieldsData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GExpenseMixSplitFieldsData_expense
+    extends GExpenseMixSplitFieldsData_expense {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String title;
+  @override
+  final String createdAt;
+  @override
+  final int amount;
+  @override
+  final String creatorId;
+
+  factory _$GExpenseMixSplitFieldsData_expense(
+          [void Function(GExpenseMixSplitFieldsData_expenseBuilder)?
+              updates]) =>
+      (new GExpenseMixSplitFieldsData_expenseBuilder()..update(updates))
+          ._build();
+
+  _$GExpenseMixSplitFieldsData_expense._(
+      {required this.G__typename,
+      required this.id,
+      required this.title,
+      required this.createdAt,
+      required this.amount,
+      required this.creatorId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GExpenseMixSplitFieldsData_expense', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GExpenseMixSplitFieldsData_expense', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        title, r'GExpenseMixSplitFieldsData_expense', 'title');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt, r'GExpenseMixSplitFieldsData_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GExpenseMixSplitFieldsData_expense', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GExpenseMixSplitFieldsData_expense', 'creatorId');
+  }
+
+  @override
+  GExpenseMixSplitFieldsData_expense rebuild(
+          void Function(GExpenseMixSplitFieldsData_expenseBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GExpenseMixSplitFieldsData_expenseBuilder toBuilder() =>
+      new GExpenseMixSplitFieldsData_expenseBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GExpenseMixSplitFieldsData_expense &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        title == other.title &&
+        createdAt == other.createdAt &&
+        amount == other.amount &&
+        creatorId == other.creatorId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GExpenseMixSplitFieldsData_expense')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('title', title)
+          ..add('createdAt', createdAt)
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
+        .toString();
+  }
+}
+
+class GExpenseMixSplitFieldsData_expenseBuilder
+    implements
+        Builder<GExpenseMixSplitFieldsData_expense,
+            GExpenseMixSplitFieldsData_expenseBuilder> {
+  _$GExpenseMixSplitFieldsData_expense? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  GExpenseMixSplitFieldsData_expenseBuilder() {
+    GExpenseMixSplitFieldsData_expense._initializeBuilder(this);
+  }
+
+  GExpenseMixSplitFieldsData_expenseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _title = $v.title;
+      _createdAt = $v.createdAt;
+      _amount = $v.amount;
+      _creatorId = $v.creatorId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GExpenseMixSplitFieldsData_expense other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GExpenseMixSplitFieldsData_expense;
+  }
+
+  @override
+  void update(
+      void Function(GExpenseMixSplitFieldsData_expenseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GExpenseMixSplitFieldsData_expense build() => _build();
+
+  _$GExpenseMixSplitFieldsData_expense _build() {
+    final _$result = _$v ??
+        new _$GExpenseMixSplitFieldsData_expense._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GExpenseMixSplitFieldsData_expense', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GExpenseMixSplitFieldsData_expense', 'id'),
+            title: BuiltValueNullFieldError.checkNotNull(
+                title, r'GExpenseMixSplitFieldsData_expense', 'title'),
+            createdAt: BuiltValueNullFieldError.checkNotNull(
+                createdAt, r'GExpenseMixSplitFieldsData_expense', 'createdAt'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount, r'GExpenseMixSplitFieldsData_expense', 'amount'),
+            creatorId: BuiltValueNullFieldError.checkNotNull(
+                creatorId, r'GExpenseMixSplitFieldsData_expense', 'creatorId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GExpenseMixSplitFieldsData_split
+    extends GExpenseMixSplitFieldsData_split {
+  @override
+  final String G__typename;
+  @override
+  final GExpenseMixSplitFieldsData_split_fromUser fromUser;
+  @override
+  final GExpenseMixSplitFieldsData_split_toUser toUser;
+  @override
+  final String id;
+  @override
+  final int amount;
+  @override
+  final _i3.GTransactionType transactionType;
+  @override
+  final String createdAt;
+  @override
+  final String? transactionPartGroupId;
+  @override
+  final String fromUserId;
+  @override
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
+
+  factory _$GExpenseMixSplitFieldsData_split(
+          [void Function(GExpenseMixSplitFieldsData_splitBuilder)? updates]) =>
+      (new GExpenseMixSplitFieldsData_splitBuilder()..update(updates))._build();
+
+  _$GExpenseMixSplitFieldsData_split._(
+      {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
+      required this.id,
+      required this.amount,
+      required this.transactionType,
+      required this.createdAt,
+      this.transactionPartGroupId,
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GExpenseMixSplitFieldsData_split', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser, r'GExpenseMixSplitFieldsData_split', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'GExpenseMixSplitFieldsData_split', 'toUser');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GExpenseMixSplitFieldsData_split', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GExpenseMixSplitFieldsData_split', 'amount');
+    BuiltValueNullFieldError.checkNotNull(transactionType,
+        r'GExpenseMixSplitFieldsData_split', 'transactionType');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt, r'GExpenseMixSplitFieldsData_split', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUserId, r'GExpenseMixSplitFieldsData_split', 'fromUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        toUserId, r'GExpenseMixSplitFieldsData_split', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GExpenseMixSplitFieldsData_split', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GExpenseMixSplitFieldsData_split', 'groupId');
+  }
+
+  @override
+  GExpenseMixSplitFieldsData_split rebuild(
+          void Function(GExpenseMixSplitFieldsData_splitBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GExpenseMixSplitFieldsData_splitBuilder toBuilder() =>
+      new GExpenseMixSplitFieldsData_splitBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GExpenseMixSplitFieldsData_split &&
+        G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
+        id == other.id &&
+        amount == other.amount &&
+        transactionType == other.transactionType &&
+        createdAt == other.createdAt &&
+        transactionPartGroupId == other.transactionPartGroupId &&
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, transactionType.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GExpenseMixSplitFieldsData_split')
+          ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
+          ..add('id', id)
+          ..add('amount', amount)
+          ..add('transactionType', transactionType)
+          ..add('createdAt', createdAt)
+          ..add('transactionPartGroupId', transactionPartGroupId)
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
+        .toString();
+  }
+}
+
+class GExpenseMixSplitFieldsData_splitBuilder
+    implements
+        Builder<GExpenseMixSplitFieldsData_split,
+            GExpenseMixSplitFieldsData_splitBuilder> {
+  _$GExpenseMixSplitFieldsData_split? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GExpenseMixSplitFieldsData_split_fromUserBuilder? _fromUser;
+  GExpenseMixSplitFieldsData_split_fromUserBuilder get fromUser =>
+      _$this._fromUser ??=
+          new GExpenseMixSplitFieldsData_split_fromUserBuilder();
+  set fromUser(GExpenseMixSplitFieldsData_split_fromUserBuilder? fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GExpenseMixSplitFieldsData_split_toUserBuilder? _toUser;
+  GExpenseMixSplitFieldsData_split_toUserBuilder get toUser =>
+      _$this._toUser ??= new GExpenseMixSplitFieldsData_split_toUserBuilder();
+  set toUser(GExpenseMixSplitFieldsData_split_toUserBuilder? toUser) =>
+      _$this._toUser = toUser;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  _i3.GTransactionType? _transactionType;
+  _i3.GTransactionType? get transactionType => _$this._transactionType;
+  set transactionType(_i3.GTransactionType? transactionType) =>
+      _$this._transactionType = transactionType;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _transactionPartGroupId;
+  String? get transactionPartGroupId => _$this._transactionPartGroupId;
+  set transactionPartGroupId(String? transactionPartGroupId) =>
+      _$this._transactionPartGroupId = transactionPartGroupId;
+
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
+
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
+
+  GExpenseMixSplitFieldsData_splitBuilder() {
+    GExpenseMixSplitFieldsData_split._initializeBuilder(this);
+  }
+
+  GExpenseMixSplitFieldsData_splitBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
+      _id = $v.id;
+      _amount = $v.amount;
+      _transactionType = $v.transactionType;
+      _createdAt = $v.createdAt;
+      _transactionPartGroupId = $v.transactionPartGroupId;
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GExpenseMixSplitFieldsData_split other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GExpenseMixSplitFieldsData_split;
+  }
+
+  @override
+  void update(void Function(GExpenseMixSplitFieldsData_splitBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GExpenseMixSplitFieldsData_split build() => _build();
+
+  _$GExpenseMixSplitFieldsData_split _build() {
+    _$GExpenseMixSplitFieldsData_split _$result;
+    try {
+      _$result = _$v ??
+          new _$GExpenseMixSplitFieldsData_split._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GExpenseMixSplitFieldsData_split', 'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GExpenseMixSplitFieldsData_split', 'id'),
+              amount: BuiltValueNullFieldError.checkNotNull(
+                  amount, r'GExpenseMixSplitFieldsData_split', 'amount'),
+              transactionType: BuiltValueNullFieldError.checkNotNull(
+                  transactionType,
+                  r'GExpenseMixSplitFieldsData_split',
+                  'transactionType'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GExpenseMixSplitFieldsData_split', 'createdAt'),
+              transactionPartGroupId: transactionPartGroupId,
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GExpenseMixSplitFieldsData_split', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GExpenseMixSplitFieldsData_split', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GExpenseMixSplitFieldsData_split', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GExpenseMixSplitFieldsData_split', 'groupId'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'fromUser';
+        fromUser.build();
+        _$failedField = 'toUser';
+        toUser.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GExpenseMixSplitFieldsData_split', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GExpenseMixSplitFieldsData_split_fromUser
+    extends GExpenseMixSplitFieldsData_split_fromUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GExpenseMixSplitFieldsData_split_fromUser(
+          [void Function(GExpenseMixSplitFieldsData_split_fromUserBuilder)?
+              updates]) =>
+      (new GExpenseMixSplitFieldsData_split_fromUserBuilder()..update(updates))
+          ._build();
+
+  _$GExpenseMixSplitFieldsData_split_fromUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GExpenseMixSplitFieldsData_split_fromUser', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GExpenseMixSplitFieldsData_split_fromUser', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GExpenseMixSplitFieldsData_split_fromUser', 'isSignedUp');
+  }
+
+  @override
+  GExpenseMixSplitFieldsData_split_fromUser rebuild(
+          void Function(GExpenseMixSplitFieldsData_split_fromUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GExpenseMixSplitFieldsData_split_fromUserBuilder toBuilder() =>
+      new GExpenseMixSplitFieldsData_split_fromUserBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GExpenseMixSplitFieldsData_split_fromUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GExpenseMixSplitFieldsData_split_fromUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GExpenseMixSplitFieldsData_split_fromUserBuilder
+    implements
+        Builder<GExpenseMixSplitFieldsData_split_fromUser,
+            GExpenseMixSplitFieldsData_split_fromUserBuilder> {
+  _$GExpenseMixSplitFieldsData_split_fromUser? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GExpenseMixSplitFieldsData_split_fromUserBuilder() {
+    GExpenseMixSplitFieldsData_split_fromUser._initializeBuilder(this);
+  }
+
+  GExpenseMixSplitFieldsData_split_fromUserBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GExpenseMixSplitFieldsData_split_fromUser other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GExpenseMixSplitFieldsData_split_fromUser;
+  }
+
+  @override
+  void update(
+      void Function(GExpenseMixSplitFieldsData_split_fromUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GExpenseMixSplitFieldsData_split_fromUser build() => _build();
+
+  _$GExpenseMixSplitFieldsData_split_fromUser _build() {
+    final _$result = _$v ??
+        new _$GExpenseMixSplitFieldsData_split_fromUser._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GExpenseMixSplitFieldsData_split_fromUser', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GExpenseMixSplitFieldsData_split_fromUser', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GExpenseMixSplitFieldsData_split_fromUser', 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GExpenseMixSplitFieldsData_split_toUser
+    extends GExpenseMixSplitFieldsData_split_toUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GExpenseMixSplitFieldsData_split_toUser(
+          [void Function(GExpenseMixSplitFieldsData_split_toUserBuilder)?
+              updates]) =>
+      (new GExpenseMixSplitFieldsData_split_toUserBuilder()..update(updates))
+          ._build();
+
+  _$GExpenseMixSplitFieldsData_split_toUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GExpenseMixSplitFieldsData_split_toUser', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GExpenseMixSplitFieldsData_split_toUser', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GExpenseMixSplitFieldsData_split_toUser', 'isSignedUp');
+  }
+
+  @override
+  GExpenseMixSplitFieldsData_split_toUser rebuild(
+          void Function(GExpenseMixSplitFieldsData_split_toUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GExpenseMixSplitFieldsData_split_toUserBuilder toBuilder() =>
+      new GExpenseMixSplitFieldsData_split_toUserBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GExpenseMixSplitFieldsData_split_toUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GExpenseMixSplitFieldsData_split_toUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GExpenseMixSplitFieldsData_split_toUserBuilder
+    implements
+        Builder<GExpenseMixSplitFieldsData_split_toUser,
+            GExpenseMixSplitFieldsData_split_toUserBuilder> {
+  _$GExpenseMixSplitFieldsData_split_toUser? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GExpenseMixSplitFieldsData_split_toUserBuilder() {
+    GExpenseMixSplitFieldsData_split_toUser._initializeBuilder(this);
+  }
+
+  GExpenseMixSplitFieldsData_split_toUserBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GExpenseMixSplitFieldsData_split_toUser other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GExpenseMixSplitFieldsData_split_toUser;
+  }
+
+  @override
+  void update(
+      void Function(GExpenseMixSplitFieldsData_split_toUserBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GExpenseMixSplitFieldsData_split_toUser build() => _build();
+
+  _$GExpenseMixSplitFieldsData_split_toUser _build() {
+    final _$result = _$v ??
+        new _$GExpenseMixSplitFieldsData_split_toUser._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GExpenseMixSplitFieldsData_split_toUser', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GExpenseMixSplitFieldsData_split_toUser', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GExpenseMixSplitFieldsData_split_toUser', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }

@@ -1278,6 +1278,83 @@ abstract class GtransactionWithUserReq
       );
 }
 
+abstract class GtransactionMixExpenseReq
+    implements
+        Built<GtransactionMixExpenseReq, GtransactionMixExpenseReqBuilder>,
+        _i1.OperationRequest<_i2.GtransactionMixExpenseData,
+            _i3.GtransactionMixExpenseVars> {
+  GtransactionMixExpenseReq._();
+
+  factory GtransactionMixExpenseReq(
+          [Function(GtransactionMixExpenseReqBuilder b) updates]) =
+      _$GtransactionMixExpenseReq;
+
+  static void _initializeBuilder(GtransactionMixExpenseReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'transactionMixExpense',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GtransactionMixExpenseVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GtransactionMixExpenseData? Function(
+    _i2.GtransactionMixExpenseData?,
+    _i2.GtransactionMixExpenseData?,
+  )? get updateResult;
+  @override
+  _i2.GtransactionMixExpenseData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GtransactionMixExpenseData? parseData(Map<String, dynamic> json) =>
+      _i2.GtransactionMixExpenseData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GtransactionMixExpenseData,
+      _i3.GtransactionMixExpenseVars> transformOperation(
+          _i4.Operation Function(_i4.Operation) transform) =>
+      this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GtransactionMixExpenseReq> get serializer =>
+      _$gtransactionMixExpenseReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GtransactionMixExpenseReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GtransactionMixExpenseReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GtransactionMixExpenseReq.serializer,
+        json,
+      );
+}
+
 abstract class GUserFieldsReq
     implements
         Built<GUserFieldsReq, GUserFieldsReqBuilder>,
@@ -1554,6 +1631,54 @@ abstract class GExpenseFieldsReq
       );
 }
 
+abstract class GSplitFieldsBasicsReq
+    implements
+        Built<GSplitFieldsBasicsReq, GSplitFieldsBasicsReqBuilder>,
+        _i1.FragmentRequest<_i2.GSplitFieldsBasicsData,
+            _i3.GSplitFieldsBasicsVars> {
+  GSplitFieldsBasicsReq._();
+
+  factory GSplitFieldsBasicsReq(
+          [Function(GSplitFieldsBasicsReqBuilder b) updates]) =
+      _$GSplitFieldsBasicsReq;
+
+  static void _initializeBuilder(GSplitFieldsBasicsReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'SplitFieldsBasics';
+
+  @override
+  _i3.GSplitFieldsBasicsVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GSplitFieldsBasicsData? parseData(Map<String, dynamic> json) =>
+      _i2.GSplitFieldsBasicsData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  static Serializer<GSplitFieldsBasicsReq> get serializer =>
+      _$gSplitFieldsBasicsReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GSplitFieldsBasicsReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitFieldsBasicsReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GSplitFieldsBasicsReq.serializer,
+        json,
+      );
+}
+
 abstract class GSplitFieldsReq
     implements
         Built<GSplitFieldsReq, GSplitFieldsReqBuilder>,
@@ -1692,6 +1817,54 @@ abstract class GGroupWithExpensesReq
   static GGroupWithExpensesReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GGroupWithExpensesReq.serializer,
+        json,
+      );
+}
+
+abstract class GExpenseMixSplitFieldsReq
+    implements
+        Built<GExpenseMixSplitFieldsReq, GExpenseMixSplitFieldsReqBuilder>,
+        _i1.FragmentRequest<_i2.GExpenseMixSplitFieldsData,
+            _i3.GExpenseMixSplitFieldsVars> {
+  GExpenseMixSplitFieldsReq._();
+
+  factory GExpenseMixSplitFieldsReq(
+          [Function(GExpenseMixSplitFieldsReqBuilder b) updates]) =
+      _$GExpenseMixSplitFieldsReq;
+
+  static void _initializeBuilder(GExpenseMixSplitFieldsReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'ExpenseMixSplitFields';
+
+  @override
+  _i3.GExpenseMixSplitFieldsVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GExpenseMixSplitFieldsData? parseData(Map<String, dynamic> json) =>
+      _i2.GExpenseMixSplitFieldsData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  static Serializer<GExpenseMixSplitFieldsReq> get serializer =>
+      _$gExpenseMixSplitFieldsReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GExpenseMixSplitFieldsReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GExpenseMixSplitFieldsReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GExpenseMixSplitFieldsReq.serializer,
         json,
       );
 }

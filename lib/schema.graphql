@@ -5,9 +5,15 @@ type Expense {
   title: String!
   createdAt: String!
   creator: User!
+  creatorId: String!
   group: Group!
   amount: Int!
   splits: [Split!]!
+}
+
+type ExpenseMixSplit {
+  expense: Expense
+  split: Split
 }
 
 type Group {
@@ -16,7 +22,7 @@ type Group {
   createdAt: String!
   creator: User!
   members: [GroupMember!]!
-  expenses(skip: Int! = 0, limit: Int! = 10): [Expense!]!
+  expenses(fromTime: String, limit: Int! = 10): [Expense!]!
   owed: Int!
 }
 
@@ -63,16 +69,25 @@ type Query {
   user: UserAuth!
   group(id: String!): Group!
   userById(id: String!): User!
-  expensesWithUser(
-    userId: String!
-    skip: Int! = 0
-    limit: Int! = 10
-  ): [Expense!]!
   interactedUsers: [User!]!
   groups: [Group!]!
   findUserByEmail(email: String!): User!
   overallOwed: Int!
-  getTransactionsWithUser(withUser: String!, skip: Int!, limit: Int!): [Split!]!
+  getTransactionsWithUser(
+    withUser: String!
+    fromTime: String
+    limit: Int!
+  ): [Split!]!
+  getTransactionsWithGroup(
+    withGroup: String!
+    fromTime: String
+    limit: Int!
+  ): [Split!]!
+  getTransactionsMixExpenseWithGroup(
+    withGroup: String!
+    fromTime: String
+    limit: Int!
+  ): [ExpenseMixSplit!]!
 }
 
 type Registered {
@@ -88,13 +103,19 @@ type Split {
   id: String!
   expense: Expense
   group: Group!
+  groupId: String!
   amount: Int!
   fromUser: User!
   toUser: User!
   transactionType: TransactionType!
   createdAt: String!
   creator: User!
+  creatorId: String!
+  toUserId: String!
+  fromUserId: String!
   transactionPartGroupId: String
+  withGroup: Group
+  withGroupId: String
 }
 
 input SplitInput {

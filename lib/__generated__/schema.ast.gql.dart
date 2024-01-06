@@ -60,6 +60,15 @@ const Expense = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'creatorId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
       name: _i1.NameNode(value: 'group'),
       directives: [],
       args: [],
@@ -87,6 +96,31 @@ const Expense = _i1.ObjectTypeDefinitionNode(
           isNonNull: true,
         ),
         isNonNull: true,
+      ),
+    ),
+  ],
+);
+const ExpenseMixSplit = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'ExpenseMixSplit'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'expense'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Expense'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'split'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Split'),
+        isNonNull: false,
       ),
     ),
   ],
@@ -149,13 +183,13 @@ const Group = _i1.ObjectTypeDefinitionNode(
       directives: [],
       args: [
         _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'skip'),
+          name: _i1.NameNode(value: 'fromTime'),
           directives: [],
           type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'Int'),
-            isNonNull: true,
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: false,
           ),
-          defaultValue: _i1.IntValueNode(value: '0'),
+          defaultValue: null,
         ),
         _i1.InputValueDefinitionNode(
           name: _i1.NameNode(value: 'limit'),
@@ -650,46 +684,6 @@ const Query = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'expensesWithUser'),
-      directives: [],
-      args: [
-        _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'userId'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'String'),
-            isNonNull: true,
-          ),
-          defaultValue: null,
-        ),
-        _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'skip'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'Int'),
-            isNonNull: true,
-          ),
-          defaultValue: _i1.IntValueNode(value: '0'),
-        ),
-        _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'limit'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'Int'),
-            isNonNull: true,
-          ),
-          defaultValue: _i1.IntValueNode(value: '10'),
-        ),
-      ],
-      type: _i1.ListTypeNode(
-        type: _i1.NamedTypeNode(
-          name: _i1.NameNode(value: 'Expense'),
-          isNonNull: true,
-        ),
-        isNonNull: true,
-      ),
-    ),
-    _i1.FieldDefinitionNode(
       name: _i1.NameNode(value: 'interactedUsers'),
       directives: [],
       args: [],
@@ -755,11 +749,11 @@ const Query = _i1.ObjectTypeDefinitionNode(
           defaultValue: null,
         ),
         _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'skip'),
+          name: _i1.NameNode(value: 'fromTime'),
           directives: [],
           type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'Int'),
-            isNonNull: true,
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: false,
           ),
           defaultValue: null,
         ),
@@ -776,6 +770,86 @@ const Query = _i1.ObjectTypeDefinitionNode(
       type: _i1.ListTypeNode(
         type: _i1.NamedTypeNode(
           name: _i1.NameNode(value: 'Split'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'getTransactionsWithGroup'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'withGroup'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'fromTime'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: false,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'limit'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+      ],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'Split'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'getTransactionsMixExpenseWithGroup'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'withGroup'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'fromTime'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: false,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'limit'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+      ],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'ExpenseMixSplit'),
           isNonNull: true,
         ),
         isNonNull: true,
@@ -857,6 +931,15 @@ const Split = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'groupId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
       name: _i1.NameNode(value: 'amount'),
       directives: [],
       args: [],
@@ -911,7 +994,52 @@ const Split = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'creatorId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'toUserId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'fromUserId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
       name: _i1.NameNode(value: 'transactionPartGroupId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'withGroup'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Group'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'withGroupId'),
       directives: [],
       args: [],
       type: _i1.NamedTypeNode(
@@ -1155,6 +1283,7 @@ const UserSignedUp = _i1.ObjectTypeDefinitionNode(
 const document = _i1.DocumentNode(definitions: [
   AuthResult,
   Expense,
+  ExpenseMixSplit,
   Group,
   GroupMember,
   Mutation,

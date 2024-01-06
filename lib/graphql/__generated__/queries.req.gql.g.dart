@@ -36,6 +36,8 @@ Serializer<GautoSettleWithUserReq> _$gautoSettleWithUserReqSerializer =
     new _$GautoSettleWithUserReqSerializer();
 Serializer<GtransactionWithUserReq> _$gtransactionWithUserReqSerializer =
     new _$GtransactionWithUserReqSerializer();
+Serializer<GtransactionMixExpenseReq> _$gtransactionMixExpenseReqSerializer =
+    new _$GtransactionMixExpenseReqSerializer();
 Serializer<GUserFieldsReq> _$gUserFieldsReqSerializer =
     new _$GUserFieldsReqSerializer();
 Serializer<GUserPaysFieldsReq> _$gUserPaysFieldsReqSerializer =
@@ -48,12 +50,16 @@ Serializer<GExpenseBasicReq> _$gExpenseBasicReqSerializer =
     new _$GExpenseBasicReqSerializer();
 Serializer<GExpenseFieldsReq> _$gExpenseFieldsReqSerializer =
     new _$GExpenseFieldsReqSerializer();
+Serializer<GSplitFieldsBasicsReq> _$gSplitFieldsBasicsReqSerializer =
+    new _$GSplitFieldsBasicsReqSerializer();
 Serializer<GSplitFieldsReq> _$gSplitFieldsReqSerializer =
     new _$GSplitFieldsReqSerializer();
 Serializer<GSplitTransactionFieldsReq> _$gSplitTransactionFieldsReqSerializer =
     new _$GSplitTransactionFieldsReqSerializer();
 Serializer<GGroupWithExpensesReq> _$gGroupWithExpensesReqSerializer =
     new _$GGroupWithExpensesReqSerializer();
+Serializer<GExpenseMixSplitFieldsReq> _$gExpenseMixSplitFieldsReqSerializer =
+    new _$GExpenseMixSplitFieldsReqSerializer();
 
 class _$GuserReqSerializer implements StructuredSerializer<GuserReq> {
   @override
@@ -2078,6 +2084,130 @@ class _$GtransactionWithUserReqSerializer
   }
 }
 
+class _$GtransactionMixExpenseReqSerializer
+    implements StructuredSerializer<GtransactionMixExpenseReq> {
+  @override
+  final Iterable<Type> types = const [
+    GtransactionMixExpenseReq,
+    _$GtransactionMixExpenseReq
+  ];
+  @override
+  final String wireName = 'GtransactionMixExpenseReq';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GtransactionMixExpenseReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GtransactionMixExpenseVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.GtransactionMixExpenseData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  GtransactionMixExpenseReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GtransactionMixExpenseReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(_i3.GtransactionMixExpenseVars))!
+              as _i3.GtransactionMixExpenseVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(_i2.GtransactionMixExpenseData))!
+              as _i2.GtransactionMixExpenseData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GUserFieldsReqSerializer
     implements StructuredSerializer<GUserFieldsReq> {
   @override
@@ -2517,6 +2647,83 @@ class _$GExpenseFieldsReqSerializer
   }
 }
 
+class _$GSplitFieldsBasicsReqSerializer
+    implements StructuredSerializer<GSplitFieldsBasicsReq> {
+  @override
+  final Iterable<Type> types = const [
+    GSplitFieldsBasicsReq,
+    _$GSplitFieldsBasicsReq
+  ];
+  @override
+  final String wireName = 'GSplitFieldsBasicsReq';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GSplitFieldsBasicsReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GSplitFieldsBasicsVars)),
+      'document',
+      serializers.serialize(object.document,
+          specifiedType: const FullType(_i7.DocumentNode)),
+      'idFields',
+      serializers.serialize(object.idFields,
+          specifiedType: const FullType(
+              Map, const [const FullType(String), const FullType(dynamic)])),
+    ];
+    Object? value;
+    value = object.fragmentName;
+    if (value != null) {
+      result
+        ..add('fragmentName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GSplitFieldsBasicsReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GSplitFieldsBasicsReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GSplitFieldsBasicsVars))!
+              as _i3.GSplitFieldsBasicsVars);
+          break;
+        case 'document':
+          result.document = serializers.deserialize(value,
+                  specifiedType: const FullType(_i7.DocumentNode))!
+              as _i7.DocumentNode;
+          break;
+        case 'fragmentName':
+          result.fragmentName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'idFields':
+          result.idFields = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ]))! as Map<String, dynamic>;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GSplitFieldsReqSerializer
     implements StructuredSerializer<GSplitFieldsReq> {
   @override
@@ -2721,6 +2928,84 @@ class _$GGroupWithExpensesReqSerializer
           result.vars.replace(serializers.deserialize(value,
                   specifiedType: const FullType(_i3.GGroupWithExpensesVars))!
               as _i3.GGroupWithExpensesVars);
+          break;
+        case 'document':
+          result.document = serializers.deserialize(value,
+                  specifiedType: const FullType(_i7.DocumentNode))!
+              as _i7.DocumentNode;
+          break;
+        case 'fragmentName':
+          result.fragmentName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'idFields':
+          result.idFields = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ]))! as Map<String, dynamic>;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GExpenseMixSplitFieldsReqSerializer
+    implements StructuredSerializer<GExpenseMixSplitFieldsReq> {
+  @override
+  final Iterable<Type> types = const [
+    GExpenseMixSplitFieldsReq,
+    _$GExpenseMixSplitFieldsReq
+  ];
+  @override
+  final String wireName = 'GExpenseMixSplitFieldsReq';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GExpenseMixSplitFieldsReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GExpenseMixSplitFieldsVars)),
+      'document',
+      serializers.serialize(object.document,
+          specifiedType: const FullType(_i7.DocumentNode)),
+      'idFields',
+      serializers.serialize(object.idFields,
+          specifiedType: const FullType(
+              Map, const [const FullType(String), const FullType(dynamic)])),
+    ];
+    Object? value;
+    value = object.fragmentName;
+    if (value != null) {
+      result
+        ..add('fragmentName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GExpenseMixSplitFieldsReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GExpenseMixSplitFieldsReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(_i3.GExpenseMixSplitFieldsVars))!
+              as _i3.GExpenseMixSplitFieldsVars);
           break;
         case 'document':
           result.document = serializers.deserialize(value,
@@ -6576,6 +6861,241 @@ class GtransactionWithUserReqBuilder
   }
 }
 
+class _$GtransactionMixExpenseReq extends GtransactionMixExpenseReq {
+  @override
+  final _i3.GtransactionMixExpenseVars vars;
+  @override
+  final _i4.Operation operation;
+  @override
+  final String? requestId;
+  @override
+  final _i2.GtransactionMixExpenseData? Function(
+          _i2.GtransactionMixExpenseData?, _i2.GtransactionMixExpenseData?)?
+      updateResult;
+  @override
+  final _i2.GtransactionMixExpenseData? optimisticResponse;
+  @override
+  final String? updateCacheHandlerKey;
+  @override
+  final Map<String, dynamic>? updateCacheHandlerContext;
+  @override
+  final _i1.FetchPolicy? fetchPolicy;
+  @override
+  final bool executeOnListen;
+
+  factory _$GtransactionMixExpenseReq(
+          [void Function(GtransactionMixExpenseReqBuilder)? updates]) =>
+      (new GtransactionMixExpenseReqBuilder()..update(updates))._build();
+
+  _$GtransactionMixExpenseReq._(
+      {required this.vars,
+      required this.operation,
+      this.requestId,
+      this.updateResult,
+      this.optimisticResponse,
+      this.updateCacheHandlerKey,
+      this.updateCacheHandlerContext,
+      this.fetchPolicy,
+      required this.executeOnListen})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        vars, r'GtransactionMixExpenseReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, r'GtransactionMixExpenseReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, r'GtransactionMixExpenseReq', 'executeOnListen');
+  }
+
+  @override
+  GtransactionMixExpenseReq rebuild(
+          void Function(GtransactionMixExpenseReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GtransactionMixExpenseReqBuilder toBuilder() =>
+      new GtransactionMixExpenseReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is GtransactionMixExpenseReq &&
+        vars == other.vars &&
+        operation == other.operation &&
+        requestId == other.requestId &&
+        updateResult == _$dynamicOther.updateResult &&
+        optimisticResponse == other.optimisticResponse &&
+        updateCacheHandlerKey == other.updateCacheHandlerKey &&
+        updateCacheHandlerContext == other.updateCacheHandlerContext &&
+        fetchPolicy == other.fetchPolicy &&
+        executeOnListen == other.executeOnListen;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, operation.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, updateResult.hashCode);
+    _$hash = $jc(_$hash, optimisticResponse.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerKey.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerContext.hashCode);
+    _$hash = $jc(_$hash, fetchPolicy.hashCode);
+    _$hash = $jc(_$hash, executeOnListen.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GtransactionMixExpenseReq')
+          ..add('vars', vars)
+          ..add('operation', operation)
+          ..add('requestId', requestId)
+          ..add('updateResult', updateResult)
+          ..add('optimisticResponse', optimisticResponse)
+          ..add('updateCacheHandlerKey', updateCacheHandlerKey)
+          ..add('updateCacheHandlerContext', updateCacheHandlerContext)
+          ..add('fetchPolicy', fetchPolicy)
+          ..add('executeOnListen', executeOnListen))
+        .toString();
+  }
+}
+
+class GtransactionMixExpenseReqBuilder
+    implements
+        Builder<GtransactionMixExpenseReq, GtransactionMixExpenseReqBuilder> {
+  _$GtransactionMixExpenseReq? _$v;
+
+  _i3.GtransactionMixExpenseVarsBuilder? _vars;
+  _i3.GtransactionMixExpenseVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GtransactionMixExpenseVarsBuilder();
+  set vars(_i3.GtransactionMixExpenseVarsBuilder? vars) => _$this._vars = vars;
+
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
+  _i2.GtransactionMixExpenseData? Function(
+          _i2.GtransactionMixExpenseData?, _i2.GtransactionMixExpenseData?)?
+      _updateResult;
+  _i2.GtransactionMixExpenseData? Function(
+          _i2.GtransactionMixExpenseData?, _i2.GtransactionMixExpenseData?)?
+      get updateResult => _$this._updateResult;
+  set updateResult(
+          _i2.GtransactionMixExpenseData? Function(
+                  _i2.GtransactionMixExpenseData?,
+                  _i2.GtransactionMixExpenseData?)?
+              updateResult) =>
+      _$this._updateResult = updateResult;
+
+  _i2.GtransactionMixExpenseDataBuilder? _optimisticResponse;
+  _i2.GtransactionMixExpenseDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??=
+          new _i2.GtransactionMixExpenseDataBuilder();
+  set optimisticResponse(
+          _i2.GtransactionMixExpenseDataBuilder? optimisticResponse) =>
+      _$this._optimisticResponse = optimisticResponse;
+
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
+      _$this._updateCacheHandlerKey = updateCacheHandlerKey;
+
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
+      _$this._updateCacheHandlerContext;
+  set updateCacheHandlerContext(
+          Map<String, dynamic>? updateCacheHandlerContext) =>
+      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
+      _$this._fetchPolicy = fetchPolicy;
+
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
+      _$this._executeOnListen = executeOnListen;
+
+  GtransactionMixExpenseReqBuilder() {
+    GtransactionMixExpenseReq._initializeBuilder(this);
+  }
+
+  GtransactionMixExpenseReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GtransactionMixExpenseReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GtransactionMixExpenseReq;
+  }
+
+  @override
+  void update(void Function(GtransactionMixExpenseReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GtransactionMixExpenseReq build() => _build();
+
+  _$GtransactionMixExpenseReq _build() {
+    _$GtransactionMixExpenseReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GtransactionMixExpenseReq._(
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GtransactionMixExpenseReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen,
+                  r'GtransactionMixExpenseReq',
+                  'executeOnListen'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+
+        _$failedField = 'optimisticResponse';
+        _optimisticResponse?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GtransactionMixExpenseReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GUserFieldsReq extends GUserFieldsReq {
   @override
   final _i3.GUserFieldsVars vars;
@@ -7444,6 +7964,153 @@ class GExpenseFieldsReqBuilder
   }
 }
 
+class _$GSplitFieldsBasicsReq extends GSplitFieldsBasicsReq {
+  @override
+  final _i3.GSplitFieldsBasicsVars vars;
+  @override
+  final _i7.DocumentNode document;
+  @override
+  final String? fragmentName;
+  @override
+  final Map<String, dynamic> idFields;
+
+  factory _$GSplitFieldsBasicsReq(
+          [void Function(GSplitFieldsBasicsReqBuilder)? updates]) =>
+      (new GSplitFieldsBasicsReqBuilder()..update(updates))._build();
+
+  _$GSplitFieldsBasicsReq._(
+      {required this.vars,
+      required this.document,
+      this.fragmentName,
+      required this.idFields})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        vars, r'GSplitFieldsBasicsReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        document, r'GSplitFieldsBasicsReq', 'document');
+    BuiltValueNullFieldError.checkNotNull(
+        idFields, r'GSplitFieldsBasicsReq', 'idFields');
+  }
+
+  @override
+  GSplitFieldsBasicsReq rebuild(
+          void Function(GSplitFieldsBasicsReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GSplitFieldsBasicsReqBuilder toBuilder() =>
+      new GSplitFieldsBasicsReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GSplitFieldsBasicsReq &&
+        vars == other.vars &&
+        document == other.document &&
+        fragmentName == other.fragmentName &&
+        idFields == other.idFields;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, document.hashCode);
+    _$hash = $jc(_$hash, fragmentName.hashCode);
+    _$hash = $jc(_$hash, idFields.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GSplitFieldsBasicsReq')
+          ..add('vars', vars)
+          ..add('document', document)
+          ..add('fragmentName', fragmentName)
+          ..add('idFields', idFields))
+        .toString();
+  }
+}
+
+class GSplitFieldsBasicsReqBuilder
+    implements Builder<GSplitFieldsBasicsReq, GSplitFieldsBasicsReqBuilder> {
+  _$GSplitFieldsBasicsReq? _$v;
+
+  _i3.GSplitFieldsBasicsVarsBuilder? _vars;
+  _i3.GSplitFieldsBasicsVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GSplitFieldsBasicsVarsBuilder();
+  set vars(_i3.GSplitFieldsBasicsVarsBuilder? vars) => _$this._vars = vars;
+
+  _i7.DocumentNode? _document;
+  _i7.DocumentNode? get document => _$this._document;
+  set document(_i7.DocumentNode? document) => _$this._document = document;
+
+  String? _fragmentName;
+  String? get fragmentName => _$this._fragmentName;
+  set fragmentName(String? fragmentName) => _$this._fragmentName = fragmentName;
+
+  Map<String, dynamic>? _idFields;
+  Map<String, dynamic>? get idFields => _$this._idFields;
+  set idFields(Map<String, dynamic>? idFields) => _$this._idFields = idFields;
+
+  GSplitFieldsBasicsReqBuilder() {
+    GSplitFieldsBasicsReq._initializeBuilder(this);
+  }
+
+  GSplitFieldsBasicsReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _document = $v.document;
+      _fragmentName = $v.fragmentName;
+      _idFields = $v.idFields;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GSplitFieldsBasicsReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GSplitFieldsBasicsReq;
+  }
+
+  @override
+  void update(void Function(GSplitFieldsBasicsReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GSplitFieldsBasicsReq build() => _build();
+
+  _$GSplitFieldsBasicsReq _build() {
+    _$GSplitFieldsBasicsReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GSplitFieldsBasicsReq._(
+              vars: vars.build(),
+              document: BuiltValueNullFieldError.checkNotNull(
+                  document, r'GSplitFieldsBasicsReq', 'document'),
+              fragmentName: fragmentName,
+              idFields: BuiltValueNullFieldError.checkNotNull(
+                  idFields, r'GSplitFieldsBasicsReq', 'idFields'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GSplitFieldsBasicsReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GSplitFieldsReq extends GSplitFieldsReq {
   @override
   final _i3.GSplitFieldsVars vars;
@@ -7875,6 +8542,154 @@ class GGroupWithExpensesReqBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'GGroupWithExpensesReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GExpenseMixSplitFieldsReq extends GExpenseMixSplitFieldsReq {
+  @override
+  final _i3.GExpenseMixSplitFieldsVars vars;
+  @override
+  final _i7.DocumentNode document;
+  @override
+  final String? fragmentName;
+  @override
+  final Map<String, dynamic> idFields;
+
+  factory _$GExpenseMixSplitFieldsReq(
+          [void Function(GExpenseMixSplitFieldsReqBuilder)? updates]) =>
+      (new GExpenseMixSplitFieldsReqBuilder()..update(updates))._build();
+
+  _$GExpenseMixSplitFieldsReq._(
+      {required this.vars,
+      required this.document,
+      this.fragmentName,
+      required this.idFields})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        vars, r'GExpenseMixSplitFieldsReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        document, r'GExpenseMixSplitFieldsReq', 'document');
+    BuiltValueNullFieldError.checkNotNull(
+        idFields, r'GExpenseMixSplitFieldsReq', 'idFields');
+  }
+
+  @override
+  GExpenseMixSplitFieldsReq rebuild(
+          void Function(GExpenseMixSplitFieldsReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GExpenseMixSplitFieldsReqBuilder toBuilder() =>
+      new GExpenseMixSplitFieldsReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GExpenseMixSplitFieldsReq &&
+        vars == other.vars &&
+        document == other.document &&
+        fragmentName == other.fragmentName &&
+        idFields == other.idFields;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, document.hashCode);
+    _$hash = $jc(_$hash, fragmentName.hashCode);
+    _$hash = $jc(_$hash, idFields.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GExpenseMixSplitFieldsReq')
+          ..add('vars', vars)
+          ..add('document', document)
+          ..add('fragmentName', fragmentName)
+          ..add('idFields', idFields))
+        .toString();
+  }
+}
+
+class GExpenseMixSplitFieldsReqBuilder
+    implements
+        Builder<GExpenseMixSplitFieldsReq, GExpenseMixSplitFieldsReqBuilder> {
+  _$GExpenseMixSplitFieldsReq? _$v;
+
+  _i3.GExpenseMixSplitFieldsVarsBuilder? _vars;
+  _i3.GExpenseMixSplitFieldsVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GExpenseMixSplitFieldsVarsBuilder();
+  set vars(_i3.GExpenseMixSplitFieldsVarsBuilder? vars) => _$this._vars = vars;
+
+  _i7.DocumentNode? _document;
+  _i7.DocumentNode? get document => _$this._document;
+  set document(_i7.DocumentNode? document) => _$this._document = document;
+
+  String? _fragmentName;
+  String? get fragmentName => _$this._fragmentName;
+  set fragmentName(String? fragmentName) => _$this._fragmentName = fragmentName;
+
+  Map<String, dynamic>? _idFields;
+  Map<String, dynamic>? get idFields => _$this._idFields;
+  set idFields(Map<String, dynamic>? idFields) => _$this._idFields = idFields;
+
+  GExpenseMixSplitFieldsReqBuilder() {
+    GExpenseMixSplitFieldsReq._initializeBuilder(this);
+  }
+
+  GExpenseMixSplitFieldsReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _document = $v.document;
+      _fragmentName = $v.fragmentName;
+      _idFields = $v.idFields;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GExpenseMixSplitFieldsReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GExpenseMixSplitFieldsReq;
+  }
+
+  @override
+  void update(void Function(GExpenseMixSplitFieldsReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GExpenseMixSplitFieldsReq build() => _build();
+
+  _$GExpenseMixSplitFieldsReq _build() {
+    _$GExpenseMixSplitFieldsReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GExpenseMixSplitFieldsReq._(
+              vars: vars.build(),
+              document: BuiltValueNullFieldError.checkNotNull(
+                  document, r'GExpenseMixSplitFieldsReq', 'document'),
+              fragmentName: fragmentName,
+              idFields: BuiltValueNullFieldError.checkNotNull(
+                  idFields, r'GExpenseMixSplitFieldsReq', 'idFields'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GExpenseMixSplitFieldsReq', _$failedField, e.toString());
       }
       rethrow;
     }

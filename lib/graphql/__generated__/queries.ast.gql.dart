@@ -224,6 +224,13 @@ const ExpenseBasic = _i1.FragmentDefinitionNode(
       directives: [],
       selectionSet: null,
     ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'creatorId'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
   ]),
 );
 const ExpenseFields = _i1.FragmentDefinitionNode(
@@ -265,8 +272,8 @@ const ExpenseFields = _i1.FragmentDefinitionNode(
     ),
   ]),
 );
-const SplitFields = _i1.FragmentDefinitionNode(
-  name: _i1.NameNode(value: 'SplitFields'),
+const SplitFieldsBasics = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'SplitFieldsBasics'),
   typeCondition: _i1.TypeConditionNode(
       on: _i1.NamedTypeNode(
     name: _i1.NameNode(value: 'Split'),
@@ -308,6 +315,56 @@ const SplitFields = _i1.FragmentDefinitionNode(
       arguments: [],
       directives: [],
       selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'fromUserId'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'toUserId'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'creatorId'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'withGroupId'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'groupId'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+  ]),
+);
+const SplitFields = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'SplitFields'),
+  typeCondition: _i1.TypeConditionNode(
+      on: _i1.NamedTypeNode(
+    name: _i1.NameNode(value: 'Split'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FragmentSpreadNode(
+      name: _i1.NameNode(value: 'SplitFieldsBasics'),
+      directives: [],
     ),
     _i1.FieldNode(
       name: _i1.NameNode(value: 'fromUser'),
@@ -404,8 +461,8 @@ const GroupWithExpenses = _i1.FragmentDefinitionNode(
       alias: null,
       arguments: [
         _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'skip'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'skip')),
+          name: _i1.NameNode(value: 'fromTime'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
         ),
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'limit'),
@@ -416,6 +473,41 @@ const GroupWithExpenses = _i1.FragmentDefinitionNode(
       selectionSet: _i1.SelectionSetNode(selections: [
         _i1.FragmentSpreadNode(
           name: _i1.NameNode(value: 'ExpenseFields'),
+          directives: [],
+        )
+      ]),
+    ),
+  ]),
+);
+const ExpenseMixSplitFields = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'ExpenseMixSplitFields'),
+  typeCondition: _i1.TypeConditionNode(
+      on: _i1.NamedTypeNode(
+    name: _i1.NameNode(value: 'ExpenseMixSplit'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'expense'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'ExpenseBasic'),
+          directives: [],
+        )
+      ]),
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'split'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'SplitFields'),
           directives: [],
         )
       ]),
@@ -529,10 +621,10 @@ const group = _i1.OperationDefinitionNode(
   name: _i1.NameNode(value: 'group'),
   variableDefinitions: [
     _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'skip')),
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
-        isNonNull: true,
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
       ),
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
@@ -1254,10 +1346,10 @@ const transactionWithUser = _i1.OperationDefinitionNode(
       directives: [],
     ),
     _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'skip')),
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
-        isNonNull: true,
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
       ),
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
@@ -1283,8 +1375,8 @@ const transactionWithUser = _i1.OperationDefinitionNode(
           value: _i1.VariableNode(name: _i1.NameNode(value: 'withUser')),
         ),
         _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'skip'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'skip')),
+          name: _i1.NameNode(value: 'fromTime'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
         ),
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'limit'),
@@ -1301,6 +1393,67 @@ const transactionWithUser = _i1.OperationDefinitionNode(
     )
   ]),
 );
+const transactionMixExpense = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.query,
+  name: _i1.NameNode(value: 'transactionMixExpense'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'groupId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'limit')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'getTransactionsMixExpenseWithGroup'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'withGroup'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'groupId')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'fromTime'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'limit'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'limit')),
+        ),
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'ExpenseMixSplitFields'),
+          directives: [],
+        )
+      ]),
+    )
+  ]),
+);
 const document = _i1.DocumentNode(definitions: [
   UserFields,
   UserPaysFields,
@@ -1308,9 +1461,11 @@ const document = _i1.DocumentNode(definitions: [
   GroupFields,
   ExpenseBasic,
   ExpenseFields,
+  SplitFieldsBasics,
   SplitFields,
   SplitTransactionFields,
   GroupWithExpenses,
+  ExpenseMixSplitFields,
   user,
   groups,
   interacted_users,
@@ -1328,4 +1483,5 @@ const document = _i1.DocumentNode(definitions: [
   simplifyUser,
   autoSettleWithUser,
   transactionWithUser,
+  transactionMixExpense,
 ]);
