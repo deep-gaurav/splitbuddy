@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -13,6 +14,7 @@ import 'package:splitbuddy/models/transaction_group_types.dart';
 import 'package:splitbuddy/screens/group.dart';
 import 'package:splitbuddy/screens/home_page.dart';
 import 'package:splitbuddy/state/app_state.dart';
+import 'package:splitbuddy/utils/color_utils.dart';
 
 class UserPage extends StatefulWidget {
   final Ginteracted_usersData_interactedUsers initialUser;
@@ -284,45 +286,129 @@ class UserTransactionCard extends StatelessWidget {
   bool isSelf(BuildContext context) =>
       context.read<AppState>().user?.id == maybeGroupTransaction.creator.id;
 
-  String getTitle(BuildContext context, GSplitTransactionFields transaction) {
+  (TextSpan, Color?) getTitle(
+      BuildContext context, GSplitTransactionFields transaction) {
+    ColorScheme scheme = ColorUtils.getMainScheme(context);
+    ColorScheme neutralYellow = ColorUtils.getNeutralYellow(context);
+    ColorScheme neutralBlue = ColorUtils.getNeutralBlue(context);
+
     if (transaction.transactionType == GTransactionType.CASH_PAID) {
       if (getIsReceiver(context, transaction)) {
-        return '${transaction.toUser.shortName} paid you';
+        return (
+          TextSpan(children: [
+            TextSpan(
+              text: transaction.toUser.shortName,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            TextSpan(
+                text: ' paid you',
+                style: TextStyle(
+                  color: neutralYellow.primary,
+                )),
+          ]),
+          neutralYellow.primary,
+        );
       } else {
-        return 'you paid ${transaction.toUser.shortName}';
+        return (
+          TextSpan(children: [
+            TextSpan(
+                text: 'you paid ',
+                style: TextStyle(
+                  color: neutralYellow.primary,
+                )),
+            TextSpan(
+              text: transaction.toUser.shortName,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          ]),
+          neutralYellow.primary,
+        );
       }
     } else if (transaction.transactionType == GTransactionType.EXPENSE_SPLIT) {
       if (getIsReceiver(context, transaction)) {
-        return 'you owe ${transaction.toUser.shortName}';
+        return (
+          TextSpan(children: [
+            TextSpan(
+              text: 'you owe ',
+              style: TextStyle(
+                color: scheme.error,
+              ),
+            ),
+            TextSpan(
+              text: transaction.toUser.shortName,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ]),
+          scheme.error
+        );
       } else {
-        return '${transaction.fromUser.shortName} owes you';
+        return (
+          TextSpan(children: [
+            TextSpan(
+              text: transaction.fromUser.shortName,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            TextSpan(
+              text: ' owes you',
+              style: TextStyle(
+                color: scheme.primary,
+              ),
+            ),
+          ]),
+          scheme.primary,
+        );
       }
     }
-    return '';
+    return (const TextSpan(), null);
   }
 
-  String? subTitle(BuildContext context, GSplitTransactionFields transaction) {
+  TextSpan? subTitle(
+      BuildContext context, GSplitTransactionFields transaction) {
     if (transaction.transactionType == GTransactionType.CASH_PAID ||
         transaction.transactionType == GTransactionType.EXPENSE_SPLIT) {
       if (transaction.group.id == userGroup?.id) {
-        return 'in Direct Payment';
+        return const TextSpan(children: [
+          TextSpan(text: 'in '),
+          TextSpan(
+              text: 'Direct Payment',
+              style: TextStyle(decoration: TextDecoration.underline))
+        ]);
       } else {
-        return 'in ${transaction.group.name}';
+        return TextSpan(children: [
+          const TextSpan(text: 'in '),
+          TextSpan(
+            text: transaction.group.name,
+            style: const TextStyle(
+              fontStyle: FontStyle.italic,
+            ),
+          )
+        ]);
       }
     }
     return null;
   }
 
-  String getGroupName(
-          BuildContext context, GSplitTransactionFields transaction) =>
-      transaction.group.id == userGroup?.id
-          ? 'Direct Payment'
-          : context.read<AppState>().getGroupName(transaction.group.id);
+  TextSpan getGroupName(BuildContext context, String groupId) =>
+      groupId == userGroup?.id
+          ? const TextSpan(
+              text: 'Direct Payment',
+              style: TextStyle(decoration: TextDecoration.underline))
+          : TextSpan(
+              text: context.read<AppState>().getGroupName(groupId),
+              style: const TextStyle(fontStyle: FontStyle.italic));
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 5),
+      padding: const EdgeInsets.only(top: 10),
       child: FractionallySizedBox(
         widthFactor: 0.7,
         alignment: maybeGroupTransaction is GroupedCrossSettlementTransactions
@@ -335,8 +421,24 @@ class UserTransactionCard extends StatelessWidget {
               isSelf(context) ? Alignment.centerRight : Alignment.centerLeft,
           child: IntrinsicWidth(
             child: switch (maybeGroupTransaction) {
-              SingleTransaction(transaction: var transaction) =>
-                buildSingleTransaction(context, transaction),
+              SingleTransaction(transaction: var transaction) => ChatBubble(
+                  clipper: ChatBubbleClipper1(
+                    type: isSelf(context)
+                        ? BubbleType.sendBubble
+                        : BubbleType.receiverBubble,
+                  ),
+                  backGroundColor: Color.alphaBlend(
+                      Theme.of(context)
+                          .colorScheme
+                          .surfaceTint
+                          .withOpacity(isSelf(context) ? 0.5 : 0.2),
+                      Theme.of(context).cardColor),
+                  padding: EdgeInsets.only(
+                    left: isSelf(context) ? 0 : 20,
+                    right: !isSelf(context) ? 0 : 15,
+                  ),
+                  elevation: 3,
+                  child: buildSingleTransaction(context, transaction)),
               GroupedPaidTransactions(
                 transactions: var transactions,
                 groupId: var groupedTransactionId,
@@ -345,42 +447,78 @@ class UserTransactionCard extends StatelessWidget {
                 createdAt: var createdAt
               ) =>
                 transactions.length > 1
-                    ? TransactionCard(
-                        title: TextSpan(
-                            text: getTitle(context, transactions.first)),
-                        amount: total,
-                        createdAt: createdAt,
-                        subtitle: 'Payment split into',
-                        body: [
-                          const Divider(),
-                          ...transactions.map(
-                            (split) => Row(
-                              children: [
-                                Text(split.amount.toString()),
-                                Expanded(
-                                  child: Text(
-                                    split.group.id == userGroup?.id
-                                        ? 'Direct Payment'
-                                        : context
-                                                .read<AppState>()
-                                                .userGroups
-                                                .firstWhereOrNull((element) =>
-                                                    element.id ==
-                                                    split.group.id)
-                                                ?.displayName ??
-                                            split.group.id,
-                                    textAlign: TextAlign.end,
+                    ? ChatBubble(
+                        clipper: ChatBubbleClipper1(
+                          type: isSelf(context)
+                              ? BubbleType.sendBubble
+                              : BubbleType.receiverBubble,
+                        ),
+                        backGroundColor: Color.alphaBlend(
+                            Theme.of(context)
+                                .colorScheme
+                                .surfaceTint
+                                .withOpacity(isSelf(context) ? 0.5 : 0.2),
+                            Theme.of(context).cardColor),
+                        padding: EdgeInsets.only(
+                          left: isSelf(context) ? 0 : 20,
+                          right: !isSelf(context) ? 0 : 15,
+                        ),
+                        elevation: 3,
+                        child: TransactionCard(
+                          title: getTitle(context, transactions.first).$1,
+                          amountColor: getTitle(context, transactions.first).$2,
+                          amount: total,
+                          createdAt: createdAt,
+                          subtitle: const TextSpan(text: 'Payment split into'),
+                          body: [
+                            const Divider(),
+                            ...transactions.reversed.map(
+                              (split) => Row(
+                                children: [
+                                  Text(
+                                    split.amount.toString(),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge
+                                        ?.copyWith(fontWeight: FontWeight.bold),
                                   ),
-                                ),
-                              ],
+                                  Expanded(
+                                    child: Text.rich(
+                                      getGroupName(context, split.groupId),
+                                      textAlign: TextAlign.end,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          )
-                        ],
+                            const SizedBox(
+                              height: 15,
+                            )
+                          ],
+                        ),
                       )
-                    : buildSingleTransaction(context, transactions.first),
+                    : ChatBubble(
+                        clipper: ChatBubbleClipper1(
+                          type: isSelf(context)
+                              ? BubbleType.sendBubble
+                              : BubbleType.receiverBubble,
+                        ),
+                        backGroundColor: Color.alphaBlend(
+                            Theme.of(context)
+                                .colorScheme
+                                .surfaceTint
+                                .withOpacity(isSelf(context) ? 0.5 : 0.2),
+                            Theme.of(context).cardColor),
+                        padding: EdgeInsets.only(
+                          left: isSelf(context) ? 0 : 20,
+                          right: !isSelf(context) ? 0 : 15,
+                        ),
+                        elevation: 3,
+                        child: buildSingleTransaction(
+                          context,
+                          transactions.first,
+                        ),
+                      ),
               GroupedCrossSettlementTransactions(
                 createdAt: var createdAt,
                 transactionPairs: var transactionPairs
@@ -397,8 +535,23 @@ class UserTransactionCard extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 15),
-                              child: Text(
-                                "Settled ${e.$1.amount} between ${getGroupName(context, e.$1)} and ${getGroupName(context, e.$2 ?? e.$1)}",
+                              child: Text.rich(
+                                TextSpan(children: [
+                                  const TextSpan(text: 'Settled '),
+                                  TextSpan(
+                                      text: e.$1.amount.toString(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                                  const TextSpan(text: ' between '),
+                                  getGroupName(context, e.$1.groupId),
+                                  const TextSpan(text: ' and '),
+                                  getGroupName(
+                                      context, e.$2?.groupId ?? e.$1.groupId)
+                                ]),
                                 style: Theme.of(context).textTheme.labelMedium,
                                 textAlign: TextAlign.center,
                               ),
@@ -437,7 +590,8 @@ class UserTransactionCard extends StatelessWidget {
         if (transaction.expense != null)
           ExpenseCard(expense: transaction.expense!),
         TransactionCard(
-          title: TextSpan(text: getTitle(context, transaction)),
+          title: getTitle(context, transaction).$1,
+          amountColor: getTitle(context, transaction).$2,
           amount: transaction.amount,
           createdAt: transaction.createdAt,
           subtitle: subTitle(context, transaction),
@@ -500,7 +654,7 @@ class TransactionCard extends StatelessWidget {
   final double elevation;
   final TextSpan title;
   final int? amount;
-  final String? subtitle;
+  final TextSpan? subtitle;
   final String? createdAt;
   final List<Widget> body;
   final EdgeInsets padding;
@@ -558,7 +712,7 @@ class TransactionCard extends StatelessWidget {
                           children: [
                             Text.rich(title),
                             if (subtitle != null)
-                              Text(
+                              Text.rich(
                                 subtitle!,
                                 style: Theme.of(context).textTheme.labelMedium,
                               ),

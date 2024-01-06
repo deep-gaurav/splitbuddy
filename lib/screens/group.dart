@@ -15,10 +15,12 @@ import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.ast.gql.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
+import 'package:splitbuddy/screens/group_info.dart';
 import 'package:splitbuddy/screens/groups_page.dart';
 import 'package:splitbuddy/screens/home_page.dart';
 import 'package:splitbuddy/screens/user.dart';
 import 'package:splitbuddy/state/app_state.dart';
+import 'package:splitbuddy/utils/color_utils.dart';
 
 class Group extends StatefulWidget {
   final GGroupFields group;
@@ -31,27 +33,16 @@ class Group extends StatefulWidget {
 class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
   List<GroupTransactionObject> expenses = [];
 
-  late AnimationController _sheetAnimationController;
-
   final ScrollController _scrollController = ScrollController();
 
   bool _loading = false;
 
-  ColorScheme get scheme => ColorScheme.fromSeed(
-          seedColor: Colors.green,
-          error: Colors.red,
-          brightness: Theme.of(context).brightness)
-      .harmonized();
-  ColorScheme get neutralYellow => ColorScheme.fromSeed(
-          seedColor: Colors.yellow, brightness: Theme.of(context).brightness)
-      .harmonized();
-  ColorScheme get neutralBlue => ColorScheme.fromSeed(
-          seedColor: Colors.blue, brightness: Theme.of(context).brightness)
-      .harmonized();
+  ColorScheme get scheme => ColorUtils.getMainScheme(context);
+  ColorScheme get neutralYellow => ColorUtils.getNeutralYellow(context);
+  ColorScheme get neutralBlue => ColorUtils.getNeutralBlue(context);
 
   @override
   void initState() {
-    _sheetAnimationController = BottomSheet.createAnimationController(this);
     _scrollController.addListener(() {
       var nextPageTrigger = 300;
 
@@ -83,15 +74,13 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
         ),
       );
       if (result.data != null) {
-        if (expenses.isEmpty) {
-          var pos = _scrollController.position.maxScrollExtent -
-              _scrollController.position.pixels;
-
-          _scrollController
-              .jumpTo(_scrollController.position.maxScrollExtent - pos);
-          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-            _scrollController
-                .jumpTo(_scrollController.position.maxScrollExtent - pos);
+        if (expenses.isEmpty && mounted) {
+          _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+          WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+            // await Future.delayed(Durations.short1);
+            _scrollController.jumpTo(
+              _scrollController.position.maxScrollExtent,
+            );
           });
         }
         for (var trans in result.data!.getTransactionsMixExpenseWithGroup) {
@@ -266,7 +255,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
                           ),
                         );
                       },
-                      icon: const Icon(Icons.people),
+                      icon: const Icon(Icons.settings),
                     )
                   ],
                   title: SizedBox(
@@ -281,85 +270,6 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
                       ],
                     ),
                   ),
-                  // bottom: PreferredSize(
-                  //   preferredSize: const Size.fromHeight(140),
-                  //   child: SizedBox(
-                  //     height: 140,
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.symmetric(
-                  //           horizontal: 20, vertical: 20),
-                  //       child: SingleChildScrollView(
-                  //         physics: const NeverScrollableScrollPhysics(),
-                  //         child: Column(
-                  //           crossAxisAlignment: CrossAxisAlignment.stretch,
-                  //           mainAxisAlignment: MainAxisAlignment.start,
-                  //           children: [
-                  //             Row(
-                  //               children: [
-                  //                 Expanded(
-                  //                   child: Row(
-                  //                     children: [
-                  //                       const Spacer(),
-                  //                       const Icon(Icons.call_received),
-                  //                       const SizedBox(
-                  //                         width: 5,
-                  //                       ),
-                  //                       Text(
-                  //                         '${group.toReceive} to Receive',
-                  //                         style: Theme.of(context)
-                  //                             .textTheme
-                  //                             .titleMedium,
-                  //                       ),
-                  //                       const Spacer(),
-                  //                     ],
-                  //                   ),
-                  //                 ),
-                  //                 Expanded(
-                  //                   child: Row(
-                  //                     children: [
-                  //                       const Spacer(),
-                  //                       const Icon(Icons.call_made),
-                  //                       const SizedBox(
-                  //                         width: 5,
-                  //                       ),
-                  //                       Text(
-                  //                         '${group.toPay} to Pay',
-                  //                         style: Theme.of(context)
-                  //                             .textTheme
-                  //                             .titleMedium,
-                  //                       ),
-                  //                       const Spacer(),
-                  //                     ],
-                  //                   ),
-                  //                 ),
-                  //               ],
-                  //             ),
-                  //             const SizedBox(
-                  //               height: 10,
-                  //             ),
-                  //             ...group.members.map(
-                  //               (member) => Row(
-                  //                 children: [
-                  //                   SizedBox(
-                  //                     width: 30,
-                  //                     child: FittedBox(
-                  //                       child:
-                  //                           UserIconWidget(user: member.member),
-                  //                     ),
-                  //                   ),
-                  //                   const SizedBox(
-                  //                     width: 10,
-                  //                   ),
-                  //                   Text(member.member.displayName),
-                  //                 ],
-                  //               ),
-                  //             )
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                 ),
                 if (expenseGrouped.isEmpty)
                   const SliverFillRemaining()
@@ -546,207 +456,217 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 20),
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 20),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Group Summary',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                    child: Row(
-                                  children: [
-                                    const Spacer(),
-                                    Icon(
-                                      Icons.call_received,
-                                      color: scheme.primary,
+                    child: InkWell(
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => GroupMembersPage(
+                            initialGroup: group,
+                          ),
+                        ),
+                      ),
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 20),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Group Summary',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.w600,
                                     ),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      group.toReceive.toString(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleLarge
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            color: scheme.primary,
-                                          ),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      'To Receive',
-                                      style: TextStyle(color: scheme.primary),
-                                    ),
-                                    const Spacer(),
-                                  ],
-                                )),
-                                Expanded(
-                                  child: Row(
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                      child: Row(
                                     children: [
                                       const Spacer(),
                                       Icon(
-                                        Icons.call_made,
-                                        color: scheme.error,
+                                        Icons.call_received,
+                                        color: scheme.primary,
                                       ),
                                       const SizedBox(
                                         width: 5,
                                       ),
                                       Text(
-                                        group.toPay.toString(),
+                                        group.toReceive.toString(),
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleLarge
                                             ?.copyWith(
                                               fontWeight: FontWeight.bold,
-                                              color: scheme.error,
+                                              color: scheme.primary,
                                             ),
                                       ),
                                       const SizedBox(
                                         width: 10,
                                       ),
                                       Text(
-                                        'To Pay',
-                                        style: TextStyle(
-                                          color: scheme.error,
-                                        ),
+                                        'To Receive',
+                                        style: TextStyle(color: scheme.primary),
                                       ),
                                       const Spacer(),
                                     ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            const Divider(),
-                            ...group.members
-                                .where((p0) =>
-                                    p0.member.id !=
-                                    context.read<AppState>().user!.id)
-                                .map<Widget>(
-                                  (member) => Row(
-                                    children: [
-                                      SizedBox(
-                                        height: 25,
-                                        width: 25,
-                                        child: FittedBox(
-                                          child: UserIconWidget(
-                                              user: member.member),
+                                  )),
+                                  Expanded(
+                                    child: Row(
+                                      children: [
+                                        const Spacer(),
+                                        Icon(
+                                          Icons.call_made,
+                                          color: scheme.error,
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        member.member.shortName,
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
+                                        const SizedBox(
+                                          width: 5,
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      if (member.owedInGroup < 0)
-                                        Text.rich(
-                                          TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: 'owes you ',
-                                                style: TextStyle(
-                                                  color: scheme.primary,
-                                                ),
+                                        Text(
+                                          group.toPay.toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge
+                                              ?.copyWith(
+                                                fontWeight: FontWeight.bold,
+                                                color: scheme.error,
                                               ),
-                                              TextSpan(
-                                                text: '${-member.owedInGroup}',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium
-                                                    ?.copyWith(
-                                                        color: scheme.primary,
-                                                        fontWeight:
-                                                            FontWeight.w800),
-                                              ),
-                                            ],
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          'To Pay',
+                                          style: TextStyle(
+                                            color: scheme.error,
                                           ),
-                                        )
-                                      else if (member.owedInGroup > 0)
-                                        Text.rich(
-                                          TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: 'you owe ',
-                                                style: TextStyle(
-                                                  color: scheme.error,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: '${member.owedInGroup}',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium
-                                                    ?.copyWith(
-                                                        color: scheme.error,
-                                                        fontWeight:
-                                                            FontWeight.w800),
-                                              ),
-                                            ],
+                                        ),
+                                        const Spacer(),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              const Divider(),
+                              ...group.members
+                                  .where((p0) =>
+                                      p0.member.id !=
+                                      context.read<AppState>().user!.id)
+                                  .map<Widget>(
+                                    (member) => Row(
+                                      children: [
+                                        SizedBox(
+                                          height: 25,
+                                          width: 25,
+                                          child: FittedBox(
+                                            child: UserIconWidget(
+                                                user: member.member),
                                           ),
-                                        )
-                                      else
-                                        Text.rich(
-                                          TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: 'settled with you ',
-                                                style: TextStyle(
-                                                  color: neutralBlue.primary,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: '${member.owedInGroup}',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium
-                                                    ?.copyWith(
-                                                        color:
-                                                            neutralBlue.primary,
-                                                        fontWeight:
-                                                            FontWeight.w800),
-                                              ),
-                                            ],
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          member.member.shortName,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
                                           ),
-                                        )
-                                    ],
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        if (member.owedInGroup < 0)
+                                          Text.rich(
+                                            TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                  text: 'owes you ',
+                                                  style: TextStyle(
+                                                    color: scheme.primary,
+                                                  ),
+                                                ),
+                                                TextSpan(
+                                                  text:
+                                                      '${-member.owedInGroup}',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium
+                                                      ?.copyWith(
+                                                          color: scheme.primary,
+                                                          fontWeight:
+                                                              FontWeight.w800),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        else if (member.owedInGroup > 0)
+                                          Text.rich(
+                                            TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                  text: 'you owe ',
+                                                  style: TextStyle(
+                                                    color: scheme.error,
+                                                  ),
+                                                ),
+                                                TextSpan(
+                                                  text: '${member.owedInGroup}',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium
+                                                      ?.copyWith(
+                                                          color: scheme.error,
+                                                          fontWeight:
+                                                              FontWeight.w800),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        else
+                                          Text.rich(
+                                            TextSpan(
+                                              children: [
+                                                TextSpan(
+                                                  text: 'settled with you ',
+                                                  style: TextStyle(
+                                                    color: neutralBlue.primary,
+                                                  ),
+                                                ),
+                                                TextSpan(
+                                                  text: '${member.owedInGroup}',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium
+                                                      ?.copyWith(
+                                                          color: neutralBlue
+                                                              .primary,
+                                                          fontWeight:
+                                                              FontWeight.w800),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                      ],
+                                    ),
+                                  )
+                                  .intersperse(
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
                                   ),
-                                )
-                                .intersperse(
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('View complete'),
-                                Icon(Icons.chevron_right),
-                              ],
-                            )
-                          ],
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              const Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('View complete'),
+                                  Icon(Icons.chevron_right),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -810,175 +730,6 @@ class DateHeader extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
     return false;
-  }
-}
-
-class GroupMembersPage extends StatefulWidget {
-  final GGroupFields initialGroup;
-  const GroupMembersPage({
-    super.key,
-    required this.initialGroup,
-  });
-
-  @override
-  State<GroupMembersPage> createState() => _GroupMembersPageState();
-}
-
-class _GroupMembersPageState extends State<GroupMembersPage> {
-  late GGroupFields group;
-
-  @override
-  void initState() {
-    group = widget.initialGroup;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar.large(
-            title: Text(group.displayName),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                var member = group.members[index];
-                return Container(
-                  margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                  child: Card(
-                    child: ListTile(
-                      selected:
-                          context.read<AppState>().user!.id == member.member.id,
-                      leading: const Icon(Icons.person),
-                      title: Text(member.member.displayName),
-                    ),
-                  ),
-                );
-              },
-              childCount: group.members.length,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-              child: Card(
-                child: ListTile(
-                  onTap: () async {
-                    var appState = context.read<AppState>();
-                    var messenger = ScaffoldMessenger.of(context);
-                    var email = await showDialog(
-                      context: context,
-                      builder: (context) =>
-                          NewMemberEmailDialog(groupName: group.displayName),
-                    );
-                    if (email is String) {
-                      try {
-                        var res =
-                            await appState.addMemberToGroup(email, group.id);
-                        setState(() {
-                          group = res;
-                        });
-
-                        messenger.showSnackBar(
-                          const SnackBar(
-                            content: Text("member added successfully"),
-                          ),
-                        );
-                      } catch (e) {
-                        messenger.showSnackBar(
-                          const SnackBar(
-                            content: Text("Cant add member"),
-                          ),
-                        );
-                      }
-                    }
-                  },
-                  leading: const Icon(Icons.person_add),
-                  title: const Text("Add new member"),
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class NewMemberEmailDialog extends StatefulWidget {
-  final String groupName;
-  const NewMemberEmailDialog({
-    super.key,
-    required this.groupName,
-  });
-
-  @override
-  State<NewMemberEmailDialog> createState() => _NewMemberEmailDialogState();
-}
-
-class _NewMemberEmailDialogState extends State<NewMemberEmailDialog> {
-  var controller = TextEditingController();
-  var formKey = GlobalKey<FormState>();
-
-  onSubmit(String email) {
-    if (formKey.currentState?.validate() == true) {
-      Navigator.of(context).pop(email);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            "Add member to ${widget.groupName}",
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Form(
-              key: formKey,
-              child: TextFormField(
-                controller: controller,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Email cant be empty";
-                  } else {
-                    return null;
-                  }
-                },
-                onFieldSubmitted: onSubmit,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton.icon(
-            onPressed: () => onSubmit(controller.text),
-            icon: const Icon(Icons.done),
-            label: const Text("Add"),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-        ],
-      ),
-    );
   }
 }
 
