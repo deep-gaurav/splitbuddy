@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:collection/collection.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:dynamic_color/dynamic_color.dart';
@@ -40,6 +42,8 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
   ColorScheme get scheme => ColorUtils.getMainScheme(context);
   ColorScheme get neutralYellow => ColorUtils.getNeutralYellow(context);
   ColorScheme get neutralBlue => ColorUtils.getNeutralBlue(context);
+
+  ValueNotifier<bool> maintain = ValueNotifier(true);
 
   @override
   void initState() {
@@ -97,6 +101,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
           }
         }
 
+        maintain.value = true;
         setState(() {});
       }
     } finally {
@@ -235,10 +240,10 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
         children: [
           Expanded(
               child: CustomScrollView(
-            physics: const MaintiningScrollPhysics(),
+            physics: MaintiningScrollPhysics(maintain: maintain),
             controller: _scrollController,
             slivers: [
-              SliverAppBar(
+              SliverAppBar.large(
                 primary: true,
                 pinned: true,
                 actions: [
@@ -719,11 +724,15 @@ class DateHeader extends SliverPersistentHeaderDelegate {
 }
 
 class MaintiningScrollPhysics extends ScrollPhysics {
-  const MaintiningScrollPhysics({super.parent});
+  const MaintiningScrollPhysics({super.parent, required this.maintain});
+
+  final ValueNotifier<bool> maintain;
+  // double lastExtent = 0;
 
   @override
   MaintiningScrollPhysics applyTo(ScrollPhysics? ancestor) {
-    return MaintiningScrollPhysics(parent: buildParent(ancestor));
+    return MaintiningScrollPhysics(
+        parent: buildParent(ancestor), maintain: maintain);
   }
 
   @override
@@ -733,7 +742,24 @@ class MaintiningScrollPhysics extends ScrollPhysics {
     required bool isScrolling,
     required double velocity,
   }) {
-    return newPosition.maxScrollExtent -
-        (oldPosition.maxScrollExtent - oldPosition.pixels);
+    if (maintain.value) {
+      maintain.value = false;
+      // lastExtent = oldPosition.maxScrollExtent;
+
+      var their = super.adjustPositionForNewDimensions(
+          oldPosition: oldPosition,
+          newPosition: newPosition,
+          isScrolling: isScrolling,
+          velocity: velocity);
+      var mine = newPosition.maxScrollExtent -
+          (oldPosition.maxScrollExtent - oldPosition.pixels);
+      return max(their, mine);
+    } else {
+      return super.adjustPositionForNewDimensions(
+          oldPosition: oldPosition,
+          newPosition: newPosition,
+          isScrolling: isScrolling,
+          velocity: velocity);
+    }
   }
 }

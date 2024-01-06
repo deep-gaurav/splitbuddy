@@ -35,6 +35,7 @@ class _UserPageState extends State<UserPage> {
   late Ginteracted_usersData_interactedUsers user;
   Map<String, List<TransactionCardTypes>> expenseGrouped = {};
   List<String> dates = [];
+  ValueNotifier<bool> maintain = ValueNotifier(true);
 
   @override
   void initState() {
@@ -126,7 +127,7 @@ class _UserPageState extends State<UserPage> {
             }
           }
         }
-
+        maintain.value = true;
         setState(() {});
         expenseGrouped = {};
         for (var transaction in transactions) {
@@ -159,10 +160,27 @@ class _UserPageState extends State<UserPage> {
         children: [
           Expanded(
               child: CustomScrollView(
-            shrinkWrap: true,
-            physics: const MaintiningScrollPhysics(),
+            physics: MaintiningScrollPhysics(maintain: maintain),
             controller: _scrollController,
             slivers: [
+              SliverAppBar.large(
+                primary: true,
+                pinned: true,
+                title: SizedBox(
+                  height: 40,
+                  child: Row(
+                    children: [
+                      UserIconWidget(
+                        user: user,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(user.displayName),
+                    ],
+                  ),
+                ),
+              ),
               ...dates.map(
                 (entry) => MultiSliver(
                   pushPinnedChildren: true,
