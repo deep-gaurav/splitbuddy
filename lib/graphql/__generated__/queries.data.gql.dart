@@ -2694,7 +2694,7 @@ abstract class GsettleInGroupData_settleInGroup
     implements
         Built<GsettleInGroupData_settleInGroup,
             GsettleInGroupData_settleInGroupBuilder>,
-        GSplitFields {
+        GSplitTransactionFields {
   GsettleInGroupData_settleInGroup._();
 
   factory GsettleInGroupData_settleInGroup(
@@ -2707,6 +2707,12 @@ abstract class GsettleInGroupData_settleInGroup
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
+  @override
+  GsettleInGroupData_settleInGroup_expense? get expense;
+  @override
+  GsettleInGroupData_settleInGroup_group get group;
+  @override
+  GsettleInGroupData_settleInGroup_creator get creator;
   @override
   GsettleInGroupData_settleInGroup_fromUser get fromUser;
   @override
@@ -2748,11 +2754,143 @@ abstract class GsettleInGroupData_settleInGroup
       );
 }
 
+abstract class GsettleInGroupData_settleInGroup_expense
+    implements
+        Built<GsettleInGroupData_settleInGroup_expense,
+            GsettleInGroupData_settleInGroup_expenseBuilder>,
+        GSplitTransactionFields_expense,
+        GExpenseBasic {
+  GsettleInGroupData_settleInGroup_expense._();
+
+  factory GsettleInGroupData_settleInGroup_expense(
+      [Function(GsettleInGroupData_settleInGroup_expenseBuilder b)
+          updates]) = _$GsettleInGroupData_settleInGroup_expense;
+
+  static void _initializeBuilder(
+          GsettleInGroupData_settleInGroup_expenseBuilder b) =>
+      b..G__typename = 'Expense';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  int get amount;
+  @override
+  String get creatorId;
+  static Serializer<GsettleInGroupData_settleInGroup_expense> get serializer =>
+      _$gsettleInGroupDataSettleInGroupExpenseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsettleInGroupData_settleInGroup_expense.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsettleInGroupData_settleInGroup_expense? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsettleInGroupData_settleInGroup_expense.serializer,
+        json,
+      );
+}
+
+abstract class GsettleInGroupData_settleInGroup_group
+    implements
+        Built<GsettleInGroupData_settleInGroup_group,
+            GsettleInGroupData_settleInGroup_groupBuilder>,
+        GSplitTransactionFields_group,
+        GGroupBasic {
+  GsettleInGroupData_settleInGroup_group._();
+
+  factory GsettleInGroupData_settleInGroup_group(
+          [Function(GsettleInGroupData_settleInGroup_groupBuilder b) updates]) =
+      _$GsettleInGroupData_settleInGroup_group;
+
+  static void _initializeBuilder(
+          GsettleInGroupData_settleInGroup_groupBuilder b) =>
+      b..G__typename = 'Group';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  static Serializer<GsettleInGroupData_settleInGroup_group> get serializer =>
+      _$gsettleInGroupDataSettleInGroupGroupSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsettleInGroupData_settleInGroup_group.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsettleInGroupData_settleInGroup_group? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsettleInGroupData_settleInGroup_group.serializer,
+        json,
+      );
+}
+
+abstract class GsettleInGroupData_settleInGroup_creator
+    implements
+        Built<GsettleInGroupData_settleInGroup_creator,
+            GsettleInGroupData_settleInGroup_creatorBuilder>,
+        GSplitTransactionFields_creator,
+        GUserFields {
+  GsettleInGroupData_settleInGroup_creator._();
+
+  factory GsettleInGroupData_settleInGroup_creator(
+      [Function(GsettleInGroupData_settleInGroup_creatorBuilder b)
+          updates]) = _$GsettleInGroupData_settleInGroup_creator;
+
+  static void _initializeBuilder(
+          GsettleInGroupData_settleInGroup_creatorBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GsettleInGroupData_settleInGroup_creator> get serializer =>
+      _$gsettleInGroupDataSettleInGroupCreatorSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsettleInGroupData_settleInGroup_creator.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsettleInGroupData_settleInGroup_creator? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsettleInGroupData_settleInGroup_creator.serializer,
+        json,
+      );
+}
+
 abstract class GsettleInGroupData_settleInGroup_fromUser
     implements
         Built<GsettleInGroupData_settleInGroup_fromUser,
             GsettleInGroupData_settleInGroup_fromUserBuilder>,
-        GSplitFields_fromUser,
+        GSplitTransactionFields_fromUser,
         GUserFields {
   GsettleInGroupData_settleInGroup_fromUser._();
 
@@ -2798,7 +2936,7 @@ abstract class GsettleInGroupData_settleInGroup_toUser
     implements
         Built<GsettleInGroupData_settleInGroup_toUser,
             GsettleInGroupData_settleInGroup_toUserBuilder>,
-        GSplitFields_toUser,
+        GSplitTransactionFields_toUser,
         GUserFields {
   GsettleInGroupData_settleInGroup_toUser._();
 
@@ -3190,7 +3328,7 @@ abstract class GautoSettleWithUserData_autoSettleWithUser
     implements
         Built<GautoSettleWithUserData_autoSettleWithUser,
             GautoSettleWithUserData_autoSettleWithUserBuilder>,
-        GSplitFields {
+        GSplitTransactionFields {
   GautoSettleWithUserData_autoSettleWithUser._();
 
   factory GautoSettleWithUserData_autoSettleWithUser(
@@ -3204,6 +3342,12 @@ abstract class GautoSettleWithUserData_autoSettleWithUser
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_expense? get expense;
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_group get group;
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_creator get creator;
   @override
   GautoSettleWithUserData_autoSettleWithUser_fromUser get fromUser;
   @override
@@ -3245,11 +3389,146 @@ abstract class GautoSettleWithUserData_autoSettleWithUser
       );
 }
 
+abstract class GautoSettleWithUserData_autoSettleWithUser_expense
+    implements
+        Built<GautoSettleWithUserData_autoSettleWithUser_expense,
+            GautoSettleWithUserData_autoSettleWithUser_expenseBuilder>,
+        GSplitTransactionFields_expense,
+        GExpenseBasic {
+  GautoSettleWithUserData_autoSettleWithUser_expense._();
+
+  factory GautoSettleWithUserData_autoSettleWithUser_expense(
+      [Function(GautoSettleWithUserData_autoSettleWithUser_expenseBuilder b)
+          updates]) = _$GautoSettleWithUserData_autoSettleWithUser_expense;
+
+  static void _initializeBuilder(
+          GautoSettleWithUserData_autoSettleWithUser_expenseBuilder b) =>
+      b..G__typename = 'Expense';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  int get amount;
+  @override
+  String get creatorId;
+  static Serializer<GautoSettleWithUserData_autoSettleWithUser_expense>
+      get serializer =>
+          _$gautoSettleWithUserDataAutoSettleWithUserExpenseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GautoSettleWithUserData_autoSettleWithUser_expense.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GautoSettleWithUserData_autoSettleWithUser_expense? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GautoSettleWithUserData_autoSettleWithUser_expense.serializer,
+        json,
+      );
+}
+
+abstract class GautoSettleWithUserData_autoSettleWithUser_group
+    implements
+        Built<GautoSettleWithUserData_autoSettleWithUser_group,
+            GautoSettleWithUserData_autoSettleWithUser_groupBuilder>,
+        GSplitTransactionFields_group,
+        GGroupBasic {
+  GautoSettleWithUserData_autoSettleWithUser_group._();
+
+  factory GautoSettleWithUserData_autoSettleWithUser_group(
+      [Function(GautoSettleWithUserData_autoSettleWithUser_groupBuilder b)
+          updates]) = _$GautoSettleWithUserData_autoSettleWithUser_group;
+
+  static void _initializeBuilder(
+          GautoSettleWithUserData_autoSettleWithUser_groupBuilder b) =>
+      b..G__typename = 'Group';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  static Serializer<GautoSettleWithUserData_autoSettleWithUser_group>
+      get serializer =>
+          _$gautoSettleWithUserDataAutoSettleWithUserGroupSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GautoSettleWithUserData_autoSettleWithUser_group.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GautoSettleWithUserData_autoSettleWithUser_group? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GautoSettleWithUserData_autoSettleWithUser_group.serializer,
+        json,
+      );
+}
+
+abstract class GautoSettleWithUserData_autoSettleWithUser_creator
+    implements
+        Built<GautoSettleWithUserData_autoSettleWithUser_creator,
+            GautoSettleWithUserData_autoSettleWithUser_creatorBuilder>,
+        GSplitTransactionFields_creator,
+        GUserFields {
+  GautoSettleWithUserData_autoSettleWithUser_creator._();
+
+  factory GautoSettleWithUserData_autoSettleWithUser_creator(
+      [Function(GautoSettleWithUserData_autoSettleWithUser_creatorBuilder b)
+          updates]) = _$GautoSettleWithUserData_autoSettleWithUser_creator;
+
+  static void _initializeBuilder(
+          GautoSettleWithUserData_autoSettleWithUser_creatorBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GautoSettleWithUserData_autoSettleWithUser_creator>
+      get serializer =>
+          _$gautoSettleWithUserDataAutoSettleWithUserCreatorSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GautoSettleWithUserData_autoSettleWithUser_creator.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GautoSettleWithUserData_autoSettleWithUser_creator? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GautoSettleWithUserData_autoSettleWithUser_creator.serializer,
+        json,
+      );
+}
+
 abstract class GautoSettleWithUserData_autoSettleWithUser_fromUser
     implements
         Built<GautoSettleWithUserData_autoSettleWithUser_fromUser,
             GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder>,
-        GSplitFields_fromUser,
+        GSplitTransactionFields_fromUser,
         GUserFields {
   GautoSettleWithUserData_autoSettleWithUser_fromUser._();
 
@@ -3296,7 +3575,7 @@ abstract class GautoSettleWithUserData_autoSettleWithUser_toUser
     implements
         Built<GautoSettleWithUserData_autoSettleWithUser_toUser,
             GautoSettleWithUserData_autoSettleWithUser_toUserBuilder>,
-        GSplitFields_toUser,
+        GSplitTransactionFields_toUser,
         GUserFields {
   GautoSettleWithUserData_autoSettleWithUser_toUser._();
 

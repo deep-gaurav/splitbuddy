@@ -171,6 +171,15 @@ Serializer<GsettleInGroupData> _$gsettleInGroupDataSerializer =
 Serializer<GsettleInGroupData_settleInGroup>
     _$gsettleInGroupDataSettleInGroupSerializer =
     new _$GsettleInGroupData_settleInGroupSerializer();
+Serializer<GsettleInGroupData_settleInGroup_expense>
+    _$gsettleInGroupDataSettleInGroupExpenseSerializer =
+    new _$GsettleInGroupData_settleInGroup_expenseSerializer();
+Serializer<GsettleInGroupData_settleInGroup_group>
+    _$gsettleInGroupDataSettleInGroupGroupSerializer =
+    new _$GsettleInGroupData_settleInGroup_groupSerializer();
+Serializer<GsettleInGroupData_settleInGroup_creator>
+    _$gsettleInGroupDataSettleInGroupCreatorSerializer =
+    new _$GsettleInGroupData_settleInGroup_creatorSerializer();
 Serializer<GsettleInGroupData_settleInGroup_fromUser>
     _$gsettleInGroupDataSettleInGroupFromUserSerializer =
     new _$GsettleInGroupData_settleInGroup_fromUserSerializer();
@@ -202,6 +211,15 @@ Serializer<GautoSettleWithUserData> _$gautoSettleWithUserDataSerializer =
 Serializer<GautoSettleWithUserData_autoSettleWithUser>
     _$gautoSettleWithUserDataAutoSettleWithUserSerializer =
     new _$GautoSettleWithUserData_autoSettleWithUserSerializer();
+Serializer<GautoSettleWithUserData_autoSettleWithUser_expense>
+    _$gautoSettleWithUserDataAutoSettleWithUserExpenseSerializer =
+    new _$GautoSettleWithUserData_autoSettleWithUser_expenseSerializer();
+Serializer<GautoSettleWithUserData_autoSettleWithUser_group>
+    _$gautoSettleWithUserDataAutoSettleWithUserGroupSerializer =
+    new _$GautoSettleWithUserData_autoSettleWithUser_groupSerializer();
+Serializer<GautoSettleWithUserData_autoSettleWithUser_creator>
+    _$gautoSettleWithUserDataAutoSettleWithUserCreatorSerializer =
+    new _$GautoSettleWithUserData_autoSettleWithUser_creatorSerializer();
 Serializer<GautoSettleWithUserData_autoSettleWithUser_fromUser>
     _$gautoSettleWithUserDataAutoSettleWithUserFromUserSerializer =
     new _$GautoSettleWithUserData_autoSettleWithUser_fromUserSerializer();
@@ -5436,6 +5454,14 @@ class _$GsettleInGroupData_settleInGroupSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'group',
+      serializers.serialize(object.group,
+          specifiedType:
+              const FullType(GsettleInGroupData_settleInGroup_group)),
+      'creator',
+      serializers.serialize(object.creator,
+          specifiedType:
+              const FullType(GsettleInGroupData_settleInGroup_creator)),
       'fromUser',
       serializers.serialize(object.fromUser,
           specifiedType:
@@ -5468,6 +5494,14 @@ class _$GsettleInGroupData_settleInGroupSerializer
           specifiedType: const FullType(String)),
     ];
     Object? value;
+    value = object.expense;
+    if (value != null) {
+      result
+        ..add('expense')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(GsettleInGroupData_settleInGroup_expense)));
+    }
     value = object.transactionPartGroupId;
     if (value != null) {
       result
@@ -5500,6 +5534,24 @@ class _$GsettleInGroupData_settleInGroupSerializer
         case '__typename':
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'expense':
+          result.expense.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GsettleInGroupData_settleInGroup_expense))!
+              as GsettleInGroupData_settleInGroup_expense);
+          break;
+        case 'group':
+          result.group.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GsettleInGroupData_settleInGroup_group))!
+              as GsettleInGroupData_settleInGroup_group);
+          break;
+        case 'creator':
+          result.creator.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GsettleInGroupData_settleInGroup_creator))!
+              as GsettleInGroupData_settleInGroup_creator);
           break;
         case 'fromUser':
           result.fromUser.replace(serializers.deserialize(value,
@@ -5553,6 +5605,240 @@ class _$GsettleInGroupData_settleInGroupSerializer
         case 'groupId':
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsettleInGroupData_settleInGroup_expenseSerializer
+    implements StructuredSerializer<GsettleInGroupData_settleInGroup_expense> {
+  @override
+  final Iterable<Type> types = const [
+    GsettleInGroupData_settleInGroup_expense,
+    _$GsettleInGroupData_settleInGroup_expense
+  ];
+  @override
+  final String wireName = 'GsettleInGroupData_settleInGroup_expense';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsettleInGroupData_settleInGroup_expense object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GsettleInGroupData_settleInGroup_expense deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsettleInGroupData_settleInGroup_expenseBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsettleInGroupData_settleInGroup_groupSerializer
+    implements StructuredSerializer<GsettleInGroupData_settleInGroup_group> {
+  @override
+  final Iterable<Type> types = const [
+    GsettleInGroupData_settleInGroup_group,
+    _$GsettleInGroupData_settleInGroup_group
+  ];
+  @override
+  final String wireName = 'GsettleInGroupData_settleInGroup_group';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsettleInGroupData_settleInGroup_group object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GsettleInGroupData_settleInGroup_group deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsettleInGroupData_settleInGroup_groupBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsettleInGroupData_settleInGroup_creatorSerializer
+    implements StructuredSerializer<GsettleInGroupData_settleInGroup_creator> {
+  @override
+  final Iterable<Type> types = const [
+    GsettleInGroupData_settleInGroup_creator,
+    _$GsettleInGroupData_settleInGroup_creator
+  ];
+  @override
+  final String wireName = 'GsettleInGroupData_settleInGroup_creator';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsettleInGroupData_settleInGroup_creator object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GsettleInGroupData_settleInGroup_creator deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsettleInGroupData_settleInGroup_creatorBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -6473,6 +6759,14 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'group',
+      serializers.serialize(object.group,
+          specifiedType:
+              const FullType(GautoSettleWithUserData_autoSettleWithUser_group)),
+      'creator',
+      serializers.serialize(object.creator,
+          specifiedType: const FullType(
+              GautoSettleWithUserData_autoSettleWithUser_creator)),
       'fromUser',
       serializers.serialize(object.fromUser,
           specifiedType: const FullType(
@@ -6505,6 +6799,14 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
           specifiedType: const FullType(String)),
     ];
     Object? value;
+    value = object.expense;
+    if (value != null) {
+      result
+        ..add('expense')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                GautoSettleWithUserData_autoSettleWithUser_expense)));
+    }
     value = object.transactionPartGroupId;
     if (value != null) {
       result
@@ -6537,6 +6839,24 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
         case '__typename':
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'expense':
+          result.expense.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GautoSettleWithUserData_autoSettleWithUser_expense))!
+              as GautoSettleWithUserData_autoSettleWithUser_expense);
+          break;
+        case 'group':
+          result.group.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GautoSettleWithUserData_autoSettleWithUser_group))!
+              as GautoSettleWithUserData_autoSettleWithUser_group);
+          break;
+        case 'creator':
+          result.creator.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GautoSettleWithUserData_autoSettleWithUser_creator))!
+              as GautoSettleWithUserData_autoSettleWithUser_creator);
           break;
         case 'fromUser':
           result.fromUser.replace(serializers.deserialize(value,
@@ -6590,6 +6910,248 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
         case 'groupId':
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GautoSettleWithUserData_autoSettleWithUser_expenseSerializer
+    implements
+        StructuredSerializer<
+            GautoSettleWithUserData_autoSettleWithUser_expense> {
+  @override
+  final Iterable<Type> types = const [
+    GautoSettleWithUserData_autoSettleWithUser_expense,
+    _$GautoSettleWithUserData_autoSettleWithUser_expense
+  ];
+  @override
+  final String wireName = 'GautoSettleWithUserData_autoSettleWithUser_expense';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GautoSettleWithUserData_autoSettleWithUser_expense object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_expense deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GautoSettleWithUserData_autoSettleWithUser_expenseBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GautoSettleWithUserData_autoSettleWithUser_groupSerializer
+    implements
+        StructuredSerializer<GautoSettleWithUserData_autoSettleWithUser_group> {
+  @override
+  final Iterable<Type> types = const [
+    GautoSettleWithUserData_autoSettleWithUser_group,
+    _$GautoSettleWithUserData_autoSettleWithUser_group
+  ];
+  @override
+  final String wireName = 'GautoSettleWithUserData_autoSettleWithUser_group';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GautoSettleWithUserData_autoSettleWithUser_group object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_group deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GautoSettleWithUserData_autoSettleWithUser_groupBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GautoSettleWithUserData_autoSettleWithUser_creatorSerializer
+    implements
+        StructuredSerializer<
+            GautoSettleWithUserData_autoSettleWithUser_creator> {
+  @override
+  final Iterable<Type> types = const [
+    GautoSettleWithUserData_autoSettleWithUser_creator,
+    _$GautoSettleWithUserData_autoSettleWithUser_creator
+  ];
+  @override
+  final String wireName = 'GautoSettleWithUserData_autoSettleWithUser_creator';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GautoSettleWithUserData_autoSettleWithUser_creator object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_creator deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GautoSettleWithUserData_autoSettleWithUser_creatorBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -22697,6 +23259,12 @@ class _$GsettleInGroupData_settleInGroup
   @override
   final String G__typename;
   @override
+  final GsettleInGroupData_settleInGroup_expense? expense;
+  @override
+  final GsettleInGroupData_settleInGroup_group group;
+  @override
+  final GsettleInGroupData_settleInGroup_creator creator;
+  @override
   final GsettleInGroupData_settleInGroup_fromUser fromUser;
   @override
   final GsettleInGroupData_settleInGroup_toUser toUser;
@@ -22727,6 +23295,9 @@ class _$GsettleInGroupData_settleInGroup
 
   _$GsettleInGroupData_settleInGroup._(
       {required this.G__typename,
+      this.expense,
+      required this.group,
+      required this.creator,
       required this.fromUser,
       required this.toUser,
       required this.id,
@@ -22742,6 +23313,10 @@ class _$GsettleInGroupData_settleInGroup
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GsettleInGroupData_settleInGroup', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        group, r'GsettleInGroupData_settleInGroup', 'group');
+    BuiltValueNullFieldError.checkNotNull(
+        creator, r'GsettleInGroupData_settleInGroup', 'creator');
     BuiltValueNullFieldError.checkNotNull(
         fromUser, r'GsettleInGroupData_settleInGroup', 'fromUser');
     BuiltValueNullFieldError.checkNotNull(
@@ -22778,6 +23353,9 @@ class _$GsettleInGroupData_settleInGroup
     if (identical(other, this)) return true;
     return other is GsettleInGroupData_settleInGroup &&
         G__typename == other.G__typename &&
+        expense == other.expense &&
+        group == other.group &&
+        creator == other.creator &&
         fromUser == other.fromUser &&
         toUser == other.toUser &&
         id == other.id &&
@@ -22796,6 +23374,9 @@ class _$GsettleInGroupData_settleInGroup
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, expense.hashCode);
+    _$hash = $jc(_$hash, group.hashCode);
+    _$hash = $jc(_$hash, creator.hashCode);
     _$hash = $jc(_$hash, fromUser.hashCode);
     _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
@@ -22816,6 +23397,9 @@ class _$GsettleInGroupData_settleInGroup
   String toString() {
     return (newBuiltValueToStringHelper(r'GsettleInGroupData_settleInGroup')
           ..add('G__typename', G__typename)
+          ..add('expense', expense)
+          ..add('group', group)
+          ..add('creator', creator)
           ..add('fromUser', fromUser)
           ..add('toUser', toUser)
           ..add('id', id)
@@ -22841,6 +23425,24 @@ class GsettleInGroupData_settleInGroupBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GsettleInGroupData_settleInGroup_expenseBuilder? _expense;
+  GsettleInGroupData_settleInGroup_expenseBuilder get expense =>
+      _$this._expense ??= new GsettleInGroupData_settleInGroup_expenseBuilder();
+  set expense(GsettleInGroupData_settleInGroup_expenseBuilder? expense) =>
+      _$this._expense = expense;
+
+  GsettleInGroupData_settleInGroup_groupBuilder? _group;
+  GsettleInGroupData_settleInGroup_groupBuilder get group =>
+      _$this._group ??= new GsettleInGroupData_settleInGroup_groupBuilder();
+  set group(GsettleInGroupData_settleInGroup_groupBuilder? group) =>
+      _$this._group = group;
+
+  GsettleInGroupData_settleInGroup_creatorBuilder? _creator;
+  GsettleInGroupData_settleInGroup_creatorBuilder get creator =>
+      _$this._creator ??= new GsettleInGroupData_settleInGroup_creatorBuilder();
+  set creator(GsettleInGroupData_settleInGroup_creatorBuilder? creator) =>
+      _$this._creator = creator;
 
   GsettleInGroupData_settleInGroup_fromUserBuilder? _fromUser;
   GsettleInGroupData_settleInGroup_fromUserBuilder get fromUser =>
@@ -22905,6 +23507,9 @@ class GsettleInGroupData_settleInGroupBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _expense = $v.expense?.toBuilder();
+      _group = $v.group.toBuilder();
+      _creator = $v.creator.toBuilder();
       _fromUser = $v.fromUser.toBuilder();
       _toUser = $v.toUser.toBuilder();
       _id = $v.id;
@@ -22943,6 +23548,9 @@ class GsettleInGroupData_settleInGroupBuilder
           new _$GsettleInGroupData_settleInGroup._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename, r'GsettleInGroupData_settleInGroup', 'G__typename'),
+              expense: _expense?.build(),
+              group: group.build(),
+              creator: creator.build(),
               fromUser: fromUser.build(),
               toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
@@ -22966,6 +23574,12 @@ class GsettleInGroupData_settleInGroupBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'expense';
+        _expense?.build();
+        _$failedField = 'group';
+        group.build();
+        _$failedField = 'creator';
+        creator.build();
         _$failedField = 'fromUser';
         fromUser.build();
         _$failedField = 'toUser';
@@ -22976,6 +23590,472 @@ class GsettleInGroupData_settleInGroupBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsettleInGroupData_settleInGroup_expense
+    extends GsettleInGroupData_settleInGroup_expense {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String title;
+  @override
+  final String createdAt;
+  @override
+  final int amount;
+  @override
+  final String creatorId;
+
+  factory _$GsettleInGroupData_settleInGroup_expense(
+          [void Function(GsettleInGroupData_settleInGroup_expenseBuilder)?
+              updates]) =>
+      (new GsettleInGroupData_settleInGroup_expenseBuilder()..update(updates))
+          ._build();
+
+  _$GsettleInGroupData_settleInGroup_expense._(
+      {required this.G__typename,
+      required this.id,
+      required this.title,
+      required this.createdAt,
+      required this.amount,
+      required this.creatorId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GsettleInGroupData_settleInGroup_expense', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GsettleInGroupData_settleInGroup_expense', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        title, r'GsettleInGroupData_settleInGroup_expense', 'title');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt, r'GsettleInGroupData_settleInGroup_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GsettleInGroupData_settleInGroup_expense', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GsettleInGroupData_settleInGroup_expense', 'creatorId');
+  }
+
+  @override
+  GsettleInGroupData_settleInGroup_expense rebuild(
+          void Function(GsettleInGroupData_settleInGroup_expenseBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsettleInGroupData_settleInGroup_expenseBuilder toBuilder() =>
+      new GsettleInGroupData_settleInGroup_expenseBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsettleInGroupData_settleInGroup_expense &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        title == other.title &&
+        createdAt == other.createdAt &&
+        amount == other.amount &&
+        creatorId == other.creatorId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GsettleInGroupData_settleInGroup_expense')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('title', title)
+          ..add('createdAt', createdAt)
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
+        .toString();
+  }
+}
+
+class GsettleInGroupData_settleInGroup_expenseBuilder
+    implements
+        Builder<GsettleInGroupData_settleInGroup_expense,
+            GsettleInGroupData_settleInGroup_expenseBuilder> {
+  _$GsettleInGroupData_settleInGroup_expense? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  GsettleInGroupData_settleInGroup_expenseBuilder() {
+    GsettleInGroupData_settleInGroup_expense._initializeBuilder(this);
+  }
+
+  GsettleInGroupData_settleInGroup_expenseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _title = $v.title;
+      _createdAt = $v.createdAt;
+      _amount = $v.amount;
+      _creatorId = $v.creatorId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsettleInGroupData_settleInGroup_expense other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsettleInGroupData_settleInGroup_expense;
+  }
+
+  @override
+  void update(
+      void Function(GsettleInGroupData_settleInGroup_expenseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsettleInGroupData_settleInGroup_expense build() => _build();
+
+  _$GsettleInGroupData_settleInGroup_expense _build() {
+    final _$result = _$v ??
+        new _$GsettleInGroupData_settleInGroup_expense._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GsettleInGroupData_settleInGroup_expense', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GsettleInGroupData_settleInGroup_expense', 'id'),
+            title: BuiltValueNullFieldError.checkNotNull(
+                title, r'GsettleInGroupData_settleInGroup_expense', 'title'),
+            createdAt: BuiltValueNullFieldError.checkNotNull(createdAt,
+                r'GsettleInGroupData_settleInGroup_expense', 'createdAt'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount, r'GsettleInGroupData_settleInGroup_expense', 'amount'),
+            creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
+                r'GsettleInGroupData_settleInGroup_expense', 'creatorId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsettleInGroupData_settleInGroup_group
+    extends GsettleInGroupData_settleInGroup_group {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+
+  factory _$GsettleInGroupData_settleInGroup_group(
+          [void Function(GsettleInGroupData_settleInGroup_groupBuilder)?
+              updates]) =>
+      (new GsettleInGroupData_settleInGroup_groupBuilder()..update(updates))
+          ._build();
+
+  _$GsettleInGroupData_settleInGroup_group._(
+      {required this.G__typename, required this.id, this.name})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GsettleInGroupData_settleInGroup_group', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GsettleInGroupData_settleInGroup_group', 'id');
+  }
+
+  @override
+  GsettleInGroupData_settleInGroup_group rebuild(
+          void Function(GsettleInGroupData_settleInGroup_groupBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsettleInGroupData_settleInGroup_groupBuilder toBuilder() =>
+      new GsettleInGroupData_settleInGroup_groupBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsettleInGroupData_settleInGroup_group &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GsettleInGroupData_settleInGroup_group')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name))
+        .toString();
+  }
+}
+
+class GsettleInGroupData_settleInGroup_groupBuilder
+    implements
+        Builder<GsettleInGroupData_settleInGroup_group,
+            GsettleInGroupData_settleInGroup_groupBuilder> {
+  _$GsettleInGroupData_settleInGroup_group? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  GsettleInGroupData_settleInGroup_groupBuilder() {
+    GsettleInGroupData_settleInGroup_group._initializeBuilder(this);
+  }
+
+  GsettleInGroupData_settleInGroup_groupBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsettleInGroupData_settleInGroup_group other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsettleInGroupData_settleInGroup_group;
+  }
+
+  @override
+  void update(
+      void Function(GsettleInGroupData_settleInGroup_groupBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsettleInGroupData_settleInGroup_group build() => _build();
+
+  _$GsettleInGroupData_settleInGroup_group _build() {
+    final _$result = _$v ??
+        new _$GsettleInGroupData_settleInGroup_group._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GsettleInGroupData_settleInGroup_group', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GsettleInGroupData_settleInGroup_group', 'id'),
+            name: name);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsettleInGroupData_settleInGroup_creator
+    extends GsettleInGroupData_settleInGroup_creator {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GsettleInGroupData_settleInGroup_creator(
+          [void Function(GsettleInGroupData_settleInGroup_creatorBuilder)?
+              updates]) =>
+      (new GsettleInGroupData_settleInGroup_creatorBuilder()..update(updates))
+          ._build();
+
+  _$GsettleInGroupData_settleInGroup_creator._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GsettleInGroupData_settleInGroup_creator', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GsettleInGroupData_settleInGroup_creator', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GsettleInGroupData_settleInGroup_creator', 'isSignedUp');
+  }
+
+  @override
+  GsettleInGroupData_settleInGroup_creator rebuild(
+          void Function(GsettleInGroupData_settleInGroup_creatorBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsettleInGroupData_settleInGroup_creatorBuilder toBuilder() =>
+      new GsettleInGroupData_settleInGroup_creatorBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsettleInGroupData_settleInGroup_creator &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GsettleInGroupData_settleInGroup_creator')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GsettleInGroupData_settleInGroup_creatorBuilder
+    implements
+        Builder<GsettleInGroupData_settleInGroup_creator,
+            GsettleInGroupData_settleInGroup_creatorBuilder> {
+  _$GsettleInGroupData_settleInGroup_creator? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GsettleInGroupData_settleInGroup_creatorBuilder() {
+    GsettleInGroupData_settleInGroup_creator._initializeBuilder(this);
+  }
+
+  GsettleInGroupData_settleInGroup_creatorBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsettleInGroupData_settleInGroup_creator other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsettleInGroupData_settleInGroup_creator;
+  }
+
+  @override
+  void update(
+      void Function(GsettleInGroupData_settleInGroup_creatorBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsettleInGroupData_settleInGroup_creator build() => _build();
+
+  _$GsettleInGroupData_settleInGroup_creator _build() {
+    final _$result = _$v ??
+        new _$GsettleInGroupData_settleInGroup_creator._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GsettleInGroupData_settleInGroup_creator', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GsettleInGroupData_settleInGroup_creator', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GsettleInGroupData_settleInGroup_creator', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }
@@ -24725,6 +25805,12 @@ class _$GautoSettleWithUserData_autoSettleWithUser
   @override
   final String G__typename;
   @override
+  final GautoSettleWithUserData_autoSettleWithUser_expense? expense;
+  @override
+  final GautoSettleWithUserData_autoSettleWithUser_group group;
+  @override
+  final GautoSettleWithUserData_autoSettleWithUser_creator creator;
+  @override
   final GautoSettleWithUserData_autoSettleWithUser_fromUser fromUser;
   @override
   final GautoSettleWithUserData_autoSettleWithUser_toUser toUser;
@@ -24757,6 +25843,9 @@ class _$GautoSettleWithUserData_autoSettleWithUser
 
   _$GautoSettleWithUserData_autoSettleWithUser._(
       {required this.G__typename,
+      this.expense,
+      required this.group,
+      required this.creator,
       required this.fromUser,
       required this.toUser,
       required this.id,
@@ -24772,6 +25861,10 @@ class _$GautoSettleWithUserData_autoSettleWithUser
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GautoSettleWithUserData_autoSettleWithUser', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        group, r'GautoSettleWithUserData_autoSettleWithUser', 'group');
+    BuiltValueNullFieldError.checkNotNull(
+        creator, r'GautoSettleWithUserData_autoSettleWithUser', 'creator');
     BuiltValueNullFieldError.checkNotNull(
         fromUser, r'GautoSettleWithUserData_autoSettleWithUser', 'fromUser');
     BuiltValueNullFieldError.checkNotNull(
@@ -24809,6 +25902,9 @@ class _$GautoSettleWithUserData_autoSettleWithUser
     if (identical(other, this)) return true;
     return other is GautoSettleWithUserData_autoSettleWithUser &&
         G__typename == other.G__typename &&
+        expense == other.expense &&
+        group == other.group &&
+        creator == other.creator &&
         fromUser == other.fromUser &&
         toUser == other.toUser &&
         id == other.id &&
@@ -24827,6 +25923,9 @@ class _$GautoSettleWithUserData_autoSettleWithUser
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, expense.hashCode);
+    _$hash = $jc(_$hash, group.hashCode);
+    _$hash = $jc(_$hash, creator.hashCode);
     _$hash = $jc(_$hash, fromUser.hashCode);
     _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
@@ -24848,6 +25947,9 @@ class _$GautoSettleWithUserData_autoSettleWithUser
     return (newBuiltValueToStringHelper(
             r'GautoSettleWithUserData_autoSettleWithUser')
           ..add('G__typename', G__typename)
+          ..add('expense', expense)
+          ..add('group', group)
+          ..add('creator', creator)
           ..add('fromUser', fromUser)
           ..add('toUser', toUser)
           ..add('id', id)
@@ -24873,6 +25975,29 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GautoSettleWithUserData_autoSettleWithUser_expenseBuilder? _expense;
+  GautoSettleWithUserData_autoSettleWithUser_expenseBuilder get expense =>
+      _$this._expense ??=
+          new GautoSettleWithUserData_autoSettleWithUser_expenseBuilder();
+  set expense(
+          GautoSettleWithUserData_autoSettleWithUser_expenseBuilder? expense) =>
+      _$this._expense = expense;
+
+  GautoSettleWithUserData_autoSettleWithUser_groupBuilder? _group;
+  GautoSettleWithUserData_autoSettleWithUser_groupBuilder get group =>
+      _$this._group ??=
+          new GautoSettleWithUserData_autoSettleWithUser_groupBuilder();
+  set group(GautoSettleWithUserData_autoSettleWithUser_groupBuilder? group) =>
+      _$this._group = group;
+
+  GautoSettleWithUserData_autoSettleWithUser_creatorBuilder? _creator;
+  GautoSettleWithUserData_autoSettleWithUser_creatorBuilder get creator =>
+      _$this._creator ??=
+          new GautoSettleWithUserData_autoSettleWithUser_creatorBuilder();
+  set creator(
+          GautoSettleWithUserData_autoSettleWithUser_creatorBuilder? creator) =>
+      _$this._creator = creator;
 
   GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder? _fromUser;
   GautoSettleWithUserData_autoSettleWithUser_fromUserBuilder get fromUser =>
@@ -24941,6 +26066,9 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _expense = $v.expense?.toBuilder();
+      _group = $v.group.toBuilder();
+      _creator = $v.creator.toBuilder();
       _fromUser = $v.fromUser.toBuilder();
       _toUser = $v.toUser.toBuilder();
       _id = $v.id;
@@ -24981,6 +26109,9 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
           new _$GautoSettleWithUserData_autoSettleWithUser._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename, r'GautoSettleWithUserData_autoSettleWithUser', 'G__typename'),
+              expense: _expense?.build(),
+              group: group.build(),
+              creator: creator.build(),
               fromUser: fromUser.build(),
               toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
@@ -25002,6 +26133,12 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'expense';
+        _expense?.build();
+        _$failedField = 'group';
+        group.build();
+        _$failedField = 'creator';
+        creator.build();
         _$failedField = 'fromUser';
         fromUser.build();
         _$failedField = 'toUser';
@@ -25014,6 +26151,496 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GautoSettleWithUserData_autoSettleWithUser_expense
+    extends GautoSettleWithUserData_autoSettleWithUser_expense {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String title;
+  @override
+  final String createdAt;
+  @override
+  final int amount;
+  @override
+  final String creatorId;
+
+  factory _$GautoSettleWithUserData_autoSettleWithUser_expense(
+          [void Function(
+                  GautoSettleWithUserData_autoSettleWithUser_expenseBuilder)?
+              updates]) =>
+      (new GautoSettleWithUserData_autoSettleWithUser_expenseBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GautoSettleWithUserData_autoSettleWithUser_expense._(
+      {required this.G__typename,
+      required this.id,
+      required this.title,
+      required this.createdAt,
+      required this.amount,
+      required this.creatorId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GautoSettleWithUserData_autoSettleWithUser_expense', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GautoSettleWithUserData_autoSettleWithUser_expense', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        title, r'GautoSettleWithUserData_autoSettleWithUser_expense', 'title');
+    BuiltValueNullFieldError.checkNotNull(createdAt,
+        r'GautoSettleWithUserData_autoSettleWithUser_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(amount,
+        r'GautoSettleWithUserData_autoSettleWithUser_expense', 'amount');
+    BuiltValueNullFieldError.checkNotNull(creatorId,
+        r'GautoSettleWithUserData_autoSettleWithUser_expense', 'creatorId');
+  }
+
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_expense rebuild(
+          void Function(
+                  GautoSettleWithUserData_autoSettleWithUser_expenseBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_expenseBuilder toBuilder() =>
+      new GautoSettleWithUserData_autoSettleWithUser_expenseBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GautoSettleWithUserData_autoSettleWithUser_expense &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        title == other.title &&
+        createdAt == other.createdAt &&
+        amount == other.amount &&
+        creatorId == other.creatorId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GautoSettleWithUserData_autoSettleWithUser_expense')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('title', title)
+          ..add('createdAt', createdAt)
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
+        .toString();
+  }
+}
+
+class GautoSettleWithUserData_autoSettleWithUser_expenseBuilder
+    implements
+        Builder<GautoSettleWithUserData_autoSettleWithUser_expense,
+            GautoSettleWithUserData_autoSettleWithUser_expenseBuilder> {
+  _$GautoSettleWithUserData_autoSettleWithUser_expense? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  GautoSettleWithUserData_autoSettleWithUser_expenseBuilder() {
+    GautoSettleWithUserData_autoSettleWithUser_expense._initializeBuilder(this);
+  }
+
+  GautoSettleWithUserData_autoSettleWithUser_expenseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _title = $v.title;
+      _createdAt = $v.createdAt;
+      _amount = $v.amount;
+      _creatorId = $v.creatorId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GautoSettleWithUserData_autoSettleWithUser_expense other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GautoSettleWithUserData_autoSettleWithUser_expense;
+  }
+
+  @override
+  void update(
+      void Function(GautoSettleWithUserData_autoSettleWithUser_expenseBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_expense build() => _build();
+
+  _$GautoSettleWithUserData_autoSettleWithUser_expense _build() {
+    final _$result = _$v ??
+        new _$GautoSettleWithUserData_autoSettleWithUser_expense._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GautoSettleWithUserData_autoSettleWithUser_expense',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GautoSettleWithUserData_autoSettleWithUser_expense', 'id'),
+            title: BuiltValueNullFieldError.checkNotNull(
+                title, r'GautoSettleWithUserData_autoSettleWithUser_expense', 'title'),
+            createdAt: BuiltValueNullFieldError.checkNotNull(
+                createdAt, r'GautoSettleWithUserData_autoSettleWithUser_expense', 'createdAt'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount, r'GautoSettleWithUserData_autoSettleWithUser_expense', 'amount'),
+            creatorId: BuiltValueNullFieldError.checkNotNull(
+                creatorId,
+                r'GautoSettleWithUserData_autoSettleWithUser_expense',
+                'creatorId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GautoSettleWithUserData_autoSettleWithUser_group
+    extends GautoSettleWithUserData_autoSettleWithUser_group {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+
+  factory _$GautoSettleWithUserData_autoSettleWithUser_group(
+          [void Function(
+                  GautoSettleWithUserData_autoSettleWithUser_groupBuilder)?
+              updates]) =>
+      (new GautoSettleWithUserData_autoSettleWithUser_groupBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GautoSettleWithUserData_autoSettleWithUser_group._(
+      {required this.G__typename, required this.id, this.name})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GautoSettleWithUserData_autoSettleWithUser_group', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GautoSettleWithUserData_autoSettleWithUser_group', 'id');
+  }
+
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_group rebuild(
+          void Function(GautoSettleWithUserData_autoSettleWithUser_groupBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_groupBuilder toBuilder() =>
+      new GautoSettleWithUserData_autoSettleWithUser_groupBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GautoSettleWithUserData_autoSettleWithUser_group &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GautoSettleWithUserData_autoSettleWithUser_group')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name))
+        .toString();
+  }
+}
+
+class GautoSettleWithUserData_autoSettleWithUser_groupBuilder
+    implements
+        Builder<GautoSettleWithUserData_autoSettleWithUser_group,
+            GautoSettleWithUserData_autoSettleWithUser_groupBuilder> {
+  _$GautoSettleWithUserData_autoSettleWithUser_group? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  GautoSettleWithUserData_autoSettleWithUser_groupBuilder() {
+    GautoSettleWithUserData_autoSettleWithUser_group._initializeBuilder(this);
+  }
+
+  GautoSettleWithUserData_autoSettleWithUser_groupBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GautoSettleWithUserData_autoSettleWithUser_group other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GautoSettleWithUserData_autoSettleWithUser_group;
+  }
+
+  @override
+  void update(
+      void Function(GautoSettleWithUserData_autoSettleWithUser_groupBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_group build() => _build();
+
+  _$GautoSettleWithUserData_autoSettleWithUser_group _build() {
+    final _$result = _$v ??
+        new _$GautoSettleWithUserData_autoSettleWithUser_group._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GautoSettleWithUserData_autoSettleWithUser_group',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GautoSettleWithUserData_autoSettleWithUser_group', 'id'),
+            name: name);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GautoSettleWithUserData_autoSettleWithUser_creator
+    extends GautoSettleWithUserData_autoSettleWithUser_creator {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GautoSettleWithUserData_autoSettleWithUser_creator(
+          [void Function(
+                  GautoSettleWithUserData_autoSettleWithUser_creatorBuilder)?
+              updates]) =>
+      (new GautoSettleWithUserData_autoSettleWithUser_creatorBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GautoSettleWithUserData_autoSettleWithUser_creator._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GautoSettleWithUserData_autoSettleWithUser_creator', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GautoSettleWithUserData_autoSettleWithUser_creator', 'id');
+    BuiltValueNullFieldError.checkNotNull(isSignedUp,
+        r'GautoSettleWithUserData_autoSettleWithUser_creator', 'isSignedUp');
+  }
+
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_creator rebuild(
+          void Function(
+                  GautoSettleWithUserData_autoSettleWithUser_creatorBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_creatorBuilder toBuilder() =>
+      new GautoSettleWithUserData_autoSettleWithUser_creatorBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GautoSettleWithUserData_autoSettleWithUser_creator &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GautoSettleWithUserData_autoSettleWithUser_creator')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GautoSettleWithUserData_autoSettleWithUser_creatorBuilder
+    implements
+        Builder<GautoSettleWithUserData_autoSettleWithUser_creator,
+            GautoSettleWithUserData_autoSettleWithUser_creatorBuilder> {
+  _$GautoSettleWithUserData_autoSettleWithUser_creator? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GautoSettleWithUserData_autoSettleWithUser_creatorBuilder() {
+    GautoSettleWithUserData_autoSettleWithUser_creator._initializeBuilder(this);
+  }
+
+  GautoSettleWithUserData_autoSettleWithUser_creatorBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GautoSettleWithUserData_autoSettleWithUser_creator other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GautoSettleWithUserData_autoSettleWithUser_creator;
+  }
+
+  @override
+  void update(
+      void Function(GautoSettleWithUserData_autoSettleWithUser_creatorBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GautoSettleWithUserData_autoSettleWithUser_creator build() => _build();
+
+  _$GautoSettleWithUserData_autoSettleWithUser_creator _build() {
+    final _$result = _$v ??
+        new _$GautoSettleWithUserData_autoSettleWithUser_creator._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GautoSettleWithUserData_autoSettleWithUser_creator',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(id,
+                r'GautoSettleWithUserData_autoSettleWithUser_creator', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GautoSettleWithUserData_autoSettleWithUser_creator',
+                'isSignedUp'));
     replace(_$result);
     return _$result;
   }

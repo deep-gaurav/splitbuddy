@@ -247,6 +247,39 @@ class AppState extends ChangeNotifier {
     }
   }
 
+  Future<GSplitTransactionFields> settleInGroup({
+    required String userId,
+    required String groupId,
+    required int amount,
+  }) async {
+    var result = await (await client).execute(GsettleInGroupReq((b) => b.vars
+      ..amount = amount
+      ..groupId = groupId
+      ..withUser = userId));
+    if (result.data?.settleInGroup != null) {
+      refresh(await client);
+      return result.data!.settleInGroup;
+    } else {
+      throw result;
+    }
+  }
+
+  Future<List<GSplitTransactionFields>> autoSettleWithUser({
+    required String userId,
+    required int amount,
+  }) async {
+    var result =
+        await (await client).execute(GautoSettleWithUserReq((b) => b.vars
+          ..amount = amount
+          ..withUser = userId));
+    if (result.data?.autoSettleWithUser != null) {
+      refresh(await client);
+      return result.data!.autoSettleWithUser.toList();
+    } else {
+      throw result;
+    }
+  }
+
   logout() {
     authState = AuthStates.unAuthorized;
     notifyListeners();

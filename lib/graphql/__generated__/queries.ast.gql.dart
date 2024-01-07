@@ -1269,7 +1269,7 @@ const settleInGroup = _i1.OperationDefinitionNode(
       directives: [],
       selectionSet: _i1.SelectionSetNode(selections: [
         _i1.FragmentSpreadNode(
-          name: _i1.NameNode(value: 'SplitFields'),
+          name: _i1.NameNode(value: 'SplitTransactionFields'),
           directives: [],
         )
       ]),
@@ -1352,7 +1352,7 @@ const autoSettleWithUser = _i1.OperationDefinitionNode(
       directives: [],
       selectionSet: _i1.SelectionSetNode(selections: [
         _i1.FragmentSpreadNode(
-          name: _i1.NameNode(value: 'SplitFields'),
+          name: _i1.NameNode(value: 'SplitTransactionFields'),
           directives: [],
         )
       ]),

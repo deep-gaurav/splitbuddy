@@ -5,14 +5,18 @@ import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/screens/groups_page.dart';
 import 'package:splitbuddy/screens/home_page.dart';
+import 'package:splitbuddy/screens/payment_recorder.dart';
 import 'package:splitbuddy/state/app_state.dart';
 import 'package:splitbuddy/utils/color_utils.dart';
 
 class GroupMembersPage extends StatefulWidget {
   final GGroupFields initialGroup;
+  final Function(GSplitTransactionFields settleTransaction) onSettleTransaction;
+
   const GroupMembersPage({
     super.key,
     required this.initialGroup,
+    required this.onSettleTransaction,
   });
 
   @override
@@ -20,11 +24,8 @@ class GroupMembersPage extends StatefulWidget {
 }
 
 class _GroupMembersPageState extends State<GroupMembersPage> {
-  late GGroupFields group;
-
   @override
   void initState() {
-    group = widget.initialGroup;
     super.initState();
   }
 
@@ -34,6 +35,9 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
 
   @override
   Widget build(BuildContext context) {
+    var group = context.select<AppState, GGroupFields>((state) => state
+        .userGroups
+        .firstWhere((element) => element.id == widget.initialGroup.id));
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -52,15 +56,19 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
             delegate: SliverChildBuilderDelegate(
               (context, index) {
                 var member = group.members[index];
+                bool isSelf =
+                    context.read<AppState>().user!.id == member.member.id;
                 return Container(
                   margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
                   child: Card(
                     child: ListTile(
                       leading: UserIconWidget(user: member.member),
                       title: Text(
-                          '${member.member.displayName}${context.read<AppState>().user!.id == member.member.id ? ' (You)' : ''}'),
-                      subtitle: context.read<AppState>().user!.id !=
-                              member.member.id
+                        '${member.member.displayName}${context.read<AppState>().user!.id == member.member.id ? ' (You)' : ''}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      subtitle: !isSelf
                           ? Text.rich(
                               TextSpan(
                                 text: member.owedInGroup > 0
@@ -99,6 +107,29 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                                       ? TextStyle(color: mainScheme.primary)
                                       : TextStyle(color: neutralBlue.primary),
                             )
+                          : null,
+                      trailing: !isSelf
+                          ? FilledButton.tonal(
+                              onPressed: () async {
+                                var result = await Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => PaymentRecorder(
+                                      withUser: context
+                                          .read<AppState>()
+                                          .interactedUsers
+                                          .firstWhere(
+                                            (element) =>
+                                                element.id == member.member.id,
+                                          ),
+                                      inGroup: widget.initialGroup,
+                                    ),
+                                  ),
+                                );
+                                if (result is GSplitTransactionFields) {
+                                  widget.onSettleTransaction(result);
+                                }
+                              },
+                              child: const Text('Settle'))
                           : null,
                     ),
                   ),

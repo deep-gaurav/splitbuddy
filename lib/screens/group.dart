@@ -117,6 +117,13 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
     }
   }
 
+  onSettleTransaction(GSplitTransactionFields transactionFields) {
+    expenses.add(
+      Split(split: transactionFields),
+    );
+    generateGrouped();
+  }
+
   generateGrouped() {
     expenses.sort((a, b) => b.createdAt.compareTo(a.createdAt));
     expenseGrouped.clear();
@@ -261,6 +268,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
                         MaterialPageRoute(
                           builder: (context) => GroupMembersPage(
                             initialGroup: group,
+                            onSettleTransaction: onSettleTransaction,
                           ),
                         ),
                       );
@@ -465,6 +473,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
                       MaterialPageRoute(
                         builder: (context) => GroupMembersPage(
                           initialGroup: group,
+                          onSettleTransaction: onSettleTransaction,
                         ),
                       ),
                     ),

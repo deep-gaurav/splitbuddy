@@ -17,6 +17,7 @@ import 'package:splitbuddy/screens/find_people.dart';
 import 'package:splitbuddy/screens/group.dart';
 import 'package:splitbuddy/screens/groups_page.dart';
 import 'package:splitbuddy/screens/home_page.dart';
+import 'package:splitbuddy/screens/payment_recorder.dart';
 import 'package:splitbuddy/state/app_state.dart';
 import 'package:splitbuddy/utils/color_utils.dart';
 import 'package:splitbuddy/utils/svg_icons.dart';
@@ -256,6 +257,27 @@ class _UserPageState extends State<UserPage> {
           const Divider(),
           ButtonBar(
             children: [
+              ElevatedButton.icon(
+                icon: const Icon(Icons.payments),
+                onPressed: () async {
+                  var expense = await Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => PaymentRecorder(
+                        withUser: user,
+                      ),
+                    ),
+                  );
+                  if (expense is List<GSplitTransactionFields>) {
+                    for (var split in expense) {
+                      transactions.add(SingleTransaction(transaction: split));
+                    }
+                    generateGrouped();
+                  }
+                },
+                label: const Text(
+                  "Record Payment",
+                ),
+              ),
               ElevatedButton.icon(
                 icon: const Icon(Icons.sell),
                 onPressed: () async {

@@ -229,7 +229,7 @@ mutation createNonGroupExpense(
 
 mutation settleInGroup($withUser: String!, $groupId: String!, $amount: Int!) {
   settleInGroup(toUser: $withUser, groupId: $groupId, amount: $amount) {
-    ...SplitFields
+    ...SplitTransactionFields
   }
 }
 
@@ -241,7 +241,7 @@ mutation simplifyUser($withUser: String!) {
 
 mutation autoSettleWithUser($withUser: String!, $amount: Int!) {
   autoSettleWithUser(withUser: $withUser, amount: $amount) {
-    ...SplitFields
+    ...SplitTransactionFields
   }
 }
 
