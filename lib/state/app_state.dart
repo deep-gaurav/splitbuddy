@@ -235,6 +235,18 @@ class AppState extends ChangeNotifier {
     return false;
   }
 
+  Future<List<GSplitTransactionFields>> simplifyUser(
+      {required String userId}) async {
+    var result = await (await client)
+        .execute(GsimplifyUserReq((b) => b.vars..withUser = userId));
+    if (result.data?.simplifyCrossGroup != null) {
+      refresh(await client);
+      return result.data!.simplifyCrossGroup.toList();
+    } else {
+      throw result;
+    }
+  }
+
   logout() {
     authState = AuthStates.unAuthorized;
     notifyListeners();

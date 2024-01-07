@@ -182,6 +182,15 @@ Serializer<GsimplifyUserData> _$gsimplifyUserDataSerializer =
 Serializer<GsimplifyUserData_simplifyCrossGroup>
     _$gsimplifyUserDataSimplifyCrossGroupSerializer =
     new _$GsimplifyUserData_simplifyCrossGroupSerializer();
+Serializer<GsimplifyUserData_simplifyCrossGroup_expense>
+    _$gsimplifyUserDataSimplifyCrossGroupExpenseSerializer =
+    new _$GsimplifyUserData_simplifyCrossGroup_expenseSerializer();
+Serializer<GsimplifyUserData_simplifyCrossGroup_group>
+    _$gsimplifyUserDataSimplifyCrossGroupGroupSerializer =
+    new _$GsimplifyUserData_simplifyCrossGroup_groupSerializer();
+Serializer<GsimplifyUserData_simplifyCrossGroup_creator>
+    _$gsimplifyUserDataSimplifyCrossGroupCreatorSerializer =
+    new _$GsimplifyUserData_simplifyCrossGroup_creatorSerializer();
 Serializer<GsimplifyUserData_simplifyCrossGroup_fromUser>
     _$gsimplifyUserDataSimplifyCrossGroupFromUserSerializer =
     new _$GsimplifyUserData_simplifyCrossGroup_fromUserSerializer();
@@ -5806,6 +5815,14 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'group',
+      serializers.serialize(object.group,
+          specifiedType:
+              const FullType(GsimplifyUserData_simplifyCrossGroup_group)),
+      'creator',
+      serializers.serialize(object.creator,
+          specifiedType:
+              const FullType(GsimplifyUserData_simplifyCrossGroup_creator)),
       'fromUser',
       serializers.serialize(object.fromUser,
           specifiedType:
@@ -5838,6 +5855,14 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
           specifiedType: const FullType(String)),
     ];
     Object? value;
+    value = object.expense;
+    if (value != null) {
+      result
+        ..add('expense')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(GsimplifyUserData_simplifyCrossGroup_expense)));
+    }
     value = object.transactionPartGroupId;
     if (value != null) {
       result
@@ -5870,6 +5895,24 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
         case '__typename':
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'expense':
+          result.expense.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GsimplifyUserData_simplifyCrossGroup_expense))!
+              as GsimplifyUserData_simplifyCrossGroup_expense);
+          break;
+        case 'group':
+          result.group.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GsimplifyUserData_simplifyCrossGroup_group))!
+              as GsimplifyUserData_simplifyCrossGroup_group);
+          break;
+        case 'creator':
+          result.creator.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GsimplifyUserData_simplifyCrossGroup_creator))!
+              as GsimplifyUserData_simplifyCrossGroup_creator);
           break;
         case 'fromUser':
           result.fromUser.replace(serializers.deserialize(value,
@@ -5923,6 +5966,243 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
         case 'groupId':
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsimplifyUserData_simplifyCrossGroup_expenseSerializer
+    implements
+        StructuredSerializer<GsimplifyUserData_simplifyCrossGroup_expense> {
+  @override
+  final Iterable<Type> types = const [
+    GsimplifyUserData_simplifyCrossGroup_expense,
+    _$GsimplifyUserData_simplifyCrossGroup_expense
+  ];
+  @override
+  final String wireName = 'GsimplifyUserData_simplifyCrossGroup_expense';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GsimplifyUserData_simplifyCrossGroup_expense object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GsimplifyUserData_simplifyCrossGroup_expense deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsimplifyUserData_simplifyCrossGroup_expenseBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsimplifyUserData_simplifyCrossGroup_groupSerializer
+    implements
+        StructuredSerializer<GsimplifyUserData_simplifyCrossGroup_group> {
+  @override
+  final Iterable<Type> types = const [
+    GsimplifyUserData_simplifyCrossGroup_group,
+    _$GsimplifyUserData_simplifyCrossGroup_group
+  ];
+  @override
+  final String wireName = 'GsimplifyUserData_simplifyCrossGroup_group';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GsimplifyUserData_simplifyCrossGroup_group object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GsimplifyUserData_simplifyCrossGroup_group deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsimplifyUserData_simplifyCrossGroup_groupBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsimplifyUserData_simplifyCrossGroup_creatorSerializer
+    implements
+        StructuredSerializer<GsimplifyUserData_simplifyCrossGroup_creator> {
+  @override
+  final Iterable<Type> types = const [
+    GsimplifyUserData_simplifyCrossGroup_creator,
+    _$GsimplifyUserData_simplifyCrossGroup_creator
+  ];
+  @override
+  final String wireName = 'GsimplifyUserData_simplifyCrossGroup_creator';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GsimplifyUserData_simplifyCrossGroup_creator object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GsimplifyUserData_simplifyCrossGroup_creator deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsimplifyUserData_simplifyCrossGroup_creatorBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -23161,6 +23441,12 @@ class _$GsimplifyUserData_simplifyCrossGroup
   @override
   final String G__typename;
   @override
+  final GsimplifyUserData_simplifyCrossGroup_expense? expense;
+  @override
+  final GsimplifyUserData_simplifyCrossGroup_group group;
+  @override
+  final GsimplifyUserData_simplifyCrossGroup_creator creator;
+  @override
   final GsimplifyUserData_simplifyCrossGroup_fromUser fromUser;
   @override
   final GsimplifyUserData_simplifyCrossGroup_toUser toUser;
@@ -23193,6 +23479,9 @@ class _$GsimplifyUserData_simplifyCrossGroup
 
   _$GsimplifyUserData_simplifyCrossGroup._(
       {required this.G__typename,
+      this.expense,
+      required this.group,
+      required this.creator,
       required this.fromUser,
       required this.toUser,
       required this.id,
@@ -23208,6 +23497,10 @@ class _$GsimplifyUserData_simplifyCrossGroup
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GsimplifyUserData_simplifyCrossGroup', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        group, r'GsimplifyUserData_simplifyCrossGroup', 'group');
+    BuiltValueNullFieldError.checkNotNull(
+        creator, r'GsimplifyUserData_simplifyCrossGroup', 'creator');
     BuiltValueNullFieldError.checkNotNull(
         fromUser, r'GsimplifyUserData_simplifyCrossGroup', 'fromUser');
     BuiltValueNullFieldError.checkNotNull(
@@ -23244,6 +23537,9 @@ class _$GsimplifyUserData_simplifyCrossGroup
     if (identical(other, this)) return true;
     return other is GsimplifyUserData_simplifyCrossGroup &&
         G__typename == other.G__typename &&
+        expense == other.expense &&
+        group == other.group &&
+        creator == other.creator &&
         fromUser == other.fromUser &&
         toUser == other.toUser &&
         id == other.id &&
@@ -23262,6 +23558,9 @@ class _$GsimplifyUserData_simplifyCrossGroup
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, expense.hashCode);
+    _$hash = $jc(_$hash, group.hashCode);
+    _$hash = $jc(_$hash, creator.hashCode);
     _$hash = $jc(_$hash, fromUser.hashCode);
     _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
@@ -23282,6 +23581,9 @@ class _$GsimplifyUserData_simplifyCrossGroup
   String toString() {
     return (newBuiltValueToStringHelper(r'GsimplifyUserData_simplifyCrossGroup')
           ..add('G__typename', G__typename)
+          ..add('expense', expense)
+          ..add('group', group)
+          ..add('creator', creator)
           ..add('fromUser', fromUser)
           ..add('toUser', toUser)
           ..add('id', id)
@@ -23307,6 +23609,26 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GsimplifyUserData_simplifyCrossGroup_expenseBuilder? _expense;
+  GsimplifyUserData_simplifyCrossGroup_expenseBuilder get expense =>
+      _$this._expense ??=
+          new GsimplifyUserData_simplifyCrossGroup_expenseBuilder();
+  set expense(GsimplifyUserData_simplifyCrossGroup_expenseBuilder? expense) =>
+      _$this._expense = expense;
+
+  GsimplifyUserData_simplifyCrossGroup_groupBuilder? _group;
+  GsimplifyUserData_simplifyCrossGroup_groupBuilder get group =>
+      _$this._group ??= new GsimplifyUserData_simplifyCrossGroup_groupBuilder();
+  set group(GsimplifyUserData_simplifyCrossGroup_groupBuilder? group) =>
+      _$this._group = group;
+
+  GsimplifyUserData_simplifyCrossGroup_creatorBuilder? _creator;
+  GsimplifyUserData_simplifyCrossGroup_creatorBuilder get creator =>
+      _$this._creator ??=
+          new GsimplifyUserData_simplifyCrossGroup_creatorBuilder();
+  set creator(GsimplifyUserData_simplifyCrossGroup_creatorBuilder? creator) =>
+      _$this._creator = creator;
 
   GsimplifyUserData_simplifyCrossGroup_fromUserBuilder? _fromUser;
   GsimplifyUserData_simplifyCrossGroup_fromUserBuilder get fromUser =>
@@ -23373,6 +23695,9 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _expense = $v.expense?.toBuilder();
+      _group = $v.group.toBuilder();
+      _creator = $v.creator.toBuilder();
       _fromUser = $v.fromUser.toBuilder();
       _toUser = $v.toUser.toBuilder();
       _id = $v.id;
@@ -23412,6 +23737,9 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
           new _$GsimplifyUserData_simplifyCrossGroup._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename, r'GsimplifyUserData_simplifyCrossGroup', 'G__typename'),
+              expense: _expense?.build(),
+              group: group.build(),
+              creator: creator.build(),
               fromUser: fromUser.build(),
               toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
@@ -23433,6 +23761,12 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'expense';
+        _expense?.build();
+        _$failedField = 'group';
+        group.build();
+        _$failedField = 'creator';
+        creator.build();
         _$failedField = 'fromUser';
         fromUser.build();
         _$failedField = 'toUser';
@@ -23445,6 +23779,477 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsimplifyUserData_simplifyCrossGroup_expense
+    extends GsimplifyUserData_simplifyCrossGroup_expense {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String title;
+  @override
+  final String createdAt;
+  @override
+  final int amount;
+  @override
+  final String creatorId;
+
+  factory _$GsimplifyUserData_simplifyCrossGroup_expense(
+          [void Function(GsimplifyUserData_simplifyCrossGroup_expenseBuilder)?
+              updates]) =>
+      (new GsimplifyUserData_simplifyCrossGroup_expenseBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GsimplifyUserData_simplifyCrossGroup_expense._(
+      {required this.G__typename,
+      required this.id,
+      required this.title,
+      required this.createdAt,
+      required this.amount,
+      required this.creatorId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GsimplifyUserData_simplifyCrossGroup_expense', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GsimplifyUserData_simplifyCrossGroup_expense', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        title, r'GsimplifyUserData_simplifyCrossGroup_expense', 'title');
+    BuiltValueNullFieldError.checkNotNull(createdAt,
+        r'GsimplifyUserData_simplifyCrossGroup_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GsimplifyUserData_simplifyCrossGroup_expense', 'amount');
+    BuiltValueNullFieldError.checkNotNull(creatorId,
+        r'GsimplifyUserData_simplifyCrossGroup_expense', 'creatorId');
+  }
+
+  @override
+  GsimplifyUserData_simplifyCrossGroup_expense rebuild(
+          void Function(GsimplifyUserData_simplifyCrossGroup_expenseBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsimplifyUserData_simplifyCrossGroup_expenseBuilder toBuilder() =>
+      new GsimplifyUserData_simplifyCrossGroup_expenseBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsimplifyUserData_simplifyCrossGroup_expense &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        title == other.title &&
+        createdAt == other.createdAt &&
+        amount == other.amount &&
+        creatorId == other.creatorId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GsimplifyUserData_simplifyCrossGroup_expense')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('title', title)
+          ..add('createdAt', createdAt)
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
+        .toString();
+  }
+}
+
+class GsimplifyUserData_simplifyCrossGroup_expenseBuilder
+    implements
+        Builder<GsimplifyUserData_simplifyCrossGroup_expense,
+            GsimplifyUserData_simplifyCrossGroup_expenseBuilder> {
+  _$GsimplifyUserData_simplifyCrossGroup_expense? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  GsimplifyUserData_simplifyCrossGroup_expenseBuilder() {
+    GsimplifyUserData_simplifyCrossGroup_expense._initializeBuilder(this);
+  }
+
+  GsimplifyUserData_simplifyCrossGroup_expenseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _title = $v.title;
+      _createdAt = $v.createdAt;
+      _amount = $v.amount;
+      _creatorId = $v.creatorId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsimplifyUserData_simplifyCrossGroup_expense other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsimplifyUserData_simplifyCrossGroup_expense;
+  }
+
+  @override
+  void update(
+      void Function(GsimplifyUserData_simplifyCrossGroup_expenseBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsimplifyUserData_simplifyCrossGroup_expense build() => _build();
+
+  _$GsimplifyUserData_simplifyCrossGroup_expense _build() {
+    final _$result = _$v ??
+        new _$GsimplifyUserData_simplifyCrossGroup_expense._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GsimplifyUserData_simplifyCrossGroup_expense', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GsimplifyUserData_simplifyCrossGroup_expense', 'id'),
+            title: BuiltValueNullFieldError.checkNotNull(
+                title, r'GsimplifyUserData_simplifyCrossGroup_expense', 'title'),
+            createdAt: BuiltValueNullFieldError.checkNotNull(
+                createdAt, r'GsimplifyUserData_simplifyCrossGroup_expense', 'createdAt'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount, r'GsimplifyUserData_simplifyCrossGroup_expense', 'amount'),
+            creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
+                r'GsimplifyUserData_simplifyCrossGroup_expense', 'creatorId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsimplifyUserData_simplifyCrossGroup_group
+    extends GsimplifyUserData_simplifyCrossGroup_group {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+
+  factory _$GsimplifyUserData_simplifyCrossGroup_group(
+          [void Function(GsimplifyUserData_simplifyCrossGroup_groupBuilder)?
+              updates]) =>
+      (new GsimplifyUserData_simplifyCrossGroup_groupBuilder()..update(updates))
+          ._build();
+
+  _$GsimplifyUserData_simplifyCrossGroup_group._(
+      {required this.G__typename, required this.id, this.name})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GsimplifyUserData_simplifyCrossGroup_group', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GsimplifyUserData_simplifyCrossGroup_group', 'id');
+  }
+
+  @override
+  GsimplifyUserData_simplifyCrossGroup_group rebuild(
+          void Function(GsimplifyUserData_simplifyCrossGroup_groupBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsimplifyUserData_simplifyCrossGroup_groupBuilder toBuilder() =>
+      new GsimplifyUserData_simplifyCrossGroup_groupBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsimplifyUserData_simplifyCrossGroup_group &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GsimplifyUserData_simplifyCrossGroup_group')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name))
+        .toString();
+  }
+}
+
+class GsimplifyUserData_simplifyCrossGroup_groupBuilder
+    implements
+        Builder<GsimplifyUserData_simplifyCrossGroup_group,
+            GsimplifyUserData_simplifyCrossGroup_groupBuilder> {
+  _$GsimplifyUserData_simplifyCrossGroup_group? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  GsimplifyUserData_simplifyCrossGroup_groupBuilder() {
+    GsimplifyUserData_simplifyCrossGroup_group._initializeBuilder(this);
+  }
+
+  GsimplifyUserData_simplifyCrossGroup_groupBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsimplifyUserData_simplifyCrossGroup_group other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsimplifyUserData_simplifyCrossGroup_group;
+  }
+
+  @override
+  void update(
+      void Function(GsimplifyUserData_simplifyCrossGroup_groupBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsimplifyUserData_simplifyCrossGroup_group build() => _build();
+
+  _$GsimplifyUserData_simplifyCrossGroup_group _build() {
+    final _$result = _$v ??
+        new _$GsimplifyUserData_simplifyCrossGroup_group._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GsimplifyUserData_simplifyCrossGroup_group', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GsimplifyUserData_simplifyCrossGroup_group', 'id'),
+            name: name);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsimplifyUserData_simplifyCrossGroup_creator
+    extends GsimplifyUserData_simplifyCrossGroup_creator {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GsimplifyUserData_simplifyCrossGroup_creator(
+          [void Function(GsimplifyUserData_simplifyCrossGroup_creatorBuilder)?
+              updates]) =>
+      (new GsimplifyUserData_simplifyCrossGroup_creatorBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GsimplifyUserData_simplifyCrossGroup_creator._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GsimplifyUserData_simplifyCrossGroup_creator', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GsimplifyUserData_simplifyCrossGroup_creator', 'id');
+    BuiltValueNullFieldError.checkNotNull(isSignedUp,
+        r'GsimplifyUserData_simplifyCrossGroup_creator', 'isSignedUp');
+  }
+
+  @override
+  GsimplifyUserData_simplifyCrossGroup_creator rebuild(
+          void Function(GsimplifyUserData_simplifyCrossGroup_creatorBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsimplifyUserData_simplifyCrossGroup_creatorBuilder toBuilder() =>
+      new GsimplifyUserData_simplifyCrossGroup_creatorBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsimplifyUserData_simplifyCrossGroup_creator &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GsimplifyUserData_simplifyCrossGroup_creator')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GsimplifyUserData_simplifyCrossGroup_creatorBuilder
+    implements
+        Builder<GsimplifyUserData_simplifyCrossGroup_creator,
+            GsimplifyUserData_simplifyCrossGroup_creatorBuilder> {
+  _$GsimplifyUserData_simplifyCrossGroup_creator? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GsimplifyUserData_simplifyCrossGroup_creatorBuilder() {
+    GsimplifyUserData_simplifyCrossGroup_creator._initializeBuilder(this);
+  }
+
+  GsimplifyUserData_simplifyCrossGroup_creatorBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsimplifyUserData_simplifyCrossGroup_creator other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsimplifyUserData_simplifyCrossGroup_creator;
+  }
+
+  @override
+  void update(
+      void Function(GsimplifyUserData_simplifyCrossGroup_creatorBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsimplifyUserData_simplifyCrossGroup_creator build() => _build();
+
+  _$GsimplifyUserData_simplifyCrossGroup_creator _build() {
+    final _$result = _$v ??
+        new _$GsimplifyUserData_simplifyCrossGroup_creator._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GsimplifyUserData_simplifyCrossGroup_creator', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GsimplifyUserData_simplifyCrossGroup_creator', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GsimplifyUserData_simplifyCrossGroup_creator', 'isSignedUp'));
     replace(_$result);
     return _$result;
   }

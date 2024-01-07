@@ -2872,7 +2872,7 @@ abstract class GsimplifyUserData_simplifyCrossGroup
     implements
         Built<GsimplifyUserData_simplifyCrossGroup,
             GsimplifyUserData_simplifyCrossGroupBuilder>,
-        GSplitFields {
+        GSplitTransactionFields {
   GsimplifyUserData_simplifyCrossGroup._();
 
   factory GsimplifyUserData_simplifyCrossGroup(
@@ -2886,6 +2886,12 @@ abstract class GsimplifyUserData_simplifyCrossGroup
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
+  @override
+  GsimplifyUserData_simplifyCrossGroup_expense? get expense;
+  @override
+  GsimplifyUserData_simplifyCrossGroup_group get group;
+  @override
+  GsimplifyUserData_simplifyCrossGroup_creator get creator;
   @override
   GsimplifyUserData_simplifyCrossGroup_fromUser get fromUser;
   @override
@@ -2927,11 +2933,143 @@ abstract class GsimplifyUserData_simplifyCrossGroup
       );
 }
 
+abstract class GsimplifyUserData_simplifyCrossGroup_expense
+    implements
+        Built<GsimplifyUserData_simplifyCrossGroup_expense,
+            GsimplifyUserData_simplifyCrossGroup_expenseBuilder>,
+        GSplitTransactionFields_expense,
+        GExpenseBasic {
+  GsimplifyUserData_simplifyCrossGroup_expense._();
+
+  factory GsimplifyUserData_simplifyCrossGroup_expense(
+      [Function(GsimplifyUserData_simplifyCrossGroup_expenseBuilder b)
+          updates]) = _$GsimplifyUserData_simplifyCrossGroup_expense;
+
+  static void _initializeBuilder(
+          GsimplifyUserData_simplifyCrossGroup_expenseBuilder b) =>
+      b..G__typename = 'Expense';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  int get amount;
+  @override
+  String get creatorId;
+  static Serializer<GsimplifyUserData_simplifyCrossGroup_expense>
+      get serializer => _$gsimplifyUserDataSimplifyCrossGroupExpenseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsimplifyUserData_simplifyCrossGroup_expense.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsimplifyUserData_simplifyCrossGroup_expense? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsimplifyUserData_simplifyCrossGroup_expense.serializer,
+        json,
+      );
+}
+
+abstract class GsimplifyUserData_simplifyCrossGroup_group
+    implements
+        Built<GsimplifyUserData_simplifyCrossGroup_group,
+            GsimplifyUserData_simplifyCrossGroup_groupBuilder>,
+        GSplitTransactionFields_group,
+        GGroupBasic {
+  GsimplifyUserData_simplifyCrossGroup_group._();
+
+  factory GsimplifyUserData_simplifyCrossGroup_group(
+      [Function(GsimplifyUserData_simplifyCrossGroup_groupBuilder b)
+          updates]) = _$GsimplifyUserData_simplifyCrossGroup_group;
+
+  static void _initializeBuilder(
+          GsimplifyUserData_simplifyCrossGroup_groupBuilder b) =>
+      b..G__typename = 'Group';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  static Serializer<GsimplifyUserData_simplifyCrossGroup_group>
+      get serializer => _$gsimplifyUserDataSimplifyCrossGroupGroupSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsimplifyUserData_simplifyCrossGroup_group.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsimplifyUserData_simplifyCrossGroup_group? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsimplifyUserData_simplifyCrossGroup_group.serializer,
+        json,
+      );
+}
+
+abstract class GsimplifyUserData_simplifyCrossGroup_creator
+    implements
+        Built<GsimplifyUserData_simplifyCrossGroup_creator,
+            GsimplifyUserData_simplifyCrossGroup_creatorBuilder>,
+        GSplitTransactionFields_creator,
+        GUserFields {
+  GsimplifyUserData_simplifyCrossGroup_creator._();
+
+  factory GsimplifyUserData_simplifyCrossGroup_creator(
+      [Function(GsimplifyUserData_simplifyCrossGroup_creatorBuilder b)
+          updates]) = _$GsimplifyUserData_simplifyCrossGroup_creator;
+
+  static void _initializeBuilder(
+          GsimplifyUserData_simplifyCrossGroup_creatorBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GsimplifyUserData_simplifyCrossGroup_creator>
+      get serializer => _$gsimplifyUserDataSimplifyCrossGroupCreatorSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsimplifyUserData_simplifyCrossGroup_creator.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsimplifyUserData_simplifyCrossGroup_creator? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsimplifyUserData_simplifyCrossGroup_creator.serializer,
+        json,
+      );
+}
+
 abstract class GsimplifyUserData_simplifyCrossGroup_fromUser
     implements
         Built<GsimplifyUserData_simplifyCrossGroup_fromUser,
             GsimplifyUserData_simplifyCrossGroup_fromUserBuilder>,
-        GSplitFields_fromUser,
+        GSplitTransactionFields_fromUser,
         GUserFields {
   GsimplifyUserData_simplifyCrossGroup_fromUser._();
 
@@ -2977,7 +3115,7 @@ abstract class GsimplifyUserData_simplifyCrossGroup_toUser
     implements
         Built<GsimplifyUserData_simplifyCrossGroup_toUser,
             GsimplifyUserData_simplifyCrossGroup_toUserBuilder>,
-        GSplitFields_toUser,
+        GSplitTransactionFields_toUser,
         GUserFields {
   GsimplifyUserData_simplifyCrossGroup_toUser._();
 

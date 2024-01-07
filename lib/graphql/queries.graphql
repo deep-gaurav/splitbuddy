@@ -235,7 +235,7 @@ mutation settleInGroup($withUser: String!, $groupId: String!, $amount: Int!) {
 
 mutation simplifyUser($withUser: String!) {
   simplifyCrossGroup(withUser: $withUser) {
-    ...SplitFields
+    ...SplitTransactionFields
   }
 }
 

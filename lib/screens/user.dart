@@ -19,6 +19,7 @@ import 'package:splitbuddy/screens/groups_page.dart';
 import 'package:splitbuddy/screens/home_page.dart';
 import 'package:splitbuddy/state/app_state.dart';
 import 'package:splitbuddy/utils/color_utils.dart';
+import 'package:splitbuddy/utils/svg_icons.dart';
 
 class UserPage extends StatefulWidget {
   final Ginteracted_usersData_interactedUsers initialUser;
@@ -36,14 +37,12 @@ class _UserPageState extends State<UserPage> {
 
   bool _loading = false;
 
-  late Ginteracted_usersData_interactedUsers user;
   Map<String, List<TransactionCardTypes>> expenseGrouped = {};
   List<String> dates = [];
   ValueNotifier<bool> maintain = ValueNotifier(true);
 
   @override
   void initState() {
-    user = widget.initialUser;
     _scrollController.addListener(() {
       var nextPageTrigger = 300;
 
@@ -69,7 +68,7 @@ class _UserPageState extends State<UserPage> {
       var result = await client.execute(
         GtransactionWithUserReq(
           (b) => b.vars
-            ..withUser = user.id
+            ..withUser = widget.initialUser.id
             ..limit = 10
             ..fromTime = transactions.lastOrNull?.createdAt,
         ),
@@ -164,6 +163,9 @@ class _UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
+    var user = context.select<AppState, Ginteracted_usersData_interactedUsers>(
+        (state) => state.interactedUsers
+            .firstWhere((element) => element.id == widget.initialUser.id));
     return Scaffold(
       body: Column(
         children: [
@@ -236,6 +238,16 @@ class _UserPageState extends State<UserPage> {
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: UserSummaryWidget(
                     user: user,
+                    onSimplify: (splitTransactions) {
+                      transactions.add(
+                        GroupedCrossSettlementTransactions(
+                          groupId:
+                              splitTransactions.first.transactionPartGroupId!,
+                          transactions: splitTransactions,
+                        ),
+                      );
+                      generateGrouped();
+                    },
                   ),
                 ),
               ),
@@ -753,9 +765,11 @@ class UserSummaryWidget extends StatelessWidget {
   const UserSummaryWidget({
     super.key,
     required this.user,
+    required this.onSimplify,
   });
 
   final Ginteracted_usersData_interactedUsers user;
+  final Function(List<GSplitTransactionFields> transactions) onSimplify;
 
   @override
   Widget build(BuildContext context) {
@@ -937,6 +951,131 @@ class UserSummaryWidget extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
+            if (user.toPay > 0 && user.toReceive > 0) ...[
+              const SizedBox(
+                height: 5,
+              ),
+              FilledButton.icon(
+                icon: const SvgIcon(asset: SvgIcons.moneyTransfer),
+                onPressed: () async {
+                  var appstate = context.read<AppState>();
+                  var shouldSimplify = await showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Simplify'),
+                      icon: const SvgIcon(
+                        asset: SvgIcons.moneyTransfer,
+                        size: 40,
+                      ),
+                      content: Text.rich(
+                        TextSpan(children: [
+                          const TextSpan(text: 'You currently '),
+                          TextSpan(
+                            text: 'owe ',
+                            children: [
+                              TextSpan(
+                                text: user.toPay.toString(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TextSpan(
+                                text: ' to ${user.shortName} ',
+                              )
+                            ],
+                            style: TextStyle(
+                              color: scheme.error,
+                            ),
+                          ),
+                          const TextSpan(text: 'and they '),
+                          TextSpan(
+                            text: 'owe ',
+                            children: [
+                              TextSpan(
+                                text: user.toReceive.toString(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const TextSpan(
+                                text: ' to you ',
+                              )
+                            ],
+                            style: TextStyle(
+                              color: scheme.primary,
+                            ),
+                          ),
+                          const TextSpan(text: 'across different groups.'),
+                          const TextSpan(
+                            text:
+                                '\n\nBy simplifying balances, we can combine these into a single, clear amount.,',
+                          ),
+                          if (user.toPay > user.toReceive) ...[
+                            TextSpan(text: '\n• You\'ll ', children: [
+                              TextSpan(
+                                text: 'owe ${user.displayName} ',
+                                children: [
+                                  TextSpan(
+                                    text: '${user.toPay - user.toReceive}',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                ],
+                                style: TextStyle(color: scheme.error),
+                              ),
+                              const TextSpan(text: ' in total'),
+                            ]),
+                            const TextSpan(text: '\n• They\'ll owe you nothing')
+                          ] else ...[
+                            TextSpan(text: '\n• They\'ll ', children: [
+                              TextSpan(
+                                text: 'owe you ',
+                                children: [
+                                  TextSpan(
+                                    text: '${user.toReceive - user.toPay}',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                ],
+                                style: TextStyle(color: scheme.primary),
+                              ),
+                              const TextSpan(text: ' in total'),
+                            ]),
+                            TextSpan(
+                                text:
+                                    '\n• You\'ll owe ${user.displayName} nothing')
+                          ],
+                        ]),
+                      ),
+                      actions: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(false);
+                          },
+                          child: const Text('Cancel'),
+                        ),
+                        FilledButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(true);
+                          },
+                          child: const Text('Simplify'),
+                        )
+                      ],
+                    ),
+                  );
+
+                  if (shouldSimplify == true) {
+                    var result = await appstate.simplifyUser(userId: user.id);
+                    onSimplify(result);
+                  }
+                },
+                label: const Text(
+                  "Simplify",
+                ),
+              ),
+            ]
           ],
         ),
       ),
