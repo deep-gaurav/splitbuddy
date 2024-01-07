@@ -50,6 +50,8 @@ Serializer<GExpenseBasicVars> _$gExpenseBasicVarsSerializer =
     new _$GExpenseBasicVarsSerializer();
 Serializer<GExpenseFieldsVars> _$gExpenseFieldsVarsSerializer =
     new _$GExpenseFieldsVarsSerializer();
+Serializer<GNewExpenseFieldsVars> _$gNewExpenseFieldsVarsSerializer =
+    new _$GNewExpenseFieldsVarsSerializer();
 Serializer<GSplitFieldsBasicsVars> _$gSplitFieldsBasicsVarsSerializer =
     new _$GSplitFieldsBasicsVarsSerializer();
 Serializer<GSplitFieldsVars> _$gSplitFieldsVarsSerializer =
@@ -1040,6 +1042,31 @@ class _$GExpenseFieldsVarsSerializer
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new GExpenseFieldsVarsBuilder().build();
+  }
+}
+
+class _$GNewExpenseFieldsVarsSerializer
+    implements StructuredSerializer<GNewExpenseFieldsVars> {
+  @override
+  final Iterable<Type> types = const [
+    GNewExpenseFieldsVars,
+    _$GNewExpenseFieldsVars
+  ];
+  @override
+  final String wireName = 'GNewExpenseFieldsVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GNewExpenseFieldsVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GNewExpenseFieldsVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GNewExpenseFieldsVarsBuilder().build();
   }
 }
 
@@ -3285,6 +3312,66 @@ class GExpenseFieldsVarsBuilder
 
   _$GExpenseFieldsVars _build() {
     final _$result = _$v ?? new _$GExpenseFieldsVars._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GNewExpenseFieldsVars extends GNewExpenseFieldsVars {
+  factory _$GNewExpenseFieldsVars(
+          [void Function(GNewExpenseFieldsVarsBuilder)? updates]) =>
+      (new GNewExpenseFieldsVarsBuilder()..update(updates))._build();
+
+  _$GNewExpenseFieldsVars._() : super._();
+
+  @override
+  GNewExpenseFieldsVars rebuild(
+          void Function(GNewExpenseFieldsVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GNewExpenseFieldsVarsBuilder toBuilder() =>
+      new GNewExpenseFieldsVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GNewExpenseFieldsVars;
+  }
+
+  @override
+  int get hashCode {
+    return 11278385;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GNewExpenseFieldsVars').toString();
+  }
+}
+
+class GNewExpenseFieldsVarsBuilder
+    implements Builder<GNewExpenseFieldsVars, GNewExpenseFieldsVarsBuilder> {
+  _$GNewExpenseFieldsVars? _$v;
+
+  GNewExpenseFieldsVarsBuilder();
+
+  @override
+  void replace(GNewExpenseFieldsVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GNewExpenseFieldsVars;
+  }
+
+  @override
+  void update(void Function(GNewExpenseFieldsVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GNewExpenseFieldsVars build() => _build();
+
+  _$GNewExpenseFieldsVars _build() {
+    final _$result = _$v ?? new _$GNewExpenseFieldsVars._();
     replace(_$result);
     return _$result;
   }

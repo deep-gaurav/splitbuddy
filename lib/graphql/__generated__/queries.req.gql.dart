@@ -1631,6 +1631,54 @@ abstract class GExpenseFieldsReq
       );
 }
 
+abstract class GNewExpenseFieldsReq
+    implements
+        Built<GNewExpenseFieldsReq, GNewExpenseFieldsReqBuilder>,
+        _i1
+        .FragmentRequest<_i2.GNewExpenseFieldsData, _i3.GNewExpenseFieldsVars> {
+  GNewExpenseFieldsReq._();
+
+  factory GNewExpenseFieldsReq(
+          [Function(GNewExpenseFieldsReqBuilder b) updates]) =
+      _$GNewExpenseFieldsReq;
+
+  static void _initializeBuilder(GNewExpenseFieldsReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'NewExpenseFields';
+
+  @override
+  _i3.GNewExpenseFieldsVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GNewExpenseFieldsData? parseData(Map<String, dynamic> json) =>
+      _i2.GNewExpenseFieldsData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  static Serializer<GNewExpenseFieldsReq> get serializer =>
+      _$gNewExpenseFieldsReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GNewExpenseFieldsReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GNewExpenseFieldsReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GNewExpenseFieldsReq.serializer,
+        json,
+      );
+}
+
 abstract class GSplitFieldsBasicsReq
     implements
         Built<GSplitFieldsBasicsReq, GSplitFieldsBasicsReqBuilder>,

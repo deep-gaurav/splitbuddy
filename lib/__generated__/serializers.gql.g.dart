@@ -45,6 +45,15 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GGroupWithExpensesData_members_member.serializer)
       ..add(GGroupWithExpensesReq.serializer)
       ..add(GGroupWithExpensesVars.serializer)
+      ..add(GNewExpenseFieldsData.serializer)
+      ..add(GNewExpenseFieldsData_splits.serializer)
+      ..add(GNewExpenseFieldsData_splits_creator.serializer)
+      ..add(GNewExpenseFieldsData_splits_expense.serializer)
+      ..add(GNewExpenseFieldsData_splits_fromUser.serializer)
+      ..add(GNewExpenseFieldsData_splits_group.serializer)
+      ..add(GNewExpenseFieldsData_splits_toUser.serializer)
+      ..add(GNewExpenseFieldsReq.serializer)
+      ..add(GNewExpenseFieldsVars.serializer)
       ..add(GSplitFieldsBasicsData.serializer)
       ..add(GSplitFieldsBasicsReq.serializer)
       ..add(GSplitFieldsBasicsVars.serializer)
@@ -73,9 +82,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GUserPaysFieldsVars.serializer)
       ..add(Gadd_expenseData.serializer)
       ..add(Gadd_expenseData_addExpense.serializer)
-      ..add(Gadd_expenseData_addExpense_creator.serializer)
       ..add(Gadd_expenseData_addExpense_splits.serializer)
+      ..add(Gadd_expenseData_addExpense_splits_creator.serializer)
+      ..add(Gadd_expenseData_addExpense_splits_expense.serializer)
       ..add(Gadd_expenseData_addExpense_splits_fromUser.serializer)
+      ..add(Gadd_expenseData_addExpense_splits_group.serializer)
       ..add(Gadd_expenseData_addExpense_splits_toUser.serializer)
       ..add(Gadd_expenseReq.serializer)
       ..add(Gadd_expenseVars.serializer)
@@ -91,13 +102,17 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GcreateNonGroupExpenseData.serializer)
       ..add(GcreateNonGroupExpenseData_addNonGroupExpense.serializer)
       ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense.serializer)
-      ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_creator
-          .serializer)
       ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
+          .serializer)
+      ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_creator
+          .serializer)
+      ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
           .serializer)
       ..add(
           GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
               .serializer)
+      ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_group
+          .serializer)
       ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_toUser
           .serializer)
       ..add(GcreateNonGroupExpenseData_addNonGroupExpense_group.serializer)
@@ -228,6 +243,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(GGroupWithExpensesData_expenses)]),
           () => new ListBuilder<GGroupWithExpensesData_expenses>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GNewExpenseFieldsData_splits)]),
+          () => new ListBuilder<GNewExpenseFieldsData_splits>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GSplitInput)]),
           () => new ListBuilder<GSplitInput>())

@@ -97,7 +97,7 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                                   ? TextStyle(color: mainScheme.error)
                                   : member.owedInGroup < 0
                                       ? TextStyle(color: mainScheme.primary)
-                                      : null,
+                                      : TextStyle(color: neutralBlue.primary),
                             )
                           : null,
                     ),

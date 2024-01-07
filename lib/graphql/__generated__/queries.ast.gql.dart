@@ -272,6 +272,33 @@ const ExpenseFields = _i1.FragmentDefinitionNode(
     ),
   ]),
 );
+const NewExpenseFields = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'NewExpenseFields'),
+  typeCondition: _i1.TypeConditionNode(
+      on: _i1.NamedTypeNode(
+    name: _i1.NameNode(value: 'Expense'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FragmentSpreadNode(
+      name: _i1.NameNode(value: 'ExpenseBasic'),
+      directives: [],
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'splits'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'SplitTransactionFields'),
+          directives: [],
+        )
+      ]),
+    ),
+  ]),
+);
 const SplitFieldsBasics = _i1.FragmentDefinitionNode(
   name: _i1.NameNode(value: 'SplitFieldsBasics'),
   typeCondition: _i1.TypeConditionNode(
@@ -895,7 +922,7 @@ const add_expense = _i1.OperationDefinitionNode(
       directives: [],
       selectionSet: _i1.SelectionSetNode(selections: [
         _i1.FragmentSpreadNode(
-          name: _i1.NameNode(value: 'ExpenseFields'),
+          name: _i1.NameNode(value: 'NewExpenseFields'),
           directives: [],
         )
       ]),
@@ -1179,7 +1206,7 @@ const createNonGroupExpense = _i1.OperationDefinitionNode(
           directives: [],
           selectionSet: _i1.SelectionSetNode(selections: [
             _i1.FragmentSpreadNode(
-              name: _i1.NameNode(value: 'ExpenseFields'),
+              name: _i1.NameNode(value: 'NewExpenseFields'),
               directives: [],
             )
           ]),
@@ -1461,6 +1488,7 @@ const document = _i1.DocumentNode(definitions: [
   GroupFields,
   ExpenseBasic,
   ExpenseFields,
+  NewExpenseFields,
   SplitFieldsBasics,
   SplitFields,
   SplitTransactionFields,

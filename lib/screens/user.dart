@@ -11,7 +11,9 @@ import 'package:splitbuddy/extensions/interable_extension.dart';
 import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
+import 'package:splitbuddy/models/expensewith.dart';
 import 'package:splitbuddy/models/transaction_group_types.dart';
+import 'package:splitbuddy/screens/find_people.dart';
 import 'package:splitbuddy/screens/group.dart';
 import 'package:splitbuddy/screens/groups_page.dart';
 import 'package:splitbuddy/screens/home_page.dart';
@@ -129,22 +131,8 @@ class _UserPageState extends State<UserPage> {
             }
           }
         }
+        generateGrouped();
         maintain.value = true;
-        setState(() {});
-        expenseGrouped = {};
-        for (var transaction in transactions) {
-          var date = DateFormat('d MMM y')
-              .format(DateTime.parse(transaction.createdAt).toLocal());
-          if (expenseGrouped[date] == null) {
-            expenseGrouped[date] = [transaction];
-          } else {
-            expenseGrouped[date]?.add(transaction);
-          }
-        }
-        dates = expenseGrouped.keys.toList();
-        dates.sort((a, b) => DateFormat('d MMM y')
-            .parse(a)
-            .compareTo(DateFormat('d MMM y').parse(b)));
       }
     } finally {
       if (mounted) {
@@ -153,6 +141,25 @@ class _UserPageState extends State<UserPage> {
         });
       }
     }
+  }
+
+  generateGrouped() {
+    expenseGrouped = {};
+    transactions.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+    for (var transaction in transactions) {
+      var date = DateFormat('d MMM y')
+          .format(DateTime.parse(transaction.createdAt).toLocal());
+      if (expenseGrouped[date] == null) {
+        expenseGrouped[date] = [transaction];
+      } else {
+        expenseGrouped[date]?.add(transaction);
+      }
+    }
+    dates = expenseGrouped.keys.toList();
+    dates.sort((a, b) => DateFormat('d MMM y')
+        .parse(a)
+        .compareTo(DateFormat('d MMM y').parse(b)));
+    setState(() {});
   }
 
   @override
@@ -240,15 +247,21 @@ class _UserPageState extends State<UserPage> {
               ElevatedButton.icon(
                 icon: const Icon(Icons.sell),
                 onPressed: () async {
-                  // var expense = await Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) => CreateExpensePage(group: group),
-                  //   ),
-                  // );
-                  // if (expense is GExpenseFields) {
-                  //   expenses.insert(0, expense);
-                  //   setState(() {});
-                  // }
+                  var expense = await Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => FindPeople(
+                        searchGroup: true,
+                        expenseWith: ExpenseWithPeople(
+                            users: [UserWithUser(user: user)]),
+                      ),
+                    ),
+                  );
+                  if (expense is GNewExpenseFields) {
+                    for (var split in expense.splits) {
+                      transactions.add(SingleTransaction(transaction: split));
+                    }
+                    generateGrouped();
+                  }
                 },
                 label: const Text(
                   "Add Expense",
@@ -922,15 +935,8 @@ class UserSummaryWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 5,
             ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Full summary'),
-                Icon(Icons.chevron_right),
-              ],
-            )
           ],
         ),
       ),

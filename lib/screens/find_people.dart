@@ -9,11 +9,15 @@ import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
 import 'package:splitbuddy/models/expensewith.dart';
+import 'package:splitbuddy/screens/groups_page.dart';
+import 'package:splitbuddy/screens/home_page.dart';
 import 'package:splitbuddy/state/app_state.dart';
 
 class FindPeople extends StatefulWidget {
+  final ExpenseWith? expenseWith;
+
   final bool searchGroup;
-  const FindPeople({super.key, required this.searchGroup});
+  const FindPeople({super.key, required this.searchGroup, this.expenseWith});
 
   @override
   State<FindPeople> createState() => _FindPeopleState();
@@ -33,9 +37,10 @@ class _FindPeopleState extends State<FindPeople> {
   @override
   void initState() {
     amountController.addListener(() {
-      resetPercentage();
+      // resetPercentage();
     });
     expenseWith.addListener(reinitDistribution);
+    expenseWith.value = widget.expenseWith;
     super.initState();
   }
 
@@ -109,13 +114,24 @@ class _FindPeopleState extends State<FindPeople> {
                       builder: (context, val, child) {
                         if (val != null && val.lengthOfUsers > 0) {
                           return ElevatedButton(
-                            onPressed: controller.openView,
+                            onPressed: () {
+                              if (widget.expenseWith == null) {
+                                controller.openView();
+                              }
+                            },
                             child: SearchBarChips(
-                                expenseWith: expenseWith, isOut: true),
+                              expenseWith: expenseWith,
+                              isOut: true,
+                              canDelete: widget.expenseWith == null,
+                            ),
                           );
                         }
                         return ElevatedButton.icon(
-                          onPressed: controller.openView,
+                          onPressed: () {
+                            if (widget.expenseWith == null) {
+                              controller.openView();
+                            }
+                          },
                           icon: const Icon(Icons.search),
                           label: const Text('Enter name or email'),
                         );
@@ -128,7 +144,10 @@ class _FindPeopleState extends State<FindPeople> {
                         backgroundColor: Colors.transparent,
                         body: ListView(children: [
                           SearchBarChips(
-                              expenseWith: expenseWith, isOut: false),
+                            expenseWith: expenseWith,
+                            isOut: false,
+                            canDelete: widget.expenseWith == null,
+                          ),
                           ...suggestions
                         ]),
                         floatingActionButton: ValueListenableBuilder(
@@ -174,7 +193,7 @@ class _FindPeopleState extends State<FindPeople> {
                               },
                               child: Card(
                                 child: ListTile(
-                                  leading: const Icon(Icons.group),
+                                  leading: GroupIconWidget(group: element),
                                   title: Text(
                                       element.getDisplayName(context.read())),
                                 ),
@@ -214,7 +233,7 @@ class _FindPeopleState extends State<FindPeople> {
                               },
                               child: Card(
                                 child: ListTile(
-                                  leading: const Icon(Icons.person),
+                                  leading: UserIconWidget(user: searchUser),
                                   title: Text(searchUser.displayName),
                                 ),
                               ),
@@ -272,7 +291,7 @@ class _FindPeopleState extends State<FindPeople> {
                           },
                           child: Card(
                             child: ListTile(
-                              leading: const Icon(Icons.person),
+                              leading: UserIconWidget(user: searchUser),
                               title: Text(searchUser.displayName),
                             ),
                           ),
@@ -540,6 +559,7 @@ class _FindPeopleState extends State<FindPeople> {
                     )
                     .toList(),
               );
+              nav.pop(expense);
             } else if (expenseWith.value
                 case ExpenseWithPeople(users: var users)) {
               var expense = await (await appstate.client).execute(
@@ -568,8 +588,8 @@ class _FindPeopleState extends State<FindPeople> {
                 ),
               );
               appstate.refresh((await appstate.client));
+              nav.pop(expense.data?.addNonGroupExpense.expense);
             }
-            nav.pop();
           }
         },
         label: const Text("Create"),
@@ -580,10 +600,14 @@ class _FindPeopleState extends State<FindPeople> {
 
 class SearchBarChips extends StatelessWidget {
   final bool isOut;
+  final bool canDelete;
   final ValueNotifier<ExpenseWith?> expenseWith;
 
   const SearchBarChips(
-      {super.key, required this.expenseWith, required this.isOut});
+      {super.key,
+      required this.expenseWith,
+      required this.isOut,
+      required this.canDelete});
 
   @override
   Widget build(BuildContext context) => ValueListenableBuilder(
@@ -594,18 +618,23 @@ class SearchBarChips extends StatelessWidget {
                 ...users.map(
                   (e) => Chip(
                     label: Text(e.displayName),
-                    onDeleted: () {
-                      expenseWith.value = ExpenseWithPeople(
-                          users: [...users.where((element) => element != e)]);
-                    },
+                    onDeleted: canDelete
+                        ? () {
+                            expenseWith.value = ExpenseWithPeople(users: [
+                              ...users.where((element) => element != e)
+                            ]);
+                          }
+                        : null,
                   ),
                 )
               else if (expenseWithValue case ExpenseWithGroup(group: var group))
                 Chip(
                   label: Text(group.getDisplayName(context.read())),
-                  onDeleted: () {
-                    expenseWith.value = null;
-                  },
+                  onDeleted: canDelete
+                      ? () {
+                          expenseWith.value = null;
+                        }
+                      : null,
                 ),
             ],
           ));

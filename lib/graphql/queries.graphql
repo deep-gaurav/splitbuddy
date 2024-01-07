@@ -53,6 +53,13 @@ fragment ExpenseFields on Expense {
   }
 }
 
+fragment NewExpenseFields on Expense {
+  ...ExpenseBasic
+  splits{
+    ...SplitTransactionFields
+  }
+}
+
 fragment SplitFieldsBasics on Split {
   id
   amount
@@ -171,7 +178,7 @@ mutation add_expense(
     splits: $splits
     groupId: $groupId
   ) {
-    ...ExpenseFields
+    ...NewExpenseFields
   }
 }
 
@@ -215,7 +222,7 @@ mutation createNonGroupExpense(
       ...GroupFields
     }
     expense {
-      ...ExpenseFields
+      ...NewExpenseFields
     }
   }
 }

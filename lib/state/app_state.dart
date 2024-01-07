@@ -179,7 +179,7 @@ class AppState extends ChangeNotifier {
     }
   }
 
-  Future<GExpenseFields> addExpense(String title, int amount, String groupId,
+  Future<GNewExpenseFields> addExpense(String title, int amount, String groupId,
       List<GSplitInput> splits) async {
     var client = await _getClient();
     var result = await client.execute(Gadd_expenseReq(

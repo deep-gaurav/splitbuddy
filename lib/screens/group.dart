@@ -17,6 +17,8 @@ import 'package:splitbuddy/extensions/user_extension.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.ast.gql.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
 import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
+import 'package:splitbuddy/models/expensewith.dart';
+import 'package:splitbuddy/screens/find_people.dart';
 import 'package:splitbuddy/screens/group_info.dart';
 import 'package:splitbuddy/screens/groups_page.dart';
 import 'package:splitbuddy/screens/home_page.dart';
@@ -44,6 +46,8 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
   ColorScheme get neutralBlue => ColorUtils.getNeutralBlue(context);
 
   ValueNotifier<bool> maintain = ValueNotifier(true);
+  Map<String, List<GroupTransactionObject>> expenseGrouped = {};
+  List<String> dates = [];
 
   @override
   void initState() {
@@ -102,7 +106,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
         }
 
         maintain.value = true;
-        setState(() {});
+        generateGrouped();
       }
     } finally {
       if (mounted) {
@@ -111,6 +115,25 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
         });
       }
     }
+  }
+
+  generateGrouped() {
+    expenses.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+    expenseGrouped.clear();
+    for (var expense in expenses) {
+      var date = DateFormat('d MMM y')
+          .format(DateTime.parse(expense.createdAt).toLocal());
+      if (expenseGrouped[date] == null) {
+        expenseGrouped[date] = [expense];
+      } else {
+        expenseGrouped[date]?.add(expense);
+      }
+    }
+    dates = expenseGrouped.keys.toList();
+    dates.sort((a, b) => DateFormat('d MMM y')
+        .parse(a)
+        .compareTo(DateFormat('d MMM y').parse(b)));
+    setState(() {});
   }
 
   (TextSpan, Color?) getTitle(BuildContext context, GSplitFields? split) {
@@ -220,21 +243,6 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
         .userGroups
         .firstWhere((element) => element.id == widget.group.id));
 
-    Map<String, List<GroupTransactionObject>> expenseGrouped = {};
-
-    for (var expense in expenses) {
-      var date = DateFormat('d MMM y')
-          .format(DateTime.parse(expense.createdAt).toLocal());
-      if (expenseGrouped[date] == null) {
-        expenseGrouped[date] = [expense];
-      } else {
-        expenseGrouped[date]?.add(expense);
-      }
-    }
-    var dates = expenseGrouped.keys.toList();
-    dates.sort((a, b) => DateFormat('d MMM y')
-        .parse(a)
-        .compareTo(DateFormat('d MMM y').parse(b)));
     return Scaffold(
       body: Column(
         children: [
@@ -473,15 +481,31 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
               ElevatedButton.icon(
                 icon: const Icon(Icons.sell),
                 onPressed: () async {
-                  // var expense = await Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) => CreateExpensePage(group: group),
-                  //   ),
-                  // );
-                  // if (expense is GExpenseFields) {
-                  //   expenses.insert(0, expense);
-                  //   setState(() {});
-                  // }
+                  var expense = await Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => FindPeople(
+                        searchGroup: true,
+                        expenseWith: ExpenseWithGroup(group: group),
+                      ),
+                    ),
+                  );
+                  if (expense is GNewExpenseFields) {
+                    setState(() {
+                      expenses.add(
+                        Expense(
+                          expense: expense,
+                          splits: expense.splits.toList(),
+                        ),
+                      );
+                      generateGrouped();
+                    });
+                    WidgetsBinding.instance
+                        .addPostFrameCallback((timeStamp) async {
+                      // await Future.delayed(Durations.short1);
+                      _scrollController
+                          .jumpTo(_scrollController.position.maxScrollExtent);
+                    });
+                  }
                 },
                 label: const Text(
                   "Add Expense",

@@ -568,6 +568,29 @@ abstract class GExpenseFieldsVars
       );
 }
 
+abstract class GNewExpenseFieldsVars
+    implements Built<GNewExpenseFieldsVars, GNewExpenseFieldsVarsBuilder> {
+  GNewExpenseFieldsVars._();
+
+  factory GNewExpenseFieldsVars(
+          [Function(GNewExpenseFieldsVarsBuilder b) updates]) =
+      _$GNewExpenseFieldsVars;
+
+  static Serializer<GNewExpenseFieldsVars> get serializer =>
+      _$gNewExpenseFieldsVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GNewExpenseFieldsVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GNewExpenseFieldsVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GNewExpenseFieldsVars.serializer,
+        json,
+      );
+}
+
 abstract class GSplitFieldsBasicsVars
     implements Built<GSplitFieldsBasicsVars, GSplitFieldsBasicsVarsBuilder> {
   GSplitFieldsBasicsVars._();
