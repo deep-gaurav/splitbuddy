@@ -51,6 +51,7 @@ class _MyAppState extends State<MyApp> {
         builder: (context, val, child) {
           return DynamicColorBuilder(
             builder: (lightDynamic, darkDynamic) => MaterialApp(
+              title: 'Bill Divide',
               theme: _buildTheme(Brightness.light, lightDynamic),
               darkTheme: _buildTheme(Brightness.dark, darkDynamic),
               home: switch (val) {
