@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/state/app_state.dart';
@@ -20,6 +21,8 @@ class _PhoneEntryScreenState extends State<PhoneEntryScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController otpController = TextEditingController();
 
+  (DateTime, DateTime)? resendTimer;
+
   bool isLoading = false;
 
   sendOTP(String email) async {
@@ -40,6 +43,30 @@ class _PhoneEntryScreenState extends State<PhoneEntryScreen> {
         isLoading = false;
       });
     }
+  }
+
+  resendOTP() async {
+    try {
+      var messenger = ScaffoldMessenger.of(context);
+      if (emailFormKey.currentState != null &&
+          emailFormKey.currentState!.validate()) {
+        var isSent = await context.read<AppState>().sendEmailOTP(email!);
+        if (isSent) {
+          messenger.showSnackBar(
+              const SnackBar(content: Text('OTP Resent successfully')));
+          setState(() {
+            resendTimer = (
+              DateTime.now(),
+              DateTime.now().add(
+                const Duration(
+                  seconds: 10,
+                ),
+              ),
+            );
+          });
+        }
+      }
+    } finally {}
   }
 
   verifyOTP(String otp) async {
@@ -145,8 +172,26 @@ class _PhoneEntryScreenState extends State<PhoneEntryScreen> {
                             autofocus: true,
                             keyboardType: TextInputType.phone,
                             textInputAction: TextInputAction.go,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               labelText: 'OTP sent to email',
+                              suffix: FilledButton.icon(
+                                style: const ButtonStyle(
+                                  visualDensity: VisualDensity.compact,
+                                ),
+                                icon: resendTimer != null
+                                    ? ProgressTimer(
+                                        startTime: resendTimer!.$1,
+                                        endTime: resendTimer!.$2,
+                                        onRefresh: () {
+                                          setState(() {
+                                            resendTimer = null;
+                                          });
+                                        })
+                                    : const Icon(Icons.send),
+                                onPressed:
+                                    resendTimer == null ? resendOTP : null,
+                                label: const Text('Resend'),
+                              ),
                             ),
                           ),
                         ),
@@ -176,5 +221,69 @@ class _PhoneEntryScreenState extends State<PhoneEntryScreen> {
         ),
       ),
     );
+  }
+}
+
+class ProgressTimer extends StatefulWidget {
+  final DateTime startTime;
+  final DateTime endTime;
+  final VoidCallback onRefresh;
+
+  const ProgressTimer({
+    super.key,
+    required this.startTime,
+    required this.endTime,
+    required this.onRefresh,
+  });
+
+  @override
+  State<ProgressTimer> createState() => _ProgressTimerState();
+}
+
+class _ProgressTimerState extends State<ProgressTimer>
+    with SingleTickerProviderStateMixin {
+  late Ticker ticker;
+  @override
+  void initState() {
+    ticker = createTicker((elapsed) {
+      if (mounted) {
+        setState(() {});
+      }
+    })
+      ..start();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    const int maxInteger = 0x7FFFFFFFFFFFFFFF;
+
+    var total = widget.endTime
+        .difference(widget.startTime)
+        .inMilliseconds
+        .clamp(0, maxInteger);
+    var remaining = widget.endTime
+        .difference(DateTime.now())
+        .inMilliseconds
+        .clamp(0, maxInteger);
+    if (total > 0 && remaining <= 0) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        widget.onRefresh();
+      });
+    }
+    var iconTheme = IconTheme.of(context);
+    return SizedBox(
+      height: iconTheme.size,
+      width: iconTheme.size,
+      child: CircularProgressIndicator(
+        value: total > 0 ? remaining / total : null,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    ticker.dispose();
+    super.dispose();
   }
 }
