@@ -1,4 +1,4 @@
-import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
+import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 
 sealed class GroupTransactionObject {
   String get createdAt;

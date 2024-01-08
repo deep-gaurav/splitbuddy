@@ -1,5 +1,5 @@
-import 'package:splitbuddy/extensions/user_extension.dart';
-import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
+import 'package:billdivide/extensions/user_extension.dart';
+import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 
 sealed class ExpenseWith {
   int get lengthOfUsers;

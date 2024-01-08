@@ -2,10 +2,10 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:splitbuddy/extensions/user_extension.dart';
-import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
-import 'package:splitbuddy/screens/user.dart';
-import 'package:splitbuddy/state/app_state.dart';
+import 'package:billdivide/extensions/user_extension.dart';
+import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
+import 'package:billdivide/screens/user.dart';
+import 'package:billdivide/state/app_state.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

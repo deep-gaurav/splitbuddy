@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:splitbuddy/extensions/group_extension.dart';
-import 'package:splitbuddy/extensions/user_extension.dart';
-import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
-import 'package:splitbuddy/screens/groups_page.dart';
-import 'package:splitbuddy/screens/home_page.dart';
-import 'package:splitbuddy/screens/payment_recorder.dart';
-import 'package:splitbuddy/state/app_state.dart';
-import 'package:splitbuddy/utils/color_utils.dart';
+import 'package:billdivide/extensions/group_extension.dart';
+import 'package:billdivide/extensions/user_extension.dart';
+import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
+import 'package:billdivide/screens/groups_page.dart';
+import 'package:billdivide/screens/home_page.dart';
+import 'package:billdivide/screens/payment_recorder.dart';
+import 'package:billdivide/state/app_state.dart';
+import 'package:billdivide/utils/color_utils.dart';
 
 class GroupMembersPage extends StatefulWidget {
   final GGroupFields initialGroup;

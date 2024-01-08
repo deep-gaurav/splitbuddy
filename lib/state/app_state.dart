@@ -6,13 +6,13 @@ import 'package:collection/collection.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gql_http_link/gql_http_link.dart';
-import 'package:splitbuddy/__generated__/schema.schema.gql.dart';
-import 'package:splitbuddy/auth/reauth_client.dart';
-import 'package:splitbuddy/auth/secure_storage.dart';
-import 'package:splitbuddy/extensions/group_extension.dart';
-import 'package:splitbuddy/extensions/user_extension.dart';
-import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
-import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
+import 'package:billdivide/__generated__/schema.schema.gql.dart';
+import 'package:billdivide/auth/reauth_client.dart';
+import 'package:billdivide/auth/secure_storage.dart';
+import 'package:billdivide/extensions/group_extension.dart';
+import 'package:billdivide/extensions/user_extension.dart';
+import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
+import 'package:billdivide/graphql/__generated__/queries.req.gql.dart';
 
 enum AuthStates {
   loading,

@@ -1,4 +1,4 @@
-package app.splitbuddy.splitbuddy
+package app.billdivide
 
 import io.flutter.embedding.android.FlutterActivity
 

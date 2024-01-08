@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:splitbuddy/extensions/group_extension.dart';
-import 'package:splitbuddy/extensions/interable_extension.dart';
-import 'package:splitbuddy/extensions/user_extension.dart';
-import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
-import 'package:splitbuddy/screens/group.dart';
-import 'package:splitbuddy/state/app_state.dart';
+import 'package:billdivide/extensions/group_extension.dart';
+import 'package:billdivide/extensions/interable_extension.dart';
+import 'package:billdivide/extensions/user_extension.dart';
+import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
+import 'package:billdivide/screens/group.dart';
+import 'package:billdivide/state/app_state.dart';
 
 class GroupsPage extends StatelessWidget {
   const GroupsPage({super.key});

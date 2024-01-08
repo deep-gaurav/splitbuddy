@@ -1,4 +1,4 @@
-# splitbuddy
+# billdivide
 
 A new Flutter project.
 

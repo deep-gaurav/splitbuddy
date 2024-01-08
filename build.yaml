@@ -4,8 +4,8 @@ targets:
       ferry_generator|graphql_builder:
         enabled: true
         options:
-          schema: splitbuddy|lib/schema.graphql
+          schema: billdivide|lib/schema.graphql
       ferry_generator|serializer_builder:
         enabled: true
         options:
-          schema: splitbuddy|lib/schema.graphql
+          schema: billdivide|lib/schema.graphql

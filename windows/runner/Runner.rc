@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "app.splitbuddy" "\0"
-            VALUE "FileDescription", "splitbuddy" "\0"
+            VALUE "CompanyName", "app.billdivide" "\0"
+            VALUE "FileDescription", "billdivide" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "splitbuddy" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 app.splitbuddy. All rights reserved." "\0"
-            VALUE "OriginalFilename", "splitbuddy.exe" "\0"
-            VALUE "ProductName", "splitbuddy" "\0"
+            VALUE "InternalName", "billdivide" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2023 app.billdivide. All rights reserved." "\0"
+            VALUE "OriginalFilename", "billdivide.exe" "\0"
+            VALUE "ProductName", "billdivide" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

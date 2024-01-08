@@ -7,10 +7,10 @@ import 'package:built_value/serializer.dart';
 import 'package:ferry_exec/ferry_exec.dart' as _i1;
 import 'package:gql/ast.dart' as _i7;
 import 'package:gql_exec/gql_exec.dart' as _i4;
-import 'package:splitbuddy/__generated__/serializers.gql.dart' as _i6;
-import 'package:splitbuddy/graphql/__generated__/queries.ast.gql.dart' as _i5;
-import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart' as _i2;
-import 'package:splitbuddy/graphql/__generated__/queries.var.gql.dart' as _i3;
+import 'package:billdivide/__generated__/serializers.gql.dart' as _i6;
+import 'package:billdivide/graphql/__generated__/queries.ast.gql.dart' as _i5;
+import 'package:billdivide/graphql/__generated__/queries.data.gql.dart' as _i2;
+import 'package:billdivide/graphql/__generated__/queries.var.gql.dart' as _i3;
 
 part 'queries.req.gql.g.dart';
 

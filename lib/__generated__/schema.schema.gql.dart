@@ -5,7 +5,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:splitbuddy/__generated__/serializers.gql.dart' as _i1;
+import 'package:billdivide/__generated__/serializers.gql.dart' as _i1;
 
 part 'schema.schema.gql.g.dart';
 

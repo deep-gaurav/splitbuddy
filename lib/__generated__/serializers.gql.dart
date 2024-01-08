@@ -7,9 +7,9 @@ import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
 import 'package:ferry_exec/ferry_exec.dart';
 import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
     show OperationSerializer;
-import 'package:splitbuddy/__generated__/schema.schema.gql.dart'
+import 'package:billdivide/__generated__/schema.schema.gql.dart'
     show GSplitInput, GSplitInputNonGroup, GTransactionType;
-import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart'
+import 'package:billdivide/graphql/__generated__/queries.data.gql.dart'
     show
         GuserData_user,
         Gverify_email_otpData_verifyOtp,
@@ -155,7 +155,7 @@ import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart'
         Gverify_email_otpData_verifyOtp__asUserNotSignedUp,
         Gverify_email_otpData_verifyOtp__asUserSignedUp,
         Gverify_email_otpData_verifyOtp__base;
-import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart'
+import 'package:billdivide/graphql/__generated__/queries.req.gql.dart'
     show
         GExpenseBasicReq,
         GExpenseFieldsReq,
@@ -187,7 +187,7 @@ import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart'
         GtransactionWithUserReq,
         GuserReq,
         Gverify_email_otpReq;
-import 'package:splitbuddy/graphql/__generated__/queries.var.gql.dart'
+import 'package:billdivide/graphql/__generated__/queries.var.gql.dart'
     show
         GExpenseBasicVars,
         GExpenseFieldsVars,

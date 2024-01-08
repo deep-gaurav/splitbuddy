@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.splitbuddy.splitbuddy">
+    package="app.billdivide">
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="splitbuddy"
+        android:label="billdivide"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

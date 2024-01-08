@@ -1,10 +1,10 @@
 import 'package:ferry/ferry.dart';
 import 'package:gql_http_link/gql_http_link.dart';
-import 'package:splitbuddy/auth/secure_storage.dart';
-import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
-import 'package:splitbuddy/nocache/nocachestore.dart';
-import 'package:splitbuddy/state/app_state.dart';
-import 'package:splitbuddy/utils/headerclient.dart';
+import 'package:billdivide/auth/secure_storage.dart';
+import 'package:billdivide/graphql/__generated__/queries.req.gql.dart';
+import 'package:billdivide/nocache/nocachestore.dart';
+import 'package:billdivide/state/app_state.dart';
+import 'package:billdivide/utils/headerclient.dart';
 
 class ReAuthClient {
   Client? _client;

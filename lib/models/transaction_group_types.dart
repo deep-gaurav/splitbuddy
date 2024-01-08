@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
+import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 
 sealed class TransactionCardTypes {
   String get createdAt;

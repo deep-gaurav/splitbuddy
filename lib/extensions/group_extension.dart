@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:splitbuddy/extensions/string_extension.dart';
-import 'package:splitbuddy/extensions/user_extension.dart';
-import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
-import 'package:splitbuddy/state/app_state.dart';
+import 'package:billdivide/extensions/string_extension.dart';
+import 'package:billdivide/extensions/user_extension.dart';
+import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
+import 'package:billdivide/state/app_state.dart';
 
 extension GroupExtension on GGroupFields {
   String getDisplayName(AppState appState) =>

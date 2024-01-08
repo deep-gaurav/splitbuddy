@@ -3,10 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:splitbuddy/phone_entry.dart';
-import 'package:splitbuddy/screens/home_screen.dart';
-import 'package:splitbuddy/screens/signup_screen.dart';
-import 'package:splitbuddy/state/app_state.dart';
+import 'package:billdivide/phone_entry.dart';
+import 'package:billdivide/screens/home_screen.dart';
+import 'package:billdivide/screens/signup_screen.dart';
+import 'package:billdivide/state/app_state.dart';
 
 import 'firebase_options.dart';
 

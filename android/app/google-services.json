@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "897128199289",
-    "project_id": "split-buddy",
-    "storage_bucket": "split-buddy.appspot.com"
+    "project_number": "42003969608",
+    "project_id": "billdivide-app",
+    "storage_bucket": "billdivide-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:897128199289:android:cea8e6b2f84459d2cf10a8",
+        "mobilesdk_app_id": "1:42003969608:android:8c3959df5b0fe529fa8a7d",
         "android_client_info": {
-          "package_name": "app.splitbuddy.splitbuddy"
+          "package_name": "app.billdivide"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "897128199289-cokqoq1jbv8ftb080us2nv195kk6is62.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBtvVOWqJnvU7yKUrWxluKb3C9uX_kwUKU"
+          "current_key": "AIzaSyDjafBWL-NeEFwd4e-FFMz2AEv-SMP8XEA"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "897128199289-cokqoq1jbv8ftb080us2nv195kk6is62.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

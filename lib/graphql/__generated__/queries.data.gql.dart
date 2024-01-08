@@ -7,8 +7,8 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:gql_code_builder/src/serializers/inline_fragment_serializer.dart'
     as _i2;
-import 'package:splitbuddy/__generated__/schema.schema.gql.dart' as _i3;
-import 'package:splitbuddy/__generated__/serializers.gql.dart' as _i1;
+import 'package:billdivide/__generated__/schema.schema.gql.dart' as _i3;
+import 'package:billdivide/__generated__/serializers.gql.dart' as _i1;
 
 part 'queries.data.gql.g.dart';
 

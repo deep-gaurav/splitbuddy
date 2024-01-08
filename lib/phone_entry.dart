@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:splitbuddy/state/app_state.dart';
+import 'package:billdivide/state/app_state.dart';
 
 class PhoneEntryScreen extends StatefulWidget {
   const PhoneEntryScreen({super.key});
@@ -78,7 +78,7 @@ class _PhoneEntryScreenState extends State<PhoneEntryScreen> {
                 flex: 3,
               ),
               Text(
-                "Split Buddy",
+                "Bill Divide",
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),

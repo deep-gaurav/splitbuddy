@@ -44,39 +44,37 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA98-xmDbUrzL8zYq-ilG2Z-frjyZgUPk0',
-    appId: '1:897128199289:web:f7968012f51eb9a4cf10a8',
-    messagingSenderId: '897128199289',
-    projectId: 'split-buddy',
-    authDomain: 'split-buddy.firebaseapp.com',
-    storageBucket: 'split-buddy.appspot.com',
+    apiKey: 'AIzaSyAlMY4UWjrq2Q0CgsvnaXE1NWoG9FHeB6g',
+    appId: '1:42003969608:web:29a98b843ae8df2bfa8a7d',
+    messagingSenderId: '42003969608',
+    projectId: 'billdivide-app',
+    authDomain: 'billdivide-app.firebaseapp.com',
+    storageBucket: 'billdivide-app.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBtvVOWqJnvU7yKUrWxluKb3C9uX_kwUKU',
-    appId: '1:897128199289:android:cea8e6b2f84459d2cf10a8',
-    messagingSenderId: '897128199289',
-    projectId: 'split-buddy',
-    storageBucket: 'split-buddy.appspot.com',
+    apiKey: 'AIzaSyDjafBWL-NeEFwd4e-FFMz2AEv-SMP8XEA',
+    appId: '1:42003969608:android:8c3959df5b0fe529fa8a7d',
+    messagingSenderId: '42003969608',
+    projectId: 'billdivide-app',
+    storageBucket: 'billdivide-app.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDe9BQUZgBZRphVjTi7GfEKjQicJ-iOaqc',
-    appId: '1:897128199289:ios:d7bdf11b1a6a482ccf10a8',
-    messagingSenderId: '897128199289',
-    projectId: 'split-buddy',
-    storageBucket: 'split-buddy.appspot.com',
-    iosClientId: '897128199289-co6llmjhv0on38qm3lffrug4jceicn9d.apps.googleusercontent.com',
-    iosBundleId: 'app.splitbuddy.splitbuddy',
+    apiKey: 'AIzaSyA6zcDxXct0e8qZmRsZRcQtxdCOZ70GeMI',
+    appId: '1:42003969608:ios:9b140688f1b5221ffa8a7d',
+    messagingSenderId: '42003969608',
+    projectId: 'billdivide-app',
+    storageBucket: 'billdivide-app.appspot.com',
+    iosBundleId: 'app.billdivide',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDe9BQUZgBZRphVjTi7GfEKjQicJ-iOaqc',
-    appId: '1:897128199289:ios:d7bdf11b1a6a482ccf10a8',
-    messagingSenderId: '897128199289',
-    projectId: 'split-buddy',
-    storageBucket: 'split-buddy.appspot.com',
-    iosClientId: '897128199289-co6llmjhv0on38qm3lffrug4jceicn9d.apps.googleusercontent.com',
-    iosBundleId: 'app.splitbuddy.splitbuddy',
+    apiKey: 'AIzaSyA6zcDxXct0e8qZmRsZRcQtxdCOZ70GeMI',
+    appId: '1:42003969608:ios:9b140688f1b5221ffa8a7d',
+    messagingSenderId: '42003969608',
+    projectId: 'billdivide-app',
+    storageBucket: 'billdivide-app.appspot.com',
+    iosBundleId: 'app.billdivide',
   );
 }

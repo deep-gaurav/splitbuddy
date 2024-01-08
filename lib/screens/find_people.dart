@@ -3,15 +3,15 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:splitbuddy/__generated__/schema.schema.gql.dart';
-import 'package:splitbuddy/extensions/group_extension.dart';
-import 'package:splitbuddy/extensions/user_extension.dart';
-import 'package:splitbuddy/graphql/__generated__/queries.data.gql.dart';
-import 'package:splitbuddy/graphql/__generated__/queries.req.gql.dart';
-import 'package:splitbuddy/models/expensewith.dart';
-import 'package:splitbuddy/screens/groups_page.dart';
-import 'package:splitbuddy/screens/home_page.dart';
-import 'package:splitbuddy/state/app_state.dart';
+import 'package:billdivide/__generated__/schema.schema.gql.dart';
+import 'package:billdivide/extensions/group_extension.dart';
+import 'package:billdivide/extensions/user_extension.dart';
+import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
+import 'package:billdivide/graphql/__generated__/queries.req.gql.dart';
+import 'package:billdivide/models/expensewith.dart';
+import 'package:billdivide/screens/groups_page.dart';
+import 'package:billdivide/screens/home_page.dart';
+import 'package:billdivide/state/app_state.dart';
 
 class FindPeople extends StatefulWidget {
   final ExpenseWith? expenseWith;

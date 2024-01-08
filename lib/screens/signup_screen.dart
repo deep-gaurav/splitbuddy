@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:splitbuddy/state/app_state.dart';
+import 'package:billdivide/state/app_state.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({

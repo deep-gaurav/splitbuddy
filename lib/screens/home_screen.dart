@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:splitbuddy/screens/find_people.dart';
-import 'package:splitbuddy/screens/groups_page.dart';
-import 'package:splitbuddy/screens/home_page.dart';
-import 'package:splitbuddy/state/app_state.dart';
+import 'package:billdivide/screens/find_people.dart';
+import 'package:billdivide/screens/groups_page.dart';
+import 'package:billdivide/screens/home_page.dart';
+import 'package:billdivide/state/app_state.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

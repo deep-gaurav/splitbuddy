@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:897128199289:ios:d7bdf11b1a6a482ccf10a8",
-  "FIREBASE_PROJECT_ID": "split-buddy",
-  "GCM_SENDER_ID": "897128199289"
+  "GOOGLE_APP_ID": "1:42003969608:ios:9b140688f1b5221ffa8a7d",
+  "FIREBASE_PROJECT_ID": "billdivide-app",
+  "GCM_SENDER_ID": "42003969608"
 }
