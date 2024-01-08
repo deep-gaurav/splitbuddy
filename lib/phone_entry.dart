@@ -36,6 +36,14 @@ class _PhoneEntryScreenState extends State<PhoneEntryScreen> {
         setState(() {
           this.email = email;
           otpSent = isSent;
+          resendTimer = (
+            DateTime.now(),
+            DateTime.now().add(
+              const Duration(
+                seconds: 10,
+              ),
+            ),
+          );
         });
       }
     } finally {
