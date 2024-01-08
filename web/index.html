@@ -37,11 +37,78 @@
     // The value below is injected by flutter build, do not touch.
     var serviceWorkerVersion = null;
   </script>
-  <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+
+
+  <style>
+    .loading-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loading-svgs {
+      display: flex;
+      /* Initially hidden */
+    }
+
+    .loading-svgs img {
+      width: 100px;
+      /* Adjust as needed */
+      height: 100px;
+      /* Adjust as needed */
+      animation: fadeInOut 1.5s ease-in-out infinite;
+    }
+
+    .loading-svgs img:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .loading-svgs img:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    .loading-svgs img:nth-child(4) {
+      animation-delay: 0.9s;
+    }
+
+    .loading-svgs img:nth-child(5) {
+      animation-delay: 1.2s;
+    }
+
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="loading-container">
+    <div class="loading-svgs">
+      <img src="loading_icons/bill-8853.svg">
+      <img src="loading_icons/business-and-finance-14750.svg">
+      <img src="loading_icons/cash-money-14744 (1).svg">
+      <img src="loading_icons/coin-wallet-2204.svg">
+      <img src="loading_icons/transaction-14855.svg">
+    </div>
+  </div>
+
+
   <script>
     window.addEventListener('load', function (ev) {
       // Download main.dart.js
@@ -57,6 +124,9 @@
       });
     });
   </script>
+  <!-- This script adds the flutter initialization JS code -->
+
+
 </body>
 
 </html>
