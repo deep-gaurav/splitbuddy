@@ -1,1 +1,1 @@
-const int maxInteger = 0x7FFFFFFFFFFFFFFF;
+final int maxInteger = double.maxFinite.toInt();
