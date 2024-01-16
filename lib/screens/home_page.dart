@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:billdivide/extensions/amount_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/extensions/user_extension.dart';
@@ -32,36 +33,40 @@ class HomePage extends StatelessWidget {
             "Home",
           ),
         ),
-        SliverToBoxAdapter(
-          child: Row(
-            children: [
-              Expanded(
-                  child: Column(
-                children: [
-                  Text(
-                    context.read<AppState>().toPay.toString(),
-                    style: Theme.of(context).textTheme.displayLarge,
-                  ),
-                  const Text(
-                    "To pay",
-                  )
-                ],
-              )),
-              Expanded(
-                  child: Column(
-                children: [
-                  Text(
-                    context.read<AppState>().toReceive.toString(),
-                    style: Theme.of(context).textTheme.displayLarge,
-                  ),
-                  const Text(
-                    "To receive",
-                  )
-                ],
-              )),
-            ],
-          ),
-        ),
+        // SliverToBoxAdapter(
+        //   child: Row(
+        //     children: [
+        //       Expanded(
+        //           child: Column(
+        //         children: [
+        //           Text(
+        //             context.read<AppState>().toPay.toString(),
+        //             style: Theme.of(context).textTheme.displayLarge,
+        //           ),
+        //           const Text(
+        //             "To pay",
+        //           )
+        //         ],
+        //       )),
+        //       Expanded(
+        //           child: Column(
+        //         children: [
+        //           Text(
+        //             context
+        //                 .read<AppState>()
+        //                 .toReceive
+        //                 .map((e) => e.getPretty(context.read()))
+        //                 .toString(),
+        //             style: Theme.of(context).textTheme.displayLarge,
+        //           ),
+        //           const Text(
+        //             "To receive",
+        //           )
+        //         ],
+        //       )),
+        //     ],
+        //   ),
+        // ),
         SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
           var user = nonSelfUsrs.elementAt(index);

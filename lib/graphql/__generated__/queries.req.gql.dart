@@ -2,15 +2,15 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:billdivide/__generated__/serializers.gql.dart' as _i6;
+import 'package:billdivide/graphql/__generated__/queries.ast.gql.dart' as _i5;
+import 'package:billdivide/graphql/__generated__/queries.data.gql.dart' as _i2;
+import 'package:billdivide/graphql/__generated__/queries.var.gql.dart' as _i3;
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:ferry_exec/ferry_exec.dart' as _i1;
 import 'package:gql/ast.dart' as _i7;
 import 'package:gql_exec/gql_exec.dart' as _i4;
-import 'package:billdivide/__generated__/serializers.gql.dart' as _i6;
-import 'package:billdivide/graphql/__generated__/queries.ast.gql.dart' as _i5;
-import 'package:billdivide/graphql/__generated__/queries.data.gql.dart' as _i2;
-import 'package:billdivide/graphql/__generated__/queries.var.gql.dart' as _i3;
 
 part 'queries.req.gql.g.dart';
 
@@ -65,7 +65,7 @@ abstract class GuserReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GuserData data) => data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GuserData, _i3.GuserVars> transformOperation(
@@ -137,7 +137,7 @@ abstract class GgroupsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GgroupsData data) => data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GgroupsData, _i3.GgroupsVars> transformOperation(
@@ -212,7 +212,8 @@ abstract class Ginteracted_usersReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.Ginteracted_usersData data) =>
+      data.toJson();
 
   @override
   _i1.OperationRequest<_i2.Ginteracted_usersData, _i3.Ginteracted_usersVars>
@@ -230,6 +231,80 @@ abstract class Ginteracted_usersReq
   static Ginteracted_usersReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         Ginteracted_usersReq.serializer,
+        json,
+      );
+}
+
+abstract class GcurrenciesReq
+    implements
+        Built<GcurrenciesReq, GcurrenciesReqBuilder>,
+        _i1.OperationRequest<_i2.GcurrenciesData, _i3.GcurrenciesVars> {
+  GcurrenciesReq._();
+
+  factory GcurrenciesReq([Function(GcurrenciesReqBuilder b) updates]) =
+      _$GcurrenciesReq;
+
+  static void _initializeBuilder(GcurrenciesReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'currencies',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GcurrenciesVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GcurrenciesData? Function(
+    _i2.GcurrenciesData?,
+    _i2.GcurrenciesData?,
+  )? get updateResult;
+  @override
+  _i2.GcurrenciesData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GcurrenciesData? parseData(Map<String, dynamic> json) =>
+      _i2.GcurrenciesData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GcurrenciesData data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GcurrenciesData, _i3.GcurrenciesVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GcurrenciesReq> get serializer =>
+      _$gcurrenciesReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GcurrenciesReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcurrenciesReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GcurrenciesReq.serializer,
         json,
       );
 }
@@ -285,7 +360,7 @@ abstract class GgroupReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GgroupData data) => data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GgroupData, _i3.GgroupVars> transformOperation(
@@ -357,7 +432,7 @@ abstract class GsignupReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GsignupData data) => data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GsignupData, _i3.GsignupVars> transformOperation(
@@ -430,7 +505,7 @@ abstract class Gcreate_groupReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.Gcreate_groupData data) => data.toJson();
 
   @override
   _i1.OperationRequest<_i2.Gcreate_groupData, _i3.Gcreate_groupVars>
@@ -504,7 +579,7 @@ abstract class Gadd_to_groupReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.Gadd_to_groupData data) => data.toJson();
 
   @override
   _i1.OperationRequest<_i2.Gadd_to_groupData, _i3.Gadd_to_groupVars>
@@ -578,7 +653,7 @@ abstract class Gadd_expenseReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.Gadd_expenseData data) => data.toJson();
 
   @override
   _i1.OperationRequest<_i2.Gadd_expenseData, _i3.Gadd_expenseVars>
@@ -652,7 +727,8 @@ abstract class Gsend_email_otpReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.Gsend_email_otpData data) =>
+      data.toJson();
 
   @override
   _i1.OperationRequest<_i2.Gsend_email_otpData, _i3.Gsend_email_otpVars>
@@ -728,7 +804,8 @@ abstract class Gverify_email_otpReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.Gverify_email_otpData data) =>
+      data.toJson();
 
   @override
   _i1.OperationRequest<_i2.Gverify_email_otpData, _i3.Gverify_email_otpVars>
@@ -802,7 +879,7 @@ abstract class Grefresh_tokenReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.Grefresh_tokenData data) => data.toJson();
 
   @override
   _i1.OperationRequest<_i2.Grefresh_tokenData, _i3.Grefresh_tokenVars>
@@ -878,7 +955,8 @@ abstract class GsearchUserByEmailReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GsearchUserByEmailData data) =>
+      data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GsearchUserByEmailData, _i3.GsearchUserByEmailVars>
@@ -954,7 +1032,8 @@ abstract class GcreateNonGroupExpenseReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GcreateNonGroupExpenseData data) =>
+      data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GcreateNonGroupExpenseData,
@@ -1029,7 +1108,7 @@ abstract class GsettleInGroupReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GsettleInGroupData data) => data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GsettleInGroupData, _i3.GsettleInGroupVars>
@@ -1103,7 +1182,7 @@ abstract class GsimplifyUserReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GsimplifyUserData data) => data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GsimplifyUserData, _i3.GsimplifyUserVars>
@@ -1179,7 +1258,8 @@ abstract class GautoSettleWithUserReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GautoSettleWithUserData data) =>
+      data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GautoSettleWithUserData, _i3.GautoSettleWithUserVars>
@@ -1255,7 +1335,8 @@ abstract class GtransactionWithUserReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GtransactionWithUserData data) =>
+      data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GtransactionWithUserData,
@@ -1332,7 +1413,8 @@ abstract class GtransactionMixExpenseReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GtransactionMixExpenseData data) =>
+      data.toJson();
 
   @override
   _i1.OperationRequest<_i2.GtransactionMixExpenseData,
@@ -1384,7 +1466,7 @@ abstract class GUserFieldsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GUserFieldsData data) => data.toJson();
 
   static Serializer<GUserFieldsReq> get serializer =>
       _$gUserFieldsReqSerializer;
@@ -1397,6 +1479,99 @@ abstract class GUserFieldsReq
   static GUserFieldsReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GUserFieldsReq.serializer,
+        json,
+      );
+}
+
+abstract class GAmountFieldsReq
+    implements
+        Built<GAmountFieldsReq, GAmountFieldsReqBuilder>,
+        _i1.FragmentRequest<_i2.GAmountFieldsData, _i3.GAmountFieldsVars> {
+  GAmountFieldsReq._();
+
+  factory GAmountFieldsReq([Function(GAmountFieldsReqBuilder b) updates]) =
+      _$GAmountFieldsReq;
+
+  static void _initializeBuilder(GAmountFieldsReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'AmountFields';
+
+  @override
+  _i3.GAmountFieldsVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GAmountFieldsData? parseData(Map<String, dynamic> json) =>
+      _i2.GAmountFieldsData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GAmountFieldsData data) => data.toJson();
+
+  static Serializer<GAmountFieldsReq> get serializer =>
+      _$gAmountFieldsReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GAmountFieldsReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GAmountFieldsReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GAmountFieldsReq.serializer,
+        json,
+      );
+}
+
+abstract class GCurrencyFieldsReq
+    implements
+        Built<GCurrencyFieldsReq, GCurrencyFieldsReqBuilder>,
+        _i1.FragmentRequest<_i2.GCurrencyFieldsData, _i3.GCurrencyFieldsVars> {
+  GCurrencyFieldsReq._();
+
+  factory GCurrencyFieldsReq([Function(GCurrencyFieldsReqBuilder b) updates]) =
+      _$GCurrencyFieldsReq;
+
+  static void _initializeBuilder(GCurrencyFieldsReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'CurrencyFields';
+
+  @override
+  _i3.GCurrencyFieldsVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GCurrencyFieldsData? parseData(Map<String, dynamic> json) =>
+      _i2.GCurrencyFieldsData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GCurrencyFieldsData data) =>
+      data.toJson();
+
+  static Serializer<GCurrencyFieldsReq> get serializer =>
+      _$gCurrencyFieldsReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GCurrencyFieldsReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GCurrencyFieldsReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GCurrencyFieldsReq.serializer,
         json,
       );
 }
@@ -1430,7 +1605,8 @@ abstract class GUserPaysFieldsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GUserPaysFieldsData data) =>
+      data.toJson();
 
   static Serializer<GUserPaysFieldsReq> get serializer =>
       _$gUserPaysFieldsReqSerializer;
@@ -1476,7 +1652,7 @@ abstract class GGroupBasicReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GGroupBasicData data) => data.toJson();
 
   static Serializer<GGroupBasicReq> get serializer =>
       _$gGroupBasicReqSerializer;
@@ -1522,7 +1698,7 @@ abstract class GGroupFieldsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GGroupFieldsData data) => data.toJson();
 
   static Serializer<GGroupFieldsReq> get serializer =>
       _$gGroupFieldsReqSerializer;
@@ -1568,7 +1744,7 @@ abstract class GExpenseBasicReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GExpenseBasicData data) => data.toJson();
 
   static Serializer<GExpenseBasicReq> get serializer =>
       _$gExpenseBasicReqSerializer;
@@ -1614,7 +1790,7 @@ abstract class GExpenseFieldsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GExpenseFieldsData data) => data.toJson();
 
   static Serializer<GExpenseFieldsReq> get serializer =>
       _$gExpenseFieldsReqSerializer;
@@ -1662,7 +1838,8 @@ abstract class GNewExpenseFieldsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GNewExpenseFieldsData data) =>
+      data.toJson();
 
   static Serializer<GNewExpenseFieldsReq> get serializer =>
       _$gNewExpenseFieldsReqSerializer;
@@ -1710,7 +1887,8 @@ abstract class GSplitFieldsBasicsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GSplitFieldsBasicsData data) =>
+      data.toJson();
 
   static Serializer<GSplitFieldsBasicsReq> get serializer =>
       _$gSplitFieldsBasicsReqSerializer;
@@ -1756,7 +1934,7 @@ abstract class GSplitFieldsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GSplitFieldsData data) => data.toJson();
 
   static Serializer<GSplitFieldsReq> get serializer =>
       _$gSplitFieldsReqSerializer;
@@ -1804,7 +1982,8 @@ abstract class GSplitTransactionFieldsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GSplitTransactionFieldsData data) =>
+      data.toJson();
 
   static Serializer<GSplitTransactionFieldsReq> get serializer =>
       _$gSplitTransactionFieldsReqSerializer;
@@ -1852,7 +2031,8 @@ abstract class GGroupWithExpensesReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GGroupWithExpensesData data) =>
+      data.toJson();
 
   static Serializer<GGroupWithExpensesReq> get serializer =>
       _$gGroupWithExpensesReqSerializer;
@@ -1900,7 +2080,8 @@ abstract class GExpenseMixSplitFieldsReq
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GExpenseMixSplitFieldsData data) =>
+      data.toJson();
 
   static Serializer<GExpenseMixSplitFieldsReq> get serializer =>
       _$gExpenseMixSplitFieldsReqSerializer;

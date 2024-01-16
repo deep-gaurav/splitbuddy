@@ -7,12 +7,27 @@ fragment UserFields on User {
   isSignedUp
 }
 
+fragment AmountFields on Amount {
+  amount
+  currencyId
+}
+
+fragment CurrencyFields on Currency {
+  id
+  rate
+  symbol
+  displayName
+  decimals
+}
+
 fragment UserPaysFields on User {
   ...UserFields
   upiIds
   owes {
     groupId
-    amount
+    amount {
+      ...AmountFields
+    }
   }
 }
 
@@ -27,19 +42,22 @@ fragment GroupFields on Group {
     ...UserFields
   }
   members {
-    owedInGroup
+    owedInGroup {
+      ...AmountFields
+    }
     member {
       ...UserFields
     }
   }
-  owed
   createdAt
 }
 fragment ExpenseBasic on Expense {
   id
   title
   createdAt
-  amount
+  amount {
+    ...AmountFields
+  }
   creatorId
 }
 
@@ -55,14 +73,16 @@ fragment ExpenseFields on Expense {
 
 fragment NewExpenseFields on Expense {
   ...ExpenseBasic
-  splits{
+  splits {
     ...SplitTransactionFields
   }
 }
 
 fragment SplitFieldsBasics on Split {
   id
-  amount
+  amount {
+    ...AmountFields
+  }
   transactionType
   createdAt
   transactionPartGroupId
@@ -103,11 +123,11 @@ fragment GroupWithExpenses on Group {
   }
 }
 
-fragment ExpenseMixSplitFields on ExpenseMixSplit{
-  expense{
+fragment ExpenseMixSplitFields on ExpenseMixSplit {
+  expense {
     ...ExpenseBasic
   }
-  split{
+  split {
     ...SplitFields
   }
 }
@@ -135,6 +155,12 @@ query groups {
 query interacted_users {
   interactedUsers {
     ...UserPaysFields
+  }
+}
+
+query currencies {
+  currencies{
+    ...CurrencyFields
   }
 }
 
@@ -171,12 +197,14 @@ mutation add_expense(
   $amount: Int!
   $splits: [SplitInput!]!
   $groupId: String!
+  $currencyId: String!
 ) {
   addExpense(
     title: $title
     amount: $amount
     splits: $splits
     groupId: $groupId
+    currencyId: $currencyId
   ) {
     ...NewExpenseFields
   }
@@ -216,8 +244,14 @@ mutation createNonGroupExpense(
   $title: String!
   $amount: Int!
   $nonGroupSplit: [SplitInputNonGroup!]!
+  $currencyId: String!
 ) {
-  addNonGroupExpense(title: $title, amount: $amount, splits: $nonGroupSplit) {
+  addNonGroupExpense(
+    title: $title
+    amount: $amount
+    splits: $nonGroupSplit
+    currencyId: $currencyId
+  ) {
     group {
       ...GroupFields
     }
@@ -227,8 +261,18 @@ mutation createNonGroupExpense(
   }
 }
 
-mutation settleInGroup($withUser: String!, $groupId: String!, $amount: Int!) {
-  settleInGroup(toUser: $withUser, groupId: $groupId, amount: $amount) {
+mutation settleInGroup(
+  $withUser: String!
+  $groupId: String!
+  $amount: Int!
+  $currencyId: String!
+) {
+  settleInGroup(
+    toUser: $withUser
+    groupId: $groupId
+    amount: $amount
+    currencyId: $currencyId
+  ) {
     ...SplitTransactionFields
   }
 }
@@ -239,8 +283,16 @@ mutation simplifyUser($withUser: String!) {
   }
 }
 
-mutation autoSettleWithUser($withUser: String!, $amount: Int!) {
-  autoSettleWithUser(withUser: $withUser, amount: $amount) {
+mutation autoSettleWithUser(
+  $withUser: String!
+  $amount: Int!
+  $currencyId: String!
+) {
+  autoSettleWithUser(
+    withUser: $withUser
+    amount: $amount
+    currencyId: $currencyId
+  ) {
     ...SplitTransactionFields
   }
 }
@@ -255,8 +307,16 @@ query transactionWithUser($withUser: String!, $fromTime: String, $limit: Int!) {
   }
 }
 
-query transactionMixExpense($groupId: String!, $fromTime: String, $limit: Int!){
-  getTransactionsMixExpenseWithGroup(withGroup: $groupId, fromTime: $fromTime, limit: $limit){
+query transactionMixExpense(
+  $groupId: String!
+  $fromTime: String
+  $limit: Int!
+) {
+  getTransactionsMixExpenseWithGroup(
+    withGroup: $groupId
+    fromTime: $fromTime
+    limit: $limit
+  ) {
     ...ExpenseMixSplitFields
   }
 }

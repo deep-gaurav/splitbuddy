@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:billdivide/extensions/amount_extension.dart';
 import 'package:collection/collection.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:dynamic_color/dynamic_color.dart';
@@ -555,71 +556,89 @@ class GroupSummaryWidget extends StatelessWidget {
             ),
             Row(
               children: [
-                Expanded(
-                    child: Row(
-                  children: [
-                    const Spacer(),
-                    Icon(
-                      Icons.call_received,
-                      color: scheme.primary,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      group.toReceive.toString(),
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: scheme.primary,
-                          ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'To Receive',
-                      style: TextStyle(color: scheme.primary),
-                    ),
-                    const Spacer(),
-                  ],
-                )),
-                Expanded(
-                  child: Row(
+                if (group.toReceive.isNotEmpty)
+                  Expanded(
+                      child: Row(
                     children: [
                       const Spacer(),
                       Icon(
-                        Icons.call_made,
-                        color: scheme.error,
+                        Icons.call_received,
+                        color: scheme.primary,
                       ),
                       const SizedBox(
                         width: 5,
                       ),
-                      Text(
-                        group.toPay.toString(),
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: scheme.error,
+                      Column(
+                        children: [
+                          ...group.toReceive.map(
+                            (amount) => Text(
+                              amount.getPrettyAbs(context.read()),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: scheme.primary,
+                                  ),
                             ),
+                          ),
+                        ],
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        'To Pay',
-                        style: TextStyle(
-                          color: scheme.error,
-                        ),
+                        'To Receive',
+                        style: TextStyle(color: scheme.primary),
                       ),
                       const Spacer(),
                     ],
-                  ),
-                )
+                  )),
+                if (group.toPay.isNotEmpty)
+                  Expanded(
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        Icon(
+                          Icons.call_made,
+                          color: scheme.error,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Column(
+                          children: [
+                            ...group.toPay.map(
+                              (amount) => Text(
+                                amount.getPrettyAbs(context.read()),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: scheme.error,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'To Pay',
+                          style: TextStyle(
+                            color: scheme.error,
+                          ),
+                        ),
+                        const Spacer(),
+                      ],
+                    ),
+                  )
               ],
             ),
             const Divider(),
             ...group.members
-                .sorted((a, b) =>
-                    b.owedInGroup.abs().compareTo(a.owedInGroup.abs()))
                 .where(
                     (p0) => p0.member.id != context.read<AppState>().user!.id)
                 .map<Widget>(
@@ -644,51 +663,7 @@ class GroupSummaryWidget extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      if (member.owedInGroup < 0)
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'owes you ',
-                                style: TextStyle(
-                                  color: scheme.primary,
-                                ),
-                              ),
-                              TextSpan(
-                                text: '${-member.owedInGroup}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(
-                                        color: scheme.primary,
-                                        fontWeight: FontWeight.w800),
-                              ),
-                            ],
-                          ),
-                        )
-                      else if (member.owedInGroup > 0)
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'you owe ',
-                                style: TextStyle(
-                                  color: scheme.error,
-                                ),
-                              ),
-                              TextSpan(
-                                text: '${member.owedInGroup}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(
-                                        color: scheme.error,
-                                        fontWeight: FontWeight.w800),
-                              ),
-                            ],
-                          ),
-                        )
-                      else
+                      if (member.owedInGroup.every((p0) => p0.amount == 0))
                         Text.rich(
                           TextSpan(
                             children: [
@@ -701,6 +676,55 @@ class GroupSummaryWidget extends StatelessWidget {
                             ],
                           ),
                         )
+                      else
+                        ...member.owedInGroup.map(
+                          (owe) => (owe.amount < 0)
+                              ? Text.rich(
+                                  TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: 'owes you ',
+                                        style: TextStyle(
+                                          color: scheme.primary,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: owe.getPrettyAbs(context.read()),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium
+                                            ?.copyWith(
+                                                color: scheme.primary,
+                                                fontWeight: FontWeight.w800),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              : (owe.amount > 0)
+                                  ? Text.rich(
+                                      TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: 'you owe ',
+                                            style: TextStyle(
+                                              color: scheme.error,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: owe.getPretty(context.read()),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium
+                                                ?.copyWith(
+                                                    color: scheme.error,
+                                                    fontWeight:
+                                                        FontWeight.w800),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : const SizedBox(),
+                        ),
                     ],
                   ),
                 )

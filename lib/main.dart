@@ -7,7 +7,6 @@ import 'package:billdivide/phone_entry.dart';
 import 'package:billdivide/screens/home_screen.dart';
 import 'package:billdivide/screens/signup_screen.dart';
 import 'package:billdivide/state/app_state.dart';
-
 import 'firebase_options.dart';
 
 Future<void> main() async {

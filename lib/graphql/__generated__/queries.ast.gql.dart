@@ -50,6 +50,77 @@ const UserFields = _i1.FragmentDefinitionNode(
     ),
   ]),
 );
+const AmountFields = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'AmountFields'),
+  typeCondition: _i1.TypeConditionNode(
+      on: _i1.NamedTypeNode(
+    name: _i1.NameNode(value: 'Amount'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'amount'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'currencyId'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+  ]),
+);
+const CurrencyFields = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'CurrencyFields'),
+  typeCondition: _i1.TypeConditionNode(
+      on: _i1.NamedTypeNode(
+    name: _i1.NameNode(value: 'Currency'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'id'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'rate'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'symbol'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'displayName'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'decimals'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+  ]),
+);
 const UserPaysFields = _i1.FragmentDefinitionNode(
   name: _i1.NameNode(value: 'UserPaysFields'),
   typeCondition: _i1.TypeConditionNode(
@@ -88,7 +159,12 @@ const UserPaysFields = _i1.FragmentDefinitionNode(
           alias: null,
           arguments: [],
           directives: [],
-          selectionSet: null,
+          selectionSet: _i1.SelectionSetNode(selections: [
+            _i1.FragmentSpreadNode(
+              name: _i1.NameNode(value: 'AmountFields'),
+              directives: [],
+            )
+          ]),
         ),
       ]),
     ),
@@ -155,7 +231,12 @@ const GroupFields = _i1.FragmentDefinitionNode(
           alias: null,
           arguments: [],
           directives: [],
-          selectionSet: null,
+          selectionSet: _i1.SelectionSetNode(selections: [
+            _i1.FragmentSpreadNode(
+              name: _i1.NameNode(value: 'AmountFields'),
+              directives: [],
+            )
+          ]),
         ),
         _i1.FieldNode(
           name: _i1.NameNode(value: 'member'),
@@ -170,13 +251,6 @@ const GroupFields = _i1.FragmentDefinitionNode(
           ]),
         ),
       ]),
-    ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'owed'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
     ),
     _i1.FieldNode(
       name: _i1.NameNode(value: 'createdAt'),
@@ -222,7 +296,12 @@ const ExpenseBasic = _i1.FragmentDefinitionNode(
       alias: null,
       arguments: [],
       directives: [],
-      selectionSet: null,
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'AmountFields'),
+          directives: [],
+        )
+      ]),
     ),
     _i1.FieldNode(
       name: _i1.NameNode(value: 'creatorId'),
@@ -320,7 +399,12 @@ const SplitFieldsBasics = _i1.FragmentDefinitionNode(
       alias: null,
       arguments: [],
       directives: [],
-      selectionSet: null,
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'AmountFields'),
+          directives: [],
+        )
+      ]),
     ),
     _i1.FieldNode(
       name: _i1.NameNode(value: 'transactionType'),
@@ -643,6 +727,26 @@ const interacted_users = _i1.OperationDefinitionNode(
     )
   ]),
 );
+const currencies = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.query,
+  name: _i1.NameNode(value: 'currencies'),
+  variableDefinitions: [],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'currencies'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'CurrencyFields'),
+          directives: [],
+        )
+      ]),
+    )
+  ]),
+);
 const group = _i1.OperationDefinitionNode(
   type: _i1.OperationType.query,
   name: _i1.NameNode(value: 'group'),
@@ -895,6 +999,15 @@ const add_expense = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
@@ -917,6 +1030,10 @@ const add_expense = _i1.OperationDefinitionNode(
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'groupId'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'groupId')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'currencyId'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
         ),
       ],
       directives: [],
@@ -1165,6 +1282,15 @@ const createNonGroupExpense = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
@@ -1183,6 +1309,10 @@ const createNonGroupExpense = _i1.OperationDefinitionNode(
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'splits'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'nonGroupSplit')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'currencyId'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
         ),
       ],
       directives: [],
@@ -1246,6 +1376,15 @@ const settleInGroup = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
@@ -1264,6 +1403,10 @@ const settleInGroup = _i1.OperationDefinitionNode(
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'amount'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'amount')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'currencyId'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
         ),
       ],
       directives: [],
@@ -1333,6 +1476,15 @@ const autoSettleWithUser = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
@@ -1347,6 +1499,10 @@ const autoSettleWithUser = _i1.OperationDefinitionNode(
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'amount'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'amount')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'currencyId'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
         ),
       ],
       directives: [],
@@ -1483,6 +1639,8 @@ const transactionMixExpense = _i1.OperationDefinitionNode(
 );
 const document = _i1.DocumentNode(definitions: [
   UserFields,
+  AmountFields,
+  CurrencyFields,
   UserPaysFields,
   GroupBasic,
   GroupFields,
@@ -1497,6 +1655,7 @@ const document = _i1.DocumentNode(definitions: [
   user,
   groups,
   interacted_users,
+  currencies,
   group,
   signup,
   create_group,

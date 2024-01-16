@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/extensions/group_extension.dart';
 import 'package:billdivide/extensions/user_extension.dart';
-import 'package:billdivide/graphql/__generated__/queries.ast.gql.dart';
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 import 'package:billdivide/screens/groups_page.dart';
 import 'package:billdivide/screens/home_page.dart';
@@ -14,9 +13,15 @@ import 'package:billdivide/utils/svg_icons.dart';
 
 class PaymentRecorder extends StatefulWidget {
   final GUserPaysFields withUser;
+  final String currencyId;
   final GGroupFields? inGroup;
 
-  const PaymentRecorder({super.key, required this.withUser, this.inGroup});
+  const PaymentRecorder({
+    super.key,
+    required this.withUser,
+    this.inGroup,
+    required this.currencyId,
+  });
 
   @override
   State<PaymentRecorder> createState() => _PaymentRecorderState();
@@ -32,13 +37,16 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
 
   int get remaining => (amount -
           owedGroups.fold(
-              0, (previousValue, element) => previousValue + element.amount))
+              0,
+              (previousValue, element) =>
+                  previousValue + element.amount.amount))
       .clamp(0, amount)
       .toInt();
 
   Iterable<GUserPaysFields_owes> get owedGroups => widget.withUser.owes
-      .where((owed) => owed.amount > 0)
-      .sorted((a, b) => a.amount.compareTo(b.amount));
+      .where((owed) =>
+          owed.amount.currencyId == widget.currencyId && owed.amount.amount > 0)
+      .sorted((a, b) => a.amount.amount.compareTo(b.amount.amount));
 
   @override
   Widget build(BuildContext context) {
@@ -181,8 +189,8 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
                                     0,
                                     (i, previous, element) => i >= index
                                         ? previous
-                                        : previous + element.amount))
-                            .clamp(0, owedGroup.amount);
+                                        : previous + element.amount.amount))
+                            .clamp(0, owedGroup.amount.amount);
 
                         var group = context
                             .read<AppState>()

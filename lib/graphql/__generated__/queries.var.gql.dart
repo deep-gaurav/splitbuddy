@@ -2,11 +2,11 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:billdivide/__generated__/schema.schema.gql.dart' as _i2;
+import 'package:billdivide/__generated__/serializers.gql.dart' as _i1;
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:billdivide/__generated__/schema.schema.gql.dart' as _i2;
-import 'package:billdivide/__generated__/serializers.gql.dart' as _i1;
 
 part 'queries.var.gql.g.dart';
 
@@ -67,6 +67,28 @@ abstract class Ginteracted_usersVars
   static Ginteracted_usersVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         Ginteracted_usersVars.serializer,
+        json,
+      );
+}
+
+abstract class GcurrenciesVars
+    implements Built<GcurrenciesVars, GcurrenciesVarsBuilder> {
+  GcurrenciesVars._();
+
+  factory GcurrenciesVars([Function(GcurrenciesVarsBuilder b) updates]) =
+      _$GcurrenciesVars;
+
+  static Serializer<GcurrenciesVars> get serializer =>
+      _$gcurrenciesVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcurrenciesVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcurrenciesVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcurrenciesVars.serializer,
         json,
       );
 }
@@ -172,6 +194,7 @@ abstract class Gadd_expenseVars
   int get amount;
   BuiltList<_i2.GSplitInput> get splits;
   String get groupId;
+  String get currencyId;
   static Serializer<Gadd_expenseVars> get serializer =>
       _$gaddExpenseVarsSerializer;
 
@@ -294,6 +317,7 @@ abstract class GcreateNonGroupExpenseVars
   String get title;
   int get amount;
   BuiltList<_i2.GSplitInputNonGroup> get nonGroupSplit;
+  String get currencyId;
   static Serializer<GcreateNonGroupExpenseVars> get serializer =>
       _$gcreateNonGroupExpenseVarsSerializer;
 
@@ -319,6 +343,7 @@ abstract class GsettleInGroupVars
   String get withUser;
   String get groupId;
   int get amount;
+  String get currencyId;
   static Serializer<GsettleInGroupVars> get serializer =>
       _$gsettleInGroupVarsSerializer;
 
@@ -367,6 +392,7 @@ abstract class GautoSettleWithUserVars
 
   String get withUser;
   int get amount;
+  String get currencyId;
   static Serializer<GautoSettleWithUserVars> get serializer =>
       _$gautoSettleWithUserVarsSerializer;
 
@@ -454,6 +480,50 @@ abstract class GUserFieldsVars
   static GUserFieldsVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GUserFieldsVars.serializer,
+        json,
+      );
+}
+
+abstract class GAmountFieldsVars
+    implements Built<GAmountFieldsVars, GAmountFieldsVarsBuilder> {
+  GAmountFieldsVars._();
+
+  factory GAmountFieldsVars([Function(GAmountFieldsVarsBuilder b) updates]) =
+      _$GAmountFieldsVars;
+
+  static Serializer<GAmountFieldsVars> get serializer =>
+      _$gAmountFieldsVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GAmountFieldsVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GAmountFieldsVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GAmountFieldsVars.serializer,
+        json,
+      );
+}
+
+abstract class GCurrencyFieldsVars
+    implements Built<GCurrencyFieldsVars, GCurrencyFieldsVarsBuilder> {
+  GCurrencyFieldsVars._();
+
+  factory GCurrencyFieldsVars(
+      [Function(GCurrencyFieldsVarsBuilder b) updates]) = _$GCurrencyFieldsVars;
+
+  static Serializer<GCurrencyFieldsVars> get serializer =>
+      _$gCurrencyFieldsVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GCurrencyFieldsVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GCurrencyFieldsVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GCurrencyFieldsVars.serializer,
         json,
       );
 }

@@ -1,4 +1,17 @@
+type Amount {
+  amount: Int!
+  currencyId: String!
+}
+
 union AuthResult = UserNotSignedUp | UserSignedUp
+
+type Currency {
+  id: String!
+  displayName: String!
+  rate: Float!
+  symbol: String!
+  decimals: Int!
+}
 
 type Expense {
   id: String!
@@ -7,7 +20,7 @@ type Expense {
   creator: User!
   creatorId: String!
   group: Group!
-  amount: Int!
+  amount: Amount!
   splits: [Split!]!
 }
 
@@ -23,12 +36,11 @@ type Group {
   creator: User!
   members: [GroupMember!]!
   expenses(fromTime: String, limit: Int! = 10): [Expense!]!
-  owed: Int!
 }
 
 type GroupMember {
   member: User!
-  owedInGroup: Int!
+  owedInGroup: [Amount!]!
 }
 
 type Mutation {
@@ -41,17 +53,28 @@ type Mutation {
   addNonGroupExpense(
     title: String!
     amount: Int!
+    currencyId: String!
     splits: [SplitInputNonGroup!]!
   ): NonGroupExpense!
   addExpense(
     groupId: String!
     title: String!
     amount: Int!
+    currencyId: String!
     splits: [SplitInput!]!
   ): Expense!
-  settleInGroup(toUser: String!, groupId: String!, amount: Int!): Split!
+  settleInGroup(
+    toUser: String!
+    groupId: String!
+    amount: Int!
+    currencyId: String!
+  ): Split!
   simplifyCrossGroup(withUser: String!): [Split!]!
-  autoSettleWithUser(withUser: String!, amount: Int!): [Split!]!
+  autoSettleWithUser(
+    withUser: String!
+    amount: Int!
+    currencyId: String!
+  ): [Split!]!
 }
 
 type NonGroupExpense {
@@ -61,7 +84,7 @@ type NonGroupExpense {
 
 type OwedInGroup {
   groupId: String!
-  amount: Int!
+  amount: Amount!
 }
 
 type Query {
@@ -72,12 +95,13 @@ type Query {
   interactedUsers: [User!]!
   groups: [Group!]!
   findUserByEmail(email: String!): User!
-  overallOwed: Int!
+  overallOwed: [Amount!]!
   getTransactionsWithUser(
     withUser: String!
     fromTime: String
     limit: Int!
   ): [Split!]!
+  currencies: [Currency!]!
   getTransactionsWithGroup(
     withGroup: String!
     fromTime: String
@@ -102,9 +126,10 @@ type SignupSuccess {
 type Split {
   id: String!
   expense: Expense
+  expenseId: String
   group: Group!
   groupId: String!
-  amount: Int!
+  amount: Amount!
   fromUser: User!
   toUser: User!
   transactionType: TransactionType!

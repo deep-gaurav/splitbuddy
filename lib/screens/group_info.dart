@@ -1,3 +1,4 @@
+import 'package:billdivide/extensions/amount_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/extensions/group_extension.dart';
@@ -69,43 +70,51 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       subtitle: !isSelf
-                          ? Text.rich(
-                              TextSpan(
-                                text: member.owedInGroup > 0
-                                    ? 'You owe them '
-                                    : member.owedInGroup < 0
-                                        ? 'They owe you '
-                                        : 'You are settled',
-                                children: [
-                                  if (member.owedInGroup > 0)
-                                    TextSpan(
-                                      text: member.owedInGroup.toString(),
-                                      style: TextStyle(
-                                        fontSize: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium
-                                            ?.fontSize,
-                                        fontWeight: FontWeight.bold,
+                          ? Column(
+                              children: [
+                                ...member.owedInGroup.map((owed) => Text.rich(
+                                      TextSpan(
+                                        text: owed.amount > 0
+                                            ? 'You owe them '
+                                            : owed.amount < 0
+                                                ? 'They owe you '
+                                                : 'You are settled',
+                                        children: [
+                                          if (owed.amount > 0)
+                                            TextSpan(
+                                              text: owed
+                                                  .getPretty(context.read()),
+                                              style: TextStyle(
+                                                fontSize: Theme.of(context)
+                                                    .textTheme
+                                                    .titleMedium
+                                                    ?.fontSize,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            )
+                                          else if (owed.amount < 0)
+                                            TextSpan(
+                                              text: owed
+                                                  .getPrettyAbs(context.read()),
+                                              style: TextStyle(
+                                                fontSize: Theme.of(context)
+                                                    .textTheme
+                                                    .titleMedium
+                                                    ?.fontSize,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            )
+                                        ],
                                       ),
-                                    )
-                                  else if (member.owedInGroup < 0)
-                                    TextSpan(
-                                      text: (-member.owedInGroup).toString(),
-                                      style: TextStyle(
-                                        fontSize: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium
-                                            ?.fontSize,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                ],
-                              ),
-                              style: member.owedInGroup > 0
-                                  ? TextStyle(color: mainScheme.error)
-                                  : member.owedInGroup < 0
-                                      ? TextStyle(color: mainScheme.primary)
-                                      : TextStyle(color: neutralBlue.primary),
+                                      style: owed.amount > 0
+                                          ? TextStyle(color: mainScheme.error)
+                                          : owed.amount < 0
+                                              ? TextStyle(
+                                                  color: mainScheme.primary)
+                                              : TextStyle(
+                                                  color: neutralBlue.primary),
+                                    ))
+                              ],
                             )
                           : null,
                       trailing: !isSelf
@@ -122,6 +131,7 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                                                 element.id == member.member.id,
                                           ),
                                       inGroup: widget.initialGroup,
+                                      currencyId: 'INR',
                                     ),
                                   ),
                                 );

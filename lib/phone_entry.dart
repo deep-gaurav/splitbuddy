@@ -1,3 +1,4 @@
+import 'package:billdivide/utils/int_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -264,8 +265,6 @@ class _ProgressTimerState extends State<ProgressTimer>
 
   @override
   Widget build(BuildContext context) {
-    const int maxInteger = 0x7FFFFFFFFFFFFFFF;
-
     var total = widget.endTime
         .difference(widget.startTime)
         .inMilliseconds

@@ -1,3 +1,4 @@
+import 'package:billdivide/extensions/amount_extension.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
@@ -264,6 +265,7 @@ class _UserPageState extends State<UserPage> {
                     MaterialPageRoute(
                       builder: (context) => PaymentRecorder(
                         withUser: user,
+                        currencyId: 'INR',
                       ),
                     ),
                   );
@@ -673,7 +675,7 @@ class ExpenseCard extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  expense.amount.toString(),
+                  expense.amount.getPretty(context.read()),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w600,
                       color: Theme.of(context).colorScheme.onSurface),
@@ -690,7 +692,7 @@ class ExpenseCard extends StatelessWidget {
 class TransactionCard extends StatelessWidget {
   final double elevation;
   final TextSpan title;
-  final int? amount;
+  final GAmountFields? amount;
   final TextSpan? subtitle;
   final String? createdAt;
   final List<Widget> body;
@@ -728,7 +730,7 @@ class TransactionCard extends StatelessWidget {
                       children: [
                         if (amount != null) ...[
                           Text(
-                            "$amount",
+                            amount!.getPretty(context.read()),
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -811,70 +813,89 @@ class UserSummaryWidget extends StatelessWidget {
             ),
             Row(
               children: [
-                Expanded(
-                    child: Row(
-                  children: [
-                    const Spacer(),
-                    Icon(
-                      Icons.call_received,
-                      color: scheme.primary,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      user.toReceive.toString(),
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: scheme.primary,
-                          ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'To Receive',
-                      style: TextStyle(color: scheme.primary),
-                    ),
-                    const Spacer(),
-                  ],
-                )),
-                Expanded(
-                  child: Row(
+                if (user.toReceive.isNotEmpty)
+                  Expanded(
+                      child: Row(
                     children: [
                       const Spacer(),
                       Icon(
-                        Icons.call_made,
-                        color: scheme.error,
+                        Icons.call_received,
+                        color: scheme.primary,
                       ),
                       const SizedBox(
                         width: 5,
                       ),
-                      Text(
-                        user.toPay.toString(),
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: scheme.error,
-                            ),
+                      Column(
+                        children: [
+                          ...user.toReceive.map((amount) => Text(
+                                amount.getPrettyAbs(context.read()),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: scheme.primary,
+                                    ),
+                              )),
+                        ],
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        'To Pay',
-                        style: TextStyle(
-                          color: scheme.error,
-                        ),
+                        'To Receive',
+                        style: TextStyle(color: scheme.primary),
                       ),
                       const Spacer(),
                     ],
-                  ),
-                )
+                  )),
+                if (user.toPay.isNotEmpty)
+                  Expanded(
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        Icon(
+                          Icons.call_made,
+                          color: scheme.error,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Column(
+                          children: [
+                            ...user.toPay.map(
+                              (amount) => Text(
+                                amount.getPrettyAbs(context.read()),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: scheme.error,
+                                    ),
+                              ),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'To Pay',
+                          style: TextStyle(
+                            color: scheme.error,
+                          ),
+                        ),
+                        const Spacer(),
+                      ],
+                    ),
+                  )
               ],
             ),
             const Divider(),
             ...user.owes
-                .sorted((a, b) => b.amount.abs().compareTo(a.amount.abs()))
+                .sorted((a, b) =>
+                    b.amount.amount.abs().compareTo(a.amount.amount.abs()))
                 .map<Widget>(
               (member) {
                 var group = context
@@ -905,7 +926,7 @@ class UserSummaryWidget extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    if (member.amount < 0)
+                    if (member.amount.amount < 0)
                       Text.rich(
                         TextSpan(
                           children: [
@@ -916,7 +937,7 @@ class UserSummaryWidget extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: '${-member.amount}',
+                              text: member.amount.getPrettyAbs(context.read()),
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium
@@ -927,7 +948,7 @@ class UserSummaryWidget extends StatelessWidget {
                           ],
                         ),
                       )
-                    else if (member.amount > 0)
+                    else if (member.amount.amount > 0)
                       Text.rich(
                         TextSpan(
                           children: [
@@ -973,131 +994,131 @@ class UserSummaryWidget extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            if (user.toPay > 0 && user.toReceive > 0) ...[
-              const SizedBox(
-                height: 5,
-              ),
-              FilledButton.icon(
-                icon: const SvgIcon(asset: SvgIcons.moneyTransfer),
-                onPressed: () async {
-                  var appstate = context.read<AppState>();
-                  var shouldSimplify = await showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text('Simplify'),
-                      icon: const SvgIcon(
-                        asset: SvgIcons.moneyTransfer,
-                        size: 40,
-                      ),
-                      content: Text.rich(
-                        TextSpan(children: [
-                          const TextSpan(text: 'You currently '),
-                          TextSpan(
-                            text: 'owe ',
-                            children: [
-                              TextSpan(
-                                text: user.toPay.toString(),
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              TextSpan(
-                                text: ' to ${user.shortName} ',
-                              )
-                            ],
-                            style: TextStyle(
-                              color: scheme.error,
-                            ),
-                          ),
-                          const TextSpan(text: 'and they '),
-                          TextSpan(
-                            text: 'owe ',
-                            children: [
-                              TextSpan(
-                                text: user.toReceive.toString(),
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const TextSpan(
-                                text: ' to you ',
-                              )
-                            ],
-                            style: TextStyle(
-                              color: scheme.primary,
-                            ),
-                          ),
-                          const TextSpan(text: 'across different groups.'),
-                          const TextSpan(
-                            text:
-                                '\n\nBy simplifying balances, we can combine these into a single, clear amount.,',
-                          ),
-                          if (user.toPay > user.toReceive) ...[
-                            TextSpan(text: '\n• You\'ll ', children: [
-                              TextSpan(
-                                text: 'owe ${user.displayName} ',
-                                children: [
-                                  TextSpan(
-                                    text: '${user.toPay - user.toReceive}',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )
-                                ],
-                                style: TextStyle(color: scheme.error),
-                              ),
-                              const TextSpan(text: ' in total'),
-                            ]),
-                            const TextSpan(text: '\n• They\'ll owe you nothing')
-                          ] else ...[
-                            TextSpan(text: '\n• They\'ll ', children: [
-                              TextSpan(
-                                text: 'owe you ',
-                                children: [
-                                  TextSpan(
-                                    text: '${user.toReceive - user.toPay}',
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )
-                                ],
-                                style: TextStyle(color: scheme.primary),
-                              ),
-                              const TextSpan(text: ' in total'),
-                            ]),
-                            TextSpan(
-                                text:
-                                    '\n• You\'ll owe ${user.displayName} nothing')
-                          ],
-                        ]),
-                      ),
-                      actions: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(false);
-                          },
-                          child: const Text('Cancel'),
-                        ),
-                        FilledButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(true);
-                          },
-                          child: const Text('Simplify'),
-                        )
-                      ],
-                    ),
-                  );
+            // if (user.toPay > 0 && user.toReceive > 0) ...[
+            //   const SizedBox(
+            //     height: 5,
+            //   ),
+            //   FilledButton.icon(
+            //     icon: const SvgIcon(asset: SvgIcons.moneyTransfer),
+            //     onPressed: () async {
+            //       var appstate = context.read<AppState>();
+            //       var shouldSimplify = await showDialog(
+            //         context: context,
+            //         builder: (context) => AlertDialog(
+            //           title: const Text('Simplify'),
+            //           icon: const SvgIcon(
+            //             asset: SvgIcons.moneyTransfer,
+            //             size: 40,
+            //           ),
+            //           content: Text.rich(
+            //             TextSpan(children: [
+            //               const TextSpan(text: 'You currently '),
+            //               TextSpan(
+            //                 text: 'owe ',
+            //                 children: [
+            //                   TextSpan(
+            //                     text: user.toPay.toString(),
+            //                     style: const TextStyle(
+            //                       fontWeight: FontWeight.bold,
+            //                     ),
+            //                   ),
+            //                   TextSpan(
+            //                     text: ' to ${user.shortName} ',
+            //                   )
+            //                 ],
+            //                 style: TextStyle(
+            //                   color: scheme.error,
+            //                 ),
+            //               ),
+            //               const TextSpan(text: 'and they '),
+            //               TextSpan(
+            //                 text: 'owe ',
+            //                 children: [
+            //                   TextSpan(
+            //                     text: user.toReceive.toString(),
+            //                     style: const TextStyle(
+            //                       fontWeight: FontWeight.bold,
+            //                     ),
+            //                   ),
+            //                   const TextSpan(
+            //                     text: ' to you ',
+            //                   )
+            //                 ],
+            //                 style: TextStyle(
+            //                   color: scheme.primary,
+            //                 ),
+            //               ),
+            //               const TextSpan(text: 'across different groups.'),
+            //               const TextSpan(
+            //                 text:
+            //                     '\n\nBy simplifying balances, we can combine these into a single, clear amount.,',
+            //               ),
+            //               if (user.toPay > user.toReceive) ...[
+            //                 TextSpan(text: '\n• You\'ll ', children: [
+            //                   TextSpan(
+            //                     text: 'owe ${user.displayName} ',
+            //                     children: [
+            //                       TextSpan(
+            //                         text: '${user.toPay - user.toReceive}',
+            //                         style: const TextStyle(
+            //                           fontWeight: FontWeight.bold,
+            //                         ),
+            //                       )
+            //                     ],
+            //                     style: TextStyle(color: scheme.error),
+            //                   ),
+            //                   const TextSpan(text: ' in total'),
+            //                 ]),
+            //                 const TextSpan(text: '\n• They\'ll owe you nothing')
+            //               ] else ...[
+            //                 TextSpan(text: '\n• They\'ll ', children: [
+            //                   TextSpan(
+            //                     text: 'owe you ',
+            //                     children: [
+            //                       TextSpan(
+            //                         text: '${user.toReceive - user.toPay}',
+            //                         style: const TextStyle(
+            //                           fontWeight: FontWeight.bold,
+            //                         ),
+            //                       )
+            //                     ],
+            //                     style: TextStyle(color: scheme.primary),
+            //                   ),
+            //                   const TextSpan(text: ' in total'),
+            //                 ]),
+            //                 TextSpan(
+            //                     text:
+            //                         '\n• You\'ll owe ${user.displayName} nothing')
+            //               ],
+            //             ]),
+            //           ),
+            //           actions: [
+            //             ElevatedButton(
+            //               onPressed: () {
+            //                 Navigator.of(context).pop(false);
+            //               },
+            //               child: const Text('Cancel'),
+            //             ),
+            //             FilledButton(
+            //               onPressed: () {
+            //                 Navigator.of(context).pop(true);
+            //               },
+            //               child: const Text('Simplify'),
+            //             )
+            //           ],
+            //         ),
+            //       );
 
-                  if (shouldSimplify == true) {
-                    var result = await appstate.simplifyUser(userId: user.id);
-                    onSimplify(result);
-                  }
-                },
-                label: const Text(
-                  "Simplify",
-                ),
-              ),
-            ]
+            //       if (shouldSimplify == true) {
+            //         var result = await appstate.simplifyUser(userId: user.id);
+            //         onSimplify(result);
+            //       }
+            //     },
+            //     label: const Text(
+            //       "Simplify",
+            //     ),
+            //   ),
+            // ]
           ],
         ),
       ),

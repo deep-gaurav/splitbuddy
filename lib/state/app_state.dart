@@ -13,6 +13,7 @@ import 'package:billdivide/extensions/group_extension.dart';
 import 'package:billdivide/extensions/user_extension.dart';
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 import 'package:billdivide/graphql/__generated__/queries.req.gql.dart';
+import 'package:intl/intl.dart';
 
 enum AuthStates {
   loading,
@@ -38,6 +39,7 @@ class AppState extends ChangeNotifier {
   }
 
   AppState() {
+    refreshCurrencies();
     _getClient().then(refresh);
     unawaited(() async {
       refresh(await _getClient());
@@ -59,11 +61,11 @@ class AppState extends ChangeNotifier {
 
   List<Ginteracted_usersData_interactedUsers> _interactedUsers = [];
 
-  int get toPay => _interactedUsers.fold(
-      0, (previousValue, element) => previousValue + element.toPay);
+  List<GAmountFields> get toPay => _interactedUsers
+      .fold([], (previousValue, element) => previousValue + element.toPay);
 
-  int get toReceive => _interactedUsers.fold(
-      0, (previousValue, element) => previousValue + element.toReceive);
+  List<GAmountFields> get toReceive => _interactedUsers
+      .fold([], (previousValue, element) => previousValue + element.toReceive);
 
   UnmodifiableListView<Ginteracted_usersData_interactedUsers>
       get interactedUsers => UnmodifiableListView(_interactedUsers);
@@ -79,6 +81,21 @@ class AppState extends ChangeNotifier {
   GUserFields? getUser(String id) => interactedUsers.firstWhereOrNull(
         (element) => element.id == id,
       );
+
+  Map<String, GCurrencyFields> currencies = {};
+
+  GCurrencyFields? defaultCurrency;
+
+  refreshCurrencies() async {
+    unAuthorizedClient.request(GcurrenciesReq()).listen((event) {
+      currencies = Map.fromEntries(
+        event.data?.currencies.map((p0) => MapEntry(p0.id, p0)) ??
+            currencies.entries,
+      );
+      var format = NumberFormat();
+      defaultCurrency = currencies[format.currencyName];
+    });
+  }
 
   refresh(
     ReAuthClient client, {

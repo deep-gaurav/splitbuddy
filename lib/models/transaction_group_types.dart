@@ -33,8 +33,10 @@ class GroupedPaidTransactions extends TransactionCardTypes {
   @override
   GUserFields get creator => transactions.first.creator;
 
-  int get total => transactions.fold(
-      0, (previousValue, element) => previousValue + element.amount);
+  GAmountFields get total => GAmountFieldsData((b) => b
+    ..currencyId = transactions.first.amount.currencyId
+    ..amount = transactions.fold<int>(
+        0, (previousValue, element) => previousValue + element.amount.amount));
 }
 
 class GroupedCrossSettlementTransactions extends TransactionCardTypes {

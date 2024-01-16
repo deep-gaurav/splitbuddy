@@ -8,19 +8,30 @@ part of 'serializers.gql.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(FetchPolicy.serializer)
+      ..add(GAmountFieldsData.serializer)
+      ..add(GAmountFieldsReq.serializer)
+      ..add(GAmountFieldsVars.serializer)
+      ..add(GCurrencyFieldsData.serializer)
+      ..add(GCurrencyFieldsReq.serializer)
+      ..add(GCurrencyFieldsVars.serializer)
       ..add(GExpenseBasicData.serializer)
+      ..add(GExpenseBasicData_amount.serializer)
       ..add(GExpenseBasicReq.serializer)
       ..add(GExpenseBasicVars.serializer)
       ..add(GExpenseFieldsData.serializer)
+      ..add(GExpenseFieldsData_amount.serializer)
       ..add(GExpenseFieldsData_creator.serializer)
       ..add(GExpenseFieldsData_splits.serializer)
+      ..add(GExpenseFieldsData_splits_amount.serializer)
       ..add(GExpenseFieldsData_splits_fromUser.serializer)
       ..add(GExpenseFieldsData_splits_toUser.serializer)
       ..add(GExpenseFieldsReq.serializer)
       ..add(GExpenseFieldsVars.serializer)
       ..add(GExpenseMixSplitFieldsData.serializer)
       ..add(GExpenseMixSplitFieldsData_expense.serializer)
+      ..add(GExpenseMixSplitFieldsData_expense_amount.serializer)
       ..add(GExpenseMixSplitFieldsData_split.serializer)
+      ..add(GExpenseMixSplitFieldsData_split_amount.serializer)
       ..add(GExpenseMixSplitFieldsData_split_fromUser.serializer)
       ..add(GExpenseMixSplitFieldsData_split_toUser.serializer)
       ..add(GExpenseMixSplitFieldsReq.serializer)
@@ -32,32 +43,41 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GGroupFieldsData_creator.serializer)
       ..add(GGroupFieldsData_members.serializer)
       ..add(GGroupFieldsData_members_member.serializer)
+      ..add(GGroupFieldsData_members_owedInGroup.serializer)
       ..add(GGroupFieldsReq.serializer)
       ..add(GGroupFieldsVars.serializer)
       ..add(GGroupWithExpensesData.serializer)
       ..add(GGroupWithExpensesData_creator.serializer)
       ..add(GGroupWithExpensesData_expenses.serializer)
+      ..add(GGroupWithExpensesData_expenses_amount.serializer)
       ..add(GGroupWithExpensesData_expenses_creator.serializer)
       ..add(GGroupWithExpensesData_expenses_splits.serializer)
+      ..add(GGroupWithExpensesData_expenses_splits_amount.serializer)
       ..add(GGroupWithExpensesData_expenses_splits_fromUser.serializer)
       ..add(GGroupWithExpensesData_expenses_splits_toUser.serializer)
       ..add(GGroupWithExpensesData_members.serializer)
       ..add(GGroupWithExpensesData_members_member.serializer)
+      ..add(GGroupWithExpensesData_members_owedInGroup.serializer)
       ..add(GGroupWithExpensesReq.serializer)
       ..add(GGroupWithExpensesVars.serializer)
       ..add(GNewExpenseFieldsData.serializer)
+      ..add(GNewExpenseFieldsData_amount.serializer)
       ..add(GNewExpenseFieldsData_splits.serializer)
+      ..add(GNewExpenseFieldsData_splits_amount.serializer)
       ..add(GNewExpenseFieldsData_splits_creator.serializer)
       ..add(GNewExpenseFieldsData_splits_expense.serializer)
+      ..add(GNewExpenseFieldsData_splits_expense_amount.serializer)
       ..add(GNewExpenseFieldsData_splits_fromUser.serializer)
       ..add(GNewExpenseFieldsData_splits_group.serializer)
       ..add(GNewExpenseFieldsData_splits_toUser.serializer)
       ..add(GNewExpenseFieldsReq.serializer)
       ..add(GNewExpenseFieldsVars.serializer)
       ..add(GSplitFieldsBasicsData.serializer)
+      ..add(GSplitFieldsBasicsData_amount.serializer)
       ..add(GSplitFieldsBasicsReq.serializer)
       ..add(GSplitFieldsBasicsVars.serializer)
       ..add(GSplitFieldsData.serializer)
+      ..add(GSplitFieldsData_amount.serializer)
       ..add(GSplitFieldsData_fromUser.serializer)
       ..add(GSplitFieldsData_toUser.serializer)
       ..add(GSplitFieldsReq.serializer)
@@ -65,8 +85,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GSplitInput.serializer)
       ..add(GSplitInputNonGroup.serializer)
       ..add(GSplitTransactionFieldsData.serializer)
+      ..add(GSplitTransactionFieldsData_amount.serializer)
       ..add(GSplitTransactionFieldsData_creator.serializer)
       ..add(GSplitTransactionFieldsData_expense.serializer)
+      ..add(GSplitTransactionFieldsData_expense_amount.serializer)
       ..add(GSplitTransactionFieldsData_fromUser.serializer)
       ..add(GSplitTransactionFieldsData_group.serializer)
       ..add(GSplitTransactionFieldsData_toUser.serializer)
@@ -78,13 +100,17 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GUserFieldsVars.serializer)
       ..add(GUserPaysFieldsData.serializer)
       ..add(GUserPaysFieldsData_owes.serializer)
+      ..add(GUserPaysFieldsData_owes_amount.serializer)
       ..add(GUserPaysFieldsReq.serializer)
       ..add(GUserPaysFieldsVars.serializer)
       ..add(Gadd_expenseData.serializer)
       ..add(Gadd_expenseData_addExpense.serializer)
+      ..add(Gadd_expenseData_addExpense_amount.serializer)
       ..add(Gadd_expenseData_addExpense_splits.serializer)
+      ..add(Gadd_expenseData_addExpense_splits_amount.serializer)
       ..add(Gadd_expenseData_addExpense_splits_creator.serializer)
       ..add(Gadd_expenseData_addExpense_splits_expense.serializer)
+      ..add(Gadd_expenseData_addExpense_splits_expense_amount.serializer)
       ..add(Gadd_expenseData_addExpense_splits_fromUser.serializer)
       ..add(Gadd_expenseData_addExpense_splits_group.serializer)
       ..add(Gadd_expenseData_addExpense_splits_toUser.serializer)
@@ -95,8 +121,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Gadd_to_groupVars.serializer)
       ..add(GautoSettleWithUserData.serializer)
       ..add(GautoSettleWithUserData_autoSettleWithUser.serializer)
+      ..add(GautoSettleWithUserData_autoSettleWithUser_amount.serializer)
       ..add(GautoSettleWithUserData_autoSettleWithUser_creator.serializer)
       ..add(GautoSettleWithUserData_autoSettleWithUser_expense.serializer)
+      ..add(
+          GautoSettleWithUserData_autoSettleWithUser_expense_amount.serializer)
       ..add(GautoSettleWithUserData_autoSettleWithUser_fromUser.serializer)
       ..add(GautoSettleWithUserData_autoSettleWithUser_group.serializer)
       ..add(GautoSettleWithUserData_autoSettleWithUser_toUser.serializer)
@@ -105,12 +134,19 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GcreateNonGroupExpenseData.serializer)
       ..add(GcreateNonGroupExpenseData_addNonGroupExpense.serializer)
       ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense.serializer)
+      ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_amount
+          .serializer)
       ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
+          .serializer)
+      ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_amount
           .serializer)
       ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_creator
           .serializer)
       ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
           .serializer)
+      ..add(
+          GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense_amount
+              .serializer)
       ..add(
           GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_fromUser
               .serializer)
@@ -125,6 +161,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
           .serializer)
       ..add(GcreateNonGroupExpenseData_addNonGroupExpense_group_members_member
           .serializer)
+      ..add(
+          GcreateNonGroupExpenseData_addNonGroupExpense_group_members_owedInGroup
+              .serializer)
       ..add(GcreateNonGroupExpenseReq.serializer)
       ..add(GcreateNonGroupExpenseVars.serializer)
       ..add(Gcreate_groupData.serializer)
@@ -132,18 +171,26 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Gcreate_groupData_createGroup_creator.serializer)
       ..add(Gcreate_groupData_createGroup_members.serializer)
       ..add(Gcreate_groupData_createGroup_members_member.serializer)
+      ..add(Gcreate_groupData_createGroup_members_owedInGroup.serializer)
       ..add(Gcreate_groupReq.serializer)
       ..add(Gcreate_groupVars.serializer)
+      ..add(GcurrenciesData.serializer)
+      ..add(GcurrenciesData_currencies.serializer)
+      ..add(GcurrenciesReq.serializer)
+      ..add(GcurrenciesVars.serializer)
       ..add(GgroupData.serializer)
       ..add(GgroupData_group.serializer)
       ..add(GgroupData_group_creator.serializer)
       ..add(GgroupData_group_expenses.serializer)
+      ..add(GgroupData_group_expenses_amount.serializer)
       ..add(GgroupData_group_expenses_creator.serializer)
       ..add(GgroupData_group_expenses_splits.serializer)
+      ..add(GgroupData_group_expenses_splits_amount.serializer)
       ..add(GgroupData_group_expenses_splits_fromUser.serializer)
       ..add(GgroupData_group_expenses_splits_toUser.serializer)
       ..add(GgroupData_group_members.serializer)
       ..add(GgroupData_group_members_member.serializer)
+      ..add(GgroupData_group_members_owedInGroup.serializer)
       ..add(GgroupReq.serializer)
       ..add(GgroupVars.serializer)
       ..add(GgroupsData.serializer)
@@ -151,11 +198,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GgroupsData_groups_creator.serializer)
       ..add(GgroupsData_groups_members.serializer)
       ..add(GgroupsData_groups_members_member.serializer)
+      ..add(GgroupsData_groups_members_owedInGroup.serializer)
       ..add(GgroupsReq.serializer)
       ..add(GgroupsVars.serializer)
       ..add(Ginteracted_usersData.serializer)
       ..add(Ginteracted_usersData_interactedUsers.serializer)
       ..add(Ginteracted_usersData_interactedUsers_owes.serializer)
+      ..add(Ginteracted_usersData_interactedUsers_owes_amount.serializer)
       ..add(Ginteracted_usersReq.serializer)
       ..add(Ginteracted_usersVars.serializer)
       ..add(Grefresh_tokenData.serializer)
@@ -171,8 +220,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Gsend_email_otpVars.serializer)
       ..add(GsettleInGroupData.serializer)
       ..add(GsettleInGroupData_settleInGroup.serializer)
+      ..add(GsettleInGroupData_settleInGroup_amount.serializer)
       ..add(GsettleInGroupData_settleInGroup_creator.serializer)
       ..add(GsettleInGroupData_settleInGroup_expense.serializer)
+      ..add(GsettleInGroupData_settleInGroup_expense_amount.serializer)
       ..add(GsettleInGroupData_settleInGroup_fromUser.serializer)
       ..add(GsettleInGroupData_settleInGroup_group.serializer)
       ..add(GsettleInGroupData_settleInGroup_toUser.serializer)
@@ -186,8 +237,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GsignupVars.serializer)
       ..add(GsimplifyUserData.serializer)
       ..add(GsimplifyUserData_simplifyCrossGroup.serializer)
+      ..add(GsimplifyUserData_simplifyCrossGroup_amount.serializer)
       ..add(GsimplifyUserData_simplifyCrossGroup_creator.serializer)
       ..add(GsimplifyUserData_simplifyCrossGroup_expense.serializer)
+      ..add(GsimplifyUserData_simplifyCrossGroup_expense_amount.serializer)
       ..add(GsimplifyUserData_simplifyCrossGroup_fromUser.serializer)
       ..add(GsimplifyUserData_simplifyCrossGroup_group.serializer)
       ..add(GsimplifyUserData_simplifyCrossGroup_toUser.serializer)
@@ -199,8 +252,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(
           GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
               .serializer)
+      ..add(
+          GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense_amount
+              .serializer)
       ..add(GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
           .serializer)
+      ..add(
+          GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_amount
+              .serializer)
       ..add(
           GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_fromUser
               .serializer)
@@ -211,8 +270,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GtransactionMixExpenseVars.serializer)
       ..add(GtransactionWithUserData.serializer)
       ..add(GtransactionWithUserData_getTransactionsWithUser.serializer)
+      ..add(GtransactionWithUserData_getTransactionsWithUser_amount.serializer)
       ..add(GtransactionWithUserData_getTransactionsWithUser_creator.serializer)
       ..add(GtransactionWithUserData_getTransactionsWithUser_expense.serializer)
+      ..add(GtransactionWithUserData_getTransactionsWithUser_expense_amount
+          .serializer)
       ..add(
           GtransactionWithUserData_getTransactionsWithUser_fromUser.serializer)
       ..add(GtransactionWithUserData_getTransactionsWithUser_group.serializer)
@@ -242,6 +304,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<GGroupFieldsData_members>())
       ..addBuilderFactory(
           const FullType(BuiltList,
+              const [const FullType(GGroupFieldsData_members_owedInGroup)]),
+          () => new ListBuilder<GGroupFieldsData_members_owedInGroup>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
               const [const FullType(GGroupWithExpensesData_expenses_splits)]),
           () => new ListBuilder<GGroupWithExpensesData_expenses_splits>())
       ..addBuilderFactory(
@@ -252,6 +318,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(GGroupWithExpensesData_expenses)]),
           () => new ListBuilder<GGroupWithExpensesData_expenses>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GGroupWithExpensesData_members_owedInGroup)
+          ]),
+          () => new ListBuilder<GGroupWithExpensesData_members_owedInGroup>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GNewExpenseFieldsData_splits)]),
@@ -287,9 +358,26 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<
               GcreateNonGroupExpenseData_addNonGroupExpense_group_members>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GcreateNonGroupExpenseData_addNonGroupExpense_group_members_owedInGroup)
+          ]),
+          () => new ListBuilder<
+              GcreateNonGroupExpenseData_addNonGroupExpense_group_members_owedInGroup>())
+      ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(Gcreate_groupData_createGroup_members)]),
           () => new ListBuilder<Gcreate_groupData_createGroup_members>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(Gcreate_groupData_createGroup_members_owedInGroup)
+          ]),
+          () => new ListBuilder<
+              Gcreate_groupData_createGroup_members_owedInGroup>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GcurrenciesData_currencies)]),
+          () => new ListBuilder<GcurrenciesData_currencies>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GgroupData_group_expenses)]),
@@ -303,12 +391,20 @@ Serializers _$serializers = (new Serializers().toBuilder()
               const [const FullType(GgroupData_group_expenses_splits)]),
           () => new ListBuilder<GgroupData_group_expenses_splits>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GgroupData_group_members_owedInGroup)]),
+          () => new ListBuilder<GgroupData_group_members_owedInGroup>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(GgroupsData_groups)]),
           () => new ListBuilder<GgroupsData_groups>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GgroupsData_groups_members)]),
           () => new ListBuilder<GgroupsData_groups_members>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GgroupsData_groups_members_owedInGroup)]),
+          () => new ListBuilder<GgroupsData_groups_members_owedInGroup>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(Ginteracted_usersData_interactedUsers)]),

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:built_collection/built_collection.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +36,8 @@ class _FindPeopleState extends State<FindPeople> {
 
   var formKey = GlobalKey<FormState>();
 
+  GCurrencyFields? currentCurrency;
+
   @override
   void initState() {
     amountController.addListener(() {
@@ -62,22 +66,24 @@ class _FindPeopleState extends State<FindPeople> {
   }
 
   resetAmount() {
-    var amount = int.tryParse(amountController.text) ?? 0;
+    int deci = currentCurrency?.decimals ?? 0;
+
+    num amount = num.tryParse(amountController.text) ?? 0.0;
     for (var user in percentDistribution.entries) {
       amountDistribution[user.key]!.text =
-          (user.value * amount).toInt().toString();
+          (user.value * amount).toStringAsFixed(deci);
     }
 
-    var sum = amountDistribution.values.fold(
+    var sum = amountDistribution.values.fold<num>(
         0,
         (previousValue, element) =>
-            (int.tryParse(element.text) ?? 0) + previousValue);
+            (num.tryParse(element.text) ?? 0) + previousValue);
 
     var diff = amount - sum;
     amountDistribution[context.read<AppState>().user!.id]!.text = (num.parse(
                 amountDistribution[context.read<AppState>().user!.id]!.text) +
             diff)
-        .toString();
+        .toStringAsFixed(deci);
   }
 
   resetPercentage() {
@@ -94,6 +100,8 @@ class _FindPeopleState extends State<FindPeople> {
 
   @override
   Widget build(BuildContext context) {
+    currentCurrency ??= context.read<AppState>().defaultCurrency ??
+        context.read<AppState>().currencies.entries.first.value;
     return Scaffold(
       body: Form(
         key: formKey,
@@ -322,40 +330,85 @@ class _FindPeopleState extends State<FindPeople> {
               ),
             ),
             SliverToBoxAdapter(
-              child: Center(
-                child: IntrinsicWidth(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      minWidth: 100,
-                    ),
-                    child: TextFormField(
-                      controller: amountController,
-                      textAlign: TextAlign.center,
-                      onChanged: (value) {
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  DropdownButton<GCurrencyFields>(
+                    value: currentCurrency,
+                    items: context
+                        .read<AppState>()
+                        .currencies
+                        .values
+                        .map(
+                          (e) => DropdownMenuItem(
+                            value: e,
+                            child: Text("${e.id} ${e.symbol}"),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: (val) {
+                      if (val == null) {
+                        return;
+                      }
+                      setState(() {
+                        amountController.text =
+                            ((num.tryParse(amountController.text) ?? 0) *
+                                    (val.rate / currentCurrency!.rate))
+                                .toStringAsFixed(val.decimals);
+                        currentCurrency = val;
                         resetAmount();
-                      },
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
-                      ],
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Amount can not be empty";
-                        } else if (num.tryParse(value) == null ||
-                            num.parse(value) <= 0) {
-                          return "amount must be greater than 0";
-                        }
-                        return null;
-                      },
-                      keyboardType: const TextInputType.numberWithOptions(
-                        decimal: true,
+                      });
+                    },
+                  ),
+                  IntrinsicWidth(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        minWidth: 100,
                       ),
-                      style: Theme.of(context).textTheme.displayMedium,
-                      decoration: const InputDecoration(
-                        hintText: '0',
+                      child: TextFormField(
+                        controller: amountController,
+                        textAlign: TextAlign.center,
+                        onChanged: (value) {
+                          var decLength = currentCurrency!.decimals;
+                          String val;
+                          if (decLength > 0) {
+                            final decReg = RegExp(r'\d+(\.\d{0,[length]})?'
+                                .replaceAll('[length]', decLength.toString()));
+                            val = decReg.firstMatch(value)?.group(0) ?? '';
+                          } else {
+                            final decReg = RegExp(r'\d+');
+                            val = decReg.firstMatch(value)?.group(0) ?? '';
+                          }
+                          if (val != value) {
+                            amountController.text = val;
+                            return;
+                          }
+                          resetAmount();
+                        },
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp(r'[0-9\.]'))
+                        ],
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Amount can not be empty";
+                          } else if (num.tryParse(value) == null ||
+                              num.parse(value) <= 0) {
+                            return "amount must be greater than 0";
+                          }
+                          return null;
+                        },
+                        keyboardType: const TextInputType.numberWithOptions(
+                          decimal: true,
+                        ),
+                        style: Theme.of(context).textTheme.displayMedium,
+                        decoration: const InputDecoration(
+                          hintText: '0',
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
             const SliverToBoxAdapter(
@@ -489,9 +542,29 @@ class _FindPeopleState extends State<FindPeople> {
                                   textAlign: TextAlign.center,
                                   inputFormatters: [
                                     FilteringTextInputFormatter.allow(
-                                        RegExp(r'[0-9]'))
+                                        RegExp(r'[0-9\.]'))
                                   ],
                                   onChanged: (value) {
+                                    var decLength = currentCurrency!.decimals;
+                                    String val;
+                                    if (decLength > 0) {
+                                      final decReg = RegExp(
+                                          r'\d+(\.\d{[length]})?'.replaceAll(
+                                              '[length]',
+                                              decLength.toString()));
+                                      val =
+                                          decReg.firstMatch(value)?.group(0) ??
+                                              '';
+                                    } else {
+                                      final decReg = RegExp(r'\d+');
+                                      val =
+                                          decReg.firstMatch(value)?.group(0) ??
+                                              '';
+                                    }
+                                    if (val != value) {
+                                      amountController.text = val;
+                                      return;
+                                    }
                                     var amount = double.tryParse(value);
                                     if (amount != null && amount >= 0) {
                                       amountDistribution[member.id]!.text =
@@ -565,15 +638,20 @@ class _FindPeopleState extends State<FindPeople> {
               var expense = await (await appstate.client).execute(
                 GcreateNonGroupExpenseReq(
                   (b) => b.vars
-                    ..amount = int.parse(amountController.text)
+                    ..amount = (double.parse(amountController.text) *
+                            pow(10, currentCurrency!.decimals))
+                        .toInt()
                     ..title = nameController.text
+                    ..currencyId = currentCurrency!.id
                     ..nonGroupSplit = ListBuilder(
                       users
                           .map(
                             (e) => GSplitInputNonGroup(
                               (b) {
-                                b.amount =
-                                    int.parse(amountDistribution[e.id]!.text);
+                                b.amount = (double.parse(
+                                            amountDistribution[e.id]!.text) *
+                                        pow(10, currentCurrency!.decimals))
+                                    .toInt();
                                 switch (e) {
                                   case UserWithEmail(email: final email):
                                     b.email = email;
