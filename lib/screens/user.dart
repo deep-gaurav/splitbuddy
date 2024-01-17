@@ -586,7 +586,8 @@ class UserTransactionCard extends StatelessWidget {
                                 TextSpan(children: [
                                   const TextSpan(text: 'Settled '),
                                   TextSpan(
-                                      text: e.$1.amount.toString(),
+                                      text: e.$1.amount
+                                          .getPrettyAbs(context.read()),
                                       style: Theme.of(context)
                                           .textTheme
                                           .labelLarge

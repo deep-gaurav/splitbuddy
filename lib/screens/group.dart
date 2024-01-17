@@ -238,7 +238,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
         return (
           TextSpan(children: [
             TextSpan(
-                text: 'Paid ${isTo ? 'to' : 'from'}\n',
+                text: 'Paid ${isTo ? 'from' : 'to'}\n',
                 style: TextStyle(color: neutralBlue.primary)),
             TextSpan(
               text: context.read<AppState>().getGroupName(split.withGroupId!),
