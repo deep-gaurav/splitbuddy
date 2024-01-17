@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:collection';
-import 'dart:io';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
@@ -14,7 +12,6 @@ import 'package:billdivide/extensions/group_extension.dart';
 import 'package:billdivide/extensions/user_extension.dart';
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 import 'package:billdivide/graphql/__generated__/queries.req.gql.dart';
-import 'package:intl/intl.dart';
 
 enum AuthStates {
   loading,
@@ -202,12 +199,13 @@ class AppState extends ChangeNotifier {
   }
 
   Future<GNewExpenseFields> addExpense(String title, int amount, String groupId,
-      List<GSplitInput> splits) async {
+      String currencyId, List<GSplitInput> splits) async {
     var client = await _getClient();
     var result = await client.execute(Gadd_expenseReq(
       (b) => b.vars
         ..title = title
         ..amount = amount
+        ..currencyId = currencyId
         ..splits = ListBuilder(splits)
         ..groupId = groupId,
     ));

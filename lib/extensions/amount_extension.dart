@@ -13,7 +13,7 @@ extension AmountExtension on GAmountFields {
           ? getAmountWithDecimal(appState).truncate()
           : getAmountWithDecimal(appState);
   String getPretty(AppState appState) =>
-      '${appState.currencies[currencyId]!.symbol}${getAmountFormatted(appState)}';
+      '${appState.currencies[currencyId]?.symbol}${getAmountFormatted(appState)}';
   String getPrettyAbs(AppState appState) =>
-      '${appState.currencies[currencyId]!.symbol}${getAmountFormatted(appState).abs()}';
+      '${appState.currencies[currencyId]?.symbol}${getAmountFormatted(appState).abs()}';
 }

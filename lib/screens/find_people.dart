@@ -80,7 +80,7 @@ class _FindPeopleState extends State<FindPeople> {
             (num.tryParse(element.text) ?? 0) + previousValue);
 
     var diff = amount - sum;
-    amountDistribution[context.read<AppState>().user!.id]!.text = (num.parse(
+    amountDistribution[context.read<AppState>().user!.id]?.text = (num.parse(
                 amountDistribution[context.read<AppState>().user!.id]!.text) +
             diff)
         .toStringAsFixed(deci);
@@ -619,14 +619,19 @@ class _FindPeopleState extends State<FindPeople> {
             if (expenseWith.value case ExpenseWithGroup(group: var group)) {
               var expense = await appstate.addExpense(
                 nameController.text,
-                int.parse(amountController.text),
+                (double.parse(amountController.text) *
+                        pow(10, currentCurrency!.decimals))
+                    .toInt(),
                 group.id,
+                currentCurrency!.id,
                 amountDistribution.entries
                     .where((element) => element.key != appstate.user!.id)
                     .map(
                       (e) => GSplitInput(
                         (b) => b
-                          ..amount = int.parse(e.value.text)
+                          ..amount = (double.parse(e.value.text) *
+                                  pow(10, currentCurrency!.decimals))
+                              .toInt()
                           ..userId = e.key,
                       ),
                     )

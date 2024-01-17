@@ -10,9 +10,11 @@ extension UserExtension on GUserFields {
       email?.split('@').firstOrNull ??
       phone ??
       id;
-  Color get getMainColor =>
-      HSVColor.fromAHSV(1, Random(id.hashCode).nextDouble() * 256, 1, 1)
-          .toColor();
+  Color get getMainColor => ColorScheme.fromSeed(
+          seedColor:
+              HSVColor.fromAHSV(1, Random(id.hashCode).nextDouble() * 360, 1, 1)
+                  .toColor())
+      .primary;
 }
 
 extension UserPaysExtensions on GUserPaysFields {

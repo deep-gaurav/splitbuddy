@@ -31,18 +31,22 @@ extension GroupExtension on GGroupFields {
           .map((p0) => p0.member.shortName)
           .join(", ");
 
-  Color getMainColor(Brightness brightness) => HSVColor.fromAHSV(
-          1,
-          Random(id.hashCode).nextDouble() * 256,
-          brightness == Brightness.dark ? 0.2 : 0.9,
-          1)
-      .toColor();
-  Color getBackgroudColor(Brightness brightness) => HSVColor.fromAHSV(
-          0.6,
-          Random(id.hashCode).nextDouble() * 256,
-          brightness == Brightness.dark ? 0.8 : 0.4,
-          1)
-      .toColor();
+  Color getMainColor(Brightness brightness) => ColorScheme.fromSeed(
+              seedColor: HSVColor.fromAHSV(
+        1,
+        Random(id.hashCode).nextDouble() * 360,
+        brightness == Brightness.dark ? 0.2 : 0.9,
+        1,
+      ).toColor())
+          .primary;
+  Color getBackgroudColor(Brightness brightness) => ColorScheme.fromSeed(
+              seedColor: HSVColor.fromAHSV(
+        1,
+        Random(id.hashCode).nextDouble() * 360,
+        brightness == Brightness.dark ? 0.2 : 0.9,
+        1,
+      ).toColor())
+          .primaryContainer;
 
   Map<String, int> get amountGrouped => members.fold(<String, int>{}, (p0, p1) {
         for (var amount in p1.owedInGroup) {
