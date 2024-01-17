@@ -907,9 +907,27 @@ class UserSummaryWidget extends StatelessWidget {
               ],
             ),
             const Divider(),
+            if (user.owes
+                .sorted((a, b) =>
+                    b.amount.amount.abs().compareTo(a.amount.amount.abs()))
+                .where((element) => element.amount.amount != 0)
+                .isEmpty)
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'settled with you ',
+                      style: TextStyle(
+                        color: neutralBlue.primary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ...user.owes
                 .sorted((a, b) =>
                     b.amount.amount.abs().compareTo(a.amount.amount.abs()))
+                .where((element) => element.amount.amount != 0)
                 .map<Widget>(
               (member) {
                 var group = context

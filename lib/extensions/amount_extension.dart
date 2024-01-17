@@ -5,7 +5,7 @@ import 'package:billdivide/state/app_state.dart';
 
 extension AmountExtension on GAmountFields {
   double getAmountWithDecimal(AppState appState) =>
-      amount / pow(10, appState.currencies[currencyId]!.decimals);
+      amount / pow(10, appState.currencies[currencyId]?.decimals ?? 0);
 
   num getAmountFormatted(AppState appState) =>
       getAmountWithDecimal(appState).truncate() ==

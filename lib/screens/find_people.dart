@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:billdivide/extensions/num_extension.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,7 @@ class _FindPeopleState extends State<FindPeople> {
     num amount = num.tryParse(amountController.text) ?? 0.0;
     for (var user in percentDistribution.entries) {
       amountDistribution[user.key]!.text =
-          (user.value * amount).toStringAsFixed(deci);
+          (user.value * amount).toPrettyFixed(deci);
     }
 
     var sum = amountDistribution.values.fold<num>(
@@ -83,7 +84,7 @@ class _FindPeopleState extends State<FindPeople> {
     amountDistribution[context.read<AppState>().user!.id]?.text = (num.parse(
                 amountDistribution[context.read<AppState>().user!.id]!.text) +
             diff)
-        .toStringAsFixed(deci);
+        .toPrettyFixed(deci);
   }
 
   resetPercentage() {
@@ -355,7 +356,7 @@ class _FindPeopleState extends State<FindPeople> {
                         amountController.text =
                             ((num.tryParse(amountController.text) ?? 0) *
                                     (val.rate / currentCurrency!.rate))
-                                .toStringAsFixed(val.decimals);
+                                .toPrettyFixed(val.decimals);
                         currentCurrency = val;
                         resetAmount();
                       });

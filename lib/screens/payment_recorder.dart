@@ -1,9 +1,13 @@
+import 'dart:math';
+
+import 'package:billdivide/extensions/num_extension.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/extensions/group_extension.dart';
 import 'package:billdivide/extensions/user_extension.dart';
+import 'package:billdivide/extensions/amount_extension.dart';
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 import 'package:billdivide/screens/groups_page.dart';
 import 'package:billdivide/screens/home_page.dart';
@@ -35,15 +39,15 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
   GCurrencyFields? currency;
 
   final TextEditingController amountController = TextEditingController();
-  int get amount => int.tryParse(amountController.text) ?? 0;
+  num get amount => num.tryParse(amountController.text) ?? 0;
 
-  int get remaining => (amount -
-          owedGroups.fold(
-              0,
-              (previousValue, element) =>
-                  previousValue + element.amount.amount))
-      .clamp(0, amount)
-      .toInt();
+  num get remaining => (((amount * pow(10, currency!.decimals)).toInt() -
+              owedGroups.fold<num>(
+                  0,
+                  (previousValue, element) =>
+                      previousValue + element.amount.amount)) *
+          pow(10, -currency!.decimals))
+      .clamp(0, amount);
 
   Iterable<GUserPaysFields_owes> get owedGroups => widget.withUser.owes
       .where((owed) =>
@@ -113,38 +117,86 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
             ),
             SliverToBoxAdapter(
               child: Center(
-                child: IntrinsicWidth(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      minWidth: 100,
-                    ),
-                    child: TextFormField(
-                      controller: amountController,
-                      textAlign: TextAlign.center,
-                      onChanged: (value) {
-                        // resetAmount();
-                      },
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
-                      ],
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Amount can not be empty";
-                        } else if (num.tryParse(value) == null ||
-                            num.parse(value) <= 0) {
-                          return "amount must be greater than 0";
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    DropdownButton<GCurrencyFields>(
+                      value: currency,
+                      items: context
+                          .read<AppState>()
+                          .currencies
+                          .values
+                          .map(
+                            (e) => DropdownMenuItem(
+                              value: e,
+                              child: Text("${e.id} ${e.symbol}"),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (val) {
+                        if (val == null) {
+                          return;
                         }
-                        return null;
+                        setState(() {
+                          amountController.text =
+                              ((num.tryParse(amountController.text) ?? 0) *
+                                      (val.rate / currency!.rate))
+                                  .toPrettyFixed(val.decimals);
+                          currency = val;
+                        });
                       },
-                      keyboardType: const TextInputType.numberWithOptions(
-                        decimal: true,
-                      ),
-                      style: Theme.of(context).textTheme.displayMedium,
-                      decoration: const InputDecoration(
-                        hintText: '0',
+                    ),
+                    IntrinsicWidth(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          minWidth: 100,
+                        ),
+                        child: TextFormField(
+                          controller: amountController,
+                          textAlign: TextAlign.center,
+                          onChanged: (value) {
+                            var decLength = currency!.decimals;
+                            String val;
+                            if (decLength > 0) {
+                              final decReg = RegExp(r'\d+(\.\d{0,[length]})?'
+                                  .replaceAll(
+                                      '[length]', decLength.toString()));
+                              val = decReg.firstMatch(value)?.group(0) ?? '';
+                            } else {
+                              final decReg = RegExp(r'\d+');
+                              val = decReg.firstMatch(value)?.group(0) ?? '';
+                            }
+                            if (val != value) {
+                              amountController.text = val;
+                              return;
+                            }
+                            // resetAmount();
+                          },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                                RegExp(r'[0-9\.]'))
+                          ],
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Amount can not be empty";
+                            } else if (num.tryParse(value) == null ||
+                                num.parse(value) <= 0) {
+                              return "amount must be greater than 0";
+                            }
+                            return null;
+                          },
+                          keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true,
+                          ),
+                          style: Theme.of(context).textTheme.displayMedium,
+                          decoration: const InputDecoration(
+                            hintText: '0',
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),
@@ -212,7 +264,8 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
                                 text: 'you owe ',
                                 children: [
                                   TextSpan(
-                                    text: owedGroup.amount.toString(),
+                                    text: owedGroup.amount
+                                        .getPrettyAbs(context.read()),
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold),
                                   )
@@ -263,7 +316,7 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
                             ),
                             title: const Text('Direct Payment'),
                             trailing: Text(
-                              remaining.toString(),
+                              remaining.toPrettyFixed(currency!.decimals),
                               style: TextStyle(
                                 fontSize: Theme.of(context)
                                     .primaryTextTheme
@@ -291,11 +344,12 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
               var result = await appState.settleInGroup(
                   userId: widget.withUser.id,
                   groupId: widget.inGroup!.id,
-                  amount: amount);
+                  amount: (amount * pow(10, currency!.decimals)).toInt());
               nav.pop(result);
             } else {
               var result = await appState.autoSettleWithUser(
-                  userId: widget.withUser.id, amount: amount);
+                  userId: widget.withUser.id,
+                  amount: (amount * pow(10, currency!.decimals)).toInt());
               nav.pop(result);
             }
           }
