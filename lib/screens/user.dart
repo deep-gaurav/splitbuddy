@@ -113,24 +113,26 @@ class _UserPageState extends State<UserPage> {
                   }
               }
             } else {
-              transactions.add(
-                transaction.transactionType ==
-                        GTransactionType.CROSS_GROUP_SETTLEMENT
-                    ? GroupedCrossSettlementTransactions(
-                        transactions: [transaction],
-                        groupId: transaction.transactionPartGroupId!)
-                    : GroupedPaidTransactions(
-                        groupId: transaction.transactionPartGroupId!,
-                        transactions: [transaction],
-                      ),
-              );
+              if (!transactions.any((element) =>
+                  element is SingleTransaction &&
+                  element.transaction.id == transaction.id)) {
+                transactions.add(
+                  transaction.transactionType ==
+                          GTransactionType.CROSS_GROUP_SETTLEMENT
+                      ? GroupedCrossSettlementTransactions(
+                          transactions: [transaction],
+                          groupId: transaction.transactionPartGroupId!)
+                      : GroupedPaidTransactions(
+                          groupId: transaction.transactionPartGroupId!,
+                          transactions: [transaction],
+                        ),
+                );
+              }
             }
-          } else {
-            if (!transactions.any((element) =>
-                element is SingleTransaction &&
-                element.transaction.id == transaction.id)) {
-              transactions.add(SingleTransaction(transaction: transaction));
-            }
+          } else if (!transactions.any((element) =>
+              element is SingleTransaction &&
+              element.transaction.id == transaction.id)) {
+            transactions.add(SingleTransaction(transaction: transaction));
           }
         }
         generateGrouped();
@@ -242,13 +244,19 @@ class _UserPageState extends State<UserPage> {
                   child: UserSummaryWidget(
                     user: user,
                     onSimplify: (splitTransactions) {
-                      transactions.add(
-                        GroupedCrossSettlementTransactions(
-                          groupId:
-                              splitTransactions.first.transactionPartGroupId!,
-                          transactions: splitTransactions,
-                        ),
-                      );
+                      if (!transactions.any((element) =>
+                          element is GroupedCrossSettlementTransactions &&
+                          element.groupId ==
+                              splitTransactions
+                                  .first.transactionPartGroupId!)) {
+                        transactions.add(
+                          GroupedCrossSettlementTransactions(
+                            groupId:
+                                splitTransactions.first.transactionPartGroupId!,
+                            transactions: splitTransactions,
+                          ),
+                        );
+                      }
                       fetchData(forceFirst: true);
                       generateGrouped();
                     },
@@ -274,7 +282,11 @@ class _UserPageState extends State<UserPage> {
                   );
                   if (expense is List<GSplitTransactionFields>) {
                     for (var split in expense) {
-                      transactions.add(SingleTransaction(transaction: split));
+                      if (!transactions.any((element) =>
+                          element is SingleTransaction &&
+                          element.transaction.id == split.id)) {
+                        transactions.add(SingleTransaction(transaction: split));
+                      }
                     }
                     fetchData(forceFirst: true);
                     generateGrouped();
@@ -298,7 +310,11 @@ class _UserPageState extends State<UserPage> {
                   );
                   if (expense is GNewExpenseFields) {
                     for (var split in expense.splits) {
-                      transactions.add(SingleTransaction(transaction: split));
+                      if (!transactions.any((element) =>
+                          element is SingleTransaction &&
+                          element.transaction.id == split.id)) {
+                        transactions.add(SingleTransaction(transaction: split));
+                      }
                     }
                     fetchData(forceFirst: true);
                     generateGrouped();
