@@ -343,12 +343,14 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
             if (widget.inGroup != null) {
               var result = await appState.settleInGroup(
                   userId: widget.withUser.id,
+                  currencyId: currency!.id,
                   groupId: widget.inGroup!.id,
                   amount: (amount * pow(10, currency!.decimals)).toInt());
               nav.pop(result);
             } else {
               var result = await appState.autoSettleWithUser(
                   userId: widget.withUser.id,
+                  currencyId: currency!.id,
                   amount: (amount * pow(10, currency!.decimals)).toInt());
               nav.pop(result);
             }

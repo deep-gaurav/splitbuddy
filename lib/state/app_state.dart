@@ -270,11 +270,13 @@ class AppState extends ChangeNotifier {
   Future<GSplitTransactionFields> settleInGroup({
     required String userId,
     required String groupId,
+    required String currencyId,
     required int amount,
   }) async {
     var result = await (await client).execute(GsettleInGroupReq((b) => b.vars
       ..amount = amount
       ..groupId = groupId
+      ..currencyId = currencyId
       ..withUser = userId));
     if (result.data?.settleInGroup != null) {
       refresh(await client);
@@ -287,10 +289,12 @@ class AppState extends ChangeNotifier {
   Future<List<GSplitTransactionFields>> autoSettleWithUser({
     required String userId,
     required int amount,
+    required String currencyId,
   }) async {
     var result =
         await (await client).execute(GautoSettleWithUserReq((b) => b.vars
           ..amount = amount
+          ..currencyId = currencyId
           ..withUser = userId));
     if (result.data?.autoSettleWithUser != null) {
       refresh(await client);
