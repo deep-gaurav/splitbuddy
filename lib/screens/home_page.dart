@@ -1,6 +1,8 @@
 import 'dart:collection';
 
 import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/utils/color_utils.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/extensions/user_extension.dart';
@@ -13,6 +15,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme scheme = ColorUtils.getMainScheme(context);
     var users = context.select<AppState,
             UnmodifiableListView<Ginteracted_usersData_interactedUsers>>(
         (state) => state.interactedUsers);
@@ -33,40 +36,6 @@ class HomePage extends StatelessWidget {
             "Home",
           ),
         ),
-        // SliverToBoxAdapter(
-        //   child: Row(
-        //     children: [
-        //       Expanded(
-        //           child: Column(
-        //         children: [
-        //           Text(
-        //             context.read<AppState>().toPay.toString(),
-        //             style: Theme.of(context).textTheme.displayLarge,
-        //           ),
-        //           const Text(
-        //             "To pay",
-        //           )
-        //         ],
-        //       )),
-        //       Expanded(
-        //           child: Column(
-        //         children: [
-        //           Text(
-        //             context
-        //                 .read<AppState>()
-        //                 .toReceive
-        //                 .map((e) => e.getPretty(context.read()))
-        //                 .toString(),
-        //             style: Theme.of(context).textTheme.displayLarge,
-        //           ),
-        //           const Text(
-        //             "To receive",
-        //           )
-        //         ],
-        //       )),
-        //     ],
-        //   ),
-        // ),
         SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
           var user = nonSelfUsrs.elementAt(index);
@@ -79,26 +48,66 @@ class HomePage extends StatelessWidget {
               },
               leading: UserIconWidget(user: user),
               title: Text(user.displayName),
-              subtitle: Row(
-                children: [
-                  Expanded(
-                    child: Row(
+              subtitle: user.toPay.isEmpty && user.toReceive.isEmpty
+                  ? const Text('you are settled up')
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const Icon(Icons.call_received),
-                        Text(user.toReceive.toString())
+                        ...user.toPay
+                            .followedBy(user.toReceive)
+                            .sorted((b, a) =>
+                                a.amount.abs().compareTo(b.amount.abs()))
+                            .map(
+                              (e) => e.amount > 0
+                                  ? Text.rich(
+                                      TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: 'you owe ',
+                                            style: TextStyle(
+                                              color: scheme.error,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                e.getPrettyAbs(context.read()),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium
+                                                ?.copyWith(
+                                                    color: scheme.error,
+                                                    fontWeight:
+                                                        FontWeight.w800),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  : Text.rich(
+                                      TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: 'you are owed ',
+                                            style: TextStyle(
+                                              color: scheme.primary,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                e.getPrettyAbs(context.read()),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleMedium
+                                                ?.copyWith(
+                                                    color: scheme.primary,
+                                                    fontWeight:
+                                                        FontWeight.w800),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                            )
                       ],
                     ),
-                  ),
-                  Expanded(
-                    child: Row(
-                      children: [
-                        const Icon(Icons.call_made),
-                        Text(user.toPay.toString())
-                      ],
-                    ),
-                  ),
-                ],
-              ),
             ),
           );
         }, childCount: nonSelfUsrs.length)),

@@ -78,6 +78,10 @@ fragment NewExpenseFields on Expense {
   }
 }
 
+fragment ConfigFields on UserConfig {
+  defaultCurrencyId
+}
+
 fragment SplitFieldsBasics on Split {
   id
   amount {
@@ -143,6 +147,12 @@ query user {
     ... on Unregistered {
       phone
     }
+  }
+}
+
+query userConfig{
+  config{
+    ...ConfigFields
   }
 }
 
@@ -318,5 +328,11 @@ query transactionMixExpense(
     limit: $limit
   ) {
     ...ExpenseMixSplitFields
+  }
+}
+
+mutation setDefaultCurrency($currencyId: String!){
+  setDefaultCurrency(currencyId:$currencyId){
+    ...ConfigFields
   }
 }

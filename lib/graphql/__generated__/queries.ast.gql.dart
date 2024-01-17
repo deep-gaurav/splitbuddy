@@ -378,6 +378,24 @@ const NewExpenseFields = _i1.FragmentDefinitionNode(
     ),
   ]),
 );
+const ConfigFields = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'ConfigFields'),
+  typeCondition: _i1.TypeConditionNode(
+      on: _i1.NamedTypeNode(
+    name: _i1.NameNode(value: 'UserConfig'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'defaultCurrencyId'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    )
+  ]),
+);
 const SplitFieldsBasics = _i1.FragmentDefinitionNode(
   name: _i1.NameNode(value: 'SplitFieldsBasics'),
   typeCondition: _i1.TypeConditionNode(
@@ -683,6 +701,26 @@ const user = _i1.OperationDefinitionNode(
             )
           ]),
         ),
+      ]),
+    )
+  ]),
+);
+const userConfig = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.query,
+  name: _i1.NameNode(value: 'userConfig'),
+  variableDefinitions: [],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'config'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'ConfigFields'),
+          directives: [],
+        )
       ]),
     )
   ]),
@@ -1637,6 +1675,41 @@ const transactionMixExpense = _i1.OperationDefinitionNode(
     )
   ]),
 );
+const setDefaultCurrency = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.mutation,
+  name: _i1.NameNode(value: 'setDefaultCurrency'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    )
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'setDefaultCurrency'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'currencyId'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
+        )
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'ConfigFields'),
+          directives: [],
+        )
+      ]),
+    )
+  ]),
+);
 const document = _i1.DocumentNode(definitions: [
   UserFields,
   AmountFields,
@@ -1647,12 +1720,14 @@ const document = _i1.DocumentNode(definitions: [
   ExpenseBasic,
   ExpenseFields,
   NewExpenseFields,
+  ConfigFields,
   SplitFieldsBasics,
   SplitFields,
   SplitTransactionFields,
   GroupWithExpenses,
   ExpenseMixSplitFields,
   user,
+  userConfig,
   groups,
   interacted_users,
   currencies,
@@ -1671,4 +1746,5 @@ const document = _i1.DocumentNode(definitions: [
   autoSettleWithUser,
   transactionWithUser,
   transactionMixExpense,
+  setDefaultCurrency,
 ]);

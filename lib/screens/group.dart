@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/widgets/auto_scroll.dart';
 import 'package:collection/collection.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:dynamic_color/dynamic_color.dart';
@@ -65,7 +66,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
     super.initState();
   }
 
-  fetchData() async {
+  fetchData({bool forceFirst = false}) async {
     if (_loading) {
       return;
     }
@@ -79,7 +80,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
           (b) => b.vars
             ..groupId = widget.group.id
             ..limit = 10
-            ..fromTime = expenses.lastOrNull?.createdAt,
+            ..fromTime = forceFirst ? null : expenses.lastOrNull?.createdAt,
         ),
       );
       if (result.data != null) {
@@ -100,9 +101,16 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
             expenses.add(expense);
           }
           if (expense != null && trans.split != null) {
-            (expense as Expense).splits.add(trans.split!);
+            if ((expense as Expense)
+                .splits
+                .every((element) => element.id != trans.split!.id)) {
+              expense.splits.add(trans.split!);
+            }
           } else if (trans.split != null) {
-            expenses.add(Split(split: trans.split!));
+            if (expenses.every((element) =>
+                element is Split && element.split.id != trans.split!.id)) {
+              expenses.add(Split(split: trans.split!));
+            }
           }
         }
 
@@ -122,6 +130,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
     expenses.add(
       Split(split: transactionFields),
     );
+    fetchData(forceFirst: true);
     generateGrouped();
   }
 
@@ -507,6 +516,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
                           splits: expense.splits.toList(),
                         ),
                       );
+                      fetchData(forceFirst: true);
                       generateGrouped();
                     });
                     WidgetsBinding.instance
@@ -558,57 +568,12 @@ class GroupSummaryWidget extends StatelessWidget {
               children: [
                 if (group.toReceive.isNotEmpty)
                   Expanded(
-                      child: Row(
-                    children: [
-                      const Spacer(),
-                      Icon(
-                        Icons.call_received,
-                        color: scheme.primary,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Column(
-                        children: [
-                          ...group.toReceive.map(
-                            (amount) => Text(
-                              amount.getPrettyAbs(context.read()),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: scheme.primary,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'To Receive',
-                        style: TextStyle(color: scheme.primary),
-                      ),
-                      const Spacer(),
-                    ],
-                  )),
-                if (group.toPay.isNotEmpty)
-                  Expanded(
+                      child: AutoScroll(
                     child: Row(
                       children: [
-                        const Spacer(),
-                        Icon(
-                          Icons.call_made,
-                          color: scheme.error,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
                         Column(
                           children: [
-                            ...group.toPay.map(
+                            ...group.toReceive.map(
                               (amount) => Text(
                                 amount.getPrettyAbs(context.read()),
                                 style: Theme.of(context)
@@ -616,7 +581,7 @@ class GroupSummaryWidget extends StatelessWidget {
                                     .titleLarge
                                     ?.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      color: scheme.error,
+                                      color: scheme.primary,
                                     ),
                               ),
                             ),
@@ -625,14 +590,59 @@ class GroupSummaryWidget extends StatelessWidget {
                         const SizedBox(
                           width: 10,
                         ),
+                        Icon(
+                          Icons.call_received,
+                          color: scheme.primary,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
                         Text(
-                          'To Pay',
-                          style: TextStyle(
+                          'To Receive',
+                          style: TextStyle(color: scheme.primary),
+                        ),
+                      ],
+                    ),
+                  )),
+                if (group.toPay.isNotEmpty)
+                  Expanded(
+                    child: AutoScroll(
+                      child: Row(
+                        children: [
+                          Column(
+                            children: [
+                              ...group.toPay.map(
+                                (amount) => Text(
+                                  amount.getPrettyAbs(context.read()),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: scheme.error,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.call_made,
                             color: scheme.error,
                           ),
-                        ),
-                        const Spacer(),
-                      ],
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            'To Pay',
+                            style: TextStyle(
+                              color: scheme.error,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   )
               ],
@@ -643,6 +653,7 @@ class GroupSummaryWidget extends StatelessWidget {
                     (p0) => p0.member.id != context.read<AppState>().user!.id)
                 .map<Widget>(
                   (member) => Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
                         height: 25,
@@ -677,53 +688,61 @@ class GroupSummaryWidget extends StatelessWidget {
                           ),
                         )
                       else
-                        ...member.owedInGroup.map(
-                          (owe) => (owe.amount < 0)
-                              ? Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: 'owes you ',
-                                        style: TextStyle(
-                                          color: scheme.primary,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: owe.getPrettyAbs(context.read()),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium
-                                            ?.copyWith(
-                                                color: scheme.primary,
-                                                fontWeight: FontWeight.w800),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              : (owe.amount > 0)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ...member.owedInGroup.map(
+                              (owe) => (owe.amount < 0)
                                   ? Text.rich(
                                       TextSpan(
                                         children: [
                                           TextSpan(
-                                            text: 'you owe ',
+                                            text: 'owes you ',
                                             style: TextStyle(
-                                              color: scheme.error,
+                                              color: scheme.primary,
                                             ),
                                           ),
                                           TextSpan(
-                                            text: owe.getPretty(context.read()),
+                                            text: owe
+                                                .getPrettyAbs(context.read()),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium
                                                 ?.copyWith(
-                                                    color: scheme.error,
+                                                    color: scheme.primary,
                                                     fontWeight:
                                                         FontWeight.w800),
                                           ),
                                         ],
                                       ),
                                     )
-                                  : const SizedBox(),
+                                  : (owe.amount > 0)
+                                      ? Text.rich(
+                                          TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: 'you owe ',
+                                                style: TextStyle(
+                                                  color: scheme.error,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text: owe
+                                                    .getPretty(context.read()),
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .titleMedium
+                                                    ?.copyWith(
+                                                        color: scheme.error,
+                                                        fontWeight:
+                                                            FontWeight.w800),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      : const SizedBox(),
+                            )
+                          ],
                         ),
                     ],
                   ),

@@ -71,6 +71,7 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                       ),
                       subtitle: !isSelf
                           ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 ...member.owedInGroup.map((owed) => Text.rich(
                                       TextSpan(
@@ -131,7 +132,10 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                                                 element.id == member.member.id,
                                           ),
                                       inGroup: widget.initialGroup,
-                                      currencyId: 'INR',
+                                      initialCurrencyId: context
+                                          .read<AppState>()
+                                          .defaultCurrency!
+                                          .id,
                                     ),
                                   ),
                                 );
@@ -148,47 +152,48 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
               childCount: group.members.length,
             ),
           ),
-          SliverToBoxAdapter(
-            child: Container(
-              margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-              child: Card(
-                child: ListTile(
-                  onTap: () async {
-                    var appState = context.read<AppState>();
-                    var messenger = ScaffoldMessenger.of(context);
-                    var email = await showDialog(
-                      context: context,
-                      builder: (context) => NewMemberEmailDialog(
-                          groupName: group.getDisplayName(context.read())),
-                    );
-                    if (email is String) {
-                      try {
-                        var res =
-                            await appState.addMemberToGroup(email, group.id);
-                        setState(() {
-                          group = res;
-                        });
+          if (!group.isDirectPayment)
+            SliverToBoxAdapter(
+              child: Container(
+                margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+                child: Card(
+                  child: ListTile(
+                    onTap: () async {
+                      var appState = context.read<AppState>();
+                      var messenger = ScaffoldMessenger.of(context);
+                      var email = await showDialog(
+                        context: context,
+                        builder: (context) => NewMemberEmailDialog(
+                            groupName: group.getDisplayName(context.read())),
+                      );
+                      if (email is String) {
+                        try {
+                          var res =
+                              await appState.addMemberToGroup(email, group.id);
+                          setState(() {
+                            group = res;
+                          });
 
-                        messenger.showSnackBar(
-                          const SnackBar(
-                            content: Text("member added successfully"),
-                          ),
-                        );
-                      } catch (e) {
-                        messenger.showSnackBar(
-                          const SnackBar(
-                            content: Text("Cant add member"),
-                          ),
-                        );
+                          messenger.showSnackBar(
+                            const SnackBar(
+                              content: Text("member added successfully"),
+                            ),
+                          );
+                        } catch (e) {
+                          messenger.showSnackBar(
+                            const SnackBar(
+                              content: Text("Cant add member"),
+                            ),
+                          );
+                        }
                       }
-                    }
-                  },
-                  leading: const Icon(Icons.person_add),
-                  title: const Text("Add new member"),
+                    },
+                    leading: const Icon(Icons.person_add),
+                    title: const Text("Add new member"),
+                  ),
                 ),
               ),
-            ),
-          )
+            )
         ],
       ),
     );

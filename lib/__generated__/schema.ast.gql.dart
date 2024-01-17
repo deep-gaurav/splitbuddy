@@ -677,6 +677,25 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
         isNonNull: true,
       ),
     ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'setDefaultCurrency'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'currencyId'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        )
+      ],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'UserConfig'),
+        isNonNull: true,
+      ),
+    ),
   ],
 );
 const NonGroupExpense = _i1.ObjectTypeDefinitionNode(
@@ -974,6 +993,15 @@ const Query = _i1.ObjectTypeDefinitionNode(
           name: _i1.NameNode(value: 'ExpenseMixSplit'),
           isNonNull: true,
         ),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'config'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'UserConfig'),
         isNonNull: true,
       ),
     ),
@@ -1370,6 +1398,31 @@ const UserAuth = _i1.UnionTypeDefinitionNode(
     ),
   ],
 );
+const UserConfig = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'UserConfig'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'userId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'defaultCurrencyId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
 const UserNotSignedUp = _i1.ObjectTypeDefinitionNode(
   name: _i1.NameNode(value: 'UserNotSignedUp'),
   directives: [],
@@ -1432,6 +1485,7 @@ const document = _i1.DocumentNode(definitions: [
   Unregistered,
   User,
   UserAuth,
+  UserConfig,
   UserNotSignedUp,
   UserSignedUp,
 ]);

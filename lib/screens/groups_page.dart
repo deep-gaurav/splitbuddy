@@ -1,3 +1,7 @@
+import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/screens/home_page.dart';
+import 'package:billdivide/utils/color_utils.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/extensions/group_extension.dart';
@@ -12,6 +16,7 @@ class GroupsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme scheme = ColorUtils.getMainScheme(context);
     return RefreshIndicator(
       onRefresh: () => context.read<AppState>().getGroups(),
       child: CustomScrollView(
@@ -22,7 +27,9 @@ class GroupsPage extends StatelessWidget {
             ),
           ),
           Selector<AppState, List<GGroupFields>>(
-            selector: (context, state) => state.userGroups,
+            selector: (context, state) => state.userGroups
+                .where((element) => !element.isDirectPayment)
+                .toList(),
             builder: (context, groups, child) {
               return SliverList(
                 delegate: SliverChildBuilderDelegate(
@@ -41,26 +48,71 @@ class GroupsPage extends StatelessWidget {
                         },
                         leading: GroupIconWidget(group: group),
                         title: Text(group.getDisplayName(context.read())),
-                        subtitle: Row(
-                          children: [
-                            Expanded(
-                              child: Row(
+                        subtitle: group.toPay.isEmpty && group.toReceive.isEmpty
+                            ? const Text('you are settled up')
+                            : Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  const Icon(Icons.call_received),
-                                  Text(group.toReceive.toString())
+                                  ...group.toPay
+                                      .followedBy(group.toReceive)
+                                      .sorted((b, a) => a.amount
+                                          .abs()
+                                          .compareTo(b.amount.abs()))
+                                      .map(
+                                        (e) => e.amount > 0
+                                            ? Text.rich(
+                                                TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: 'you owe ',
+                                                      style: TextStyle(
+                                                        color: scheme.error,
+                                                      ),
+                                                    ),
+                                                    TextSpan(
+                                                      text: e.getPrettyAbs(
+                                                          context.read()),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleMedium
+                                                          ?.copyWith(
+                                                              color:
+                                                                  scheme.error,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w800),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                            : Text.rich(
+                                                TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: 'you are owed ',
+                                                      style: TextStyle(
+                                                        color: scheme.primary,
+                                                      ),
+                                                    ),
+                                                    TextSpan(
+                                                      text: e.getPrettyAbs(
+                                                          context.read()),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .titleMedium
+                                                          ?.copyWith(
+                                                              color: scheme
+                                                                  .primary,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w800),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                      )
                                 ],
                               ),
-                            ),
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.call_made),
-                                  Text(group.toPay.toString())
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
                       ),
                     );
                   },
@@ -85,6 +137,12 @@ class GroupIconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var members = group.members
+        .where((p0) => p0.member.id != context.read<AppState>().user!.id)
+        .toList();
+    if (members.length == 1) {
+      return UserIconWidget(user: members.first.member);
+    }
     return SizedBox(
       width: 40,
       height: 40,
@@ -119,18 +177,18 @@ class GroupIconWidget extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        ...List.generate(
-                                group.members.length ~/ 2, (index) => index)
+                        ...List.generate(members.length ~/ 2, (index) => index)
                             .map<Widget>(
                               (index) => Expanded(
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
-                                    color: group
-                                        .members[index].member.getMainColor,
+                                    color: members[index].member.getMainColor,
                                   ),
                                   child: Center(
                                     child: Text(
-                                      group.members[index].member.displayName
+                                      members[index]
+                                              .member
+                                              .displayName
                                               .characters
                                               .toUpperCase()
                                               .firstOrNull ??
@@ -139,8 +197,7 @@ class GroupIconWidget extends StatelessWidget {
                                         fontSize: 12,
                                         color: ThemeData
                                                     .estimateBrightnessForColor(
-                                                        group
-                                                            .members[index]
+                                                        members[index]
                                                             .member
                                                             .getMainColor) ==
                                                 Brightness.light
@@ -167,20 +224,19 @@ class GroupIconWidget extends StatelessWidget {
                       child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      ...List.generate(
-                              group.members.length -
-                                  (group.members.length ~/ 2),
-                              (index) => (group.members.length ~/ 2) + index)
+                      ...List.generate(members.length - (members.length ~/ 2),
+                              (index) => (members.length ~/ 2) + index)
                           .map<Widget>(
                             (index) => Expanded(
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
-                                  color:
-                                      group.members[index].member.getMainColor,
+                                  color: members[index].member.getMainColor,
                                 ),
                                 child: Center(
                                   child: Text(
-                                    group.members[index].member.displayName
+                                    members[index]
+                                            .member
+                                            .displayName
                                             .characters
                                             .toUpperCase()
                                             .firstOrNull ??
@@ -189,8 +245,7 @@ class GroupIconWidget extends StatelessWidget {
                                       fontSize: 12,
                                       color:
                                           ThemeData.estimateBrightnessForColor(
-                                                      group
-                                                          .members[index]
+                                                      members[index]
                                                           .member
                                                           .getMainColor) ==
                                                   Brightness.light

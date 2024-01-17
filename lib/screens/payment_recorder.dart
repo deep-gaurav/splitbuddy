@@ -13,14 +13,14 @@ import 'package:billdivide/utils/svg_icons.dart';
 
 class PaymentRecorder extends StatefulWidget {
   final GUserPaysFields withUser;
-  final String currencyId;
+  final String initialCurrencyId;
   final GGroupFields? inGroup;
 
   const PaymentRecorder({
     super.key,
     required this.withUser,
     this.inGroup,
-    required this.currencyId,
+    required this.initialCurrencyId,
   });
 
   @override
@@ -31,6 +31,8 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
   final GlobalKey<FormState> formKey = GlobalKey();
 
   GUserFields get currentUser => context.read<AppState>().user!;
+
+  GCurrencyFields? currency;
 
   final TextEditingController amountController = TextEditingController();
   int get amount => int.tryParse(amountController.text) ?? 0;
@@ -45,12 +47,14 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
 
   Iterable<GUserPaysFields_owes> get owedGroups => widget.withUser.owes
       .where((owed) =>
-          owed.amount.currencyId == widget.currencyId && owed.amount.amount > 0)
+          owed.amount.currencyId == currency!.id && owed.amount.amount > 0)
       .sorted((a, b) => a.amount.amount.compareTo(b.amount.amount));
 
   @override
   Widget build(BuildContext context) {
     final ColorScheme scheme = ColorUtils.getMainScheme(context);
+
+    currency ??= context.read<AppState>().currencies[widget.initialCurrencyId];
 
     return Scaffold(
       body: Form(

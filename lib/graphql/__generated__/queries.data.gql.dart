@@ -206,6 +206,68 @@ abstract class GuserData_user__asUnregistered
       );
 }
 
+abstract class GuserConfigData
+    implements Built<GuserConfigData, GuserConfigDataBuilder> {
+  GuserConfigData._();
+
+  factory GuserConfigData([Function(GuserConfigDataBuilder b) updates]) =
+      _$GuserConfigData;
+
+  static void _initializeBuilder(GuserConfigDataBuilder b) =>
+      b..G__typename = 'Query';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GuserConfigData_config get config;
+  static Serializer<GuserConfigData> get serializer =>
+      _$guserConfigDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GuserConfigData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GuserConfigData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GuserConfigData.serializer,
+        json,
+      );
+}
+
+abstract class GuserConfigData_config
+    implements
+        Built<GuserConfigData_config, GuserConfigData_configBuilder>,
+        GConfigFields {
+  GuserConfigData_config._();
+
+  factory GuserConfigData_config(
+          [Function(GuserConfigData_configBuilder b) updates]) =
+      _$GuserConfigData_config;
+
+  static void _initializeBuilder(GuserConfigData_configBuilder b) =>
+      b..G__typename = 'UserConfig';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get defaultCurrencyId;
+  static Serializer<GuserConfigData_config> get serializer =>
+      _$guserConfigDataConfigSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GuserConfigData_config.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GuserConfigData_config? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GuserConfigData_config.serializer,
+        json,
+      );
+}
+
 abstract class GgroupsData implements Built<GgroupsData, GgroupsDataBuilder> {
   GgroupsData._();
 
@@ -5327,6 +5389,72 @@ abstract class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_spl
           );
 }
 
+abstract class GsetDefaultCurrencyData
+    implements Built<GsetDefaultCurrencyData, GsetDefaultCurrencyDataBuilder> {
+  GsetDefaultCurrencyData._();
+
+  factory GsetDefaultCurrencyData(
+          [Function(GsetDefaultCurrencyDataBuilder b) updates]) =
+      _$GsetDefaultCurrencyData;
+
+  static void _initializeBuilder(GsetDefaultCurrencyDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GsetDefaultCurrencyData_setDefaultCurrency get setDefaultCurrency;
+  static Serializer<GsetDefaultCurrencyData> get serializer =>
+      _$gsetDefaultCurrencyDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsetDefaultCurrencyData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsetDefaultCurrencyData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsetDefaultCurrencyData.serializer,
+        json,
+      );
+}
+
+abstract class GsetDefaultCurrencyData_setDefaultCurrency
+    implements
+        Built<GsetDefaultCurrencyData_setDefaultCurrency,
+            GsetDefaultCurrencyData_setDefaultCurrencyBuilder>,
+        GConfigFields {
+  GsetDefaultCurrencyData_setDefaultCurrency._();
+
+  factory GsetDefaultCurrencyData_setDefaultCurrency(
+      [Function(GsetDefaultCurrencyData_setDefaultCurrencyBuilder b)
+          updates]) = _$GsetDefaultCurrencyData_setDefaultCurrency;
+
+  static void _initializeBuilder(
+          GsetDefaultCurrencyData_setDefaultCurrencyBuilder b) =>
+      b..G__typename = 'UserConfig';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get defaultCurrencyId;
+  static Serializer<GsetDefaultCurrencyData_setDefaultCurrency>
+      get serializer => _$gsetDefaultCurrencyDataSetDefaultCurrencySerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsetDefaultCurrencyData_setDefaultCurrency.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsetDefaultCurrencyData_setDefaultCurrency? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsetDefaultCurrencyData_setDefaultCurrency.serializer,
+        json,
+      );
+}
+
 abstract class GUserFields {
   String get G__typename;
   String get id;
@@ -7112,6 +7240,45 @@ abstract class GNewExpenseFieldsData_splits_amount
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GNewExpenseFieldsData_splits_amount.serializer,
+        json,
+      );
+}
+
+abstract class GConfigFields {
+  String get G__typename;
+  String get defaultCurrencyId;
+  Map<String, dynamic> toJson();
+}
+
+abstract class GConfigFieldsData
+    implements
+        Built<GConfigFieldsData, GConfigFieldsDataBuilder>,
+        GConfigFields {
+  GConfigFieldsData._();
+
+  factory GConfigFieldsData([Function(GConfigFieldsDataBuilder b) updates]) =
+      _$GConfigFieldsData;
+
+  static void _initializeBuilder(GConfigFieldsDataBuilder b) =>
+      b..G__typename = 'UserConfig';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get defaultCurrencyId;
+  static Serializer<GConfigFieldsData> get serializer =>
+      _$gConfigFieldsDataSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GConfigFieldsData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GConfigFieldsData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GConfigFieldsData.serializer,
         json,
       );
 }

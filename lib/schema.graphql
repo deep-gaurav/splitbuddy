@@ -75,6 +75,7 @@ type Mutation {
     amount: Int!
     currencyId: String!
   ): [Split!]!
+  setDefaultCurrency(currencyId: String!): UserConfig!
 }
 
 type NonGroupExpense {
@@ -112,6 +113,7 @@ type Query {
     fromTime: String
     limit: Int!
   ): [ExpenseMixSplit!]!
+  config: UserConfig!
 }
 
 type Registered {
@@ -176,6 +178,11 @@ type User {
 }
 
 union UserAuth = Unregistered | Registered
+
+type UserConfig {
+  userId: String!
+  defaultCurrencyId: String!
+}
 
 type UserNotSignedUp {
   signupToken: String!

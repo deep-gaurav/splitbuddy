@@ -36,7 +36,7 @@ extension UserPaysExtensions on GUserPaysFields {
   List<GAmountFields> get toReceive => amountGrouped.entries
       .where((element) => element.value < 0)
       .map((e) => GAmountFieldsData((b) => b
-        ..amount = -e.value
+        ..amount = e.value
         ..currencyId = e.key))
       .toList();
 }

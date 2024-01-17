@@ -1,4 +1,5 @@
 import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/widgets/auto_scroll.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
@@ -58,7 +59,7 @@ class _UserPageState extends State<UserPage> {
     super.initState();
   }
 
-  fetchData() async {
+  fetchData({bool forceFirst = false}) async {
     if (_loading) {
       return;
     }
@@ -72,7 +73,7 @@ class _UserPageState extends State<UserPage> {
           (b) => b.vars
             ..withUser = widget.initialUser.id
             ..limit = 10
-            ..fromTime = transactions.lastOrNull?.createdAt,
+            ..fromTime = forceFirst ? null : transactions.lastOrNull?.createdAt,
         ),
       );
       if (result.data != null) {
@@ -248,6 +249,7 @@ class _UserPageState extends State<UserPage> {
                           transactions: splitTransactions,
                         ),
                       );
+                      fetchData(forceFirst: true);
                       generateGrouped();
                     },
                   ),
@@ -265,7 +267,8 @@ class _UserPageState extends State<UserPage> {
                     MaterialPageRoute(
                       builder: (context) => PaymentRecorder(
                         withUser: user,
-                        currencyId: 'INR',
+                        initialCurrencyId:
+                            context.read<AppState>().defaultCurrency!.id,
                       ),
                     ),
                   );
@@ -273,6 +276,7 @@ class _UserPageState extends State<UserPage> {
                     for (var split in expense) {
                       transactions.add(SingleTransaction(transaction: split));
                     }
+                    fetchData(forceFirst: true);
                     generateGrouped();
                   }
                 },
@@ -296,6 +300,7 @@ class _UserPageState extends State<UserPage> {
                     for (var split in expense.splits) {
                       transactions.add(SingleTransaction(transaction: split));
                     }
+                    fetchData(forceFirst: true);
                     generateGrouped();
                   }
                 },
@@ -424,7 +429,10 @@ class UserTransactionCard extends StatelessWidget {
         return TextSpan(children: [
           const TextSpan(text: 'in '),
           TextSpan(
-            text: transaction.group.name,
+            text: transaction.group
+                    .getMainGroup(context.read())
+                    ?.getDisplayName(context.read()) ??
+                transaction.group.name,
             style: const TextStyle(
               fontStyle: FontStyle.italic,
             ),
@@ -723,44 +731,46 @@ class TransactionCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                IntrinsicWidth(
-                  child: IntrinsicHeight(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        if (amount != null) ...[
-                          Text(
-                            amount!.getPretty(context.read()),
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall
-                                ?.copyWith(
-                                  fontWeight: FontWeight.w800,
-                                  color: amountColor,
-                                ),
-                          ),
-                          const Spacer(),
-                        ],
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Spacer(),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text.rich(title),
-                            if (subtitle != null)
-                              Text.rich(
-                                subtitle!,
-                                style: Theme.of(context).textTheme.labelMedium,
-                              ),
-                            const SizedBox(
-                              height: 15,
+                AutoScroll(
+                  child: IntrinsicWidth(
+                    child: IntrinsicHeight(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          if (amount != null) ...[
+                            Text(
+                              amount!.getPretty(context.read()),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.w800,
+                                    color: amountColor,
+                                  ),
                             ),
                           ],
-                        ),
-                      ],
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text.rich(title),
+                              if (subtitle != null)
+                                Text.rich(
+                                  subtitle!,
+                                  style:
+                                      Theme.of(context).textTheme.labelMedium,
+                                ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -815,19 +825,14 @@ class UserSummaryWidget extends StatelessWidget {
               children: [
                 if (user.toReceive.isNotEmpty)
                   Expanded(
-                      child: Row(
-                    children: [
-                      const Spacer(),
-                      Icon(
-                        Icons.call_received,
-                        color: scheme.primary,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Column(
-                        children: [
-                          ...user.toReceive.map((amount) => Text(
+                      child: AutoScroll(
+                    child: Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            ...user.toReceive.map(
+                              (amount) => Text(
                                 amount.getPrettyAbs(context.read()),
                                 style: Theme.of(context)
                                     .textTheme
@@ -836,58 +841,66 @@ class UserSummaryWidget extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                       color: scheme.primary,
                                     ),
-                              )),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'To Receive',
-                        style: TextStyle(color: scheme.primary),
-                      ),
-                      const Spacer(),
-                    ],
-                  )),
-                if (user.toPay.isNotEmpty)
-                  Expanded(
-                    child: Row(
-                      children: [
-                        const Spacer(),
-                        Icon(
-                          Icons.call_made,
-                          color: scheme.error,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Column(
-                          children: [
-                            ...user.toPay.map(
-                              (amount) => Text(
-                                amount.getPrettyAbs(context.read()),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: scheme.error,
-                                    ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                         const SizedBox(
                           width: 10,
                         ),
+                        Icon(
+                          Icons.call_received,
+                          color: scheme.primary,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
                         Text(
-                          'To Pay',
-                          style: TextStyle(
+                          'To Receive',
+                          style: TextStyle(color: scheme.primary),
+                        ),
+                      ],
+                    ),
+                  )),
+                if (user.toPay.isNotEmpty)
+                  Expanded(
+                    child: AutoScroll(
+                      child: Row(
+                        children: [
+                          Column(
+                            children: [
+                              ...user.toPay.map(
+                                (amount) => Text(
+                                  amount.getPrettyAbs(context.read()),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: scheme.error,
+                                      ),
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.call_made,
                             color: scheme.error,
                           ),
-                        ),
-                        const Spacer(),
-                      ],
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            'To Pay',
+                            style: TextStyle(
+                              color: scheme.error,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   )
               ],
@@ -959,7 +972,7 @@ class UserSummaryWidget extends StatelessWidget {
                               ),
                             ),
                             TextSpan(
-                              text: '${member.amount}',
+                              text: member.amount.getPrettyAbs(context.read()),
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium

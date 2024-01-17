@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:collection';
+import 'dart:io';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
@@ -92,8 +93,6 @@ class AppState extends ChangeNotifier {
         event.data?.currencies.map((p0) => MapEntry(p0.id, p0)) ??
             currencies.entries,
       );
-      var format = NumberFormat();
-      defaultCurrency = currencies[format.currencyName];
     });
   }
 
@@ -109,6 +108,12 @@ class AppState extends ChangeNotifier {
         authState = AuthStates.authorizedRequiresSignup;
       } else if (value.data?.user is GuserData_user__asRegistered) {
         authState = AuthStates.authorized;
+      }
+      notifyListeners();
+    });
+    client.execute(GuserConfigReq()).then((value) {
+      if (value.data?.config.defaultCurrencyId != null) {
+        defaultCurrency = currencies[value.data!.config.defaultCurrencyId];
       }
       notifyListeners();
     });

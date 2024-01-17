@@ -17,6 +17,10 @@ Serializer<GuserData_user__asRegistered_user>
 Serializer<GuserData_user__asUnregistered>
     _$guserDataUserAsUnregisteredSerializer =
     new _$GuserData_user__asUnregisteredSerializer();
+Serializer<GuserConfigData> _$guserConfigDataSerializer =
+    new _$GuserConfigDataSerializer();
+Serializer<GuserConfigData_config> _$guserConfigDataConfigSerializer =
+    new _$GuserConfigData_configSerializer();
 Serializer<GgroupsData> _$ggroupsDataSerializer = new _$GgroupsDataSerializer();
 Serializer<GgroupsData_groups> _$ggroupsDataGroupsSerializer =
     new _$GgroupsData_groupsSerializer();
@@ -343,6 +347,11 @@ Serializer<
         GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_amount>
     _$gtransactionMixExpenseDataGetTransactionsMixExpenseWithGroupSplitAmountSerializer =
     new _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_amountSerializer();
+Serializer<GsetDefaultCurrencyData> _$gsetDefaultCurrencyDataSerializer =
+    new _$GsetDefaultCurrencyDataSerializer();
+Serializer<GsetDefaultCurrencyData_setDefaultCurrency>
+    _$gsetDefaultCurrencyDataSetDefaultCurrencySerializer =
+    new _$GsetDefaultCurrencyData_setDefaultCurrencySerializer();
 Serializer<GUserFieldsData> _$gUserFieldsDataSerializer =
     new _$GUserFieldsDataSerializer();
 Serializer<GAmountFieldsData> _$gAmountFieldsDataSerializer =
@@ -420,6 +429,8 @@ Serializer<GNewExpenseFieldsData_splits_toUser>
 Serializer<GNewExpenseFieldsData_splits_amount>
     _$gNewExpenseFieldsDataSplitsAmountSerializer =
     new _$GNewExpenseFieldsData_splits_amountSerializer();
+Serializer<GConfigFieldsData> _$gConfigFieldsDataSerializer =
+    new _$GConfigFieldsDataSerializer();
 Serializer<GSplitFieldsBasicsData> _$gSplitFieldsBasicsDataSerializer =
     new _$GSplitFieldsBasicsDataSerializer();
 Serializer<GSplitFieldsBasicsData_amount>
@@ -802,6 +813,109 @@ class _$GuserData_user__asUnregisteredSerializer
         case 'phone':
           result.phone = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GuserConfigDataSerializer
+    implements StructuredSerializer<GuserConfigData> {
+  @override
+  final Iterable<Type> types = const [GuserConfigData, _$GuserConfigData];
+  @override
+  final String wireName = 'GuserConfigData';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GuserConfigData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'config',
+      serializers.serialize(object.config,
+          specifiedType: const FullType(GuserConfigData_config)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GuserConfigData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GuserConfigDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'config':
+          result.config.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GuserConfigData_config))!
+              as GuserConfigData_config);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GuserConfigData_configSerializer
+    implements StructuredSerializer<GuserConfigData_config> {
+  @override
+  final Iterable<Type> types = const [
+    GuserConfigData_config,
+    _$GuserConfigData_config
+  ];
+  @override
+  final String wireName = 'GuserConfigData_config';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GuserConfigData_config object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'defaultCurrencyId',
+      serializers.serialize(object.defaultCurrencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GuserConfigData_config deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GuserConfigData_configBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'defaultCurrencyId':
+          result.defaultCurrencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -10339,6 +10453,116 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_amou
   }
 }
 
+class _$GsetDefaultCurrencyDataSerializer
+    implements StructuredSerializer<GsetDefaultCurrencyData> {
+  @override
+  final Iterable<Type> types = const [
+    GsetDefaultCurrencyData,
+    _$GsetDefaultCurrencyData
+  ];
+  @override
+  final String wireName = 'GsetDefaultCurrencyData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsetDefaultCurrencyData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'setDefaultCurrency',
+      serializers.serialize(object.setDefaultCurrency,
+          specifiedType:
+              const FullType(GsetDefaultCurrencyData_setDefaultCurrency)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GsetDefaultCurrencyData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsetDefaultCurrencyDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'setDefaultCurrency':
+          result.setDefaultCurrency.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GsetDefaultCurrencyData_setDefaultCurrency))!
+              as GsetDefaultCurrencyData_setDefaultCurrency);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsetDefaultCurrencyData_setDefaultCurrencySerializer
+    implements
+        StructuredSerializer<GsetDefaultCurrencyData_setDefaultCurrency> {
+  @override
+  final Iterable<Type> types = const [
+    GsetDefaultCurrencyData_setDefaultCurrency,
+    _$GsetDefaultCurrencyData_setDefaultCurrency
+  ];
+  @override
+  final String wireName = 'GsetDefaultCurrencyData_setDefaultCurrency';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GsetDefaultCurrencyData_setDefaultCurrency object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'defaultCurrencyId',
+      serializers.serialize(object.defaultCurrencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GsetDefaultCurrencyData_setDefaultCurrency deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsetDefaultCurrencyData_setDefaultCurrencyBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'defaultCurrencyId':
+          result.defaultCurrencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GUserFieldsDataSerializer
     implements StructuredSerializer<GUserFieldsData> {
   @override
@@ -12873,6 +13097,55 @@ class _$GNewExpenseFieldsData_splits_amountSerializer
           break;
         case 'currencyId':
           result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GConfigFieldsDataSerializer
+    implements StructuredSerializer<GConfigFieldsData> {
+  @override
+  final Iterable<Type> types = const [GConfigFieldsData, _$GConfigFieldsData];
+  @override
+  final String wireName = 'GConfigFieldsData';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GConfigFieldsData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'defaultCurrencyId',
+      serializers.serialize(object.defaultCurrencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GConfigFieldsData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GConfigFieldsDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'defaultCurrencyId':
+          result.defaultCurrencyId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
       }
@@ -16395,6 +16668,230 @@ class GuserData_user__asUnregisteredBuilder
             G__typename: BuiltValueNullFieldError.checkNotNull(
                 G__typename, r'GuserData_user__asUnregistered', 'G__typename'),
             phone: phone);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GuserConfigData extends GuserConfigData {
+  @override
+  final String G__typename;
+  @override
+  final GuserConfigData_config config;
+
+  factory _$GuserConfigData([void Function(GuserConfigDataBuilder)? updates]) =>
+      (new GuserConfigDataBuilder()..update(updates))._build();
+
+  _$GuserConfigData._({required this.G__typename, required this.config})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GuserConfigData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(config, r'GuserConfigData', 'config');
+  }
+
+  @override
+  GuserConfigData rebuild(void Function(GuserConfigDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GuserConfigDataBuilder toBuilder() =>
+      new GuserConfigDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GuserConfigData &&
+        G__typename == other.G__typename &&
+        config == other.config;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, config.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GuserConfigData')
+          ..add('G__typename', G__typename)
+          ..add('config', config))
+        .toString();
+  }
+}
+
+class GuserConfigDataBuilder
+    implements Builder<GuserConfigData, GuserConfigDataBuilder> {
+  _$GuserConfigData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GuserConfigData_configBuilder? _config;
+  GuserConfigData_configBuilder get config =>
+      _$this._config ??= new GuserConfigData_configBuilder();
+  set config(GuserConfigData_configBuilder? config) => _$this._config = config;
+
+  GuserConfigDataBuilder() {
+    GuserConfigData._initializeBuilder(this);
+  }
+
+  GuserConfigDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _config = $v.config.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GuserConfigData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GuserConfigData;
+  }
+
+  @override
+  void update(void Function(GuserConfigDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GuserConfigData build() => _build();
+
+  _$GuserConfigData _build() {
+    _$GuserConfigData _$result;
+    try {
+      _$result = _$v ??
+          new _$GuserConfigData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GuserConfigData', 'G__typename'),
+              config: config.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'config';
+        config.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GuserConfigData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GuserConfigData_config extends GuserConfigData_config {
+  @override
+  final String G__typename;
+  @override
+  final String defaultCurrencyId;
+
+  factory _$GuserConfigData_config(
+          [void Function(GuserConfigData_configBuilder)? updates]) =>
+      (new GuserConfigData_configBuilder()..update(updates))._build();
+
+  _$GuserConfigData_config._(
+      {required this.G__typename, required this.defaultCurrencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GuserConfigData_config', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        defaultCurrencyId, r'GuserConfigData_config', 'defaultCurrencyId');
+  }
+
+  @override
+  GuserConfigData_config rebuild(
+          void Function(GuserConfigData_configBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GuserConfigData_configBuilder toBuilder() =>
+      new GuserConfigData_configBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GuserConfigData_config &&
+        G__typename == other.G__typename &&
+        defaultCurrencyId == other.defaultCurrencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, defaultCurrencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GuserConfigData_config')
+          ..add('G__typename', G__typename)
+          ..add('defaultCurrencyId', defaultCurrencyId))
+        .toString();
+  }
+}
+
+class GuserConfigData_configBuilder
+    implements Builder<GuserConfigData_config, GuserConfigData_configBuilder> {
+  _$GuserConfigData_config? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _defaultCurrencyId;
+  String? get defaultCurrencyId => _$this._defaultCurrencyId;
+  set defaultCurrencyId(String? defaultCurrencyId) =>
+      _$this._defaultCurrencyId = defaultCurrencyId;
+
+  GuserConfigData_configBuilder() {
+    GuserConfigData_config._initializeBuilder(this);
+  }
+
+  GuserConfigData_configBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _defaultCurrencyId = $v.defaultCurrencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GuserConfigData_config other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GuserConfigData_config;
+  }
+
+  @override
+  void update(void Function(GuserConfigData_configBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GuserConfigData_config build() => _build();
+
+  _$GuserConfigData_config _build() {
+    final _$result = _$v ??
+        new _$GuserConfigData_config._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GuserConfigData_config', 'G__typename'),
+            defaultCurrencyId: BuiltValueNullFieldError.checkNotNull(
+                defaultCurrencyId,
+                r'GuserConfigData_config',
+                'defaultCurrencyId'));
     replace(_$result);
     return _$result;
   }
@@ -36314,6 +36811,248 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split_amount
   }
 }
 
+class _$GsetDefaultCurrencyData extends GsetDefaultCurrencyData {
+  @override
+  final String G__typename;
+  @override
+  final GsetDefaultCurrencyData_setDefaultCurrency setDefaultCurrency;
+
+  factory _$GsetDefaultCurrencyData(
+          [void Function(GsetDefaultCurrencyDataBuilder)? updates]) =>
+      (new GsetDefaultCurrencyDataBuilder()..update(updates))._build();
+
+  _$GsetDefaultCurrencyData._(
+      {required this.G__typename, required this.setDefaultCurrency})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GsetDefaultCurrencyData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        setDefaultCurrency, r'GsetDefaultCurrencyData', 'setDefaultCurrency');
+  }
+
+  @override
+  GsetDefaultCurrencyData rebuild(
+          void Function(GsetDefaultCurrencyDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsetDefaultCurrencyDataBuilder toBuilder() =>
+      new GsetDefaultCurrencyDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsetDefaultCurrencyData &&
+        G__typename == other.G__typename &&
+        setDefaultCurrency == other.setDefaultCurrency;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, setDefaultCurrency.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GsetDefaultCurrencyData')
+          ..add('G__typename', G__typename)
+          ..add('setDefaultCurrency', setDefaultCurrency))
+        .toString();
+  }
+}
+
+class GsetDefaultCurrencyDataBuilder
+    implements
+        Builder<GsetDefaultCurrencyData, GsetDefaultCurrencyDataBuilder> {
+  _$GsetDefaultCurrencyData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GsetDefaultCurrencyData_setDefaultCurrencyBuilder? _setDefaultCurrency;
+  GsetDefaultCurrencyData_setDefaultCurrencyBuilder get setDefaultCurrency =>
+      _$this._setDefaultCurrency ??=
+          new GsetDefaultCurrencyData_setDefaultCurrencyBuilder();
+  set setDefaultCurrency(
+          GsetDefaultCurrencyData_setDefaultCurrencyBuilder?
+              setDefaultCurrency) =>
+      _$this._setDefaultCurrency = setDefaultCurrency;
+
+  GsetDefaultCurrencyDataBuilder() {
+    GsetDefaultCurrencyData._initializeBuilder(this);
+  }
+
+  GsetDefaultCurrencyDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _setDefaultCurrency = $v.setDefaultCurrency.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsetDefaultCurrencyData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsetDefaultCurrencyData;
+  }
+
+  @override
+  void update(void Function(GsetDefaultCurrencyDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsetDefaultCurrencyData build() => _build();
+
+  _$GsetDefaultCurrencyData _build() {
+    _$GsetDefaultCurrencyData _$result;
+    try {
+      _$result = _$v ??
+          new _$GsetDefaultCurrencyData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GsetDefaultCurrencyData', 'G__typename'),
+              setDefaultCurrency: setDefaultCurrency.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'setDefaultCurrency';
+        setDefaultCurrency.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GsetDefaultCurrencyData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsetDefaultCurrencyData_setDefaultCurrency
+    extends GsetDefaultCurrencyData_setDefaultCurrency {
+  @override
+  final String G__typename;
+  @override
+  final String defaultCurrencyId;
+
+  factory _$GsetDefaultCurrencyData_setDefaultCurrency(
+          [void Function(GsetDefaultCurrencyData_setDefaultCurrencyBuilder)?
+              updates]) =>
+      (new GsetDefaultCurrencyData_setDefaultCurrencyBuilder()..update(updates))
+          ._build();
+
+  _$GsetDefaultCurrencyData_setDefaultCurrency._(
+      {required this.G__typename, required this.defaultCurrencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GsetDefaultCurrencyData_setDefaultCurrency', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(defaultCurrencyId,
+        r'GsetDefaultCurrencyData_setDefaultCurrency', 'defaultCurrencyId');
+  }
+
+  @override
+  GsetDefaultCurrencyData_setDefaultCurrency rebuild(
+          void Function(GsetDefaultCurrencyData_setDefaultCurrencyBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsetDefaultCurrencyData_setDefaultCurrencyBuilder toBuilder() =>
+      new GsetDefaultCurrencyData_setDefaultCurrencyBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsetDefaultCurrencyData_setDefaultCurrency &&
+        G__typename == other.G__typename &&
+        defaultCurrencyId == other.defaultCurrencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, defaultCurrencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GsetDefaultCurrencyData_setDefaultCurrency')
+          ..add('G__typename', G__typename)
+          ..add('defaultCurrencyId', defaultCurrencyId))
+        .toString();
+  }
+}
+
+class GsetDefaultCurrencyData_setDefaultCurrencyBuilder
+    implements
+        Builder<GsetDefaultCurrencyData_setDefaultCurrency,
+            GsetDefaultCurrencyData_setDefaultCurrencyBuilder> {
+  _$GsetDefaultCurrencyData_setDefaultCurrency? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _defaultCurrencyId;
+  String? get defaultCurrencyId => _$this._defaultCurrencyId;
+  set defaultCurrencyId(String? defaultCurrencyId) =>
+      _$this._defaultCurrencyId = defaultCurrencyId;
+
+  GsetDefaultCurrencyData_setDefaultCurrencyBuilder() {
+    GsetDefaultCurrencyData_setDefaultCurrency._initializeBuilder(this);
+  }
+
+  GsetDefaultCurrencyData_setDefaultCurrencyBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _defaultCurrencyId = $v.defaultCurrencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsetDefaultCurrencyData_setDefaultCurrency other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsetDefaultCurrencyData_setDefaultCurrency;
+  }
+
+  @override
+  void update(
+      void Function(GsetDefaultCurrencyData_setDefaultCurrencyBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsetDefaultCurrencyData_setDefaultCurrency build() => _build();
+
+  _$GsetDefaultCurrencyData_setDefaultCurrency _build() {
+    final _$result = _$v ??
+        new _$GsetDefaultCurrencyData_setDefaultCurrency._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GsetDefaultCurrencyData_setDefaultCurrency', 'G__typename'),
+            defaultCurrencyId: BuiltValueNullFieldError.checkNotNull(
+                defaultCurrencyId,
+                r'GsetDefaultCurrencyData_setDefaultCurrency',
+                'defaultCurrencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GUserFieldsData extends GUserFieldsData {
   @override
   final String G__typename;
@@ -41367,6 +42106,112 @@ class GNewExpenseFieldsData_splits_amountBuilder
                 amount, r'GNewExpenseFieldsData_splits_amount', 'amount'),
             currencyId: BuiltValueNullFieldError.checkNotNull(currencyId,
                 r'GNewExpenseFieldsData_splits_amount', 'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GConfigFieldsData extends GConfigFieldsData {
+  @override
+  final String G__typename;
+  @override
+  final String defaultCurrencyId;
+
+  factory _$GConfigFieldsData(
+          [void Function(GConfigFieldsDataBuilder)? updates]) =>
+      (new GConfigFieldsDataBuilder()..update(updates))._build();
+
+  _$GConfigFieldsData._(
+      {required this.G__typename, required this.defaultCurrencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GConfigFieldsData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        defaultCurrencyId, r'GConfigFieldsData', 'defaultCurrencyId');
+  }
+
+  @override
+  GConfigFieldsData rebuild(void Function(GConfigFieldsDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GConfigFieldsDataBuilder toBuilder() =>
+      new GConfigFieldsDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GConfigFieldsData &&
+        G__typename == other.G__typename &&
+        defaultCurrencyId == other.defaultCurrencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, defaultCurrencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GConfigFieldsData')
+          ..add('G__typename', G__typename)
+          ..add('defaultCurrencyId', defaultCurrencyId))
+        .toString();
+  }
+}
+
+class GConfigFieldsDataBuilder
+    implements Builder<GConfigFieldsData, GConfigFieldsDataBuilder> {
+  _$GConfigFieldsData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _defaultCurrencyId;
+  String? get defaultCurrencyId => _$this._defaultCurrencyId;
+  set defaultCurrencyId(String? defaultCurrencyId) =>
+      _$this._defaultCurrencyId = defaultCurrencyId;
+
+  GConfigFieldsDataBuilder() {
+    GConfigFieldsData._initializeBuilder(this);
+  }
+
+  GConfigFieldsDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _defaultCurrencyId = $v.defaultCurrencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GConfigFieldsData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GConfigFieldsData;
+  }
+
+  @override
+  void update(void Function(GConfigFieldsDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GConfigFieldsData build() => _build();
+
+  _$GConfigFieldsData _build() {
+    final _$result = _$v ??
+        new _$GConfigFieldsData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GConfigFieldsData', 'G__typename'),
+            defaultCurrencyId: BuiltValueNullFieldError.checkNotNull(
+                defaultCurrencyId, r'GConfigFieldsData', 'defaultCurrencyId'));
     replace(_$result);
     return _$result;
   }

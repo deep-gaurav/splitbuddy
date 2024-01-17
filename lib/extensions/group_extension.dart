@@ -8,18 +8,28 @@ import 'package:billdivide/extensions/user_extension.dart';
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 import 'package:billdivide/state/app_state.dart';
 
+extension GroupBasicExtension on GGroupBasic {
+  GGroupFields? getMainGroup(AppState appState) =>
+      appState.userGroups.firstWhereOrNull((element) => element.id == id);
+}
+
 extension GroupExtension on GGroupFields {
+  bool get isDirectPayment => name == null && members.length == 2;
   String getDisplayName(AppState appState) =>
       name ??
       (members.length == 2
           ? members
+              .where((p0) => p0.member.id != appState.user!.id)
               .firstWhereOrNull(
                   (element) => element.member.id != appState.user!.id)
               ?.member
               .shortName
               .concatOrNull(' (Direct Payment)')
           : null) ??
-      members.map((p0) => p0.member.shortName).join(", ");
+      members
+          .where((p0) => p0.member.id != appState.user!.id)
+          .map((p0) => p0.member.shortName)
+          .join(", ");
 
   Color getMainColor(Brightness brightness) => HSVColor.fromAHSV(
           1,
@@ -55,7 +65,7 @@ extension GroupExtension on GGroupFields {
   List<GAmountFields> get toReceive => amountGrouped.entries
       .where((element) => element.value < 0)
       .map((e) => GAmountFieldsData((b) => b
-        ..amount = -e.value
+        ..amount = e.value
         ..currencyId = e.key))
       .toList();
 }

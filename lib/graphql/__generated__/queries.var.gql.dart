@@ -29,6 +29,28 @@ abstract class GuserVars implements Built<GuserVars, GuserVarsBuilder> {
       );
 }
 
+abstract class GuserConfigVars
+    implements Built<GuserConfigVars, GuserConfigVarsBuilder> {
+  GuserConfigVars._();
+
+  factory GuserConfigVars([Function(GuserConfigVarsBuilder b) updates]) =
+      _$GuserConfigVars;
+
+  static Serializer<GuserConfigVars> get serializer =>
+      _$guserConfigVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GuserConfigVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GuserConfigVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GuserConfigVars.serializer,
+        json,
+      );
+}
+
 abstract class GgroupsVars implements Built<GgroupsVars, GgroupsVarsBuilder> {
   GgroupsVars._();
 
@@ -462,6 +484,30 @@ abstract class GtransactionMixExpenseVars
       );
 }
 
+abstract class GsetDefaultCurrencyVars
+    implements Built<GsetDefaultCurrencyVars, GsetDefaultCurrencyVarsBuilder> {
+  GsetDefaultCurrencyVars._();
+
+  factory GsetDefaultCurrencyVars(
+          [Function(GsetDefaultCurrencyVarsBuilder b) updates]) =
+      _$GsetDefaultCurrencyVars;
+
+  String get currencyId;
+  static Serializer<GsetDefaultCurrencyVars> get serializer =>
+      _$gsetDefaultCurrencyVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsetDefaultCurrencyVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsetDefaultCurrencyVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsetDefaultCurrencyVars.serializer,
+        json,
+      );
+}
+
 abstract class GUserFieldsVars
     implements Built<GUserFieldsVars, GUserFieldsVarsBuilder> {
   GUserFieldsVars._();
@@ -657,6 +703,28 @@ abstract class GNewExpenseFieldsVars
   static GNewExpenseFieldsVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GNewExpenseFieldsVars.serializer,
+        json,
+      );
+}
+
+abstract class GConfigFieldsVars
+    implements Built<GConfigFieldsVars, GConfigFieldsVarsBuilder> {
+  GConfigFieldsVars._();
+
+  factory GConfigFieldsVars([Function(GConfigFieldsVarsBuilder b) updates]) =
+      _$GConfigFieldsVars;
+
+  static Serializer<GConfigFieldsVars> get serializer =>
+      _$gConfigFieldsVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GConfigFieldsVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GConfigFieldsVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GConfigFieldsVars.serializer,
         json,
       );
 }

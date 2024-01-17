@@ -7,6 +7,8 @@ part of 'queries.req.gql.dart';
 // **************************************************************************
 
 Serializer<GuserReq> _$guserReqSerializer = new _$GuserReqSerializer();
+Serializer<GuserConfigReq> _$guserConfigReqSerializer =
+    new _$GuserConfigReqSerializer();
 Serializer<GgroupsReq> _$ggroupsReqSerializer = new _$GgroupsReqSerializer();
 Serializer<Ginteracted_usersReq> _$ginteractedUsersReqSerializer =
     new _$Ginteracted_usersReqSerializer();
@@ -40,6 +42,8 @@ Serializer<GtransactionWithUserReq> _$gtransactionWithUserReqSerializer =
     new _$GtransactionWithUserReqSerializer();
 Serializer<GtransactionMixExpenseReq> _$gtransactionMixExpenseReqSerializer =
     new _$GtransactionMixExpenseReqSerializer();
+Serializer<GsetDefaultCurrencyReq> _$gsetDefaultCurrencyReqSerializer =
+    new _$GsetDefaultCurrencyReqSerializer();
 Serializer<GUserFieldsReq> _$gUserFieldsReqSerializer =
     new _$GUserFieldsReqSerializer();
 Serializer<GAmountFieldsReq> _$gAmountFieldsReqSerializer =
@@ -58,6 +62,8 @@ Serializer<GExpenseFieldsReq> _$gExpenseFieldsReqSerializer =
     new _$GExpenseFieldsReqSerializer();
 Serializer<GNewExpenseFieldsReq> _$gNewExpenseFieldsReqSerializer =
     new _$GNewExpenseFieldsReqSerializer();
+Serializer<GConfigFieldsReq> _$gConfigFieldsReqSerializer =
+    new _$GConfigFieldsReqSerializer();
 Serializer<GSplitFieldsBasicsReq> _$gSplitFieldsBasicsReqSerializer =
     new _$GSplitFieldsBasicsReqSerializer();
 Serializer<GSplitFieldsReq> _$gSplitFieldsReqSerializer =
@@ -155,6 +161,124 @@ class _$GuserReqSerializer implements StructuredSerializer<GuserReq> {
         case 'optimisticResponse':
           result.optimisticResponse.replace(serializers.deserialize(value,
               specifiedType: const FullType(_i2.GuserData))! as _i2.GuserData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GuserConfigReqSerializer
+    implements StructuredSerializer<GuserConfigReq> {
+  @override
+  final Iterable<Type> types = const [GuserConfigReq, _$GuserConfigReq];
+  @override
+  final String wireName = 'GuserConfigReq';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GuserConfigReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GuserConfigVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.GuserConfigData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  GuserConfigReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GuserConfigReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GuserConfigVars))!
+              as _i3.GuserConfigVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.GuserConfigData))!
+              as _i2.GuserConfigData);
           break;
         case 'updateCacheHandlerKey':
           result.updateCacheHandlerKey = serializers.deserialize(value,
@@ -2334,6 +2458,128 @@ class _$GtransactionMixExpenseReqSerializer
   }
 }
 
+class _$GsetDefaultCurrencyReqSerializer
+    implements StructuredSerializer<GsetDefaultCurrencyReq> {
+  @override
+  final Iterable<Type> types = const [
+    GsetDefaultCurrencyReq,
+    _$GsetDefaultCurrencyReq
+  ];
+  @override
+  final String wireName = 'GsetDefaultCurrencyReq';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsetDefaultCurrencyReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GsetDefaultCurrencyVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.GsetDefaultCurrencyData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  GsetDefaultCurrencyReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsetDefaultCurrencyReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GsetDefaultCurrencyVars))!
+              as _i3.GsetDefaultCurrencyVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.GsetDefaultCurrencyData))!
+              as _i2.GsetDefaultCurrencyData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GUserFieldsReqSerializer
     implements StructuredSerializer<GUserFieldsReq> {
   @override
@@ -2997,6 +3243,79 @@ class _$GNewExpenseFieldsReqSerializer
   }
 }
 
+class _$GConfigFieldsReqSerializer
+    implements StructuredSerializer<GConfigFieldsReq> {
+  @override
+  final Iterable<Type> types = const [GConfigFieldsReq, _$GConfigFieldsReq];
+  @override
+  final String wireName = 'GConfigFieldsReq';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GConfigFieldsReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GConfigFieldsVars)),
+      'document',
+      serializers.serialize(object.document,
+          specifiedType: const FullType(_i7.DocumentNode)),
+      'idFields',
+      serializers.serialize(object.idFields,
+          specifiedType: const FullType(
+              Map, const [const FullType(String), const FullType(dynamic)])),
+    ];
+    Object? value;
+    value = object.fragmentName;
+    if (value != null) {
+      result
+        ..add('fragmentName')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GConfigFieldsReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GConfigFieldsReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GConfigFieldsVars))!
+              as _i3.GConfigFieldsVars);
+          break;
+        case 'document':
+          result.document = serializers.deserialize(value,
+                  specifiedType: const FullType(_i7.DocumentNode))!
+              as _i7.DocumentNode;
+          break;
+        case 'fragmentName':
+          result.fragmentName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'idFields':
+          result.idFields = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ]))! as Map<String, dynamic>;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GSplitFieldsBasicsReqSerializer
     implements StructuredSerializer<GSplitFieldsBasicsReq> {
   @override
@@ -3588,6 +3907,229 @@ class GuserReqBuilder implements Builder<GuserReq, GuserReqBuilder> {
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'GuserReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GuserConfigReq extends GuserConfigReq {
+  @override
+  final _i3.GuserConfigVars vars;
+  @override
+  final _i4.Operation operation;
+  @override
+  final String? requestId;
+  @override
+  final _i2.GuserConfigData? Function(
+      _i2.GuserConfigData?, _i2.GuserConfigData?)? updateResult;
+  @override
+  final _i2.GuserConfigData? optimisticResponse;
+  @override
+  final String? updateCacheHandlerKey;
+  @override
+  final Map<String, dynamic>? updateCacheHandlerContext;
+  @override
+  final _i1.FetchPolicy? fetchPolicy;
+  @override
+  final bool executeOnListen;
+
+  factory _$GuserConfigReq([void Function(GuserConfigReqBuilder)? updates]) =>
+      (new GuserConfigReqBuilder()..update(updates))._build();
+
+  _$GuserConfigReq._(
+      {required this.vars,
+      required this.operation,
+      this.requestId,
+      this.updateResult,
+      this.optimisticResponse,
+      this.updateCacheHandlerKey,
+      this.updateCacheHandlerContext,
+      this.fetchPolicy,
+      required this.executeOnListen})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(vars, r'GuserConfigReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, r'GuserConfigReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, r'GuserConfigReq', 'executeOnListen');
+  }
+
+  @override
+  GuserConfigReq rebuild(void Function(GuserConfigReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GuserConfigReqBuilder toBuilder() =>
+      new GuserConfigReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is GuserConfigReq &&
+        vars == other.vars &&
+        operation == other.operation &&
+        requestId == other.requestId &&
+        updateResult == _$dynamicOther.updateResult &&
+        optimisticResponse == other.optimisticResponse &&
+        updateCacheHandlerKey == other.updateCacheHandlerKey &&
+        updateCacheHandlerContext == other.updateCacheHandlerContext &&
+        fetchPolicy == other.fetchPolicy &&
+        executeOnListen == other.executeOnListen;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, operation.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, updateResult.hashCode);
+    _$hash = $jc(_$hash, optimisticResponse.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerKey.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerContext.hashCode);
+    _$hash = $jc(_$hash, fetchPolicy.hashCode);
+    _$hash = $jc(_$hash, executeOnListen.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GuserConfigReq')
+          ..add('vars', vars)
+          ..add('operation', operation)
+          ..add('requestId', requestId)
+          ..add('updateResult', updateResult)
+          ..add('optimisticResponse', optimisticResponse)
+          ..add('updateCacheHandlerKey', updateCacheHandlerKey)
+          ..add('updateCacheHandlerContext', updateCacheHandlerContext)
+          ..add('fetchPolicy', fetchPolicy)
+          ..add('executeOnListen', executeOnListen))
+        .toString();
+  }
+}
+
+class GuserConfigReqBuilder
+    implements Builder<GuserConfigReq, GuserConfigReqBuilder> {
+  _$GuserConfigReq? _$v;
+
+  _i3.GuserConfigVarsBuilder? _vars;
+  _i3.GuserConfigVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GuserConfigVarsBuilder();
+  set vars(_i3.GuserConfigVarsBuilder? vars) => _$this._vars = vars;
+
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
+  _i2.GuserConfigData? Function(_i2.GuserConfigData?, _i2.GuserConfigData?)?
+      _updateResult;
+  _i2.GuserConfigData? Function(_i2.GuserConfigData?, _i2.GuserConfigData?)?
+      get updateResult => _$this._updateResult;
+  set updateResult(
+          _i2.GuserConfigData? Function(
+                  _i2.GuserConfigData?, _i2.GuserConfigData?)?
+              updateResult) =>
+      _$this._updateResult = updateResult;
+
+  _i2.GuserConfigDataBuilder? _optimisticResponse;
+  _i2.GuserConfigDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.GuserConfigDataBuilder();
+  set optimisticResponse(_i2.GuserConfigDataBuilder? optimisticResponse) =>
+      _$this._optimisticResponse = optimisticResponse;
+
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
+      _$this._updateCacheHandlerKey = updateCacheHandlerKey;
+
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
+      _$this._updateCacheHandlerContext;
+  set updateCacheHandlerContext(
+          Map<String, dynamic>? updateCacheHandlerContext) =>
+      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
+      _$this._fetchPolicy = fetchPolicy;
+
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
+      _$this._executeOnListen = executeOnListen;
+
+  GuserConfigReqBuilder() {
+    GuserConfigReq._initializeBuilder(this);
+  }
+
+  GuserConfigReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GuserConfigReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GuserConfigReq;
+  }
+
+  @override
+  void update(void Function(GuserConfigReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GuserConfigReq build() => _build();
+
+  _$GuserConfigReq _build() {
+    _$GuserConfigReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GuserConfigReq._(
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GuserConfigReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen, r'GuserConfigReq', 'executeOnListen'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+
+        _$failedField = 'optimisticResponse';
+        _optimisticResponse?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GuserConfigReq', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -7669,6 +8211,237 @@ class GtransactionMixExpenseReqBuilder
   }
 }
 
+class _$GsetDefaultCurrencyReq extends GsetDefaultCurrencyReq {
+  @override
+  final _i3.GsetDefaultCurrencyVars vars;
+  @override
+  final _i4.Operation operation;
+  @override
+  final String? requestId;
+  @override
+  final _i2.GsetDefaultCurrencyData? Function(
+      _i2.GsetDefaultCurrencyData?, _i2.GsetDefaultCurrencyData?)? updateResult;
+  @override
+  final _i2.GsetDefaultCurrencyData? optimisticResponse;
+  @override
+  final String? updateCacheHandlerKey;
+  @override
+  final Map<String, dynamic>? updateCacheHandlerContext;
+  @override
+  final _i1.FetchPolicy? fetchPolicy;
+  @override
+  final bool executeOnListen;
+
+  factory _$GsetDefaultCurrencyReq(
+          [void Function(GsetDefaultCurrencyReqBuilder)? updates]) =>
+      (new GsetDefaultCurrencyReqBuilder()..update(updates))._build();
+
+  _$GsetDefaultCurrencyReq._(
+      {required this.vars,
+      required this.operation,
+      this.requestId,
+      this.updateResult,
+      this.optimisticResponse,
+      this.updateCacheHandlerKey,
+      this.updateCacheHandlerContext,
+      this.fetchPolicy,
+      required this.executeOnListen})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        vars, r'GsetDefaultCurrencyReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        operation, r'GsetDefaultCurrencyReq', 'operation');
+    BuiltValueNullFieldError.checkNotNull(
+        executeOnListen, r'GsetDefaultCurrencyReq', 'executeOnListen');
+  }
+
+  @override
+  GsetDefaultCurrencyReq rebuild(
+          void Function(GsetDefaultCurrencyReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsetDefaultCurrencyReqBuilder toBuilder() =>
+      new GsetDefaultCurrencyReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    final dynamic _$dynamicOther = other;
+    return other is GsetDefaultCurrencyReq &&
+        vars == other.vars &&
+        operation == other.operation &&
+        requestId == other.requestId &&
+        updateResult == _$dynamicOther.updateResult &&
+        optimisticResponse == other.optimisticResponse &&
+        updateCacheHandlerKey == other.updateCacheHandlerKey &&
+        updateCacheHandlerContext == other.updateCacheHandlerContext &&
+        fetchPolicy == other.fetchPolicy &&
+        executeOnListen == other.executeOnListen;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, operation.hashCode);
+    _$hash = $jc(_$hash, requestId.hashCode);
+    _$hash = $jc(_$hash, updateResult.hashCode);
+    _$hash = $jc(_$hash, optimisticResponse.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerKey.hashCode);
+    _$hash = $jc(_$hash, updateCacheHandlerContext.hashCode);
+    _$hash = $jc(_$hash, fetchPolicy.hashCode);
+    _$hash = $jc(_$hash, executeOnListen.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GsetDefaultCurrencyReq')
+          ..add('vars', vars)
+          ..add('operation', operation)
+          ..add('requestId', requestId)
+          ..add('updateResult', updateResult)
+          ..add('optimisticResponse', optimisticResponse)
+          ..add('updateCacheHandlerKey', updateCacheHandlerKey)
+          ..add('updateCacheHandlerContext', updateCacheHandlerContext)
+          ..add('fetchPolicy', fetchPolicy)
+          ..add('executeOnListen', executeOnListen))
+        .toString();
+  }
+}
+
+class GsetDefaultCurrencyReqBuilder
+    implements Builder<GsetDefaultCurrencyReq, GsetDefaultCurrencyReqBuilder> {
+  _$GsetDefaultCurrencyReq? _$v;
+
+  _i3.GsetDefaultCurrencyVarsBuilder? _vars;
+  _i3.GsetDefaultCurrencyVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GsetDefaultCurrencyVarsBuilder();
+  set vars(_i3.GsetDefaultCurrencyVarsBuilder? vars) => _$this._vars = vars;
+
+  _i4.Operation? _operation;
+  _i4.Operation? get operation => _$this._operation;
+  set operation(_i4.Operation? operation) => _$this._operation = operation;
+
+  String? _requestId;
+  String? get requestId => _$this._requestId;
+  set requestId(String? requestId) => _$this._requestId = requestId;
+
+  _i2.GsetDefaultCurrencyData? Function(
+          _i2.GsetDefaultCurrencyData?, _i2.GsetDefaultCurrencyData?)?
+      _updateResult;
+  _i2.GsetDefaultCurrencyData? Function(
+          _i2.GsetDefaultCurrencyData?, _i2.GsetDefaultCurrencyData?)?
+      get updateResult => _$this._updateResult;
+  set updateResult(
+          _i2.GsetDefaultCurrencyData? Function(
+                  _i2.GsetDefaultCurrencyData?, _i2.GsetDefaultCurrencyData?)?
+              updateResult) =>
+      _$this._updateResult = updateResult;
+
+  _i2.GsetDefaultCurrencyDataBuilder? _optimisticResponse;
+  _i2.GsetDefaultCurrencyDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.GsetDefaultCurrencyDataBuilder();
+  set optimisticResponse(
+          _i2.GsetDefaultCurrencyDataBuilder? optimisticResponse) =>
+      _$this._optimisticResponse = optimisticResponse;
+
+  String? _updateCacheHandlerKey;
+  String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
+  set updateCacheHandlerKey(String? updateCacheHandlerKey) =>
+      _$this._updateCacheHandlerKey = updateCacheHandlerKey;
+
+  Map<String, dynamic>? _updateCacheHandlerContext;
+  Map<String, dynamic>? get updateCacheHandlerContext =>
+      _$this._updateCacheHandlerContext;
+  set updateCacheHandlerContext(
+          Map<String, dynamic>? updateCacheHandlerContext) =>
+      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+
+  _i1.FetchPolicy? _fetchPolicy;
+  _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
+  set fetchPolicy(_i1.FetchPolicy? fetchPolicy) =>
+      _$this._fetchPolicy = fetchPolicy;
+
+  bool? _executeOnListen;
+  bool? get executeOnListen => _$this._executeOnListen;
+  set executeOnListen(bool? executeOnListen) =>
+      _$this._executeOnListen = executeOnListen;
+
+  GsetDefaultCurrencyReqBuilder() {
+    GsetDefaultCurrencyReq._initializeBuilder(this);
+  }
+
+  GsetDefaultCurrencyReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _operation = $v.operation;
+      _requestId = $v.requestId;
+      _updateResult = $v.updateResult;
+      _optimisticResponse = $v.optimisticResponse?.toBuilder();
+      _updateCacheHandlerKey = $v.updateCacheHandlerKey;
+      _updateCacheHandlerContext = $v.updateCacheHandlerContext;
+      _fetchPolicy = $v.fetchPolicy;
+      _executeOnListen = $v.executeOnListen;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsetDefaultCurrencyReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsetDefaultCurrencyReq;
+  }
+
+  @override
+  void update(void Function(GsetDefaultCurrencyReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsetDefaultCurrencyReq build() => _build();
+
+  _$GsetDefaultCurrencyReq _build() {
+    _$GsetDefaultCurrencyReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GsetDefaultCurrencyReq._(
+              vars: vars.build(),
+              operation: BuiltValueNullFieldError.checkNotNull(
+                  operation, r'GsetDefaultCurrencyReq', 'operation'),
+              requestId: requestId,
+              updateResult: updateResult,
+              optimisticResponse: _optimisticResponse?.build(),
+              updateCacheHandlerKey: updateCacheHandlerKey,
+              updateCacheHandlerContext: updateCacheHandlerContext,
+              fetchPolicy: fetchPolicy,
+              executeOnListen: BuiltValueNullFieldError.checkNotNull(
+                  executeOnListen,
+                  r'GsetDefaultCurrencyReq',
+                  'executeOnListen'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+
+        _$failedField = 'optimisticResponse';
+        _optimisticResponse?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GsetDefaultCurrencyReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GUserFieldsReq extends GUserFieldsReq {
   @override
   final _i3.GUserFieldsVars vars;
@@ -8967,6 +9740,151 @@ class GNewExpenseFieldsReqBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'GNewExpenseFieldsReq', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GConfigFieldsReq extends GConfigFieldsReq {
+  @override
+  final _i3.GConfigFieldsVars vars;
+  @override
+  final _i7.DocumentNode document;
+  @override
+  final String? fragmentName;
+  @override
+  final Map<String, dynamic> idFields;
+
+  factory _$GConfigFieldsReq(
+          [void Function(GConfigFieldsReqBuilder)? updates]) =>
+      (new GConfigFieldsReqBuilder()..update(updates))._build();
+
+  _$GConfigFieldsReq._(
+      {required this.vars,
+      required this.document,
+      this.fragmentName,
+      required this.idFields})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(vars, r'GConfigFieldsReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(
+        document, r'GConfigFieldsReq', 'document');
+    BuiltValueNullFieldError.checkNotNull(
+        idFields, r'GConfigFieldsReq', 'idFields');
+  }
+
+  @override
+  GConfigFieldsReq rebuild(void Function(GConfigFieldsReqBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GConfigFieldsReqBuilder toBuilder() =>
+      new GConfigFieldsReqBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GConfigFieldsReq &&
+        vars == other.vars &&
+        document == other.document &&
+        fragmentName == other.fragmentName &&
+        idFields == other.idFields;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, vars.hashCode);
+    _$hash = $jc(_$hash, document.hashCode);
+    _$hash = $jc(_$hash, fragmentName.hashCode);
+    _$hash = $jc(_$hash, idFields.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GConfigFieldsReq')
+          ..add('vars', vars)
+          ..add('document', document)
+          ..add('fragmentName', fragmentName)
+          ..add('idFields', idFields))
+        .toString();
+  }
+}
+
+class GConfigFieldsReqBuilder
+    implements Builder<GConfigFieldsReq, GConfigFieldsReqBuilder> {
+  _$GConfigFieldsReq? _$v;
+
+  _i3.GConfigFieldsVarsBuilder? _vars;
+  _i3.GConfigFieldsVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GConfigFieldsVarsBuilder();
+  set vars(_i3.GConfigFieldsVarsBuilder? vars) => _$this._vars = vars;
+
+  _i7.DocumentNode? _document;
+  _i7.DocumentNode? get document => _$this._document;
+  set document(_i7.DocumentNode? document) => _$this._document = document;
+
+  String? _fragmentName;
+  String? get fragmentName => _$this._fragmentName;
+  set fragmentName(String? fragmentName) => _$this._fragmentName = fragmentName;
+
+  Map<String, dynamic>? _idFields;
+  Map<String, dynamic>? get idFields => _$this._idFields;
+  set idFields(Map<String, dynamic>? idFields) => _$this._idFields = idFields;
+
+  GConfigFieldsReqBuilder() {
+    GConfigFieldsReq._initializeBuilder(this);
+  }
+
+  GConfigFieldsReqBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _vars = $v.vars.toBuilder();
+      _document = $v.document;
+      _fragmentName = $v.fragmentName;
+      _idFields = $v.idFields;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GConfigFieldsReq other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GConfigFieldsReq;
+  }
+
+  @override
+  void update(void Function(GConfigFieldsReqBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GConfigFieldsReq build() => _build();
+
+  _$GConfigFieldsReq _build() {
+    _$GConfigFieldsReq _$result;
+    try {
+      _$result = _$v ??
+          new _$GConfigFieldsReq._(
+              vars: vars.build(),
+              document: BuiltValueNullFieldError.checkNotNull(
+                  document, r'GConfigFieldsReq', 'document'),
+              fragmentName: fragmentName,
+              idFields: BuiltValueNullFieldError.checkNotNull(
+                  idFields, r'GConfigFieldsReq', 'idFields'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'vars';
+        vars.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GConfigFieldsReq', _$failedField, e.toString());
       }
       rethrow;
     }

@@ -7,6 +7,8 @@ part of 'queries.var.gql.dart';
 // **************************************************************************
 
 Serializer<GuserVars> _$guserVarsSerializer = new _$GuserVarsSerializer();
+Serializer<GuserConfigVars> _$guserConfigVarsSerializer =
+    new _$GuserConfigVarsSerializer();
 Serializer<GgroupsVars> _$ggroupsVarsSerializer = new _$GgroupsVarsSerializer();
 Serializer<Ginteracted_usersVars> _$ginteractedUsersVarsSerializer =
     new _$Ginteracted_usersVarsSerializer();
@@ -40,6 +42,8 @@ Serializer<GtransactionWithUserVars> _$gtransactionWithUserVarsSerializer =
     new _$GtransactionWithUserVarsSerializer();
 Serializer<GtransactionMixExpenseVars> _$gtransactionMixExpenseVarsSerializer =
     new _$GtransactionMixExpenseVarsSerializer();
+Serializer<GsetDefaultCurrencyVars> _$gsetDefaultCurrencyVarsSerializer =
+    new _$GsetDefaultCurrencyVarsSerializer();
 Serializer<GUserFieldsVars> _$gUserFieldsVarsSerializer =
     new _$GUserFieldsVarsSerializer();
 Serializer<GAmountFieldsVars> _$gAmountFieldsVarsSerializer =
@@ -58,6 +62,8 @@ Serializer<GExpenseFieldsVars> _$gExpenseFieldsVarsSerializer =
     new _$GExpenseFieldsVarsSerializer();
 Serializer<GNewExpenseFieldsVars> _$gNewExpenseFieldsVarsSerializer =
     new _$GNewExpenseFieldsVarsSerializer();
+Serializer<GConfigFieldsVars> _$gConfigFieldsVarsSerializer =
+    new _$GConfigFieldsVarsSerializer();
 Serializer<GSplitFieldsBasicsVars> _$gSplitFieldsBasicsVarsSerializer =
     new _$GSplitFieldsBasicsVarsSerializer();
 Serializer<GSplitFieldsVars> _$gSplitFieldsVarsSerializer =
@@ -86,6 +92,27 @@ class _$GuserVarsSerializer implements StructuredSerializer<GuserVars> {
   GuserVars deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new GuserVarsBuilder().build();
+  }
+}
+
+class _$GuserConfigVarsSerializer
+    implements StructuredSerializer<GuserConfigVars> {
+  @override
+  final Iterable<Type> types = const [GuserConfigVars, _$GuserConfigVars];
+  @override
+  final String wireName = 'GuserConfigVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GuserConfigVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GuserConfigVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GuserConfigVarsBuilder().build();
   }
 }
 
@@ -969,6 +996,52 @@ class _$GtransactionMixExpenseVarsSerializer
   }
 }
 
+class _$GsetDefaultCurrencyVarsSerializer
+    implements StructuredSerializer<GsetDefaultCurrencyVars> {
+  @override
+  final Iterable<Type> types = const [
+    GsetDefaultCurrencyVars,
+    _$GsetDefaultCurrencyVars
+  ];
+  @override
+  final String wireName = 'GsetDefaultCurrencyVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsetDefaultCurrencyVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'currencyId',
+      serializers.serialize(object.currencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GsetDefaultCurrencyVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsetDefaultCurrencyVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'currencyId':
+          result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GUserFieldsVarsSerializer
     implements StructuredSerializer<GUserFieldsVars> {
   @override
@@ -1168,6 +1241,27 @@ class _$GNewExpenseFieldsVarsSerializer
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new GNewExpenseFieldsVarsBuilder().build();
+  }
+}
+
+class _$GConfigFieldsVarsSerializer
+    implements StructuredSerializer<GConfigFieldsVars> {
+  @override
+  final Iterable<Type> types = const [GConfigFieldsVars, _$GConfigFieldsVars];
+  @override
+  final String wireName = 'GConfigFieldsVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GConfigFieldsVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GConfigFieldsVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GConfigFieldsVarsBuilder().build();
   }
 }
 
@@ -1374,6 +1468,64 @@ class GuserVarsBuilder implements Builder<GuserVars, GuserVarsBuilder> {
 
   _$GuserVars _build() {
     final _$result = _$v ?? new _$GuserVars._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GuserConfigVars extends GuserConfigVars {
+  factory _$GuserConfigVars([void Function(GuserConfigVarsBuilder)? updates]) =>
+      (new GuserConfigVarsBuilder()..update(updates))._build();
+
+  _$GuserConfigVars._() : super._();
+
+  @override
+  GuserConfigVars rebuild(void Function(GuserConfigVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GuserConfigVarsBuilder toBuilder() =>
+      new GuserConfigVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GuserConfigVars;
+  }
+
+  @override
+  int get hashCode {
+    return 188513182;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GuserConfigVars').toString();
+  }
+}
+
+class GuserConfigVarsBuilder
+    implements Builder<GuserConfigVars, GuserConfigVarsBuilder> {
+  _$GuserConfigVars? _$v;
+
+  GuserConfigVarsBuilder();
+
+  @override
+  void replace(GuserConfigVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GuserConfigVars;
+  }
+
+  @override
+  void update(void Function(GuserConfigVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GuserConfigVars build() => _build();
+
+  _$GuserConfigVars _build() {
+    final _$result = _$v ?? new _$GuserConfigVars._();
     replace(_$result);
     return _$result;
   }
@@ -3186,6 +3338,94 @@ class GtransactionMixExpenseVarsBuilder
   }
 }
 
+class _$GsetDefaultCurrencyVars extends GsetDefaultCurrencyVars {
+  @override
+  final String currencyId;
+
+  factory _$GsetDefaultCurrencyVars(
+          [void Function(GsetDefaultCurrencyVarsBuilder)? updates]) =>
+      (new GsetDefaultCurrencyVarsBuilder()..update(updates))._build();
+
+  _$GsetDefaultCurrencyVars._({required this.currencyId}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        currencyId, r'GsetDefaultCurrencyVars', 'currencyId');
+  }
+
+  @override
+  GsetDefaultCurrencyVars rebuild(
+          void Function(GsetDefaultCurrencyVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsetDefaultCurrencyVarsBuilder toBuilder() =>
+      new GsetDefaultCurrencyVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsetDefaultCurrencyVars && currencyId == other.currencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GsetDefaultCurrencyVars')
+          ..add('currencyId', currencyId))
+        .toString();
+  }
+}
+
+class GsetDefaultCurrencyVarsBuilder
+    implements
+        Builder<GsetDefaultCurrencyVars, GsetDefaultCurrencyVarsBuilder> {
+  _$GsetDefaultCurrencyVars? _$v;
+
+  String? _currencyId;
+  String? get currencyId => _$this._currencyId;
+  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
+
+  GsetDefaultCurrencyVarsBuilder();
+
+  GsetDefaultCurrencyVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _currencyId = $v.currencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsetDefaultCurrencyVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsetDefaultCurrencyVars;
+  }
+
+  @override
+  void update(void Function(GsetDefaultCurrencyVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsetDefaultCurrencyVars build() => _build();
+
+  _$GsetDefaultCurrencyVars _build() {
+    final _$result = _$v ??
+        new _$GsetDefaultCurrencyVars._(
+            currencyId: BuiltValueNullFieldError.checkNotNull(
+                currencyId, r'GsetDefaultCurrencyVars', 'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GUserFieldsVars extends GUserFieldsVars {
   factory _$GUserFieldsVars([void Function(GUserFieldsVarsBuilder)? updates]) =>
       (new GUserFieldsVarsBuilder()..update(updates))._build();
@@ -3714,6 +3954,65 @@ class GNewExpenseFieldsVarsBuilder
 
   _$GNewExpenseFieldsVars _build() {
     final _$result = _$v ?? new _$GNewExpenseFieldsVars._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GConfigFieldsVars extends GConfigFieldsVars {
+  factory _$GConfigFieldsVars(
+          [void Function(GConfigFieldsVarsBuilder)? updates]) =>
+      (new GConfigFieldsVarsBuilder()..update(updates))._build();
+
+  _$GConfigFieldsVars._() : super._();
+
+  @override
+  GConfigFieldsVars rebuild(void Function(GConfigFieldsVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GConfigFieldsVarsBuilder toBuilder() =>
+      new GConfigFieldsVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GConfigFieldsVars;
+  }
+
+  @override
+  int get hashCode {
+    return 547085507;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GConfigFieldsVars').toString();
+  }
+}
+
+class GConfigFieldsVarsBuilder
+    implements Builder<GConfigFieldsVars, GConfigFieldsVarsBuilder> {
+  _$GConfigFieldsVars? _$v;
+
+  GConfigFieldsVarsBuilder();
+
+  @override
+  void replace(GConfigFieldsVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GConfigFieldsVars;
+  }
+
+  @override
+  void update(void Function(GConfigFieldsVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GConfigFieldsVars build() => _build();
+
+  _$GConfigFieldsVars _build() {
+    final _$result = _$v ?? new _$GConfigFieldsVars._();
     replace(_$result);
     return _$result;
   }
