@@ -819,17 +819,11 @@ class MaintiningScrollPhysics extends ScrollPhysics {
     required double velocity,
   }) {
     if (maintain.value) {
-      maintain.value = false;
-      // lastExtent = oldPosition.maxScrollExtent;
+      Future.delayed(Durations.short1).then((value) => maintain.value = false);
 
-      var their = super.adjustPositionForNewDimensions(
-          oldPosition: oldPosition,
-          newPosition: newPosition,
-          isScrolling: isScrolling,
-          velocity: velocity);
       var mine = newPosition.maxScrollExtent -
           (oldPosition.maxScrollExtent - oldPosition.pixels);
-      return max(their, mine);
+      return mine;
     } else {
       return super.adjustPositionForNewDimensions(
           oldPosition: oldPosition,

@@ -163,6 +163,8 @@ class _UserPageState extends State<UserPage> {
     dates.sort((a, b) => DateFormat('d MMM y')
         .parse(a)
         .compareTo(DateFormat('d MMM y').parse(b)));
+    maintain.value = true;
+
     setState(() {});
   }
 
