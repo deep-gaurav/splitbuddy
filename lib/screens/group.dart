@@ -20,7 +20,7 @@ import 'package:billdivide/graphql/__generated__/queries.ast.gql.dart';
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 import 'package:billdivide/graphql/__generated__/queries.req.gql.dart';
 import 'package:billdivide/models/expensewith.dart';
-import 'package:billdivide/screens/find_people.dart';
+import 'package:billdivide/screens/add_expense.dart';
 import 'package:billdivide/screens/group_info.dart';
 import 'package:billdivide/screens/groups_page.dart';
 import 'package:billdivide/screens/home_page.dart';
@@ -241,7 +241,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
         return (
           TextSpan(children: [
             TextSpan(
-                text: 'Paid ${isTo ? 'from' : 'to'}\n',
+                text: 'Settled ${isTo ? 'from' : 'from'}\n',
                 style: TextStyle(color: neutralBlue.primary)),
             TextSpan(
               text: context.read<AppState>().getGroupName(split.withGroupId!),
@@ -362,7 +362,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
                                             left: isSelf ? 0 : 20,
                                             right: !isSelf ? 0 : 15,
                                           ),
-                                          elevation: isInvoled ? 3 : 0,
+                                          elevation: 0,
                                           child: Padding(
                                             padding: const EdgeInsets.all(5),
                                             child: Column(
@@ -505,7 +505,7 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
                 onPressed: () async {
                   var expense = await Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => FindPeople(
+                      builder: (context) => CreateExpense(
                         searchGroup: true,
                         expenseWith: ExpenseWithGroup(group: group),
                       ),
@@ -651,9 +651,27 @@ class GroupSummaryWidget extends StatelessWidget {
               ],
             ),
             const Divider(),
+            if (group.members
+                .where((p0) =>
+                    p0.member.id != context.read<AppState>().user!.id &&
+                    !p0.owedInGroup.every((p0) => p0.amount == 0))
+                .isEmpty)
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'you are settled up',
+                      style: TextStyle(
+                        color: neutralBlue.primary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ...group.members
-                .where(
-                    (p0) => p0.member.id != context.read<AppState>().user!.id)
+                .where((p0) =>
+                    p0.member.id != context.read<AppState>().user!.id &&
+                    !p0.owedInGroup.every((p0) => p0.amount == 0))
                 .map<Widget>(
                   (member) => Row(
                     crossAxisAlignment: CrossAxisAlignment.start,

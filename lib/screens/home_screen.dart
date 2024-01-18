@@ -1,6 +1,9 @@
+import 'package:billdivide/models/expensewith.dart';
+import 'package:billdivide/screens/create_group_page.dart';
+import 'package:billdivide/screens/people_finder.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:billdivide/screens/find_people.dart';
+import 'package:billdivide/screens/add_expense.dart';
 import 'package:billdivide/screens/groups_page.dart';
 import 'package:billdivide/screens/home_page.dart';
 import 'package:billdivide/state/app_state.dart';
@@ -53,13 +56,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ? FloatingActionButton.extended(
               icon: const Icon(Icons.group_add),
               onPressed: () async {
-                var appstate = context.read<AppState>();
-                var groupName = await showDialog(
-                    context: context,
-                    builder: (context) => const GroupNameDialog());
-                if (groupName is String) {
-                  appstate.createGroup(groupName);
-                }
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CreateGroupPage(),
+                  ),
+                );
               },
               label: const Text('Create Group'),
             )
@@ -67,7 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: const Icon(Icons.add_shopping_cart),
               onPressed: () async {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const FindPeople(searchGroup: true)));
+                    builder: (context) =>
+                        const CreateExpense(searchGroup: true)));
               },
               label: const Text('Create Expense'),
             ),

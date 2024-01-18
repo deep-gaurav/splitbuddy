@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:billdivide/extensions/num_extension.dart';
+import 'package:billdivide/screens/people_finder.dart';
+import 'package:billdivide/utils/color_utils.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -16,17 +18,17 @@ import 'package:billdivide/screens/groups_page.dart';
 import 'package:billdivide/screens/home_page.dart';
 import 'package:billdivide/state/app_state.dart';
 
-class FindPeople extends StatefulWidget {
+class CreateExpense extends StatefulWidget {
   final ExpenseWith? expenseWith;
 
   final bool searchGroup;
-  const FindPeople({super.key, required this.searchGroup, this.expenseWith});
+  const CreateExpense({super.key, required this.searchGroup, this.expenseWith});
 
   @override
-  State<FindPeople> createState() => _FindPeopleState();
+  State<CreateExpense> createState() => _CreateExpenseState();
 }
 
-class _FindPeopleState extends State<FindPeople> {
+class _CreateExpenseState extends State<CreateExpense> {
   ValueNotifier<ExpenseWith?> expenseWith = ValueNotifier(null);
 
   var nameController = TextEditingController();
@@ -116,8 +118,11 @@ class _FindPeopleState extends State<FindPeople> {
             SliverPadding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               sliver: SliverToBoxAdapter(
-                child: SearchAnchor(
-                  viewHintText: 'Enter name or email',
+                child: PeopleFinder(
+                  canMultiSelect: true,
+                  findGroups: true,
+                  isEditable: widget.expenseWith == null,
+                  people: expenseWith,
                   builder: (context, controller) => ValueListenableBuilder(
                       valueListenable: expenseWith,
                       builder: (context, val, child) {
@@ -145,183 +150,6 @@ class _FindPeopleState extends State<FindPeople> {
                           label: const Text('Enter name or email'),
                         );
                       }),
-                  viewBuilder: (suggestions) {
-                    return MediaQuery.removePadding(
-                      context: context,
-                      removeTop: true,
-                      child: Scaffold(
-                        backgroundColor: Colors.transparent,
-                        body: ListView(children: [
-                          SearchBarChips(
-                            expenseWith: expenseWith,
-                            isOut: false,
-                            canDelete: widget.expenseWith == null,
-                          ),
-                          ...suggestions
-                        ]),
-                        floatingActionButton: ValueListenableBuilder(
-                            valueListenable: expenseWith,
-                            builder: (context, val, child) {
-                              if (val != null && val.lengthOfUsers > 0) {
-                                return FloatingActionButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Icon(Icons.check),
-                                );
-                              }
-                              return const SizedBox();
-                            }),
-                      ),
-                    );
-                  },
-                  suggestionsBuilder: (BuildContext context,
-                      SearchController controller) async {
-                    final AppState appState = context.read<AppState>();
-                    GUserFields? searchUser;
-                    if (controller.text.isNotEmpty &&
-                        EmailValidator.validate(controller.text)) {
-                      final result = await (await appState.client).execute(
-                          GsearchUserByEmailReq(
-                              (b) => b.vars..email = controller.text));
-                      searchUser = result.data?.findUserByEmail;
-                    }
-                    final groups = appState.userGroups;
-                    final List<Widget> groupsList = <Widget>[
-                      ...groups
-                          .where((element) => element
-                              .getDisplayName(context.read())
-                              .toLowerCase()
-                              .contains(controller.text.toLowerCase()))
-                          .map(
-                            (element) => InkWell(
-                              onTap: () {
-                                expenseWith.value =
-                                    ExpenseWithGroup(group: element);
-                                controller.closeView(null);
-                              },
-                              child: Card(
-                                child: ListTile(
-                                  leading: GroupIconWidget(group: element),
-                                  title: Text(
-                                      element.getDisplayName(context.read())),
-                                ),
-                              ),
-                            ),
-                          )
-                    ];
-                    final users = appState.interactedUsers;
-                    final currentUser = appState.user!;
-                    final List<Widget> usersList = <Widget>[
-                      ...users
-                          .where((element) =>
-                              element.id != currentUser.id &&
-                              element.displayName
-                                  .toLowerCase()
-                                  .contains(controller.text.toLowerCase()))
-                          .map(
-                            (searchUser) => InkWell(
-                              onTap: () {
-                                if (expenseWith.value
-                                    case ExpenseWithPeople(users: var users)) {
-                                  if (!users.any((element) =>
-                                      (element is UserWithUser) &&
-                                      element.user.id == searchUser.id)) {
-                                    expenseWith.value =
-                                        ExpenseWithPeople(users: [
-                                      ...users,
-                                      UserWithUser(user: searchUser),
-                                    ]);
-                                  }
-                                } else {
-                                  expenseWith.value = ExpenseWithPeople(users: [
-                                    UserWithUser(user: searchUser),
-                                  ]);
-                                }
-                                controller.clear();
-                              },
-                              child: Card(
-                                child: ListTile(
-                                  leading: UserIconWidget(user: searchUser),
-                                  title: Text(searchUser.displayName),
-                                ),
-                              ),
-                            ),
-                          )
-                    ];
-                    final List<Widget> searchOptions = <Widget>[
-                      if (EmailValidator.validate(controller.text) &&
-                          searchUser == null)
-                        InkWell(
-                          onTap: () {
-                            if (expenseWith.value
-                                case ExpenseWithPeople(users: var users)) {
-                              if (!users.any((element) =>
-                                  (element is UserWithEmail) &&
-                                  element.email == controller.text)) {
-                                expenseWith.value = ExpenseWithPeople(users: [
-                                  ...users,
-                                  UserWithEmail(email: controller.text)
-                                ]);
-                              }
-                            } else {
-                              expenseWith.value = ExpenseWithPeople(users: [
-                                UserWithEmail(email: controller.text)
-                              ]);
-                            }
-                            controller.clear();
-                          },
-                          child: Card(
-                            child: ListTile(
-                              leading: const Icon(Icons.person_add),
-                              title: Text("Invite ${controller.text}"),
-                            ),
-                          ),
-                        )
-                      else if (searchUser != null)
-                        InkWell(
-                          onTap: () {
-                            if (expenseWith.value
-                                case ExpenseWithPeople(users: var users)) {
-                              if (!users.any((element) =>
-                                  (element is UserWithUser) &&
-                                  element.user.id == searchUser!.id)) {
-                                expenseWith.value = ExpenseWithPeople(users: [
-                                  ...users,
-                                  UserWithUser(user: searchUser!),
-                                ]);
-                              }
-                            } else {
-                              expenseWith.value = ExpenseWithPeople(users: [
-                                UserWithUser(user: searchUser!),
-                              ]);
-                            }
-                            controller.clear();
-                          },
-                          child: Card(
-                            child: ListTile(
-                              leading: UserIconWidget(user: searchUser),
-                              title: Text(searchUser.displayName),
-                            ),
-                          ),
-                        ),
-                      if (groupsList.isNotEmpty) ...[
-                        const ListTile(
-                          dense: true,
-                          title: Text('Groups'),
-                        ),
-                        ...groupsList
-                      ],
-                      if (usersList.isNotEmpty) ...[
-                        const ListTile(
-                          dense: true,
-                          title: Text('Friends'),
-                        ),
-                        ...usersList
-                      ],
-                    ];
-                    return searchOptions;
-                  },
                 ),
               ),
             ),
@@ -701,6 +529,7 @@ class SearchBarChips extends StatelessWidget {
               if (expenseWithValue case ExpenseWithPeople(users: var users))
                 ...users.map(
                   (e) => Chip(
+                    avatar: FittedBox(child: UserIconWidget(user: e)),
                     label: Text(e.displayName),
                     onDeleted: canDelete
                         ? () {
@@ -713,6 +542,9 @@ class SearchBarChips extends StatelessWidget {
                 )
               else if (expenseWithValue case ExpenseWithGroup(group: var group))
                 Chip(
+                  avatar: FittedBox(
+                    child: GroupIconWidget(group: group),
+                  ),
                   label: Text(group.getDisplayName(context.read())),
                   onDeleted: canDelete
                       ? () {

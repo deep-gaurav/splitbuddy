@@ -17,7 +17,7 @@ import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 import 'package:billdivide/graphql/__generated__/queries.req.gql.dart';
 import 'package:billdivide/models/expensewith.dart';
 import 'package:billdivide/models/transaction_group_types.dart';
-import 'package:billdivide/screens/find_people.dart';
+import 'package:billdivide/screens/add_expense.dart';
 import 'package:billdivide/screens/group.dart';
 import 'package:billdivide/screens/groups_page.dart';
 import 'package:billdivide/screens/home_page.dart';
@@ -336,7 +336,7 @@ class _UserPageState extends State<UserPage> {
                 onPressed: () async {
                   var expense = await Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => FindPeople(
+                      builder: (context) => CreateExpense(
                         searchGroup: true,
                         expenseWith: ExpenseWithPeople(
                             users: [UserWithUser(user: user)]),
@@ -535,7 +535,7 @@ class UserTransactionCard extends StatelessWidget {
                     left: isSelf(context) ? 0 : 20,
                     right: !isSelf(context) ? 0 : 15,
                   ),
-                  elevation: 3,
+                  elevation: 0,
                   child: buildSingleTransaction(context, transaction)),
               GroupedPaidTransactions(
                 transactions: var transactions,
@@ -561,7 +561,7 @@ class UserTransactionCard extends StatelessWidget {
                           left: isSelf(context) ? 0 : 20,
                           right: !isSelf(context) ? 0 : 15,
                         ),
-                        elevation: 3,
+                        elevation: 0,
                         child: TransactionCard(
                           title: getTitle(context, transactions.first).$1,
                           amountColor: getTitle(context, transactions.first).$2,
@@ -611,7 +611,7 @@ class UserTransactionCard extends StatelessWidget {
                           left: isSelf(context) ? 0 : 20,
                           right: !isSelf(context) ? 0 : 15,
                         ),
-                        elevation: 3,
+                        elevation: 0,
                         child: buildSingleTransaction(
                           context,
                           transactions.first,

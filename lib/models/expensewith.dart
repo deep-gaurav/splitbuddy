@@ -23,12 +23,14 @@ class ExpenseWithPeople extends ExpenseWith {
   int get lengthOfUsers => users.length;
 }
 
-sealed class ShareableUser {
+sealed class ShareableUser extends GUserFields {
   String get displayName;
+  @override
   String get id;
 }
 
 class UserWithEmail extends ShareableUser {
+  @override
   final String email;
 
   UserWithEmail({required this.email});
@@ -38,6 +40,23 @@ class UserWithEmail extends ShareableUser {
 
   @override
   String get id => email;
+
+  @override
+  String get G__typename => throw UnimplementedError();
+
+  @override
+  bool get isSignedUp => false;
+
+  @override
+  String? get name => displayName;
+
+  @override
+  String? get phone => null;
+
+  @override
+  Map<String, dynamic> toJson() {
+    throw UnimplementedError();
+  }
 }
 
 class UserWithUser extends ShareableUser {
@@ -50,4 +69,22 @@ class UserWithUser extends ShareableUser {
 
   @override
   String get id => user.id;
+
+  @override
+  String get G__typename => user.G__typename;
+
+  @override
+  String? get email => user.email;
+
+  @override
+  bool get isSignedUp => user.isSignedUp;
+
+  @override
+  String? get name => user.name;
+
+  @override
+  String? get phone => user.phone;
+
+  @override
+  Map<String, dynamic> toJson() => user.toJson();
 }
