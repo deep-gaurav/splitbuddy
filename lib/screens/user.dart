@@ -310,6 +310,8 @@ class _UserPageState extends State<UserPage> {
                       MaterialPageRoute(
                         builder: (context) => PaymentCurrencySelector(
                           user: user,
+                          toPay: user.toPay,
+                          toReceive: user.toReceive,
                         ),
                       ),
                     );

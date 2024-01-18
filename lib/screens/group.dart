@@ -575,6 +575,7 @@ class GroupSummaryWidget extends StatelessWidget {
                     child: Row(
                       children: [
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             ...group.toReceive.map(
                               (amount) => Text(
@@ -607,12 +608,16 @@ class GroupSummaryWidget extends StatelessWidget {
                       ],
                     ),
                   )),
+                const SizedBox(
+                  width: 5,
+                ),
                 if (group.toPay.isNotEmpty)
                   Expanded(
                     child: AutoScroll(
                       child: Row(
                         children: [
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               ...group.toPay.map(
                                 (amount) => Text(

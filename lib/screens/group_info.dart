@@ -1,6 +1,9 @@
 import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/extensions/num_extension.dart';
 import 'package:billdivide/models/expensewith.dart';
+import 'package:billdivide/screens/payment_currency_selector.dart';
 import 'package:billdivide/screens/people_finder.dart';
+import 'package:billdivide/widgets/auto_scroll.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/extensions/group_extension.dart';
@@ -75,72 +78,137 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                           ? Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                ...member.owedInGroup.map((owed) => Text.rich(
-                                      TextSpan(
-                                        text: owed.amount > 0
-                                            ? 'You owe them '
-                                            : owed.amount < 0
-                                                ? 'They owe you '
-                                                : 'You are settled',
-                                        children: [
-                                          if (owed.amount > 0)
-                                            TextSpan(
-                                              text: owed
-                                                  .getPretty(context.read()),
-                                              style: TextStyle(
-                                                fontSize: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium
-                                                    ?.fontSize,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            )
-                                          else if (owed.amount < 0)
-                                            TextSpan(
-                                              text: owed
-                                                  .getPrettyAbs(context.read()),
-                                              style: TextStyle(
-                                                fontSize: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium
-                                                    ?.fontSize,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            )
-                                        ],
-                                      ),
-                                      style: owed.amount > 0
-                                          ? TextStyle(color: mainScheme.error)
-                                          : owed.amount < 0
+                                if (member.owedInGroup
+                                    .where((p0) => p0.amount != 0)
+                                    .isEmpty)
+                                  Text(
+                                    'You are settled',
+                                    style:
+                                        TextStyle(color: neutralBlue.primary),
+                                  ),
+                                ...member.owedInGroup
+                                    .where((p0) => p0.amount != 0)
+                                    .map(
+                                      (owed) => AutoScroll(
+                                        child: Text.rich(
+                                          TextSpan(
+                                            text: owed.amount > 0
+                                                ? 'You owe them '
+                                                : owed.amount < 0
+                                                    ? 'They owe you '
+                                                    : 'You are settled',
+                                            children: [
+                                              if (owed.amount > 0)
+                                                TextSpan(
+                                                  text: owed.getPretty(
+                                                      context.read()),
+                                                  style: TextStyle(
+                                                    fontSize: Theme.of(context)
+                                                        .textTheme
+                                                        .titleMedium
+                                                        ?.fontSize,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                )
+                                              else if (owed.amount < 0)
+                                                TextSpan(
+                                                  text: owed.getPrettyAbs(
+                                                      context.read()),
+                                                  style: TextStyle(
+                                                    fontSize: Theme.of(context)
+                                                        .textTheme
+                                                        .titleMedium
+                                                        ?.fontSize,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                )
+                                            ],
+                                          ),
+                                          style: owed.amount > 0
                                               ? TextStyle(
-                                                  color: mainScheme.primary)
-                                              : TextStyle(
-                                                  color: neutralBlue.primary),
-                                    ))
+                                                  color: mainScheme.error)
+                                              : owed.amount < 0
+                                                  ? TextStyle(
+                                                      color: mainScheme.primary)
+                                                  : TextStyle(
+                                                      color:
+                                                          neutralBlue.primary),
+                                        ),
+                                      ),
+                                    )
                               ],
                             )
                           : null,
                       trailing: !isSelf
                           ? FilledButton.tonal(
                               onPressed: () async {
-                                var result = await Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => PaymentRecorder(
-                                      withUser: context
-                                          .read<AppState>()
-                                          .interactedUsers
-                                          .firstWhere(
-                                            (element) =>
-                                                element.id == member.member.id,
-                                          ),
-                                      inGroup: widget.initialGroup,
-                                      initialCurrencyId: context
-                                          .read<AppState>()
-                                          .defaultCurrency!
-                                          .id,
+                                var result;
+                                var toPay = member.owedInGroup
+                                    .where((p0) => p0.amount > 0);
+                                var toReceive = member.owedInGroup
+                                    .where((p0) => p0.amount < 0);
+
+                                if (toPay.length == 1) {
+                                  result = await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => PaymentRecorder(
+                                        withUser: context
+                                            .read<AppState>()
+                                            .interactedUsers
+                                            .firstWhere(
+                                              (element) =>
+                                                  element.id ==
+                                                  member.member.id,
+                                            ),
+                                        initialCurrencyId:
+                                            toPay.first.currencyId,
+                                        initialAmount: toPay.first
+                                            .getAmountFormatted(context.read())
+                                            .toPrettyFixed(
+                                              context
+                                                  .read<AppState>()
+                                                  .currencies[
+                                                      toPay.first.currencyId]!
+                                                  .decimals,
+                                            ),
+                                        inGroup: group,
+                                      ),
                                     ),
-                                  ),
-                                );
+                                  );
+                                } else if (toPay.isEmpty) {
+                                  result = await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => PaymentRecorder(
+                                        inGroup: group,
+                                        withUser: context
+                                            .read<AppState>()
+                                            .interactedUsers
+                                            .firstWhere(
+                                              (element) =>
+                                                  element.id ==
+                                                  member.member.id,
+                                            ),
+                                        initialCurrencyId: context
+                                            .read<AppState>()
+                                            .defaultCurrency!
+                                            .id,
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  result = await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          PaymentCurrencySelector(
+                                        user: member.member,
+                                        inGroup: group,
+                                        toPay: toPay.toList(),
+                                        toReceive: toReceive.toList(),
+                                      ),
+                                    ),
+                                  );
+                                }
+
                                 if (result is GSplitTransactionFields) {
                                   widget.onSettleTransaction(result);
                                 }

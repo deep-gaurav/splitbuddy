@@ -10,14 +10,22 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class PaymentCurrencySelector extends StatelessWidget {
-  final Ginteracted_usersData_interactedUsers user;
+  final GUserFields user;
+  final List<GAmountFields> toPay;
+  final List<GAmountFields> toReceive;
+  final GGroupFields? inGroup;
 
-  const PaymentCurrencySelector({super.key, required this.user});
+  const PaymentCurrencySelector(
+      {super.key,
+      required this.user,
+      required this.toPay,
+      required this.toReceive,
+      this.inGroup});
 
   @override
   Widget build(BuildContext context) {
     final Set<GCurrencyFields> currencyInteracted = {};
-    for (var pay in user.toPay.followedBy(user.toReceive)) {
+    for (var pay in toPay.followedBy(toReceive)) {
       currencyInteracted
           .add(context.read<AppState>().currencies[pay.currencyId]!);
     }
@@ -46,9 +54,14 @@ class PaymentCurrencySelector extends StatelessWidget {
                         await Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => PaymentRecorder(
-                              withUser: user,
+                              withUser: context
+                                  .read<AppState>()
+                                  .interactedUsers
+                                  .firstWhere(
+                                      (element) => element.id == user.id),
+                              inGroup: inGroup,
                               initialCurrencyId: e.id,
-                              initialAmount: user.toPay
+                              initialAmount: toPay
                                   .firstWhereOrNull(
                                       (element) => element.currencyId == e.id)
                                   ?.getAmountFormatted(context.read())
@@ -67,7 +80,7 @@ class PaymentCurrencySelector extends StatelessWidget {
                     ),
                     title: Text.rich(
                       TextSpan(
-                        text: 'Record payment  in ',
+                        text: 'Record payment in ',
                         children: [
                           TextSpan(
                               text: '${e.id} ${e.symbol}',
@@ -79,8 +92,8 @@ class PaymentCurrencySelector extends StatelessWidget {
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ...user.toPay
-                            .followedBy(user.toReceive)
+                        ...toPay
+                            .followedBy(toReceive)
                             .where((element) => element.currencyId == e.id)
                             .map(
                               (owe) => (owe.amount < 0)
@@ -140,6 +153,57 @@ class PaymentCurrencySelector extends StatelessWidget {
                 ),
               )
             ],
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Card(
+            child: ListTile(
+              leading: const Icon(Icons.currency_exchange),
+              title: const Text.rich(
+                TextSpan(
+                  text: 'Record payment in another currency',
+                ),
+              ),
+              subtitle: DropdownButton<GCurrencyFields>(
+                onChanged: (value) async {
+                  if (value != null) {
+                    Navigator.of(context).pop(
+                      await Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PaymentRecorder(
+                            withUser: context
+                                .read<AppState>()
+                                .interactedUsers
+                                .firstWhere((element) => element.id == user.id),
+                            initialCurrencyId: value.id,
+                            inGroup: inGroup,
+                            initialAmount: toPay
+                                .firstWhereOrNull(
+                                    (element) => element.currencyId == value.id)
+                                ?.getAmountFormatted(context.read())
+                                .toPrettyFixed(value.decimals),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                },
+                hint: const Text('Select Currency'),
+                items: context
+                    .read<AppState>()
+                    .currencies
+                    .entries
+                    .map(
+                      (e) => DropdownMenuItem(
+                        value: e.value,
+                        child: Text(
+                          '${e.key} ${e.value.symbol}',
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
           ),
         ),
       ],
