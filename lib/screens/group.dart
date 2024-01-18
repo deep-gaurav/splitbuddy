@@ -114,7 +114,10 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
           }
         }
 
-        maintain.value = true;
+        if (result.data?.getTransactionsMixExpenseWithGroup != null &&
+            result.data!.getTransactionsMixExpenseWithGroup.isNotEmpty) {
+          maintain.value = true;
+        }
         generateGrouped();
       }
     } finally {

@@ -138,7 +138,10 @@ class _UserPageState extends State<UserPage> {
           }
         }
         generateGrouped();
-        maintain.value = true;
+        if (result.data?.getTransactionsWithUser != null &&
+            result.data!.getTransactionsWithUser.isNotEmpty) {
+          maintain.value = true;
+        }
       }
     } finally {
       if (mounted) {
@@ -165,7 +168,6 @@ class _UserPageState extends State<UserPage> {
     dates.sort((a, b) => DateFormat('d MMM y')
         .parse(a)
         .compareTo(DateFormat('d MMM y').parse(b)));
-    maintain.value = true;
 
     setState(() {});
   }
@@ -572,7 +574,7 @@ class UserTransactionCard extends StatelessWidget {
                               (split) => Row(
                                 children: [
                                   Text(
-                                    split.amount.toString(),
+                                    split.amount.getPrettyAbs(context.read()),
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelLarge
