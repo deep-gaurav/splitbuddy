@@ -7,6 +7,7 @@ import 'package:billdivide/screens/groups_page.dart';
 import 'package:billdivide/screens/home_page.dart';
 import 'package:billdivide/state/app_state.dart';
 import 'package:billdivide/utils/color_utils.dart';
+import 'package:collection/collection.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,8 @@ class PeopleFinder extends StatefulWidget {
   final bool findGroups;
   final ValueNotifier<ExpenseWith?>? people;
   final bool isEditable;
-  final Function(ExpenseWith)? onDone;
+  final Future<bool> Function(ExpenseWith)? onDone;
+  final String? Function(GUserFields user)? disableFilter;
 
   const PeopleFinder({
     super.key,
@@ -28,6 +30,7 @@ class PeopleFinder extends StatefulWidget {
     this.people,
     this.isEditable = true,
     this.onDone,
+    this.disableFilter,
   });
 
   @override
@@ -36,6 +39,7 @@ class PeopleFinder extends StatefulWidget {
 
 class _PeopleFinderState extends State<PeopleFinder> {
   late ValueNotifier<ExpenseWith?> expenseWith;
+  bool loading = false;
 
   @override
   void initState() {
@@ -87,10 +91,36 @@ class _PeopleFinderState extends State<PeopleFinder> {
               builder: (context, val, child) {
                 if (val != null && val.lengthOfUsers > 0) {
                   return FloatingActionButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Icon(Icons.check),
+                    onPressed: widget.onDone != null
+                        ? () async {
+                            try {
+                              setState(() {
+                                loading = true;
+                              });
+                              var nav = Navigator.of(context);
+                              var pop =
+                                  await widget.onDone!(expenseWith.value!);
+                              if (pop) {
+                                nav.pop();
+                              }
+                            } finally {
+                              if (mounted) {
+                                setState(() {
+                                  loading = false;
+                                });
+                              }
+                            }
+                          }
+                        : () {
+                            Navigator.of(context).pop();
+                          },
+                    child: loading
+                        ? SizedBox(
+                            height: IconTheme.of(context).size,
+                            width: IconTheme.of(context).size,
+                            child: const CircularProgressIndicator(),
+                          )
+                        : const Icon(Icons.check),
                   );
                 }
                 return const SizedBox();
@@ -139,72 +169,86 @@ class _PeopleFinderState extends State<PeopleFinder> {
                   element.displayName
                       .toLowerCase()
                       .contains(controller.text.toLowerCase()))
-              .map(
-                (searchUser) => InkWell(
-                  onTap: () {
-                    if (expenseWith.value
-                        case ExpenseWithPeople(users: var users)) {
-                      if (!users.any((element) =>
-                          (element is UserWithUser) &&
-                          element.user.id == searchUser.id)) {
-                        expenseWith.value = ExpenseWithPeople(users: [
-                          ...users,
-                          UserWithUser(user: searchUser),
-                        ]);
-                      } else {
-                        expenseWith.value = ExpenseWithPeople(
-                            users: users
-                                .where((element) => element.id != searchUser.id)
-                                .toList());
+              .sorted((a, b) {
+            if (widget.disableFilter?.call(b) != null) {
+              return -1;
+            }
+            return a.displayName
+                .toLowerCase()
+                .compareTo(b.displayName.toLowerCase());
+          }).map(
+            (searchUser) {
+              var disableReason = widget.disableFilter?.call(searchUser);
+              return InkWell(
+                onTap: disableReason == null
+                    ? () {
+                        if (expenseWith.value
+                            case ExpenseWithPeople(users: var users)) {
+                          if (!users.any((element) =>
+                              (element is UserWithUser) &&
+                              element.user.id == searchUser.id)) {
+                            expenseWith.value = ExpenseWithPeople(users: [
+                              ...users,
+                              UserWithUser(user: searchUser),
+                            ]);
+                          } else {
+                            expenseWith.value = ExpenseWithPeople(
+                                users: users
+                                    .where((element) =>
+                                        element.id != searchUser.id)
+                                    .toList());
+                          }
+                        } else {
+                          expenseWith.value = ExpenseWithPeople(users: [
+                            UserWithUser(user: searchUser),
+                          ]);
+                        }
+                        controller.clear();
                       }
-                    } else {
-                      expenseWith.value = ExpenseWithPeople(users: [
-                        UserWithUser(user: searchUser),
-                      ]);
-                    }
-                    controller.clear();
-                  },
-                  child: Card(
-                    child: ListTile(
-                      leading: Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          UserIconWidget(user: searchUser),
-                          ValueListenableBuilder(
-                              valueListenable: expenseWith,
-                              builder: ((context, value, child) {
-                                if (expenseWith.value
-                                    case ExpenseWithPeople(users: var users)) {
-                                  if (users.any((element) =>
-                                      (element is UserWithUser) &&
-                                      element.user.id == searchUser.id)) {
-                                    return Positioned(
-                                      bottom: -5,
-                                      right: -5,
-                                      child: DecoratedBox(
-                                        decoration: const BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Icon(
-                                          Icons.check_circle,
-                                          color:
-                                              ColorUtils.getMainScheme(context)
-                                                  .primary,
-                                        ),
+                    : null,
+                child: Card(
+                  child: ListTile(
+                    leading: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        UserIconWidget(user: searchUser),
+                        ValueListenableBuilder(
+                            valueListenable: expenseWith,
+                            builder: ((context, value, child) {
+                              if (expenseWith.value
+                                  case ExpenseWithPeople(users: var users)) {
+                                if (users.any((element) =>
+                                    (element is UserWithUser) &&
+                                    element.user.id == searchUser.id)) {
+                                  return Positioned(
+                                    bottom: -5,
+                                    right: -5,
+                                    child: DecoratedBox(
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
                                       ),
-                                    );
-                                  }
+                                      child: Icon(
+                                        Icons.check_circle,
+                                        color: ColorUtils.getMainScheme(context)
+                                            .primary,
+                                      ),
+                                    ),
+                                  );
                                 }
-                                return const SizedBox();
-                              }))
-                        ],
-                      ),
-                      title: Text(searchUser.displayName),
+                              }
+                              return const SizedBox();
+                            }))
+                      ],
                     ),
+                    title: Text(searchUser.displayName),
+                    subtitle:
+                        disableReason != null ? Text(disableReason) : null,
                   ),
                 ),
-              )
+              );
+            },
+          )
         ];
         final List<Widget> searchOptions = <Widget>[
           if (EmailValidator.validate(controller.text) && searchUser == null)

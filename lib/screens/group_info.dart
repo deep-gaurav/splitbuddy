@@ -1,4 +1,6 @@
 import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/models/expensewith.dart';
+import 'package:billdivide/screens/people_finder.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/extensions/group_extension.dart';
@@ -157,23 +159,25 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
               child: Container(
                 margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
                 child: Card(
-                  child: ListTile(
-                    onTap: () async {
+                  child: PeopleFinder(
+                    canMultiSelect: true,
+                    findGroups: false,
+                    disableFilter: (user) =>
+                        group.members.any((p0) => p0.member.id == user.id)
+                            ? 'Already in group'
+                            : null,
+                    onDone: (withUsers) async {
                       var appState = context.read<AppState>();
                       var messenger = ScaffoldMessenger.of(context);
-                      var email = await showDialog(
-                        context: context,
-                        builder: (context) => NewMemberEmailDialog(
-                            groupName: group.getDisplayName(context.read())),
-                      );
-                      if (email is String) {
+                      if (withUsers case ExpenseWithPeople(users: var users)) {
                         try {
-                          var res =
-                              await appState.addMemberToGroup(email, group.id);
-                          setState(() {
-                            group = res;
-                          });
-
+                          for (var user in users) {
+                            var res = await appState.addMemberToGroup(
+                                user.email!, group.id);
+                            setState(() {
+                              group = res;
+                            });
+                          }
                           messenger.showSnackBar(
                             const SnackBar(
                               content: Text("member added successfully"),
@@ -186,10 +190,18 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                             ),
                           );
                         }
+                        return true;
+                      } else {
+                        return false;
                       }
                     },
-                    leading: const Icon(Icons.person_add),
-                    title: const Text("Add new member"),
+                    builder: (context, controller) => ListTile(
+                      onTap: () async {
+                        controller.openView();
+                      },
+                      leading: const Icon(Icons.person_add),
+                      title: const Text("Add new member"),
+                    ),
                   ),
                 ),
               ),
