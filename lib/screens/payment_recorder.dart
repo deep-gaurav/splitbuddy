@@ -18,6 +18,7 @@ import 'package:billdivide/utils/svg_icons.dart';
 class PaymentRecorder extends StatefulWidget {
   final GUserPaysFields withUser;
   final String initialCurrencyId;
+  final String? initialAmount;
   final GGroupFields? inGroup;
 
   const PaymentRecorder({
@@ -25,6 +26,7 @@ class PaymentRecorder extends StatefulWidget {
     required this.withUser,
     this.inGroup,
     required this.initialCurrencyId,
+    this.initialAmount,
   });
 
   @override
@@ -53,6 +55,17 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
       .where((owed) =>
           owed.amount.currencyId == currency!.id && owed.amount.amount > 0)
       .sorted((a, b) => a.amount.amount.compareTo(b.amount.amount));
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (widget.initialAmount != null) {
+        amountController.text = widget.initialAmount!;
+        verifyAmount(widget.initialAmount);
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,24 +168,7 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
                         child: TextFormField(
                           controller: amountController,
                           textAlign: TextAlign.center,
-                          onChanged: (value) {
-                            var decLength = currency!.decimals;
-                            String val;
-                            if (decLength > 0) {
-                              final decReg = RegExp(r'\d+(\.\d{0,[length]})?'
-                                  .replaceAll(
-                                      '[length]', decLength.toString()));
-                              val = decReg.firstMatch(value)?.group(0) ?? '';
-                            } else {
-                              final decReg = RegExp(r'\d+');
-                              val = decReg.firstMatch(value)?.group(0) ?? '';
-                            }
-                            if (val != value) {
-                              amountController.text = val;
-                              return;
-                            }
-                            // resetAmount();
-                          },
+                          onChanged: verifyAmount,
                           inputFormatters: [
                             FilteringTextInputFormatter.allow(
                                 RegExp(r'[0-9\.]'))
@@ -240,13 +236,16 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
                       (context, index) {
                         var owedGroup = owedGroups.elementAt(index);
 
-                        var amountSettling = (amount -
-                                owedGroups.foldIndexed(
-                                    0,
-                                    (i, previous, element) => i >= index
-                                        ? previous
-                                        : previous + element.amount.amount))
-                            .clamp(0, owedGroup.amount.amount);
+                        var amountSettling =
+                            ((amount * pow(10, currency!.decimals)).toInt() -
+                                        owedGroups.foldIndexed(
+                                            0,
+                                            (i, previous, element) => i >= index
+                                                ? previous
+                                                : previous +
+                                                    element.amount.amount))
+                                    .clamp(0, owedGroup.amount.amount) *
+                                pow(10, -currency!.decimals);
 
                         var group = context
                             .read<AppState>()
@@ -277,7 +276,7 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
                             ),
                             title: Text(group.getDisplayName(context.read())),
                             trailing: Text(
-                              amountSettling.toString(),
+                              amountSettling.toPrettyFixed(currency!.decimals),
                               style: TextStyle(
                                 fontSize: Theme.of(context)
                                     .primaryTextTheme
@@ -359,5 +358,23 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
         label: const Text("Record"),
       ),
     );
+  }
+
+  void verifyAmount(value) {
+    var decLength = currency!.decimals;
+    String val;
+    if (decLength > 0) {
+      final decReg = RegExp(r'\d+(\.\d{0,[length]})?'
+          .replaceAll('[length]', decLength.toString()));
+      val = decReg.firstMatch(value)?.group(0) ?? '';
+    } else {
+      final decReg = RegExp(r'\d+');
+      val = decReg.firstMatch(value)?.group(0) ?? '';
+    }
+    if (val != value) {
+      amountController.text = val;
+      return;
+    }
+    // resetAmount();
   }
 }

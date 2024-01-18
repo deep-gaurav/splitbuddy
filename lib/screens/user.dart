@@ -1,4 +1,6 @@
 import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/extensions/num_extension.dart';
+import 'package:billdivide/screens/payment_currency_selector.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -273,15 +275,44 @@ class _UserPageState extends State<UserPage> {
               ElevatedButton.icon(
                 icon: const Icon(Icons.payments),
                 onPressed: () async {
-                  var expense = await Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => PaymentRecorder(
-                        withUser: user,
-                        initialCurrencyId:
-                            context.read<AppState>().defaultCurrency!.id,
+                  dynamic expense;
+                  if (user.toPay.length == 1) {
+                    expense = await Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => PaymentRecorder(
+                          withUser: user,
+                          initialCurrencyId: user.toPay.first.currencyId,
+                          initialAmount: user.toPay.first
+                              .getAmountFormatted(context.read())
+                              .toPrettyFixed(
+                                context
+                                    .read<AppState>()
+                                    .currencies[user.toPay.first.currencyId]!
+                                    .decimals,
+                              ),
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  } else if (user.toPay.isEmpty) {
+                    expense = await Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => PaymentRecorder(
+                          withUser: user,
+                          initialCurrencyId:
+                              context.read<AppState>().defaultCurrency!.id,
+                        ),
+                      ),
+                    );
+                  } else {
+                    expense = await Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => PaymentCurrencySelector(
+                          user: user,
+                        ),
+                      ),
+                    );
+                  }
+
                   if (expense is List<GSplitTransactionFields>) {
                     for (var split in expense) {
                       if (!transactions.any((element) =>
@@ -887,6 +918,7 @@ class UserSummaryWidget extends StatelessWidget {
                       child: Row(
                         children: [
                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               ...user.toPay.map(
                                 (amount) => Text(
