@@ -351,13 +351,13 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
                                                 ? BubbleType.sendBubble
                                                 : BubbleType.receiverBubble,
                                           ),
-                                          backGroundColor: Color.alphaBlend(
-                                              Theme.of(context)
+                                          backGroundColor: isSelf
+                                              ? Theme.of(context)
                                                   .colorScheme
-                                                  .surfaceTint
-                                                  .withOpacity(
-                                                      isSelf ? 0.5 : 0.2),
-                                              Theme.of(context).cardColor),
+                                                  .secondaryContainer
+                                              : Theme.of(context)
+                                                  .colorScheme
+                                                  .tertiaryContainer,
                                           padding: EdgeInsets.only(
                                             left: isSelf ? 0 : 20,
                                             right: !isSelf ? 0 : 15,

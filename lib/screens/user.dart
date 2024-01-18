@@ -525,12 +525,9 @@ class UserTransactionCard extends StatelessWidget {
                         ? BubbleType.sendBubble
                         : BubbleType.receiverBubble,
                   ),
-                  backGroundColor: Color.alphaBlend(
-                      Theme.of(context)
-                          .colorScheme
-                          .surfaceTint
-                          .withOpacity(isSelf(context) ? 0.5 : 0.2),
-                      Theme.of(context).cardColor),
+                  backGroundColor: isSelf(context)
+                      ? Theme.of(context).colorScheme.secondaryContainer
+                      : Theme.of(context).colorScheme.tertiaryContainer,
                   padding: EdgeInsets.only(
                     left: isSelf(context) ? 0 : 20,
                     right: !isSelf(context) ? 0 : 15,
@@ -551,12 +548,9 @@ class UserTransactionCard extends StatelessWidget {
                               ? BubbleType.sendBubble
                               : BubbleType.receiverBubble,
                         ),
-                        backGroundColor: Color.alphaBlend(
-                            Theme.of(context)
-                                .colorScheme
-                                .surfaceTint
-                                .withOpacity(isSelf(context) ? 0.5 : 0.2),
-                            Theme.of(context).cardColor),
+                        backGroundColor: isSelf(context)
+                            ? Theme.of(context).colorScheme.secondaryContainer
+                            : Theme.of(context).colorScheme.tertiaryContainer,
                         padding: EdgeInsets.only(
                           left: isSelf(context) ? 0 : 20,
                           right: !isSelf(context) ? 0 : 15,
@@ -601,12 +595,9 @@ class UserTransactionCard extends StatelessWidget {
                               ? BubbleType.sendBubble
                               : BubbleType.receiverBubble,
                         ),
-                        backGroundColor: Color.alphaBlend(
-                            Theme.of(context)
-                                .colorScheme
-                                .surfaceTint
-                                .withOpacity(isSelf(context) ? 0.5 : 0.2),
-                            Theme.of(context).cardColor),
+                        backGroundColor: isSelf(context)
+                            ? Theme.of(context).colorScheme.secondaryContainer
+                            : Theme.of(context).colorScheme.tertiaryContainer,
                         padding: EdgeInsets.only(
                           left: isSelf(context) ? 0 : 20,
                           right: !isSelf(context) ? 0 : 15,
