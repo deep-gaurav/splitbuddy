@@ -114,7 +114,7 @@ class _PhoneEntryScreenState extends State<PhoneEntryScreen> {
                 flex: 3,
               ),
               Text(
-                "Bill Divide",
+                "BillDivide",
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
