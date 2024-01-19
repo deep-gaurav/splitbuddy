@@ -238,9 +238,11 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
                     }
                   }
                 } finally {
-                  setState(() {
-                    loading = false;
-                  });
+                  if (mounted) {
+                    setState(() {
+                      loading = false;
+                    });
+                  }
                 }
               },
         label: const Text('Convert'),
