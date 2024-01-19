@@ -508,6 +508,81 @@ abstract class GsetDefaultCurrencyVars
       );
 }
 
+abstract class GcurrencyConvertVars
+    implements Built<GcurrencyConvertVars, GcurrencyConvertVarsBuilder> {
+  GcurrencyConvertVars._();
+
+  factory GcurrencyConvertVars(
+          [Function(GcurrencyConvertVarsBuilder b) updates]) =
+      _$GcurrencyConvertVars;
+
+  String get withUser;
+  String get groupId;
+  String get fromCurrencyId;
+  String get toCurrencyId;
+  static Serializer<GcurrencyConvertVars> get serializer =>
+      _$gcurrencyConvertVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcurrencyConvertVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcurrencyConvertVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcurrencyConvertVars.serializer,
+        json,
+      );
+}
+
+abstract class GchangeNameVars
+    implements Built<GchangeNameVars, GchangeNameVarsBuilder> {
+  GchangeNameVars._();
+
+  factory GchangeNameVars([Function(GchangeNameVarsBuilder b) updates]) =
+      _$GchangeNameVars;
+
+  String get name;
+  static Serializer<GchangeNameVars> get serializer =>
+      _$gchangeNameVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GchangeNameVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GchangeNameVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GchangeNameVars.serializer,
+        json,
+      );
+}
+
+abstract class GgetTransactionsVars
+    implements Built<GgetTransactionsVars, GgetTransactionsVarsBuilder> {
+  GgetTransactionsVars._();
+
+  factory GgetTransactionsVars(
+          [Function(GgetTransactionsVarsBuilder b) updates]) =
+      _$GgetTransactionsVars;
+
+  String? get fromTime;
+  int get limit;
+  static Serializer<GgetTransactionsVars> get serializer =>
+      _$ggetTransactionsVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetTransactionsVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetTransactionsVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetTransactionsVars.serializer,
+        json,
+      );
+}
+
 abstract class GUserFieldsVars
     implements Built<GUserFieldsVars, GUserFieldsVarsBuilder> {
   GUserFieldsVars._();

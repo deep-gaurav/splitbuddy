@@ -336,3 +336,21 @@ mutation setDefaultCurrency($currencyId: String!){
     ...ConfigFields
   }
 }
+
+mutation currencyConvert($withUser:String!, $groupId: String!, $fromCurrencyId:String!, $toCurrencyId:String!){
+  convertCurrency(withUser:$withUser, groupId:$groupId, fromCurrencyId:$fromCurrencyId, toCurrencyId: $toCurrencyId){
+    ...SplitTransactionFields
+  }
+}
+
+mutation changeName($name:String!){
+  changeName(name:$name){
+    ...UserFields
+  }
+}
+
+query getTransactions($fromTime: String, $limit: Int!){
+  getTransactions(fromTime:$fromTime, limit:$limit) {
+    ...ExpenseMixSplitFields
+  }
+}

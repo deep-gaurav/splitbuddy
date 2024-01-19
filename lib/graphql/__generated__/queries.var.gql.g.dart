@@ -44,6 +44,12 @@ Serializer<GtransactionMixExpenseVars> _$gtransactionMixExpenseVarsSerializer =
     new _$GtransactionMixExpenseVarsSerializer();
 Serializer<GsetDefaultCurrencyVars> _$gsetDefaultCurrencyVarsSerializer =
     new _$GsetDefaultCurrencyVarsSerializer();
+Serializer<GcurrencyConvertVars> _$gcurrencyConvertVarsSerializer =
+    new _$GcurrencyConvertVarsSerializer();
+Serializer<GchangeNameVars> _$gchangeNameVarsSerializer =
+    new _$GchangeNameVarsSerializer();
+Serializer<GgetTransactionsVars> _$ggetTransactionsVarsSerializer =
+    new _$GgetTransactionsVarsSerializer();
 Serializer<GUserFieldsVars> _$gUserFieldsVarsSerializer =
     new _$GUserFieldsVarsSerializer();
 Serializer<GAmountFieldsVars> _$gAmountFieldsVarsSerializer =
@@ -1034,6 +1040,170 @@ class _$GsetDefaultCurrencyVarsSerializer
         case 'currencyId':
           result.currencyId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcurrencyConvertVarsSerializer
+    implements StructuredSerializer<GcurrencyConvertVars> {
+  @override
+  final Iterable<Type> types = const [
+    GcurrencyConvertVars,
+    _$GcurrencyConvertVars
+  ];
+  @override
+  final String wireName = 'GcurrencyConvertVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GcurrencyConvertVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'withUser',
+      serializers.serialize(object.withUser,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
+      'fromCurrencyId',
+      serializers.serialize(object.fromCurrencyId,
+          specifiedType: const FullType(String)),
+      'toCurrencyId',
+      serializers.serialize(object.toCurrencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GcurrencyConvertVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcurrencyConvertVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'withUser':
+          result.withUser = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'fromCurrencyId':
+          result.fromCurrencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'toCurrencyId':
+          result.toCurrencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GchangeNameVarsSerializer
+    implements StructuredSerializer<GchangeNameVars> {
+  @override
+  final Iterable<Type> types = const [GchangeNameVars, _$GchangeNameVars];
+  @override
+  final String wireName = 'GchangeNameVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GchangeNameVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'name',
+      serializers.serialize(object.name, specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GchangeNameVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GchangeNameVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetTransactionsVarsSerializer
+    implements StructuredSerializer<GgetTransactionsVars> {
+  @override
+  final Iterable<Type> types = const [
+    GgetTransactionsVars,
+    _$GgetTransactionsVars
+  ];
+  @override
+  final String wireName = 'GgetTransactionsVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetTransactionsVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'limit',
+      serializers.serialize(object.limit, specifiedType: const FullType(int)),
+    ];
+    Object? value;
+    value = object.fromTime;
+    if (value != null) {
+      result
+        ..add('fromTime')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GgetTransactionsVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetTransactionsVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'fromTime':
+          result.fromTime = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'limit':
+          result.limit = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
           break;
       }
     }
@@ -3421,6 +3591,324 @@ class GsetDefaultCurrencyVarsBuilder
         new _$GsetDefaultCurrencyVars._(
             currencyId: BuiltValueNullFieldError.checkNotNull(
                 currencyId, r'GsetDefaultCurrencyVars', 'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcurrencyConvertVars extends GcurrencyConvertVars {
+  @override
+  final String withUser;
+  @override
+  final String groupId;
+  @override
+  final String fromCurrencyId;
+  @override
+  final String toCurrencyId;
+
+  factory _$GcurrencyConvertVars(
+          [void Function(GcurrencyConvertVarsBuilder)? updates]) =>
+      (new GcurrencyConvertVarsBuilder()..update(updates))._build();
+
+  _$GcurrencyConvertVars._(
+      {required this.withUser,
+      required this.groupId,
+      required this.fromCurrencyId,
+      required this.toCurrencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        withUser, r'GcurrencyConvertVars', 'withUser');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GcurrencyConvertVars', 'groupId');
+    BuiltValueNullFieldError.checkNotNull(
+        fromCurrencyId, r'GcurrencyConvertVars', 'fromCurrencyId');
+    BuiltValueNullFieldError.checkNotNull(
+        toCurrencyId, r'GcurrencyConvertVars', 'toCurrencyId');
+  }
+
+  @override
+  GcurrencyConvertVars rebuild(
+          void Function(GcurrencyConvertVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcurrencyConvertVarsBuilder toBuilder() =>
+      new GcurrencyConvertVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcurrencyConvertVars &&
+        withUser == other.withUser &&
+        groupId == other.groupId &&
+        fromCurrencyId == other.fromCurrencyId &&
+        toCurrencyId == other.toCurrencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, withUser.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, fromCurrencyId.hashCode);
+    _$hash = $jc(_$hash, toCurrencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GcurrencyConvertVars')
+          ..add('withUser', withUser)
+          ..add('groupId', groupId)
+          ..add('fromCurrencyId', fromCurrencyId)
+          ..add('toCurrencyId', toCurrencyId))
+        .toString();
+  }
+}
+
+class GcurrencyConvertVarsBuilder
+    implements Builder<GcurrencyConvertVars, GcurrencyConvertVarsBuilder> {
+  _$GcurrencyConvertVars? _$v;
+
+  String? _withUser;
+  String? get withUser => _$this._withUser;
+  set withUser(String? withUser) => _$this._withUser = withUser;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
+
+  String? _fromCurrencyId;
+  String? get fromCurrencyId => _$this._fromCurrencyId;
+  set fromCurrencyId(String? fromCurrencyId) =>
+      _$this._fromCurrencyId = fromCurrencyId;
+
+  String? _toCurrencyId;
+  String? get toCurrencyId => _$this._toCurrencyId;
+  set toCurrencyId(String? toCurrencyId) => _$this._toCurrencyId = toCurrencyId;
+
+  GcurrencyConvertVarsBuilder();
+
+  GcurrencyConvertVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _withUser = $v.withUser;
+      _groupId = $v.groupId;
+      _fromCurrencyId = $v.fromCurrencyId;
+      _toCurrencyId = $v.toCurrencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcurrencyConvertVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcurrencyConvertVars;
+  }
+
+  @override
+  void update(void Function(GcurrencyConvertVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcurrencyConvertVars build() => _build();
+
+  _$GcurrencyConvertVars _build() {
+    final _$result = _$v ??
+        new _$GcurrencyConvertVars._(
+            withUser: BuiltValueNullFieldError.checkNotNull(
+                withUser, r'GcurrencyConvertVars', 'withUser'),
+            groupId: BuiltValueNullFieldError.checkNotNull(
+                groupId, r'GcurrencyConvertVars', 'groupId'),
+            fromCurrencyId: BuiltValueNullFieldError.checkNotNull(
+                fromCurrencyId, r'GcurrencyConvertVars', 'fromCurrencyId'),
+            toCurrencyId: BuiltValueNullFieldError.checkNotNull(
+                toCurrencyId, r'GcurrencyConvertVars', 'toCurrencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GchangeNameVars extends GchangeNameVars {
+  @override
+  final String name;
+
+  factory _$GchangeNameVars([void Function(GchangeNameVarsBuilder)? updates]) =>
+      (new GchangeNameVarsBuilder()..update(updates))._build();
+
+  _$GchangeNameVars._({required this.name}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(name, r'GchangeNameVars', 'name');
+  }
+
+  @override
+  GchangeNameVars rebuild(void Function(GchangeNameVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GchangeNameVarsBuilder toBuilder() =>
+      new GchangeNameVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GchangeNameVars && name == other.name;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GchangeNameVars')..add('name', name))
+        .toString();
+  }
+}
+
+class GchangeNameVarsBuilder
+    implements Builder<GchangeNameVars, GchangeNameVarsBuilder> {
+  _$GchangeNameVars? _$v;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  GchangeNameVarsBuilder();
+
+  GchangeNameVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GchangeNameVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GchangeNameVars;
+  }
+
+  @override
+  void update(void Function(GchangeNameVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GchangeNameVars build() => _build();
+
+  _$GchangeNameVars _build() {
+    final _$result = _$v ??
+        new _$GchangeNameVars._(
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'GchangeNameVars', 'name'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetTransactionsVars extends GgetTransactionsVars {
+  @override
+  final String? fromTime;
+  @override
+  final int limit;
+
+  factory _$GgetTransactionsVars(
+          [void Function(GgetTransactionsVarsBuilder)? updates]) =>
+      (new GgetTransactionsVarsBuilder()..update(updates))._build();
+
+  _$GgetTransactionsVars._({this.fromTime, required this.limit}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        limit, r'GgetTransactionsVars', 'limit');
+  }
+
+  @override
+  GgetTransactionsVars rebuild(
+          void Function(GgetTransactionsVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetTransactionsVarsBuilder toBuilder() =>
+      new GgetTransactionsVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetTransactionsVars &&
+        fromTime == other.fromTime &&
+        limit == other.limit;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, fromTime.hashCode);
+    _$hash = $jc(_$hash, limit.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetTransactionsVars')
+          ..add('fromTime', fromTime)
+          ..add('limit', limit))
+        .toString();
+  }
+}
+
+class GgetTransactionsVarsBuilder
+    implements Builder<GgetTransactionsVars, GgetTransactionsVarsBuilder> {
+  _$GgetTransactionsVars? _$v;
+
+  String? _fromTime;
+  String? get fromTime => _$this._fromTime;
+  set fromTime(String? fromTime) => _$this._fromTime = fromTime;
+
+  int? _limit;
+  int? get limit => _$this._limit;
+  set limit(int? limit) => _$this._limit = limit;
+
+  GgetTransactionsVarsBuilder();
+
+  GgetTransactionsVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _fromTime = $v.fromTime;
+      _limit = $v.limit;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetTransactionsVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetTransactionsVars;
+  }
+
+  @override
+  void update(void Function(GgetTransactionsVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetTransactionsVars build() => _build();
+
+  _$GgetTransactionsVars _build() {
+    final _$result = _$v ??
+        new _$GgetTransactionsVars._(
+            fromTime: fromTime,
+            limit: BuiltValueNullFieldError.checkNotNull(
+                limit, r'GgetTransactionsVars', 'limit'));
     replace(_$result);
     return _$result;
   }

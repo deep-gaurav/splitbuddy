@@ -10,6 +10,8 @@ const GTransactionType _$gTransactionTypeEXPENSE_SPLIT =
     const GTransactionType._('EXPENSE_SPLIT');
 const GTransactionType _$gTransactionTypeCROSS_GROUP_SETTLEMENT =
     const GTransactionType._('CROSS_GROUP_SETTLEMENT');
+const GTransactionType _$gTransactionTypeCURRENCY_CONVERSION =
+    const GTransactionType._('CURRENCY_CONVERSION');
 const GTransactionType _$gTransactionTypeCASH_PAID =
     const GTransactionType._('CASH_PAID');
 
@@ -19,6 +21,8 @@ GTransactionType _$gTransactionTypeValueOf(String name) {
       return _$gTransactionTypeEXPENSE_SPLIT;
     case 'CROSS_GROUP_SETTLEMENT':
       return _$gTransactionTypeCROSS_GROUP_SETTLEMENT;
+    case 'CURRENCY_CONVERSION':
+      return _$gTransactionTypeCURRENCY_CONVERSION;
     case 'CASH_PAID':
       return _$gTransactionTypeCASH_PAID;
     default:
@@ -30,6 +34,7 @@ final BuiltSet<GTransactionType> _$gTransactionTypeValues =
     new BuiltSet<GTransactionType>(const <GTransactionType>[
   _$gTransactionTypeEXPENSE_SPLIT,
   _$gTransactionTypeCROSS_GROUP_SETTLEMENT,
+  _$gTransactionTypeCURRENCY_CONVERSION,
   _$gTransactionTypeCASH_PAID,
 ]);
 

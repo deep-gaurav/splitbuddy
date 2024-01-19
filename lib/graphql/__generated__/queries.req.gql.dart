@@ -1579,6 +1579,230 @@ abstract class GsetDefaultCurrencyReq
       );
 }
 
+abstract class GcurrencyConvertReq
+    implements
+        Built<GcurrencyConvertReq, GcurrencyConvertReqBuilder>,
+        _i1
+        .OperationRequest<_i2.GcurrencyConvertData, _i3.GcurrencyConvertVars> {
+  GcurrencyConvertReq._();
+
+  factory GcurrencyConvertReq(
+      [Function(GcurrencyConvertReqBuilder b) updates]) = _$GcurrencyConvertReq;
+
+  static void _initializeBuilder(GcurrencyConvertReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'currencyConvert',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GcurrencyConvertVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GcurrencyConvertData? Function(
+    _i2.GcurrencyConvertData?,
+    _i2.GcurrencyConvertData?,
+  )? get updateResult;
+  @override
+  _i2.GcurrencyConvertData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GcurrencyConvertData? parseData(Map<String, dynamic> json) =>
+      _i2.GcurrencyConvertData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GcurrencyConvertData, _i3.GcurrencyConvertVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GcurrencyConvertReq> get serializer =>
+      _$gcurrencyConvertReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GcurrencyConvertReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcurrencyConvertReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GcurrencyConvertReq.serializer,
+        json,
+      );
+}
+
+abstract class GchangeNameReq
+    implements
+        Built<GchangeNameReq, GchangeNameReqBuilder>,
+        _i1.OperationRequest<_i2.GchangeNameData, _i3.GchangeNameVars> {
+  GchangeNameReq._();
+
+  factory GchangeNameReq([Function(GchangeNameReqBuilder b) updates]) =
+      _$GchangeNameReq;
+
+  static void _initializeBuilder(GchangeNameReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'changeName',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GchangeNameVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GchangeNameData? Function(
+    _i2.GchangeNameData?,
+    _i2.GchangeNameData?,
+  )? get updateResult;
+  @override
+  _i2.GchangeNameData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GchangeNameData? parseData(Map<String, dynamic> json) =>
+      _i2.GchangeNameData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GchangeNameData, _i3.GchangeNameVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GchangeNameReq> get serializer =>
+      _$gchangeNameReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GchangeNameReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GchangeNameReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GchangeNameReq.serializer,
+        json,
+      );
+}
+
+abstract class GgetTransactionsReq
+    implements
+        Built<GgetTransactionsReq, GgetTransactionsReqBuilder>,
+        _i1
+        .OperationRequest<_i2.GgetTransactionsData, _i3.GgetTransactionsVars> {
+  GgetTransactionsReq._();
+
+  factory GgetTransactionsReq(
+      [Function(GgetTransactionsReqBuilder b) updates]) = _$GgetTransactionsReq;
+
+  static void _initializeBuilder(GgetTransactionsReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'getTransactions',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GgetTransactionsVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GgetTransactionsData? Function(
+    _i2.GgetTransactionsData?,
+    _i2.GgetTransactionsData?,
+  )? get updateResult;
+  @override
+  _i2.GgetTransactionsData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GgetTransactionsData? parseData(Map<String, dynamic> json) =>
+      _i2.GgetTransactionsData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GgetTransactionsData, _i3.GgetTransactionsVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GgetTransactionsReq> get serializer =>
+      _$ggetTransactionsReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GgetTransactionsReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetTransactionsReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GgetTransactionsReq.serializer,
+        json,
+      );
+}
+
 abstract class GUserFieldsReq
     implements
         Built<GUserFieldsReq, GUserFieldsReqBuilder>,

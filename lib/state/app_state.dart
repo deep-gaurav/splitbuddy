@@ -304,6 +304,25 @@ class AppState extends ChangeNotifier {
     }
   }
 
+  Future<List<GSplitTransactionFields>> convertCurrency({
+    required String userId,
+    required String fromCurrencyId,
+    required String toCurrencyId,
+    required String groupId,
+  }) async {
+    var result = await (await client).execute(GcurrencyConvertReq((b) => b.vars
+      ..withUser = userId
+      ..fromCurrencyId = fromCurrencyId
+      ..toCurrencyId = toCurrencyId
+      ..groupId = groupId));
+    if (result.data?.convertCurrency != null) {
+      refresh(await client);
+      return result.data!.convertCurrency.toList();
+    } else {
+      throw result;
+    }
+  }
+
   logout() {
     authState = AuthStates.unAuthorized;
     notifyListeners();

@@ -134,6 +134,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GautoSettleWithUserData_autoSettleWithUser_toUser.serializer)
       ..add(GautoSettleWithUserReq.serializer)
       ..add(GautoSettleWithUserVars.serializer)
+      ..add(GchangeNameData.serializer)
+      ..add(GchangeNameData_changeName.serializer)
+      ..add(GchangeNameReq.serializer)
+      ..add(GchangeNameVars.serializer)
       ..add(GcreateNonGroupExpenseData.serializer)
       ..add(GcreateNonGroupExpenseData_addNonGroupExpense.serializer)
       ..add(GcreateNonGroupExpenseData_addNonGroupExpense_expense.serializer)
@@ -181,6 +185,27 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GcurrenciesData_currencies.serializer)
       ..add(GcurrenciesReq.serializer)
       ..add(GcurrenciesVars.serializer)
+      ..add(GcurrencyConvertData.serializer)
+      ..add(GcurrencyConvertData_convertCurrency.serializer)
+      ..add(GcurrencyConvertData_convertCurrency_amount.serializer)
+      ..add(GcurrencyConvertData_convertCurrency_creator.serializer)
+      ..add(GcurrencyConvertData_convertCurrency_expense.serializer)
+      ..add(GcurrencyConvertData_convertCurrency_expense_amount.serializer)
+      ..add(GcurrencyConvertData_convertCurrency_fromUser.serializer)
+      ..add(GcurrencyConvertData_convertCurrency_group.serializer)
+      ..add(GcurrencyConvertData_convertCurrency_toUser.serializer)
+      ..add(GcurrencyConvertReq.serializer)
+      ..add(GcurrencyConvertVars.serializer)
+      ..add(GgetTransactionsData.serializer)
+      ..add(GgetTransactionsData_getTransactions.serializer)
+      ..add(GgetTransactionsData_getTransactions_expense.serializer)
+      ..add(GgetTransactionsData_getTransactions_expense_amount.serializer)
+      ..add(GgetTransactionsData_getTransactions_split.serializer)
+      ..add(GgetTransactionsData_getTransactions_split_amount.serializer)
+      ..add(GgetTransactionsData_getTransactions_split_fromUser.serializer)
+      ..add(GgetTransactionsData_getTransactions_split_toUser.serializer)
+      ..add(GgetTransactionsReq.serializer)
+      ..add(GgetTransactionsVars.serializer)
       ..add(GgroupData.serializer)
       ..add(GgroupData_group.serializer)
       ..add(GgroupData_group_creator.serializer)
@@ -389,6 +414,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(GcurrenciesData_currencies)]),
           () => new ListBuilder<GcurrenciesData_currencies>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GcurrencyConvertData_convertCurrency)]),
+          () => new ListBuilder<GcurrencyConvertData_convertCurrency>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GgetTransactionsData_getTransactions)]),
+          () => new ListBuilder<GgetTransactionsData_getTransactions>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GgroupData_group_expenses)]),

@@ -70,3 +70,20 @@ class GroupedCrossSettlementTransactions extends TransactionCardTypes {
   @override
   GUserFields get creator => transactions.first.creator;
 }
+
+class CurrencyConversionTransactions extends TransactionCardTypes {
+  final List<GSplitTransactionFields> transactions;
+  final String groupId;
+
+  (GSplitTransactionFields, GSplitTransactionFields?) get transactionPairs =>
+      (transactions.first, transactions.elementAtOrNull(1));
+
+  CurrencyConversionTransactions(
+      {required this.transactions, required this.groupId});
+
+  @override
+  String get createdAt => transactions.first.createdAt;
+
+  @override
+  GUserFields get creator => transactions.first.creator;
+}

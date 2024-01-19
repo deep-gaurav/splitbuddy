@@ -5455,6 +5455,830 @@ abstract class GsetDefaultCurrencyData_setDefaultCurrency
       );
 }
 
+abstract class GcurrencyConvertData
+    implements Built<GcurrencyConvertData, GcurrencyConvertDataBuilder> {
+  GcurrencyConvertData._();
+
+  factory GcurrencyConvertData(
+          [Function(GcurrencyConvertDataBuilder b) updates]) =
+      _$GcurrencyConvertData;
+
+  static void _initializeBuilder(GcurrencyConvertDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  BuiltList<GcurrencyConvertData_convertCurrency> get convertCurrency;
+  static Serializer<GcurrencyConvertData> get serializer =>
+      _$gcurrencyConvertDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcurrencyConvertData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcurrencyConvertData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcurrencyConvertData.serializer,
+        json,
+      );
+}
+
+abstract class GcurrencyConvertData_convertCurrency
+    implements
+        Built<GcurrencyConvertData_convertCurrency,
+            GcurrencyConvertData_convertCurrencyBuilder>,
+        GSplitTransactionFields {
+  GcurrencyConvertData_convertCurrency._();
+
+  factory GcurrencyConvertData_convertCurrency(
+          [Function(GcurrencyConvertData_convertCurrencyBuilder b) updates]) =
+      _$GcurrencyConvertData_convertCurrency;
+
+  static void _initializeBuilder(
+          GcurrencyConvertData_convertCurrencyBuilder b) =>
+      b..G__typename = 'Split';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  GcurrencyConvertData_convertCurrency_expense? get expense;
+  @override
+  GcurrencyConvertData_convertCurrency_group get group;
+  @override
+  GcurrencyConvertData_convertCurrency_creator get creator;
+  @override
+  GcurrencyConvertData_convertCurrency_fromUser get fromUser;
+  @override
+  GcurrencyConvertData_convertCurrency_toUser get toUser;
+  @override
+  String get id;
+  @override
+  GcurrencyConvertData_convertCurrency_amount get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  String get fromUserId;
+  @override
+  String get toUserId;
+  @override
+  String get creatorId;
+  @override
+  String? get withGroupId;
+  @override
+  String get groupId;
+  static Serializer<GcurrencyConvertData_convertCurrency> get serializer =>
+      _$gcurrencyConvertDataConvertCurrencySerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcurrencyConvertData_convertCurrency.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcurrencyConvertData_convertCurrency? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcurrencyConvertData_convertCurrency.serializer,
+        json,
+      );
+}
+
+abstract class GcurrencyConvertData_convertCurrency_expense
+    implements
+        Built<GcurrencyConvertData_convertCurrency_expense,
+            GcurrencyConvertData_convertCurrency_expenseBuilder>,
+        GSplitTransactionFields_expense,
+        GExpenseBasic {
+  GcurrencyConvertData_convertCurrency_expense._();
+
+  factory GcurrencyConvertData_convertCurrency_expense(
+      [Function(GcurrencyConvertData_convertCurrency_expenseBuilder b)
+          updates]) = _$GcurrencyConvertData_convertCurrency_expense;
+
+  static void _initializeBuilder(
+          GcurrencyConvertData_convertCurrency_expenseBuilder b) =>
+      b..G__typename = 'Expense';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  GcurrencyConvertData_convertCurrency_expense_amount get amount;
+  @override
+  String get creatorId;
+  static Serializer<GcurrencyConvertData_convertCurrency_expense>
+      get serializer => _$gcurrencyConvertDataConvertCurrencyExpenseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcurrencyConvertData_convertCurrency_expense.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcurrencyConvertData_convertCurrency_expense? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcurrencyConvertData_convertCurrency_expense.serializer,
+        json,
+      );
+}
+
+abstract class GcurrencyConvertData_convertCurrency_expense_amount
+    implements
+        Built<GcurrencyConvertData_convertCurrency_expense_amount,
+            GcurrencyConvertData_convertCurrency_expense_amountBuilder>,
+        GSplitTransactionFields_expense_amount,
+        GExpenseBasic_amount,
+        GAmountFields {
+  GcurrencyConvertData_convertCurrency_expense_amount._();
+
+  factory GcurrencyConvertData_convertCurrency_expense_amount(
+      [Function(GcurrencyConvertData_convertCurrency_expense_amountBuilder b)
+          updates]) = _$GcurrencyConvertData_convertCurrency_expense_amount;
+
+  static void _initializeBuilder(
+          GcurrencyConvertData_convertCurrency_expense_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GcurrencyConvertData_convertCurrency_expense_amount>
+      get serializer =>
+          _$gcurrencyConvertDataConvertCurrencyExpenseAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcurrencyConvertData_convertCurrency_expense_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcurrencyConvertData_convertCurrency_expense_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcurrencyConvertData_convertCurrency_expense_amount.serializer,
+        json,
+      );
+}
+
+abstract class GcurrencyConvertData_convertCurrency_group
+    implements
+        Built<GcurrencyConvertData_convertCurrency_group,
+            GcurrencyConvertData_convertCurrency_groupBuilder>,
+        GSplitTransactionFields_group,
+        GGroupBasic {
+  GcurrencyConvertData_convertCurrency_group._();
+
+  factory GcurrencyConvertData_convertCurrency_group(
+      [Function(GcurrencyConvertData_convertCurrency_groupBuilder b)
+          updates]) = _$GcurrencyConvertData_convertCurrency_group;
+
+  static void _initializeBuilder(
+          GcurrencyConvertData_convertCurrency_groupBuilder b) =>
+      b..G__typename = 'Group';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  static Serializer<GcurrencyConvertData_convertCurrency_group>
+      get serializer => _$gcurrencyConvertDataConvertCurrencyGroupSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcurrencyConvertData_convertCurrency_group.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcurrencyConvertData_convertCurrency_group? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcurrencyConvertData_convertCurrency_group.serializer,
+        json,
+      );
+}
+
+abstract class GcurrencyConvertData_convertCurrency_creator
+    implements
+        Built<GcurrencyConvertData_convertCurrency_creator,
+            GcurrencyConvertData_convertCurrency_creatorBuilder>,
+        GSplitTransactionFields_creator,
+        GUserFields {
+  GcurrencyConvertData_convertCurrency_creator._();
+
+  factory GcurrencyConvertData_convertCurrency_creator(
+      [Function(GcurrencyConvertData_convertCurrency_creatorBuilder b)
+          updates]) = _$GcurrencyConvertData_convertCurrency_creator;
+
+  static void _initializeBuilder(
+          GcurrencyConvertData_convertCurrency_creatorBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GcurrencyConvertData_convertCurrency_creator>
+      get serializer => _$gcurrencyConvertDataConvertCurrencyCreatorSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcurrencyConvertData_convertCurrency_creator.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcurrencyConvertData_convertCurrency_creator? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcurrencyConvertData_convertCurrency_creator.serializer,
+        json,
+      );
+}
+
+abstract class GcurrencyConvertData_convertCurrency_fromUser
+    implements
+        Built<GcurrencyConvertData_convertCurrency_fromUser,
+            GcurrencyConvertData_convertCurrency_fromUserBuilder>,
+        GSplitTransactionFields_fromUser,
+        GUserFields {
+  GcurrencyConvertData_convertCurrency_fromUser._();
+
+  factory GcurrencyConvertData_convertCurrency_fromUser(
+      [Function(GcurrencyConvertData_convertCurrency_fromUserBuilder b)
+          updates]) = _$GcurrencyConvertData_convertCurrency_fromUser;
+
+  static void _initializeBuilder(
+          GcurrencyConvertData_convertCurrency_fromUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GcurrencyConvertData_convertCurrency_fromUser>
+      get serializer => _$gcurrencyConvertDataConvertCurrencyFromUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcurrencyConvertData_convertCurrency_fromUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcurrencyConvertData_convertCurrency_fromUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcurrencyConvertData_convertCurrency_fromUser.serializer,
+        json,
+      );
+}
+
+abstract class GcurrencyConvertData_convertCurrency_toUser
+    implements
+        Built<GcurrencyConvertData_convertCurrency_toUser,
+            GcurrencyConvertData_convertCurrency_toUserBuilder>,
+        GSplitTransactionFields_toUser,
+        GUserFields {
+  GcurrencyConvertData_convertCurrency_toUser._();
+
+  factory GcurrencyConvertData_convertCurrency_toUser(
+      [Function(GcurrencyConvertData_convertCurrency_toUserBuilder b)
+          updates]) = _$GcurrencyConvertData_convertCurrency_toUser;
+
+  static void _initializeBuilder(
+          GcurrencyConvertData_convertCurrency_toUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GcurrencyConvertData_convertCurrency_toUser>
+      get serializer => _$gcurrencyConvertDataConvertCurrencyToUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcurrencyConvertData_convertCurrency_toUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcurrencyConvertData_convertCurrency_toUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcurrencyConvertData_convertCurrency_toUser.serializer,
+        json,
+      );
+}
+
+abstract class GcurrencyConvertData_convertCurrency_amount
+    implements
+        Built<GcurrencyConvertData_convertCurrency_amount,
+            GcurrencyConvertData_convertCurrency_amountBuilder>,
+        GSplitTransactionFields_amount,
+        GAmountFields {
+  GcurrencyConvertData_convertCurrency_amount._();
+
+  factory GcurrencyConvertData_convertCurrency_amount(
+      [Function(GcurrencyConvertData_convertCurrency_amountBuilder b)
+          updates]) = _$GcurrencyConvertData_convertCurrency_amount;
+
+  static void _initializeBuilder(
+          GcurrencyConvertData_convertCurrency_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GcurrencyConvertData_convertCurrency_amount>
+      get serializer => _$gcurrencyConvertDataConvertCurrencyAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GcurrencyConvertData_convertCurrency_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GcurrencyConvertData_convertCurrency_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GcurrencyConvertData_convertCurrency_amount.serializer,
+        json,
+      );
+}
+
+abstract class GchangeNameData
+    implements Built<GchangeNameData, GchangeNameDataBuilder> {
+  GchangeNameData._();
+
+  factory GchangeNameData([Function(GchangeNameDataBuilder b) updates]) =
+      _$GchangeNameData;
+
+  static void _initializeBuilder(GchangeNameDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GchangeNameData_changeName get changeName;
+  static Serializer<GchangeNameData> get serializer =>
+      _$gchangeNameDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GchangeNameData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GchangeNameData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GchangeNameData.serializer,
+        json,
+      );
+}
+
+abstract class GchangeNameData_changeName
+    implements
+        Built<GchangeNameData_changeName, GchangeNameData_changeNameBuilder>,
+        GUserFields {
+  GchangeNameData_changeName._();
+
+  factory GchangeNameData_changeName(
+          [Function(GchangeNameData_changeNameBuilder b) updates]) =
+      _$GchangeNameData_changeName;
+
+  static void _initializeBuilder(GchangeNameData_changeNameBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GchangeNameData_changeName> get serializer =>
+      _$gchangeNameDataChangeNameSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GchangeNameData_changeName.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GchangeNameData_changeName? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GchangeNameData_changeName.serializer,
+        json,
+      );
+}
+
+abstract class GgetTransactionsData
+    implements Built<GgetTransactionsData, GgetTransactionsDataBuilder> {
+  GgetTransactionsData._();
+
+  factory GgetTransactionsData(
+          [Function(GgetTransactionsDataBuilder b) updates]) =
+      _$GgetTransactionsData;
+
+  static void _initializeBuilder(GgetTransactionsDataBuilder b) =>
+      b..G__typename = 'Query';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  BuiltList<GgetTransactionsData_getTransactions> get getTransactions;
+  static Serializer<GgetTransactionsData> get serializer =>
+      _$ggetTransactionsDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetTransactionsData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetTransactionsData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetTransactionsData.serializer,
+        json,
+      );
+}
+
+abstract class GgetTransactionsData_getTransactions
+    implements
+        Built<GgetTransactionsData_getTransactions,
+            GgetTransactionsData_getTransactionsBuilder>,
+        GExpenseMixSplitFields {
+  GgetTransactionsData_getTransactions._();
+
+  factory GgetTransactionsData_getTransactions(
+          [Function(GgetTransactionsData_getTransactionsBuilder b) updates]) =
+      _$GgetTransactionsData_getTransactions;
+
+  static void _initializeBuilder(
+          GgetTransactionsData_getTransactionsBuilder b) =>
+      b..G__typename = 'ExpenseMixSplit';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  GgetTransactionsData_getTransactions_expense? get expense;
+  @override
+  GgetTransactionsData_getTransactions_split? get split;
+  static Serializer<GgetTransactionsData_getTransactions> get serializer =>
+      _$ggetTransactionsDataGetTransactionsSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetTransactionsData_getTransactions.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetTransactionsData_getTransactions? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetTransactionsData_getTransactions.serializer,
+        json,
+      );
+}
+
+abstract class GgetTransactionsData_getTransactions_expense
+    implements
+        Built<GgetTransactionsData_getTransactions_expense,
+            GgetTransactionsData_getTransactions_expenseBuilder>,
+        GExpenseMixSplitFields_expense,
+        GExpenseBasic {
+  GgetTransactionsData_getTransactions_expense._();
+
+  factory GgetTransactionsData_getTransactions_expense(
+      [Function(GgetTransactionsData_getTransactions_expenseBuilder b)
+          updates]) = _$GgetTransactionsData_getTransactions_expense;
+
+  static void _initializeBuilder(
+          GgetTransactionsData_getTransactions_expenseBuilder b) =>
+      b..G__typename = 'Expense';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  GgetTransactionsData_getTransactions_expense_amount get amount;
+  @override
+  String get creatorId;
+  static Serializer<GgetTransactionsData_getTransactions_expense>
+      get serializer => _$ggetTransactionsDataGetTransactionsExpenseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetTransactionsData_getTransactions_expense.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetTransactionsData_getTransactions_expense? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetTransactionsData_getTransactions_expense.serializer,
+        json,
+      );
+}
+
+abstract class GgetTransactionsData_getTransactions_expense_amount
+    implements
+        Built<GgetTransactionsData_getTransactions_expense_amount,
+            GgetTransactionsData_getTransactions_expense_amountBuilder>,
+        GExpenseMixSplitFields_expense_amount,
+        GExpenseBasic_amount,
+        GAmountFields {
+  GgetTransactionsData_getTransactions_expense_amount._();
+
+  factory GgetTransactionsData_getTransactions_expense_amount(
+      [Function(GgetTransactionsData_getTransactions_expense_amountBuilder b)
+          updates]) = _$GgetTransactionsData_getTransactions_expense_amount;
+
+  static void _initializeBuilder(
+          GgetTransactionsData_getTransactions_expense_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GgetTransactionsData_getTransactions_expense_amount>
+      get serializer =>
+          _$ggetTransactionsDataGetTransactionsExpenseAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetTransactionsData_getTransactions_expense_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetTransactionsData_getTransactions_expense_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetTransactionsData_getTransactions_expense_amount.serializer,
+        json,
+      );
+}
+
+abstract class GgetTransactionsData_getTransactions_split
+    implements
+        Built<GgetTransactionsData_getTransactions_split,
+            GgetTransactionsData_getTransactions_splitBuilder>,
+        GExpenseMixSplitFields_split,
+        GSplitFields {
+  GgetTransactionsData_getTransactions_split._();
+
+  factory GgetTransactionsData_getTransactions_split(
+      [Function(GgetTransactionsData_getTransactions_splitBuilder b)
+          updates]) = _$GgetTransactionsData_getTransactions_split;
+
+  static void _initializeBuilder(
+          GgetTransactionsData_getTransactions_splitBuilder b) =>
+      b..G__typename = 'Split';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  GgetTransactionsData_getTransactions_split_fromUser get fromUser;
+  @override
+  GgetTransactionsData_getTransactions_split_toUser get toUser;
+  @override
+  String get id;
+  @override
+  GgetTransactionsData_getTransactions_split_amount get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  String get fromUserId;
+  @override
+  String get toUserId;
+  @override
+  String get creatorId;
+  @override
+  String? get withGroupId;
+  @override
+  String get groupId;
+  static Serializer<GgetTransactionsData_getTransactions_split>
+      get serializer => _$ggetTransactionsDataGetTransactionsSplitSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetTransactionsData_getTransactions_split.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetTransactionsData_getTransactions_split? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetTransactionsData_getTransactions_split.serializer,
+        json,
+      );
+}
+
+abstract class GgetTransactionsData_getTransactions_split_fromUser
+    implements
+        Built<GgetTransactionsData_getTransactions_split_fromUser,
+            GgetTransactionsData_getTransactions_split_fromUserBuilder>,
+        GExpenseMixSplitFields_split_fromUser,
+        GSplitFields_fromUser,
+        GUserFields {
+  GgetTransactionsData_getTransactions_split_fromUser._();
+
+  factory GgetTransactionsData_getTransactions_split_fromUser(
+      [Function(GgetTransactionsData_getTransactions_split_fromUserBuilder b)
+          updates]) = _$GgetTransactionsData_getTransactions_split_fromUser;
+
+  static void _initializeBuilder(
+          GgetTransactionsData_getTransactions_split_fromUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GgetTransactionsData_getTransactions_split_fromUser>
+      get serializer =>
+          _$ggetTransactionsDataGetTransactionsSplitFromUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetTransactionsData_getTransactions_split_fromUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetTransactionsData_getTransactions_split_fromUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetTransactionsData_getTransactions_split_fromUser.serializer,
+        json,
+      );
+}
+
+abstract class GgetTransactionsData_getTransactions_split_toUser
+    implements
+        Built<GgetTransactionsData_getTransactions_split_toUser,
+            GgetTransactionsData_getTransactions_split_toUserBuilder>,
+        GExpenseMixSplitFields_split_toUser,
+        GSplitFields_toUser,
+        GUserFields {
+  GgetTransactionsData_getTransactions_split_toUser._();
+
+  factory GgetTransactionsData_getTransactions_split_toUser(
+      [Function(GgetTransactionsData_getTransactions_split_toUserBuilder b)
+          updates]) = _$GgetTransactionsData_getTransactions_split_toUser;
+
+  static void _initializeBuilder(
+          GgetTransactionsData_getTransactions_split_toUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GgetTransactionsData_getTransactions_split_toUser>
+      get serializer =>
+          _$ggetTransactionsDataGetTransactionsSplitToUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetTransactionsData_getTransactions_split_toUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetTransactionsData_getTransactions_split_toUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetTransactionsData_getTransactions_split_toUser.serializer,
+        json,
+      );
+}
+
+abstract class GgetTransactionsData_getTransactions_split_amount
+    implements
+        Built<GgetTransactionsData_getTransactions_split_amount,
+            GgetTransactionsData_getTransactions_split_amountBuilder>,
+        GExpenseMixSplitFields_split_amount,
+        GSplitFields_amount,
+        GAmountFields {
+  GgetTransactionsData_getTransactions_split_amount._();
+
+  factory GgetTransactionsData_getTransactions_split_amount(
+      [Function(GgetTransactionsData_getTransactions_split_amountBuilder b)
+          updates]) = _$GgetTransactionsData_getTransactions_split_amount;
+
+  static void _initializeBuilder(
+          GgetTransactionsData_getTransactions_split_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GgetTransactionsData_getTransactions_split_amount>
+      get serializer =>
+          _$ggetTransactionsDataGetTransactionsSplitAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetTransactionsData_getTransactions_split_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetTransactionsData_getTransactions_split_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetTransactionsData_getTransactions_split_amount.serializer,
+        json,
+      );
+}
+
 abstract class GUserFields {
   String get G__typename;
   String get id;

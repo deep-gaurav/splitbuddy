@@ -76,6 +76,13 @@ type Mutation {
     currencyId: String!
   ): [Split!]!
   setDefaultCurrency(currencyId: String!): UserConfig!
+  changeName(name: String!): User!
+  convertCurrency(
+    withUser: String!
+    groupId: String!
+    fromCurrencyId: String!
+    toCurrencyId: String!
+  ): [Split!]!
 }
 
 type NonGroupExpense {
@@ -108,6 +115,7 @@ type Query {
     fromTime: String
     limit: Int!
   ): [Split!]!
+  getTransactions(fromTime: String, limit: Int!): [ExpenseMixSplit!]!
   getTransactionsMixExpenseWithGroup(
     withGroup: String!
     fromTime: String
@@ -159,6 +167,7 @@ input SplitInputNonGroup {
 enum TransactionType {
   EXPENSE_SPLIT
   CROSS_GROUP_SETTLEMENT
+  CURRENCY_CONVERSION
   CASH_PAID
 }
 

@@ -1,5 +1,6 @@
 import 'package:billdivide/extensions/amount_extension.dart';
 import 'package:billdivide/extensions/num_extension.dart';
+import 'package:billdivide/screens/currency_converter.dart';
 import 'package:billdivide/screens/payment_currency_selector.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
 import 'package:collection/collection.dart';
@@ -96,6 +97,8 @@ class _UserPageState extends State<UserPage> {
                 (element is GroupedCrossSettlementTransactions &&
                     element.groupId == transaction.transactionPartGroupId) ||
                 (element is GroupedPaidTransactions &&
+                    element.groupId == transaction.transactionPartGroupId) ||
+                (element is CurrencyConversionTransactions &&
                     element.groupId == transaction.transactionPartGroupId));
             if (group != null) {
               switch (group) {
@@ -113,6 +116,14 @@ class _UserPageState extends State<UserPage> {
                       .any((element) => element.id == transaction.id)) {
                     transactions.add(transaction);
                   }
+
+                case CurrencyConversionTransactions(
+                    transactions: var transactions
+                  ):
+                  if (!transactions
+                      .any((element) => element.id == transaction.id)) {
+                    transactions.add(transaction);
+                  }
               }
             } else {
               if (!transactions.any((element) =>
@@ -124,10 +135,16 @@ class _UserPageState extends State<UserPage> {
                       ? GroupedCrossSettlementTransactions(
                           transactions: [transaction],
                           groupId: transaction.transactionPartGroupId!)
-                      : GroupedPaidTransactions(
-                          groupId: transaction.transactionPartGroupId!,
-                          transactions: [transaction],
-                        ),
+                      : transaction.transactionType ==
+                              GTransactionType.CURRENCY_CONVERSION
+                          ? CurrencyConversionTransactions(
+                              groupId: transaction.transactionPartGroupId!,
+                              transactions: [transaction],
+                            )
+                          : GroupedPaidTransactions(
+                              groupId: transaction.transactionPartGroupId!,
+                              transactions: [transaction],
+                            ),
                 );
               }
             }
@@ -272,98 +289,118 @@ class _UserPageState extends State<UserPage> {
             ],
           )),
           const Divider(),
-          ButtonBar(
-            children: [
-              ElevatedButton.icon(
-                icon: const Icon(Icons.payments),
-                onPressed: () async {
-                  dynamic expense;
-                  if (user.toPay.length == 1) {
-                    expense = await Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => PaymentRecorder(
-                          withUser: user,
-                          initialCurrencyId: user.toPay.first.currencyId,
-                          initialAmount: user.toPay.first
-                              .getAmountFormatted(context.read())
-                              .toPrettyFixed(
-                                context
-                                    .read<AppState>()
-                                    .currencies[user.toPay.first.currencyId]!
-                                    .decimals,
-                              ),
-                        ),
-                      ),
-                    );
-                  } else if (user.toPay.isEmpty) {
-                    expense = await Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => PaymentRecorder(
-                          withUser: user,
-                          initialCurrencyId:
-                              context.read<AppState>().defaultCurrency!.id,
-                        ),
-                      ),
-                    );
-                  } else {
-                    expense = await Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => PaymentCurrencySelector(
-                          user: user,
-                          toPay: user.toPay,
-                          toReceive: user.toReceive,
-                        ),
-                      ),
-                    );
+        ],
+      ),
+      bottomNavigationBar: ButtonBar(
+        children: [
+          ElevatedButton.icon(
+            onPressed: () async {
+              var result = await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => CurrencyConverter(user: user),
+                ),
+              );
+              if (result is List<GSplitTransactionFields>) {
+                transactions.add(CurrencyConversionTransactions(
+                    transactions: result,
+                    groupId: result.first.transactionPartGroupId!));
+                fetchData(forceFirst: true);
+                generateGrouped();
+              }
+            },
+            icon: const Icon(Icons.currency_exchange_rounded),
+            label: const Text(
+              'Convert Currency',
+            ),
+          ),
+          ElevatedButton.icon(
+            icon: const Icon(Icons.sell),
+            onPressed: () async {
+              var expense = await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => CreateExpense(
+                    searchGroup: true,
+                    expenseWith:
+                        ExpenseWithPeople(users: [UserWithUser(user: user)]),
+                  ),
+                ),
+              );
+              if (expense is GNewExpenseFields) {
+                for (var split in expense.splits) {
+                  if (!transactions.any((element) =>
+                      element is SingleTransaction &&
+                      element.transaction.id == split.id)) {
+                    transactions.add(SingleTransaction(transaction: split));
                   }
-
-                  if (expense is List<GSplitTransactionFields>) {
-                    for (var split in expense) {
-                      if (!transactions.any((element) =>
-                          element is SingleTransaction &&
-                          element.transaction.id == split.id)) {
-                        transactions.add(SingleTransaction(transaction: split));
-                      }
-                    }
-                    fetchData(forceFirst: true);
-                    generateGrouped();
-                  }
-                },
-                label: const Text(
-                  "Record Payment",
+                }
+                fetchData(forceFirst: true);
+                generateGrouped();
+              }
+            },
+            label: const Text(
+              "Add Expense",
+            ),
+          )
+        ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: const Icon(Icons.payments),
+        onPressed: () async {
+          dynamic expense;
+          if (user.toPay.length == 1) {
+            expense = await Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => PaymentRecorder(
+                  withUser: user,
+                  initialCurrencyId: user.toPay.first.currencyId,
+                  initialAmount: user.toPay.first
+                      .getAmountFormatted(context.read())
+                      .toPrettyFixed(
+                        context
+                            .read<AppState>()
+                            .currencies[user.toPay.first.currencyId]!
+                            .decimals,
+                      ),
                 ),
               ),
-              ElevatedButton.icon(
-                icon: const Icon(Icons.sell),
-                onPressed: () async {
-                  var expense = await Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => CreateExpense(
-                        searchGroup: true,
-                        expenseWith: ExpenseWithPeople(
-                            users: [UserWithUser(user: user)]),
-                      ),
-                    ),
-                  );
-                  if (expense is GNewExpenseFields) {
-                    for (var split in expense.splits) {
-                      if (!transactions.any((element) =>
-                          element is SingleTransaction &&
-                          element.transaction.id == split.id)) {
-                        transactions.add(SingleTransaction(transaction: split));
-                      }
-                    }
-                    fetchData(forceFirst: true);
-                    generateGrouped();
-                  }
-                },
-                label: const Text(
-                  "Add Expense",
+            );
+          } else if (user.toPay.isEmpty) {
+            expense = await Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => PaymentRecorder(
+                  withUser: user,
+                  initialCurrencyId:
+                      context.read<AppState>().defaultCurrency!.id,
                 ),
-              )
-            ],
-          ),
-        ],
+              ),
+            );
+          } else {
+            expense = await Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => PaymentCurrencySelector(
+                  user: user,
+                  toPay: user.toPay,
+                  toReceive: user.toReceive,
+                ),
+              ),
+            );
+          }
+
+          if (expense is List<GSplitTransactionFields>) {
+            for (var split in expense) {
+              if (!transactions.any((element) =>
+                  element is SingleTransaction &&
+                  element.transaction.id == split.id)) {
+                transactions.add(SingleTransaction(transaction: split));
+              }
+            }
+            fetchData(forceFirst: true);
+            generateGrouped();
+          }
+        },
+        label: const Text(
+          "Record Payment",
+        ),
       ),
     );
   }
@@ -425,7 +462,8 @@ class UserTransactionCard extends StatelessWidget {
           neutralYellow.primary,
         );
       }
-    } else if (transaction.transactionType == GTransactionType.EXPENSE_SPLIT) {
+    } else if (transaction.transactionType == GTransactionType.EXPENSE_SPLIT ||
+        transaction.transactionType == GTransactionType.CURRENCY_CONVERSION) {
       if (getIsReceiver(context, transaction)) {
         return (
           TextSpan(children: [
@@ -470,7 +508,8 @@ class UserTransactionCard extends StatelessWidget {
   TextSpan? subTitle(
       BuildContext context, GSplitTransactionFields transaction) {
     if (transaction.transactionType == GTransactionType.CASH_PAID ||
-        transaction.transactionType == GTransactionType.EXPENSE_SPLIT) {
+        transaction.transactionType == GTransactionType.EXPENSE_SPLIT ||
+        transaction.transactionType == GTransactionType.CURRENCY_CONVERSION) {
       if (transaction.group.id == userGroup?.id) {
         return const TextSpan(children: [
           TextSpan(text: 'in '),
@@ -536,6 +575,116 @@ class UserTransactionCard extends StatelessWidget {
                   ),
                   elevation: 0,
                   child: buildSingleTransaction(context, transaction)),
+              CurrencyConversionTransactions(transactions: var transactions) =>
+                ChatBubble(
+                  clipper: ChatBubbleClipper1(
+                    type: isSelf(context)
+                        ? BubbleType.sendBubble
+                        : BubbleType.receiverBubble,
+                  ),
+                  backGroundColor: isSelf(context)
+                      ? Theme.of(context).colorScheme.secondaryContainer
+                      : Theme.of(context).colorScheme.tertiaryContainer,
+                  padding: EdgeInsets.only(
+                    left: isSelf(context) ? 0 : 20,
+                    right: !isSelf(context) ? 0 : 15,
+                  ),
+                  elevation: 0,
+                  child: Stack(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            'Converted',
+                            style: Theme.of(context).textTheme.titleMedium,
+                            textAlign: TextAlign.center,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: AutoScroll(
+                              child: Row(
+                                children: [
+                                  Text(
+                                    transactions.first.amount
+                                        .getPretty(context.read()),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w800,
+                                          color: ColorUtils.getNeutralYellow(
+                                                  context)
+                                              .primary,
+                                        ),
+                                  ),
+                                  const Icon(Icons.chevron_right),
+                                  if (transactions.length > 1)
+                                    Text(
+                                      transactions[1]
+                                          .amount
+                                          .getPretty(context.read()),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w800,
+                                            color: ColorUtils.getNeutralYellow(
+                                                    context)
+                                                .primary,
+                                          ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          if (transactions.length > 1)
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  ...[
+                                    Text.rich(
+                                      getTitle(context, transactions[1]).$1,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge,
+                                    ),
+                                    Text.rich(
+                                      subTitle(context, transactions[1]) ??
+                                          const TextSpan(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge,
+                                    ),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                  ]
+                                ],
+                              ),
+                            ),
+                        ],
+                      ),
+                      Positioned(
+                        bottom: 3,
+                        right: 15,
+                        child: Text(
+                          DateFormat("h:mm a").format(
+                            DateTime.parse(transactions.first.createdAt)
+                                .toLocal(),
+                          ),
+                          style: Theme.of(context).textTheme.labelSmall,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               GroupedPaidTransactions(
                 transactions: var transactions,
                 groupId: var groupedTransactionId,
@@ -980,87 +1129,91 @@ class UserSummaryWidget extends StatelessWidget {
                     .userGroups
                     .firstWhere((element) => element.id == member.groupId);
 
-                return Row(
-                  children: [
-                    SizedBox(
-                      height: 25,
-                      width: 25,
-                      child: FittedBox(
-                        child: GroupIconWidget(
-                          group: group,
+                return AutoScroll(
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        height: 25,
+                        width: 25,
+                        child: FittedBox(
+                          child: GroupIconWidget(
+                            group: group,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      group.getDisplayName(context.read()),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
+                      const SizedBox(
+                        width: 10,
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    if (member.amount.amount < 0)
-                      Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'owes you ',
-                              style: TextStyle(
-                                color: scheme.primary,
-                              ),
-                            ),
-                            TextSpan(
-                              text: member.amount.getPrettyAbs(context.read()),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(
-                                      color: scheme.primary,
-                                      fontWeight: FontWeight.w800),
-                            ),
-                          ],
+                      Text(
+                        group.getDisplayName(context.read()),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
-                      )
-                    else if (member.amount.amount > 0)
-                      Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'you owe ',
-                              style: TextStyle(
-                                color: scheme.error,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      if (member.amount.amount < 0)
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'owes you ',
+                                style: TextStyle(
+                                  color: scheme.primary,
+                                ),
                               ),
-                            ),
-                            TextSpan(
-                              text: member.amount.getPrettyAbs(context.read()),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(
-                                      color: scheme.error,
-                                      fontWeight: FontWeight.w800),
-                            ),
-                          ],
-                        ),
-                      )
-                    else
-                      Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'settled with you ',
-                              style: TextStyle(
-                                color: neutralBlue.primary,
+                              TextSpan(
+                                text:
+                                    member.amount.getPrettyAbs(context.read()),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                        color: scheme.primary,
+                                        fontWeight: FontWeight.w800),
                               ),
-                            ),
-                          ],
-                        ),
-                      )
-                  ],
+                            ],
+                          ),
+                        )
+                      else if (member.amount.amount > 0)
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'you owe ',
+                                style: TextStyle(
+                                  color: scheme.error,
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    member.amount.getPrettyAbs(context.read()),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                        color: scheme.error,
+                                        fontWeight: FontWeight.w800),
+                              ),
+                            ],
+                          ),
+                        )
+                      else
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'settled with you ',
+                                style: TextStyle(
+                                  color: neutralBlue.primary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                    ],
+                  ),
                 );
               },
             ).intersperse(

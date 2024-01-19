@@ -63,6 +63,9 @@ class GTransactionType extends EnumClass {
   static const GTransactionType CROSS_GROUP_SETTLEMENT =
       _$gTransactionTypeCROSS_GROUP_SETTLEMENT;
 
+  static const GTransactionType CURRENCY_CONVERSION =
+      _$gTransactionTypeCURRENCY_CONVERSION;
+
   static const GTransactionType CASH_PAID = _$gTransactionTypeCASH_PAID;
 
   static Serializer<GTransactionType> get serializer =>

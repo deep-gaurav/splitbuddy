@@ -352,6 +352,59 @@ Serializer<GsetDefaultCurrencyData> _$gsetDefaultCurrencyDataSerializer =
 Serializer<GsetDefaultCurrencyData_setDefaultCurrency>
     _$gsetDefaultCurrencyDataSetDefaultCurrencySerializer =
     new _$GsetDefaultCurrencyData_setDefaultCurrencySerializer();
+Serializer<GcurrencyConvertData> _$gcurrencyConvertDataSerializer =
+    new _$GcurrencyConvertDataSerializer();
+Serializer<GcurrencyConvertData_convertCurrency>
+    _$gcurrencyConvertDataConvertCurrencySerializer =
+    new _$GcurrencyConvertData_convertCurrencySerializer();
+Serializer<GcurrencyConvertData_convertCurrency_expense>
+    _$gcurrencyConvertDataConvertCurrencyExpenseSerializer =
+    new _$GcurrencyConvertData_convertCurrency_expenseSerializer();
+Serializer<GcurrencyConvertData_convertCurrency_expense_amount>
+    _$gcurrencyConvertDataConvertCurrencyExpenseAmountSerializer =
+    new _$GcurrencyConvertData_convertCurrency_expense_amountSerializer();
+Serializer<GcurrencyConvertData_convertCurrency_group>
+    _$gcurrencyConvertDataConvertCurrencyGroupSerializer =
+    new _$GcurrencyConvertData_convertCurrency_groupSerializer();
+Serializer<GcurrencyConvertData_convertCurrency_creator>
+    _$gcurrencyConvertDataConvertCurrencyCreatorSerializer =
+    new _$GcurrencyConvertData_convertCurrency_creatorSerializer();
+Serializer<GcurrencyConvertData_convertCurrency_fromUser>
+    _$gcurrencyConvertDataConvertCurrencyFromUserSerializer =
+    new _$GcurrencyConvertData_convertCurrency_fromUserSerializer();
+Serializer<GcurrencyConvertData_convertCurrency_toUser>
+    _$gcurrencyConvertDataConvertCurrencyToUserSerializer =
+    new _$GcurrencyConvertData_convertCurrency_toUserSerializer();
+Serializer<GcurrencyConvertData_convertCurrency_amount>
+    _$gcurrencyConvertDataConvertCurrencyAmountSerializer =
+    new _$GcurrencyConvertData_convertCurrency_amountSerializer();
+Serializer<GchangeNameData> _$gchangeNameDataSerializer =
+    new _$GchangeNameDataSerializer();
+Serializer<GchangeNameData_changeName> _$gchangeNameDataChangeNameSerializer =
+    new _$GchangeNameData_changeNameSerializer();
+Serializer<GgetTransactionsData> _$ggetTransactionsDataSerializer =
+    new _$GgetTransactionsDataSerializer();
+Serializer<GgetTransactionsData_getTransactions>
+    _$ggetTransactionsDataGetTransactionsSerializer =
+    new _$GgetTransactionsData_getTransactionsSerializer();
+Serializer<GgetTransactionsData_getTransactions_expense>
+    _$ggetTransactionsDataGetTransactionsExpenseSerializer =
+    new _$GgetTransactionsData_getTransactions_expenseSerializer();
+Serializer<GgetTransactionsData_getTransactions_expense_amount>
+    _$ggetTransactionsDataGetTransactionsExpenseAmountSerializer =
+    new _$GgetTransactionsData_getTransactions_expense_amountSerializer();
+Serializer<GgetTransactionsData_getTransactions_split>
+    _$ggetTransactionsDataGetTransactionsSplitSerializer =
+    new _$GgetTransactionsData_getTransactions_splitSerializer();
+Serializer<GgetTransactionsData_getTransactions_split_fromUser>
+    _$ggetTransactionsDataGetTransactionsSplitFromUserSerializer =
+    new _$GgetTransactionsData_getTransactions_split_fromUserSerializer();
+Serializer<GgetTransactionsData_getTransactions_split_toUser>
+    _$ggetTransactionsDataGetTransactionsSplitToUserSerializer =
+    new _$GgetTransactionsData_getTransactions_split_toUserSerializer();
+Serializer<GgetTransactionsData_getTransactions_split_amount>
+    _$ggetTransactionsDataGetTransactionsSplitAmountSerializer =
+    new _$GgetTransactionsData_getTransactions_split_amountSerializer();
 Serializer<GUserFieldsData> _$gUserFieldsDataSerializer =
     new _$GUserFieldsDataSerializer();
 Serializer<GAmountFieldsData> _$gAmountFieldsDataSerializer =
@@ -10554,6 +10607,1610 @@ class _$GsetDefaultCurrencyData_setDefaultCurrencySerializer
           break;
         case 'defaultCurrencyId':
           result.defaultCurrencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcurrencyConvertDataSerializer
+    implements StructuredSerializer<GcurrencyConvertData> {
+  @override
+  final Iterable<Type> types = const [
+    GcurrencyConvertData,
+    _$GcurrencyConvertData
+  ];
+  @override
+  final String wireName = 'GcurrencyConvertData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GcurrencyConvertData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'convertCurrency',
+      serializers.serialize(object.convertCurrency,
+          specifiedType: const FullType(BuiltList,
+              const [const FullType(GcurrencyConvertData_convertCurrency)])),
+    ];
+
+    return result;
+  }
+
+  @override
+  GcurrencyConvertData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcurrencyConvertDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'convertCurrency':
+          result.convertCurrency.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GcurrencyConvertData_convertCurrency)
+              ]))! as BuiltList<Object?>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrencySerializer
+    implements StructuredSerializer<GcurrencyConvertData_convertCurrency> {
+  @override
+  final Iterable<Type> types = const [
+    GcurrencyConvertData_convertCurrency,
+    _$GcurrencyConvertData_convertCurrency
+  ];
+  @override
+  final String wireName = 'GcurrencyConvertData_convertCurrency';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GcurrencyConvertData_convertCurrency object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'group',
+      serializers.serialize(object.group,
+          specifiedType:
+              const FullType(GcurrencyConvertData_convertCurrency_group)),
+      'creator',
+      serializers.serialize(object.creator,
+          specifiedType:
+              const FullType(GcurrencyConvertData_convertCurrency_creator)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType:
+              const FullType(GcurrencyConvertData_convertCurrency_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType:
+              const FullType(GcurrencyConvertData_convertCurrency_toUser)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount,
+          specifiedType:
+              const FullType(GcurrencyConvertData_convertCurrency_amount)),
+      'transactionType',
+      serializers.serialize(object.transactionType,
+          specifiedType: const FullType(_i3.GTransactionType)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.expense;
+    if (value != null) {
+      result
+        ..add('expense')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(GcurrencyConvertData_convertCurrency_expense)));
+    }
+    value = object.transactionPartGroupId;
+    if (value != null) {
+      result
+        ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcurrencyConvertData_convertCurrencyBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'expense':
+          result.expense.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcurrencyConvertData_convertCurrency_expense))!
+              as GcurrencyConvertData_convertCurrency_expense);
+          break;
+        case 'group':
+          result.group.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcurrencyConvertData_convertCurrency_group))!
+              as GcurrencyConvertData_convertCurrency_group);
+          break;
+        case 'creator':
+          result.creator.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcurrencyConvertData_convertCurrency_creator))!
+              as GcurrencyConvertData_convertCurrency_creator);
+          break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcurrencyConvertData_convertCurrency_fromUser))!
+              as GcurrencyConvertData_convertCurrency_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcurrencyConvertData_convertCurrency_toUser))!
+              as GcurrencyConvertData_convertCurrency_toUser);
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcurrencyConvertData_convertCurrency_amount))!
+              as GcurrencyConvertData_convertCurrency_amount);
+          break;
+        case 'transactionType':
+          result.transactionType = serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GTransactionType))!
+              as _i3.GTransactionType;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionPartGroupId':
+          result.transactionPartGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_expenseSerializer
+    implements
+        StructuredSerializer<GcurrencyConvertData_convertCurrency_expense> {
+  @override
+  final Iterable<Type> types = const [
+    GcurrencyConvertData_convertCurrency_expense,
+    _$GcurrencyConvertData_convertCurrency_expense
+  ];
+  @override
+  final String wireName = 'GcurrencyConvertData_convertCurrency_expense';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcurrencyConvertData_convertCurrency_expense object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount,
+          specifiedType: const FullType(
+              GcurrencyConvertData_convertCurrency_expense_amount)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_expense deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcurrencyConvertData_convertCurrency_expenseBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GcurrencyConvertData_convertCurrency_expense_amount))!
+              as GcurrencyConvertData_convertCurrency_expense_amount);
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_expense_amountSerializer
+    implements
+        StructuredSerializer<
+            GcurrencyConvertData_convertCurrency_expense_amount> {
+  @override
+  final Iterable<Type> types = const [
+    GcurrencyConvertData_convertCurrency_expense_amount,
+    _$GcurrencyConvertData_convertCurrency_expense_amount
+  ];
+  @override
+  final String wireName = 'GcurrencyConvertData_convertCurrency_expense_amount';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcurrencyConvertData_convertCurrency_expense_amount object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'currencyId',
+      serializers.serialize(object.currencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_expense_amount deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GcurrencyConvertData_convertCurrency_expense_amountBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'currencyId':
+          result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_groupSerializer
+    implements
+        StructuredSerializer<GcurrencyConvertData_convertCurrency_group> {
+  @override
+  final Iterable<Type> types = const [
+    GcurrencyConvertData_convertCurrency_group,
+    _$GcurrencyConvertData_convertCurrency_group
+  ];
+  @override
+  final String wireName = 'GcurrencyConvertData_convertCurrency_group';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcurrencyConvertData_convertCurrency_group object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_group deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcurrencyConvertData_convertCurrency_groupBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_creatorSerializer
+    implements
+        StructuredSerializer<GcurrencyConvertData_convertCurrency_creator> {
+  @override
+  final Iterable<Type> types = const [
+    GcurrencyConvertData_convertCurrency_creator,
+    _$GcurrencyConvertData_convertCurrency_creator
+  ];
+  @override
+  final String wireName = 'GcurrencyConvertData_convertCurrency_creator';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcurrencyConvertData_convertCurrency_creator object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_creator deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcurrencyConvertData_convertCurrency_creatorBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_fromUserSerializer
+    implements
+        StructuredSerializer<GcurrencyConvertData_convertCurrency_fromUser> {
+  @override
+  final Iterable<Type> types = const [
+    GcurrencyConvertData_convertCurrency_fromUser,
+    _$GcurrencyConvertData_convertCurrency_fromUser
+  ];
+  @override
+  final String wireName = 'GcurrencyConvertData_convertCurrency_fromUser';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcurrencyConvertData_convertCurrency_fromUser object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_fromUser deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcurrencyConvertData_convertCurrency_fromUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_toUserSerializer
+    implements
+        StructuredSerializer<GcurrencyConvertData_convertCurrency_toUser> {
+  @override
+  final Iterable<Type> types = const [
+    GcurrencyConvertData_convertCurrency_toUser,
+    _$GcurrencyConvertData_convertCurrency_toUser
+  ];
+  @override
+  final String wireName = 'GcurrencyConvertData_convertCurrency_toUser';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcurrencyConvertData_convertCurrency_toUser object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_toUser deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcurrencyConvertData_convertCurrency_toUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_amountSerializer
+    implements
+        StructuredSerializer<GcurrencyConvertData_convertCurrency_amount> {
+  @override
+  final Iterable<Type> types = const [
+    GcurrencyConvertData_convertCurrency_amount,
+    _$GcurrencyConvertData_convertCurrency_amount
+  ];
+  @override
+  final String wireName = 'GcurrencyConvertData_convertCurrency_amount';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GcurrencyConvertData_convertCurrency_amount object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'currencyId',
+      serializers.serialize(object.currencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_amount deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GcurrencyConvertData_convertCurrency_amountBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'currencyId':
+          result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GchangeNameDataSerializer
+    implements StructuredSerializer<GchangeNameData> {
+  @override
+  final Iterable<Type> types = const [GchangeNameData, _$GchangeNameData];
+  @override
+  final String wireName = 'GchangeNameData';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GchangeNameData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'changeName',
+      serializers.serialize(object.changeName,
+          specifiedType: const FullType(GchangeNameData_changeName)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GchangeNameData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GchangeNameDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'changeName':
+          result.changeName.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GchangeNameData_changeName))!
+              as GchangeNameData_changeName);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GchangeNameData_changeNameSerializer
+    implements StructuredSerializer<GchangeNameData_changeName> {
+  @override
+  final Iterable<Type> types = const [
+    GchangeNameData_changeName,
+    _$GchangeNameData_changeName
+  ];
+  @override
+  final String wireName = 'GchangeNameData_changeName';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GchangeNameData_changeName object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GchangeNameData_changeName deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GchangeNameData_changeNameBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetTransactionsDataSerializer
+    implements StructuredSerializer<GgetTransactionsData> {
+  @override
+  final Iterable<Type> types = const [
+    GgetTransactionsData,
+    _$GgetTransactionsData
+  ];
+  @override
+  final String wireName = 'GgetTransactionsData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetTransactionsData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'getTransactions',
+      serializers.serialize(object.getTransactions,
+          specifiedType: const FullType(BuiltList,
+              const [const FullType(GgetTransactionsData_getTransactions)])),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetTransactionsData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetTransactionsDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'getTransactions':
+          result.getTransactions.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GgetTransactionsData_getTransactions)
+              ]))! as BuiltList<Object?>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetTransactionsData_getTransactionsSerializer
+    implements StructuredSerializer<GgetTransactionsData_getTransactions> {
+  @override
+  final Iterable<Type> types = const [
+    GgetTransactionsData_getTransactions,
+    _$GgetTransactionsData_getTransactions
+  ];
+  @override
+  final String wireName = 'GgetTransactionsData_getTransactions';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetTransactionsData_getTransactions object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.expense;
+    if (value != null) {
+      result
+        ..add('expense')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(GgetTransactionsData_getTransactions_expense)));
+    }
+    value = object.split;
+    if (value != null) {
+      result
+        ..add('split')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(GgetTransactionsData_getTransactions_split)));
+    }
+    return result;
+  }
+
+  @override
+  GgetTransactionsData_getTransactions deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetTransactionsData_getTransactionsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'expense':
+          result.expense.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GgetTransactionsData_getTransactions_expense))!
+              as GgetTransactionsData_getTransactions_expense);
+          break;
+        case 'split':
+          result.split.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GgetTransactionsData_getTransactions_split))!
+              as GgetTransactionsData_getTransactions_split);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetTransactionsData_getTransactions_expenseSerializer
+    implements
+        StructuredSerializer<GgetTransactionsData_getTransactions_expense> {
+  @override
+  final Iterable<Type> types = const [
+    GgetTransactionsData_getTransactions_expense,
+    _$GgetTransactionsData_getTransactions_expense
+  ];
+  @override
+  final String wireName = 'GgetTransactionsData_getTransactions_expense';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GgetTransactionsData_getTransactions_expense object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount,
+          specifiedType: const FullType(
+              GgetTransactionsData_getTransactions_expense_amount)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_expense deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetTransactionsData_getTransactions_expenseBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GgetTransactionsData_getTransactions_expense_amount))!
+              as GgetTransactionsData_getTransactions_expense_amount);
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetTransactionsData_getTransactions_expense_amountSerializer
+    implements
+        StructuredSerializer<
+            GgetTransactionsData_getTransactions_expense_amount> {
+  @override
+  final Iterable<Type> types = const [
+    GgetTransactionsData_getTransactions_expense_amount,
+    _$GgetTransactionsData_getTransactions_expense_amount
+  ];
+  @override
+  final String wireName = 'GgetTransactionsData_getTransactions_expense_amount';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GgetTransactionsData_getTransactions_expense_amount object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'currencyId',
+      serializers.serialize(object.currencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_expense_amount deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GgetTransactionsData_getTransactions_expense_amountBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'currencyId':
+          result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetTransactionsData_getTransactions_splitSerializer
+    implements
+        StructuredSerializer<GgetTransactionsData_getTransactions_split> {
+  @override
+  final Iterable<Type> types = const [
+    GgetTransactionsData_getTransactions_split,
+    _$GgetTransactionsData_getTransactions_split
+  ];
+  @override
+  final String wireName = 'GgetTransactionsData_getTransactions_split';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GgetTransactionsData_getTransactions_split object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType: const FullType(
+              GgetTransactionsData_getTransactions_split_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType: const FullType(
+              GgetTransactionsData_getTransactions_split_toUser)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount,
+          specifiedType: const FullType(
+              GgetTransactionsData_getTransactions_split_amount)),
+      'transactionType',
+      serializers.serialize(object.transactionType,
+          specifiedType: const FullType(_i3.GTransactionType)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.transactionPartGroupId;
+    if (value != null) {
+      result
+        ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_split deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetTransactionsData_getTransactions_splitBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GgetTransactionsData_getTransactions_split_fromUser))!
+              as GgetTransactionsData_getTransactions_split_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GgetTransactionsData_getTransactions_split_toUser))!
+              as GgetTransactionsData_getTransactions_split_toUser);
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GgetTransactionsData_getTransactions_split_amount))!
+              as GgetTransactionsData_getTransactions_split_amount);
+          break;
+        case 'transactionType':
+          result.transactionType = serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GTransactionType))!
+              as _i3.GTransactionType;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionPartGroupId':
+          result.transactionPartGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetTransactionsData_getTransactions_split_fromUserSerializer
+    implements
+        StructuredSerializer<
+            GgetTransactionsData_getTransactions_split_fromUser> {
+  @override
+  final Iterable<Type> types = const [
+    GgetTransactionsData_getTransactions_split_fromUser,
+    _$GgetTransactionsData_getTransactions_split_fromUser
+  ];
+  @override
+  final String wireName = 'GgetTransactionsData_getTransactions_split_fromUser';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GgetTransactionsData_getTransactions_split_fromUser object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_split_fromUser deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GgetTransactionsData_getTransactions_split_fromUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetTransactionsData_getTransactions_split_toUserSerializer
+    implements
+        StructuredSerializer<
+            GgetTransactionsData_getTransactions_split_toUser> {
+  @override
+  final Iterable<Type> types = const [
+    GgetTransactionsData_getTransactions_split_toUser,
+    _$GgetTransactionsData_getTransactions_split_toUser
+  ];
+  @override
+  final String wireName = 'GgetTransactionsData_getTransactions_split_toUser';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GgetTransactionsData_getTransactions_split_toUser object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_split_toUser deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GgetTransactionsData_getTransactions_split_toUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetTransactionsData_getTransactions_split_amountSerializer
+    implements
+        StructuredSerializer<
+            GgetTransactionsData_getTransactions_split_amount> {
+  @override
+  final Iterable<Type> types = const [
+    GgetTransactionsData_getTransactions_split_amount,
+    _$GgetTransactionsData_getTransactions_split_amount
+  ];
+  @override
+  final String wireName = 'GgetTransactionsData_getTransactions_split_amount';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GgetTransactionsData_getTransactions_split_amount object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'currencyId',
+      serializers.serialize(object.currencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_split_amount deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GgetTransactionsData_getTransactions_split_amountBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'currencyId':
+          result.currencyId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
       }
@@ -37048,6 +38705,3266 @@ class GsetDefaultCurrencyData_setDefaultCurrencyBuilder
                 defaultCurrencyId,
                 r'GsetDefaultCurrencyData_setDefaultCurrency',
                 'defaultCurrencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcurrencyConvertData extends GcurrencyConvertData {
+  @override
+  final String G__typename;
+  @override
+  final BuiltList<GcurrencyConvertData_convertCurrency> convertCurrency;
+
+  factory _$GcurrencyConvertData(
+          [void Function(GcurrencyConvertDataBuilder)? updates]) =>
+      (new GcurrencyConvertDataBuilder()..update(updates))._build();
+
+  _$GcurrencyConvertData._(
+      {required this.G__typename, required this.convertCurrency})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GcurrencyConvertData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        convertCurrency, r'GcurrencyConvertData', 'convertCurrency');
+  }
+
+  @override
+  GcurrencyConvertData rebuild(
+          void Function(GcurrencyConvertDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcurrencyConvertDataBuilder toBuilder() =>
+      new GcurrencyConvertDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcurrencyConvertData &&
+        G__typename == other.G__typename &&
+        convertCurrency == other.convertCurrency;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, convertCurrency.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GcurrencyConvertData')
+          ..add('G__typename', G__typename)
+          ..add('convertCurrency', convertCurrency))
+        .toString();
+  }
+}
+
+class GcurrencyConvertDataBuilder
+    implements Builder<GcurrencyConvertData, GcurrencyConvertDataBuilder> {
+  _$GcurrencyConvertData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  ListBuilder<GcurrencyConvertData_convertCurrency>? _convertCurrency;
+  ListBuilder<GcurrencyConvertData_convertCurrency> get convertCurrency =>
+      _$this._convertCurrency ??=
+          new ListBuilder<GcurrencyConvertData_convertCurrency>();
+  set convertCurrency(
+          ListBuilder<GcurrencyConvertData_convertCurrency>? convertCurrency) =>
+      _$this._convertCurrency = convertCurrency;
+
+  GcurrencyConvertDataBuilder() {
+    GcurrencyConvertData._initializeBuilder(this);
+  }
+
+  GcurrencyConvertDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _convertCurrency = $v.convertCurrency.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcurrencyConvertData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcurrencyConvertData;
+  }
+
+  @override
+  void update(void Function(GcurrencyConvertDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcurrencyConvertData build() => _build();
+
+  _$GcurrencyConvertData _build() {
+    _$GcurrencyConvertData _$result;
+    try {
+      _$result = _$v ??
+          new _$GcurrencyConvertData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GcurrencyConvertData', 'G__typename'),
+              convertCurrency: convertCurrency.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'convertCurrency';
+        convertCurrency.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GcurrencyConvertData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency
+    extends GcurrencyConvertData_convertCurrency {
+  @override
+  final String G__typename;
+  @override
+  final GcurrencyConvertData_convertCurrency_expense? expense;
+  @override
+  final GcurrencyConvertData_convertCurrency_group group;
+  @override
+  final GcurrencyConvertData_convertCurrency_creator creator;
+  @override
+  final GcurrencyConvertData_convertCurrency_fromUser fromUser;
+  @override
+  final GcurrencyConvertData_convertCurrency_toUser toUser;
+  @override
+  final String id;
+  @override
+  final GcurrencyConvertData_convertCurrency_amount amount;
+  @override
+  final _i3.GTransactionType transactionType;
+  @override
+  final String createdAt;
+  @override
+  final String? transactionPartGroupId;
+  @override
+  final String fromUserId;
+  @override
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
+
+  factory _$GcurrencyConvertData_convertCurrency(
+          [void Function(GcurrencyConvertData_convertCurrencyBuilder)?
+              updates]) =>
+      (new GcurrencyConvertData_convertCurrencyBuilder()..update(updates))
+          ._build();
+
+  _$GcurrencyConvertData_convertCurrency._(
+      {required this.G__typename,
+      this.expense,
+      required this.group,
+      required this.creator,
+      required this.fromUser,
+      required this.toUser,
+      required this.id,
+      required this.amount,
+      required this.transactionType,
+      required this.createdAt,
+      this.transactionPartGroupId,
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GcurrencyConvertData_convertCurrency', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        group, r'GcurrencyConvertData_convertCurrency', 'group');
+    BuiltValueNullFieldError.checkNotNull(
+        creator, r'GcurrencyConvertData_convertCurrency', 'creator');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser, r'GcurrencyConvertData_convertCurrency', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'GcurrencyConvertData_convertCurrency', 'toUser');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GcurrencyConvertData_convertCurrency', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GcurrencyConvertData_convertCurrency', 'amount');
+    BuiltValueNullFieldError.checkNotNull(transactionType,
+        r'GcurrencyConvertData_convertCurrency', 'transactionType');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt, r'GcurrencyConvertData_convertCurrency', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUserId, r'GcurrencyConvertData_convertCurrency', 'fromUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        toUserId, r'GcurrencyConvertData_convertCurrency', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GcurrencyConvertData_convertCurrency', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GcurrencyConvertData_convertCurrency', 'groupId');
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency rebuild(
+          void Function(GcurrencyConvertData_convertCurrencyBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcurrencyConvertData_convertCurrencyBuilder toBuilder() =>
+      new GcurrencyConvertData_convertCurrencyBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcurrencyConvertData_convertCurrency &&
+        G__typename == other.G__typename &&
+        expense == other.expense &&
+        group == other.group &&
+        creator == other.creator &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
+        id == other.id &&
+        amount == other.amount &&
+        transactionType == other.transactionType &&
+        createdAt == other.createdAt &&
+        transactionPartGroupId == other.transactionPartGroupId &&
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, expense.hashCode);
+    _$hash = $jc(_$hash, group.hashCode);
+    _$hash = $jc(_$hash, creator.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, transactionType.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GcurrencyConvertData_convertCurrency')
+          ..add('G__typename', G__typename)
+          ..add('expense', expense)
+          ..add('group', group)
+          ..add('creator', creator)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
+          ..add('id', id)
+          ..add('amount', amount)
+          ..add('transactionType', transactionType)
+          ..add('createdAt', createdAt)
+          ..add('transactionPartGroupId', transactionPartGroupId)
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
+        .toString();
+  }
+}
+
+class GcurrencyConvertData_convertCurrencyBuilder
+    implements
+        Builder<GcurrencyConvertData_convertCurrency,
+            GcurrencyConvertData_convertCurrencyBuilder> {
+  _$GcurrencyConvertData_convertCurrency? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GcurrencyConvertData_convertCurrency_expenseBuilder? _expense;
+  GcurrencyConvertData_convertCurrency_expenseBuilder get expense =>
+      _$this._expense ??=
+          new GcurrencyConvertData_convertCurrency_expenseBuilder();
+  set expense(GcurrencyConvertData_convertCurrency_expenseBuilder? expense) =>
+      _$this._expense = expense;
+
+  GcurrencyConvertData_convertCurrency_groupBuilder? _group;
+  GcurrencyConvertData_convertCurrency_groupBuilder get group =>
+      _$this._group ??= new GcurrencyConvertData_convertCurrency_groupBuilder();
+  set group(GcurrencyConvertData_convertCurrency_groupBuilder? group) =>
+      _$this._group = group;
+
+  GcurrencyConvertData_convertCurrency_creatorBuilder? _creator;
+  GcurrencyConvertData_convertCurrency_creatorBuilder get creator =>
+      _$this._creator ??=
+          new GcurrencyConvertData_convertCurrency_creatorBuilder();
+  set creator(GcurrencyConvertData_convertCurrency_creatorBuilder? creator) =>
+      _$this._creator = creator;
+
+  GcurrencyConvertData_convertCurrency_fromUserBuilder? _fromUser;
+  GcurrencyConvertData_convertCurrency_fromUserBuilder get fromUser =>
+      _$this._fromUser ??=
+          new GcurrencyConvertData_convertCurrency_fromUserBuilder();
+  set fromUser(
+          GcurrencyConvertData_convertCurrency_fromUserBuilder? fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GcurrencyConvertData_convertCurrency_toUserBuilder? _toUser;
+  GcurrencyConvertData_convertCurrency_toUserBuilder get toUser =>
+      _$this._toUser ??=
+          new GcurrencyConvertData_convertCurrency_toUserBuilder();
+  set toUser(GcurrencyConvertData_convertCurrency_toUserBuilder? toUser) =>
+      _$this._toUser = toUser;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  GcurrencyConvertData_convertCurrency_amountBuilder? _amount;
+  GcurrencyConvertData_convertCurrency_amountBuilder get amount =>
+      _$this._amount ??=
+          new GcurrencyConvertData_convertCurrency_amountBuilder();
+  set amount(GcurrencyConvertData_convertCurrency_amountBuilder? amount) =>
+      _$this._amount = amount;
+
+  _i3.GTransactionType? _transactionType;
+  _i3.GTransactionType? get transactionType => _$this._transactionType;
+  set transactionType(_i3.GTransactionType? transactionType) =>
+      _$this._transactionType = transactionType;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _transactionPartGroupId;
+  String? get transactionPartGroupId => _$this._transactionPartGroupId;
+  set transactionPartGroupId(String? transactionPartGroupId) =>
+      _$this._transactionPartGroupId = transactionPartGroupId;
+
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
+
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
+
+  GcurrencyConvertData_convertCurrencyBuilder() {
+    GcurrencyConvertData_convertCurrency._initializeBuilder(this);
+  }
+
+  GcurrencyConvertData_convertCurrencyBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _expense = $v.expense?.toBuilder();
+      _group = $v.group.toBuilder();
+      _creator = $v.creator.toBuilder();
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
+      _id = $v.id;
+      _amount = $v.amount.toBuilder();
+      _transactionType = $v.transactionType;
+      _createdAt = $v.createdAt;
+      _transactionPartGroupId = $v.transactionPartGroupId;
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcurrencyConvertData_convertCurrency other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcurrencyConvertData_convertCurrency;
+  }
+
+  @override
+  void update(
+      void Function(GcurrencyConvertData_convertCurrencyBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency build() => _build();
+
+  _$GcurrencyConvertData_convertCurrency _build() {
+    _$GcurrencyConvertData_convertCurrency _$result;
+    try {
+      _$result = _$v ??
+          new _$GcurrencyConvertData_convertCurrency._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GcurrencyConvertData_convertCurrency', 'G__typename'),
+              expense: _expense?.build(),
+              group: group.build(),
+              creator: creator.build(),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GcurrencyConvertData_convertCurrency', 'id'),
+              amount: amount.build(),
+              transactionType: BuiltValueNullFieldError.checkNotNull(
+                  transactionType, r'GcurrencyConvertData_convertCurrency', 'transactionType'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GcurrencyConvertData_convertCurrency', 'createdAt'),
+              transactionPartGroupId: transactionPartGroupId,
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GcurrencyConvertData_convertCurrency', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GcurrencyConvertData_convertCurrency', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId, r'GcurrencyConvertData_convertCurrency', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GcurrencyConvertData_convertCurrency', 'groupId'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'expense';
+        _expense?.build();
+        _$failedField = 'group';
+        group.build();
+        _$failedField = 'creator';
+        creator.build();
+        _$failedField = 'fromUser';
+        fromUser.build();
+        _$failedField = 'toUser';
+        toUser.build();
+
+        _$failedField = 'amount';
+        amount.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GcurrencyConvertData_convertCurrency',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_expense
+    extends GcurrencyConvertData_convertCurrency_expense {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String title;
+  @override
+  final String createdAt;
+  @override
+  final GcurrencyConvertData_convertCurrency_expense_amount amount;
+  @override
+  final String creatorId;
+
+  factory _$GcurrencyConvertData_convertCurrency_expense(
+          [void Function(GcurrencyConvertData_convertCurrency_expenseBuilder)?
+              updates]) =>
+      (new GcurrencyConvertData_convertCurrency_expenseBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcurrencyConvertData_convertCurrency_expense._(
+      {required this.G__typename,
+      required this.id,
+      required this.title,
+      required this.createdAt,
+      required this.amount,
+      required this.creatorId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GcurrencyConvertData_convertCurrency_expense', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GcurrencyConvertData_convertCurrency_expense', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        title, r'GcurrencyConvertData_convertCurrency_expense', 'title');
+    BuiltValueNullFieldError.checkNotNull(createdAt,
+        r'GcurrencyConvertData_convertCurrency_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GcurrencyConvertData_convertCurrency_expense', 'amount');
+    BuiltValueNullFieldError.checkNotNull(creatorId,
+        r'GcurrencyConvertData_convertCurrency_expense', 'creatorId');
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_expense rebuild(
+          void Function(GcurrencyConvertData_convertCurrency_expenseBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcurrencyConvertData_convertCurrency_expenseBuilder toBuilder() =>
+      new GcurrencyConvertData_convertCurrency_expenseBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcurrencyConvertData_convertCurrency_expense &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        title == other.title &&
+        createdAt == other.createdAt &&
+        amount == other.amount &&
+        creatorId == other.creatorId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcurrencyConvertData_convertCurrency_expense')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('title', title)
+          ..add('createdAt', createdAt)
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
+        .toString();
+  }
+}
+
+class GcurrencyConvertData_convertCurrency_expenseBuilder
+    implements
+        Builder<GcurrencyConvertData_convertCurrency_expense,
+            GcurrencyConvertData_convertCurrency_expenseBuilder> {
+  _$GcurrencyConvertData_convertCurrency_expense? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  GcurrencyConvertData_convertCurrency_expense_amountBuilder? _amount;
+  GcurrencyConvertData_convertCurrency_expense_amountBuilder get amount =>
+      _$this._amount ??=
+          new GcurrencyConvertData_convertCurrency_expense_amountBuilder();
+  set amount(
+          GcurrencyConvertData_convertCurrency_expense_amountBuilder? amount) =>
+      _$this._amount = amount;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  GcurrencyConvertData_convertCurrency_expenseBuilder() {
+    GcurrencyConvertData_convertCurrency_expense._initializeBuilder(this);
+  }
+
+  GcurrencyConvertData_convertCurrency_expenseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _title = $v.title;
+      _createdAt = $v.createdAt;
+      _amount = $v.amount.toBuilder();
+      _creatorId = $v.creatorId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcurrencyConvertData_convertCurrency_expense other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcurrencyConvertData_convertCurrency_expense;
+  }
+
+  @override
+  void update(
+      void Function(GcurrencyConvertData_convertCurrency_expenseBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_expense build() => _build();
+
+  _$GcurrencyConvertData_convertCurrency_expense _build() {
+    _$GcurrencyConvertData_convertCurrency_expense _$result;
+    try {
+      _$result = _$v ??
+          new _$GcurrencyConvertData_convertCurrency_expense._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GcurrencyConvertData_convertCurrency_expense',
+                  'G__typename'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GcurrencyConvertData_convertCurrency_expense', 'id'),
+              title: BuiltValueNullFieldError.checkNotNull(title,
+                  r'GcurrencyConvertData_convertCurrency_expense', 'title'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(createdAt,
+                  r'GcurrencyConvertData_convertCurrency_expense', 'createdAt'),
+              amount: amount.build(),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId,
+                  r'GcurrencyConvertData_convertCurrency_expense',
+                  'creatorId'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'amount';
+        amount.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GcurrencyConvertData_convertCurrency_expense',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_expense_amount
+    extends GcurrencyConvertData_convertCurrency_expense_amount {
+  @override
+  final String G__typename;
+  @override
+  final int amount;
+  @override
+  final String currencyId;
+
+  factory _$GcurrencyConvertData_convertCurrency_expense_amount(
+          [void Function(
+                  GcurrencyConvertData_convertCurrency_expense_amountBuilder)?
+              updates]) =>
+      (new GcurrencyConvertData_convertCurrency_expense_amountBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcurrencyConvertData_convertCurrency_expense_amount._(
+      {required this.G__typename,
+      required this.amount,
+      required this.currencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GcurrencyConvertData_convertCurrency_expense_amount', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(amount,
+        r'GcurrencyConvertData_convertCurrency_expense_amount', 'amount');
+    BuiltValueNullFieldError.checkNotNull(currencyId,
+        r'GcurrencyConvertData_convertCurrency_expense_amount', 'currencyId');
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_expense_amount rebuild(
+          void Function(
+                  GcurrencyConvertData_convertCurrency_expense_amountBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcurrencyConvertData_convertCurrency_expense_amountBuilder toBuilder() =>
+      new GcurrencyConvertData_convertCurrency_expense_amountBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcurrencyConvertData_convertCurrency_expense_amount &&
+        G__typename == other.G__typename &&
+        amount == other.amount &&
+        currencyId == other.currencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcurrencyConvertData_convertCurrency_expense_amount')
+          ..add('G__typename', G__typename)
+          ..add('amount', amount)
+          ..add('currencyId', currencyId))
+        .toString();
+  }
+}
+
+class GcurrencyConvertData_convertCurrency_expense_amountBuilder
+    implements
+        Builder<GcurrencyConvertData_convertCurrency_expense_amount,
+            GcurrencyConvertData_convertCurrency_expense_amountBuilder> {
+  _$GcurrencyConvertData_convertCurrency_expense_amount? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _currencyId;
+  String? get currencyId => _$this._currencyId;
+  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
+
+  GcurrencyConvertData_convertCurrency_expense_amountBuilder() {
+    GcurrencyConvertData_convertCurrency_expense_amount._initializeBuilder(
+        this);
+  }
+
+  GcurrencyConvertData_convertCurrency_expense_amountBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _amount = $v.amount;
+      _currencyId = $v.currencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcurrencyConvertData_convertCurrency_expense_amount other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcurrencyConvertData_convertCurrency_expense_amount;
+  }
+
+  @override
+  void update(
+      void Function(GcurrencyConvertData_convertCurrency_expense_amountBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_expense_amount build() => _build();
+
+  _$GcurrencyConvertData_convertCurrency_expense_amount _build() {
+    final _$result = _$v ??
+        new _$GcurrencyConvertData_convertCurrency_expense_amount._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GcurrencyConvertData_convertCurrency_expense_amount',
+                'G__typename'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount,
+                r'GcurrencyConvertData_convertCurrency_expense_amount',
+                'amount'),
+            currencyId: BuiltValueNullFieldError.checkNotNull(
+                currencyId,
+                r'GcurrencyConvertData_convertCurrency_expense_amount',
+                'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_group
+    extends GcurrencyConvertData_convertCurrency_group {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+
+  factory _$GcurrencyConvertData_convertCurrency_group(
+          [void Function(GcurrencyConvertData_convertCurrency_groupBuilder)?
+              updates]) =>
+      (new GcurrencyConvertData_convertCurrency_groupBuilder()..update(updates))
+          ._build();
+
+  _$GcurrencyConvertData_convertCurrency_group._(
+      {required this.G__typename, required this.id, this.name})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GcurrencyConvertData_convertCurrency_group', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GcurrencyConvertData_convertCurrency_group', 'id');
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_group rebuild(
+          void Function(GcurrencyConvertData_convertCurrency_groupBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcurrencyConvertData_convertCurrency_groupBuilder toBuilder() =>
+      new GcurrencyConvertData_convertCurrency_groupBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcurrencyConvertData_convertCurrency_group &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcurrencyConvertData_convertCurrency_group')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name))
+        .toString();
+  }
+}
+
+class GcurrencyConvertData_convertCurrency_groupBuilder
+    implements
+        Builder<GcurrencyConvertData_convertCurrency_group,
+            GcurrencyConvertData_convertCurrency_groupBuilder> {
+  _$GcurrencyConvertData_convertCurrency_group? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  GcurrencyConvertData_convertCurrency_groupBuilder() {
+    GcurrencyConvertData_convertCurrency_group._initializeBuilder(this);
+  }
+
+  GcurrencyConvertData_convertCurrency_groupBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcurrencyConvertData_convertCurrency_group other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcurrencyConvertData_convertCurrency_group;
+  }
+
+  @override
+  void update(
+      void Function(GcurrencyConvertData_convertCurrency_groupBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_group build() => _build();
+
+  _$GcurrencyConvertData_convertCurrency_group _build() {
+    final _$result = _$v ??
+        new _$GcurrencyConvertData_convertCurrency_group._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GcurrencyConvertData_convertCurrency_group', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GcurrencyConvertData_convertCurrency_group', 'id'),
+            name: name);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_creator
+    extends GcurrencyConvertData_convertCurrency_creator {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GcurrencyConvertData_convertCurrency_creator(
+          [void Function(GcurrencyConvertData_convertCurrency_creatorBuilder)?
+              updates]) =>
+      (new GcurrencyConvertData_convertCurrency_creatorBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcurrencyConvertData_convertCurrency_creator._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GcurrencyConvertData_convertCurrency_creator', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GcurrencyConvertData_convertCurrency_creator', 'id');
+    BuiltValueNullFieldError.checkNotNull(isSignedUp,
+        r'GcurrencyConvertData_convertCurrency_creator', 'isSignedUp');
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_creator rebuild(
+          void Function(GcurrencyConvertData_convertCurrency_creatorBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcurrencyConvertData_convertCurrency_creatorBuilder toBuilder() =>
+      new GcurrencyConvertData_convertCurrency_creatorBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcurrencyConvertData_convertCurrency_creator &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcurrencyConvertData_convertCurrency_creator')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GcurrencyConvertData_convertCurrency_creatorBuilder
+    implements
+        Builder<GcurrencyConvertData_convertCurrency_creator,
+            GcurrencyConvertData_convertCurrency_creatorBuilder> {
+  _$GcurrencyConvertData_convertCurrency_creator? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GcurrencyConvertData_convertCurrency_creatorBuilder() {
+    GcurrencyConvertData_convertCurrency_creator._initializeBuilder(this);
+  }
+
+  GcurrencyConvertData_convertCurrency_creatorBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcurrencyConvertData_convertCurrency_creator other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcurrencyConvertData_convertCurrency_creator;
+  }
+
+  @override
+  void update(
+      void Function(GcurrencyConvertData_convertCurrency_creatorBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_creator build() => _build();
+
+  _$GcurrencyConvertData_convertCurrency_creator _build() {
+    final _$result = _$v ??
+        new _$GcurrencyConvertData_convertCurrency_creator._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GcurrencyConvertData_convertCurrency_creator', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GcurrencyConvertData_convertCurrency_creator', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GcurrencyConvertData_convertCurrency_creator', 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_fromUser
+    extends GcurrencyConvertData_convertCurrency_fromUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GcurrencyConvertData_convertCurrency_fromUser(
+          [void Function(GcurrencyConvertData_convertCurrency_fromUserBuilder)?
+              updates]) =>
+      (new GcurrencyConvertData_convertCurrency_fromUserBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcurrencyConvertData_convertCurrency_fromUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GcurrencyConvertData_convertCurrency_fromUser', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GcurrencyConvertData_convertCurrency_fromUser', 'id');
+    BuiltValueNullFieldError.checkNotNull(isSignedUp,
+        r'GcurrencyConvertData_convertCurrency_fromUser', 'isSignedUp');
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_fromUser rebuild(
+          void Function(GcurrencyConvertData_convertCurrency_fromUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcurrencyConvertData_convertCurrency_fromUserBuilder toBuilder() =>
+      new GcurrencyConvertData_convertCurrency_fromUserBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcurrencyConvertData_convertCurrency_fromUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcurrencyConvertData_convertCurrency_fromUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GcurrencyConvertData_convertCurrency_fromUserBuilder
+    implements
+        Builder<GcurrencyConvertData_convertCurrency_fromUser,
+            GcurrencyConvertData_convertCurrency_fromUserBuilder> {
+  _$GcurrencyConvertData_convertCurrency_fromUser? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GcurrencyConvertData_convertCurrency_fromUserBuilder() {
+    GcurrencyConvertData_convertCurrency_fromUser._initializeBuilder(this);
+  }
+
+  GcurrencyConvertData_convertCurrency_fromUserBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcurrencyConvertData_convertCurrency_fromUser other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcurrencyConvertData_convertCurrency_fromUser;
+  }
+
+  @override
+  void update(
+      void Function(GcurrencyConvertData_convertCurrency_fromUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_fromUser build() => _build();
+
+  _$GcurrencyConvertData_convertCurrency_fromUser _build() {
+    final _$result = _$v ??
+        new _$GcurrencyConvertData_convertCurrency_fromUser._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GcurrencyConvertData_convertCurrency_fromUser',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GcurrencyConvertData_convertCurrency_fromUser', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GcurrencyConvertData_convertCurrency_fromUser',
+                'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_toUser
+    extends GcurrencyConvertData_convertCurrency_toUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GcurrencyConvertData_convertCurrency_toUser(
+          [void Function(GcurrencyConvertData_convertCurrency_toUserBuilder)?
+              updates]) =>
+      (new GcurrencyConvertData_convertCurrency_toUserBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcurrencyConvertData_convertCurrency_toUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GcurrencyConvertData_convertCurrency_toUser', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GcurrencyConvertData_convertCurrency_toUser', 'id');
+    BuiltValueNullFieldError.checkNotNull(isSignedUp,
+        r'GcurrencyConvertData_convertCurrency_toUser', 'isSignedUp');
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_toUser rebuild(
+          void Function(GcurrencyConvertData_convertCurrency_toUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcurrencyConvertData_convertCurrency_toUserBuilder toBuilder() =>
+      new GcurrencyConvertData_convertCurrency_toUserBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcurrencyConvertData_convertCurrency_toUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcurrencyConvertData_convertCurrency_toUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GcurrencyConvertData_convertCurrency_toUserBuilder
+    implements
+        Builder<GcurrencyConvertData_convertCurrency_toUser,
+            GcurrencyConvertData_convertCurrency_toUserBuilder> {
+  _$GcurrencyConvertData_convertCurrency_toUser? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GcurrencyConvertData_convertCurrency_toUserBuilder() {
+    GcurrencyConvertData_convertCurrency_toUser._initializeBuilder(this);
+  }
+
+  GcurrencyConvertData_convertCurrency_toUserBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcurrencyConvertData_convertCurrency_toUser other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcurrencyConvertData_convertCurrency_toUser;
+  }
+
+  @override
+  void update(
+      void Function(GcurrencyConvertData_convertCurrency_toUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_toUser build() => _build();
+
+  _$GcurrencyConvertData_convertCurrency_toUser _build() {
+    final _$result = _$v ??
+        new _$GcurrencyConvertData_convertCurrency_toUser._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GcurrencyConvertData_convertCurrency_toUser', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GcurrencyConvertData_convertCurrency_toUser', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GcurrencyConvertData_convertCurrency_toUser', 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GcurrencyConvertData_convertCurrency_amount
+    extends GcurrencyConvertData_convertCurrency_amount {
+  @override
+  final String G__typename;
+  @override
+  final int amount;
+  @override
+  final String currencyId;
+
+  factory _$GcurrencyConvertData_convertCurrency_amount(
+          [void Function(GcurrencyConvertData_convertCurrency_amountBuilder)?
+              updates]) =>
+      (new GcurrencyConvertData_convertCurrency_amountBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GcurrencyConvertData_convertCurrency_amount._(
+      {required this.G__typename,
+      required this.amount,
+      required this.currencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GcurrencyConvertData_convertCurrency_amount', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GcurrencyConvertData_convertCurrency_amount', 'amount');
+    BuiltValueNullFieldError.checkNotNull(currencyId,
+        r'GcurrencyConvertData_convertCurrency_amount', 'currencyId');
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_amount rebuild(
+          void Function(GcurrencyConvertData_convertCurrency_amountBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GcurrencyConvertData_convertCurrency_amountBuilder toBuilder() =>
+      new GcurrencyConvertData_convertCurrency_amountBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GcurrencyConvertData_convertCurrency_amount &&
+        G__typename == other.G__typename &&
+        amount == other.amount &&
+        currencyId == other.currencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GcurrencyConvertData_convertCurrency_amount')
+          ..add('G__typename', G__typename)
+          ..add('amount', amount)
+          ..add('currencyId', currencyId))
+        .toString();
+  }
+}
+
+class GcurrencyConvertData_convertCurrency_amountBuilder
+    implements
+        Builder<GcurrencyConvertData_convertCurrency_amount,
+            GcurrencyConvertData_convertCurrency_amountBuilder> {
+  _$GcurrencyConvertData_convertCurrency_amount? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _currencyId;
+  String? get currencyId => _$this._currencyId;
+  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
+
+  GcurrencyConvertData_convertCurrency_amountBuilder() {
+    GcurrencyConvertData_convertCurrency_amount._initializeBuilder(this);
+  }
+
+  GcurrencyConvertData_convertCurrency_amountBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _amount = $v.amount;
+      _currencyId = $v.currencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GcurrencyConvertData_convertCurrency_amount other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GcurrencyConvertData_convertCurrency_amount;
+  }
+
+  @override
+  void update(
+      void Function(GcurrencyConvertData_convertCurrency_amountBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GcurrencyConvertData_convertCurrency_amount build() => _build();
+
+  _$GcurrencyConvertData_convertCurrency_amount _build() {
+    final _$result = _$v ??
+        new _$GcurrencyConvertData_convertCurrency_amount._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GcurrencyConvertData_convertCurrency_amount', 'G__typename'),
+            amount: BuiltValueNullFieldError.checkNotNull(amount,
+                r'GcurrencyConvertData_convertCurrency_amount', 'amount'),
+            currencyId: BuiltValueNullFieldError.checkNotNull(currencyId,
+                r'GcurrencyConvertData_convertCurrency_amount', 'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GchangeNameData extends GchangeNameData {
+  @override
+  final String G__typename;
+  @override
+  final GchangeNameData_changeName changeName;
+
+  factory _$GchangeNameData([void Function(GchangeNameDataBuilder)? updates]) =>
+      (new GchangeNameDataBuilder()..update(updates))._build();
+
+  _$GchangeNameData._({required this.G__typename, required this.changeName})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GchangeNameData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        changeName, r'GchangeNameData', 'changeName');
+  }
+
+  @override
+  GchangeNameData rebuild(void Function(GchangeNameDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GchangeNameDataBuilder toBuilder() =>
+      new GchangeNameDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GchangeNameData &&
+        G__typename == other.G__typename &&
+        changeName == other.changeName;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, changeName.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GchangeNameData')
+          ..add('G__typename', G__typename)
+          ..add('changeName', changeName))
+        .toString();
+  }
+}
+
+class GchangeNameDataBuilder
+    implements Builder<GchangeNameData, GchangeNameDataBuilder> {
+  _$GchangeNameData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GchangeNameData_changeNameBuilder? _changeName;
+  GchangeNameData_changeNameBuilder get changeName =>
+      _$this._changeName ??= new GchangeNameData_changeNameBuilder();
+  set changeName(GchangeNameData_changeNameBuilder? changeName) =>
+      _$this._changeName = changeName;
+
+  GchangeNameDataBuilder() {
+    GchangeNameData._initializeBuilder(this);
+  }
+
+  GchangeNameDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _changeName = $v.changeName.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GchangeNameData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GchangeNameData;
+  }
+
+  @override
+  void update(void Function(GchangeNameDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GchangeNameData build() => _build();
+
+  _$GchangeNameData _build() {
+    _$GchangeNameData _$result;
+    try {
+      _$result = _$v ??
+          new _$GchangeNameData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GchangeNameData', 'G__typename'),
+              changeName: changeName.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'changeName';
+        changeName.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GchangeNameData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GchangeNameData_changeName extends GchangeNameData_changeName {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GchangeNameData_changeName(
+          [void Function(GchangeNameData_changeNameBuilder)? updates]) =>
+      (new GchangeNameData_changeNameBuilder()..update(updates))._build();
+
+  _$GchangeNameData_changeName._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GchangeNameData_changeName', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GchangeNameData_changeName', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GchangeNameData_changeName', 'isSignedUp');
+  }
+
+  @override
+  GchangeNameData_changeName rebuild(
+          void Function(GchangeNameData_changeNameBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GchangeNameData_changeNameBuilder toBuilder() =>
+      new GchangeNameData_changeNameBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GchangeNameData_changeName &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GchangeNameData_changeName')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GchangeNameData_changeNameBuilder
+    implements
+        Builder<GchangeNameData_changeName, GchangeNameData_changeNameBuilder> {
+  _$GchangeNameData_changeName? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GchangeNameData_changeNameBuilder() {
+    GchangeNameData_changeName._initializeBuilder(this);
+  }
+
+  GchangeNameData_changeNameBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GchangeNameData_changeName other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GchangeNameData_changeName;
+  }
+
+  @override
+  void update(void Function(GchangeNameData_changeNameBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GchangeNameData_changeName build() => _build();
+
+  _$GchangeNameData_changeName _build() {
+    final _$result = _$v ??
+        new _$GchangeNameData_changeName._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GchangeNameData_changeName', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GchangeNameData_changeName', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GchangeNameData_changeName', 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetTransactionsData extends GgetTransactionsData {
+  @override
+  final String G__typename;
+  @override
+  final BuiltList<GgetTransactionsData_getTransactions> getTransactions;
+
+  factory _$GgetTransactionsData(
+          [void Function(GgetTransactionsDataBuilder)? updates]) =>
+      (new GgetTransactionsDataBuilder()..update(updates))._build();
+
+  _$GgetTransactionsData._(
+      {required this.G__typename, required this.getTransactions})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GgetTransactionsData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        getTransactions, r'GgetTransactionsData', 'getTransactions');
+  }
+
+  @override
+  GgetTransactionsData rebuild(
+          void Function(GgetTransactionsDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetTransactionsDataBuilder toBuilder() =>
+      new GgetTransactionsDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetTransactionsData &&
+        G__typename == other.G__typename &&
+        getTransactions == other.getTransactions;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, getTransactions.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetTransactionsData')
+          ..add('G__typename', G__typename)
+          ..add('getTransactions', getTransactions))
+        .toString();
+  }
+}
+
+class GgetTransactionsDataBuilder
+    implements Builder<GgetTransactionsData, GgetTransactionsDataBuilder> {
+  _$GgetTransactionsData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  ListBuilder<GgetTransactionsData_getTransactions>? _getTransactions;
+  ListBuilder<GgetTransactionsData_getTransactions> get getTransactions =>
+      _$this._getTransactions ??=
+          new ListBuilder<GgetTransactionsData_getTransactions>();
+  set getTransactions(
+          ListBuilder<GgetTransactionsData_getTransactions>? getTransactions) =>
+      _$this._getTransactions = getTransactions;
+
+  GgetTransactionsDataBuilder() {
+    GgetTransactionsData._initializeBuilder(this);
+  }
+
+  GgetTransactionsDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _getTransactions = $v.getTransactions.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetTransactionsData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetTransactionsData;
+  }
+
+  @override
+  void update(void Function(GgetTransactionsDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetTransactionsData build() => _build();
+
+  _$GgetTransactionsData _build() {
+    _$GgetTransactionsData _$result;
+    try {
+      _$result = _$v ??
+          new _$GgetTransactionsData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GgetTransactionsData', 'G__typename'),
+              getTransactions: getTransactions.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'getTransactions';
+        getTransactions.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GgetTransactionsData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetTransactionsData_getTransactions
+    extends GgetTransactionsData_getTransactions {
+  @override
+  final String G__typename;
+  @override
+  final GgetTransactionsData_getTransactions_expense? expense;
+  @override
+  final GgetTransactionsData_getTransactions_split? split;
+
+  factory _$GgetTransactionsData_getTransactions(
+          [void Function(GgetTransactionsData_getTransactionsBuilder)?
+              updates]) =>
+      (new GgetTransactionsData_getTransactionsBuilder()..update(updates))
+          ._build();
+
+  _$GgetTransactionsData_getTransactions._(
+      {required this.G__typename, this.expense, this.split})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GgetTransactionsData_getTransactions', 'G__typename');
+  }
+
+  @override
+  GgetTransactionsData_getTransactions rebuild(
+          void Function(GgetTransactionsData_getTransactionsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetTransactionsData_getTransactionsBuilder toBuilder() =>
+      new GgetTransactionsData_getTransactionsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetTransactionsData_getTransactions &&
+        G__typename == other.G__typename &&
+        expense == other.expense &&
+        split == other.split;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, expense.hashCode);
+    _$hash = $jc(_$hash, split.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetTransactionsData_getTransactions')
+          ..add('G__typename', G__typename)
+          ..add('expense', expense)
+          ..add('split', split))
+        .toString();
+  }
+}
+
+class GgetTransactionsData_getTransactionsBuilder
+    implements
+        Builder<GgetTransactionsData_getTransactions,
+            GgetTransactionsData_getTransactionsBuilder> {
+  _$GgetTransactionsData_getTransactions? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GgetTransactionsData_getTransactions_expenseBuilder? _expense;
+  GgetTransactionsData_getTransactions_expenseBuilder get expense =>
+      _$this._expense ??=
+          new GgetTransactionsData_getTransactions_expenseBuilder();
+  set expense(GgetTransactionsData_getTransactions_expenseBuilder? expense) =>
+      _$this._expense = expense;
+
+  GgetTransactionsData_getTransactions_splitBuilder? _split;
+  GgetTransactionsData_getTransactions_splitBuilder get split =>
+      _$this._split ??= new GgetTransactionsData_getTransactions_splitBuilder();
+  set split(GgetTransactionsData_getTransactions_splitBuilder? split) =>
+      _$this._split = split;
+
+  GgetTransactionsData_getTransactionsBuilder() {
+    GgetTransactionsData_getTransactions._initializeBuilder(this);
+  }
+
+  GgetTransactionsData_getTransactionsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _expense = $v.expense?.toBuilder();
+      _split = $v.split?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetTransactionsData_getTransactions other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetTransactionsData_getTransactions;
+  }
+
+  @override
+  void update(
+      void Function(GgetTransactionsData_getTransactionsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetTransactionsData_getTransactions build() => _build();
+
+  _$GgetTransactionsData_getTransactions _build() {
+    _$GgetTransactionsData_getTransactions _$result;
+    try {
+      _$result = _$v ??
+          new _$GgetTransactionsData_getTransactions._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                  r'GgetTransactionsData_getTransactions', 'G__typename'),
+              expense: _expense?.build(),
+              split: _split?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'expense';
+        _expense?.build();
+        _$failedField = 'split';
+        _split?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GgetTransactionsData_getTransactions',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetTransactionsData_getTransactions_expense
+    extends GgetTransactionsData_getTransactions_expense {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String title;
+  @override
+  final String createdAt;
+  @override
+  final GgetTransactionsData_getTransactions_expense_amount amount;
+  @override
+  final String creatorId;
+
+  factory _$GgetTransactionsData_getTransactions_expense(
+          [void Function(GgetTransactionsData_getTransactions_expenseBuilder)?
+              updates]) =>
+      (new GgetTransactionsData_getTransactions_expenseBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GgetTransactionsData_getTransactions_expense._(
+      {required this.G__typename,
+      required this.id,
+      required this.title,
+      required this.createdAt,
+      required this.amount,
+      required this.creatorId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GgetTransactionsData_getTransactions_expense', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GgetTransactionsData_getTransactions_expense', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        title, r'GgetTransactionsData_getTransactions_expense', 'title');
+    BuiltValueNullFieldError.checkNotNull(createdAt,
+        r'GgetTransactionsData_getTransactions_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GgetTransactionsData_getTransactions_expense', 'amount');
+    BuiltValueNullFieldError.checkNotNull(creatorId,
+        r'GgetTransactionsData_getTransactions_expense', 'creatorId');
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_expense rebuild(
+          void Function(GgetTransactionsData_getTransactions_expenseBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetTransactionsData_getTransactions_expenseBuilder toBuilder() =>
+      new GgetTransactionsData_getTransactions_expenseBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetTransactionsData_getTransactions_expense &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        title == other.title &&
+        createdAt == other.createdAt &&
+        amount == other.amount &&
+        creatorId == other.creatorId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GgetTransactionsData_getTransactions_expense')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('title', title)
+          ..add('createdAt', createdAt)
+          ..add('amount', amount)
+          ..add('creatorId', creatorId))
+        .toString();
+  }
+}
+
+class GgetTransactionsData_getTransactions_expenseBuilder
+    implements
+        Builder<GgetTransactionsData_getTransactions_expense,
+            GgetTransactionsData_getTransactions_expenseBuilder> {
+  _$GgetTransactionsData_getTransactions_expense? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  GgetTransactionsData_getTransactions_expense_amountBuilder? _amount;
+  GgetTransactionsData_getTransactions_expense_amountBuilder get amount =>
+      _$this._amount ??=
+          new GgetTransactionsData_getTransactions_expense_amountBuilder();
+  set amount(
+          GgetTransactionsData_getTransactions_expense_amountBuilder? amount) =>
+      _$this._amount = amount;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  GgetTransactionsData_getTransactions_expenseBuilder() {
+    GgetTransactionsData_getTransactions_expense._initializeBuilder(this);
+  }
+
+  GgetTransactionsData_getTransactions_expenseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _title = $v.title;
+      _createdAt = $v.createdAt;
+      _amount = $v.amount.toBuilder();
+      _creatorId = $v.creatorId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetTransactionsData_getTransactions_expense other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetTransactionsData_getTransactions_expense;
+  }
+
+  @override
+  void update(
+      void Function(GgetTransactionsData_getTransactions_expenseBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_expense build() => _build();
+
+  _$GgetTransactionsData_getTransactions_expense _build() {
+    _$GgetTransactionsData_getTransactions_expense _$result;
+    try {
+      _$result = _$v ??
+          new _$GgetTransactionsData_getTransactions_expense._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GgetTransactionsData_getTransactions_expense',
+                  'G__typename'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GgetTransactionsData_getTransactions_expense', 'id'),
+              title: BuiltValueNullFieldError.checkNotNull(title,
+                  r'GgetTransactionsData_getTransactions_expense', 'title'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(createdAt,
+                  r'GgetTransactionsData_getTransactions_expense', 'createdAt'),
+              amount: amount.build(),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId,
+                  r'GgetTransactionsData_getTransactions_expense',
+                  'creatorId'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'amount';
+        amount.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GgetTransactionsData_getTransactions_expense',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetTransactionsData_getTransactions_expense_amount
+    extends GgetTransactionsData_getTransactions_expense_amount {
+  @override
+  final String G__typename;
+  @override
+  final int amount;
+  @override
+  final String currencyId;
+
+  factory _$GgetTransactionsData_getTransactions_expense_amount(
+          [void Function(
+                  GgetTransactionsData_getTransactions_expense_amountBuilder)?
+              updates]) =>
+      (new GgetTransactionsData_getTransactions_expense_amountBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GgetTransactionsData_getTransactions_expense_amount._(
+      {required this.G__typename,
+      required this.amount,
+      required this.currencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GgetTransactionsData_getTransactions_expense_amount', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(amount,
+        r'GgetTransactionsData_getTransactions_expense_amount', 'amount');
+    BuiltValueNullFieldError.checkNotNull(currencyId,
+        r'GgetTransactionsData_getTransactions_expense_amount', 'currencyId');
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_expense_amount rebuild(
+          void Function(
+                  GgetTransactionsData_getTransactions_expense_amountBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetTransactionsData_getTransactions_expense_amountBuilder toBuilder() =>
+      new GgetTransactionsData_getTransactions_expense_amountBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetTransactionsData_getTransactions_expense_amount &&
+        G__typename == other.G__typename &&
+        amount == other.amount &&
+        currencyId == other.currencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GgetTransactionsData_getTransactions_expense_amount')
+          ..add('G__typename', G__typename)
+          ..add('amount', amount)
+          ..add('currencyId', currencyId))
+        .toString();
+  }
+}
+
+class GgetTransactionsData_getTransactions_expense_amountBuilder
+    implements
+        Builder<GgetTransactionsData_getTransactions_expense_amount,
+            GgetTransactionsData_getTransactions_expense_amountBuilder> {
+  _$GgetTransactionsData_getTransactions_expense_amount? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _currencyId;
+  String? get currencyId => _$this._currencyId;
+  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
+
+  GgetTransactionsData_getTransactions_expense_amountBuilder() {
+    GgetTransactionsData_getTransactions_expense_amount._initializeBuilder(
+        this);
+  }
+
+  GgetTransactionsData_getTransactions_expense_amountBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _amount = $v.amount;
+      _currencyId = $v.currencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetTransactionsData_getTransactions_expense_amount other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetTransactionsData_getTransactions_expense_amount;
+  }
+
+  @override
+  void update(
+      void Function(GgetTransactionsData_getTransactions_expense_amountBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_expense_amount build() => _build();
+
+  _$GgetTransactionsData_getTransactions_expense_amount _build() {
+    final _$result = _$v ??
+        new _$GgetTransactionsData_getTransactions_expense_amount._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GgetTransactionsData_getTransactions_expense_amount',
+                'G__typename'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount,
+                r'GgetTransactionsData_getTransactions_expense_amount',
+                'amount'),
+            currencyId: BuiltValueNullFieldError.checkNotNull(
+                currencyId,
+                r'GgetTransactionsData_getTransactions_expense_amount',
+                'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetTransactionsData_getTransactions_split
+    extends GgetTransactionsData_getTransactions_split {
+  @override
+  final String G__typename;
+  @override
+  final GgetTransactionsData_getTransactions_split_fromUser fromUser;
+  @override
+  final GgetTransactionsData_getTransactions_split_toUser toUser;
+  @override
+  final String id;
+  @override
+  final GgetTransactionsData_getTransactions_split_amount amount;
+  @override
+  final _i3.GTransactionType transactionType;
+  @override
+  final String createdAt;
+  @override
+  final String? transactionPartGroupId;
+  @override
+  final String fromUserId;
+  @override
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
+
+  factory _$GgetTransactionsData_getTransactions_split(
+          [void Function(GgetTransactionsData_getTransactions_splitBuilder)?
+              updates]) =>
+      (new GgetTransactionsData_getTransactions_splitBuilder()..update(updates))
+          ._build();
+
+  _$GgetTransactionsData_getTransactions_split._(
+      {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
+      required this.id,
+      required this.amount,
+      required this.transactionType,
+      required this.createdAt,
+      this.transactionPartGroupId,
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GgetTransactionsData_getTransactions_split', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser, r'GgetTransactionsData_getTransactions_split', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'GgetTransactionsData_getTransactions_split', 'toUser');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GgetTransactionsData_getTransactions_split', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GgetTransactionsData_getTransactions_split', 'amount');
+    BuiltValueNullFieldError.checkNotNull(transactionType,
+        r'GgetTransactionsData_getTransactions_split', 'transactionType');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt, r'GgetTransactionsData_getTransactions_split', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(fromUserId,
+        r'GgetTransactionsData_getTransactions_split', 'fromUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        toUserId, r'GgetTransactionsData_getTransactions_split', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GgetTransactionsData_getTransactions_split', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GgetTransactionsData_getTransactions_split', 'groupId');
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_split rebuild(
+          void Function(GgetTransactionsData_getTransactions_splitBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetTransactionsData_getTransactions_splitBuilder toBuilder() =>
+      new GgetTransactionsData_getTransactions_splitBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetTransactionsData_getTransactions_split &&
+        G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
+        id == other.id &&
+        amount == other.amount &&
+        transactionType == other.transactionType &&
+        createdAt == other.createdAt &&
+        transactionPartGroupId == other.transactionPartGroupId &&
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, transactionType.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GgetTransactionsData_getTransactions_split')
+          ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
+          ..add('id', id)
+          ..add('amount', amount)
+          ..add('transactionType', transactionType)
+          ..add('createdAt', createdAt)
+          ..add('transactionPartGroupId', transactionPartGroupId)
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId))
+        .toString();
+  }
+}
+
+class GgetTransactionsData_getTransactions_splitBuilder
+    implements
+        Builder<GgetTransactionsData_getTransactions_split,
+            GgetTransactionsData_getTransactions_splitBuilder> {
+  _$GgetTransactionsData_getTransactions_split? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GgetTransactionsData_getTransactions_split_fromUserBuilder? _fromUser;
+  GgetTransactionsData_getTransactions_split_fromUserBuilder get fromUser =>
+      _$this._fromUser ??=
+          new GgetTransactionsData_getTransactions_split_fromUserBuilder();
+  set fromUser(
+          GgetTransactionsData_getTransactions_split_fromUserBuilder?
+              fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GgetTransactionsData_getTransactions_split_toUserBuilder? _toUser;
+  GgetTransactionsData_getTransactions_split_toUserBuilder get toUser =>
+      _$this._toUser ??=
+          new GgetTransactionsData_getTransactions_split_toUserBuilder();
+  set toUser(
+          GgetTransactionsData_getTransactions_split_toUserBuilder? toUser) =>
+      _$this._toUser = toUser;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  GgetTransactionsData_getTransactions_split_amountBuilder? _amount;
+  GgetTransactionsData_getTransactions_split_amountBuilder get amount =>
+      _$this._amount ??=
+          new GgetTransactionsData_getTransactions_split_amountBuilder();
+  set amount(
+          GgetTransactionsData_getTransactions_split_amountBuilder? amount) =>
+      _$this._amount = amount;
+
+  _i3.GTransactionType? _transactionType;
+  _i3.GTransactionType? get transactionType => _$this._transactionType;
+  set transactionType(_i3.GTransactionType? transactionType) =>
+      _$this._transactionType = transactionType;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _transactionPartGroupId;
+  String? get transactionPartGroupId => _$this._transactionPartGroupId;
+  set transactionPartGroupId(String? transactionPartGroupId) =>
+      _$this._transactionPartGroupId = transactionPartGroupId;
+
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
+
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
+
+  GgetTransactionsData_getTransactions_splitBuilder() {
+    GgetTransactionsData_getTransactions_split._initializeBuilder(this);
+  }
+
+  GgetTransactionsData_getTransactions_splitBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
+      _id = $v.id;
+      _amount = $v.amount.toBuilder();
+      _transactionType = $v.transactionType;
+      _createdAt = $v.createdAt;
+      _transactionPartGroupId = $v.transactionPartGroupId;
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetTransactionsData_getTransactions_split other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetTransactionsData_getTransactions_split;
+  }
+
+  @override
+  void update(
+      void Function(GgetTransactionsData_getTransactions_splitBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_split build() => _build();
+
+  _$GgetTransactionsData_getTransactions_split _build() {
+    _$GgetTransactionsData_getTransactions_split _$result;
+    try {
+      _$result = _$v ??
+          new _$GgetTransactionsData_getTransactions_split._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GgetTransactionsData_getTransactions_split', 'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GgetTransactionsData_getTransactions_split', 'id'),
+              amount: amount.build(),
+              transactionType: BuiltValueNullFieldError.checkNotNull(
+                  transactionType, r'GgetTransactionsData_getTransactions_split', 'transactionType'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GgetTransactionsData_getTransactions_split', 'createdAt'),
+              transactionPartGroupId: transactionPartGroupId,
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GgetTransactionsData_getTransactions_split', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GgetTransactionsData_getTransactions_split', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId, r'GgetTransactionsData_getTransactions_split', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GgetTransactionsData_getTransactions_split', 'groupId'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'fromUser';
+        fromUser.build();
+        _$failedField = 'toUser';
+        toUser.build();
+
+        _$failedField = 'amount';
+        amount.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GgetTransactionsData_getTransactions_split',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetTransactionsData_getTransactions_split_fromUser
+    extends GgetTransactionsData_getTransactions_split_fromUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GgetTransactionsData_getTransactions_split_fromUser(
+          [void Function(
+                  GgetTransactionsData_getTransactions_split_fromUserBuilder)?
+              updates]) =>
+      (new GgetTransactionsData_getTransactions_split_fromUserBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GgetTransactionsData_getTransactions_split_fromUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GgetTransactionsData_getTransactions_split_fromUser', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GgetTransactionsData_getTransactions_split_fromUser', 'id');
+    BuiltValueNullFieldError.checkNotNull(isSignedUp,
+        r'GgetTransactionsData_getTransactions_split_fromUser', 'isSignedUp');
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_split_fromUser rebuild(
+          void Function(
+                  GgetTransactionsData_getTransactions_split_fromUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetTransactionsData_getTransactions_split_fromUserBuilder toBuilder() =>
+      new GgetTransactionsData_getTransactions_split_fromUserBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetTransactionsData_getTransactions_split_fromUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GgetTransactionsData_getTransactions_split_fromUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GgetTransactionsData_getTransactions_split_fromUserBuilder
+    implements
+        Builder<GgetTransactionsData_getTransactions_split_fromUser,
+            GgetTransactionsData_getTransactions_split_fromUserBuilder> {
+  _$GgetTransactionsData_getTransactions_split_fromUser? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GgetTransactionsData_getTransactions_split_fromUserBuilder() {
+    GgetTransactionsData_getTransactions_split_fromUser._initializeBuilder(
+        this);
+  }
+
+  GgetTransactionsData_getTransactions_split_fromUserBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetTransactionsData_getTransactions_split_fromUser other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetTransactionsData_getTransactions_split_fromUser;
+  }
+
+  @override
+  void update(
+      void Function(GgetTransactionsData_getTransactions_split_fromUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_split_fromUser build() => _build();
+
+  _$GgetTransactionsData_getTransactions_split_fromUser _build() {
+    final _$result = _$v ??
+        new _$GgetTransactionsData_getTransactions_split_fromUser._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GgetTransactionsData_getTransactions_split_fromUser',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(id,
+                r'GgetTransactionsData_getTransactions_split_fromUser', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GgetTransactionsData_getTransactions_split_fromUser',
+                'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetTransactionsData_getTransactions_split_toUser
+    extends GgetTransactionsData_getTransactions_split_toUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GgetTransactionsData_getTransactions_split_toUser(
+          [void Function(
+                  GgetTransactionsData_getTransactions_split_toUserBuilder)?
+              updates]) =>
+      (new GgetTransactionsData_getTransactions_split_toUserBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GgetTransactionsData_getTransactions_split_toUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GgetTransactionsData_getTransactions_split_toUser', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GgetTransactionsData_getTransactions_split_toUser', 'id');
+    BuiltValueNullFieldError.checkNotNull(isSignedUp,
+        r'GgetTransactionsData_getTransactions_split_toUser', 'isSignedUp');
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_split_toUser rebuild(
+          void Function(
+                  GgetTransactionsData_getTransactions_split_toUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetTransactionsData_getTransactions_split_toUserBuilder toBuilder() =>
+      new GgetTransactionsData_getTransactions_split_toUserBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetTransactionsData_getTransactions_split_toUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GgetTransactionsData_getTransactions_split_toUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GgetTransactionsData_getTransactions_split_toUserBuilder
+    implements
+        Builder<GgetTransactionsData_getTransactions_split_toUser,
+            GgetTransactionsData_getTransactions_split_toUserBuilder> {
+  _$GgetTransactionsData_getTransactions_split_toUser? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GgetTransactionsData_getTransactions_split_toUserBuilder() {
+    GgetTransactionsData_getTransactions_split_toUser._initializeBuilder(this);
+  }
+
+  GgetTransactionsData_getTransactions_split_toUserBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetTransactionsData_getTransactions_split_toUser other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetTransactionsData_getTransactions_split_toUser;
+  }
+
+  @override
+  void update(
+      void Function(GgetTransactionsData_getTransactions_split_toUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_split_toUser build() => _build();
+
+  _$GgetTransactionsData_getTransactions_split_toUser _build() {
+    final _$result = _$v ??
+        new _$GgetTransactionsData_getTransactions_split_toUser._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GgetTransactionsData_getTransactions_split_toUser',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetTransactionsData_getTransactions_split_toUser', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GgetTransactionsData_getTransactions_split_toUser',
+                'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetTransactionsData_getTransactions_split_amount
+    extends GgetTransactionsData_getTransactions_split_amount {
+  @override
+  final String G__typename;
+  @override
+  final int amount;
+  @override
+  final String currencyId;
+
+  factory _$GgetTransactionsData_getTransactions_split_amount(
+          [void Function(
+                  GgetTransactionsData_getTransactions_split_amountBuilder)?
+              updates]) =>
+      (new GgetTransactionsData_getTransactions_split_amountBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GgetTransactionsData_getTransactions_split_amount._(
+      {required this.G__typename,
+      required this.amount,
+      required this.currencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GgetTransactionsData_getTransactions_split_amount', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GgetTransactionsData_getTransactions_split_amount', 'amount');
+    BuiltValueNullFieldError.checkNotNull(currencyId,
+        r'GgetTransactionsData_getTransactions_split_amount', 'currencyId');
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_split_amount rebuild(
+          void Function(
+                  GgetTransactionsData_getTransactions_split_amountBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetTransactionsData_getTransactions_split_amountBuilder toBuilder() =>
+      new GgetTransactionsData_getTransactions_split_amountBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetTransactionsData_getTransactions_split_amount &&
+        G__typename == other.G__typename &&
+        amount == other.amount &&
+        currencyId == other.currencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GgetTransactionsData_getTransactions_split_amount')
+          ..add('G__typename', G__typename)
+          ..add('amount', amount)
+          ..add('currencyId', currencyId))
+        .toString();
+  }
+}
+
+class GgetTransactionsData_getTransactions_split_amountBuilder
+    implements
+        Builder<GgetTransactionsData_getTransactions_split_amount,
+            GgetTransactionsData_getTransactions_split_amountBuilder> {
+  _$GgetTransactionsData_getTransactions_split_amount? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _currencyId;
+  String? get currencyId => _$this._currencyId;
+  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
+
+  GgetTransactionsData_getTransactions_split_amountBuilder() {
+    GgetTransactionsData_getTransactions_split_amount._initializeBuilder(this);
+  }
+
+  GgetTransactionsData_getTransactions_split_amountBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _amount = $v.amount;
+      _currencyId = $v.currencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetTransactionsData_getTransactions_split_amount other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetTransactionsData_getTransactions_split_amount;
+  }
+
+  @override
+  void update(
+      void Function(GgetTransactionsData_getTransactions_split_amountBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetTransactionsData_getTransactions_split_amount build() => _build();
+
+  _$GgetTransactionsData_getTransactions_split_amount _build() {
+    final _$result = _$v ??
+        new _$GgetTransactionsData_getTransactions_split_amount._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GgetTransactionsData_getTransactions_split_amount',
+                'G__typename'),
+            amount: BuiltValueNullFieldError.checkNotNull(amount,
+                r'GgetTransactionsData_getTransactions_split_amount', 'amount'),
+            currencyId: BuiltValueNullFieldError.checkNotNull(
+                currencyId,
+                r'GgetTransactionsData_getTransactions_split_amount',
+                'currencyId'));
     replace(_$result);
     return _$result;
   }
