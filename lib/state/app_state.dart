@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
 import 'package:ferry/ferry.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import 'package:billdivide/__generated__/schema.schema.gql.dart';
@@ -108,6 +109,7 @@ class AppState extends ChangeNotifier {
         authState = AuthStates.authorizedRequiresSignup;
       } else if (value.data?.user is GuserData_user__asRegistered) {
         authState = AuthStates.authorized;
+        unawaited(setupAndSendFirebase());
       }
       notifyListeners();
     });
@@ -132,6 +134,15 @@ class AppState extends ChangeNotifier {
         notifyListeners();
       });
     }
+  }
+
+  setupAndSendFirebase() async {
+    await FirebaseMessaging.instance.requestPermission(provisional: true);
+    const String vapidKey = String.fromEnvironment('VAPID_KEY');
+    final fcmToken =
+        await FirebaseMessaging.instance.getToken(vapidKey: vapidKey);
+    (await client)
+        .execute(GsetNotificationTokenReq((b) => b.vars..token = fcmToken));
   }
 
   Future<List<GGroupFields>> getGroups() async {

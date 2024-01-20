@@ -6279,6 +6279,36 @@ abstract class GgetTransactionsData_getTransactions_split_amount
       );
 }
 
+abstract class GsetNotificationTokenData
+    implements
+        Built<GsetNotificationTokenData, GsetNotificationTokenDataBuilder> {
+  GsetNotificationTokenData._();
+
+  factory GsetNotificationTokenData(
+          [Function(GsetNotificationTokenDataBuilder b) updates]) =
+      _$GsetNotificationTokenData;
+
+  static void _initializeBuilder(GsetNotificationTokenDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get setNotificationToken;
+  static Serializer<GsetNotificationTokenData> get serializer =>
+      _$gsetNotificationTokenDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsetNotificationTokenData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsetNotificationTokenData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsetNotificationTokenData.serializer,
+        json,
+      );
+}
+
 abstract class GUserFields {
   String get G__typename;
   String get id;

@@ -583,6 +583,31 @@ abstract class GgetTransactionsVars
       );
 }
 
+abstract class GsetNotificationTokenVars
+    implements
+        Built<GsetNotificationTokenVars, GsetNotificationTokenVarsBuilder> {
+  GsetNotificationTokenVars._();
+
+  factory GsetNotificationTokenVars(
+          [Function(GsetNotificationTokenVarsBuilder b) updates]) =
+      _$GsetNotificationTokenVars;
+
+  String get token;
+  static Serializer<GsetNotificationTokenVars> get serializer =>
+      _$gsetNotificationTokenVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsetNotificationTokenVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsetNotificationTokenVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsetNotificationTokenVars.serializer,
+        json,
+      );
+}
+
 abstract class GUserFieldsVars
     implements Built<GUserFieldsVars, GUserFieldsVarsBuilder> {
   GUserFieldsVars._();

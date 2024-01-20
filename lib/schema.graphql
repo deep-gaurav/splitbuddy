@@ -49,6 +49,7 @@ type Mutation {
   refreshToken(refreshToken: String!): UserSignedUp!
   signup(name: String!, upiId: String): SignupSuccess!
   createGroup(name: String!): Group!
+  setNotificationToken(token: String!): String!
   addToGroupByEmail(groupId: String!, email: String!): String!
   addNonGroupExpense(
     title: String!

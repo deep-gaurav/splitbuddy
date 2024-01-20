@@ -1803,6 +1803,83 @@ abstract class GgetTransactionsReq
       );
 }
 
+abstract class GsetNotificationTokenReq
+    implements
+        Built<GsetNotificationTokenReq, GsetNotificationTokenReqBuilder>,
+        _i1.OperationRequest<_i2.GsetNotificationTokenData,
+            _i3.GsetNotificationTokenVars> {
+  GsetNotificationTokenReq._();
+
+  factory GsetNotificationTokenReq(
+          [Function(GsetNotificationTokenReqBuilder b) updates]) =
+      _$GsetNotificationTokenReq;
+
+  static void _initializeBuilder(GsetNotificationTokenReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'setNotificationToken',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GsetNotificationTokenVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GsetNotificationTokenData? Function(
+    _i2.GsetNotificationTokenData?,
+    _i2.GsetNotificationTokenData?,
+  )? get updateResult;
+  @override
+  _i2.GsetNotificationTokenData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GsetNotificationTokenData? parseData(Map<String, dynamic> json) =>
+      _i2.GsetNotificationTokenData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GsetNotificationTokenData,
+      _i3.GsetNotificationTokenVars> transformOperation(
+          _i4.Operation Function(_i4.Operation) transform) =>
+      this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GsetNotificationTokenReq> get serializer =>
+      _$gsetNotificationTokenReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GsetNotificationTokenReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsetNotificationTokenReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GsetNotificationTokenReq.serializer,
+        json,
+      );
+}
+
 abstract class GUserFieldsReq
     implements
         Built<GUserFieldsReq, GUserFieldsReqBuilder>,

@@ -50,6 +50,8 @@ Serializer<GchangeNameVars> _$gchangeNameVarsSerializer =
     new _$GchangeNameVarsSerializer();
 Serializer<GgetTransactionsVars> _$ggetTransactionsVarsSerializer =
     new _$GgetTransactionsVarsSerializer();
+Serializer<GsetNotificationTokenVars> _$gsetNotificationTokenVarsSerializer =
+    new _$GsetNotificationTokenVarsSerializer();
 Serializer<GUserFieldsVars> _$gUserFieldsVarsSerializer =
     new _$GUserFieldsVarsSerializer();
 Serializer<GAmountFieldsVars> _$gAmountFieldsVarsSerializer =
@@ -1204,6 +1206,52 @@ class _$GgetTransactionsVarsSerializer
         case 'limit':
           result.limit = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsetNotificationTokenVarsSerializer
+    implements StructuredSerializer<GsetNotificationTokenVars> {
+  @override
+  final Iterable<Type> types = const [
+    GsetNotificationTokenVars,
+    _$GsetNotificationTokenVars
+  ];
+  @override
+  final String wireName = 'GsetNotificationTokenVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsetNotificationTokenVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'token',
+      serializers.serialize(object.token,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GsetNotificationTokenVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsetNotificationTokenVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'token':
+          result.token = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -3909,6 +3957,94 @@ class GgetTransactionsVarsBuilder
             fromTime: fromTime,
             limit: BuiltValueNullFieldError.checkNotNull(
                 limit, r'GgetTransactionsVars', 'limit'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsetNotificationTokenVars extends GsetNotificationTokenVars {
+  @override
+  final String token;
+
+  factory _$GsetNotificationTokenVars(
+          [void Function(GsetNotificationTokenVarsBuilder)? updates]) =>
+      (new GsetNotificationTokenVarsBuilder()..update(updates))._build();
+
+  _$GsetNotificationTokenVars._({required this.token}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        token, r'GsetNotificationTokenVars', 'token');
+  }
+
+  @override
+  GsetNotificationTokenVars rebuild(
+          void Function(GsetNotificationTokenVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsetNotificationTokenVarsBuilder toBuilder() =>
+      new GsetNotificationTokenVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsetNotificationTokenVars && token == other.token;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, token.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GsetNotificationTokenVars')
+          ..add('token', token))
+        .toString();
+  }
+}
+
+class GsetNotificationTokenVarsBuilder
+    implements
+        Builder<GsetNotificationTokenVars, GsetNotificationTokenVarsBuilder> {
+  _$GsetNotificationTokenVars? _$v;
+
+  String? _token;
+  String? get token => _$this._token;
+  set token(String? token) => _$this._token = token;
+
+  GsetNotificationTokenVarsBuilder();
+
+  GsetNotificationTokenVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _token = $v.token;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsetNotificationTokenVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsetNotificationTokenVars;
+  }
+
+  @override
+  void update(void Function(GsetNotificationTokenVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsetNotificationTokenVars build() => _build();
+
+  _$GsetNotificationTokenVars _build() {
+    final _$result = _$v ??
+        new _$GsetNotificationTokenVars._(
+            token: BuiltValueNullFieldError.checkNotNull(
+                token, r'GsetNotificationTokenVars', 'token'));
     replace(_$result);
     return _$result;
   }

@@ -354,3 +354,7 @@ query getTransactions($fromTime: String, $limit: Int!){
     ...ExpenseMixSplitFields
   }
 }
+
+mutation setNotificationToken($token: String!){
+  setNotificationToken(token:$token)
+}
