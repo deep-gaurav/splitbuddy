@@ -1,6 +1,8 @@
 import 'dart:collection';
 
 import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/screens/transaction_history.dart';
+import 'package:billdivide/screens/user_setting.dart';
 import 'package:billdivide/utils/color_utils.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -31,10 +33,38 @@ class HomePage extends StatelessWidget {
     );
     return CustomScrollView(
       slivers: [
-        const SliverAppBar.medium(
-          title: Text(
+        SliverAppBar.medium(
+          title: const Text(
             "Home",
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const TransactionHistory(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.notifications),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const UserSetting(),
+                  ),
+                );
+              },
+              icon: SizedBox(
+                width: IconTheme.of(context).size,
+                height: IconTheme.of(context).size,
+                child: FittedBox(
+                  child: UserIconWidget(user: context.read<AppState>().user!),
+                ),
+              ),
+            )
+          ],
         ),
         SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {

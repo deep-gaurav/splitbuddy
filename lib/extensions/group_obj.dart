@@ -3,6 +3,8 @@ import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 sealed class GroupTransactionObject {
   String get createdAt;
   String get creatorId;
+
+  String get groupId;
 }
 
 class Expense extends GroupTransactionObject {
@@ -16,6 +18,9 @@ class Expense extends GroupTransactionObject {
 
   @override
   String get creatorId => expense.creatorId;
+
+  @override
+  String get groupId => splits.first.groupId;
 }
 
 class Split extends GroupTransactionObject {
@@ -28,6 +33,9 @@ class Split extends GroupTransactionObject {
 
   @override
   String get creatorId => split.creatorId;
+
+  @override
+  String get groupId => split.groupId;
 }
 
 class CurrencyConversion extends GroupTransactionObject {
@@ -42,4 +50,7 @@ class CurrencyConversion extends GroupTransactionObject {
 
   @override
   String get creatorId => splits.first.creatorId;
+
+  @override
+  String get groupId => splits.first.groupId;
 }

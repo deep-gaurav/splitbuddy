@@ -675,45 +675,43 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
               ),
             ],
           )),
-          const Divider(),
-          ButtonBar(
-            children: [
-              ElevatedButton.icon(
-                icon: const Icon(Icons.sell),
-                onPressed: () async {
-                  var expense = await Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => CreateExpense(
-                        searchGroup: true,
-                        expenseWith: ExpenseWithGroup(group: group),
-                      ),
+        ],
+      ),
+      bottomNavigationBar: ButtonBar(
+        children: [
+          ElevatedButton.icon(
+            icon: const Icon(Icons.sell),
+            onPressed: () async {
+              var expense = await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => CreateExpense(
+                    searchGroup: true,
+                    expenseWith: ExpenseWithGroup(group: group),
+                  ),
+                ),
+              );
+              if (expense is GNewExpenseFields) {
+                setState(() {
+                  expenses.add(
+                    Expense(
+                      expense: expense,
+                      splits: expense.splits.toList(),
                     ),
                   );
-                  if (expense is GNewExpenseFields) {
-                    setState(() {
-                      expenses.add(
-                        Expense(
-                          expense: expense,
-                          splits: expense.splits.toList(),
-                        ),
-                      );
-                      fetchData(forceFirst: true);
-                      generateGrouped();
-                    });
-                    WidgetsBinding.instance
-                        .addPostFrameCallback((timeStamp) async {
-                      // await Future.delayed(Durations.short1);
-                      _scrollController
-                          .jumpTo(_scrollController.position.maxScrollExtent);
-                    });
-                  }
-                },
-                label: const Text(
-                  "Add Expense",
-                ),
-              )
-            ],
-          ),
+                  fetchData(forceFirst: true);
+                  generateGrouped();
+                });
+                WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+                  // await Future.delayed(Durations.short1);
+                  _scrollController
+                      .jumpTo(_scrollController.position.maxScrollExtent);
+                });
+              }
+            },
+            label: const Text(
+              "Add Expense",
+            ),
+          )
         ],
       ),
     );

@@ -140,7 +140,7 @@ class GroupIconWidget extends StatelessWidget {
     var members = group.members
         .where((p0) => p0.member.id != context.read<AppState>().user!.id)
         .toList();
-    if (members.length == 1) {
+    if (group.name == null && members.length == 1) {
       return UserIconWidget(user: members.first.member);
     }
     return SizedBox(

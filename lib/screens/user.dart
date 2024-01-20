@@ -1129,90 +1129,93 @@ class UserSummaryWidget extends StatelessWidget {
                     .userGroups
                     .firstWhere((element) => element.id == member.groupId);
 
-                return AutoScroll(
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        height: 25,
-                        width: 25,
-                        child: FittedBox(
-                          child: GroupIconWidget(
-                            group: group,
+                return Align(
+                  alignment: Alignment.centerLeft,
+                  child: AutoScroll(
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 25,
+                          width: 25,
+                          child: FittedBox(
+                            child: GroupIconWidget(
+                              group: group,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        group.getDisplayName(context.read()),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
+                        const SizedBox(
+                          width: 10,
                         ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      if (member.amount.amount < 0)
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'owes you ',
-                                style: TextStyle(
-                                  color: scheme.primary,
-                                ),
-                              ),
-                              TextSpan(
-                                text:
-                                    member.amount.getPrettyAbs(context.read()),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(
-                                        color: scheme.primary,
-                                        fontWeight: FontWeight.w800),
-                              ),
-                            ],
+                        Text(
+                          group.getDisplayName(context.read()),
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
                           ),
-                        )
-                      else if (member.amount.amount > 0)
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'you owe ',
-                                style: TextStyle(
-                                  color: scheme.error,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        if (member.amount.amount < 0)
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'owes you ',
+                                  style: TextStyle(
+                                    color: scheme.primary,
+                                  ),
                                 ),
-                              ),
-                              TextSpan(
-                                text:
-                                    member.amount.getPrettyAbs(context.read()),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(
-                                        color: scheme.error,
-                                        fontWeight: FontWeight.w800),
-                              ),
-                            ],
-                          ),
-                        )
-                      else
-                        Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'settled with you ',
-                                style: TextStyle(
-                                  color: neutralBlue.primary,
+                                TextSpan(
+                                  text: member.amount
+                                      .getPrettyAbs(context.read()),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(
+                                          color: scheme.primary,
+                                          fontWeight: FontWeight.w800),
                                 ),
-                              ),
-                            ],
-                          ),
-                        )
-                    ],
+                              ],
+                            ),
+                          )
+                        else if (member.amount.amount > 0)
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'you owe ',
+                                  style: TextStyle(
+                                    color: scheme.error,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: member.amount
+                                      .getPrettyAbs(context.read()),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(
+                                          color: scheme.error,
+                                          fontWeight: FontWeight.w800),
+                                ),
+                              ],
+                            ),
+                          )
+                        else
+                          Text.rich(
+                            TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'settled with you ',
+                                  style: TextStyle(
+                                    color: neutralBlue.primary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                      ],
+                    ),
                   ),
                 );
               },
