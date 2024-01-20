@@ -37,6 +37,23 @@ class UserSetting extends StatelessWidget {
                   Expanded(
                     child: TextFormField(
                       initialValue: user.name,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Enter your name';
+                        }
+                        return null;
+                      },
+                      onFieldSubmitted: (value) async {
+                        var messenger = ScaffoldMessenger.of(context);
+                        try {
+                          await context
+                              .read<AppState>()
+                              .changeName(name: value);
+                        } catch (e) {
+                          messenger.showSnackBar(const SnackBar(
+                              content: Text('Failed to set name')));
+                        }
+                      },
                       decoration: const InputDecoration(
                         label: Text('Name'),
                       ),
@@ -55,6 +72,19 @@ class UserSetting extends StatelessWidget {
                   width: constraints.maxWidth,
                   label: const Text('Default Currency'),
                   initialSelection: defaultCurrency,
+                  onSelected: (value) async {
+                    if (value != null) {
+                      var messenger = ScaffoldMessenger.of(context);
+                      try {
+                        await context
+                            .read<AppState>()
+                            .changeDefaultCurrency(currencyId: value.id);
+                      } catch (e) {
+                        messenger.showSnackBar(const SnackBar(
+                            content: Text('Failed to set Default Currency')));
+                      }
+                    }
+                  },
                   dropdownMenuEntries: context
                       .read<AppState>()
                       .currencies
@@ -76,7 +106,11 @@ class UserSetting extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () async {
+                    var nav = Navigator.of(context);
+                    await context.read<AppState>().logout();
+                    nav.pop();
+                  },
                   icon: const Icon(Icons.logout),
                   label: const Text('Logout'),
                 ),

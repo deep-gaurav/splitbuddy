@@ -27,4 +27,8 @@ class SecureStorageHelper {
     await _flutterSecureStorage.write(
         key: 'refresh_token', value: refreshToken);
   }
+
+  Future<void> resetTokens() async {
+    await _flutterSecureStorage.deleteAll();
+  }
 }

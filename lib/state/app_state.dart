@@ -44,13 +44,16 @@ class AppState extends ChangeNotifier {
     }());
   }
 
+  GUserFields? _user;
   GuserData_user? _auth;
 
   AuthStates authState = AuthStates.loading;
 
-  GUserFields? get user => (_auth is GuserData_user__asRegistered)
-      ? (_auth as GuserData_user__asRegistered).user
-      : null;
+  GUserFields? get user =>
+      _user ??
+      ((_auth is GuserData_user__asRegistered)
+          ? (_auth as GuserData_user__asRegistered).user
+          : null);
 
   UnmodifiableListView<GGroupFields> get userGroups =>
       UnmodifiableListView(_userGroups);
@@ -323,8 +326,27 @@ class AppState extends ChangeNotifier {
     }
   }
 
-  logout() {
+  Future<GUserFields> changeName({required String name}) async {
+    var result = await (await client)
+        .execute(GchangeNameReq((b) => b.vars..name = name));
+    _user = result.data?.changeName;
+    notifyListeners();
+    return user!;
+  }
+
+  Future<GCurrencyFields> changeDefaultCurrency(
+      {required String currencyId}) async {
+    var result = await (await client).execute(
+        GsetDefaultCurrencyReq((b) => b.vars..currencyId = currencyId));
+    defaultCurrency =
+        currencies[result.data?.setDefaultCurrency.defaultCurrencyId];
+    notifyListeners();
+    return defaultCurrency!;
+  }
+
+  logout() async {
     authState = AuthStates.unAuthorized;
+    await SecureStorageHelper.getInstance().resetTokens();
     notifyListeners();
   }
 }
