@@ -29,3 +29,17 @@ class Split extends GroupTransactionObject {
   @override
   String get creatorId => split.creatorId;
 }
+
+class CurrencyConversion extends GroupTransactionObject {
+  String get partGroupId => splits.first.transactionPartGroupId!;
+
+  final List<GSplitFields> splits;
+
+  CurrencyConversion({required this.splits});
+
+  @override
+  String get createdAt => splits.first.createdAt;
+
+  @override
+  String get creatorId => splits.first.creatorId;
+}

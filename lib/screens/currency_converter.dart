@@ -65,28 +65,35 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                DropdownButton<GCurrencyFields>(
-                  value: fromCurrency,
-                  hint: const Text('Select currency'),
-                  items: context
-                      .read<AppState>()
-                      .currencies
-                      .values
-                      .where(
-                        (element) => interactedCurrencyId.contains(element.id),
-                      )
-                      .map(
-                        (e) => DropdownMenuItem(
-                          value: e,
-                          child: Text("${e.id} ${e.symbol}"),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (val) {
-                    setState(() {
-                      fromCurrency = val;
-                    });
-                  },
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('From'),
+                    DropdownButton<GCurrencyFields>(
+                      value: fromCurrency,
+                      hint: const Text('Select currency'),
+                      items: context
+                          .read<AppState>()
+                          .currencies
+                          .values
+                          .where(
+                            (element) =>
+                                interactedCurrencyId.contains(element.id),
+                          )
+                          .map(
+                            (e) => DropdownMenuItem(
+                              value: e,
+                              child: Text("${e.id} ${e.symbol}"),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (val) {
+                        setState(() {
+                          fromCurrency = val;
+                        });
+                      },
+                    ),
+                  ],
                 ),
                 const SizedBox(
                   width: 5,
@@ -95,25 +102,31 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
                 const SizedBox(
                   width: 5,
                 ),
-                DropdownButton<GCurrencyFields>(
-                  value: toCurrency,
-                  hint: const Text('Select currency'),
-                  items: context
-                      .read<AppState>()
-                      .currencies
-                      .values
-                      .map(
-                        (e) => DropdownMenuItem(
-                          value: e,
-                          child: Text("${e.id} ${e.symbol}"),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (val) {
-                    setState(() {
-                      toCurrency = val;
-                    });
-                  },
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('To'),
+                    DropdownButton<GCurrencyFields>(
+                      value: toCurrency,
+                      hint: const Text('Select currency'),
+                      items: context
+                          .read<AppState>()
+                          .currencies
+                          .values
+                          .map(
+                            (e) => DropdownMenuItem(
+                              value: e,
+                              child: Text("${e.id} ${e.symbol}"),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (val) {
+                        setState(() {
+                          toCurrency = val;
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
