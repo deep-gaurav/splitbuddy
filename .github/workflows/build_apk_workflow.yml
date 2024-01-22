@@ -68,3 +68,5 @@ jobs:
       with:
         name: release-artifact
         path: build/app/outputs/flutter-apk/
+permissions:
+  contents: write
