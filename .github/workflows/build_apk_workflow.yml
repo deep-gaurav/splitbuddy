@@ -34,12 +34,19 @@ jobs:
 
     - name: Build APK
       run: flutter build apk --release
+    - name: Build APPBundle
+      run: flutter build appbundle --release
 
     - name: Upload Release Artifact
       uses: actions/upload-artifact@v2
       with:
         name: release-artifact
         path: build/app/outputs/flutter-apk/
+    - name: Upload Release Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: release-artifact
+        path: build/app/outputs/bundle/
 
   release:
     needs: build
@@ -55,11 +62,19 @@ jobs:
         name: release-artifact
         path: build/app/outputs/flutter-apk/
         
+    - name: Download Release Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: release-artifact
+        path: build/app/outputs/bundle/
+        
     - name: Create Release
       id: create_release
       uses: softprops/action-gh-release@v1
       with:
-        files: build/app/outputs/flutter-apk/app-release.apk
+        files: 
+          - build/app/outputs/flutter-apk/app-release.apk
+          - build/app/outputs/bundle/release/app.aab
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
