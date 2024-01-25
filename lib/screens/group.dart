@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/mixins/notification_refresher.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
 import 'package:collection/collection.dart';
 import 'package:dotted_line/dotted_line.dart';
@@ -36,7 +37,11 @@ class Group extends StatefulWidget {
   State<Group> createState() => _GroupState();
 }
 
-class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
+class _GroupState extends State<Group>
+    with
+        SingleTickerProviderStateMixin,
+        WidgetsBindingObserver,
+        NotificationRefresher {
   List<GroupTransactionObject> expenses = [];
 
   final ScrollController _scrollController = ScrollController();
@@ -715,6 +720,11 @@ class _GroupState extends State<Group> with SingleTickerProviderStateMixin {
         ],
       ),
     );
+  }
+
+  @override
+  void onNotificationRefresh() {
+    fetchData(forceFirst: true);
   }
 }
 

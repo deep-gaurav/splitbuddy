@@ -89,6 +89,9 @@ class AppState extends ChangeNotifier {
 
   GCurrencyFields? defaultCurrency;
 
+  StreamController<RemoteMessage> notificationSubscription =
+      StreamController<RemoteMessage>.broadcast();
+
   refreshCurrencies() async {
     unAuthorizedClient.request(GcurrenciesReq()).listen((event) {
       currencies = Map.fromEntries(
@@ -168,6 +171,7 @@ class AppState extends ChangeNotifier {
           );
     }
     FirebaseMessaging.onMessage.listen((event) async {
+      notificationSubscription.add(event);
       refresh(await client);
     });
   }

@@ -1,5 +1,6 @@
 import 'package:billdivide/extensions/amount_extension.dart';
 import 'package:billdivide/extensions/num_extension.dart';
+import 'package:billdivide/mixins/notification_refresher.dart';
 import 'package:billdivide/screens/currency_converter.dart';
 import 'package:billdivide/screens/payment_currency_selector.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
@@ -36,7 +37,8 @@ class UserPage extends StatefulWidget {
   State<UserPage> createState() => _UserPageState();
 }
 
-class _UserPageState extends State<UserPage> {
+class _UserPageState extends State<UserPage>
+    with WidgetsBindingObserver, NotificationRefresher {
   List<TransactionCardTypes> transactions = [];
 
   final ScrollController _scrollController = ScrollController();
@@ -403,6 +405,11 @@ class _UserPageState extends State<UserPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void onNotificationRefresh() {
+    fetchData(forceFirst: true);
   }
 }
 

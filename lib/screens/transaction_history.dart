@@ -5,6 +5,7 @@ import 'package:billdivide/extensions/group_obj.dart';
 import 'package:billdivide/extensions/user_extension.dart';
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 import 'package:billdivide/graphql/__generated__/queries.req.gql.dart';
+import 'package:billdivide/mixins/notification_refresher.dart';
 import 'package:billdivide/screens/add_expense.dart';
 import 'package:billdivide/screens/group.dart';
 import 'package:billdivide/screens/groups_page.dart';
@@ -28,7 +29,8 @@ class TransactionHistory extends StatefulWidget {
   State<TransactionHistory> createState() => _TransactionHistoryState();
 }
 
-class _TransactionHistoryState extends State<TransactionHistory> {
+class _TransactionHistoryState extends State<TransactionHistory>
+    with WidgetsBindingObserver, NotificationRefresher {
   List<GroupTransactionObject> expenses = [];
 
   final ScrollController _scrollController = ScrollController();
@@ -696,5 +698,10 @@ class _TransactionHistoryState extends State<TransactionHistory> {
         ],
       ),
     );
+  }
+
+  @override
+  void onNotificationRefresh() {
+    fetchData(forceFirst: true);
   }
 }
