@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import 'package:ferry/ferry.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import 'package:billdivide/__generated__/schema.schema.gql.dart';
 import 'package:billdivide/auth/reauth_client.dart';
@@ -143,6 +144,46 @@ class AppState extends ChangeNotifier {
         await FirebaseMessaging.instance.getToken(vapidKey: vapidKey);
     (await client)
         .execute(GsetNotificationTokenReq((b) => b.vars..token = fcmToken));
+    FlutterLocalNotificationsPlugin localNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+    await localNotificationsPlugin.initialize(
+      const InitializationSettings(
+        android: AndroidInitializationSettings('ic_stat_icon_fg_no_outline'),
+      ),
+    );
+    const Map<String, String> notificationCategories = <String, String>{
+      'default': 'Other Notification',
+      'new_expense': 'New Expense',
+      'new_payment': 'New Payment',
+    };
+    for (final channel in notificationCategories.entries) {
+      await localNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>()
+          ?.createNotificationChannel(
+            AndroidNotificationChannel(
+              channel.key,
+              channel.value,
+            ),
+          );
+    }
+    FirebaseMessaging.onMessage.listen((event) async {
+      if (event.notification != null) {
+        localNotificationsPlugin.show(
+          event.messageId.hashCode,
+          event.notification!.title,
+          event.notification!.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              event.notification!.android?.channelId ?? 'default',
+              notificationCategories[
+                  event.notification!.android?.channelId ?? 'default']!,
+            ),
+          ),
+        );
+      }
+      refresh(await client);
+    });
   }
 
   Future<List<GGroupFields>> getGroups() async {
