@@ -41,6 +41,8 @@ class _CreateExpenseState extends State<CreateExpense> {
 
   GCurrencyFields? currentCurrency;
 
+  bool loading = false;
+
   @override
   void initState() {
     amountController.addListener(() {
@@ -440,70 +442,95 @@ class _CreateExpenseState extends State<CreateExpense> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        icon: const Icon(Icons.done),
-        onPressed: () async {
-          if (formKey.currentState?.validate() == true) {
-            var appstate = context.read<AppState>();
-            var nav = Navigator.of(context);
-            if (expenseWith.value case ExpenseWithGroup(group: var group)) {
-              var expense = await appstate.addExpense(
-                nameController.text,
-                (double.parse(amountController.text) *
-                        pow(10, currentCurrency!.decimals))
-                    .toInt(),
-                group.id,
-                currentCurrency!.id,
-                amountDistribution.entries
-                    .where((element) => element.key != appstate.user!.id)
-                    .map(
-                      (e) => GSplitInput(
-                        (b) => b
-                          ..amount = (double.parse(e.value.text) *
-                                  pow(10, currentCurrency!.decimals))
-                              .toInt()
-                          ..userId = e.key,
-                      ),
-                    )
-                    .toList(),
-              );
-              nav.pop(expense);
-            } else if (expenseWith.value
-                case ExpenseWithPeople(users: var users)) {
-              var expense = await (await appstate.client).execute(
-                GcreateNonGroupExpenseReq(
-                  (b) => b.vars
-                    ..amount = (double.parse(amountController.text) *
-                            pow(10, currentCurrency!.decimals))
-                        .toInt()
-                    ..title = nameController.text
-                    ..currencyId = currentCurrency!.id
-                    ..nonGroupSplit = ListBuilder(
-                      users
-                          .map(
-                            (e) => GSplitInputNonGroup(
-                              (b) {
-                                b.amount = (double.parse(
-                                            amountDistribution[e.id]!.text) *
-                                        pow(10, currentCurrency!.decimals))
-                                    .toInt();
-                                switch (e) {
-                                  case UserWithEmail(email: final email):
-                                    b.email = email;
-                                  case UserWithUser(user: final user):
-                                    b.userId = user.id;
-                                }
-                              },
+        icon: loading
+            ? SizedBox(
+                width: IconTheme.of(context).size,
+                height: IconTheme.of(context).size,
+                child: const CircularProgressIndicator(),
+              )
+            : const Icon(Icons.done),
+        onPressed: loading
+            ? null
+            : () async {
+                try {
+                  setState(() {
+                    loading = true;
+                  });
+                  if (formKey.currentState?.validate() == true) {
+                    var appstate = context.read<AppState>();
+                    var nav = Navigator.of(context);
+                    if (expenseWith.value
+                        case ExpenseWithGroup(group: var group)) {
+                      var expense = await appstate.addExpense(
+                        nameController.text,
+                        (double.parse(amountController.text) *
+                                pow(10, currentCurrency!.decimals))
+                            .toInt(),
+                        group.id,
+                        currentCurrency!.id,
+                        amountDistribution.entries
+                            .where(
+                                (element) => element.key != appstate.user!.id)
+                            .map(
+                              (e) => GSplitInput(
+                                (b) => b
+                                  ..amount = (double.parse(e.value.text) *
+                                          pow(10, currentCurrency!.decimals))
+                                      .toInt()
+                                  ..userId = e.key,
+                              ),
+                            )
+                            .toList(),
+                      );
+                      nav.pop(expense);
+                    } else if (expenseWith.value
+                        case ExpenseWithPeople(users: var users)) {
+                      var expense = await (await appstate.client).execute(
+                        GcreateNonGroupExpenseReq(
+                          (b) => b.vars
+                            ..amount = (double.parse(amountController.text) *
+                                    pow(10, currentCurrency!.decimals))
+                                .toInt()
+                            ..title = nameController.text
+                            ..currencyId = currentCurrency!.id
+                            ..nonGroupSplit = ListBuilder(
+                              users
+                                  .map(
+                                    (e) => GSplitInputNonGroup(
+                                      (b) {
+                                        b.amount = (double.parse(
+                                                    amountDistribution[e.id]!
+                                                        .text) *
+                                                pow(10,
+                                                    currentCurrency!.decimals))
+                                            .toInt();
+                                        switch (e) {
+                                          case UserWithEmail(
+                                              email: final email
+                                            ):
+                                            b.email = email;
+                                          case UserWithUser(user: final user):
+                                            b.userId = user.id;
+                                        }
+                                      },
+                                    ),
+                                  )
+                                  .toList(),
                             ),
-                          )
-                          .toList(),
-                    ),
-                ),
-              );
-              appstate.refresh((await appstate.client));
-              nav.pop(expense.data?.addNonGroupExpense.expense);
-            }
-          }
-        },
+                        ),
+                      );
+                      appstate.refresh((await appstate.client));
+                      nav.pop(expense.data?.addNonGroupExpense.expense);
+                    }
+                  }
+                } finally {
+                  if (mounted) {
+                    setState(() {
+                      loading = false;
+                    });
+                  }
+                }
+              },
         label: const Text("Create"),
       ),
     );

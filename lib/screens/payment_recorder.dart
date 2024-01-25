@@ -56,6 +56,8 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
           owed.amount.currencyId == currency!.id && owed.amount.amount > 0)
       .sorted((a, b) => a.amount.amount.compareTo(b.amount.amount));
 
+  bool loading = false;
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -334,27 +336,48 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        icon: const Icon(Icons.done),
-        onPressed: () async {
-          if (formKey.currentState!.validate()) {
-            var appState = context.read<AppState>();
-            var nav = Navigator.of(context);
-            if (widget.inGroup != null) {
-              var result = await appState.settleInGroup(
-                  userId: widget.withUser.id,
-                  currencyId: currency!.id,
-                  groupId: widget.inGroup!.id,
-                  amount: (amount * pow(10, currency!.decimals)).toInt());
-              nav.pop(result);
-            } else {
-              var result = await appState.autoSettleWithUser(
-                  userId: widget.withUser.id,
-                  currencyId: currency!.id,
-                  amount: (amount * pow(10, currency!.decimals)).toInt());
-              nav.pop(result);
-            }
-          }
-        },
+        icon: loading
+            ? SizedBox(
+                width: IconTheme.of(context).size,
+                height: IconTheme.of(context).size,
+                child: const CircularProgressIndicator(),
+              )
+            : const Icon(Icons.done),
+        onPressed: loading
+            ? null
+            : () async {
+                try {
+                  setState(() {
+                    loading = true;
+                  });
+                  if (formKey.currentState!.validate()) {
+                    var appState = context.read<AppState>();
+                    var nav = Navigator.of(context);
+                    if (widget.inGroup != null) {
+                      var result = await appState.settleInGroup(
+                          userId: widget.withUser.id,
+                          currencyId: currency!.id,
+                          groupId: widget.inGroup!.id,
+                          amount:
+                              (amount * pow(10, currency!.decimals)).toInt());
+                      nav.pop(result);
+                    } else {
+                      var result = await appState.autoSettleWithUser(
+                          userId: widget.withUser.id,
+                          currencyId: currency!.id,
+                          amount:
+                              (amount * pow(10, currency!.decimals)).toInt());
+                      nav.pop(result);
+                    }
+                  }
+                } finally {
+                  if (mounted) {
+                    setState(() {
+                      loading = false;
+                    });
+                  }
+                }
+              },
         label: const Text("Record"),
       ),
     );

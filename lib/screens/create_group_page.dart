@@ -139,27 +139,37 @@ class _CreateGroupPageState extends State<CreateGroupPage> {
         onPressed: loading
             ? null
             : () async {
-                if (formKey.currentState!.validate()) {
-                  if ((newGroupMembers.value is ExpenseWithPeople &&
-                      (newGroupMembers.value as ExpenseWithPeople)
-                          .users
-                          .isNotEmpty)) {
-                    setState(() {
-                      loading = true;
-                    });
-                    var appState = context.read<AppState>();
-                    var nav = Navigator.of(context);
+                try {
+                  setState(() {
+                    loading = true;
+                  });
+                  if (formKey.currentState!.validate()) {
+                    if ((newGroupMembers.value is ExpenseWithPeople &&
+                        (newGroupMembers.value as ExpenseWithPeople)
+                            .users
+                            .isNotEmpty)) {
+                      var appState = context.read<AppState>();
+                      var nav = Navigator.of(context);
 
-                    var group =
-                        await appState.createGroup(controller.text.trim());
-                    for (var member
-                        in (newGroupMembers.value as ExpenseWithPeople).users) {
-                      await appState.addMemberToGroup(member.email!, group.id);
+                      var group =
+                          await appState.createGroup(controller.text.trim());
+                      for (var member
+                          in (newGroupMembers.value as ExpenseWithPeople)
+                              .users) {
+                        await appState.addMemberToGroup(
+                            member.email!, group.id);
+                      }
+                      nav.pop(group);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Add member to make group')));
                     }
-                    nav.pop(group);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Add member to make group')));
+                  }
+                } finally {
+                  if (mounted) {
+                    setState(() {
+                      loading = false;
+                    });
                   }
                 }
               },

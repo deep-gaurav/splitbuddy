@@ -168,20 +168,6 @@ class AppState extends ChangeNotifier {
           );
     }
     FirebaseMessaging.onMessage.listen((event) async {
-      if (event.notification != null) {
-        localNotificationsPlugin.show(
-          event.messageId.hashCode,
-          event.notification!.title,
-          event.notification!.body,
-          NotificationDetails(
-            android: AndroidNotificationDetails(
-              event.notification!.android?.channelId ?? 'default',
-              notificationCategories[
-                  event.notification!.android?.channelId ?? 'default']!,
-            ),
-          ),
-        );
-      }
       refresh(await client);
     });
   }

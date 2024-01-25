@@ -219,15 +219,15 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
             ? null
             : () async {
                 try {
+                  setState(() {
+                    loading = true;
+                  });
                   var nav = Navigator.of(context);
                   if (fromCurrency?.id == null || toCurrency?.id == null) {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text('Select currencies to convert')));
                     return;
                   }
-                  setState(() {
-                    loading = true;
-                  });
                   var groups = widget.user.owes
                       .where((p0) =>
                           p0.amount.currencyId == fromCurrency?.id &&
