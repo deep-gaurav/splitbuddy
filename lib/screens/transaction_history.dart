@@ -544,7 +544,7 @@ class _TransactionHistoryState extends State<TransactionHistory>
                                                                     splits.first
                                                                         .amount
                                                                         .getPretty(
-                                                                            context.read()),
+                                                                            context),
                                                                     style: Theme.of(
                                                                             context)
                                                                         .textTheme
@@ -565,7 +565,7 @@ class _TransactionHistoryState extends State<TransactionHistory>
                                                                       splits[1]
                                                                           .amount
                                                                           .getPretty(
-                                                                              context.read()),
+                                                                              context),
                                                                       style: Theme.of(
                                                                               context)
                                                                           .textTheme

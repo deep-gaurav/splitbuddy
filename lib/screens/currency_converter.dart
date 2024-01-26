@@ -189,7 +189,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
                           : 'they owe you ',
                       children: [
                         TextSpan(
-                          text: owe.amount.getPrettyAbs(context.read()),
+                          text: owe.amount.getPrettyAbs(context),
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -204,7 +204,7 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
                   subtitle: Text.rich(
                     TextSpan(text: 'will be converted to ', children: [
                       TextSpan(
-                        text: newVal.getPrettyAbs(context.read()),
+                        text: newVal.getPrettyAbs(context),
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       )
                     ]),

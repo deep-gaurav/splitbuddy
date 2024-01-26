@@ -621,7 +621,7 @@ class UserTransactionCard extends StatelessWidget {
                                 children: [
                                   Text(
                                     transactions.first.amount
-                                        .getPretty(context.read()),
+                                        .getPretty(context),
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineMedium
@@ -635,9 +635,7 @@ class UserTransactionCard extends StatelessWidget {
                                   const Icon(Icons.chevron_right),
                                   if (transactions.length > 1)
                                     Text(
-                                      transactions[1]
-                                          .amount
-                                          .getPretty(context.read()),
+                                      transactions[1].amount.getPretty(context),
                                       style: Theme.of(context)
                                           .textTheme
                                           .headlineMedium
@@ -730,7 +728,7 @@ class UserTransactionCard extends StatelessWidget {
                               (split) => Row(
                                 children: [
                                   Text(
-                                    split.amount.getPrettyAbs(context.read()),
+                                    split.amount.getPrettyAbs(context),
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelLarge
@@ -790,8 +788,7 @@ class UserTransactionCard extends StatelessWidget {
                                 TextSpan(children: [
                                   const TextSpan(text: 'Settled '),
                                   TextSpan(
-                                      text: e.$1.amount
-                                          .getPrettyAbs(context.read()),
+                                      text: e.$1.amount.getPrettyAbs(context),
                                       style: Theme.of(context)
                                           .textTheme
                                           .labelLarge
@@ -888,7 +885,7 @@ class ExpenseCard extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  expense.amount.getPretty(context.read()),
+                  expense.amount.getPretty(context),
                   style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w600,
                       color: Theme.of(context).colorScheme.onSurface),
@@ -945,7 +942,7 @@ class TransactionCard extends StatelessWidget {
                         children: [
                           if (amount != null) ...[
                             Text(
-                              amount!.getPretty(context.read()),
+                              amount!.getPretty(context),
                               style: Theme.of(context)
                                   .textTheme
                                   .displaySmall
@@ -1038,7 +1035,7 @@ class UserSummaryWidget extends StatelessWidget {
                           children: [
                             ...user.toReceive.map(
                               (amount) => Text(
-                                amount.getPrettyAbs(context.read()),
+                                amount.getPrettyAbs(context),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge
@@ -1077,7 +1074,7 @@ class UserSummaryWidget extends StatelessWidget {
                             children: [
                               ...user.toPay.map(
                                 (amount) => Text(
-                                  amount.getPrettyAbs(context.read()),
+                                  amount.getPrettyAbs(context),
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleLarge
@@ -1177,8 +1174,7 @@ class UserSummaryWidget extends StatelessWidget {
                                   ),
                                 ),
                                 TextSpan(
-                                  text: member.amount
-                                      .getPrettyAbs(context.read()),
+                                  text: member.amount.getPrettyAbs(context),
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium
@@ -1200,8 +1196,7 @@ class UserSummaryWidget extends StatelessWidget {
                                   ),
                                 ),
                                 TextSpan(
-                                  text: member.amount
-                                      .getPrettyAbs(context.read()),
+                                  text: member.amount.getPrettyAbs(context),
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium

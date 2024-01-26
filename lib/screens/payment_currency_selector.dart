@@ -107,8 +107,7 @@ class PaymentCurrencySelector extends StatelessWidget {
                                             ),
                                           ),
                                           TextSpan(
-                                            text: owe
-                                                .getPrettyAbs(context.read()),
+                                            text: owe.getPrettyAbs(context),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium
@@ -132,8 +131,7 @@ class PaymentCurrencySelector extends StatelessWidget {
                                                 ),
                                               ),
                                               TextSpan(
-                                                text: owe
-                                                    .getPretty(context.read()),
+                                                text: owe.getPretty(context),
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .titleMedium

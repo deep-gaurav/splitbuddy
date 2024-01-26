@@ -265,8 +265,8 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
                                 text: 'you owe ',
                                 children: [
                                   TextSpan(
-                                    text: owedGroup.amount
-                                        .getPrettyAbs(context.read()),
+                                    text:
+                                        owedGroup.amount.getPrettyAbs(context),
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold),
                                   )

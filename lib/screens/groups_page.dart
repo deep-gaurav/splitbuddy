@@ -71,7 +71,7 @@ class GroupsPage extends StatelessWidget {
                                                     ),
                                                     TextSpan(
                                                       text: e.getPrettyAbs(
-                                                          context.read()),
+                                                          context),
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .titleMedium
@@ -96,7 +96,7 @@ class GroupsPage extends StatelessWidget {
                                                     ),
                                                     TextSpan(
                                                       text: e.getPrettyAbs(
-                                                          context.read()),
+                                                          context),
                                                       style: Theme.of(context)
                                                           .textTheme
                                                           .titleMedium

@@ -99,8 +99,7 @@ class HomePage extends StatelessWidget {
                                             ),
                                           ),
                                           TextSpan(
-                                            text:
-                                                e.getPrettyAbs(context.read()),
+                                            text: e.getPrettyAbs(context),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium
@@ -122,8 +121,7 @@ class HomePage extends StatelessWidget {
                                             ),
                                           ),
                                           TextSpan(
-                                            text:
-                                                e.getPrettyAbs(context.read()),
+                                            text: e.getPrettyAbs(context),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium

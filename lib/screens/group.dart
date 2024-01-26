@@ -548,8 +548,7 @@ class _GroupState extends State<Group>
                                                                   splits.first
                                                                       .amount
                                                                       .getPretty(
-                                                                          context
-                                                                              .read()),
+                                                                          context),
                                                                   style: Theme.of(
                                                                           context)
                                                                       .textTheme
@@ -570,7 +569,7 @@ class _GroupState extends State<Group>
                                                                     splits[1]
                                                                         .amount
                                                                         .getPretty(
-                                                                            context.read()),
+                                                                            context),
                                                                     style: Theme.of(
                                                                             context)
                                                                         .textTheme
@@ -765,7 +764,7 @@ class GroupSummaryWidget extends StatelessWidget {
                           children: [
                             ...group.toReceive.map(
                               (amount) => Text(
-                                amount.getPrettyAbs(context.read()),
+                                amount.getPrettyAbs(context),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge
@@ -807,7 +806,7 @@ class GroupSummaryWidget extends StatelessWidget {
                             children: [
                               ...group.toPay.map(
                                 (amount) => Text(
-                                  amount.getPrettyAbs(context.read()),
+                                  amount.getPrettyAbs(context),
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleLarge
@@ -915,8 +914,7 @@ class GroupSummaryWidget extends StatelessWidget {
                                             ),
                                           ),
                                           TextSpan(
-                                            text: owe
-                                                .getPrettyAbs(context.read()),
+                                            text: owe.getPrettyAbs(context),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium
@@ -939,8 +937,7 @@ class GroupSummaryWidget extends StatelessWidget {
                                                 ),
                                               ),
                                               TextSpan(
-                                                text: owe
-                                                    .getPretty(context.read()),
+                                                text: owe.getPretty(context),
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .titleMedium

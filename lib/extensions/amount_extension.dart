@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 import 'package:billdivide/state/app_state.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 extension AmountExtension on GAmountFields {
   double getAmountWithDecimal(AppState appState) =>
@@ -12,8 +14,8 @@ extension AmountExtension on GAmountFields {
               getAmountWithDecimal(appState)
           ? getAmountWithDecimal(appState).truncate()
           : getAmountWithDecimal(appState);
-  String getPretty(AppState appState) =>
-      '${appState.currencies[currencyId]?.symbol}${getAmountFormatted(appState)}';
-  String getPrettyAbs(AppState appState) =>
-      '${appState.currencies[currencyId]?.symbol}${getAmountFormatted(appState).abs()}';
+  String getPretty(BuildContext context) =>
+      '${context.select<AppState, Map<String, GCurrencyFields>>((state) => state.currencies)[currencyId]?.symbol}${getAmountFormatted(context.read())}';
+  String getPrettyAbs(BuildContext context) =>
+      '${context.select<AppState, Map<String, GCurrencyFields>>((state) => state.currencies)[currencyId]?.symbol}${getAmountFormatted(context.read()).abs()}';
 }

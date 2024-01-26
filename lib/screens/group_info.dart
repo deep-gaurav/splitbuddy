@@ -100,8 +100,7 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                                             children: [
                                               if (owed.amount > 0)
                                                 TextSpan(
-                                                  text: owed.getPretty(
-                                                      context.read()),
+                                                  text: owed.getPretty(context),
                                                   style: TextStyle(
                                                     fontSize: Theme.of(context)
                                                         .textTheme
@@ -112,8 +111,8 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                                                 )
                                               else if (owed.amount < 0)
                                                 TextSpan(
-                                                  text: owed.getPrettyAbs(
-                                                      context.read()),
+                                                  text: owed
+                                                      .getPrettyAbs(context),
                                                   style: TextStyle(
                                                     fontSize: Theme.of(context)
                                                         .textTheme
