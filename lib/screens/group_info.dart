@@ -64,159 +64,13 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
                 var member = group.members[index];
                 bool isSelf =
                     context.read<AppState>().user!.id == member.member.id;
-                return Container(
-                  margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-                  child: Card(
-                    child: ListTile(
-                      leading: UserIconWidget(user: member.member),
-                      title: Text(
-                        '${member.member.displayName}${context.read<AppState>().user!.id == member.member.id ? ' (You)' : ''}',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      subtitle: !isSelf
-                          ? Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                if (member.owedInGroup
-                                    .where((p0) => p0.amount != 0)
-                                    .isEmpty)
-                                  Text(
-                                    'You are settled',
-                                    style:
-                                        TextStyle(color: neutralBlue.primary),
-                                  ),
-                                ...member.owedInGroup
-                                    .where((p0) => p0.amount != 0)
-                                    .map(
-                                      (owed) => AutoScroll(
-                                        child: Text.rich(
-                                          TextSpan(
-                                            text: owed.amount > 0
-                                                ? 'You owe them '
-                                                : owed.amount < 0
-                                                    ? 'They owe you '
-                                                    : 'You are settled',
-                                            children: [
-                                              if (owed.amount > 0)
-                                                TextSpan(
-                                                  text: owed.getPretty(context),
-                                                  style: TextStyle(
-                                                    fontSize: Theme.of(context)
-                                                        .textTheme
-                                                        .titleMedium
-                                                        ?.fontSize,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                )
-                                              else if (owed.amount < 0)
-                                                TextSpan(
-                                                  text: owed
-                                                      .getPrettyAbs(context),
-                                                  style: TextStyle(
-                                                    fontSize: Theme.of(context)
-                                                        .textTheme
-                                                        .titleMedium
-                                                        ?.fontSize,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                )
-                                            ],
-                                          ),
-                                          style: owed.amount > 0
-                                              ? TextStyle(
-                                                  color: mainScheme.error)
-                                              : owed.amount < 0
-                                                  ? TextStyle(
-                                                      color: mainScheme.primary)
-                                                  : TextStyle(
-                                                      color:
-                                                          neutralBlue.primary),
-                                        ),
-                                      ),
-                                    )
-                              ],
-                            )
-                          : null,
-                      trailing: !isSelf
-                          ? FilledButton.tonal(
-                              onPressed: () async {
-                                var result;
-                                var toPay = member.owedInGroup
-                                    .where((p0) => p0.amount > 0);
-                                var toReceive = member.owedInGroup
-                                    .where((p0) => p0.amount < 0);
-
-                                if (toPay.length == 1) {
-                                  result = await Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => PaymentRecorder(
-                                        withUser: context
-                                            .read<AppState>()
-                                            .interactedUsers
-                                            .firstWhere(
-                                              (element) =>
-                                                  element.id ==
-                                                  member.member.id,
-                                            ),
-                                        initialCurrencyId:
-                                            toPay.first.currencyId,
-                                        initialAmount: toPay.first
-                                            .getAmountFormatted(context.read())
-                                            .toPrettyFixed(
-                                              context
-                                                  .read<AppState>()
-                                                  .currencies[
-                                                      toPay.first.currencyId]!
-                                                  .decimals,
-                                            ),
-                                        inGroup: group,
-                                      ),
-                                    ),
-                                  );
-                                } else if (toPay.isEmpty) {
-                                  result = await Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => PaymentRecorder(
-                                        inGroup: group,
-                                        withUser: context
-                                            .read<AppState>()
-                                            .interactedUsers
-                                            .firstWhere(
-                                              (element) =>
-                                                  element.id ==
-                                                  member.member.id,
-                                            ),
-                                        initialCurrencyId: context
-                                            .read<AppState>()
-                                            .defaultCurrency!
-                                            .id,
-                                      ),
-                                    ),
-                                  );
-                                } else {
-                                  result = await Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          PaymentCurrencySelector(
-                                        user: member.member,
-                                        inGroup: group,
-                                        toPay: toPay.toList(),
-                                        toReceive: toReceive.toList(),
-                                      ),
-                                    ),
-                                  );
-                                }
-
-                                if (result is GSplitTransactionFields) {
-                                  widget.onSettleTransaction(result);
-                                }
-                              },
-                              child: const Text('Settle'))
-                          : null,
-                    ),
-                  ),
-                );
+                return UserListTile(
+                    member: member,
+                    isSelf: isSelf,
+                    neutralBlue: neutralBlue,
+                    mainScheme: mainScheme,
+                    group: group,
+                    widget: widget);
               },
               childCount: group.members.length,
             ),
@@ -274,6 +128,164 @@ class _GroupMembersPageState extends State<GroupMembersPage> {
               ),
             )
         ],
+      ),
+    );
+  }
+}
+
+class UserListTile extends StatelessWidget {
+  const UserListTile({
+    super.key,
+    required this.member,
+    required this.isSelf,
+    required this.neutralBlue,
+    required this.mainScheme,
+    required this.group,
+    required this.widget,
+  });
+
+  final GGroupFields_members member;
+  final bool isSelf;
+  final ColorScheme neutralBlue;
+  final ColorScheme mainScheme;
+  final GGroupFields group;
+  final GroupMembersPage widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+      child: Card(
+        child: ListTile(
+          leading: UserIconWidget(user: member.member),
+          title: Text(
+            '${member.member.displayName}${context.read<AppState>().user!.id == member.member.id ? ' (You)' : ''}',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          subtitle: !isSelf
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    if (member.owedInGroup
+                        .where((p0) => p0.amount != 0)
+                        .isEmpty)
+                      Text(
+                        'You are settled',
+                        style: TextStyle(color: neutralBlue.primary),
+                      ),
+                    ...member.owedInGroup.where((p0) => p0.amount != 0).map(
+                          (owed) => AutoScroll(
+                            child: Text.rich(
+                              TextSpan(
+                                text: owed.amount > 0
+                                    ? 'You owe them '
+                                    : owed.amount < 0
+                                        ? 'They owe you '
+                                        : 'You are settled',
+                                children: [
+                                  if (owed.amount > 0)
+                                    TextSpan(
+                                      text: owed.getPretty(context),
+                                      style: TextStyle(
+                                        fontSize: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium
+                                            ?.fontSize,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  else if (owed.amount < 0)
+                                    TextSpan(
+                                      text: owed.getPrettyAbs(context),
+                                      style: TextStyle(
+                                        fontSize: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium
+                                            ?.fontSize,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                ],
+                              ),
+                              style: owed.amount > 0
+                                  ? TextStyle(color: mainScheme.error)
+                                  : owed.amount < 0
+                                      ? TextStyle(color: mainScheme.primary)
+                                      : TextStyle(color: neutralBlue.primary),
+                            ),
+                          ),
+                        )
+                  ],
+                )
+              : null,
+          trailing: !isSelf
+              ? FilledButton.tonal(
+                  onPressed: () async {
+                    var result;
+                    var toPay = member.owedInGroup.where((p0) => p0.amount > 0);
+                    var toReceive =
+                        member.owedInGroup.where((p0) => p0.amount < 0);
+
+                    if (toPay.length == 1) {
+                      result = await Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PaymentRecorder(
+                            withUser: context
+                                .read<AppState>()
+                                .interactedUsers
+                                .firstWhere(
+                                  (element) => element.id == member.member.id,
+                                ),
+                            initialCurrencyId: toPay.first.currencyId,
+                            initialAmount: toPay.first
+                                .getAmountFormatted(context.read())
+                                .toPrettyFixed(
+                                  context
+                                      .read<AppState>()
+                                      .currencies[toPay.first.currencyId]!
+                                      .decimals,
+                                ),
+                            inGroup: group,
+                          ),
+                        ),
+                      );
+                    } else if (toPay.isEmpty) {
+                      result = await Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PaymentRecorder(
+                            inGroup: group,
+                            withUser: context
+                                .read<AppState>()
+                                .interactedUsers
+                                .firstWhere(
+                                  (element) => element.id == member.member.id,
+                                ),
+                            initialCurrencyId:
+                                context.read<AppState>().defaultCurrency!.id,
+                          ),
+                        ),
+                      );
+                    } else {
+                      result = await Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PaymentCurrencySelector(
+                            user: member.member,
+                            inGroup: group,
+                            toPay: toPay.toList(),
+                            toReceive: toReceive.toList(),
+                          ),
+                        ),
+                      );
+                    }
+
+                    if (result is GSplitTransactionFields) {
+                      widget.onSettleTransaction(result);
+                    }
+                  },
+                  child: const Text('Settle'))
+              : null,
+        ),
       ),
     );
   }

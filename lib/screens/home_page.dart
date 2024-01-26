@@ -69,77 +69,91 @@ class HomePage extends StatelessWidget {
         SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
           var user = nonSelfUsrs.elementAt(index);
-          return Container(
-            margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
-            child: ListTile(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => UserPage(initialUser: user)));
-              },
-              leading: UserIconWidget(user: user),
-              title: Text(user.displayName),
-              subtitle: user.toPay.isEmpty && user.toReceive.isEmpty
-                  ? const Text('you are settled up')
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        ...user.toPay
-                            .followedBy(user.toReceive)
-                            .sorted((b, a) =>
-                                a.amount.abs().compareTo(b.amount.abs()))
-                            .map(
-                              (e) => e.amount > 0
-                                  ? Text.rich(
-                                      TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: 'you owe ',
-                                            style: TextStyle(
-                                              color: scheme.error,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: e.getPrettyAbs(context),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium
-                                                ?.copyWith(
-                                                    color: scheme.error,
-                                                    fontWeight:
-                                                        FontWeight.w800),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  : Text.rich(
-                                      TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: 'you are owed ',
-                                            style: TextStyle(
-                                              color: scheme.primary,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: e.getPrettyAbs(context),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium
-                                                ?.copyWith(
-                                                    color: scheme.primary,
-                                                    fontWeight:
-                                                        FontWeight.w800),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                            )
-                      ],
-                    ),
-            ),
-          );
+          return HomeUserTile(user: user, scheme: scheme);
         }, childCount: nonSelfUsrs.length)),
       ],
+    );
+  }
+}
+
+class HomeUserTile extends StatelessWidget {
+  const HomeUserTile({
+    super.key,
+    required this.user,
+    required this.scheme,
+  });
+
+  final Ginteracted_usersData_interactedUsers user;
+  final ColorScheme scheme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+      child: ListTile(
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => UserPage(initialUser: user)));
+        },
+        leading: UserIconWidget(user: user),
+        title: Text(user.displayName),
+        subtitle: user.toPay.isEmpty && user.toReceive.isEmpty
+            ? const Text('you are settled up')
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ...user.toPay
+                      .followedBy(user.toReceive)
+                      .sorted(
+                          (b, a) => a.amount.abs().compareTo(b.amount.abs()))
+                      .map(
+                        (e) => e.amount > 0
+                            ? Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'you owe ',
+                                      style: TextStyle(
+                                        color: scheme.error,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: e.getPrettyAbs(context),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                              color: scheme.error,
+                                              fontWeight: FontWeight.w800),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'you are owed ',
+                                      style: TextStyle(
+                                        color: scheme.primary,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: e.getPrettyAbs(context),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                              color: scheme.primary,
+                                              fontWeight: FontWeight.w800),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                      )
+                ],
+              ),
+      ),
     );
   }
 }

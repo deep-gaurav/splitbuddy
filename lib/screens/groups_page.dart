@@ -35,86 +35,7 @@ class GroupsPage extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     var group = groups[index];
-                    return Container(
-                      margin:
-                          const EdgeInsets.only(top: 10, left: 20, right: 20),
-                      child: ListTile(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => Group(group: group),
-                            ),
-                          );
-                        },
-                        leading: GroupIconWidget(group: group),
-                        title: Text(group.getDisplayName(context.read())),
-                        subtitle: group.toPay.isEmpty && group.toReceive.isEmpty
-                            ? const Text('you are settled up')
-                            : Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  ...group.toPay
-                                      .followedBy(group.toReceive)
-                                      .sorted((b, a) => a.amount
-                                          .abs()
-                                          .compareTo(b.amount.abs()))
-                                      .map(
-                                        (e) => e.amount > 0
-                                            ? Text.rich(
-                                                TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text: 'you owe ',
-                                                      style: TextStyle(
-                                                        color: scheme.error,
-                                                      ),
-                                                    ),
-                                                    TextSpan(
-                                                      text: e.getPrettyAbs(
-                                                          context),
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .titleMedium
-                                                          ?.copyWith(
-                                                              color:
-                                                                  scheme.error,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w800),
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-                                            : Text.rich(
-                                                TextSpan(
-                                                  children: [
-                                                    TextSpan(
-                                                      text: 'you are owed ',
-                                                      style: TextStyle(
-                                                        color: scheme.primary,
-                                                      ),
-                                                    ),
-                                                    TextSpan(
-                                                      text: e.getPrettyAbs(
-                                                          context),
-                                                      style: Theme.of(context)
-                                                          .textTheme
-                                                          .titleMedium
-                                                          ?.copyWith(
-                                                              color: scheme
-                                                                  .primary,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w800),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                      )
-                                ],
-                              ),
-                      ),
-                    );
+                    return GroupTitle(group: group, scheme: scheme);
                   },
                   childCount: groups.length,
                 ),
@@ -122,6 +43,91 @@ class GroupsPage extends StatelessWidget {
             },
           )
         ],
+      ),
+    );
+  }
+}
+
+class GroupTitle extends StatelessWidget {
+  const GroupTitle({
+    super.key,
+    required this.group,
+    required this.scheme,
+  });
+
+  final GGroupFields group;
+  final ColorScheme scheme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+      child: ListTile(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => Group(group: group),
+            ),
+          );
+        },
+        leading: GroupIconWidget(group: group),
+        title: Text(group.getDisplayName(context.read())),
+        subtitle: group.toPay.isEmpty && group.toReceive.isEmpty
+            ? const Text('you are settled up')
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ...group.toPay
+                      .followedBy(group.toReceive)
+                      .sorted(
+                          (b, a) => a.amount.abs().compareTo(b.amount.abs()))
+                      .map(
+                        (e) => e.amount > 0
+                            ? Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'you owe ',
+                                      style: TextStyle(
+                                        color: scheme.error,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: e.getPrettyAbs(context),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                              color: scheme.error,
+                                              fontWeight: FontWeight.w800),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: 'you are owed ',
+                                      style: TextStyle(
+                                        color: scheme.primary,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: e.getPrettyAbs(context),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                              color: scheme.primary,
+                                              fontWeight: FontWeight.w800),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                      )
+                ],
+              ),
       ),
     );
   }

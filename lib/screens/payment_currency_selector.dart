@@ -47,107 +47,13 @@ class PaymentCurrencySelector extends StatelessWidget {
           delegate: SliverChildListDelegate.fixed(
             [
               ...currencyInteracted.map(
-                (e) => Card(
-                  child: ListTile(
-                    onTap: () async {
-                      Navigator.of(context).pop(
-                        await Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => PaymentRecorder(
-                              withUser: context
-                                  .read<AppState>()
-                                  .interactedUsers
-                                  .firstWhere(
-                                      (element) => element.id == user.id),
-                              inGroup: inGroup,
-                              initialCurrencyId: e.id,
-                              initialAmount: toPay
-                                  .firstWhereOrNull(
-                                      (element) => element.currencyId == e.id)
-                                  ?.getAmountFormatted(context.read())
-                                  .toPrettyFixed(e.decimals),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                    leading: Text(
-                      e.symbol,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 20,
-                      ),
-                    ),
-                    title: Text.rich(
-                      TextSpan(
-                        text: 'Record payment in ',
-                        children: [
-                          TextSpan(
-                              text: '${e.id} ${e.symbol}',
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ...toPay
-                            .followedBy(toReceive)
-                            .where((element) => element.currencyId == e.id)
-                            .map(
-                              (owe) => (owe.amount < 0)
-                                  ? Text.rich(
-                                      TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text: '${user.shortName} owes you ',
-                                            style: TextStyle(
-                                              color: scheme.primary,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text: owe.getPrettyAbs(context),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium
-                                                ?.copyWith(
-                                                    color: scheme.primary,
-                                                    fontWeight:
-                                                        FontWeight.w800),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  : (owe.amount > 0)
-                                      ? Text.rich(
-                                          TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text:
-                                                    'you owe ${user.shortName} ',
-                                                style: TextStyle(
-                                                  color: scheme.error,
-                                                ),
-                                              ),
-                                              TextSpan(
-                                                text: owe.getPretty(context),
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium
-                                                    ?.copyWith(
-                                                        color: scheme.error,
-                                                        fontWeight:
-                                                            FontWeight.w800),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      : const SizedBox(),
-                            )
-                      ],
-                    ),
-                  ),
+                (currency) => CurrencySelectorTile(
+                  user: user,
+                  inGroup: inGroup,
+                  toPay: toPay,
+                  toReceive: toReceive,
+                  scheme: scheme,
+                  currency: currency,
                 ),
               )
             ],
@@ -206,5 +112,125 @@ class PaymentCurrencySelector extends StatelessWidget {
         ),
       ],
     ));
+  }
+}
+
+class CurrencySelectorTile extends StatelessWidget {
+  const CurrencySelectorTile({
+    super.key,
+    required this.user,
+    required this.inGroup,
+    required this.toPay,
+    required this.toReceive,
+    required this.scheme,
+    required this.currency,
+  });
+
+  final GUserFields user;
+  final GGroupFields? inGroup;
+  final List<GAmountFields> toPay;
+  final List<GAmountFields> toReceive;
+  final ColorScheme scheme;
+  final GCurrencyFields currency;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        onTap: () async {
+          Navigator.of(context).pop(
+            await Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => PaymentRecorder(
+                  withUser: context
+                      .read<AppState>()
+                      .interactedUsers
+                      .firstWhere((element) => element.id == user.id),
+                  inGroup: inGroup,
+                  initialCurrencyId: currency.id,
+                  initialAmount: toPay
+                      .firstWhereOrNull(
+                          (element) => element.currencyId == currency.id)
+                      ?.getAmountFormatted(context.read())
+                      .toPrettyFixed(currency.decimals),
+                ),
+              ),
+            ),
+          );
+        },
+        leading: Text(
+          currency.symbol,
+          style: const TextStyle(
+            fontWeight: FontWeight.w800,
+            fontSize: 20,
+          ),
+        ),
+        title: Text.rich(
+          TextSpan(
+            text: 'Record payment in ',
+            children: [
+              TextSpan(
+                  text: '${currency.id} ${currency.symbol}',
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
+            ],
+          ),
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ...toPay
+                .followedBy(toReceive)
+                .where((element) => element.currencyId == currency.id)
+                .map(
+                  (owe) => (owe.amount < 0)
+                      ? Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: '${user.shortName} owes you ',
+                                style: TextStyle(
+                                  color: scheme.primary,
+                                ),
+                              ),
+                              TextSpan(
+                                text: owe.getPrettyAbs(context),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                        color: scheme.primary,
+                                        fontWeight: FontWeight.w800),
+                              ),
+                            ],
+                          ),
+                        )
+                      : (owe.amount > 0)
+                          ? Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'you owe ${user.shortName} ',
+                                    style: TextStyle(
+                                      color: scheme.error,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: owe.getPretty(context),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(
+                                            color: scheme.error,
+                                            fontWeight: FontWeight.w800),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : const SizedBox(),
+                )
+          ],
+        ),
+      ),
+    );
   }
 }

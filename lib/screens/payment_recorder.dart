@@ -255,40 +255,12 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
                             .firstWhere(
                                 (element) => element.id == owedGroup.groupId);
 
-                        return Container(
-                          margin: const EdgeInsets.only(
-                              top: 10, left: 20, right: 20),
-                          child: ListTile(
-                            leading: GroupIconWidget(group: group),
-                            subtitle: Text.rich(
-                              TextSpan(
-                                text: 'you owe ',
-                                children: [
-                                  TextSpan(
-                                    text:
-                                        owedGroup.amount.getPrettyAbs(context),
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold),
-                                  )
-                                ],
-                              ),
-                              style: TextStyle(
-                                color: scheme.error,
-                              ),
-                            ),
-                            title: Text(group.getDisplayName(context.read())),
-                            trailing: Text(
-                              amountSettling.toPrettyFixed(currency!.decimals),
-                              style: TextStyle(
-                                fontSize: Theme.of(context)
-                                    .primaryTextTheme
-                                    .titleLarge
-                                    ?.fontSize,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        );
+                        return PaymentGroupTile(
+                            group: group,
+                            owedGroup: owedGroup,
+                            scheme: scheme,
+                            amountSettling: amountSettling,
+                            currency: currency);
                       },
                       childCount: owedGroups.length,
                     ),
@@ -399,5 +371,54 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
       return;
     }
     // resetAmount();
+  }
+}
+
+class PaymentGroupTile extends StatelessWidget {
+  const PaymentGroupTile({
+    super.key,
+    required this.group,
+    required this.owedGroup,
+    required this.scheme,
+    required this.amountSettling,
+    required this.currency,
+  });
+
+  final GGroupFields group;
+  final GUserPaysFields_owes owedGroup;
+  final ColorScheme scheme;
+  final num amountSettling;
+  final GCurrencyFields? currency;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+      child: ListTile(
+        leading: GroupIconWidget(group: group),
+        subtitle: Text.rich(
+          TextSpan(
+            text: 'you owe ',
+            children: [
+              TextSpan(
+                text: owedGroup.amount.getPrettyAbs(context),
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+          style: TextStyle(
+            color: scheme.error,
+          ),
+        ),
+        title: Text(group.getDisplayName(context.read())),
+        trailing: Text(
+          amountSettling.toPrettyFixed(currency!.decimals),
+          style: TextStyle(
+            fontSize: Theme.of(context).primaryTextTheme.titleLarge?.fontSize,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
   }
 }

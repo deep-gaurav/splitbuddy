@@ -175,41 +175,8 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
                   ..currencyId = toCurrency!.id
                   ..amount = amount.toInt());
 
-                return ListTile(
-                  leading: GroupIconWidget(
-                    group: context
-                        .read<AppState>()
-                        .userGroups
-                        .firstWhere((element) => element.id == owe.groupId),
-                  ),
-                  title: Text.rich(
-                    TextSpan(
-                      text: owe.amount.amount > 0
-                          ? 'you owe them '
-                          : 'they owe you ',
-                      children: [
-                        TextSpan(
-                          text: owe.amount.getPrettyAbs(context),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ],
-                    ),
-                    style: TextStyle(
-                      color:
-                          owe.amount.amount > 0 ? scheme.error : scheme.primary,
-                    ),
-                  ),
-                  subtitle: Text.rich(
-                    TextSpan(text: 'will be converted to ', children: [
-                      TextSpan(
-                        text: newVal.getPrettyAbs(context),
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      )
-                    ]),
-                  ),
-                );
+                return CurrencyDistributionTile(
+                    owe: owe, scheme: scheme, newVal: newVal);
               },
             )
         ],
@@ -266,6 +233,55 @@ class _CurrencyConverterState extends State<CurrencyConverter> {
                 child: const CircularProgressIndicator(),
               )
             : const Icon(Icons.check),
+      ),
+    );
+  }
+}
+
+class CurrencyDistributionTile extends StatelessWidget {
+  const CurrencyDistributionTile({
+    super.key,
+    required this.owe,
+    required this.scheme,
+    required this.newVal,
+  });
+
+  final GUserPaysFields_owes owe;
+  final ColorScheme scheme;
+  final GAmountFieldsData newVal;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: GroupIconWidget(
+        group: context
+            .read<AppState>()
+            .userGroups
+            .firstWhere((element) => element.id == owe.groupId),
+      ),
+      title: Text.rich(
+        TextSpan(
+          text: owe.amount.amount > 0 ? 'you owe them ' : 'they owe you ',
+          children: [
+            TextSpan(
+              text: owe.amount.getPrettyAbs(context),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          ],
+        ),
+        style: TextStyle(
+          color: owe.amount.amount > 0 ? scheme.error : scheme.primary,
+        ),
+      ),
+      subtitle: Text.rich(
+        TextSpan(text: 'will be converted to ', children: [
+          TextSpan(
+            text: newVal.getPrettyAbs(context),
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          )
+        ]),
       ),
     );
   }
