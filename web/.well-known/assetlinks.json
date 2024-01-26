@@ -1,0 +1,15 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "app.billdivide",
+            "sha256_cert_fingerprints": [
+                "63:4F:0E:57:0A:2D:2A:9C:46:67:15:82:A4:DA:B9:F6:E1:F2:0E:C7:07:E3:CC:2E:DE:18:B2:B9:ED:55:9C:9B",
+                "10:B5:51:7C:90:F5:96:7B:C5:9D:2D:11:FE:1A:25:E8:4E:15:21:A7:E8:67:44:4E:9F:15:DC:CF:68:58:38:BD"
+            ]
+        }
+    }
+]
