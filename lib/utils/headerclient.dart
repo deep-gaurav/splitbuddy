@@ -1,15 +1,18 @@
+import 'package:billdivide/auth/secure_storage.dart';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
-class HttpClientWithToken extends http.BaseClient {
-  HttpClientWithToken(this.token);
-
-  final String token;
-  final http.Client _client = http.Client();
+class HttpClientWithToken extends Interceptor {
+  HttpClientWithToken();
 
   @override
-  Future<http.StreamedResponse> send(http.BaseRequest request) {
-    request.headers['Authorization'] = token;
-    print(token);
-    return _client.send(request);
+  void onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
+    var token = await SecureStorageHelper.getInstance().getAccessToken();
+
+    if (token != null) {
+      options.headers['Authorization'] = 'Bearer $token';
+    }
+    handler.next(options);
   }
 }

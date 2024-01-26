@@ -217,7 +217,11 @@ class _UserPageState extends State<UserPage>
                       const SizedBox(
                         width: 10,
                       ),
-                      Text(user.displayName),
+                      Expanded(
+                        child: AutoScroll(
+                          child: Text(user.displayName),
+                        ),
+                      ),
                     ],
                   ),
                 ),

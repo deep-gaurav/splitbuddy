@@ -1,31 +1,49 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:dio/dio.dart';
+import 'package:dio_http2_adapter/dio_http2_adapter.dart';
 import 'package:ferry/ferry.dart';
+import 'package:gql_dio_link/gql_dio_link.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import 'package:billdivide/auth/secure_storage.dart';
 import 'package:billdivide/graphql/__generated__/queries.req.gql.dart';
 import 'package:billdivide/nocache/nocachestore.dart';
 import 'package:billdivide/state/app_state.dart';
 import 'package:billdivide/utils/headerclient.dart';
+import 'package:graphql_query_compress/graphql_query_compress.dart';
 
 class ReAuthClient {
-  Client? _client;
+  late Client _client;
+  Dio dio;
+
   late Function() onLogout;
 
-  ReAuthClient._init(this._client, this.onLogout);
-
-  static Future<ReAuthClient> getClient(Function() onLogout) async {
-    var token = await SecureStorageHelper.getInstance().getAccessToken();
-    return ReAuthClient._init(_getClientWithToken(token), onLogout);
+  ReAuthClient._init(this.onLogout)
+      : dio = Dio()
+          ..interceptors.add(LogInterceptor())
+          ..interceptors.add(HttpClientWithToken())
+          ..httpClientAdapter = Http2Adapter(
+            ConnectionManager(
+              idleTimeout: const Duration(seconds: 10),
+            ),
+          ) {
+    _client = _getClientWithToken(dio);
   }
 
-  static Client _getClientWithToken(String? token) => Client(
+  static Future<ReAuthClient> getClient(Function() onLogout) async {
+    return ReAuthClient._init(onLogout);
+  }
+
+  static Client _getClientWithToken(Dio dio) => Client(
         cache: Cache(store: NoStore()),
-        link: HttpLink(
+        link: DioLink(
           const String.fromEnvironment(
             'ENDPOINT',
             defaultValue: 'https://split-be.deepwith.in',
           ),
-          httpClient:
-              token == null ? null : HttpClientWithToken("Bearer $token"),
+          client: dio,
+          serializer: const RequestSerializerWithCompressor(),
         ),
       );
 
@@ -33,7 +51,7 @@ class ReAuthClient {
       OperationRequest<TData, TVars> request,
       [NextTypedLink<TData, TVars>? forward,
       bool canRefresh = true]) async {
-    final response = await _client!.request(request, forward).first;
+    final response = await _client.request(request, forward).first;
     final bool isErrored = (response.graphqlErrors ?? [])
         .any((element) => element.message == "Unauthorized");
     if (isErrored) {
@@ -62,7 +80,7 @@ class ReAuthClient {
           accessToken: response.data!.refreshToken.accessToken,
           refreshToken: response.data!.refreshToken.refreshToken,
         );
-        _client = _getClientWithToken(response.data!.refreshToken.accessToken);
+        _client = _getClientWithToken(dio);
       }
     } catch (e) {
       print(e);

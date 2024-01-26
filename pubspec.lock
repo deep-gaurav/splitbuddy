@@ -217,6 +217,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.10"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      sha256: "797e1e341c3dd2f69f2dad42564a6feff3bfb87187d05abb93b9609e6f1645c3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.4.0"
+  dio_http2_adapter:
+    dependency: "direct main"
+    description:
+      name: dio_http2_adapter
+      sha256: "3bb35e81eb8a688eb1cb15beb97f46823698b44037e7b55227aa1060f5593adc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.0"
   dotted_line:
     dependency: "direct main"
     description:
@@ -528,6 +544,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.8.0"
+  gql_dio_link:
+    dependency: "direct main"
+    description:
+      name: gql_dio_link
+      sha256: "0a38185eb2eeabcc8d81c8322b8b6da9057af36553c7acb46e54fe035866ccef"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1+1"
   gql_exec:
     dependency: transitive
     description:
@@ -552,6 +576,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0+1"
+  graphql_query_compress:
+    dependency: "direct main"
+    description:
+      name: graphql_query_compress
+      sha256: e279684d32cd78d3ad2e0b56c244a4f63f9ea9c3ba79c82f8faebd2aa8ee889e
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   graphs:
     dependency: transitive
     description:
@@ -576,6 +608,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
+  http2:
+    dependency: transitive
+    description:
+      name: http2
+      sha256: "9ced024a160b77aba8fb8674e38f70875e321d319e6f303ec18e87bd5a4b0c1d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0"
   http_multi_server:
     dependency: transitive
     description:
