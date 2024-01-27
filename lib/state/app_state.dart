@@ -27,7 +27,7 @@ class AppState extends ChangeNotifier {
     link: HttpLink(
       const String.fromEnvironment(
         'ENDPOINT',
-        defaultValue: 'https://split-be.deepwith.in',
+        defaultValue: 'https://backend-dev.billdivide.app',
       ),
     ),
   );
@@ -105,7 +105,9 @@ class AppState extends ChangeNotifier {
     ReAuthClient client, {
     bool onlyUser = false,
   }) {
+    print("refreshing");
     client.execute(GuserReq()).then((value) {
+      print("Received user result ");
       _auth = value.data?.user;
       if (value.data?.user == null) {
         authState = AuthStates.unAuthorized;
@@ -116,6 +118,8 @@ class AppState extends ChangeNotifier {
         unawaited(setupAndSendFirebase());
       }
       notifyListeners();
+    }).catchError((error) {
+      print("Received user error ");
     });
     client.execute(GuserConfigReq()).then((value) {
       if (value.data?.config.defaultCurrencyId != null) {
@@ -143,6 +147,9 @@ class AppState extends ChangeNotifier {
   setupAndSendFirebase() async {
     await FirebaseMessaging.instance.requestPermission(provisional: true);
     const String vapidKey = String.fromEnvironment('VAPID_KEY');
+    if (vapidKey.isEmpty) {
+      return;
+    }
     final fcmToken =
         await FirebaseMessaging.instance.getToken(vapidKey: vapidKey);
     (await client)
@@ -279,10 +286,12 @@ class AppState extends ChangeNotifier {
         is Gverify_email_otpData_verifyOtp__asUserSignedUp) {
       final response = result.data?.verifyOtp
           as Gverify_email_otpData_verifyOtp__asUserSignedUp;
+      print("set access and refresh token");
+
       await SecureStorageHelper.getInstance().storeTokens(
           accessToken: response.accessToken,
           refreshToken: response.refreshToken);
-      _reAuthClient = null;
+
       refresh(await _getClient());
 
       return true;
@@ -290,10 +299,10 @@ class AppState extends ChangeNotifier {
         is Gverify_email_otpData_verifyOtp__asUserNotSignedUp) {
       final response = result.data?.verifyOtp
           as Gverify_email_otpData_verifyOtp__asUserNotSignedUp;
+      print("set signup token");
       await SecureStorageHelper.getInstance()
           .storeTokens(accessToken: response.signupToken, refreshToken: null);
 
-      _reAuthClient = null;
       refresh(await _getClient(), onlyUser: true);
       return true;
     }

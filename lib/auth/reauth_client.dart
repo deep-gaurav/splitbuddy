@@ -1,16 +1,14 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:dio_http2_adapter/dio_http2_adapter.dart';
 import 'package:ferry/ferry.dart';
+import 'package:flutter/foundation.dart';
 import 'package:gql_dio_link/gql_dio_link.dart';
-import 'package:gql_http_link/gql_http_link.dart';
 import 'package:billdivide/auth/secure_storage.dart';
 import 'package:billdivide/graphql/__generated__/queries.req.gql.dart';
 import 'package:billdivide/nocache/nocachestore.dart';
 import 'package:billdivide/state/app_state.dart';
 import 'package:billdivide/utils/headerclient.dart';
+import 'package:gql_http_link/gql_http_link.dart';
 import 'package:graphql_query_compress/graphql_query_compress.dart';
 
 class ReAuthClient {
@@ -22,7 +20,7 @@ class ReAuthClient {
   ReAuthClient._init(this.onLogout)
       : dio = Dio()
           ..interceptors.add(LogInterceptor())
-          ..interceptors.add(HttpClientWithToken())
+          ..interceptors.add(DioTokenInterceptor())
           ..httpClientAdapter = Http2Adapter(
             ConnectionManager(
               idleTimeout: const Duration(seconds: 10),
@@ -37,14 +35,21 @@ class ReAuthClient {
 
   static Client _getClientWithToken(Dio dio) => Client(
         cache: Cache(store: NoStore()),
-        link: DioLink(
-          const String.fromEnvironment(
-            'ENDPOINT',
-            defaultValue: 'https://split-be.deepwith.in',
-          ),
-          client: dio,
-          serializer: const RequestSerializerWithCompressor(),
-        ),
+        link: kIsWeb
+            ? HttpLink(
+                const String.fromEnvironment(
+                  'ENDPOINT',
+                  defaultValue: 'https://backend-dev.billdivide.app',
+                ),
+                httpClient: HttpClientWithToken())
+            : DioLink(
+                const String.fromEnvironment(
+                  'ENDPOINT',
+                  defaultValue: 'https://backend-dev.billdivide.app',
+                ),
+                client: dio,
+                serializer: const RequestSerializerWithCompressor(),
+              ),
       );
 
   Future<OperationResponse<TData, TVars>> execute<TData, TVars>(
@@ -83,7 +88,7 @@ class ReAuthClient {
         _client = _getClientWithToken(dio);
       }
     } catch (e) {
-      print(e);
+      // print(e);
     }
   }
 }

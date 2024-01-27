@@ -10,7 +10,6 @@ import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sliver_tools/sliver_tools.dart';
-import 'package:billdivide/__generated__/schema.ast.gql.dart';
 import 'package:billdivide/__generated__/schema.schema.gql.dart';
 import 'package:billdivide/extensions/group_extension.dart';
 import 'package:billdivide/extensions/interable_extension.dart';
@@ -26,7 +25,6 @@ import 'package:billdivide/screens/home_page.dart';
 import 'package:billdivide/screens/payment_recorder.dart';
 import 'package:billdivide/state/app_state.dart';
 import 'package:billdivide/utils/color_utils.dart';
-import 'package:billdivide/utils/svg_icons.dart';
 
 class UserPage extends StatefulWidget {
   final Ginteracted_usersData_interactedUsers initialUser;
