@@ -105,9 +105,9 @@ class AppState extends ChangeNotifier {
     ReAuthClient client, {
     bool onlyUser = false,
   }) {
-    print("refreshing");
+    // print("refreshing");
     client.execute(GuserReq()).then((value) {
-      print("Received user result ");
+      // print("Received user result ${value.data?.user}");
       _auth = value.data?.user;
       if (value.data?.user == null) {
         authState = AuthStates.unAuthorized;
@@ -119,7 +119,7 @@ class AppState extends ChangeNotifier {
       }
       notifyListeners();
     }).catchError((error) {
-      print("Received user error ");
+      // print("Received user error ");
     });
     client.execute(GuserConfigReq()).then((value) {
       if (value.data?.config.defaultCurrencyId != null) {
@@ -145,13 +145,15 @@ class AppState extends ChangeNotifier {
   }
 
   setupAndSendFirebase() async {
-    await FirebaseMessaging.instance.requestPermission(provisional: true);
     const String vapidKey = String.fromEnvironment('VAPID_KEY');
     if (vapidKey.isEmpty && kIsWeb) {
+      print("No VAPID KEY PRESENT");
       return;
     }
     try {
       print("Fetching notification token ");
+      await FirebaseMessaging.instance.requestPermission(provisional: true);
+
       final fcmToken =
           await FirebaseMessaging.instance.getToken(vapidKey: vapidKey);
       print("Received notification token $fcmToken");
@@ -294,7 +296,7 @@ class AppState extends ChangeNotifier {
         is Gverify_email_otpData_verifyOtp__asUserSignedUp) {
       final response = result.data?.verifyOtp
           as Gverify_email_otpData_verifyOtp__asUserSignedUp;
-      print("set access and refresh token");
+      // print("set access and refresh token");
 
       await SecureStorageHelper.getInstance().storeTokens(
           accessToken: response.accessToken,
@@ -307,7 +309,7 @@ class AppState extends ChangeNotifier {
         is Gverify_email_otpData_verifyOtp__asUserNotSignedUp) {
       final response = result.data?.verifyOtp
           as Gverify_email_otpData_verifyOtp__asUserNotSignedUp;
-      print("set signup token");
+      // print("set signup token");
       await SecureStorageHelper.getInstance()
           .storeTokens(accessToken: response.signupToken, refreshToken: null);
 
