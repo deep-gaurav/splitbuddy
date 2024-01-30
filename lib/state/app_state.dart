@@ -115,7 +115,6 @@ class AppState extends ChangeNotifier {
         authState = AuthStates.authorizedRequiresSignup;
       } else if (value.data?.user is GuserData_user__asRegistered) {
         authState = AuthStates.authorized;
-        unawaited(setupAndSendFirebase());
       }
       notifyListeners();
     }).catchError((error) {
@@ -147,16 +146,16 @@ class AppState extends ChangeNotifier {
   setupAndSendFirebase() async {
     const String vapidKey = String.fromEnvironment('VAPID_KEY');
     if (vapidKey.isEmpty && kIsWeb) {
-      print("No VAPID KEY PRESENT");
+      // print("No VAPID KEY PRESENT");
       return;
     }
     try {
-      print("Fetching notification token ");
+      // print("Fetching notification token ");
       await FirebaseMessaging.instance.requestPermission(provisional: true);
 
       final fcmToken =
           await FirebaseMessaging.instance.getToken(vapidKey: vapidKey);
-      print("Received notification token $fcmToken");
+      // print("Received notification token $fcmToken");
       (await client)
           .execute(GsetNotificationTokenReq((b) => b.vars..token = fcmToken));
       FlutterLocalNotificationsPlugin localNotificationsPlugin =
@@ -187,9 +186,9 @@ class AppState extends ChangeNotifier {
         refresh(await client);
       });
     } catch (e) {
-      print(
-        "Notification token fetch failed $e",
-      );
+      // print(
+      //   "Notification token fetch failed $e",
+      // );
     }
   }
 

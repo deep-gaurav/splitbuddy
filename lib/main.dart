@@ -40,6 +40,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: colorScheme ??
             ColorScheme.fromSeed(
               seedColor: const Color(0xFF06BCC1),
+              brightness: brightness,
             ),
         useMaterial3: true);
 

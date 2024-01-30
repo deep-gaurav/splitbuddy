@@ -31,4 +31,15 @@ class SecureStorageHelper {
   Future<void> resetTokens() async {
     await _flutterSecureStorage.deleteAll();
   }
+
+  Future<String?> getNotificationPreference() async {
+    return await _flutterSecureStorage.read(key: 'notificationPreference');
+  }
+
+  Future<void> setNotificationPreference(String preference) async {
+    await _flutterSecureStorage.write(
+      key: 'notificationPreference',
+      value: preference,
+    );
+  }
 }

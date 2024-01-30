@@ -1,3 +1,4 @@
+import 'package:billdivide/auth/secure_storage.dart';
 import 'package:billdivide/models/expensewith.dart';
 import 'package:billdivide/screens/create_group_page.dart';
 import 'package:billdivide/screens/people_finder.dart';
@@ -17,6 +18,63 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      askForNotification(context);
+    });
+    super.initState();
+  }
+
+  askForNotification(BuildContext context) async {
+    var appstate = context.read<AppState>();
+
+    if ((await SecureStorageHelper.getInstance().getNotificationPreference()) !=
+        null) {
+      return;
+    }
+    // ignore: use_build_context_synchronously
+    final enableNotification = await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Enable notification'),
+        icon: const Icon(
+          Icons.notifications_active,
+          size: 40,
+        ),
+        content: const Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                  text:
+                      'Would you like to enable notification to receive updates when you are away from app?'),
+            ],
+          ),
+        ),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () {
+              Navigator.of(context).pop(true);
+            },
+            child: const Text('Enable'),
+          )
+        ],
+      ),
+    );
+    if (enableNotification == true) {
+      SecureStorageHelper.getInstance().setNotificationPreference("true");
+      appstate.setupAndSendFirebase();
+    } else {
+      SecureStorageHelper.getInstance().setNotificationPreference("false");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,79 +132,6 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               label: const Text('Create Expense'),
             ),
-    );
-  }
-}
-
-class GroupNameDialog extends StatefulWidget {
-  const GroupNameDialog({
-    super.key,
-  });
-
-  @override
-  State<GroupNameDialog> createState() => _GroupNameDialogState();
-}
-
-class _GroupNameDialogState extends State<GroupNameDialog> {
-  var controller = TextEditingController();
-  var formKey = GlobalKey<FormState>();
-
-  onSubmit(String name) {
-    if (formKey.currentState?.validate() == true) {
-      Navigator.of(context).pop(name);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            "Create Group",
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Form(
-              key: formKey,
-              child: TextFormField(
-                controller: controller,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Name cant be empty";
-                  } else {
-                    return null;
-                  }
-                },
-                onFieldSubmitted: onSubmit,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Name',
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton.icon(
-            onPressed: () => onSubmit(controller.text),
-            icon: const Icon(Icons.done),
-            label: const Text("Create"),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-        ],
-      ),
     );
   }
 }
