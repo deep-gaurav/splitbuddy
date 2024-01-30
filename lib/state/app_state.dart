@@ -147,7 +147,7 @@ class AppState extends ChangeNotifier {
   setupAndSendFirebase() async {
     await FirebaseMessaging.instance.requestPermission(provisional: true);
     const String vapidKey = String.fromEnvironment('VAPID_KEY');
-    if (vapidKey.isEmpty) {
+    if (vapidKey.isEmpty && kIsWeb) {
       return;
     }
     final fcmToken =
