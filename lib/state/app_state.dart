@@ -150,37 +150,45 @@ class AppState extends ChangeNotifier {
     if (vapidKey.isEmpty && kIsWeb) {
       return;
     }
-    final fcmToken =
-        await FirebaseMessaging.instance.getToken(vapidKey: vapidKey);
-    (await client)
-        .execute(GsetNotificationTokenReq((b) => b.vars..token = fcmToken));
-    FlutterLocalNotificationsPlugin localNotificationsPlugin =
-        FlutterLocalNotificationsPlugin();
-    await localNotificationsPlugin.initialize(
-      const InitializationSettings(
-        android: AndroidInitializationSettings('ic_stat_icon_fg_no_outline'),
-      ),
-    );
-    const Map<String, String> notificationCategories = <String, String>{
-      'default': 'Other Notification',
-      'new_expense': 'New Expense',
-      'new_payment': 'New Payment',
-    };
-    for (final channel in notificationCategories.entries) {
-      await localNotificationsPlugin
-          .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
-          ?.createNotificationChannel(
-            AndroidNotificationChannel(
-              channel.key,
-              channel.value,
-            ),
-          );
+    try {
+      print("Fetching notification token ");
+      final fcmToken =
+          await FirebaseMessaging.instance.getToken(vapidKey: vapidKey);
+      print("Received notification token $fcmToken");
+      (await client)
+          .execute(GsetNotificationTokenReq((b) => b.vars..token = fcmToken));
+      FlutterLocalNotificationsPlugin localNotificationsPlugin =
+          FlutterLocalNotificationsPlugin();
+      await localNotificationsPlugin.initialize(
+        const InitializationSettings(
+          android: AndroidInitializationSettings('ic_stat_icon_fg_no_outline'),
+        ),
+      );
+      const Map<String, String> notificationCategories = <String, String>{
+        'default': 'Other Notification',
+        'new_expense': 'New Expense',
+        'new_payment': 'New Payment',
+      };
+      for (final channel in notificationCategories.entries) {
+        await localNotificationsPlugin
+            .resolvePlatformSpecificImplementation<
+                AndroidFlutterLocalNotificationsPlugin>()
+            ?.createNotificationChannel(
+              AndroidNotificationChannel(
+                channel.key,
+                channel.value,
+              ),
+            );
+      }
+      FirebaseMessaging.onMessage.listen((event) async {
+        notificationSubscription.add(event);
+        refresh(await client);
+      });
+    } catch (e) {
+      print(
+        "Notification token fetch failed $e",
+      );
     }
-    FirebaseMessaging.onMessage.listen((event) async {
-      notificationSubscription.add(event);
-      refresh(await client);
-    });
   }
 
   Future<List<GGroupFields>> getGroups() async {
