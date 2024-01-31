@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <!--
@@ -37,11 +37,17 @@
   <title>BillDivide</title>
   <link rel="manifest" href="manifest.json">
 
+  <link rel="preload" href="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js" as="script" />
+  <link rel="preload" href="https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging.js" as="script" />
+
+  <link rel="preload" href="/assets/packages/cupertino_icons/assets/CupertinoIcons.ttf" as="font" type="font/ttf"
+    crossorigin="anonymous">
+  <link rel="preload" href="/assets/fonts/MaterialIcons-Regular.otf" as="font" type="font/ttf" crossorigin="anonymous">
+
   <script>
     // The value below is injected by flutter build, do not touch.
     var serviceWorkerVersion = null;
   </script>
-  <script src="flutter.js" defer></script>
 
 
   <style>
@@ -104,11 +110,11 @@
 <body>
   <div class="loading-container">
     <div class="loading-svgs">
-      <img src="loading_icons/bill-8853.svg">
-      <img src="loading_icons/business-and-finance-14750.svg">
-      <img src="loading_icons/cash-money-14744 (1).svg">
-      <img src="loading_icons/coin-wallet-2204.svg">
-      <img src="loading_icons/transaction-14855.svg">
+      <img alt="Loading Icon 1" src="loading_icons/bill-8853.svg">
+      <img alt="Loading Icon 2" src="loading_icons/business-and-finance-14750.svg">
+      <img alt="Loading Icon 3" src="loading_icons/cash-money-14744 (1).svg">
+      <img alt="Loading Icon 4" src="loading_icons/coin-wallet-2204.svg">
+      <img alt="Loading Icon 5" src="loading_icons/transaction-14855.svg">
     </div>
   </div>
 
@@ -128,6 +134,8 @@
       });
     });
   </script>
+  <script src="flutter.js" async></script>
+
   <!-- This script adds the flutter initialization JS code -->
 
 
