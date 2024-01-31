@@ -40,9 +40,8 @@ class AppState extends ChangeNotifier {
 
   AppState() {
     refreshCurrencies();
-    _getClient().then(refresh);
     unawaited(() async {
-      refresh(await _getClient());
+      refresh(await _getClient(), onlyUser: true);
     }());
   }
 
@@ -114,6 +113,9 @@ class AppState extends ChangeNotifier {
       } else if (value.data?.user is GuserData_user__asUnregistered) {
         authState = AuthStates.authorizedRequiresSignup;
       } else if (value.data?.user is GuserData_user__asRegistered) {
+        if (authState != AuthStates.authorized) {
+          refresh(client);
+        }
         authState = AuthStates.authorized;
       }
       notifyListeners();
