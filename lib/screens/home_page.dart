@@ -18,10 +18,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme scheme = ColorUtils.getMainScheme(context);
-    var users = context.select<AppState,
-            UnmodifiableListView<Ginteracted_usersData_interactedUsers>>(
+    var users = context.select<AppState, UnmodifiableListView<GUserPaysFields>>(
         (state) => state.interactedUsers);
-    Ginteracted_usersData_interactedUsers? selfUser;
+    GUserPaysFields? selfUser;
     try {
       selfUser = users.firstWhere(
           (element) => element.id == context.read<AppState>().user?.id);
@@ -83,7 +82,7 @@ class HomeUserTile extends StatelessWidget {
     required this.scheme,
   });
 
-  final Ginteracted_usersData_interactedUsers user;
+  final GUserPaysFields user;
   final ColorScheme scheme;
 
   @override

@@ -27,7 +27,7 @@ import 'package:billdivide/state/app_state.dart';
 import 'package:billdivide/utils/color_utils.dart';
 
 class UserPage extends StatefulWidget {
-  final Ginteracted_usersData_interactedUsers initialUser;
+  final GUserPaysFields initialUser;
 
   const UserPage({super.key, required this.initialUser});
 
@@ -191,9 +191,9 @@ class _UserPageState extends State<UserPage>
 
   @override
   Widget build(BuildContext context) {
-    var user = context.select<AppState, Ginteracted_usersData_interactedUsers>(
-        (state) => state.interactedUsers
-            .firstWhere((element) => element.id == widget.initialUser.id));
+    var user = context.select<AppState, GUserPaysFields>((state) => state
+        .interactedUsers
+        .firstWhere((element) => element.id == widget.initialUser.id));
     return Scaffold(
       body: Column(
         children: [
@@ -1002,7 +1002,7 @@ class UserSummaryWidget extends StatelessWidget {
     required this.onSimplify,
   });
 
-  final Ginteracted_usersData_interactedUsers user;
+  final GUserPaysFields user;
   final Function(List<GSplitTransactionFields> transactions) onSimplify;
 
   @override

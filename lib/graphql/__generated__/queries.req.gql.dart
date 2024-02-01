@@ -308,6 +308,78 @@ abstract class Ginteracted_usersReq
       );
 }
 
+abstract class GrefreshReq
+    implements
+        Built<GrefreshReq, GrefreshReqBuilder>,
+        _i1.OperationRequest<_i2.GrefreshData, _i3.GrefreshVars> {
+  GrefreshReq._();
+
+  factory GrefreshReq([Function(GrefreshReqBuilder b) updates]) = _$GrefreshReq;
+
+  static void _initializeBuilder(GrefreshReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'refresh',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GrefreshVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GrefreshData? Function(
+    _i2.GrefreshData?,
+    _i2.GrefreshData?,
+  )? get updateResult;
+  @override
+  _i2.GrefreshData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GrefreshData? parseData(Map<String, dynamic> json) =>
+      _i2.GrefreshData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GrefreshData, _i3.GrefreshVars> transformOperation(
+          _i4.Operation Function(_i4.Operation) transform) =>
+      this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GrefreshReq> get serializer => _$grefreshReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GrefreshReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GrefreshReq.serializer,
+        json,
+      );
+}
+
 abstract class GcurrenciesReq
     implements
         Built<GcurrenciesReq, GcurrenciesReqBuilder>,

@@ -45,6 +45,44 @@ Serializer<Ginteracted_usersData_interactedUsers_owes>
 Serializer<Ginteracted_usersData_interactedUsers_owes_amount>
     _$ginteractedUsersDataInteractedUsersOwesAmountSerializer =
     new _$Ginteracted_usersData_interactedUsers_owes_amountSerializer();
+Serializer<GrefreshData> _$grefreshDataSerializer =
+    new _$GrefreshDataSerializer();
+Serializer<GrefreshData_user__base> _$grefreshDataUserBaseSerializer =
+    new _$GrefreshData_user__baseSerializer();
+Serializer<GrefreshData_user__asRegistered>
+    _$grefreshDataUserAsRegisteredSerializer =
+    new _$GrefreshData_user__asRegisteredSerializer();
+Serializer<GrefreshData_user__asRegistered_user>
+    _$grefreshDataUserAsRegisteredUserSerializer =
+    new _$GrefreshData_user__asRegistered_userSerializer();
+Serializer<GrefreshData_user__asUnregistered>
+    _$grefreshDataUserAsUnregisteredSerializer =
+    new _$GrefreshData_user__asUnregisteredSerializer();
+Serializer<GrefreshData_config> _$grefreshDataConfigSerializer =
+    new _$GrefreshData_configSerializer();
+Serializer<GrefreshData_groups> _$grefreshDataGroupsSerializer =
+    new _$GrefreshData_groupsSerializer();
+Serializer<GrefreshData_groups_creator> _$grefreshDataGroupsCreatorSerializer =
+    new _$GrefreshData_groups_creatorSerializer();
+Serializer<GrefreshData_groups_members> _$grefreshDataGroupsMembersSerializer =
+    new _$GrefreshData_groups_membersSerializer();
+Serializer<GrefreshData_groups_members_owedInGroup>
+    _$grefreshDataGroupsMembersOwedInGroupSerializer =
+    new _$GrefreshData_groups_members_owedInGroupSerializer();
+Serializer<GrefreshData_groups_members_member>
+    _$grefreshDataGroupsMembersMemberSerializer =
+    new _$GrefreshData_groups_members_memberSerializer();
+Serializer<GrefreshData_interactedUsers>
+    _$grefreshDataInteractedUsersSerializer =
+    new _$GrefreshData_interactedUsersSerializer();
+Serializer<GrefreshData_interactedUsers_owes>
+    _$grefreshDataInteractedUsersOwesSerializer =
+    new _$GrefreshData_interactedUsers_owesSerializer();
+Serializer<GrefreshData_interactedUsers_owes_amount>
+    _$grefreshDataInteractedUsersOwesAmountSerializer =
+    new _$GrefreshData_interactedUsers_owes_amountSerializer();
+Serializer<GrefreshData_currencies> _$grefreshDataCurrenciesSerializer =
+    new _$GrefreshData_currenciesSerializer();
 Serializer<GcurrenciesData> _$gcurrenciesDataSerializer =
     new _$GcurrenciesDataSerializer();
 Serializer<GcurrenciesData_currencies> _$gcurrenciesDataCurrenciesSerializer =
@@ -1709,6 +1747,1105 @@ class _$Ginteracted_usersData_interactedUsers_owes_amountSerializer
         case 'currencyId':
           result.currencyId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshDataSerializer implements StructuredSerializer<GrefreshData> {
+  @override
+  final Iterable<Type> types = const [GrefreshData, _$GrefreshData];
+  @override
+  final String wireName = 'GrefreshData';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GrefreshData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'user',
+      serializers.serialize(object.user,
+          specifiedType: const FullType(GrefreshData_user)),
+      'config',
+      serializers.serialize(object.config,
+          specifiedType: const FullType(GrefreshData_config)),
+      'groups',
+      serializers.serialize(object.groups,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType(GrefreshData_groups)])),
+      'interactedUsers',
+      serializers.serialize(object.interactedUsers,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType(GrefreshData_interactedUsers)])),
+      'currencies',
+      serializers.serialize(object.currencies,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType(GrefreshData_currencies)])),
+    ];
+
+    return result;
+  }
+
+  @override
+  GrefreshData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'user':
+          result.user = serializers.deserialize(value,
+                  specifiedType: const FullType(GrefreshData_user))!
+              as GrefreshData_user;
+          break;
+        case 'config':
+          result.config.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GrefreshData_config))!
+              as GrefreshData_config);
+          break;
+        case 'groups':
+          result.groups.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GrefreshData_groups)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'interactedUsers':
+          result.interactedUsers.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GrefreshData_interactedUsers)
+              ]))! as BuiltList<Object?>);
+          break;
+        case 'currencies':
+          result.currencies.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GrefreshData_currencies)
+              ]))! as BuiltList<Object?>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_user__baseSerializer
+    implements StructuredSerializer<GrefreshData_user__base> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_user__base,
+    _$GrefreshData_user__base
+  ];
+  @override
+  final String wireName = 'GrefreshData_user__base';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_user__base object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GrefreshData_user__base deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_user__baseBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_user__asRegisteredSerializer
+    implements StructuredSerializer<GrefreshData_user__asRegistered> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_user__asRegistered,
+    _$GrefreshData_user__asRegistered
+  ];
+  @override
+  final String wireName = 'GrefreshData_user__asRegistered';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_user__asRegistered object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'user',
+      serializers.serialize(object.user,
+          specifiedType: const FullType(GrefreshData_user__asRegistered_user)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GrefreshData_user__asRegistered deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_user__asRegisteredBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'user':
+          result.user.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GrefreshData_user__asRegistered_user))!
+              as GrefreshData_user__asRegistered_user);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_user__asRegistered_userSerializer
+    implements StructuredSerializer<GrefreshData_user__asRegistered_user> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_user__asRegistered_user,
+    _$GrefreshData_user__asRegistered_user
+  ];
+  @override
+  final String wireName = 'GrefreshData_user__asRegistered_user';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_user__asRegistered_user object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GrefreshData_user__asRegistered_user deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_user__asRegistered_userBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_user__asUnregisteredSerializer
+    implements StructuredSerializer<GrefreshData_user__asUnregistered> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_user__asUnregistered,
+    _$GrefreshData_user__asUnregistered
+  ];
+  @override
+  final String wireName = 'GrefreshData_user__asUnregistered';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_user__asUnregistered object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GrefreshData_user__asUnregistered deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_user__asUnregisteredBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_configSerializer
+    implements StructuredSerializer<GrefreshData_config> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_config,
+    _$GrefreshData_config
+  ];
+  @override
+  final String wireName = 'GrefreshData_config';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_config object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'defaultCurrencyId',
+      serializers.serialize(object.defaultCurrencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GrefreshData_config deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_configBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'defaultCurrencyId':
+          result.defaultCurrencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_groupsSerializer
+    implements StructuredSerializer<GrefreshData_groups> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_groups,
+    _$GrefreshData_groups
+  ];
+  @override
+  final String wireName = 'GrefreshData_groups';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_groups object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'creator',
+      serializers.serialize(object.creator,
+          specifiedType: const FullType(GrefreshData_groups_creator)),
+      'members',
+      serializers.serialize(object.members,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType(GrefreshData_groups_members)])),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GrefreshData_groups deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_groupsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creator':
+          result.creator.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GrefreshData_groups_creator))!
+              as GrefreshData_groups_creator);
+          break;
+        case 'members':
+          result.members.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GrefreshData_groups_members)
+              ]))! as BuiltList<Object?>);
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_groups_creatorSerializer
+    implements StructuredSerializer<GrefreshData_groups_creator> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_groups_creator,
+    _$GrefreshData_groups_creator
+  ];
+  @override
+  final String wireName = 'GrefreshData_groups_creator';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_groups_creator object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GrefreshData_groups_creator deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_groups_creatorBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_groups_membersSerializer
+    implements StructuredSerializer<GrefreshData_groups_members> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_groups_members,
+    _$GrefreshData_groups_members
+  ];
+  @override
+  final String wireName = 'GrefreshData_groups_members';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_groups_members object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'owedInGroup',
+      serializers.serialize(object.owedInGroup,
+          specifiedType: const FullType(BuiltList,
+              const [const FullType(GrefreshData_groups_members_owedInGroup)])),
+      'member',
+      serializers.serialize(object.member,
+          specifiedType: const FullType(GrefreshData_groups_members_member)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GrefreshData_groups_members deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_groups_membersBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'owedInGroup':
+          result.owedInGroup.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GrefreshData_groups_members_owedInGroup)
+              ]))! as BuiltList<Object?>);
+          break;
+        case 'member':
+          result.member.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GrefreshData_groups_members_member))!
+              as GrefreshData_groups_members_member);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_groups_members_owedInGroupSerializer
+    implements StructuredSerializer<GrefreshData_groups_members_owedInGroup> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_groups_members_owedInGroup,
+    _$GrefreshData_groups_members_owedInGroup
+  ];
+  @override
+  final String wireName = 'GrefreshData_groups_members_owedInGroup';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_groups_members_owedInGroup object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'currencyId',
+      serializers.serialize(object.currencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GrefreshData_groups_members_owedInGroup deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_groups_members_owedInGroupBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'currencyId':
+          result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_groups_members_memberSerializer
+    implements StructuredSerializer<GrefreshData_groups_members_member> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_groups_members_member,
+    _$GrefreshData_groups_members_member
+  ];
+  @override
+  final String wireName = 'GrefreshData_groups_members_member';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_groups_members_member object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GrefreshData_groups_members_member deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_groups_members_memberBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_interactedUsersSerializer
+    implements StructuredSerializer<GrefreshData_interactedUsers> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_interactedUsers,
+    _$GrefreshData_interactedUsers
+  ];
+  @override
+  final String wireName = 'GrefreshData_interactedUsers';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_interactedUsers object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'upiIds',
+      serializers.serialize(object.upiIds,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(String)])),
+      'owes',
+      serializers.serialize(object.owes,
+          specifiedType: const FullType(BuiltList,
+              const [const FullType(GrefreshData_interactedUsers_owes)])),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GrefreshData_interactedUsers deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_interactedUsersBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'upiIds':
+          result.upiIds.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'owes':
+          result.owes.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GrefreshData_interactedUsers_owes)
+              ]))! as BuiltList<Object?>);
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_interactedUsers_owesSerializer
+    implements StructuredSerializer<GrefreshData_interactedUsers_owes> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_interactedUsers_owes,
+    _$GrefreshData_interactedUsers_owes
+  ];
+  @override
+  final String wireName = 'GrefreshData_interactedUsers_owes';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_interactedUsers_owes object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount,
+          specifiedType:
+              const FullType(GrefreshData_interactedUsers_owes_amount)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GrefreshData_interactedUsers_owes deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_interactedUsers_owesBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GrefreshData_interactedUsers_owes_amount))!
+              as GrefreshData_interactedUsers_owes_amount);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_interactedUsers_owes_amountSerializer
+    implements StructuredSerializer<GrefreshData_interactedUsers_owes_amount> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_interactedUsers_owes_amount,
+    _$GrefreshData_interactedUsers_owes_amount
+  ];
+  @override
+  final String wireName = 'GrefreshData_interactedUsers_owes_amount';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_interactedUsers_owes_amount object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'currencyId',
+      serializers.serialize(object.currencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GrefreshData_interactedUsers_owes_amount deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_interactedUsers_owes_amountBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'currencyId':
+          result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GrefreshData_currenciesSerializer
+    implements StructuredSerializer<GrefreshData_currencies> {
+  @override
+  final Iterable<Type> types = const [
+    GrefreshData_currencies,
+    _$GrefreshData_currencies
+  ];
+  @override
+  final String wireName = 'GrefreshData_currencies';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GrefreshData_currencies object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'rate',
+      serializers.serialize(object.rate, specifiedType: const FullType(double)),
+      'symbol',
+      serializers.serialize(object.symbol,
+          specifiedType: const FullType(String)),
+      'displayName',
+      serializers.serialize(object.displayName,
+          specifiedType: const FullType(String)),
+      'decimals',
+      serializers.serialize(object.decimals,
+          specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GrefreshData_currencies deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GrefreshData_currenciesBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'rate':
+          result.rate = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'symbol':
+          result.symbol = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'displayName':
+          result.displayName = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'decimals':
+          result.decimals = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
           break;
       }
     }
@@ -20116,6 +21253,2203 @@ class Ginteracted_usersData_interactedUsers_owes_amountBuilder
                 currencyId,
                 r'Ginteracted_usersData_interactedUsers_owes_amount',
                 'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData extends GrefreshData {
+  @override
+  final String G__typename;
+  @override
+  final GrefreshData_user user;
+  @override
+  final GrefreshData_config config;
+  @override
+  final BuiltList<GrefreshData_groups> groups;
+  @override
+  final BuiltList<GrefreshData_interactedUsers> interactedUsers;
+  @override
+  final BuiltList<GrefreshData_currencies> currencies;
+
+  factory _$GrefreshData([void Function(GrefreshDataBuilder)? updates]) =>
+      (new GrefreshDataBuilder()..update(updates))._build();
+
+  _$GrefreshData._(
+      {required this.G__typename,
+      required this.user,
+      required this.config,
+      required this.groups,
+      required this.interactedUsers,
+      required this.currencies})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(user, r'GrefreshData', 'user');
+    BuiltValueNullFieldError.checkNotNull(config, r'GrefreshData', 'config');
+    BuiltValueNullFieldError.checkNotNull(groups, r'GrefreshData', 'groups');
+    BuiltValueNullFieldError.checkNotNull(
+        interactedUsers, r'GrefreshData', 'interactedUsers');
+    BuiltValueNullFieldError.checkNotNull(
+        currencies, r'GrefreshData', 'currencies');
+  }
+
+  @override
+  GrefreshData rebuild(void Function(GrefreshDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshDataBuilder toBuilder() => new GrefreshDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData &&
+        G__typename == other.G__typename &&
+        user == other.user &&
+        config == other.config &&
+        groups == other.groups &&
+        interactedUsers == other.interactedUsers &&
+        currencies == other.currencies;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, user.hashCode);
+    _$hash = $jc(_$hash, config.hashCode);
+    _$hash = $jc(_$hash, groups.hashCode);
+    _$hash = $jc(_$hash, interactedUsers.hashCode);
+    _$hash = $jc(_$hash, currencies.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshData')
+          ..add('G__typename', G__typename)
+          ..add('user', user)
+          ..add('config', config)
+          ..add('groups', groups)
+          ..add('interactedUsers', interactedUsers)
+          ..add('currencies', currencies))
+        .toString();
+  }
+}
+
+class GrefreshDataBuilder
+    implements Builder<GrefreshData, GrefreshDataBuilder> {
+  _$GrefreshData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GrefreshData_user? _user;
+  GrefreshData_user? get user => _$this._user;
+  set user(GrefreshData_user? user) => _$this._user = user;
+
+  GrefreshData_configBuilder? _config;
+  GrefreshData_configBuilder get config =>
+      _$this._config ??= new GrefreshData_configBuilder();
+  set config(GrefreshData_configBuilder? config) => _$this._config = config;
+
+  ListBuilder<GrefreshData_groups>? _groups;
+  ListBuilder<GrefreshData_groups> get groups =>
+      _$this._groups ??= new ListBuilder<GrefreshData_groups>();
+  set groups(ListBuilder<GrefreshData_groups>? groups) =>
+      _$this._groups = groups;
+
+  ListBuilder<GrefreshData_interactedUsers>? _interactedUsers;
+  ListBuilder<GrefreshData_interactedUsers> get interactedUsers =>
+      _$this._interactedUsers ??=
+          new ListBuilder<GrefreshData_interactedUsers>();
+  set interactedUsers(
+          ListBuilder<GrefreshData_interactedUsers>? interactedUsers) =>
+      _$this._interactedUsers = interactedUsers;
+
+  ListBuilder<GrefreshData_currencies>? _currencies;
+  ListBuilder<GrefreshData_currencies> get currencies =>
+      _$this._currencies ??= new ListBuilder<GrefreshData_currencies>();
+  set currencies(ListBuilder<GrefreshData_currencies>? currencies) =>
+      _$this._currencies = currencies;
+
+  GrefreshDataBuilder() {
+    GrefreshData._initializeBuilder(this);
+  }
+
+  GrefreshDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _user = $v.user;
+      _config = $v.config.toBuilder();
+      _groups = $v.groups.toBuilder();
+      _interactedUsers = $v.interactedUsers.toBuilder();
+      _currencies = $v.currencies.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData;
+  }
+
+  @override
+  void update(void Function(GrefreshDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData build() => _build();
+
+  _$GrefreshData _build() {
+    _$GrefreshData _$result;
+    try {
+      _$result = _$v ??
+          new _$GrefreshData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GrefreshData', 'G__typename'),
+              user: BuiltValueNullFieldError.checkNotNull(
+                  user, r'GrefreshData', 'user'),
+              config: config.build(),
+              groups: groups.build(),
+              interactedUsers: interactedUsers.build(),
+              currencies: currencies.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'config';
+        config.build();
+        _$failedField = 'groups';
+        groups.build();
+        _$failedField = 'interactedUsers';
+        interactedUsers.build();
+        _$failedField = 'currencies';
+        currencies.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GrefreshData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_user__base extends GrefreshData_user__base {
+  @override
+  final String G__typename;
+
+  factory _$GrefreshData_user__base(
+          [void Function(GrefreshData_user__baseBuilder)? updates]) =>
+      (new GrefreshData_user__baseBuilder()..update(updates))._build();
+
+  _$GrefreshData_user__base._({required this.G__typename}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData_user__base', 'G__typename');
+  }
+
+  @override
+  GrefreshData_user__base rebuild(
+          void Function(GrefreshData_user__baseBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_user__baseBuilder toBuilder() =>
+      new GrefreshData_user__baseBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_user__base && G__typename == other.G__typename;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshData_user__base')
+          ..add('G__typename', G__typename))
+        .toString();
+  }
+}
+
+class GrefreshData_user__baseBuilder
+    implements
+        Builder<GrefreshData_user__base, GrefreshData_user__baseBuilder> {
+  _$GrefreshData_user__base? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GrefreshData_user__baseBuilder() {
+    GrefreshData_user__base._initializeBuilder(this);
+  }
+
+  GrefreshData_user__baseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_user__base other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_user__base;
+  }
+
+  @override
+  void update(void Function(GrefreshData_user__baseBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_user__base build() => _build();
+
+  _$GrefreshData_user__base _build() {
+    final _$result = _$v ??
+        new _$GrefreshData_user__base._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GrefreshData_user__base', 'G__typename'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_user__asRegistered
+    extends GrefreshData_user__asRegistered {
+  @override
+  final String G__typename;
+  @override
+  final GrefreshData_user__asRegistered_user user;
+
+  factory _$GrefreshData_user__asRegistered(
+          [void Function(GrefreshData_user__asRegisteredBuilder)? updates]) =>
+      (new GrefreshData_user__asRegisteredBuilder()..update(updates))._build();
+
+  _$GrefreshData_user__asRegistered._(
+      {required this.G__typename, required this.user})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData_user__asRegistered', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        user, r'GrefreshData_user__asRegistered', 'user');
+  }
+
+  @override
+  GrefreshData_user__asRegistered rebuild(
+          void Function(GrefreshData_user__asRegisteredBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_user__asRegisteredBuilder toBuilder() =>
+      new GrefreshData_user__asRegisteredBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_user__asRegistered &&
+        G__typename == other.G__typename &&
+        user == other.user;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, user.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshData_user__asRegistered')
+          ..add('G__typename', G__typename)
+          ..add('user', user))
+        .toString();
+  }
+}
+
+class GrefreshData_user__asRegisteredBuilder
+    implements
+        Builder<GrefreshData_user__asRegistered,
+            GrefreshData_user__asRegisteredBuilder> {
+  _$GrefreshData_user__asRegistered? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GrefreshData_user__asRegistered_userBuilder? _user;
+  GrefreshData_user__asRegistered_userBuilder get user =>
+      _$this._user ??= new GrefreshData_user__asRegistered_userBuilder();
+  set user(GrefreshData_user__asRegistered_userBuilder? user) =>
+      _$this._user = user;
+
+  GrefreshData_user__asRegisteredBuilder() {
+    GrefreshData_user__asRegistered._initializeBuilder(this);
+  }
+
+  GrefreshData_user__asRegisteredBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _user = $v.user.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_user__asRegistered other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_user__asRegistered;
+  }
+
+  @override
+  void update(void Function(GrefreshData_user__asRegisteredBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_user__asRegistered build() => _build();
+
+  _$GrefreshData_user__asRegistered _build() {
+    _$GrefreshData_user__asRegistered _$result;
+    try {
+      _$result = _$v ??
+          new _$GrefreshData_user__asRegistered._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                  r'GrefreshData_user__asRegistered', 'G__typename'),
+              user: user.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'user';
+        user.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GrefreshData_user__asRegistered', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_user__asRegistered_user
+    extends GrefreshData_user__asRegistered_user {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GrefreshData_user__asRegistered_user(
+          [void Function(GrefreshData_user__asRegistered_userBuilder)?
+              updates]) =>
+      (new GrefreshData_user__asRegistered_userBuilder()..update(updates))
+          ._build();
+
+  _$GrefreshData_user__asRegistered_user._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData_user__asRegistered_user', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GrefreshData_user__asRegistered_user', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GrefreshData_user__asRegistered_user', 'isSignedUp');
+  }
+
+  @override
+  GrefreshData_user__asRegistered_user rebuild(
+          void Function(GrefreshData_user__asRegistered_userBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_user__asRegistered_userBuilder toBuilder() =>
+      new GrefreshData_user__asRegistered_userBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_user__asRegistered_user &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshData_user__asRegistered_user')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GrefreshData_user__asRegistered_userBuilder
+    implements
+        Builder<GrefreshData_user__asRegistered_user,
+            GrefreshData_user__asRegistered_userBuilder> {
+  _$GrefreshData_user__asRegistered_user? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GrefreshData_user__asRegistered_userBuilder() {
+    GrefreshData_user__asRegistered_user._initializeBuilder(this);
+  }
+
+  GrefreshData_user__asRegistered_userBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_user__asRegistered_user other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_user__asRegistered_user;
+  }
+
+  @override
+  void update(
+      void Function(GrefreshData_user__asRegistered_userBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_user__asRegistered_user build() => _build();
+
+  _$GrefreshData_user__asRegistered_user _build() {
+    final _$result = _$v ??
+        new _$GrefreshData_user__asRegistered_user._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GrefreshData_user__asRegistered_user', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GrefreshData_user__asRegistered_user', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GrefreshData_user__asRegistered_user', 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_user__asUnregistered
+    extends GrefreshData_user__asUnregistered {
+  @override
+  final String G__typename;
+  @override
+  final String? phone;
+
+  factory _$GrefreshData_user__asUnregistered(
+          [void Function(GrefreshData_user__asUnregisteredBuilder)? updates]) =>
+      (new GrefreshData_user__asUnregisteredBuilder()..update(updates))
+          ._build();
+
+  _$GrefreshData_user__asUnregistered._({required this.G__typename, this.phone})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData_user__asUnregistered', 'G__typename');
+  }
+
+  @override
+  GrefreshData_user__asUnregistered rebuild(
+          void Function(GrefreshData_user__asUnregisteredBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_user__asUnregisteredBuilder toBuilder() =>
+      new GrefreshData_user__asUnregisteredBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_user__asUnregistered &&
+        G__typename == other.G__typename &&
+        phone == other.phone;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshData_user__asUnregistered')
+          ..add('G__typename', G__typename)
+          ..add('phone', phone))
+        .toString();
+  }
+}
+
+class GrefreshData_user__asUnregisteredBuilder
+    implements
+        Builder<GrefreshData_user__asUnregistered,
+            GrefreshData_user__asUnregisteredBuilder> {
+  _$GrefreshData_user__asUnregistered? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  GrefreshData_user__asUnregisteredBuilder() {
+    GrefreshData_user__asUnregistered._initializeBuilder(this);
+  }
+
+  GrefreshData_user__asUnregisteredBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _phone = $v.phone;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_user__asUnregistered other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_user__asUnregistered;
+  }
+
+  @override
+  void update(
+      void Function(GrefreshData_user__asUnregisteredBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_user__asUnregistered build() => _build();
+
+  _$GrefreshData_user__asUnregistered _build() {
+    final _$result = _$v ??
+        new _$GrefreshData_user__asUnregistered._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GrefreshData_user__asUnregistered', 'G__typename'),
+            phone: phone);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_config extends GrefreshData_config {
+  @override
+  final String G__typename;
+  @override
+  final String defaultCurrencyId;
+
+  factory _$GrefreshData_config(
+          [void Function(GrefreshData_configBuilder)? updates]) =>
+      (new GrefreshData_configBuilder()..update(updates))._build();
+
+  _$GrefreshData_config._(
+      {required this.G__typename, required this.defaultCurrencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData_config', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        defaultCurrencyId, r'GrefreshData_config', 'defaultCurrencyId');
+  }
+
+  @override
+  GrefreshData_config rebuild(
+          void Function(GrefreshData_configBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_configBuilder toBuilder() =>
+      new GrefreshData_configBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_config &&
+        G__typename == other.G__typename &&
+        defaultCurrencyId == other.defaultCurrencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, defaultCurrencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshData_config')
+          ..add('G__typename', G__typename)
+          ..add('defaultCurrencyId', defaultCurrencyId))
+        .toString();
+  }
+}
+
+class GrefreshData_configBuilder
+    implements Builder<GrefreshData_config, GrefreshData_configBuilder> {
+  _$GrefreshData_config? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _defaultCurrencyId;
+  String? get defaultCurrencyId => _$this._defaultCurrencyId;
+  set defaultCurrencyId(String? defaultCurrencyId) =>
+      _$this._defaultCurrencyId = defaultCurrencyId;
+
+  GrefreshData_configBuilder() {
+    GrefreshData_config._initializeBuilder(this);
+  }
+
+  GrefreshData_configBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _defaultCurrencyId = $v.defaultCurrencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_config other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_config;
+  }
+
+  @override
+  void update(void Function(GrefreshData_configBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_config build() => _build();
+
+  _$GrefreshData_config _build() {
+    final _$result = _$v ??
+        new _$GrefreshData_config._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GrefreshData_config', 'G__typename'),
+            defaultCurrencyId: BuiltValueNullFieldError.checkNotNull(
+                defaultCurrencyId,
+                r'GrefreshData_config',
+                'defaultCurrencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_groups extends GrefreshData_groups {
+  @override
+  final String G__typename;
+  @override
+  final GrefreshData_groups_creator creator;
+  @override
+  final BuiltList<GrefreshData_groups_members> members;
+  @override
+  final String createdAt;
+  @override
+  final String id;
+  @override
+  final String? name;
+
+  factory _$GrefreshData_groups(
+          [void Function(GrefreshData_groupsBuilder)? updates]) =>
+      (new GrefreshData_groupsBuilder()..update(updates))._build();
+
+  _$GrefreshData_groups._(
+      {required this.G__typename,
+      required this.creator,
+      required this.members,
+      required this.createdAt,
+      required this.id,
+      this.name})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData_groups', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        creator, r'GrefreshData_groups', 'creator');
+    BuiltValueNullFieldError.checkNotNull(
+        members, r'GrefreshData_groups', 'members');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt, r'GrefreshData_groups', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(id, r'GrefreshData_groups', 'id');
+  }
+
+  @override
+  GrefreshData_groups rebuild(
+          void Function(GrefreshData_groupsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_groupsBuilder toBuilder() =>
+      new GrefreshData_groupsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_groups &&
+        G__typename == other.G__typename &&
+        creator == other.creator &&
+        members == other.members &&
+        createdAt == other.createdAt &&
+        id == other.id &&
+        name == other.name;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, creator.hashCode);
+    _$hash = $jc(_$hash, members.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshData_groups')
+          ..add('G__typename', G__typename)
+          ..add('creator', creator)
+          ..add('members', members)
+          ..add('createdAt', createdAt)
+          ..add('id', id)
+          ..add('name', name))
+        .toString();
+  }
+}
+
+class GrefreshData_groupsBuilder
+    implements Builder<GrefreshData_groups, GrefreshData_groupsBuilder> {
+  _$GrefreshData_groups? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GrefreshData_groups_creatorBuilder? _creator;
+  GrefreshData_groups_creatorBuilder get creator =>
+      _$this._creator ??= new GrefreshData_groups_creatorBuilder();
+  set creator(GrefreshData_groups_creatorBuilder? creator) =>
+      _$this._creator = creator;
+
+  ListBuilder<GrefreshData_groups_members>? _members;
+  ListBuilder<GrefreshData_groups_members> get members =>
+      _$this._members ??= new ListBuilder<GrefreshData_groups_members>();
+  set members(ListBuilder<GrefreshData_groups_members>? members) =>
+      _$this._members = members;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  GrefreshData_groupsBuilder() {
+    GrefreshData_groups._initializeBuilder(this);
+  }
+
+  GrefreshData_groupsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _creator = $v.creator.toBuilder();
+      _members = $v.members.toBuilder();
+      _createdAt = $v.createdAt;
+      _id = $v.id;
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_groups other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_groups;
+  }
+
+  @override
+  void update(void Function(GrefreshData_groupsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_groups build() => _build();
+
+  _$GrefreshData_groups _build() {
+    _$GrefreshData_groups _$result;
+    try {
+      _$result = _$v ??
+          new _$GrefreshData_groups._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GrefreshData_groups', 'G__typename'),
+              creator: creator.build(),
+              members: members.build(),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GrefreshData_groups', 'createdAt'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GrefreshData_groups', 'id'),
+              name: name);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'creator';
+        creator.build();
+        _$failedField = 'members';
+        members.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GrefreshData_groups', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_groups_creator extends GrefreshData_groups_creator {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GrefreshData_groups_creator(
+          [void Function(GrefreshData_groups_creatorBuilder)? updates]) =>
+      (new GrefreshData_groups_creatorBuilder()..update(updates))._build();
+
+  _$GrefreshData_groups_creator._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData_groups_creator', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GrefreshData_groups_creator', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GrefreshData_groups_creator', 'isSignedUp');
+  }
+
+  @override
+  GrefreshData_groups_creator rebuild(
+          void Function(GrefreshData_groups_creatorBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_groups_creatorBuilder toBuilder() =>
+      new GrefreshData_groups_creatorBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_groups_creator &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshData_groups_creator')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GrefreshData_groups_creatorBuilder
+    implements
+        Builder<GrefreshData_groups_creator,
+            GrefreshData_groups_creatorBuilder> {
+  _$GrefreshData_groups_creator? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GrefreshData_groups_creatorBuilder() {
+    GrefreshData_groups_creator._initializeBuilder(this);
+  }
+
+  GrefreshData_groups_creatorBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_groups_creator other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_groups_creator;
+  }
+
+  @override
+  void update(void Function(GrefreshData_groups_creatorBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_groups_creator build() => _build();
+
+  _$GrefreshData_groups_creator _build() {
+    final _$result = _$v ??
+        new _$GrefreshData_groups_creator._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GrefreshData_groups_creator', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GrefreshData_groups_creator', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp, r'GrefreshData_groups_creator', 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_groups_members extends GrefreshData_groups_members {
+  @override
+  final String G__typename;
+  @override
+  final BuiltList<GrefreshData_groups_members_owedInGroup> owedInGroup;
+  @override
+  final GrefreshData_groups_members_member member;
+
+  factory _$GrefreshData_groups_members(
+          [void Function(GrefreshData_groups_membersBuilder)? updates]) =>
+      (new GrefreshData_groups_membersBuilder()..update(updates))._build();
+
+  _$GrefreshData_groups_members._(
+      {required this.G__typename,
+      required this.owedInGroup,
+      required this.member})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData_groups_members', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        owedInGroup, r'GrefreshData_groups_members', 'owedInGroup');
+    BuiltValueNullFieldError.checkNotNull(
+        member, r'GrefreshData_groups_members', 'member');
+  }
+
+  @override
+  GrefreshData_groups_members rebuild(
+          void Function(GrefreshData_groups_membersBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_groups_membersBuilder toBuilder() =>
+      new GrefreshData_groups_membersBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_groups_members &&
+        G__typename == other.G__typename &&
+        owedInGroup == other.owedInGroup &&
+        member == other.member;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, owedInGroup.hashCode);
+    _$hash = $jc(_$hash, member.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshData_groups_members')
+          ..add('G__typename', G__typename)
+          ..add('owedInGroup', owedInGroup)
+          ..add('member', member))
+        .toString();
+  }
+}
+
+class GrefreshData_groups_membersBuilder
+    implements
+        Builder<GrefreshData_groups_members,
+            GrefreshData_groups_membersBuilder> {
+  _$GrefreshData_groups_members? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  ListBuilder<GrefreshData_groups_members_owedInGroup>? _owedInGroup;
+  ListBuilder<GrefreshData_groups_members_owedInGroup> get owedInGroup =>
+      _$this._owedInGroup ??=
+          new ListBuilder<GrefreshData_groups_members_owedInGroup>();
+  set owedInGroup(
+          ListBuilder<GrefreshData_groups_members_owedInGroup>? owedInGroup) =>
+      _$this._owedInGroup = owedInGroup;
+
+  GrefreshData_groups_members_memberBuilder? _member;
+  GrefreshData_groups_members_memberBuilder get member =>
+      _$this._member ??= new GrefreshData_groups_members_memberBuilder();
+  set member(GrefreshData_groups_members_memberBuilder? member) =>
+      _$this._member = member;
+
+  GrefreshData_groups_membersBuilder() {
+    GrefreshData_groups_members._initializeBuilder(this);
+  }
+
+  GrefreshData_groups_membersBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _owedInGroup = $v.owedInGroup.toBuilder();
+      _member = $v.member.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_groups_members other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_groups_members;
+  }
+
+  @override
+  void update(void Function(GrefreshData_groups_membersBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_groups_members build() => _build();
+
+  _$GrefreshData_groups_members _build() {
+    _$GrefreshData_groups_members _$result;
+    try {
+      _$result = _$v ??
+          new _$GrefreshData_groups_members._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GrefreshData_groups_members', 'G__typename'),
+              owedInGroup: owedInGroup.build(),
+              member: member.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'owedInGroup';
+        owedInGroup.build();
+        _$failedField = 'member';
+        member.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GrefreshData_groups_members', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_groups_members_owedInGroup
+    extends GrefreshData_groups_members_owedInGroup {
+  @override
+  final String G__typename;
+  @override
+  final int amount;
+  @override
+  final String currencyId;
+
+  factory _$GrefreshData_groups_members_owedInGroup(
+          [void Function(GrefreshData_groups_members_owedInGroupBuilder)?
+              updates]) =>
+      (new GrefreshData_groups_members_owedInGroupBuilder()..update(updates))
+          ._build();
+
+  _$GrefreshData_groups_members_owedInGroup._(
+      {required this.G__typename,
+      required this.amount,
+      required this.currencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData_groups_members_owedInGroup', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GrefreshData_groups_members_owedInGroup', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        currencyId, r'GrefreshData_groups_members_owedInGroup', 'currencyId');
+  }
+
+  @override
+  GrefreshData_groups_members_owedInGroup rebuild(
+          void Function(GrefreshData_groups_members_owedInGroupBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_groups_members_owedInGroupBuilder toBuilder() =>
+      new GrefreshData_groups_members_owedInGroupBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_groups_members_owedInGroup &&
+        G__typename == other.G__typename &&
+        amount == other.amount &&
+        currencyId == other.currencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GrefreshData_groups_members_owedInGroup')
+          ..add('G__typename', G__typename)
+          ..add('amount', amount)
+          ..add('currencyId', currencyId))
+        .toString();
+  }
+}
+
+class GrefreshData_groups_members_owedInGroupBuilder
+    implements
+        Builder<GrefreshData_groups_members_owedInGroup,
+            GrefreshData_groups_members_owedInGroupBuilder> {
+  _$GrefreshData_groups_members_owedInGroup? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _currencyId;
+  String? get currencyId => _$this._currencyId;
+  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
+
+  GrefreshData_groups_members_owedInGroupBuilder() {
+    GrefreshData_groups_members_owedInGroup._initializeBuilder(this);
+  }
+
+  GrefreshData_groups_members_owedInGroupBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _amount = $v.amount;
+      _currencyId = $v.currencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_groups_members_owedInGroup other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_groups_members_owedInGroup;
+  }
+
+  @override
+  void update(
+      void Function(GrefreshData_groups_members_owedInGroupBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_groups_members_owedInGroup build() => _build();
+
+  _$GrefreshData_groups_members_owedInGroup _build() {
+    final _$result = _$v ??
+        new _$GrefreshData_groups_members_owedInGroup._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GrefreshData_groups_members_owedInGroup', 'G__typename'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount, r'GrefreshData_groups_members_owedInGroup', 'amount'),
+            currencyId: BuiltValueNullFieldError.checkNotNull(currencyId,
+                r'GrefreshData_groups_members_owedInGroup', 'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_groups_members_member
+    extends GrefreshData_groups_members_member {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GrefreshData_groups_members_member(
+          [void Function(GrefreshData_groups_members_memberBuilder)?
+              updates]) =>
+      (new GrefreshData_groups_members_memberBuilder()..update(updates))
+          ._build();
+
+  _$GrefreshData_groups_members_member._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData_groups_members_member', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GrefreshData_groups_members_member', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GrefreshData_groups_members_member', 'isSignedUp');
+  }
+
+  @override
+  GrefreshData_groups_members_member rebuild(
+          void Function(GrefreshData_groups_members_memberBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_groups_members_memberBuilder toBuilder() =>
+      new GrefreshData_groups_members_memberBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_groups_members_member &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshData_groups_members_member')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GrefreshData_groups_members_memberBuilder
+    implements
+        Builder<GrefreshData_groups_members_member,
+            GrefreshData_groups_members_memberBuilder> {
+  _$GrefreshData_groups_members_member? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GrefreshData_groups_members_memberBuilder() {
+    GrefreshData_groups_members_member._initializeBuilder(this);
+  }
+
+  GrefreshData_groups_members_memberBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_groups_members_member other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_groups_members_member;
+  }
+
+  @override
+  void update(
+      void Function(GrefreshData_groups_members_memberBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_groups_members_member build() => _build();
+
+  _$GrefreshData_groups_members_member _build() {
+    final _$result = _$v ??
+        new _$GrefreshData_groups_members_member._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GrefreshData_groups_members_member', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GrefreshData_groups_members_member', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GrefreshData_groups_members_member', 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_interactedUsers extends GrefreshData_interactedUsers {
+  @override
+  final String G__typename;
+  @override
+  final BuiltList<String> upiIds;
+  @override
+  final BuiltList<GrefreshData_interactedUsers_owes> owes;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GrefreshData_interactedUsers(
+          [void Function(GrefreshData_interactedUsersBuilder)? updates]) =>
+      (new GrefreshData_interactedUsersBuilder()..update(updates))._build();
+
+  _$GrefreshData_interactedUsers._(
+      {required this.G__typename,
+      required this.upiIds,
+      required this.owes,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData_interactedUsers', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        upiIds, r'GrefreshData_interactedUsers', 'upiIds');
+    BuiltValueNullFieldError.checkNotNull(
+        owes, r'GrefreshData_interactedUsers', 'owes');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GrefreshData_interactedUsers', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GrefreshData_interactedUsers', 'isSignedUp');
+  }
+
+  @override
+  GrefreshData_interactedUsers rebuild(
+          void Function(GrefreshData_interactedUsersBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_interactedUsersBuilder toBuilder() =>
+      new GrefreshData_interactedUsersBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_interactedUsers &&
+        G__typename == other.G__typename &&
+        upiIds == other.upiIds &&
+        owes == other.owes &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, upiIds.hashCode);
+    _$hash = $jc(_$hash, owes.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshData_interactedUsers')
+          ..add('G__typename', G__typename)
+          ..add('upiIds', upiIds)
+          ..add('owes', owes)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GrefreshData_interactedUsersBuilder
+    implements
+        Builder<GrefreshData_interactedUsers,
+            GrefreshData_interactedUsersBuilder> {
+  _$GrefreshData_interactedUsers? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  ListBuilder<String>? _upiIds;
+  ListBuilder<String> get upiIds =>
+      _$this._upiIds ??= new ListBuilder<String>();
+  set upiIds(ListBuilder<String>? upiIds) => _$this._upiIds = upiIds;
+
+  ListBuilder<GrefreshData_interactedUsers_owes>? _owes;
+  ListBuilder<GrefreshData_interactedUsers_owes> get owes =>
+      _$this._owes ??= new ListBuilder<GrefreshData_interactedUsers_owes>();
+  set owes(ListBuilder<GrefreshData_interactedUsers_owes>? owes) =>
+      _$this._owes = owes;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GrefreshData_interactedUsersBuilder() {
+    GrefreshData_interactedUsers._initializeBuilder(this);
+  }
+
+  GrefreshData_interactedUsersBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _upiIds = $v.upiIds.toBuilder();
+      _owes = $v.owes.toBuilder();
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_interactedUsers other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_interactedUsers;
+  }
+
+  @override
+  void update(void Function(GrefreshData_interactedUsersBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_interactedUsers build() => _build();
+
+  _$GrefreshData_interactedUsers _build() {
+    _$GrefreshData_interactedUsers _$result;
+    try {
+      _$result = _$v ??
+          new _$GrefreshData_interactedUsers._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GrefreshData_interactedUsers', 'G__typename'),
+              upiIds: upiIds.build(),
+              owes: owes.build(),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GrefreshData_interactedUsers', 'id'),
+              name: name,
+              phone: phone,
+              email: email,
+              isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                  isSignedUp, r'GrefreshData_interactedUsers', 'isSignedUp'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'upiIds';
+        upiIds.build();
+        _$failedField = 'owes';
+        owes.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GrefreshData_interactedUsers', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_interactedUsers_owes
+    extends GrefreshData_interactedUsers_owes {
+  @override
+  final String G__typename;
+  @override
+  final String groupId;
+  @override
+  final GrefreshData_interactedUsers_owes_amount amount;
+
+  factory _$GrefreshData_interactedUsers_owes(
+          [void Function(GrefreshData_interactedUsers_owesBuilder)? updates]) =>
+      (new GrefreshData_interactedUsers_owesBuilder()..update(updates))
+          ._build();
+
+  _$GrefreshData_interactedUsers_owes._(
+      {required this.G__typename, required this.groupId, required this.amount})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData_interactedUsers_owes', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GrefreshData_interactedUsers_owes', 'groupId');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GrefreshData_interactedUsers_owes', 'amount');
+  }
+
+  @override
+  GrefreshData_interactedUsers_owes rebuild(
+          void Function(GrefreshData_interactedUsers_owesBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_interactedUsers_owesBuilder toBuilder() =>
+      new GrefreshData_interactedUsers_owesBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_interactedUsers_owes &&
+        G__typename == other.G__typename &&
+        groupId == other.groupId &&
+        amount == other.amount;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshData_interactedUsers_owes')
+          ..add('G__typename', G__typename)
+          ..add('groupId', groupId)
+          ..add('amount', amount))
+        .toString();
+  }
+}
+
+class GrefreshData_interactedUsers_owesBuilder
+    implements
+        Builder<GrefreshData_interactedUsers_owes,
+            GrefreshData_interactedUsers_owesBuilder> {
+  _$GrefreshData_interactedUsers_owes? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
+
+  GrefreshData_interactedUsers_owes_amountBuilder? _amount;
+  GrefreshData_interactedUsers_owes_amountBuilder get amount =>
+      _$this._amount ??= new GrefreshData_interactedUsers_owes_amountBuilder();
+  set amount(GrefreshData_interactedUsers_owes_amountBuilder? amount) =>
+      _$this._amount = amount;
+
+  GrefreshData_interactedUsers_owesBuilder() {
+    GrefreshData_interactedUsers_owes._initializeBuilder(this);
+  }
+
+  GrefreshData_interactedUsers_owesBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _groupId = $v.groupId;
+      _amount = $v.amount.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_interactedUsers_owes other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_interactedUsers_owes;
+  }
+
+  @override
+  void update(
+      void Function(GrefreshData_interactedUsers_owesBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_interactedUsers_owes build() => _build();
+
+  _$GrefreshData_interactedUsers_owes _build() {
+    _$GrefreshData_interactedUsers_owes _$result;
+    try {
+      _$result = _$v ??
+          new _$GrefreshData_interactedUsers_owes._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                  r'GrefreshData_interactedUsers_owes', 'G__typename'),
+              groupId: BuiltValueNullFieldError.checkNotNull(
+                  groupId, r'GrefreshData_interactedUsers_owes', 'groupId'),
+              amount: amount.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'amount';
+        amount.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GrefreshData_interactedUsers_owes', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_interactedUsers_owes_amount
+    extends GrefreshData_interactedUsers_owes_amount {
+  @override
+  final String G__typename;
+  @override
+  final int amount;
+  @override
+  final String currencyId;
+
+  factory _$GrefreshData_interactedUsers_owes_amount(
+          [void Function(GrefreshData_interactedUsers_owes_amountBuilder)?
+              updates]) =>
+      (new GrefreshData_interactedUsers_owes_amountBuilder()..update(updates))
+          ._build();
+
+  _$GrefreshData_interactedUsers_owes_amount._(
+      {required this.G__typename,
+      required this.amount,
+      required this.currencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GrefreshData_interactedUsers_owes_amount', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GrefreshData_interactedUsers_owes_amount', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        currencyId, r'GrefreshData_interactedUsers_owes_amount', 'currencyId');
+  }
+
+  @override
+  GrefreshData_interactedUsers_owes_amount rebuild(
+          void Function(GrefreshData_interactedUsers_owes_amountBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_interactedUsers_owes_amountBuilder toBuilder() =>
+      new GrefreshData_interactedUsers_owes_amountBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_interactedUsers_owes_amount &&
+        G__typename == other.G__typename &&
+        amount == other.amount &&
+        currencyId == other.currencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GrefreshData_interactedUsers_owes_amount')
+          ..add('G__typename', G__typename)
+          ..add('amount', amount)
+          ..add('currencyId', currencyId))
+        .toString();
+  }
+}
+
+class GrefreshData_interactedUsers_owes_amountBuilder
+    implements
+        Builder<GrefreshData_interactedUsers_owes_amount,
+            GrefreshData_interactedUsers_owes_amountBuilder> {
+  _$GrefreshData_interactedUsers_owes_amount? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _currencyId;
+  String? get currencyId => _$this._currencyId;
+  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
+
+  GrefreshData_interactedUsers_owes_amountBuilder() {
+    GrefreshData_interactedUsers_owes_amount._initializeBuilder(this);
+  }
+
+  GrefreshData_interactedUsers_owes_amountBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _amount = $v.amount;
+      _currencyId = $v.currencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_interactedUsers_owes_amount other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_interactedUsers_owes_amount;
+  }
+
+  @override
+  void update(
+      void Function(GrefreshData_interactedUsers_owes_amountBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_interactedUsers_owes_amount build() => _build();
+
+  _$GrefreshData_interactedUsers_owes_amount _build() {
+    final _$result = _$v ??
+        new _$GrefreshData_interactedUsers_owes_amount._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GrefreshData_interactedUsers_owes_amount', 'G__typename'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount, r'GrefreshData_interactedUsers_owes_amount', 'amount'),
+            currencyId: BuiltValueNullFieldError.checkNotNull(currencyId,
+                r'GrefreshData_interactedUsers_owes_amount', 'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshData_currencies extends GrefreshData_currencies {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final double rate;
+  @override
+  final String symbol;
+  @override
+  final String displayName;
+  @override
+  final int decimals;
+
+  factory _$GrefreshData_currencies(
+          [void Function(GrefreshData_currenciesBuilder)? updates]) =>
+      (new GrefreshData_currenciesBuilder()..update(updates))._build();
+
+  _$GrefreshData_currencies._(
+      {required this.G__typename,
+      required this.id,
+      required this.rate,
+      required this.symbol,
+      required this.displayName,
+      required this.decimals})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GrefreshData_currencies', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(id, r'GrefreshData_currencies', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        rate, r'GrefreshData_currencies', 'rate');
+    BuiltValueNullFieldError.checkNotNull(
+        symbol, r'GrefreshData_currencies', 'symbol');
+    BuiltValueNullFieldError.checkNotNull(
+        displayName, r'GrefreshData_currencies', 'displayName');
+    BuiltValueNullFieldError.checkNotNull(
+        decimals, r'GrefreshData_currencies', 'decimals');
+  }
+
+  @override
+  GrefreshData_currencies rebuild(
+          void Function(GrefreshData_currenciesBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshData_currenciesBuilder toBuilder() =>
+      new GrefreshData_currenciesBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshData_currencies &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        rate == other.rate &&
+        symbol == other.symbol &&
+        displayName == other.displayName &&
+        decimals == other.decimals;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, rate.hashCode);
+    _$hash = $jc(_$hash, symbol.hashCode);
+    _$hash = $jc(_$hash, displayName.hashCode);
+    _$hash = $jc(_$hash, decimals.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GrefreshData_currencies')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('rate', rate)
+          ..add('symbol', symbol)
+          ..add('displayName', displayName)
+          ..add('decimals', decimals))
+        .toString();
+  }
+}
+
+class GrefreshData_currenciesBuilder
+    implements
+        Builder<GrefreshData_currencies, GrefreshData_currenciesBuilder> {
+  _$GrefreshData_currencies? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  double? _rate;
+  double? get rate => _$this._rate;
+  set rate(double? rate) => _$this._rate = rate;
+
+  String? _symbol;
+  String? get symbol => _$this._symbol;
+  set symbol(String? symbol) => _$this._symbol = symbol;
+
+  String? _displayName;
+  String? get displayName => _$this._displayName;
+  set displayName(String? displayName) => _$this._displayName = displayName;
+
+  int? _decimals;
+  int? get decimals => _$this._decimals;
+  set decimals(int? decimals) => _$this._decimals = decimals;
+
+  GrefreshData_currenciesBuilder() {
+    GrefreshData_currencies._initializeBuilder(this);
+  }
+
+  GrefreshData_currenciesBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _rate = $v.rate;
+      _symbol = $v.symbol;
+      _displayName = $v.displayName;
+      _decimals = $v.decimals;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GrefreshData_currencies other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshData_currencies;
+  }
+
+  @override
+  void update(void Function(GrefreshData_currenciesBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshData_currencies build() => _build();
+
+  _$GrefreshData_currencies _build() {
+    final _$result = _$v ??
+        new _$GrefreshData_currencies._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GrefreshData_currencies', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GrefreshData_currencies', 'id'),
+            rate: BuiltValueNullFieldError.checkNotNull(
+                rate, r'GrefreshData_currencies', 'rate'),
+            symbol: BuiltValueNullFieldError.checkNotNull(
+                symbol, r'GrefreshData_currencies', 'symbol'),
+            displayName: BuiltValueNullFieldError.checkNotNull(
+                displayName, r'GrefreshData_currencies', 'displayName'),
+            decimals: BuiltValueNullFieldError.checkNotNull(
+                decimals, r'GrefreshData_currencies', 'decimals'));
     replace(_$result);
     return _$result;
   }

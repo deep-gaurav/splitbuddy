@@ -150,8 +150,8 @@ query user {
   }
 }
 
-query userConfig{
-  config{
+query userConfig {
+  config {
     ...ConfigFields
   }
 }
@@ -168,8 +168,34 @@ query interacted_users {
   }
 }
 
+query refresh {
+  user {
+    __typename
+    ... on Registered {
+      user {
+        ...UserFields
+      }
+    }
+    ... on Unregistered {
+      phone
+    }
+  }
+  config {
+    ...ConfigFields
+  }
+  groups {
+    ...GroupFields
+  }
+  interactedUsers {
+    ...UserPaysFields
+  }
+  currencies {
+    ...CurrencyFields
+  }
+}
+
 query currencies {
-  currencies{
+  currencies {
     ...CurrencyFields
   }
 }
@@ -331,30 +357,40 @@ query transactionMixExpense(
   }
 }
 
-mutation setDefaultCurrency($currencyId: String!){
-  setDefaultCurrency(currencyId:$currencyId){
+mutation setDefaultCurrency($currencyId: String!) {
+  setDefaultCurrency(currencyId: $currencyId) {
     ...ConfigFields
   }
 }
 
-mutation currencyConvert($withUser:String!, $groupId: String!, $fromCurrencyId:String!, $toCurrencyId:String!){
-  convertCurrency(withUser:$withUser, groupId:$groupId, fromCurrencyId:$fromCurrencyId, toCurrencyId: $toCurrencyId){
+mutation currencyConvert(
+  $withUser: String!
+  $groupId: String!
+  $fromCurrencyId: String!
+  $toCurrencyId: String!
+) {
+  convertCurrency(
+    withUser: $withUser
+    groupId: $groupId
+    fromCurrencyId: $fromCurrencyId
+    toCurrencyId: $toCurrencyId
+  ) {
     ...SplitTransactionFields
   }
 }
 
-mutation changeName($name:String!){
-  changeName(name:$name){
+mutation changeName($name: String!) {
+  changeName(name: $name) {
     ...UserFields
   }
 }
 
-query getTransactions($fromTime: String, $limit: Int!){
-  getTransactions(fromTime:$fromTime, limit:$limit) {
+query getTransactions($fromTime: String, $limit: Int!) {
+  getTransactions(fromTime: $fromTime, limit: $limit) {
     ...ExpenseMixSplitFields
   }
 }
 
-mutation setNotificationToken($token: String!){
-  setNotificationToken(token:$token)
+mutation setNotificationToken($token: String!) {
+  setNotificationToken(token: $token)
 }

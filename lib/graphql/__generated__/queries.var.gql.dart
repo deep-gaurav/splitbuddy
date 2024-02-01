@@ -93,6 +93,27 @@ abstract class Ginteracted_usersVars
       );
 }
 
+abstract class GrefreshVars
+    implements Built<GrefreshVars, GrefreshVarsBuilder> {
+  GrefreshVars._();
+
+  factory GrefreshVars([Function(GrefreshVarsBuilder b) updates]) =
+      _$GrefreshVars;
+
+  static Serializer<GrefreshVars> get serializer => _$grefreshVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshVars.serializer,
+        json,
+      );
+}
+
 abstract class GcurrenciesVars
     implements Built<GcurrenciesVars, GcurrenciesVarsBuilder> {
   GcurrenciesVars._();

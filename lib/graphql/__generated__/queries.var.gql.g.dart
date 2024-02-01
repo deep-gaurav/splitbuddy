@@ -12,6 +12,8 @@ Serializer<GuserConfigVars> _$guserConfigVarsSerializer =
 Serializer<GgroupsVars> _$ggroupsVarsSerializer = new _$GgroupsVarsSerializer();
 Serializer<Ginteracted_usersVars> _$ginteractedUsersVarsSerializer =
     new _$Ginteracted_usersVarsSerializer();
+Serializer<GrefreshVars> _$grefreshVarsSerializer =
+    new _$GrefreshVarsSerializer();
 Serializer<GcurrenciesVars> _$gcurrenciesVarsSerializer =
     new _$GcurrenciesVarsSerializer();
 Serializer<GgroupVars> _$ggroupVarsSerializer = new _$GgroupVarsSerializer();
@@ -165,6 +167,26 @@ class _$Ginteracted_usersVarsSerializer
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new Ginteracted_usersVarsBuilder().build();
+  }
+}
+
+class _$GrefreshVarsSerializer implements StructuredSerializer<GrefreshVars> {
+  @override
+  final Iterable<Type> types = const [GrefreshVars, _$GrefreshVars];
+  @override
+  final String wireName = 'GrefreshVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GrefreshVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GrefreshVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GrefreshVarsBuilder().build();
   }
 }
 
@@ -1860,6 +1882,63 @@ class Ginteracted_usersVarsBuilder
 
   _$Ginteracted_usersVars _build() {
     final _$result = _$v ?? new _$Ginteracted_usersVars._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GrefreshVars extends GrefreshVars {
+  factory _$GrefreshVars([void Function(GrefreshVarsBuilder)? updates]) =>
+      (new GrefreshVarsBuilder()..update(updates))._build();
+
+  _$GrefreshVars._() : super._();
+
+  @override
+  GrefreshVars rebuild(void Function(GrefreshVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GrefreshVarsBuilder toBuilder() => new GrefreshVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GrefreshVars;
+  }
+
+  @override
+  int get hashCode {
+    return 378905152;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GrefreshVars').toString();
+  }
+}
+
+class GrefreshVarsBuilder
+    implements Builder<GrefreshVars, GrefreshVarsBuilder> {
+  _$GrefreshVars? _$v;
+
+  GrefreshVarsBuilder();
+
+  @override
+  void replace(GrefreshVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GrefreshVars;
+  }
+
+  @override
+  void update(void Function(GrefreshVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GrefreshVars build() => _build();
+
+  _$GrefreshVars _build() {
+    final _$result = _$v ?? new _$GrefreshVars._();
     replace(_$result);
     return _$result;
   }

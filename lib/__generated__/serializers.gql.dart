@@ -5,6 +5,7 @@ import 'package:billdivide/__generated__/schema.schema.gql.dart'
     show GSplitInput, GSplitInputNonGroup, GTransactionType;
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart'
     show
+        GrefreshData_user,
         GuserData_user,
         Gverify_email_otpData_verifyOtp,
         GAmountFieldsData,
@@ -160,6 +161,21 @@ import 'package:billdivide/graphql/__generated__/queries.data.gql.dart'
         Ginteracted_usersData_interactedUsers,
         Ginteracted_usersData_interactedUsers_owes,
         Ginteracted_usersData_interactedUsers_owes_amount,
+        GrefreshData,
+        GrefreshData_config,
+        GrefreshData_currencies,
+        GrefreshData_groups,
+        GrefreshData_groups_creator,
+        GrefreshData_groups_members,
+        GrefreshData_groups_members_member,
+        GrefreshData_groups_members_owedInGroup,
+        GrefreshData_interactedUsers,
+        GrefreshData_interactedUsers_owes,
+        GrefreshData_interactedUsers_owes_amount,
+        GrefreshData_user__asRegistered,
+        GrefreshData_user__asRegistered_user,
+        GrefreshData_user__asUnregistered,
+        GrefreshData_user__base,
         Grefresh_tokenData,
         Grefresh_tokenData_refreshToken,
         GsearchUserByEmailData,
@@ -247,6 +263,7 @@ import 'package:billdivide/graphql/__generated__/queries.req.gql.dart'
         GgroupReq,
         GgroupsReq,
         Ginteracted_usersReq,
+        GrefreshReq,
         Grefresh_tokenReq,
         GsearchUserByEmailReq,
         Gsend_email_otpReq,
@@ -289,6 +306,7 @@ import 'package:billdivide/graphql/__generated__/queries.var.gql.dart'
         GgroupVars,
         GgroupsVars,
         Ginteracted_usersVars,
+        GrefreshVars,
         Grefresh_tokenVars,
         GsearchUserByEmailVars,
         Gsend_email_otpVars,
@@ -313,6 +331,7 @@ part 'serializers.gql.g.dart';
 
 final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..add(OperationSerializer())
+  ..add(GrefreshData_user.serializer)
   ..add(GuserData_user.serializer)
   ..add(Gverify_email_otpData_verifyOtp.serializer)
   ..addPlugin(StandardJsonPlugin());
@@ -527,6 +546,23 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   Ginteracted_usersData_interactedUsers_owes_amount,
   Ginteracted_usersReq,
   Ginteracted_usersVars,
+  GrefreshData,
+  GrefreshData_config,
+  GrefreshData_currencies,
+  GrefreshData_groups,
+  GrefreshData_groups_creator,
+  GrefreshData_groups_members,
+  GrefreshData_groups_members_member,
+  GrefreshData_groups_members_owedInGroup,
+  GrefreshData_interactedUsers,
+  GrefreshData_interactedUsers_owes,
+  GrefreshData_interactedUsers_owes_amount,
+  GrefreshData_user__asRegistered,
+  GrefreshData_user__asRegistered_user,
+  GrefreshData_user__asUnregistered,
+  GrefreshData_user__base,
+  GrefreshReq,
+  GrefreshVars,
   Grefresh_tokenData,
   Grefresh_tokenData_refreshToken,
   Grefresh_tokenReq,

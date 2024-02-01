@@ -235,6 +235,23 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Ginteracted_usersData_interactedUsers_owes_amount.serializer)
       ..add(Ginteracted_usersReq.serializer)
       ..add(Ginteracted_usersVars.serializer)
+      ..add(GrefreshData.serializer)
+      ..add(GrefreshData_config.serializer)
+      ..add(GrefreshData_currencies.serializer)
+      ..add(GrefreshData_groups.serializer)
+      ..add(GrefreshData_groups_creator.serializer)
+      ..add(GrefreshData_groups_members.serializer)
+      ..add(GrefreshData_groups_members_member.serializer)
+      ..add(GrefreshData_groups_members_owedInGroup.serializer)
+      ..add(GrefreshData_interactedUsers.serializer)
+      ..add(GrefreshData_interactedUsers_owes.serializer)
+      ..add(GrefreshData_interactedUsers_owes_amount.serializer)
+      ..add(GrefreshData_user__asRegistered.serializer)
+      ..add(GrefreshData_user__asRegistered_user.serializer)
+      ..add(GrefreshData_user__asUnregistered.serializer)
+      ..add(GrefreshData_user__base.serializer)
+      ..add(GrefreshReq.serializer)
+      ..add(GrefreshVars.serializer)
       ..add(Grefresh_tokenData.serializer)
       ..add(Grefresh_tokenData_refreshToken.serializer)
       ..add(Grefresh_tokenReq.serializer)
@@ -457,6 +474,26 @@ Serializers _$serializers = (new Serializers().toBuilder()
               const [const FullType(Ginteracted_usersData_interactedUsers)]),
           () => new ListBuilder<Ginteracted_usersData_interactedUsers>())
       ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GrefreshData_groups)]),
+          () => new ListBuilder<GrefreshData_groups>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GrefreshData_interactedUsers)]),
+          () => new ListBuilder<GrefreshData_interactedUsers>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GrefreshData_currencies)]),
+          () => new ListBuilder<GrefreshData_currencies>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GrefreshData_groups_members)]),
+          () => new ListBuilder<GrefreshData_groups_members>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GrefreshData_groups_members_owedInGroup)]),
+          () => new ListBuilder<GrefreshData_groups_members_owedInGroup>())
+      ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GsimplifyUserData_simplifyCrossGroup)]),
           () => new ListBuilder<GsimplifyUserData_simplifyCrossGroup>())
@@ -487,7 +524,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [
             const FullType(Ginteracted_usersData_interactedUsers_owes)
           ]),
-          () => new ListBuilder<Ginteracted_usersData_interactedUsers_owes>()))
+          () => new ListBuilder<Ginteracted_usersData_interactedUsers_owes>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GrefreshData_interactedUsers_owes)]),
+          () => new ListBuilder<GrefreshData_interactedUsers_owes>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint
