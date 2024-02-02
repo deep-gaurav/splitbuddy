@@ -37,10 +37,6 @@ class _TransactionHistoryState extends State<TransactionHistory>
 
   bool _loading = false;
 
-  ColorScheme get scheme => ColorUtils.getMainScheme(context);
-  ColorScheme get neutralYellow => ColorUtils.getNeutralYellow(context);
-  ColorScheme get neutralBlue => ColorUtils.getNeutralBlue(context);
-
   ValueNotifier<bool> maintain = ValueNotifier(true);
   Map<String, List<GroupTransactionObject>> expenseGrouped = {};
   List<String> dates = [];
@@ -153,7 +149,126 @@ class _TransactionHistoryState extends State<TransactionHistory>
     }
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: CustomScrollView(
+              physics: MaintiningScrollPhysics(maintain: maintain),
+              controller: _scrollController,
+              slivers: [
+                const SliverAppBar.large(
+                  primary: true,
+                  pinned: true,
+                  title: Text('Transactions'),
+                ),
+                if (expenseGrouped.isEmpty)
+                  const SliverFillRemaining()
+                else ...[
+                  const SliverPadding(padding: EdgeInsets.only(top: 40)),
+                  ...dates.map(
+                    (entry) => MultiSliver(
+                      pushPinnedChildren: true,
+                      children: [
+                        SliverPersistentHeader(
+                          delegate: DateHeader(entry),
+                          pinned: true,
+                        ),
+                        SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) {
+                              if (index >= expenseGrouped[entry]!.length) {
+                                return null;
+                              }
+                              var mix = expenseGrouped[entry]![
+                                  expenseGrouped[entry]!.length - 1 - index];
+                              var isSelf = mix.creatorId ==
+                                  context.read<AppState>().user!.id;
+
+                              var creator = context
+                                  .read<AppState>()
+                                  .getUser(mix.creatorId);
+                              bool isInvoled = (mix is Split) ||
+                                  (mix is Expense && mix.splits.isNotEmpty);
+
+                              return TransactionHisotryTransactionCard(
+                                  isSelf: isSelf, creator: creator, mix: mix);
+                            },
+                            childCount: expenseGrouped[entry]!.length,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: ButtonBar(
+        children: [
+          ElevatedButton.icon(
+            icon: const Icon(Icons.sell),
+            onPressed: () async {
+              var expense = await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const CreateExpense(
+                    searchGroup: true,
+                  ),
+                ),
+              );
+              if (expense is GNewExpenseFields) {
+                setState(() {
+                  expenses.add(
+                    Expense(
+                      expense: expense,
+                      splits: expense.splits.toList(),
+                    ),
+                  );
+                  fetchData(forceFirst: true);
+                  generateGrouped();
+                });
+                WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+                  // await Future.delayed(Durations.short1);
+                  _scrollController
+                      .jumpTo(_scrollController.position.maxScrollExtent);
+                });
+              }
+            },
+            label: const Text(
+              "Add Expense",
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  @override
+  void onNotificationRefresh() {
+    fetchData(forceFirst: true);
+  }
+}
+
+class TransactionHisotryTransactionCard extends StatelessWidget {
+  const TransactionHisotryTransactionCard({
+    super.key,
+    required this.isSelf,
+    required this.creator,
+    required this.mix,
+  });
+
+  final bool isSelf;
+  final GUserFields? creator;
+  final GroupTransactionObject mix;
+
   (TextSpan, Color?) getTitle(BuildContext context, GSplitFields? split) {
+    ColorScheme scheme = ColorUtils.getMainScheme(context);
+    ColorScheme neutralYellow = ColorUtils.getNeutralYellow(context);
+    ColorScheme neutralBlue = ColorUtils.getNeutralBlue(context);
     if (split == null) {
       return (const TextSpan(text: 'Not involved '), null);
     } else {
@@ -295,413 +410,236 @@ class _TransactionHistoryState extends State<TransactionHistory>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: CustomScrollView(
-              physics: MaintiningScrollPhysics(maintain: maintain),
-              controller: _scrollController,
-              slivers: [
-                const SliverAppBar.large(
-                  primary: true,
-                  pinned: true,
-                  title: Text('Transactions'),
-                ),
-                if (expenseGrouped.isEmpty)
-                  const SliverFillRemaining()
-                else ...[
-                  const SliverPadding(padding: EdgeInsets.only(top: 40)),
-                  ...dates.map(
-                    (entry) => MultiSliver(
-                      pushPinnedChildren: true,
+    return FractionallySizedBox(
+      widthFactor: 0.7,
+      alignment: isSelf ? Alignment.centerRight : Alignment.centerLeft,
+      child: Align(
+        alignment: isSelf ? Alignment.centerRight : Alignment.centerLeft,
+        child: IntrinsicWidth(
+          child: Stack(
+            fit: StackFit.passthrough,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: ChatBubble(
+                  clipper: ChatBubbleClipper1(
+                    type: isSelf
+                        ? BubbleType.sendBubble
+                        : BubbleType.receiverBubble,
+                  ),
+                  backGroundColor: isSelf
+                      ? Theme.of(context).colorScheme.secondaryContainer
+                      : Theme.of(context).colorScheme.tertiaryContainer,
+                  padding: EdgeInsets.only(
+                    left: isSelf ? 0 : 20,
+                    right: !isSelf ? 0 : 15,
+                  ),
+                  elevation: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        SliverPersistentHeader(
-                          delegate: DateHeader(entry),
-                          pinned: true,
+                        const SizedBox(
+                          height: 5,
                         ),
-                        SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              if (index >= expenseGrouped[entry]!.length) {
-                                return null;
-                              }
-                              var mix = expenseGrouped[entry]![
-                                  expenseGrouped[entry]!.length - 1 - index];
-                              var isSelf = mix.creatorId ==
-                                  context.read<AppState>().user!.id;
-
-                              var creator = context
+                        Row(
+                          children: [
+                            if (!isSelf && creator != null) ...[
+                              SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: FittedBox(
+                                  child: UserIconWidget(
+                                    user: creator!,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                creator!.displayName,
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Text('in '),
+                            ],
+                            SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: FittedBox(
+                                child: GroupIconWidget(
+                                  group: context
+                                      .read<AppState>()
+                                      .userGroups
+                                      .firstWhere((element) =>
+                                          element.id == mix.groupId),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              context
                                   .read<AppState>()
-                                  .getUser(mix.creatorId);
-                              bool isInvoled = (mix is Split) ||
-                                  (mix is Expense && mix.splits.isNotEmpty);
-
-                              return FractionallySizedBox(
-                                widthFactor: 0.7,
-                                alignment: isSelf
-                                    ? Alignment.centerRight
-                                    : Alignment.centerLeft,
-                                child: Align(
-                                  alignment: isSelf
-                                      ? Alignment.centerRight
-                                      : Alignment.centerLeft,
-                                  child: IntrinsicWidth(
-                                    child: Stack(
-                                      fit: StackFit.passthrough,
+                                  .userGroups
+                                  .firstWhere(
+                                      (element) => element.id == mix.groupId)
+                                  .getDisplayName(context.read()),
+                              style: Theme.of(context).textTheme.labelMedium,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        switch (mix) {
+                          Expense(expense: var expense, splits: var splits) =>
+                            Column(
+                              children: [
+                                ...[
+                                  ExpenseCard(expense: expense),
+                                  const SizedBox(
+                                    height: 5,
+                                    width: 5,
+                                    child: DottedLine(),
+                                  ),
+                                  if (splits.isNotEmpty) ...[
+                                    ...splits.map(
+                                      (split) => TransactionCard(
+                                        title: getTitle(context, split).$1,
+                                        amountColor:
+                                            getTitle(context, split).$2,
+                                        amount: split.amount,
+                                        elevation: 0,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    )
+                                  ] else
+                                    const TransactionCard(
+                                        title: TextSpan(text: 'Not Involved')),
+                                ]
+                              ],
+                            ),
+                          Split(split: var splits) => TransactionCard(
+                              title: getTitle(context, splits).$1,
+                              amountColor: getTitle(context, splits).$2,
+                              amount: splits.amount,
+                              elevation: 0,
+                            ),
+                          CurrencyConversion(splits: var splits) => Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  'Converted',
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium,
+                                  textAlign: TextAlign.center,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: AutoScroll(
+                                    child: Row(
                                       children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 10),
-                                          child: ChatBubble(
-                                            clipper: ChatBubbleClipper1(
-                                              type: isSelf
-                                                  ? BubbleType.sendBubble
-                                                  : BubbleType.receiverBubble,
-                                            ),
-                                            backGroundColor: isSelf
-                                                ? Theme.of(context)
-                                                    .colorScheme
-                                                    .secondaryContainer
-                                                : Theme.of(context)
-                                                    .colorScheme
-                                                    .tertiaryContainer,
-                                            padding: EdgeInsets.only(
-                                              left: isSelf ? 0 : 20,
-                                              right: !isSelf ? 0 : 15,
-                                            ),
-                                            elevation: 0,
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(5),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.stretch,
-                                                children: [
-                                                  const SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      if (creator != null &&
-                                                          !isSelf) ...[
-                                                        SizedBox(
-                                                          height: 20,
-                                                          width: 20,
-                                                          child: FittedBox(
-                                                            child:
-                                                                UserIconWidget(
-                                                              user: creator,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Text(
-                                                          creator.displayName,
-                                                          style:
-                                                              Theme.of(context)
-                                                                  .textTheme
-                                                                  .labelMedium,
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        const Text('in '),
-                                                      ],
-                                                      SizedBox(
-                                                        height: 20,
-                                                        width: 20,
-                                                        child: FittedBox(
-                                                          child:
-                                                              GroupIconWidget(
-                                                            group: context
-                                                                .read<
-                                                                    AppState>()
-                                                                .userGroups
-                                                                .firstWhere(
-                                                                    (element) =>
-                                                                        element
-                                                                            .id ==
-                                                                        mix.groupId),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      Text(
-                                                        context
-                                                            .read<AppState>()
-                                                            .userGroups
-                                                            .firstWhere(
-                                                                (element) =>
-                                                                    element
-                                                                        .id ==
-                                                                    mix.groupId)
-                                                            .getDisplayName(
-                                                                context.read()),
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .labelMedium,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  switch (mix) {
-                                                    Expense(
-                                                      expense: var expense,
-                                                      splits: var splits
-                                                    ) =>
-                                                      Column(
-                                                        children: [
-                                                          ...[
-                                                            ExpenseCard(
-                                                                expense:
-                                                                    expense),
-                                                            const SizedBox(
-                                                              height: 5,
-                                                              width: 5,
-                                                              child:
-                                                                  DottedLine(),
-                                                            ),
-                                                            if (mix.splits
-                                                                .isNotEmpty) ...[
-                                                              ...splits.map(
-                                                                (split) =>
-                                                                    TransactionCard(
-                                                                  title: getTitle(
-                                                                          context,
-                                                                          split)
-                                                                      .$1,
-                                                                  amountColor: getTitle(
-                                                                          context,
-                                                                          split)
-                                                                      .$2,
-                                                                  amount: split
-                                                                      .amount,
-                                                                  elevation: 0,
-                                                                  padding: const EdgeInsets
-                                                                      .symmetric(
-                                                                      horizontal:
-                                                                          20),
-                                                                ),
-                                                              ),
-                                                              const SizedBox(
-                                                                height: 5,
-                                                              )
-                                                            ] else
-                                                              const TransactionCard(
-                                                                  title: TextSpan(
-                                                                      text:
-                                                                          'Not Involved')),
-                                                          ]
-                                                        ],
-                                                      ),
-                                                    Split(split: var splits) =>
-                                                      TransactionCard(
-                                                        title: getTitle(
-                                                                context, splits)
-                                                            .$1,
-                                                        amountColor: getTitle(
-                                                                context, splits)
-                                                            .$2,
-                                                        amount: splits.amount,
-                                                        elevation: 0,
-                                                      ),
-                                                    CurrencyConversion(
-                                                      splits: var splits
-                                                    ) =>
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .stretch,
-                                                        children: [
-                                                          const SizedBox(
-                                                            height: 5,
-                                                          ),
-                                                          Text(
-                                                            'Converted',
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .titleMedium,
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .symmetric(
-                                                                    horizontal:
-                                                                        20),
-                                                            child: AutoScroll(
-                                                              child: Row(
-                                                                children: [
-                                                                  Text(
-                                                                    splits.first
-                                                                        .amount
-                                                                        .getPretty(
-                                                                            context),
-                                                                    style: Theme.of(
-                                                                            context)
-                                                                        .textTheme
-                                                                        .headlineMedium
-                                                                        ?.copyWith(
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              ColorUtils.getNeutralYellow(context).primary,
-                                                                        ),
-                                                                  ),
-                                                                  const Icon(Icons
-                                                                      .chevron_right),
-                                                                  if (splits
-                                                                          .length >
-                                                                      1)
-                                                                    Text(
-                                                                      splits[1]
-                                                                          .amount
-                                                                          .getPretty(
-                                                                              context),
-                                                                      style: Theme.of(
-                                                                              context)
-                                                                          .textTheme
-                                                                          .headlineMedium
-                                                                          ?.copyWith(
-                                                                            fontWeight:
-                                                                                FontWeight.w800,
-                                                                            color:
-                                                                                ColorUtils.getNeutralYellow(context).primary,
-                                                                          ),
-                                                                    ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          if (splits.length > 1)
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .symmetric(
-                                                                      horizontal:
-                                                                          20),
-                                                              child: Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .stretch,
-                                                                children: [
-                                                                  ...[
-                                                                    Text.rich(
-                                                                      getTitle(
-                                                                              context,
-                                                                              splits[1])
-                                                                          .$1,
-                                                                      style: Theme.of(
-                                                                              context)
-                                                                          .textTheme
-                                                                          .labelLarge,
-                                                                    ),
-                                                                    // Text.rich(
-                                                                    //   subTitle(
-                                                                    //           context,
-                                                                    //           transactions[1]) ??
-                                                                    //       const TextSpan(),
-                                                                    //   style: Theme.of(
-                                                                    //           context)
-                                                                    //       .textTheme
-                                                                    //       .labelLarge,
-                                                                    // ),
-                                                                    const SizedBox(
-                                                                      height:
-                                                                          15,
-                                                                    ),
-                                                                  ]
-                                                                ],
-                                                              ),
-                                                            ),
-                                                        ],
-                                                      )
-                                                  }
-                                                ],
+                                        Text(
+                                          splits.first.amount
+                                              .getPretty(context),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headlineMedium
+                                              ?.copyWith(
+                                                fontWeight: FontWeight.w800,
+                                                color:
+                                                    ColorUtils.getNeutralYellow(
+                                                            context)
+                                                        .primary,
                                               ),
-                                            ),
-                                          ),
                                         ),
-                                        Positioned(
-                                          bottom: 5,
-                                          right: 20,
-                                          child: Text(
-                                            DateFormat("h:mm a").format(
-                                              DateTime.parse(mix.createdAt)
-                                                  .toLocal(),
-                                            ),
+                                        const Icon(Icons.chevron_right),
+                                        if (splits.length > 1)
+                                          Text(
+                                            splits[1].amount.getPretty(context),
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .labelSmall,
+                                                .headlineMedium
+                                                ?.copyWith(
+                                                  fontWeight: FontWeight.w800,
+                                                  color: ColorUtils
+                                                          .getNeutralYellow(
+                                                              context)
+                                                      .primary,
+                                                ),
                                           ),
-                                        ),
                                       ],
                                     ),
                                   ),
                                 ),
-                              );
-                            },
-                            childCount: expenseGrouped[entry]!.length,
-                          ),
-                        ),
+                                if (splits.length > 1)
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        ...[
+                                          Text.rich(
+                                            getTitle(context, splits[1]).$1,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelLarge,
+                                          ),
+                                          // Text.rich(
+                                          //   subTitle(
+                                          //           context,
+                                          //           transactions[1]) ??
+                                          //       const TextSpan(),
+                                          //   style: Theme.of(
+                                          //           context)
+                                          //       .textTheme
+                                          //       .labelLarge,
+                                          // ),
+                                          const SizedBox(
+                                            height: 15,
+                                          ),
+                                        ]
+                                      ],
+                                    ),
+                                  ),
+                              ],
+                            )
+                        }
                       ],
                     ),
-                  )
-                ],
-              ],
-            ),
-          ),
-        ],
-      ),
-      bottomNavigationBar: ButtonBar(
-        children: [
-          ElevatedButton.icon(
-            icon: const Icon(Icons.sell),
-            onPressed: () async {
-              var expense = await Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const CreateExpense(
-                    searchGroup: true,
                   ),
                 ),
-              );
-              if (expense is GNewExpenseFields) {
-                setState(() {
-                  expenses.add(
-                    Expense(
-                      expense: expense,
-                      splits: expense.splits.toList(),
-                    ),
-                  );
-                  fetchData(forceFirst: true);
-                  generateGrouped();
-                });
-                WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-                  // await Future.delayed(Durations.short1);
-                  _scrollController
-                      .jumpTo(_scrollController.position.maxScrollExtent);
-                });
-              }
-            },
-            label: const Text(
-              "Add Expense",
-            ),
-          )
-        ],
+              ),
+              Positioned(
+                bottom: 5,
+                right: 20,
+                child: Text(
+                  DateFormat("h:mm a").format(
+                    DateTime.parse(mix.createdAt).toLocal(),
+                  ),
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
-  }
-
-  @override
-  void onNotificationRefresh() {
-    fetchData(forceFirst: true);
   }
 }

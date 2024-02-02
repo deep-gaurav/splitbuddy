@@ -41,19 +41,19 @@ class AppState extends ChangeNotifier {
   AppState() {
     refreshCurrencies();
     unawaited(() async {
-      refresh(await _getClient(), onlyUser: true);
+      refresh(await _getClient());
     }());
   }
 
   GUserFields? _user;
-  GuserData_user? _auth;
+  GrefreshData_user? _auth;
 
   AuthStates authState = AuthStates.loading;
 
   GUserFields? get user =>
       _user ??
-      ((_auth is GuserData_user__asRegistered)
-          ? (_auth as GuserData_user__asRegistered).user
+      ((_auth is GrefreshData_user__asRegistered)
+          ? (_auth as GrefreshData_user__asRegistered).user
           : null);
 
   UnmodifiableListView<GGroupFields> get userGroups =>
@@ -61,7 +61,7 @@ class AppState extends ChangeNotifier {
 
   List<GGroupFields> _userGroups = [];
 
-  List<Ginteracted_usersData_interactedUsers> _interactedUsers = [];
+  List<GrefreshData_interactedUsers> _interactedUsers = [];
 
   List<GAmountFields> get toPay => _interactedUsers
       .fold([], (previousValue, element) => previousValue + element.toPay);
@@ -69,8 +69,8 @@ class AppState extends ChangeNotifier {
   List<GAmountFields> get toReceive => _interactedUsers
       .fold([], (previousValue, element) => previousValue + element.toReceive);
 
-  UnmodifiableListView<Ginteracted_usersData_interactedUsers>
-      get interactedUsers => UnmodifiableListView(_interactedUsers);
+  UnmodifiableListView<GUserPaysFields> get interactedUsers =>
+      UnmodifiableListView(_interactedUsers);
 
   Future<ReAuthClient> get client => _getClient();
 
@@ -104,45 +104,28 @@ class AppState extends ChangeNotifier {
     ReAuthClient client, {
     bool onlyUser = false,
   }) {
-    // print("refreshing");
-    client.execute(GuserReq()).then((value) {
-      // print("Received user result ${value.data?.user}");
+    client.execute(GrefreshReq()).then((value) {
       _auth = value.data?.user;
       if (value.data?.user == null) {
         authState = AuthStates.unAuthorized;
-      } else if (value.data?.user is GuserData_user__asUnregistered) {
+      } else if (value.data?.user is GrefreshData_user__asUnregistered) {
         authState = AuthStates.authorizedRequiresSignup;
-      } else if (value.data?.user is GuserData_user__asRegistered) {
-        if (authState != AuthStates.authorized) {
-          refresh(client);
-        }
+      } else if (value.data?.user is GrefreshData_user__asRegistered) {
         authState = AuthStates.authorized;
       }
-      notifyListeners();
-    }).catchError((error) {
-      // print("Received user error ");
-    });
-    client.execute(GuserConfigReq()).then((value) {
+
       if (value.data?.config.defaultCurrencyId != null) {
         defaultCurrency = currencies[value.data!.config.defaultCurrencyId];
       }
+
+      _userGroups = [];
+      _userGroups.addAll(value.data?.groups.toList() ?? []);
+      _interactedUsers = [];
+      _interactedUsers.addAll(value.data?.interactedUsers ?? []);
+
       notifyListeners();
     });
-    if (!onlyUser) {
-      client.execute(GgroupsReq()).then((value) {
-        _userGroups = [];
-        _userGroups.addAll(value.data?.groups.toList() ?? []);
-
-        notifyListeners();
-      });
-
-      client.execute(Ginteracted_usersReq()).then((value) {
-        _interactedUsers = [];
-        _interactedUsers.addAll(value.data?.interactedUsers ?? []);
-
-        notifyListeners();
-      });
-    }
+    // print("refreshing");
   }
 
   setupAndSendFirebase() async {

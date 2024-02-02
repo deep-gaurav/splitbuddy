@@ -765,6 +765,116 @@ const interacted_users = _i1.OperationDefinitionNode(
     )
   ]),
 );
+const refresh = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.query,
+  name: _i1.NameNode(value: 'refresh'),
+  variableDefinitions: [],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'user'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FieldNode(
+          name: _i1.NameNode(value: '__typename'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        _i1.InlineFragmentNode(
+          typeCondition: _i1.TypeConditionNode(
+              on: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Registered'),
+            isNonNull: false,
+          )),
+          directives: [],
+          selectionSet: _i1.SelectionSetNode(selections: [
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'user'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: _i1.SelectionSetNode(selections: [
+                _i1.FragmentSpreadNode(
+                  name: _i1.NameNode(value: 'UserFields'),
+                  directives: [],
+                )
+              ]),
+            )
+          ]),
+        ),
+        _i1.InlineFragmentNode(
+          typeCondition: _i1.TypeConditionNode(
+              on: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Unregistered'),
+            isNonNull: false,
+          )),
+          directives: [],
+          selectionSet: _i1.SelectionSetNode(selections: [
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'phone'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            )
+          ]),
+        ),
+      ]),
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'config'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'ConfigFields'),
+          directives: [],
+        )
+      ]),
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'groups'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'GroupFields'),
+          directives: [],
+        )
+      ]),
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'interactedUsers'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'UserPaysFields'),
+          directives: [],
+        )
+      ]),
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'currencies'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'CurrencyFields'),
+          directives: [],
+        )
+      ]),
+    ),
+  ]),
+);
 const currencies = _i1.OperationDefinitionNode(
   type: _i1.OperationType.query,
   name: _i1.NameNode(value: 'currencies'),
@@ -1917,6 +2027,7 @@ const document = _i1.DocumentNode(definitions: [
   userConfig,
   groups,
   interacted_users,
+  refresh,
   currencies,
   group,
   signup,

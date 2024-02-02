@@ -104,6 +104,7 @@ type Query {
   interactedUsers: [User!]!
   groups: [Group!]!
   findUserByEmail(email: String!): User!
+  serverCommitId: String!
   overallOwed: [Amount!]!
   getTransactionsWithUser(
     withUser: String!

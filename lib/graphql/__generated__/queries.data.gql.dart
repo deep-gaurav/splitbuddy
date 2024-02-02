@@ -656,6 +656,613 @@ abstract class Ginteracted_usersData_interactedUsers_owes_amount
       );
 }
 
+abstract class GrefreshData
+    implements Built<GrefreshData, GrefreshDataBuilder> {
+  GrefreshData._();
+
+  factory GrefreshData([Function(GrefreshDataBuilder b) updates]) =
+      _$GrefreshData;
+
+  static void _initializeBuilder(GrefreshDataBuilder b) =>
+      b..G__typename = 'Query';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GrefreshData_user get user;
+  GrefreshData_config get config;
+  BuiltList<GrefreshData_groups> get groups;
+  BuiltList<GrefreshData_interactedUsers> get interactedUsers;
+  BuiltList<GrefreshData_currencies> get currencies;
+  static Serializer<GrefreshData> get serializer => _$grefreshDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_user {
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  static Serializer<GrefreshData_user> get serializer =>
+      _i2.InlineFragmentSerializer<GrefreshData_user>(
+        'GrefreshData_user',
+        GrefreshData_user__base,
+        {
+          'Registered': GrefreshData_user__asRegistered,
+          'Unregistered': GrefreshData_user__asUnregistered,
+        },
+      );
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_user.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_user? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_user.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_user__base
+    implements
+        Built<GrefreshData_user__base, GrefreshData_user__baseBuilder>,
+        GrefreshData_user {
+  GrefreshData_user__base._();
+
+  factory GrefreshData_user__base(
+          [Function(GrefreshData_user__baseBuilder b) updates]) =
+      _$GrefreshData_user__base;
+
+  static void _initializeBuilder(GrefreshData_user__baseBuilder b) =>
+      b..G__typename = 'UserAuth';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  static Serializer<GrefreshData_user__base> get serializer =>
+      _$grefreshDataUserBaseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_user__base.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_user__base? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_user__base.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_user__asRegistered
+    implements
+        Built<GrefreshData_user__asRegistered,
+            GrefreshData_user__asRegisteredBuilder>,
+        GrefreshData_user {
+  GrefreshData_user__asRegistered._();
+
+  factory GrefreshData_user__asRegistered(
+          [Function(GrefreshData_user__asRegisteredBuilder b) updates]) =
+      _$GrefreshData_user__asRegistered;
+
+  static void _initializeBuilder(GrefreshData_user__asRegisteredBuilder b) =>
+      b..G__typename = 'Registered';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GrefreshData_user__asRegistered_user get user;
+  static Serializer<GrefreshData_user__asRegistered> get serializer =>
+      _$grefreshDataUserAsRegisteredSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_user__asRegistered.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_user__asRegistered? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_user__asRegistered.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_user__asRegistered_user
+    implements
+        Built<GrefreshData_user__asRegistered_user,
+            GrefreshData_user__asRegistered_userBuilder>,
+        GUserFields {
+  GrefreshData_user__asRegistered_user._();
+
+  factory GrefreshData_user__asRegistered_user(
+          [Function(GrefreshData_user__asRegistered_userBuilder b) updates]) =
+      _$GrefreshData_user__asRegistered_user;
+
+  static void _initializeBuilder(
+          GrefreshData_user__asRegistered_userBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GrefreshData_user__asRegistered_user> get serializer =>
+      _$grefreshDataUserAsRegisteredUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_user__asRegistered_user.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_user__asRegistered_user? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_user__asRegistered_user.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_user__asUnregistered
+    implements
+        Built<GrefreshData_user__asUnregistered,
+            GrefreshData_user__asUnregisteredBuilder>,
+        GrefreshData_user {
+  GrefreshData_user__asUnregistered._();
+
+  factory GrefreshData_user__asUnregistered(
+          [Function(GrefreshData_user__asUnregisteredBuilder b) updates]) =
+      _$GrefreshData_user__asUnregistered;
+
+  static void _initializeBuilder(GrefreshData_user__asUnregisteredBuilder b) =>
+      b..G__typename = 'Unregistered';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String? get phone;
+  static Serializer<GrefreshData_user__asUnregistered> get serializer =>
+      _$grefreshDataUserAsUnregisteredSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_user__asUnregistered.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_user__asUnregistered? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_user__asUnregistered.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_config
+    implements
+        Built<GrefreshData_config, GrefreshData_configBuilder>,
+        GConfigFields {
+  GrefreshData_config._();
+
+  factory GrefreshData_config(
+      [Function(GrefreshData_configBuilder b) updates]) = _$GrefreshData_config;
+
+  static void _initializeBuilder(GrefreshData_configBuilder b) =>
+      b..G__typename = 'UserConfig';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get defaultCurrencyId;
+  static Serializer<GrefreshData_config> get serializer =>
+      _$grefreshDataConfigSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_config.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_config? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_config.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_groups
+    implements
+        Built<GrefreshData_groups, GrefreshData_groupsBuilder>,
+        GGroupFields {
+  GrefreshData_groups._();
+
+  factory GrefreshData_groups(
+      [Function(GrefreshData_groupsBuilder b) updates]) = _$GrefreshData_groups;
+
+  static void _initializeBuilder(GrefreshData_groupsBuilder b) =>
+      b..G__typename = 'Group';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  GrefreshData_groups_creator get creator;
+  @override
+  BuiltList<GrefreshData_groups_members> get members;
+  @override
+  String get createdAt;
+  @override
+  String get id;
+  @override
+  String? get name;
+  static Serializer<GrefreshData_groups> get serializer =>
+      _$grefreshDataGroupsSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_groups.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_groups? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_groups.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_groups_creator
+    implements
+        Built<GrefreshData_groups_creator, GrefreshData_groups_creatorBuilder>,
+        GGroupFields_creator,
+        GUserFields {
+  GrefreshData_groups_creator._();
+
+  factory GrefreshData_groups_creator(
+          [Function(GrefreshData_groups_creatorBuilder b) updates]) =
+      _$GrefreshData_groups_creator;
+
+  static void _initializeBuilder(GrefreshData_groups_creatorBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GrefreshData_groups_creator> get serializer =>
+      _$grefreshDataGroupsCreatorSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_groups_creator.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_groups_creator? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_groups_creator.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_groups_members
+    implements
+        Built<GrefreshData_groups_members, GrefreshData_groups_membersBuilder>,
+        GGroupFields_members {
+  GrefreshData_groups_members._();
+
+  factory GrefreshData_groups_members(
+          [Function(GrefreshData_groups_membersBuilder b) updates]) =
+      _$GrefreshData_groups_members;
+
+  static void _initializeBuilder(GrefreshData_groups_membersBuilder b) =>
+      b..G__typename = 'GroupMember';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  BuiltList<GrefreshData_groups_members_owedInGroup> get owedInGroup;
+  @override
+  GrefreshData_groups_members_member get member;
+  static Serializer<GrefreshData_groups_members> get serializer =>
+      _$grefreshDataGroupsMembersSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_groups_members.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_groups_members? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_groups_members.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_groups_members_owedInGroup
+    implements
+        Built<GrefreshData_groups_members_owedInGroup,
+            GrefreshData_groups_members_owedInGroupBuilder>,
+        GGroupFields_members_owedInGroup,
+        GAmountFields {
+  GrefreshData_groups_members_owedInGroup._();
+
+  factory GrefreshData_groups_members_owedInGroup(
+      [Function(GrefreshData_groups_members_owedInGroupBuilder b)
+          updates]) = _$GrefreshData_groups_members_owedInGroup;
+
+  static void _initializeBuilder(
+          GrefreshData_groups_members_owedInGroupBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GrefreshData_groups_members_owedInGroup> get serializer =>
+      _$grefreshDataGroupsMembersOwedInGroupSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_groups_members_owedInGroup.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_groups_members_owedInGroup? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_groups_members_owedInGroup.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_groups_members_member
+    implements
+        Built<GrefreshData_groups_members_member,
+            GrefreshData_groups_members_memberBuilder>,
+        GGroupFields_members_member,
+        GUserFields {
+  GrefreshData_groups_members_member._();
+
+  factory GrefreshData_groups_members_member(
+          [Function(GrefreshData_groups_members_memberBuilder b) updates]) =
+      _$GrefreshData_groups_members_member;
+
+  static void _initializeBuilder(GrefreshData_groups_members_memberBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GrefreshData_groups_members_member> get serializer =>
+      _$grefreshDataGroupsMembersMemberSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_groups_members_member.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_groups_members_member? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_groups_members_member.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_interactedUsers
+    implements
+        Built<GrefreshData_interactedUsers,
+            GrefreshData_interactedUsersBuilder>,
+        GUserPaysFields {
+  GrefreshData_interactedUsers._();
+
+  factory GrefreshData_interactedUsers(
+          [Function(GrefreshData_interactedUsersBuilder b) updates]) =
+      _$GrefreshData_interactedUsers;
+
+  static void _initializeBuilder(GrefreshData_interactedUsersBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  BuiltList<String> get upiIds;
+  @override
+  BuiltList<GrefreshData_interactedUsers_owes> get owes;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GrefreshData_interactedUsers> get serializer =>
+      _$grefreshDataInteractedUsersSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_interactedUsers.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_interactedUsers? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_interactedUsers.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_interactedUsers_owes
+    implements
+        Built<GrefreshData_interactedUsers_owes,
+            GrefreshData_interactedUsers_owesBuilder>,
+        GUserPaysFields_owes {
+  GrefreshData_interactedUsers_owes._();
+
+  factory GrefreshData_interactedUsers_owes(
+          [Function(GrefreshData_interactedUsers_owesBuilder b) updates]) =
+      _$GrefreshData_interactedUsers_owes;
+
+  static void _initializeBuilder(GrefreshData_interactedUsers_owesBuilder b) =>
+      b..G__typename = 'OwedInGroup';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get groupId;
+  @override
+  GrefreshData_interactedUsers_owes_amount get amount;
+  static Serializer<GrefreshData_interactedUsers_owes> get serializer =>
+      _$grefreshDataInteractedUsersOwesSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_interactedUsers_owes.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_interactedUsers_owes? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_interactedUsers_owes.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_interactedUsers_owes_amount
+    implements
+        Built<GrefreshData_interactedUsers_owes_amount,
+            GrefreshData_interactedUsers_owes_amountBuilder>,
+        GUserPaysFields_owes_amount,
+        GAmountFields {
+  GrefreshData_interactedUsers_owes_amount._();
+
+  factory GrefreshData_interactedUsers_owes_amount(
+      [Function(GrefreshData_interactedUsers_owes_amountBuilder b)
+          updates]) = _$GrefreshData_interactedUsers_owes_amount;
+
+  static void _initializeBuilder(
+          GrefreshData_interactedUsers_owes_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GrefreshData_interactedUsers_owes_amount> get serializer =>
+      _$grefreshDataInteractedUsersOwesAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_interactedUsers_owes_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_interactedUsers_owes_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_interactedUsers_owes_amount.serializer,
+        json,
+      );
+}
+
+abstract class GrefreshData_currencies
+    implements
+        Built<GrefreshData_currencies, GrefreshData_currenciesBuilder>,
+        GCurrencyFields {
+  GrefreshData_currencies._();
+
+  factory GrefreshData_currencies(
+          [Function(GrefreshData_currenciesBuilder b) updates]) =
+      _$GrefreshData_currencies;
+
+  static void _initializeBuilder(GrefreshData_currenciesBuilder b) =>
+      b..G__typename = 'Currency';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  double get rate;
+  @override
+  String get symbol;
+  @override
+  String get displayName;
+  @override
+  int get decimals;
+  static Serializer<GrefreshData_currencies> get serializer =>
+      _$grefreshDataCurrenciesSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GrefreshData_currencies.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GrefreshData_currencies? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GrefreshData_currencies.serializer,
+        json,
+      );
+}
+
 abstract class GcurrenciesData
     implements Built<GcurrenciesData, GcurrenciesDataBuilder> {
   GcurrenciesData._();
