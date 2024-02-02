@@ -157,7 +157,7 @@ class _PhoneEntryScreenState extends State<PhoneEntryScreen> {
                           maxWidth: 300,
                         ),
                         child: Text(
-                          "Simplify sharing expenses with friends! Effortless bill splitting made easy.\n\nEnter your email to get started!",
+                          "Simplify sharing expenses with friends! Your ultimate bill splitting companion!\n\nEnter your email to get started!",
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium
