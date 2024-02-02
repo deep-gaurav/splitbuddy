@@ -130,6 +130,7 @@ class _PhoneEntryScreenState extends State<PhoneEntryScreen> {
                                   fontSize: constraints.minHeight.isInfinite
                                       ? 1
                                       : constraints.minHeight / 8,
+                                  color: Colors.black,
                                 ),
                               ),
                             ),
