@@ -104,27 +104,41 @@ class AppState extends ChangeNotifier {
     ReAuthClient client, {
     bool onlyUser = false,
   }) {
-    client.execute(GrefreshReq()).then((value) {
-      _auth = value.data?.user;
-      if (value.data?.user == null) {
-        authState = AuthStates.unAuthorized;
-      } else if (value.data?.user is GrefreshData_user__asUnregistered) {
-        authState = AuthStates.authorizedRequiresSignup;
-      } else if (value.data?.user is GrefreshData_user__asRegistered) {
-        authState = AuthStates.authorized;
-      }
+    if (onlyUser) {
+      client.execute(GuserReq()).then((value) {
+        if (value.data?.user == null) {
+          authState = AuthStates.unAuthorized;
+        } else if (value.data?.user is GuserData_user__asUnregistered) {
+          authState = AuthStates.authorizedRequiresSignup;
+        } else if (value.data?.user is GuserData_user__asRegistered) {
+          authState = AuthStates.authorized;
+          refresh(client);
+        }
+        notifyListeners();
+      });
+    } else {
+      client.execute(GrefreshReq()).then((value) {
+        _auth = value.data?.user;
+        if (value.data?.user == null) {
+          authState = AuthStates.unAuthorized;
+        } else if (value.data?.user is GrefreshData_user__asUnregistered) {
+          authState = AuthStates.authorizedRequiresSignup;
+        } else if (value.data?.user is GrefreshData_user__asRegistered) {
+          authState = AuthStates.authorized;
+        }
 
-      if (value.data?.config.defaultCurrencyId != null) {
-        defaultCurrency = currencies[value.data!.config.defaultCurrencyId];
-      }
+        if (value.data?.config.defaultCurrencyId != null) {
+          defaultCurrency = currencies[value.data!.config.defaultCurrencyId];
+        }
 
-      _userGroups = [];
-      _userGroups.addAll(value.data?.groups.toList() ?? []);
-      _interactedUsers = [];
-      _interactedUsers.addAll(value.data?.interactedUsers ?? []);
+        _userGroups = [];
+        _userGroups.addAll(value.data?.groups.toList() ?? []);
+        _interactedUsers = [];
+        _interactedUsers.addAll(value.data?.interactedUsers ?? []);
 
-      notifyListeners();
-    });
+        notifyListeners();
+      });
+    }
     // print("refreshing");
   }
 
