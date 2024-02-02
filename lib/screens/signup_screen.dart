@@ -50,6 +50,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 fontSize: constraints.minHeight.isInfinite
                                     ? 1
                                     : constraints.minHeight / 10,
+                                color: Colors.black,
                               ),
                             ),
                           ),

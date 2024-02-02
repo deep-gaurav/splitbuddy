@@ -65,6 +65,7 @@ class GroupsPage extends StatelessWidget {
                                       fontSize: constraints.minHeight.isInfinite
                                           ? 1
                                           : constraints.minHeight / 12,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ),
