@@ -64,11 +64,12 @@ dependencies:
   dio: ^5.4.0
   gql_dio_link: ^1.0.1+1
   graphql_query_compress: ^1.0.0
+  flutter_animate: ^4.5.0
   
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_gen: ^5.4.0
   ferry_generator: ^0.8.2
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -80,6 +81,9 @@ dev_dependencies:
   build_runner: ^2.1.4
   json_serializable: ^6.0.1
   flutter_launcher_icons: "^0.13.1"
+flutter_gen:
+  integrations:
+    flutter_svg: true
 
 flutter_launcher_icons:
   android: true
@@ -105,7 +109,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/icons/
-
+    - assets/images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:billdivide/extensions/num_extension.dart';
+import 'package:billdivide/gen/assets.gen.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -275,11 +276,11 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
                           margin: const EdgeInsets.only(
                               top: 10, left: 20, right: 20),
                           child: ListTile(
-                            leading: const SizedBox(
+                            leading: SizedBox(
                               height: 40,
                               width: 40,
                               child: SvgIcon(
-                                asset: SvgIcons.cashMoney,
+                                asset: Assets.icons.cashMoney14744Min.path,
                               ),
                             ),
                             subtitle: const Text.rich(

@@ -1,8 +1,10 @@
 import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/gen/assets.gen.dart';
 import 'package:billdivide/screens/home_page.dart';
 import 'package:billdivide/utils/color_utils.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/extensions/group_extension.dart';
 import 'package:billdivide/extensions/interable_extension.dart';
@@ -31,15 +33,59 @@ class GroupsPage extends StatelessWidget {
                 .where((element) => !element.isDirectPayment)
                 .toList(),
             builder: (context, groups, child) {
-              return SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    var group = groups[index];
-                    return GroupTitle(group: group, scheme: scheme);
-                  },
-                  childCount: groups.length,
-                ),
-              );
+              if (groups.isNotEmpty) {
+                return SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      var group = groups[index];
+                      return GroupTitle(group: group, scheme: scheme);
+                    },
+                    childCount: groups.length,
+                  ),
+                );
+              } else {
+                return SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Stack(
+                          children: [
+                            Assets.images.assist.image(),
+                            Positioned.fill(
+                              child: LayoutBuilder(
+                                builder: (context, constraints) => Align(
+                                  alignment: const FractionalOffset(0.95, 0.2),
+                                  child: Text(
+                                    'No groups yet?',
+                                    style: GoogleFonts.kalam().copyWith(
+                                      fontSize: constraints.minHeight.isInfinite
+                                          ? 1
+                                          : constraints.minHeight / 12,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        "Quiet on the Groups front.\nAdd a group to liven things up!",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                );
+              }
             },
           )
         ],

@@ -1,8 +1,12 @@
+import 'dart:collection';
+
 import 'package:billdivide/auth/secure_storage.dart';
+import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 import 'package:billdivide/models/expensewith.dart';
 import 'package:billdivide/screens/create_group_page.dart';
 import 'package:billdivide/screens/people_finder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/screens/add_expense.dart';
 import 'package:billdivide/screens/groups_page.dart';
@@ -123,14 +127,28 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               label: const Text('Create Group'),
             )
-          : FloatingActionButton.extended(
-              icon: const Icon(Icons.add_shopping_cart),
-              onPressed: () async {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        const CreateExpense(searchGroup: true)));
-              },
-              label: const Text('Create Expense'),
+          : Selector<AppState, bool>(
+              selector: (context, state) => state.interactedUsers
+                  .where((element) => element.id != state.user!.id)
+                  .isEmpty,
+              builder: (context, value, child) => value
+                  ? child!
+                      .animate(
+                        onPlay: (controller) => controller.repeat(),
+                      )
+                      .shake(
+                          delay: Durations.extralong4,
+                          duration: Durations.long2)
+                  : child!,
+              child: FloatingActionButton.extended(
+                icon: const Icon(Icons.add_shopping_cart),
+                onPressed: () async {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          const CreateExpense(searchGroup: true)));
+                },
+                label: const Text('Create Expense'),
+              ),
             ),
     );
   }

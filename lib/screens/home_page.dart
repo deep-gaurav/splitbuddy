@@ -1,11 +1,13 @@
 import 'dart:collection';
 
 import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/gen/assets.gen.dart';
 import 'package:billdivide/screens/transaction_history.dart';
 import 'package:billdivide/screens/user_setting.dart';
 import 'package:billdivide/utils/color_utils.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/extensions/user_extension.dart';
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
@@ -65,11 +67,32 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
-        SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-          var user = nonSelfUsrs.elementAt(index);
-          return HomeUserTile(user: user, scheme: scheme);
-        }, childCount: nonSelfUsrs.length)),
+        if (nonSelfUsrs.isNotEmpty)
+          SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+            var user = nonSelfUsrs.elementAt(index);
+            return HomeUserTile(user: user, scheme: scheme);
+          }, childCount: nonSelfUsrs.length))
+        else
+          SliverFillRemaining(
+            hasScrollBody: false,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Spacer(),
+                FractionallySizedBox(
+                  widthFactor: 0.5,
+                  child: Assets.images.welcome.image(),
+                ),
+                Text(
+                  "It's empty here!\nStart by creating an expense",
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                const Spacer(),
+              ],
+            ),
+          ),
       ],
     );
   }

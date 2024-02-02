@@ -1,3 +1,4 @@
+import 'package:billdivide/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -16,11 +17,4 @@ class SvgIcon extends StatelessWidget {
       color: theme.color,
     );
   }
-}
-
-class SvgIcons {
-  static const String moneyTransfer =
-      'assets/icons/noun-money-transfer-6423872.svg';
-
-  static const String cashMoney = 'assets/icons/cash-money-14744.min.svg';
 }
