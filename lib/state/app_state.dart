@@ -52,8 +52,8 @@ class AppState extends ChangeNotifier {
 
   GUserFields? get user =>
       _user ??
-      ((_auth is GuserData_user__asRegistered)
-          ? (_auth as GuserData_user__asRegistered).user
+      ((_auth is GrefreshData_user__asRegistered)
+          ? (_auth as GrefreshData_user__asRegistered).user
           : null);
 
   UnmodifiableListView<GGroupFields> get userGroups =>
@@ -108,9 +108,9 @@ class AppState extends ChangeNotifier {
       _auth = value.data?.user;
       if (value.data?.user == null) {
         authState = AuthStates.unAuthorized;
-      } else if (value.data?.user is GuserData_user__asUnregistered) {
+      } else if (value.data?.user is GrefreshData_user__asUnregistered) {
         authState = AuthStates.authorizedRequiresSignup;
-      } else if (value.data?.user is GuserData_user__asRegistered) {
+      } else if (value.data?.user is GrefreshData_user__asRegistered) {
         authState = AuthStates.authorized;
       }
 
