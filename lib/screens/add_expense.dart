@@ -7,6 +7,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/__generated__/schema.schema.gql.dart';
 import 'package:billdivide/extensions/group_extension.dart';
@@ -28,79 +29,245 @@ class CreateExpense extends StatefulWidget {
   State<CreateExpense> createState() => _CreateExpenseState();
 }
 
-class _CreateExpenseState extends State<CreateExpense> {
+class _CreateExpenseState extends State<CreateExpense>
+    with SingleTickerProviderStateMixin {
   ValueNotifier<ExpenseWith?> expenseWith = ValueNotifier(null);
 
   var nameController = TextEditingController();
   var amountController = TextEditingController();
 
-  Map<String, num> percentDistribution = {};
-  Map<String, TextEditingController> amountDistribution = {};
+  List<(ShareableUser, bool, TextEditingController, TextEditingController)>
+      distribution = [];
 
   var formKey = GlobalKey<FormState>();
 
   GCurrencyFields? currentCurrency;
 
   bool loading = false;
+  late TabController _tabController;
+
+  AnimationController? shakeController;
 
   @override
   void initState() {
     amountController.addListener(() {
-      // resetPercentage();
+      // autoAdjust();
     });
     expenseWith.addListener(reinitDistribution);
     expenseWith.value = widget.expenseWith;
+    _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
   reinitDistribution() {
-    percentDistribution.clear();
-    amountDistribution.clear();
-    if (expenseWith.value case ExpenseWithGroup(group: var group)) {
-      for (var user in group.members) {
-        percentDistribution[user.member.id] = 1 / group.members.length;
-        amountDistribution[user.member.id] = TextEditingController();
+    List<ShareableUser> users = switch (expenseWith.value) {
+      null => [],
+      ExpenseWithGroup(group: var group) =>
+        group.members.map((p0) => UserWithUser(user: p0.member)).toList(),
+      ExpenseWithPeople(users: var users) => [
+          UserWithUser(user: context.read<AppState>().user!),
+          ...users
+        ],
+    };
+    distribution.clear();
+    for (var user in users) {
+      distribution.add((
+        user,
+        true,
+        TextEditingController(text: '0'),
+        TextEditingController()
+      ));
+    }
+    equalize();
+  }
+
+  equalize() {
+    var applicableUsers = distribution.where((element) => element.$2);
+    var totalUsers = applicableUsers.length;
+    if (totalUsers == 0) {
+      reinitDistribution();
+      return;
+    }
+    if (double.tryParse(amountController.text) == null) {
+      return;
+    }
+    int total = amountReprToamount(amountController.text, currentCurrency!);
+    int persplit = total ~/ totalUsers;
+    String percentage = (100 / totalUsers).toPrettyFixed(2);
+    int remaining = total - (persplit * totalUsers);
+    for (var (i, applieduser) in applicableUsers.indexed) {
+      applieduser.$3.text =
+          amountToRepr(persplit + (i == 0 ? remaining : 0), currentCurrency!);
+      applieduser.$4.text = percentage;
+    }
+  }
+
+  String amountToRepr(int amount, GCurrencyFields currency) {
+    return (amount / (pow(10, currency.decimals)))
+        .toPrettyFixed(currency.decimals);
+  }
+
+  int amountReprToamount(String repr, GCurrencyFields currency) {
+    return ((double.tryParse(repr) ?? 0) * (pow(10, currency.decimals)))
+        .toInt();
+  }
+
+  bool isEqualized() {
+    var applicableUsers = distribution.where((element) => element.$2);
+    var totalUsers = applicableUsers.length;
+    if (totalUsers == 0) {
+      reinitDistribution();
+      return false;
+    }
+    if (double.tryParse(amountController.text) == null) {
+      return false;
+    }
+    int total = applicableUsers.fold(
+      0,
+      (previousValue, element) =>
+          previousValue + amountReprToamount(element.$3.text, currentCurrency!),
+    );
+    int persplit = total ~/ totalUsers;
+    int remaining = total - (persplit * totalUsers);
+    for (var (i, applieduser) in applicableUsers.indexed) {
+      var expectedAmount =
+          amountToRepr(persplit + (i == 0 ? remaining : 0), currentCurrency!);
+      if (amountToRepr(
+              amountReprToamount(applieduser.$3.text, currentCurrency!),
+              currentCurrency!) !=
+          expectedAmount) {
+        return false;
       }
-    } else if (expenseWith.value case ExpenseWithPeople(users: var users)) {
-      final currentUser = context.read<AppState>().user!;
-      for (var user in [UserWithUser(user: currentUser), ...users]) {
-        percentDistribution[user.id] = 1 / (users.length + 1);
-        amountDistribution[user.id] = TextEditingController();
+    }
+    return true;
+  }
+
+  autoAdjust() {
+    if (isEqualized()) {
+      equalize();
+    } else {
+      adjustAmount();
+    }
+  }
+
+  adjustAmount() {
+    var applicableUsers = distribution.where((element) => element.$2);
+    var totalUsers = applicableUsers.length;
+    if (totalUsers == 0) {
+      reinitDistribution();
+      return;
+    }
+    if (double.tryParse(amountController.text) == null) {
+      return;
+    }
+    int fulltotal = amountReprToamount(amountController.text, currentCurrency!);
+    int total = fulltotal;
+    for (var (i, applieduser) in applicableUsers.indexed) {
+      var amount = amountReprToamount(applieduser.$3.text, currentCurrency!);
+      total -= amount;
+    }
+    if (total > 0) {
+      if (applicableUsers.lastOrNull != null) {
+        var oldAmount = amountReprToamount(
+            applicableUsers.lastOrNull!.$3.text, currentCurrency!);
+        var newAmount = amountToRepr(oldAmount + total, currentCurrency!);
+        applicableUsers.lastOrNull!.$3.text = newAmount;
+      }
+    } else if (total < 0) {
+      for (var (i, applieduser) in applicableUsers.indexed.toList().reversed) {
+        var amount = amountReprToamount(applieduser.$3.text, currentCurrency!);
+        if (amount.abs() > total.abs()) {
+          applieduser.$3.text = amountToRepr(amount + total, currentCurrency!);
+          break;
+        } else {
+          total += amount;
+          applieduser.$3.text = amountToRepr(0, currentCurrency!);
+        }
+      }
+    }
+    resetPercentagesFromAmount();
+  }
+
+  resetPercentagesFromAmount() {
+    var applicableUsers = distribution.where((element) => element.$2);
+    int fulltotal = amountReprToamount(amountController.text, currentCurrency!);
+
+    for (var user in applicableUsers) {
+      user.$4.text =
+          ((amountReprToamount(user.$3.text, currentCurrency!) / fulltotal) *
+                  100)
+              .toPrettyFixed(2);
+    }
+  }
+
+  resetAmountFromPercentage() {
+    var applicableUsers = distribution.where((element) => element.$2);
+    int fulltotal = amountReprToamount(amountController.text, currentCurrency!);
+    int total = fulltotal;
+
+    for (var user in applicableUsers) {
+      var amount = fulltotal * (double.tryParse(user.$4.text) ?? 0) ~/ 100;
+      user.$3.text = amountToRepr(amount, currentCurrency!);
+      total -= amount;
+    }
+    if (total > 0) {
+      if (applicableUsers.lastOrNull != null) {
+        var oldAmount = amountReprToamount(
+            applicableUsers.lastOrNull!.$3.text, currentCurrency!);
+        var newAmount = amountToRepr(oldAmount + total, currentCurrency!);
+        applicableUsers.lastOrNull!.$3.text = newAmount;
+      }
+    } else if (total < 0) {
+      for (var (i, applieduser) in applicableUsers.indexed.toList().reversed) {
+        var amount = amountReprToamount(applieduser.$3.text, currentCurrency!);
+        if (amount.abs() > total.abs()) {
+          applieduser.$3.text = amountToRepr(amount + total, currentCurrency!);
+          break;
+        } else {
+          total += amount;
+          applieduser.$3.text = amountToRepr(0, currentCurrency!);
+        }
       }
     }
   }
 
-  resetAmount() {
-    int deci = currentCurrency?.decimals ?? 0;
-
-    num amount = num.tryParse(amountController.text) ?? 0.0;
-    for (var user in percentDistribution.entries) {
-      amountDistribution[user.key]!.text =
-          (user.value * amount).toPrettyFixed(deci);
+  adjustPercentage() {
+    var applicableUsers = distribution.where((element) => element.$2);
+    var totalUsers = applicableUsers.length;
+    if (totalUsers == 0) {
+      reinitDistribution();
+      return;
     }
-
-    var sum = amountDistribution.values.fold<num>(
-        0,
-        (previousValue, element) =>
-            (num.tryParse(element.text) ?? 0) + previousValue);
-
-    var diff = amount - sum;
-    amountDistribution[context.read<AppState>().user!.id]?.text = (num.parse(
-                amountDistribution[context.read<AppState>().user!.id]!.text) +
-            diff)
-        .toPrettyFixed(deci);
-  }
-
-  resetPercentage() {
-    var amount = int.tryParse(amountController.text);
-    if (amount != null && amount > 0) {
-      for (var percUser in percentDistribution.entries) {
-        percentDistribution[percUser.key] =
-            (int.tryParse(amountDistribution[percUser.key]!.text) ?? 0) /
-                amount;
-        setState(() {});
+    if (double.tryParse(amountController.text) == null) {
+      return;
+    }
+    double fulltotal = 100;
+    double total = fulltotal;
+    for (var (i, applieduser) in applicableUsers.indexed) {
+      total -= double.tryParse(applieduser.$4.text) ?? 0.0;
+    }
+    if (total > 0) {
+      if (applicableUsers.lastOrNull != null) {
+        var oldAmount = double.tryParse(
+              applicableUsers.lastOrNull!.$4.text,
+            ) ??
+            0.0;
+        var newAmount = (oldAmount + total).toPrettyFixed(2);
+        applicableUsers.lastOrNull!.$4.text = newAmount;
+      }
+    } else if (total < 0) {
+      for (var (i, applieduser) in applicableUsers.indexed.toList().reversed) {
+        var amount = double.tryParse(applieduser.$4.text) ?? 0.0;
+        if (amount.abs() > total.abs()) {
+          applieduser.$4.text = (amount + total).toPrettyFixed(2);
+          break;
+        } else {
+          total += amount;
+          applieduser.$4.text = '0';
+        }
       }
     }
+    resetAmountFromPercentage();
   }
 
   @override
@@ -126,33 +293,38 @@ class _CreateExpenseState extends State<CreateExpense> {
                   isEditable: widget.expenseWith == null,
                   people: expenseWith,
                   builder: (context, controller) => ValueListenableBuilder(
-                      valueListenable: expenseWith,
-                      builder: (context, val, child) {
-                        if (val != null && val.lengthOfUsers > 0) {
-                          return ElevatedButton(
-                            onPressed: () {
-                              if (widget.expenseWith == null) {
-                                controller.openView();
-                              }
-                            },
-                            child: SearchBarChips(
-                              expenseWith: expenseWith,
-                              isOut: true,
-                              canDelete: widget.expenseWith == null,
-                            ),
-                          );
-                        }
-                        return ElevatedButton.icon(
+                    valueListenable: expenseWith,
+                    builder: (context, val, child) {
+                      if (val != null && val.lengthOfUsers > 0) {
+                        return ElevatedButton(
                           onPressed: () {
                             if (widget.expenseWith == null) {
                               controller.openView();
                             }
                           },
-                          icon: const Icon(Icons.search),
-                          label: const Text('Enter name or email'),
+                          child: SearchBarChips(
+                            expenseWith: expenseWith,
+                            isOut: true,
+                            canDelete: widget.expenseWith == null,
+                          ),
                         );
-                      }),
-                ),
+                      }
+                      return ElevatedButton.icon(
+                        onPressed: () {
+                          if (widget.expenseWith == null) {
+                            controller.openView();
+                          }
+                        },
+                        icon: const Icon(Icons.search),
+                        label: const Text('Enter name or email'),
+                      );
+                    },
+                  ),
+                )
+                    .animate(
+                      onInit: (controller) => shakeController = controller,
+                    )
+                    .shake(duration: Durations.long2),
               ),
             ),
             const SliverToBoxAdapter(
@@ -188,7 +360,7 @@ class _CreateExpenseState extends State<CreateExpense> {
                                     (val.rate / currentCurrency!.rate))
                                 .toPrettyFixed(val.decimals);
                         currentCurrency = val;
-                        resetAmount();
+                        autoAdjust();
                       });
                     },
                   ),
@@ -215,7 +387,7 @@ class _CreateExpenseState extends State<CreateExpense> {
                             amountController.text = val;
                             return;
                           }
-                          resetAmount();
+                          autoAdjust();
                         },
                         inputFormatters: [
                           FilteringTextInputFormatter.allow(RegExp(r'[0-9\.]'))
@@ -276,168 +448,207 @@ class _CreateExpenseState extends State<CreateExpense> {
               ),
             ),
             ValueListenableBuilder(
-                valueListenable: expenseWith,
-                builder: (context, expenseWithValue, child) {
-                  if (expenseWithValue == null) {
-                    return const SliverToBoxAdapter();
-                  }
-                  return SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        ShareableUser member;
-                        switch (expenseWithValue) {
-                          case ExpenseWithGroup(group: var group):
-                            member =
-                                UserWithUser(user: group.members[index].member);
+              valueListenable: expenseWith,
+              builder: (context, expenseWithValue, child) {
+                if (expenseWithValue == null) {
+                  return const SliverToBoxAdapter();
+                }
+                return SliverToBoxAdapter(
+                  child: TabBar(
+                    controller: _tabController,
+                    tabs: const [
+                      Tab(
+                        text: 'Split with Amount',
+                      ),
+                      Tab(
+                        text: 'Split with percentage',
+                      )
+                    ],
+                  ),
+                );
+              },
+            ),
+            ValueListenableBuilder(
+              valueListenable: expenseWith,
+              builder: (context, expenseWithValue, child) {
+                if (expenseWithValue == null) {
+                  return const SliverToBoxAdapter();
+                }
+                return SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      ShareableUser member = distribution.elementAt(index).$1;
+                      bool isEnabled = distribution[index].$2;
+                      TextEditingController amount = distribution[index].$3;
+                      TextEditingController percentage = distribution[index].$4;
 
-                          case ExpenseWithPeople(users: var users):
-                            member = [
-                              UserWithUser(
-                                  user: context.read<AppState>().user!),
-                              ...users
-                            ][index];
-                        }
-                        return Container(
-                          margin: const EdgeInsets.only(
-                              top: 10, left: 20, right: 20),
-                          child: Card(
-                            child: ListTile(
-                              selected: context.read<AppState>().user!.id ==
-                                  member.id,
-                              leading: const Icon(Icons.person),
-                              title: Text(member.displayName),
-                              subtitle: Slider(
-                                  value: percentDistribution[member.id]
-                                          ?.toDouble() ??
-                                      0,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      percentDistribution[member.id] = val;
-                                      var remainingpercentage = 1 - val;
+                      return Container(
+                        margin:
+                            const EdgeInsets.only(top: 10, left: 20, right: 20),
+                        child: Card(
+                          child: ListTile(
+                            selected:
+                                context.read<AppState>().user!.id == member.id,
+                            leading: SizedBox(
+                              width: 100,
+                              child: Row(
+                                children: [
+                                  Checkbox(
+                                    value: isEnabled,
+                                    onChanged: (val) {
+                                      if (val != null) {
+                                        bool isEqual = isEqualized();
+                                        if (val) {
+                                          distribution[index] = (
+                                            member,
+                                            true,
+                                            amount,
+                                            percentage
+                                          );
+                                        } else if (distribution
+                                                .where((element) => element.$2)
+                                                .length >
+                                            1) {
+                                          distribution[index] = (
+                                            member,
+                                            false,
+                                            amount,
+                                            percentage
+                                          );
+                                        }
 
-                                      var remainingUsers = percentDistribution
-                                          .entries
-                                          .where((element) =>
-                                              element.key != member.id)
-                                          .toList();
-                                      if (remainingpercentage == 0) {
-                                        for (var user in remainingUsers) {
-                                          percentDistribution[user.key] = 0;
+                                        if (isEqual) {
+                                          equalize();
                                         }
-                                      } else {
-                                        var remainingWeights = remainingUsers
-                                            .map((e) => e.value)
-                                            .fold(
-                                                0.0,
-                                                (previousValue, element) =>
-                                                    previousValue + element);
-                                        var remainingExtra = remainingWeights -
-                                            remainingpercentage;
-                                        for (var user in remainingUsers) {
-                                          if (remainingWeights == 0) {
-                                            continue;
-                                          }
-                                          var ratio =
-                                              user.value / remainingWeights;
-                                          percentDistribution[user.key] =
-                                              percentDistribution[user.key]! -
-                                                  ratio * remainingExtra;
-                                        }
+                                        adjustAmount();
+                                        setState(() {});
                                       }
-                                      var sum = percentDistribution.values.fold(
-                                          0.0,
-                                          (previousValue, element) =>
-                                              previousValue + element);
-                                      var remaining = 1 - sum;
-                                      if (remaining > 0) {
-                                        var remainingUsersNew =
-                                            percentDistribution.entries
-                                                .where((element) =>
-                                                    element.key != member.id)
-                                                .toList();
-                                        var eachWeight = remaining /
-                                            remainingUsersNew.length;
-                                        for (var user in remainingUsersNew) {
-                                          percentDistribution[user.key] =
-                                              percentDistribution[user.key]! +
-                                                  eachWeight;
-                                        }
-                                      }
-
-                                      resetAmount();
-                                    });
-                                  }),
-                              trailing: IntrinsicWidth(
-                                child: TextFormField(
-                                  controller: amountDistribution[member.id],
-                                  textAlign: TextAlign.center,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.allow(
-                                        RegExp(r'[0-9\.]'))
-                                  ],
-                                  onChanged: (value) {
-                                    var decLength = currentCurrency!.decimals;
-                                    String val;
-                                    if (decLength > 0) {
-                                      final decReg = RegExp(
-                                          r'\d+(\.\d{[length]})?'.replaceAll(
-                                              '[length]',
-                                              decLength.toString()));
-                                      val =
-                                          decReg.firstMatch(value)?.group(0) ??
-                                              '';
-                                    } else {
-                                      final decReg = RegExp(r'\d+');
-                                      val =
-                                          decReg.firstMatch(value)?.group(0) ??
-                                              '';
-                                    }
-                                    if (val != value) {
-                                      amountController.text = val;
-                                      return;
-                                    }
-                                    var amount = double.tryParse(value);
-                                    if (amount != null && amount >= 0) {
-                                      amountDistribution[member.id]!.text =
-                                          value;
-                                      amountController.text = amountDistribution
-                                          .values
-                                          .map(
-                                            (value) =>
-                                                int.tryParse(value.text) ?? 0,
-                                          )
-                                          .fold(0, (p, e) => p + e)
-                                          .toString();
-                                      resetPercentage();
-                                      amountDistribution[member.id]!.selection =
-                                          TextSelection.collapsed(
-                                              offset: value.length);
-                                    }
-                                  },
-                                  keyboardType:
-                                      const TextInputType.numberWithOptions(
-                                    decimal: true,
+                                    },
                                   ),
-                                  style: Theme.of(context).textTheme.titleSmall,
-                                  decoration: const InputDecoration(
-                                    hintText: '0',
-                                    border: InputBorder.none,
-                                  ),
-                                ),
+                                  UserIconWidget(user: member),
+                                ],
                               ),
                             ),
+                            title: Text(member.displayName),
+                            subtitle: AnimatedBuilder(
+                              animation: _tabController,
+                              builder: (context, child) {
+                                if (_tabController.index == 0) {
+                                  return ValueListenableBuilder(
+                                    valueListenable: amount,
+                                    builder: (context, _, child) {
+                                      if (isEnabled) {
+                                        return Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Text(currentCurrency!.symbol),
+                                            Expanded(
+                                              child: TextField(
+                                                controller: amount,
+                                                onChanged: (value) {
+                                                  adjustAmount();
+                                                },
+                                                inputFormatters: [
+                                                  FilteringTextInputFormatter
+                                                      .allow(RegExp(r'[0-9\.]'))
+                                                ],
+                                                decoration:
+                                                    InputDecoration.collapsed(
+                                                  hintText: amount.text,
+                                                  // prefixText:
+                                                  //     currentCurrency!.symbol,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      } else {
+                                        return const Text('Not Involved');
+                                      }
+                                    },
+                                  );
+                                } else {
+                                  return ValueListenableBuilder(
+                                    valueListenable: percentage,
+                                    builder: (context, _, child) {
+                                      if (isEnabled) {
+                                        return Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    child: IntrinsicWidth(
+                                                      child: Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Expanded(
+                                                            child: TextField(
+                                                              controller:
+                                                                  percentage,
+                                                              onChanged:
+                                                                  (value) {
+                                                                adjustPercentage();
+                                                              },
+                                                              inputFormatters: [
+                                                                FilteringTextInputFormatter
+                                                                    .allow(RegExp(
+                                                                        r'[0-9\.]'))
+                                                              ],
+                                                              decoration:
+                                                                  const InputDecoration
+                                                                      .collapsed(
+                                                                hintText: '0',
+                                                                // prefixText:
+                                                                //     currentCurrency!.symbol,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          const Text('%'),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'Equivalent to ${currentCurrency!.symbol}${amount.text}',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .labelSmall,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        );
+                                      } else {
+                                        return const Text('Not Involved');
+                                      }
+                                    },
+                                  );
+                                }
+                              },
+                            ),
                           ),
-                        );
-                      },
-                      childCount: switch (expenseWithValue) {
-                        ExpenseWithGroup(group: final group) =>
-                          group.members.length,
-                        ExpenseWithPeople(users: final users) =>
-                          users.length + 1,
-                      },
-                    ),
-                  );
-                }),
+                        ),
+                      );
+                    },
+                    childCount: distribution.length,
+                  ),
+                );
+              },
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(
+                height: 70,
+              ),
+            ),
           ],
         ),
       ),
@@ -456,6 +667,11 @@ class _CreateExpenseState extends State<CreateExpense> {
                   setState(() {
                     loading = true;
                   });
+                  if (expenseWith.value == null) {
+                    shakeController?.reset();
+                    shakeController?.forward();
+                    return;
+                  }
                   if (formKey.currentState?.validate() == true) {
                     var appstate = context.read<AppState>();
                     var nav = Navigator.of(context);
@@ -468,16 +684,17 @@ class _CreateExpenseState extends State<CreateExpense> {
                             .toInt(),
                         group.id,
                         currentCurrency!.id,
-                        amountDistribution.entries
+                        distribution
                             .where(
-                                (element) => element.key != appstate.user!.id)
+                                (element) => element.$1.id != appstate.user!.id)
                             .map(
                               (e) => GSplitInput(
                                 (b) => b
-                                  ..amount = (double.parse(e.value.text) *
-                                          pow(10, currentCurrency!.decimals))
-                                      .toInt()
-                                  ..userId = e.key,
+                                  ..amount = e.$2
+                                      ? amountReprToamount(
+                                          e.$3.text, currentCurrency!)
+                                      : 0
+                                  ..userId = e.$1.id,
                               ),
                             )
                             .toList(),
@@ -488,23 +705,22 @@ class _CreateExpenseState extends State<CreateExpense> {
                       var expense = await (await appstate.client).execute(
                         GcreateNonGroupExpenseReq(
                           (b) => b.vars
-                            ..amount = (double.parse(amountController.text) *
-                                    pow(10, currentCurrency!.decimals))
-                                .toInt()
+                            ..amount = amountReprToamount(
+                                amountController.text, currentCurrency!)
                             ..title = nameController.text
                             ..currencyId = currentCurrency!.id
                             ..nonGroupSplit = ListBuilder(
-                              users
+                              distribution
+                                  .where((element) =>
+                                      element.$1.id != appstate.user!.id)
                                   .map(
                                     (e) => GSplitInputNonGroup(
                                       (b) {
-                                        b.amount = (double.parse(
-                                                    amountDistribution[e.id]!
-                                                        .text) *
-                                                pow(10,
-                                                    currentCurrency!.decimals))
-                                            .toInt();
-                                        switch (e) {
+                                        b.amount = e.$2
+                                            ? amountReprToamount(
+                                                e.$3.text, currentCurrency!)
+                                            : 0;
+                                        switch (e.$1) {
                                           case UserWithEmail(
                                               email: final email
                                             ):
@@ -532,6 +748,26 @@ class _CreateExpenseState extends State<CreateExpense> {
                 }
               },
         label: const Text("Create"),
+      ),
+      bottomNavigationBar: ValueListenableBuilder(
+        valueListenable: expenseWith,
+        builder: (context, val, child) =>
+            val != null ? child! : const SizedBox(),
+        child: ButtonBar(
+          children: [
+            ButtonBar(
+              children: [
+                ElevatedButton.icon(
+                  onPressed: equalize,
+                  icon: const Icon(Icons.equalizer),
+                  label: const Text(
+                    'Split Equally',
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
