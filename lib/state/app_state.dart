@@ -27,7 +27,7 @@ class AppState extends ChangeNotifier {
     link: HttpLink(
       const String.fromEnvironment(
         'ENDPOINT',
-        defaultValue: 'https://backend-dev.billdivide.app',
+        defaultValue: 'https://backend.billdivide.app',
       ),
     ),
   );
