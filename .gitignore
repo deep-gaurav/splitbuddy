@@ -46,3 +46,4 @@ app.*.map.json
 
 .local.env
 /android/key.properties
+/android/play-store-credentials.json
