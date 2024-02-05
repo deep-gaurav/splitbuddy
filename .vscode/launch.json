@@ -21,7 +21,7 @@
             "program": "lib/main.dart",
             "args": [
                 "--dart-define",
-                "ENDPOINT=https://backend.billdivide.app"
+                "ENDPOINT=https://backend-dev.billdivide.app"
             ]
         },
         {

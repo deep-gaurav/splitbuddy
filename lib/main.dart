@@ -56,6 +56,7 @@ class _MyAppState extends State<MyApp> {
         builder: (context, val, child) {
           return DynamicColorBuilder(
             builder: (lightDynamic, darkDynamic) => MaterialApp(
+              debugShowCheckedModeBanner: false,
               title: 'BillDivide',
               theme: _buildTheme(Brightness.light, lightDynamic),
               darkTheme: _buildTheme(Brightness.dark, darkDynamic),
