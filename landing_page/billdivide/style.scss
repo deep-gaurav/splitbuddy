@@ -222,9 +222,8 @@ span.note {
     font-weight: 600;
 
     @media screen and (max-width: 768px) {
-      font-size: 2.5em;
+      font-size: 3em;
       top: calc(15% + min(30vw, 30dvh) + 15%);
-
     }
   }
 

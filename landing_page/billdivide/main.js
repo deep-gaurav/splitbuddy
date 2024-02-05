@@ -106,6 +106,15 @@ panels.addEventListener(
   }
 )
 
+document.querySelectorAll('.down_icon').forEach(
+  (e) => e.addEventListener('click', (e) => {
+    panels.scrollBy({
+      top: panels.clientHeight,
+      behavior: 'smooth'
+    })
+  })
+)
+
 // function resizeContainer() {
 //   const sccontainer = document.querySelector('.screenshotContainer')
 //   const height = sccontainer.clientHeight;
