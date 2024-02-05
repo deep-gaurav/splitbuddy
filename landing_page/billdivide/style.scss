@@ -124,6 +124,7 @@ span.note {
   right: -25%;
   width: 80vw;
   z-index: 10;
+  pointer-events: none;
 
   @media screen and (max-width: 768px) {
     position: fixed;
@@ -317,13 +318,15 @@ span.note {
     }
   }
 
+
+
   .sectionContents {
     position: absolute;
     top: 65%;
     left: 8%;
 
     @media screen and (max-width: 768px) {
-      top: calc(15% + min(30vw, 30dvh) + 25%);
+      top: calc(15% + min(30vw, 30dvh) + 24%);
     }
 
     li {
@@ -331,6 +334,13 @@ span.note {
       font-size: 1.5em;
       font-weight: 400;
       list-style: disc;
+    }
+  }
+
+  .customize {
+
+    @media screen and (max-width: 768px) {
+      top: calc(15% + min(30vw, 30dvh) + 20%);
     }
   }
 
