@@ -337,15 +337,27 @@ span.note {
     }
   }
 
-  .customize {
+
+
+  .contentDescription {
+    font-size: 1.5em;
+  }
+}
+
+.customize {
+  .sectionTitle {
+
+    @media screen and (max-width: 768px) {
+      top: calc(15% + min(30vw, 30dvh) + 12%);
+    }
+  }
+
+  .sectionContents {
+
 
     @media screen and (max-width: 768px) {
       top: calc(15% + min(30vw, 30dvh) + 20%);
     }
-  }
-
-  .contentDescription {
-    font-size: 1.5em;
   }
 }
 
