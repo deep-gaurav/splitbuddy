@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -70,8 +71,9 @@ class SecureStorageHelper {
   }
 
   Future<Color?> loadThemeColor() async {
-    final int? themeColor =
-        int.tryParse(await _flutterSecureStorage.read(key: 'themeColor') ?? '');
+    final int? themeColor = int.tryParse(
+            await _flutterSecureStorage.read(key: 'themeColor') ?? '') ??
+        (kIsWeb ? 0xFF40E0D0 : null);
     if (themeColor != null) {
       try {
         return Color(themeColor);

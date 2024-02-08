@@ -3,6 +3,7 @@ import 'package:billdivide/screens/home_page.dart';
 import 'package:billdivide/state/app_state.dart';
 import 'package:billdivide/state/customization_provider.dart';
 import 'package:billdivide/utils/svg_icons.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -197,42 +198,45 @@ class UserSetting extends StatelessWidget {
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: InkWell(
-                            onTap: () {
-                              context.read<Customization>().changeColor(null);
-                            },
-                            child: AspectRatio(
-                              aspectRatio: 1,
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  gradient: SweepGradient(
-                                    colors: List.generate(
+                        if (!kIsWeb)
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: InkWell(
+                              onTap: () {
+                                context.read<Customization>().changeColor(null);
+                              },
+                              child: AspectRatio(
+                                aspectRatio: 1,
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    gradient: SweepGradient(
+                                      colors: List.generate(
+                                          20,
+                                          (index) => HSLColor.fromAHSL(
+                                                  1, 360 * index / 20, 1, 0.5)
+                                              .toColor()),
+                                      stops: List.generate(
                                         20,
-                                        (index) => HSLColor.fromAHSL(
-                                                1, 360 * index / 20, 1, 0.5)
-                                            .toColor()),
-                                    stops: List.generate(
-                                      20,
-                                      (index) => index / 20,
+                                        (index) => index / 20,
+                                      ),
                                     ),
-                                  ),
-                                  border: Border.all(
-                                    width: 4,
-                                    color: context.select<Customization, bool>(
-                                            (value) => value.themeColor == null)
-                                        ? Theme.of(context)
-                                            .colorScheme
-                                            .onSurface
-                                        : Colors.transparent,
+                                    border: Border.all(
+                                      width: 4,
+                                      color:
+                                          context.select<Customization, bool>(
+                                                  (value) =>
+                                                      value.themeColor == null)
+                                              ? Theme.of(context)
+                                                  .colorScheme
+                                                  .onSurface
+                                              : Colors.transparent,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
                         ...[
                           Colors.red,
                           Colors.amberAccent,
