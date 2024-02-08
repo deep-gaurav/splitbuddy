@@ -276,11 +276,11 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
                           margin: const EdgeInsets.only(
                               top: 10, left: 20, right: 20),
                           child: ListTile(
-                            leading: SizedBox(
+                            leading: const SizedBox(
                               height: 40,
                               width: 40,
                               child: SvgIcon(
-                                asset: Assets.icons.cashMoney14744Min.path,
+                                asset: Assets.iconsCashMoney14744Min,
                               ),
                             ),
                             subtitle: const Text.rich(

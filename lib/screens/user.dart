@@ -1,8 +1,10 @@
 import 'package:billdivide/extensions/amount_extension.dart';
 import 'package:billdivide/extensions/num_extension.dart';
 import 'package:billdivide/mixins/notification_refresher.dart';
+import 'package:billdivide/models/expensecategory.dart';
 import 'package:billdivide/screens/currency_converter.dart';
 import 'package:billdivide/screens/payment_currency_selector.dart';
+import 'package:billdivide/utils/svg_icons.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -865,12 +867,23 @@ class ExpenseCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
           children: [
-            Text(
-              expense.title,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium
-                  ?.copyWith(fontWeight: FontWeight.w600),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgIcon(
+                  asset: Category.categoryFromId(expense.category).iconPath,
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  expense.title,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(fontWeight: FontWeight.w600),
+                ),
+              ],
             ),
             const Divider(),
             Row(

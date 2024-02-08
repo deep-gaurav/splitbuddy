@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:billdivide/extensions/num_extension.dart';
+import 'package:billdivide/models/expensecategory.dart';
 import 'package:billdivide/screens/people_finder.dart';
 import 'package:billdivide/utils/color_utils.dart';
+import 'package:billdivide/utils/svg_icons.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +49,8 @@ class _CreateExpenseState extends State<CreateExpense>
   late TabController _tabController;
 
   AnimationController? shakeController;
+
+  Category? selectedCategory;
 
   @override
   void initState() {
@@ -447,6 +451,54 @@ class _CreateExpenseState extends State<CreateExpense>
                 ),
               ),
             ),
+            SliverToBoxAdapter(
+              child: Center(
+                child: IntrinsicWidth(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      minWidth: 100,
+                    ),
+                    child: DropdownButtonFormField<Category>(
+                      hint: const Text('Select Category'),
+                      value: selectedCategory,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value == null) {
+                          return 'Select the expense category';
+                        }
+                        return null;
+                      },
+                      items: Category.values
+                          .map(
+                            (e) => DropdownMenuItem(
+                              value: e,
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    height: 24,
+                                    child: SvgIcon(asset: e.iconPath),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(e.displayName),
+                                ],
+                              ),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (value) {
+                        setState(
+                          () {
+                            selectedCategory = value;
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
             ValueListenableBuilder(
               valueListenable: expenseWith,
               builder: (context, expenseWithValue, child) {
@@ -698,6 +750,7 @@ class _CreateExpenseState extends State<CreateExpense>
                               ),
                             )
                             .toList(),
+                        selectedCategory!.categoryId,
                       );
                       nav.pop(expense);
                     } else if (expenseWith.value
@@ -709,6 +762,7 @@ class _CreateExpenseState extends State<CreateExpense>
                                 amountController.text, currentCurrency!)
                             ..title = nameController.text
                             ..currencyId = currentCurrency!.id
+                            ..category = selectedCategory?.categoryId
                             ..nonGroupSplit = ListBuilder(
                               distribution
                                   .where((element) =>

@@ -55,6 +55,7 @@ fragment ExpenseBasic on Expense {
   id
   title
   createdAt
+  category
   amount {
     ...AmountFields
   }
@@ -234,6 +235,7 @@ mutation add_expense(
   $splits: [SplitInput!]!
   $groupId: String!
   $currencyId: String!
+  $category: String!
 ) {
   addExpense(
     title: $title
@@ -241,6 +243,7 @@ mutation add_expense(
     splits: $splits
     groupId: $groupId
     currencyId: $currencyId
+    category: $category
   ) {
     ...NewExpenseFields
   }
@@ -280,13 +283,15 @@ mutation createNonGroupExpense(
   $title: String!
   $amount: Int!
   $nonGroupSplit: [SplitInputNonGroup!]!
-  $currencyId: String!
+  $currencyId: String!,
+  $category: String!
 ) {
   addNonGroupExpense(
     title: $title
     amount: $amount
     splits: $nonGroupSplit
     currencyId: $currencyId
+    category: $category
   ) {
     group {
       ...GroupFields

@@ -1429,6 +1429,8 @@ abstract class GgroupData_group_expenses
   @override
   String get createdAt;
   @override
+  String get category;
+  @override
   GgroupData_group_expenses_amount get amount;
   @override
   String get creatorId;
@@ -2346,6 +2348,8 @@ abstract class Gadd_expenseData_addExpense
   @override
   String get createdAt;
   @override
+  String get category;
+  @override
   Gadd_expenseData_addExpense_amount get amount;
   @override
   String get creatorId;
@@ -2456,6 +2460,8 @@ abstract class Gadd_expenseData_addExpense_splits_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   Gadd_expenseData_addExpense_splits_expense_amount get amount;
   @override
@@ -3444,6 +3450,8 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_expense
   @override
   String get createdAt;
   @override
+  String get category;
+  @override
   GcreateNonGroupExpenseData_addNonGroupExpense_expense_amount get amount;
   @override
   String get creatorId;
@@ -3573,6 +3581,8 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expe
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense_amount
       get amount;
@@ -4075,6 +4085,8 @@ abstract class GsettleInGroupData_settleInGroup_expense
   @override
   String get createdAt;
   @override
+  String get category;
+  @override
   GsettleInGroupData_settleInGroup_expense_amount get amount;
   @override
   String get creatorId;
@@ -4473,6 +4485,8 @@ abstract class GsimplifyUserData_simplifyCrossGroup_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   GsimplifyUserData_simplifyCrossGroup_expense_amount get amount;
   @override
@@ -4873,6 +4887,8 @@ abstract class GautoSettleWithUserData_autoSettleWithUser_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   GautoSettleWithUserData_autoSettleWithUser_expense_amount get amount;
   @override
@@ -5286,6 +5302,8 @@ abstract class GtransactionWithUserData_getTransactionsWithUser_expense
   @override
   String get createdAt;
   @override
+  String get category;
+  @override
   GtransactionWithUserData_getTransactionsWithUser_expense_amount get amount;
   @override
   String get creatorId;
@@ -5692,6 +5710,8 @@ abstract class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_exp
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense_amount
       get amount;
@@ -6182,6 +6202,8 @@ abstract class GcurrencyConvertData_convertCurrency_expense
   @override
   String get createdAt;
   @override
+  String get category;
+  @override
   GcurrencyConvertData_convertCurrency_expense_amount get amount;
   @override
   String get creatorId;
@@ -6625,6 +6647,8 @@ abstract class GgetTransactionsData_getTransactions_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   GgetTransactionsData_getTransactions_expense_amount get amount;
   @override
@@ -7531,6 +7555,7 @@ abstract class GExpenseBasic {
   String get id;
   String get title;
   String get createdAt;
+  String get category;
   GExpenseBasic_amount get amount;
   String get creatorId;
   Map<String, dynamic> toJson();
@@ -7568,6 +7593,8 @@ abstract class GExpenseBasicData
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   GExpenseBasicData_amount get amount;
   @override
@@ -7634,6 +7661,8 @@ abstract class GExpenseFields implements GExpenseBasic {
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   GExpenseFields_amount get amount;
   @override
@@ -7774,6 +7803,8 @@ abstract class GExpenseFieldsData
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   GExpenseFieldsData_amount get amount;
   @override
@@ -8078,6 +8109,8 @@ abstract class GNewExpenseFields implements GExpenseBasic {
   @override
   String get createdAt;
   @override
+  String get category;
+  @override
   GNewExpenseFields_amount get amount;
   @override
   String get creatorId;
@@ -8145,6 +8178,8 @@ abstract class GNewExpenseFields_splits_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   GNewExpenseFields_splits_expense_amount get amount;
   @override
@@ -8269,6 +8304,8 @@ abstract class GNewExpenseFieldsData
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   GNewExpenseFieldsData_amount get amount;
   @override
@@ -8420,6 +8457,8 @@ abstract class GNewExpenseFieldsData_splits_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   GNewExpenseFieldsData_splits_expense_amount get amount;
   @override
@@ -9207,6 +9246,8 @@ abstract class GSplitTransactionFields_expense implements GExpenseBasic {
   @override
   String get createdAt;
   @override
+  String get category;
+  @override
   GSplitTransactionFields_expense_amount get amount;
   @override
   String get creatorId;
@@ -9476,6 +9517,8 @@ abstract class GSplitTransactionFieldsData_expense
   @override
   String get createdAt;
   @override
+  String get category;
+  @override
   GSplitTransactionFieldsData_expense_amount get amount;
   @override
   String get creatorId;
@@ -9712,6 +9755,8 @@ abstract class GGroupWithExpenses_expenses implements GExpenseFields {
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   GGroupWithExpenses_expenses_amount get amount;
   @override
@@ -10081,6 +10126,8 @@ abstract class GGroupWithExpensesData_expenses
   @override
   String get createdAt;
   @override
+  String get category;
+  @override
   GGroupWithExpensesData_expenses_amount get amount;
   @override
   String get creatorId;
@@ -10405,6 +10452,8 @@ abstract class GExpenseMixSplitFields_expense implements GExpenseBasic {
   @override
   String get createdAt;
   @override
+  String get category;
+  @override
   GExpenseMixSplitFields_expense_amount get amount;
   @override
   String get creatorId;
@@ -10563,6 +10612,8 @@ abstract class GExpenseMixSplitFieldsData_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get category;
   @override
   GExpenseMixSplitFieldsData_expense_amount get amount;
   @override

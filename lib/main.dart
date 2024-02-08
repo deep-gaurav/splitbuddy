@@ -36,13 +36,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   ThemeData _buildTheme(Brightness brightness, ColorScheme? colorScheme) {
     var baseTheme = ThemeData(
-        brightness: brightness,
-        colorScheme: colorScheme ??
-            ColorScheme.fromSeed(
-              seedColor: const Color(0xFF06BCC1),
-              brightness: brightness,
-            ),
-        useMaterial3: true);
+      brightness: brightness,
+      colorScheme: colorScheme ??
+          ColorScheme.fromSeed(
+            seedColor: const Color(0xFF06BCC1),
+            brightness: brightness,
+          ),
+      useMaterial3: true,
+    );
 
     return baseTheme.copyWith(
       textTheme: GoogleFonts.oxygenTextTheme(baseTheme.textTheme),

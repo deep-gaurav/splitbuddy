@@ -434,6 +434,9 @@ class _$Gadd_expenseVarsSerializer
       'currencyId',
       serializers.serialize(object.currencyId,
           specifiedType: const FullType(String)),
+      'category',
+      serializers.serialize(object.category,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -471,6 +474,10 @@ class _$Gadd_expenseVarsSerializer
           break;
         case 'currencyId':
           result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'category':
+          result.category = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
       }
@@ -694,6 +701,9 @@ class _$GcreateNonGroupExpenseVarsSerializer
       'currencyId',
       serializers.serialize(object.currencyId,
           specifiedType: const FullType(String)),
+      'category',
+      serializers.serialize(object.category,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -727,6 +737,10 @@ class _$GcreateNonGroupExpenseVarsSerializer
           break;
         case 'currencyId':
           result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'category':
+          result.category = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
       }
@@ -2399,6 +2413,8 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
   final String groupId;
   @override
   final String currencyId;
+  @override
+  final String category;
 
   factory _$Gadd_expenseVars(
           [void Function(Gadd_expenseVarsBuilder)? updates]) =>
@@ -2409,7 +2425,8 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
       required this.amount,
       required this.splits,
       required this.groupId,
-      required this.currencyId})
+      required this.currencyId,
+      required this.category})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(title, r'Gadd_expenseVars', 'title');
     BuiltValueNullFieldError.checkNotNull(
@@ -2420,6 +2437,8 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
         groupId, r'Gadd_expenseVars', 'groupId');
     BuiltValueNullFieldError.checkNotNull(
         currencyId, r'Gadd_expenseVars', 'currencyId');
+    BuiltValueNullFieldError.checkNotNull(
+        category, r'Gadd_expenseVars', 'category');
   }
 
   @override
@@ -2438,7 +2457,8 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
         amount == other.amount &&
         splits == other.splits &&
         groupId == other.groupId &&
-        currencyId == other.currencyId;
+        currencyId == other.currencyId &&
+        category == other.category;
   }
 
   @override
@@ -2449,6 +2469,7 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
     _$hash = $jc(_$hash, splits.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -2460,7 +2481,8 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
           ..add('amount', amount)
           ..add('splits', splits)
           ..add('groupId', groupId)
-          ..add('currencyId', currencyId))
+          ..add('currencyId', currencyId)
+          ..add('category', category))
         .toString();
   }
 }
@@ -2490,6 +2512,10 @@ class Gadd_expenseVarsBuilder
   String? get currencyId => _$this._currencyId;
   set currencyId(String? currencyId) => _$this._currencyId = currencyId;
 
+  String? _category;
+  String? get category => _$this._category;
+  set category(String? category) => _$this._category = category;
+
   Gadd_expenseVarsBuilder();
 
   Gadd_expenseVarsBuilder get _$this {
@@ -2500,6 +2526,7 @@ class Gadd_expenseVarsBuilder
       _splits = $v.splits.toBuilder();
       _groupId = $v.groupId;
       _currencyId = $v.currencyId;
+      _category = $v.category;
       _$v = null;
     }
     return this;
@@ -2532,7 +2559,9 @@ class Gadd_expenseVarsBuilder
               groupId: BuiltValueNullFieldError.checkNotNull(
                   groupId, r'Gadd_expenseVars', 'groupId'),
               currencyId: BuiltValueNullFieldError.checkNotNull(
-                  currencyId, r'Gadd_expenseVars', 'currencyId'));
+                  currencyId, r'Gadd_expenseVars', 'currencyId'),
+              category: BuiltValueNullFieldError.checkNotNull(
+                  category, r'Gadd_expenseVars', 'category'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -2922,6 +2951,8 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
   final BuiltList<_i2.GSplitInputNonGroup> nonGroupSplit;
   @override
   final String currencyId;
+  @override
+  final String category;
 
   factory _$GcreateNonGroupExpenseVars(
           [void Function(GcreateNonGroupExpenseVarsBuilder)? updates]) =>
@@ -2931,7 +2962,8 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
       {required this.title,
       required this.amount,
       required this.nonGroupSplit,
-      required this.currencyId})
+      required this.currencyId,
+      required this.category})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         title, r'GcreateNonGroupExpenseVars', 'title');
@@ -2941,6 +2973,8 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
         nonGroupSplit, r'GcreateNonGroupExpenseVars', 'nonGroupSplit');
     BuiltValueNullFieldError.checkNotNull(
         currencyId, r'GcreateNonGroupExpenseVars', 'currencyId');
+    BuiltValueNullFieldError.checkNotNull(
+        category, r'GcreateNonGroupExpenseVars', 'category');
   }
 
   @override
@@ -2959,7 +2993,8 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
         title == other.title &&
         amount == other.amount &&
         nonGroupSplit == other.nonGroupSplit &&
-        currencyId == other.currencyId;
+        currencyId == other.currencyId &&
+        category == other.category;
   }
 
   @override
@@ -2969,6 +3004,7 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, nonGroupSplit.hashCode);
     _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -2979,7 +3015,8 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
           ..add('title', title)
           ..add('amount', amount)
           ..add('nonGroupSplit', nonGroupSplit)
-          ..add('currencyId', currencyId))
+          ..add('currencyId', currencyId)
+          ..add('category', category))
         .toString();
   }
 }
@@ -3007,6 +3044,10 @@ class GcreateNonGroupExpenseVarsBuilder
   String? get currencyId => _$this._currencyId;
   set currencyId(String? currencyId) => _$this._currencyId = currencyId;
 
+  String? _category;
+  String? get category => _$this._category;
+  set category(String? category) => _$this._category = category;
+
   GcreateNonGroupExpenseVarsBuilder();
 
   GcreateNonGroupExpenseVarsBuilder get _$this {
@@ -3016,6 +3057,7 @@ class GcreateNonGroupExpenseVarsBuilder
       _amount = $v.amount;
       _nonGroupSplit = $v.nonGroupSplit.toBuilder();
       _currencyId = $v.currencyId;
+      _category = $v.category;
       _$v = null;
     }
     return this;
@@ -3046,7 +3088,9 @@ class GcreateNonGroupExpenseVarsBuilder
                   amount, r'GcreateNonGroupExpenseVars', 'amount'),
               nonGroupSplit: nonGroupSplit.build(),
               currencyId: BuiltValueNullFieldError.checkNotNull(
-                  currencyId, r'GcreateNonGroupExpenseVars', 'currencyId'));
+                  currencyId, r'GcreateNonGroupExpenseVars', 'currencyId'),
+              category: BuiltValueNullFieldError.checkNotNull(
+                  category, r'GcreateNonGroupExpenseVars', 'category'));
     } catch (_) {
       late String _$failedField;
       try {

@@ -119,7 +119,7 @@ class _PhoneEntryScreenState extends State<PhoneEntryScreen> {
                   children: [
                     Stack(
                       children: [
-                        Assets.images.assist.image(),
+                        Assets.imagesAssist.image(),
                         Positioned.fill(
                           child: LayoutBuilder(
                             builder: (context, constraints) => Align(

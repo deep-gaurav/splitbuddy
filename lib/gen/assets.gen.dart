@@ -8,48 +8,81 @@
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter/services.dart';
-
-class $AssetsIconsGen {
-  const $AssetsIconsGen();
-
-  /// File path: assets/icons/cash-money-14744.min.svg
-  SvgGenImage get cashMoney14744Min =>
-      const SvgGenImage('assets/icons/cash-money-14744.min.svg');
-
-  /// File path: assets/icons/cash-money-14744.svg
-  SvgGenImage get cashMoney14744 =>
-      const SvgGenImage('assets/icons/cash-money-14744.svg');
-
-  /// File path: assets/icons/noun-money-transfer-6423872.svg
-  SvgGenImage get nounMoneyTransfer6423872 =>
-      const SvgGenImage('assets/icons/noun-money-transfer-6423872.svg');
-
-  /// List of all assets
-  List<SvgGenImage> get values =>
-      [cashMoney14744Min, cashMoney14744, nounMoneyTransfer6423872];
-}
-
-class $AssetsImagesGen {
-  const $AssetsImagesGen();
-
-  /// File path: assets/images/assist.webp
-  AssetGenImage get assist => const AssetGenImage('assets/images/assist.webp');
-
-  /// File path: assets/images/welcome.webp
-  AssetGenImage get welcome =>
-      const AssetGenImage('assets/images/welcome.webp');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [assist, welcome];
-}
 
 class Assets {
   Assets._();
 
-  static const $AssetsIconsGen icons = $AssetsIconsGen();
-  static const $AssetsImagesGen images = $AssetsImagesGen();
+  /// File path: assets/icons/book-svgrepo-com.svg
+  static const String iconsBookSvgrepoCom = 'assets/icons/book-svgrepo-com.svg';
+
+  /// File path: assets/icons/car-side-svgrepo-com.svg
+  static const String iconsCarSideSvgrepoCom =
+      'assets/icons/car-side-svgrepo-com.svg';
+
+  /// File path: assets/icons/cash-money-14744.min.svg
+  static const String iconsCashMoney14744Min =
+      'assets/icons/cash-money-14744.min.svg';
+
+  /// File path: assets/icons/food-dinner-svgrepo-com.svg
+  static const String iconsFoodDinnerSvgrepoCom =
+      'assets/icons/food-dinner-svgrepo-com.svg';
+
+  /// File path: assets/icons/house-chimney-floor-svgrepo-com.svg
+  static const String iconsHouseChimneyFloorSvgrepoCom =
+      'assets/icons/house-chimney-floor-svgrepo-com.svg';
+
+  /// File path: assets/icons/light-bulb-svgrepo-com.svg
+  static const String iconsLightBulbSvgrepoCom =
+      'assets/icons/light-bulb-svgrepo-com.svg';
+
+  /// File path: assets/icons/movie-svgrepo-com.svg
+  static const String iconsMovieSvgrepoCom =
+      'assets/icons/movie-svgrepo-com.svg';
+
+  /// File path: assets/icons/movie-ui-basic-multimedia-video-app-svgrepo-com.svg
+  static const String iconsMovieUiBasicMultimediaVideoAppSvgrepoCom =
+      'assets/icons/movie-ui-basic-multimedia-video-app-svgrepo-com.svg';
+
+  /// File path: assets/icons/noun-money-transfer-6423872.svg
+  static const String iconsNounMoneyTransfer6423872 =
+      'assets/icons/noun-money-transfer-6423872.svg';
+
+  /// File path: assets/icons/pills-svgrepo-com.svg
+  static const String iconsPillsSvgrepoCom =
+      'assets/icons/pills-svgrepo-com.svg';
+
+  /// File path: assets/icons/shopping-cart-svgrepo-com.svg
+  static const String iconsShoppingCartSvgrepoCom =
+      'assets/icons/shopping-cart-svgrepo-com.svg';
+
+  /// File path: assets/icons/sync-svgrepo-com.svg
+  static const String iconsSyncSvgrepoCom = 'assets/icons/sync-svgrepo-com.svg';
+
+  /// File path: assets/images/assist.webp
+  static const AssetGenImage imagesAssist =
+      AssetGenImage('assets/images/assist.webp');
+
+  /// File path: assets/images/welcome.webp
+  static const AssetGenImage imagesWelcome =
+      AssetGenImage('assets/images/welcome.webp');
+
+  /// List of all assets
+  static List<dynamic> get values => [
+        iconsBookSvgrepoCom,
+        iconsCarSideSvgrepoCom,
+        iconsCashMoney14744Min,
+        iconsFoodDinnerSvgrepoCom,
+        iconsHouseChimneyFloorSvgrepoCom,
+        iconsLightBulbSvgrepoCom,
+        iconsMovieSvgrepoCom,
+        iconsMovieUiBasicMultimediaVideoAppSvgrepoCom,
+        iconsNounMoneyTransfer6423872,
+        iconsPillsSvgrepoCom,
+        iconsShoppingCartSvgrepoCom,
+        iconsSyncSvgrepoCom,
+        imagesAssist,
+        imagesWelcome
+      ];
 }
 
 class AssetGenImage {
@@ -118,59 +151,6 @@ class AssetGenImage {
       _assetName,
       bundle: bundle,
       package: package,
-    );
-  }
-
-  String get path => _assetName;
-
-  String get keyName => _assetName;
-}
-
-class SvgGenImage {
-  const SvgGenImage(this._assetName);
-
-  final String _assetName;
-
-  SvgPicture svg({
-    Key? key,
-    bool matchTextDirection = false,
-    AssetBundle? bundle,
-    String? package,
-    double? width,
-    double? height,
-    BoxFit fit = BoxFit.contain,
-    AlignmentGeometry alignment = Alignment.center,
-    bool allowDrawingOutsideViewBox = false,
-    WidgetBuilder? placeholderBuilder,
-    String? semanticsLabel,
-    bool excludeFromSemantics = false,
-    SvgTheme theme = const SvgTheme(),
-    ColorFilter? colorFilter,
-    Clip clipBehavior = Clip.hardEdge,
-    @deprecated Color? color,
-    @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
-    @deprecated bool cacheColorFilter = false,
-  }) {
-    return SvgPicture.asset(
-      _assetName,
-      key: key,
-      matchTextDirection: matchTextDirection,
-      bundle: bundle,
-      package: package,
-      width: width,
-      height: height,
-      fit: fit,
-      alignment: alignment,
-      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
-      placeholderBuilder: placeholderBuilder,
-      semanticsLabel: semanticsLabel,
-      excludeFromSemantics: excludeFromSemantics,
-      theme: theme,
-      colorFilter: colorFilter,
-      color: color,
-      colorBlendMode: colorBlendMode,
-      clipBehavior: clipBehavior,
-      cacheColorFilter: cacheColorFilter,
     );
   }
 

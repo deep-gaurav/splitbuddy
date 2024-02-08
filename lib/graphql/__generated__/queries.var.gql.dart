@@ -238,6 +238,7 @@ abstract class Gadd_expenseVars
   BuiltList<_i2.GSplitInput> get splits;
   String get groupId;
   String get currencyId;
+  String get category;
   static Serializer<Gadd_expenseVars> get serializer =>
       _$gaddExpenseVarsSerializer;
 
@@ -361,6 +362,7 @@ abstract class GcreateNonGroupExpenseVars
   int get amount;
   BuiltList<_i2.GSplitInputNonGroup> get nonGroupSplit;
   String get currencyId;
+  String get category;
   static Serializer<GcreateNonGroupExpenseVars> get serializer =>
       _$gcreateNonGroupExpenseVarsSerializer;
 

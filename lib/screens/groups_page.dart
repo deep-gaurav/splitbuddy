@@ -54,7 +54,7 @@ class GroupsPage extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Stack(
                           children: [
-                            Assets.images.assist.image(),
+                            Assets.imagesAssist.image(),
                             Positioned.fill(
                               child: LayoutBuilder(
                                 builder: (context, constraints) => Align(

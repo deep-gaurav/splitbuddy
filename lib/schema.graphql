@@ -18,6 +18,7 @@ type Expense {
   title: String!
   createdAt: String!
   creator: User!
+  category: String!
   creatorId: String!
   group: Group!
   amount: Amount!
@@ -56,6 +57,7 @@ type Mutation {
     amount: Int!
     currencyId: String!
     splits: [SplitInputNonGroup!]!
+    category: String! = "\"MISC\".to_string()"
   ): NonGroupExpense!
   addExpense(
     groupId: String!
@@ -63,6 +65,7 @@ type Mutation {
     amount: Int!
     currencyId: String!
     splits: [SplitInput!]!
+    category: String! = "\"MISC\".to_string()"
   ): Expense!
   settleInGroup(
     toUser: String!

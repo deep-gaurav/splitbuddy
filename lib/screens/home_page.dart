@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
                 const Spacer(),
                 FractionallySizedBox(
                   widthFactor: 0.5,
-                  child: Assets.images.welcome.image(),
+                  child: Assets.imagesWelcome.image(),
                 ),
                 Text(
                   "It's empty here!\nStart by creating an expense",

@@ -292,6 +292,13 @@ const ExpenseBasic = _i1.FragmentDefinitionNode(
       selectionSet: null,
     ),
     _i1.FieldNode(
+      name: _i1.NameNode(value: 'category'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
       name: _i1.NameNode(value: 'amount'),
       alias: null,
       arguments: [],
@@ -1156,6 +1163,15 @@ const add_expense = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'category')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
@@ -1182,6 +1198,10 @@ const add_expense = _i1.OperationDefinitionNode(
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'currencyId'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'category'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'category')),
         ),
       ],
       directives: [],
@@ -1439,6 +1459,15 @@ const createNonGroupExpense = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'category')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
@@ -1461,6 +1490,10 @@ const createNonGroupExpense = _i1.OperationDefinitionNode(
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'currencyId'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'category'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'category')),
         ),
       ],
       directives: [],

@@ -137,6 +137,15 @@ const Expense = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'category'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
       name: _i1.NameNode(value: 'creatorId'),
       directives: [],
       args: [],
@@ -524,6 +533,18 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
           ),
           defaultValue: null,
         ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'category'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          defaultValue: _i1.StringValueNode(
+            value: '"MISC".to_string()',
+            isBlock: false,
+          ),
+        ),
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'NonGroupExpense'),
@@ -581,6 +602,18 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
             isNonNull: true,
           ),
           defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'category'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          defaultValue: _i1.StringValueNode(
+            value: '"MISC".to_string()',
+            isBlock: false,
+          ),
         ),
       ],
       type: _i1.NamedTypeNode(
