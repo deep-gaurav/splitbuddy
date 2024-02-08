@@ -35,6 +35,9 @@ class Assets {
   static const String iconsLightBulbSvgrepoCom =
       'assets/icons/light-bulb-svgrepo-com.svg';
 
+  /// File path: assets/icons/moon-svgrepo-com.svg
+  static const String iconsMoonSvgrepoCom = 'assets/icons/moon-svgrepo-com.svg';
+
   /// File path: assets/icons/movie-svgrepo-com.svg
   static const String iconsMovieSvgrepoCom =
       'assets/icons/movie-svgrepo-com.svg';
@@ -42,6 +45,10 @@ class Assets {
   /// File path: assets/icons/movie-ui-basic-multimedia-video-app-svgrepo-com.svg
   static const String iconsMovieUiBasicMultimediaVideoAppSvgrepoCom =
       'assets/icons/movie-ui-basic-multimedia-video-app-svgrepo-com.svg';
+
+  /// File path: assets/icons/night-mode-svgrepo-com.svg
+  static const String iconsNightModeSvgrepoCom =
+      'assets/icons/night-mode-svgrepo-com.svg';
 
   /// File path: assets/icons/noun-money-transfer-6423872.svg
   static const String iconsNounMoneyTransfer6423872 =
@@ -54,6 +61,9 @@ class Assets {
   /// File path: assets/icons/shopping-cart-svgrepo-com.svg
   static const String iconsShoppingCartSvgrepoCom =
       'assets/icons/shopping-cart-svgrepo-com.svg';
+
+  /// File path: assets/icons/sun-svgrepo-com.svg
+  static const String iconsSunSvgrepoCom = 'assets/icons/sun-svgrepo-com.svg';
 
   /// File path: assets/icons/sync-svgrepo-com.svg
   static const String iconsSyncSvgrepoCom = 'assets/icons/sync-svgrepo-com.svg';
@@ -74,11 +84,14 @@ class Assets {
         iconsFoodDinnerSvgrepoCom,
         iconsHouseChimneyFloorSvgrepoCom,
         iconsLightBulbSvgrepoCom,
+        iconsMoonSvgrepoCom,
         iconsMovieSvgrepoCom,
         iconsMovieUiBasicMultimediaVideoAppSvgrepoCom,
+        iconsNightModeSvgrepoCom,
         iconsNounMoneyTransfer6423872,
         iconsPillsSvgrepoCom,
         iconsShoppingCartSvgrepoCom,
+        iconsSunSvgrepoCom,
         iconsSyncSvgrepoCom,
         imagesAssist,
         imagesWelcome

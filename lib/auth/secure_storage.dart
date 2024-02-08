@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorageHelper {
@@ -41,5 +42,43 @@ class SecureStorageHelper {
       key: 'notificationPreference',
       value: preference,
     );
+  }
+
+  Future<void> saveThemeColor(Color? color) async {
+    if (color != null) {
+      await _flutterSecureStorage.write(
+        key: 'themeColor',
+        value: color.value.toString(),
+      );
+    } else {
+      _flutterSecureStorage.delete(key: 'themeColor');
+    }
+  }
+
+  Future<void> saveThemeMode(ThemeMode mode) async {
+    await _flutterSecureStorage.write(
+      key: 'themeMode',
+      value: mode.index.toString(),
+    );
+  }
+
+  Future<ThemeMode> loadThemeMode() async {
+    final int themeColor = int.tryParse(
+            await _flutterSecureStorage.read(key: 'themeMode') ?? '') ??
+        0;
+    return ThemeMode.values.elementAtOrNull(themeColor) ?? ThemeMode.system;
+  }
+
+  Future<Color?> loadThemeColor() async {
+    final int? themeColor =
+        int.tryParse(await _flutterSecureStorage.read(key: 'themeColor') ?? '');
+    if (themeColor != null) {
+      try {
+        return Color(themeColor);
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
   }
 }

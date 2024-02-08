@@ -1,3 +1,4 @@
+import 'package:billdivide/state/customization_provider.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,9 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider(
           create: (context) => AppState(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Customization(),
         )
       ],
       child: const MyApp(),
@@ -56,21 +60,43 @@ class _MyAppState extends State<MyApp> {
       return Selector<AppState, AuthStates>(
         builder: (context, val, child) {
           return DynamicColorBuilder(
-            builder: (lightDynamic, darkDynamic) => MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'BillDivide',
-              theme: _buildTheme(Brightness.light, lightDynamic),
-              darkTheme: _buildTheme(Brightness.dark, darkDynamic),
-              home: switch (val) {
-                AuthStates.loading => const Scaffold(
-                    body: Center(
-                      child: CircularProgressIndicator(),
+            builder: (lightDynamic, darkDynamic) =>
+                Selector<Customization, (ThemeMode, Color?)>(
+              selector: (context, customization) =>
+                  (customization.themeMode, customization.themeColor),
+              builder: (context, customizations, child) => MaterialApp(
+                themeMode: customizations.$1,
+                debugShowCheckedModeBanner: false,
+                title: 'BillDivide',
+                theme: _buildTheme(
+                  Brightness.light,
+                  customizations.$2 != null
+                      ? ColorScheme.fromSeed(
+                          seedColor: customizations.$2!,
+                          brightness: Brightness.light,
+                        )
+                      : lightDynamic,
+                ),
+                darkTheme: _buildTheme(
+                  Brightness.dark,
+                  customizations.$2 != null
+                      ? ColorScheme.fromSeed(
+                          seedColor: customizations.$2!,
+                          brightness: Brightness.dark,
+                        )
+                      : darkDynamic,
+                ),
+                home: switch (val) {
+                  AuthStates.loading => const Scaffold(
+                      body: Center(
+                        child: CircularProgressIndicator(),
+                      ),
                     ),
-                  ),
-                AuthStates.unAuthorized => const PhoneEntryScreen(),
-                AuthStates.authorizedRequiresSignup => const SignupScreen(),
-                AuthStates.authorized => const HomeScreen(),
-              },
+                  AuthStates.unAuthorized => const PhoneEntryScreen(),
+                  AuthStates.authorizedRequiresSignup => const SignupScreen(),
+                  AuthStates.authorized => const HomeScreen(),
+                },
+              ),
             ),
           );
         },
