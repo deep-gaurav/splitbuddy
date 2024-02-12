@@ -350,7 +350,7 @@ class _CreateExpenseState extends State<CreateExpense>
 
   Future<Uint8List> resizeAndCompressToAvif(
       image.Image imageDecoded, int iteration) async {
-    var avif = await encodeAvif(image.encodeBmp(imageDecoded));
+    var avif = await encodeAvif(image.encodePng(imageDecoded));
     const maxSize = 1024 * 400;
     if (avif.length < maxSize) {
       return avif;
