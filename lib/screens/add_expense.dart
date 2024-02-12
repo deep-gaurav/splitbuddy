@@ -10,6 +10,11 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_avif/flutter_avif.dart';
+import 'package:http_parser/http_parser.dart';
+import 'package:image/image.dart' as image;
+import 'package:image_picker/image_picker.dart';
+import 'package:image_picker_android/image_picker_android.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/__generated__/schema.schema.gql.dart';
 import 'package:billdivide/extensions/group_extension.dart';
@@ -20,6 +25,8 @@ import 'package:billdivide/models/expensewith.dart';
 import 'package:billdivide/screens/groups_page.dart';
 import 'package:billdivide/screens/home_page.dart';
 import 'package:billdivide/state/app_state.dart';
+import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
+import 'package:http/http.dart' as http;
 
 class CreateExpense extends StatefulWidget {
   final ExpenseWith? expenseWith;
@@ -274,6 +281,91 @@ class _CreateExpenseState extends State<CreateExpense>
     resetAmountFromPercentage();
   }
 
+  bool imagePickingLock = false;
+  pickImage() async {
+    var client = await context.read<AppState>().client;
+    imagePickingLock = true;
+    try {
+      final ImagePickerPlatform imagePickerImplementation =
+          ImagePickerPlatform.instance;
+      if (imagePickerImplementation is ImagePickerAndroid) {
+        imagePickerImplementation.useAndroidPhotoPicker = true;
+      }
+      final ImagePicker picker = ImagePicker();
+      final XFile? imageFile =
+          await picker.pickImage(source: ImageSource.gallery);
+      if (imageFile != null) {
+        final decodedImage = image.decodeImage(await imageFile.readAsBytes());
+        if (decodedImage != null) {
+          final avifImage = await resizeAndCompressToAvif(decodedImage, 1);
+          var result = await client.execute(
+              GgetImageUploadUrlReq((b) => b.vars..size = avifImage.length));
+          var url = result.data?.uploadImage.presignedUrl;
+          if (url != null) {
+            uploadImage(url, result.data!.uploadImage.id, avifImage);
+          }
+        }
+      }
+    } finally {
+      imagePickingLock = false;
+    }
+  }
+
+  Future<void> uploadImage(
+      String presignedUrl, String name, Uint8List imageBytes,
+      {Map<String, String>? additionalHeaders}) async {
+    final client = http.Client();
+
+    try {
+      // Create an HTTP client with proper S3 compatibility and security (adjust if needed)
+
+      // Prepare the request with necessary headers
+      final response = await http.put(Uri.parse(presignedUrl),
+          headers: {
+            'Content-Length': imageBytes.length.toString(),
+            'Content-Type': 'image/avif'
+          },
+          body: imageBytes);
+
+      // Add any additional headers if provided
+      // if (additionalHeaders != null) {
+      //   request.headers.addAll(additionalHeaders);
+      // }
+
+      // // Send the request and handle the response
+      // final response = await client.send(request);
+
+      if (response.statusCode == 200) {
+        print('Image uploaded successfully!');
+      } else {
+        print(
+            'Error uploading image: ${response.statusCode} ${response.reasonPhrase}');
+      }
+    } catch (error) {
+      print('Error: $error');
+    } finally {
+      client.close(); // Close the client to avoid resource leaks
+    }
+  }
+
+  Future<Uint8List> resizeAndCompressToAvif(
+      image.Image imageDecoded, int iteration) async {
+    var avif = await encodeAvif(image.encodeBmp(imageDecoded));
+    const maxSize = 1024 * 400;
+    if (avif.length < maxSize) {
+      return avif;
+    } else {
+      if (iteration >= 10) {
+        throw "Too many iteration";
+      }
+      return resizeAndCompressToAvif(
+        image.copyResize(imageDecoded,
+            width: (imageDecoded.width * 0.9).toInt()),
+        iteration + 1,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     currentCurrency ??= context.read<AppState>().defaultCurrency ??
@@ -496,6 +588,29 @@ class _CreateExpenseState extends State<CreateExpense>
                       },
                     ),
                   ),
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Center(
+                child: ButtonBar(
+                  alignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: pickImage,
+                      icon: const Icon(Icons.image),
+                      label: const Text(
+                        'Add Image',
+                      ),
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.note),
+                      label: const Text(
+                        'Add Note',
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

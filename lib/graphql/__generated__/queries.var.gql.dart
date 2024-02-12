@@ -239,6 +239,8 @@ abstract class Gadd_expenseVars
   String get groupId;
   String get currencyId;
   String get category;
+  String? get imageId;
+  String? get note;
   static Serializer<Gadd_expenseVars> get serializer =>
       _$gaddExpenseVarsSerializer;
 
@@ -363,6 +365,8 @@ abstract class GcreateNonGroupExpenseVars
   BuiltList<_i2.GSplitInputNonGroup> get nonGroupSplit;
   String get currencyId;
   String get category;
+  String? get imageId;
+  String? get note;
   static Serializer<GcreateNonGroupExpenseVars> get serializer =>
       _$gcreateNonGroupExpenseVarsSerializer;
 
@@ -627,6 +631,52 @@ abstract class GsetNotificationTokenVars
   static GsetNotificationTokenVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GsetNotificationTokenVars.serializer,
+        json,
+      );
+}
+
+abstract class GgetImageUploadUrlVars
+    implements Built<GgetImageUploadUrlVars, GgetImageUploadUrlVarsBuilder> {
+  GgetImageUploadUrlVars._();
+
+  factory GgetImageUploadUrlVars(
+          [Function(GgetImageUploadUrlVarsBuilder b) updates]) =
+      _$GgetImageUploadUrlVars;
+
+  int get size;
+  static Serializer<GgetImageUploadUrlVars> get serializer =>
+      _$ggetImageUploadUrlVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetImageUploadUrlVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetImageUploadUrlVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetImageUploadUrlVars.serializer,
+        json,
+      );
+}
+
+abstract class GUploadFieldsVars
+    implements Built<GUploadFieldsVars, GUploadFieldsVarsBuilder> {
+  GUploadFieldsVars._();
+
+  factory GUploadFieldsVars([Function(GUploadFieldsVarsBuilder b) updates]) =
+      _$GUploadFieldsVars;
+
+  static Serializer<GUploadFieldsVars> get serializer =>
+      _$gUploadFieldsVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GUploadFieldsVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GUploadFieldsVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GUploadFieldsVars.serializer,
         json,
       );
 }

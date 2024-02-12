@@ -54,6 +54,10 @@ Serializer<GgetTransactionsVars> _$ggetTransactionsVarsSerializer =
     new _$GgetTransactionsVarsSerializer();
 Serializer<GsetNotificationTokenVars> _$gsetNotificationTokenVarsSerializer =
     new _$GsetNotificationTokenVarsSerializer();
+Serializer<GgetImageUploadUrlVars> _$ggetImageUploadUrlVarsSerializer =
+    new _$GgetImageUploadUrlVarsSerializer();
+Serializer<GUploadFieldsVars> _$gUploadFieldsVarsSerializer =
+    new _$GUploadFieldsVarsSerializer();
 Serializer<GUserFieldsVars> _$gUserFieldsVarsSerializer =
     new _$GUserFieldsVarsSerializer();
 Serializer<GAmountFieldsVars> _$gAmountFieldsVarsSerializer =
@@ -438,7 +442,21 @@ class _$Gadd_expenseVarsSerializer
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -479,6 +497,14 @@ class _$Gadd_expenseVarsSerializer
         case 'category':
           result.category = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -705,7 +731,21 @@ class _$GcreateNonGroupExpenseVarsSerializer
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -742,6 +782,14 @@ class _$GcreateNonGroupExpenseVarsSerializer
         case 'category':
           result.category = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -1293,6 +1341,72 @@ class _$GsetNotificationTokenVarsSerializer
     }
 
     return result.build();
+  }
+}
+
+class _$GgetImageUploadUrlVarsSerializer
+    implements StructuredSerializer<GgetImageUploadUrlVars> {
+  @override
+  final Iterable<Type> types = const [
+    GgetImageUploadUrlVars,
+    _$GgetImageUploadUrlVars
+  ];
+  @override
+  final String wireName = 'GgetImageUploadUrlVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetImageUploadUrlVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'size',
+      serializers.serialize(object.size, specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetImageUploadUrlVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetImageUploadUrlVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'size':
+          result.size = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GUploadFieldsVarsSerializer
+    implements StructuredSerializer<GUploadFieldsVars> {
+  @override
+  final Iterable<Type> types = const [GUploadFieldsVars, _$GUploadFieldsVars];
+  @override
+  final String wireName = 'GUploadFieldsVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GUploadFieldsVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GUploadFieldsVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GUploadFieldsVarsBuilder().build();
   }
 }
 
@@ -2415,6 +2529,10 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
   final String currencyId;
   @override
   final String category;
+  @override
+  final String? imageId;
+  @override
+  final String? note;
 
   factory _$Gadd_expenseVars(
           [void Function(Gadd_expenseVarsBuilder)? updates]) =>
@@ -2426,7 +2544,9 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
       required this.splits,
       required this.groupId,
       required this.currencyId,
-      required this.category})
+      required this.category,
+      this.imageId,
+      this.note})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(title, r'Gadd_expenseVars', 'title');
     BuiltValueNullFieldError.checkNotNull(
@@ -2458,7 +2578,9 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
         splits == other.splits &&
         groupId == other.groupId &&
         currencyId == other.currencyId &&
-        category == other.category;
+        category == other.category &&
+        imageId == other.imageId &&
+        note == other.note;
   }
 
   @override
@@ -2470,6 +2592,8 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, currencyId.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -2482,7 +2606,9 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
           ..add('splits', splits)
           ..add('groupId', groupId)
           ..add('currencyId', currencyId)
-          ..add('category', category))
+          ..add('category', category)
+          ..add('imageId', imageId)
+          ..add('note', note))
         .toString();
   }
 }
@@ -2516,6 +2642,14 @@ class Gadd_expenseVarsBuilder
   String? get category => _$this._category;
   set category(String? category) => _$this._category = category;
 
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
   Gadd_expenseVarsBuilder();
 
   Gadd_expenseVarsBuilder get _$this {
@@ -2527,6 +2661,8 @@ class Gadd_expenseVarsBuilder
       _groupId = $v.groupId;
       _currencyId = $v.currencyId;
       _category = $v.category;
+      _imageId = $v.imageId;
+      _note = $v.note;
       _$v = null;
     }
     return this;
@@ -2561,7 +2697,9 @@ class Gadd_expenseVarsBuilder
               currencyId: BuiltValueNullFieldError.checkNotNull(
                   currencyId, r'Gadd_expenseVars', 'currencyId'),
               category: BuiltValueNullFieldError.checkNotNull(
-                  category, r'Gadd_expenseVars', 'category'));
+                  category, r'Gadd_expenseVars', 'category'),
+              imageId: imageId,
+              note: note);
     } catch (_) {
       late String _$failedField;
       try {
@@ -2953,6 +3091,10 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
   final String currencyId;
   @override
   final String category;
+  @override
+  final String? imageId;
+  @override
+  final String? note;
 
   factory _$GcreateNonGroupExpenseVars(
           [void Function(GcreateNonGroupExpenseVarsBuilder)? updates]) =>
@@ -2963,7 +3105,9 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
       required this.amount,
       required this.nonGroupSplit,
       required this.currencyId,
-      required this.category})
+      required this.category,
+      this.imageId,
+      this.note})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         title, r'GcreateNonGroupExpenseVars', 'title');
@@ -2994,7 +3138,9 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
         amount == other.amount &&
         nonGroupSplit == other.nonGroupSplit &&
         currencyId == other.currencyId &&
-        category == other.category;
+        category == other.category &&
+        imageId == other.imageId &&
+        note == other.note;
   }
 
   @override
@@ -3005,6 +3151,8 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
     _$hash = $jc(_$hash, nonGroupSplit.hashCode);
     _$hash = $jc(_$hash, currencyId.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -3016,7 +3164,9 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
           ..add('amount', amount)
           ..add('nonGroupSplit', nonGroupSplit)
           ..add('currencyId', currencyId)
-          ..add('category', category))
+          ..add('category', category)
+          ..add('imageId', imageId)
+          ..add('note', note))
         .toString();
   }
 }
@@ -3048,6 +3198,14 @@ class GcreateNonGroupExpenseVarsBuilder
   String? get category => _$this._category;
   set category(String? category) => _$this._category = category;
 
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
   GcreateNonGroupExpenseVarsBuilder();
 
   GcreateNonGroupExpenseVarsBuilder get _$this {
@@ -3058,6 +3216,8 @@ class GcreateNonGroupExpenseVarsBuilder
       _nonGroupSplit = $v.nonGroupSplit.toBuilder();
       _currencyId = $v.currencyId;
       _category = $v.category;
+      _imageId = $v.imageId;
+      _note = $v.note;
       _$v = null;
     }
     return this;
@@ -3090,7 +3250,9 @@ class GcreateNonGroupExpenseVarsBuilder
               currencyId: BuiltValueNullFieldError.checkNotNull(
                   currencyId, r'GcreateNonGroupExpenseVars', 'currencyId'),
               category: BuiltValueNullFieldError.checkNotNull(
-                  category, r'GcreateNonGroupExpenseVars', 'category'));
+                  category, r'GcreateNonGroupExpenseVars', 'category'),
+              imageId: imageId,
+              note: note);
     } catch (_) {
       late String _$failedField;
       try {
@@ -4168,6 +4330,152 @@ class GsetNotificationTokenVarsBuilder
         new _$GsetNotificationTokenVars._(
             token: BuiltValueNullFieldError.checkNotNull(
                 token, r'GsetNotificationTokenVars', 'token'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetImageUploadUrlVars extends GgetImageUploadUrlVars {
+  @override
+  final int size;
+
+  factory _$GgetImageUploadUrlVars(
+          [void Function(GgetImageUploadUrlVarsBuilder)? updates]) =>
+      (new GgetImageUploadUrlVarsBuilder()..update(updates))._build();
+
+  _$GgetImageUploadUrlVars._({required this.size}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        size, r'GgetImageUploadUrlVars', 'size');
+  }
+
+  @override
+  GgetImageUploadUrlVars rebuild(
+          void Function(GgetImageUploadUrlVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetImageUploadUrlVarsBuilder toBuilder() =>
+      new GgetImageUploadUrlVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetImageUploadUrlVars && size == other.size;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, size.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetImageUploadUrlVars')
+          ..add('size', size))
+        .toString();
+  }
+}
+
+class GgetImageUploadUrlVarsBuilder
+    implements Builder<GgetImageUploadUrlVars, GgetImageUploadUrlVarsBuilder> {
+  _$GgetImageUploadUrlVars? _$v;
+
+  int? _size;
+  int? get size => _$this._size;
+  set size(int? size) => _$this._size = size;
+
+  GgetImageUploadUrlVarsBuilder();
+
+  GgetImageUploadUrlVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _size = $v.size;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetImageUploadUrlVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetImageUploadUrlVars;
+  }
+
+  @override
+  void update(void Function(GgetImageUploadUrlVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetImageUploadUrlVars build() => _build();
+
+  _$GgetImageUploadUrlVars _build() {
+    final _$result = _$v ??
+        new _$GgetImageUploadUrlVars._(
+            size: BuiltValueNullFieldError.checkNotNull(
+                size, r'GgetImageUploadUrlVars', 'size'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GUploadFieldsVars extends GUploadFieldsVars {
+  factory _$GUploadFieldsVars(
+          [void Function(GUploadFieldsVarsBuilder)? updates]) =>
+      (new GUploadFieldsVarsBuilder()..update(updates))._build();
+
+  _$GUploadFieldsVars._() : super._();
+
+  @override
+  GUploadFieldsVars rebuild(void Function(GUploadFieldsVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GUploadFieldsVarsBuilder toBuilder() =>
+      new GUploadFieldsVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GUploadFieldsVars;
+  }
+
+  @override
+  int get hashCode {
+    return 144847462;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GUploadFieldsVars').toString();
+  }
+}
+
+class GUploadFieldsVarsBuilder
+    implements Builder<GUploadFieldsVars, GUploadFieldsVarsBuilder> {
+  _$GUploadFieldsVars? _$v;
+
+  GUploadFieldsVarsBuilder();
+
+  @override
+  void replace(GUploadFieldsVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GUploadFieldsVars;
+  }
+
+  @override
+  void update(void Function(GUploadFieldsVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GUploadFieldsVars build() => _build();
+
+  _$GUploadFieldsVars _build() {
+    final _$result = _$v ?? new _$GUploadFieldsVars._();
     replace(_$result);
     return _$result;
   }

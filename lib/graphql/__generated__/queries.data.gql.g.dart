@@ -445,6 +445,13 @@ Serializer<GgetTransactionsData_getTransactions_split_amount>
     new _$GgetTransactionsData_getTransactions_split_amountSerializer();
 Serializer<GsetNotificationTokenData> _$gsetNotificationTokenDataSerializer =
     new _$GsetNotificationTokenDataSerializer();
+Serializer<GgetImageUploadUrlData> _$ggetImageUploadUrlDataSerializer =
+    new _$GgetImageUploadUrlDataSerializer();
+Serializer<GgetImageUploadUrlData_uploadImage>
+    _$ggetImageUploadUrlDataUploadImageSerializer =
+    new _$GgetImageUploadUrlData_uploadImageSerializer();
+Serializer<GUploadFieldsData> _$gUploadFieldsDataSerializer =
+    new _$GUploadFieldsDataSerializer();
 Serializer<GUserFieldsData> _$gUserFieldsDataSerializer =
     new _$GUserFieldsDataSerializer();
 Serializer<GAmountFieldsData> _$gAmountFieldsDataSerializer =
@@ -3170,7 +3177,28 @@ class _$GgroupData_group_expensesSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -3227,6 +3255,18 @@ class _$GgroupData_group_expensesSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -3393,6 +3433,27 @@ class _$GgroupData_group_expenses_splitsSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -3466,6 +3527,18 @@ class _$GgroupData_group_expenses_splitsSerializer
         case 'groupId':
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -4936,7 +5009,28 @@ class _$Gadd_expenseData_addExpenseSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -4987,6 +5081,18 @@ class _$Gadd_expenseData_addExpenseSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -5074,6 +5180,27 @@ class _$Gadd_expenseData_addExpense_splitsSerializer
     if (value != null) {
       result
         ..add('withGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -5169,6 +5296,18 @@ class _$Gadd_expenseData_addExpense_splitsSerializer
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
       }
     }
 
@@ -5214,7 +5353,28 @@ class _$Gadd_expenseData_addExpense_splits_expenseSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -5259,6 +5419,18 @@ class _$Gadd_expenseData_addExpense_splits_expenseSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -6914,7 +7086,28 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expenseSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -6967,6 +7160,18 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expenseSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -7057,6 +7262,27 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsSerializer
     if (value != null) {
       result
         ..add('withGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -7153,6 +7379,18 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsSerializer
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
       }
     }
 
@@ -7202,7 +7440,28 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseSeri
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -7248,6 +7507,18 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseSeri
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -7944,6 +8215,27 @@ class _$GsettleInGroupData_settleInGroupSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -8036,6 +8328,18 @@ class _$GsettleInGroupData_settleInGroupSerializer
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
       }
     }
 
@@ -8080,7 +8384,28 @@ class _$GsettleInGroupData_settleInGroup_expenseSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -8125,6 +8450,18 @@ class _$GsettleInGroupData_settleInGroup_expenseSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -8725,6 +9062,27 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -8817,6 +9175,18 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
       }
     }
 
@@ -8862,7 +9232,28 @@ class _$GsimplifyUserData_simplifyCrossGroup_expenseSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -8907,6 +9298,18 @@ class _$GsimplifyUserData_simplifyCrossGroup_expenseSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -9520,6 +9923,27 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -9612,6 +10036,18 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
       }
     }
 
@@ -9658,7 +10094,28 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expenseSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -9704,6 +10161,18 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expenseSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -10327,6 +10796,27 @@ class _$GtransactionWithUserData_getTransactionsWithUserSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -10420,6 +10910,18 @@ class _$GtransactionWithUserData_getTransactionsWithUserSerializer
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
       }
     }
 
@@ -10467,7 +10969,28 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expenseSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -10513,6 +11036,18 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expenseSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -11182,7 +11717,28 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseSer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -11228,6 +11784,18 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseSer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -11372,6 +11940,27 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitSeria
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -11446,6 +12035,18 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitSeria
         case 'groupId':
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -11963,6 +12564,27 @@ class _$GcurrencyConvertData_convertCurrencySerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -12055,6 +12677,18 @@ class _$GcurrencyConvertData_convertCurrencySerializer
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
       }
     }
 
@@ -12100,7 +12734,28 @@ class _$GcurrencyConvertData_convertCurrency_expenseSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -12145,6 +12800,18 @@ class _$GcurrencyConvertData_convertCurrency_expenseSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -12928,7 +13595,28 @@ class _$GgetTransactionsData_getTransactions_expenseSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -12973,6 +13661,18 @@ class _$GgetTransactionsData_getTransactions_expenseSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -13110,6 +13810,27 @@ class _$GgetTransactionsData_getTransactions_splitSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -13183,6 +13904,18 @@ class _$GgetTransactionsData_getTransactions_splitSerializer
         case 'groupId':
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -13487,6 +14220,175 @@ class _$GsetNotificationTokenDataSerializer
           break;
         case 'setNotificationToken':
           result.setNotificationToken = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetImageUploadUrlDataSerializer
+    implements StructuredSerializer<GgetImageUploadUrlData> {
+  @override
+  final Iterable<Type> types = const [
+    GgetImageUploadUrlData,
+    _$GgetImageUploadUrlData
+  ];
+  @override
+  final String wireName = 'GgetImageUploadUrlData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetImageUploadUrlData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'uploadImage',
+      serializers.serialize(object.uploadImage,
+          specifiedType: const FullType(GgetImageUploadUrlData_uploadImage)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetImageUploadUrlData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetImageUploadUrlDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'uploadImage':
+          result.uploadImage.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GgetImageUploadUrlData_uploadImage))!
+              as GgetImageUploadUrlData_uploadImage);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetImageUploadUrlData_uploadImageSerializer
+    implements StructuredSerializer<GgetImageUploadUrlData_uploadImage> {
+  @override
+  final Iterable<Type> types = const [
+    GgetImageUploadUrlData_uploadImage,
+    _$GgetImageUploadUrlData_uploadImage
+  ];
+  @override
+  final String wireName = 'GgetImageUploadUrlData_uploadImage';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetImageUploadUrlData_uploadImage object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'presignedUrl',
+      serializers.serialize(object.presignedUrl,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetImageUploadUrlData_uploadImage deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetImageUploadUrlData_uploadImageBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'presignedUrl':
+          result.presignedUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GUploadFieldsDataSerializer
+    implements StructuredSerializer<GUploadFieldsData> {
+  @override
+  final Iterable<Type> types = const [GUploadFieldsData, _$GUploadFieldsData];
+  @override
+  final String wireName = 'GUploadFieldsData';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GUploadFieldsData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'presignedUrl',
+      serializers.serialize(object.presignedUrl,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GUploadFieldsData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GUploadFieldsDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'presignedUrl':
+          result.presignedUrl = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
       }
@@ -14434,7 +15336,28 @@ class _$GExpenseBasicDataSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -14478,6 +15401,18 @@ class _$GExpenseBasicDataSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -14585,7 +15520,28 @@ class _$GExpenseFieldsDataSerializer
           specifiedType: const FullType(
               BuiltList, const [const FullType(GExpenseFieldsData_splits)])),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -14629,6 +15585,18 @@ class _$GExpenseFieldsDataSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'creator':
           result.creator.replace(serializers.deserialize(value,
@@ -14862,6 +15830,27 @@ class _$GExpenseFieldsData_splitsSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -14935,6 +15924,18 @@ class _$GExpenseFieldsData_splitsSerializer
         case 'groupId':
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -15226,7 +16227,28 @@ class _$GNewExpenseFieldsDataSerializer
           specifiedType: const FullType(
               BuiltList, const [const FullType(GNewExpenseFieldsData_splits)])),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -15270,6 +16292,18 @@ class _$GNewExpenseFieldsDataSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'splits':
           result.splits.replace(serializers.deserialize(value,
@@ -15420,6 +16454,27 @@ class _$GNewExpenseFieldsData_splitsSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -15512,6 +16567,18 @@ class _$GNewExpenseFieldsData_splitsSerializer
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
       }
     }
 
@@ -15556,7 +16623,28 @@ class _$GNewExpenseFieldsData_splits_expenseSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -15601,6 +16689,18 @@ class _$GNewExpenseFieldsData_splits_expenseSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -16173,6 +17273,27 @@ class _$GSplitFieldsBasicsDataSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -16233,6 +17354,18 @@ class _$GSplitFieldsBasicsDataSerializer
         case 'groupId':
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -16359,6 +17492,27 @@ class _$GSplitFieldsDataSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -16419,6 +17573,18 @@ class _$GSplitFieldsDataSerializer
         case 'groupId':
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'fromUser':
           result.fromUser.replace(serializers.deserialize(value,
@@ -16749,6 +17915,27 @@ class _$GSplitTransactionFieldsDataSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.expense;
     if (value != null) {
       result
@@ -16830,6 +18017,18 @@ class _$GSplitTransactionFieldsDataSerializer
         case 'groupId':
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'expense':
           result.expense.replace(serializers.deserialize(value,
@@ -17136,7 +18335,28 @@ class _$GSplitTransactionFieldsData_expenseSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -17181,6 +18401,18 @@ class _$GSplitTransactionFieldsData_expenseSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -17858,7 +19090,28 @@ class _$GGroupWithExpensesData_expensesSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -17915,6 +19168,18 @@ class _$GGroupWithExpensesData_expensesSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -18081,6 +19346,27 @@ class _$GGroupWithExpensesData_expenses_splitsSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -18154,6 +19440,18 @@ class _$GGroupWithExpensesData_expenses_splitsSerializer
         case 'groupId':
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -18576,7 +19874,28 @@ class _$GExpenseMixSplitFieldsData_expenseSerializer
       serializers.serialize(object.creatorId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -18621,6 +19940,18 @@ class _$GExpenseMixSplitFieldsData_expenseSerializer
         case 'creatorId':
           result.creatorId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -18754,6 +20085,27 @@ class _$GExpenseMixSplitFieldsData_splitSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageUrl;
+    if (value != null) {
+      result
+        ..add('imageUrl')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -18827,6 +20179,18 @@ class _$GExpenseMixSplitFieldsData_splitSerializer
         case 'groupId':
           result.groupId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -24201,6 +25565,12 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
   final GgroupData_group_expenses_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GgroupData_group_expenses(
           [void Function(GgroupData_group_expensesBuilder)? updates]) =>
@@ -24215,7 +25585,10 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgroupData_group_expenses', 'G__typename');
@@ -24258,7 +25631,10 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -24273,6 +25649,9 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -24288,7 +25667,10 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -24340,6 +25722,18 @@ class GgroupData_group_expensesBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GgroupData_group_expensesBuilder() {
     GgroupData_group_expenses._initializeBuilder(this);
   }
@@ -24356,6 +25750,9 @@ class GgroupData_group_expensesBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -24394,7 +25791,10 @@ class GgroupData_group_expensesBuilder
                   category, r'GgroupData_group_expenses', 'category'),
               amount: amount.build(),
               creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GgroupData_group_expenses', 'creatorId'));
+                  creatorId, r'GgroupData_group_expenses', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -24607,6 +26007,12 @@ class _$GgroupData_group_expenses_splits
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GgroupData_group_expenses_splits(
           [void Function(GgroupData_group_expenses_splitsBuilder)? updates]) =>
@@ -24625,7 +26031,10 @@ class _$GgroupData_group_expenses_splits
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgroupData_group_expenses_splits', 'G__typename');
@@ -24676,7 +26085,10 @@ class _$GgroupData_group_expenses_splits
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -24695,6 +26107,9 @@ class _$GgroupData_group_expenses_splits
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -24714,7 +26129,10 @@ class _$GgroupData_group_expenses_splits
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -24786,6 +26204,18 @@ class GgroupData_group_expenses_splitsBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GgroupData_group_expenses_splitsBuilder() {
     GgroupData_group_expenses_splits._initializeBuilder(this);
   }
@@ -24806,6 +26236,9 @@ class GgroupData_group_expenses_splitsBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -24849,7 +26282,10 @@ class GgroupData_group_expenses_splitsBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GgroupData_group_expenses_splits', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GgroupData_group_expenses_splits', 'groupId'));
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GgroupData_group_expenses_splits', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -27748,6 +29184,12 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
   final Gadd_expenseData_addExpense_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$Gadd_expenseData_addExpense(
           [void Function(Gadd_expenseData_addExpenseBuilder)? updates]) =>
@@ -27761,7 +29203,10 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'Gadd_expenseData_addExpense', 'G__typename');
@@ -27801,7 +29246,10 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -27815,6 +29263,9 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -27829,7 +29280,10 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -27876,6 +29330,18 @@ class Gadd_expenseData_addExpenseBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   Gadd_expenseData_addExpenseBuilder() {
     Gadd_expenseData_addExpense._initializeBuilder(this);
   }
@@ -27891,6 +29357,9 @@ class Gadd_expenseData_addExpenseBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -27928,7 +29397,10 @@ class Gadd_expenseData_addExpenseBuilder
                   category, r'Gadd_expenseData_addExpense', 'category'),
               amount: amount.build(),
               creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'Gadd_expenseData_addExpense', 'creatorId'));
+                  creatorId, r'Gadd_expenseData_addExpense', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -27982,6 +29454,12 @@ class _$Gadd_expenseData_addExpense_splits
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$Gadd_expenseData_addExpense_splits(
           [void Function(Gadd_expenseData_addExpense_splitsBuilder)?
@@ -28005,7 +29483,10 @@ class _$Gadd_expenseData_addExpense_splits
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'Gadd_expenseData_addExpense_splits', 'G__typename');
@@ -28063,7 +29544,10 @@ class _$Gadd_expenseData_addExpense_splits
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -28085,6 +29569,9 @@ class _$Gadd_expenseData_addExpense_splits
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -28107,7 +29594,10 @@ class _$Gadd_expenseData_addExpense_splits
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -28199,6 +29689,18 @@ class Gadd_expenseData_addExpense_splitsBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   Gadd_expenseData_addExpense_splitsBuilder() {
     Gadd_expenseData_addExpense_splits._initializeBuilder(this);
   }
@@ -28222,6 +29724,9 @@ class Gadd_expenseData_addExpense_splitsBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -28269,7 +29774,10 @@ class Gadd_expenseData_addExpense_splitsBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'Gadd_expenseData_addExpense_splits', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'Gadd_expenseData_addExpense_splits', 'groupId'));
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'Gadd_expenseData_addExpense_splits', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -28313,6 +29821,12 @@ class _$Gadd_expenseData_addExpense_splits_expense
   final Gadd_expenseData_addExpense_splits_expense_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$Gadd_expenseData_addExpense_splits_expense(
           [void Function(Gadd_expenseData_addExpense_splits_expenseBuilder)?
@@ -28327,7 +29841,10 @@ class _$Gadd_expenseData_addExpense_splits_expense
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'Gadd_expenseData_addExpense_splits_expense', 'G__typename');
@@ -28365,7 +29882,10 @@ class _$Gadd_expenseData_addExpense_splits_expense
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -28378,6 +29898,9 @@ class _$Gadd_expenseData_addExpense_splits_expense
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -28392,7 +29915,10 @@ class _$Gadd_expenseData_addExpense_splits_expense
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -28435,6 +29961,18 @@ class Gadd_expenseData_addExpense_splits_expenseBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   Gadd_expenseData_addExpense_splits_expenseBuilder() {
     Gadd_expenseData_addExpense_splits_expense._initializeBuilder(this);
   }
@@ -28449,6 +29987,9 @@ class Gadd_expenseData_addExpense_splits_expenseBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -28487,7 +30028,10 @@ class Gadd_expenseData_addExpense_splits_expenseBuilder
                   category, r'Gadd_expenseData_addExpense_splits_expense', 'category'),
               amount: amount.build(),
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'Gadd_expenseData_addExpense_splits_expense', 'creatorId'));
+                  r'Gadd_expenseData_addExpense_splits_expense', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -31876,6 +33420,12 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
   final GcreateNonGroupExpenseData_addNonGroupExpense_expense_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GcreateNonGroupExpenseData_addNonGroupExpense_expense(
           [void Function(
@@ -31893,7 +33443,10 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -31938,7 +33491,10 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -31952,6 +33508,9 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -31967,7 +33526,10 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -32022,6 +33584,18 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder() {
     GcreateNonGroupExpenseData_addNonGroupExpense_expense._initializeBuilder(
         this);
@@ -32038,6 +33612,9 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -32082,7 +33659,10 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId,
                   r'GcreateNonGroupExpenseData_addNonGroupExpense_expense',
-                  'creatorId'));
+                  'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -32144,6 +33724,12 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits(
           [void Function(
@@ -32169,7 +33755,10 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -32256,7 +33845,10 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -32278,6 +33870,9 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -32301,7 +33896,10 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -32414,6 +34012,18 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder() {
     GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
         ._initializeBuilder(this);
@@ -32439,6 +34049,9 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -32495,7 +34108,10 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
               toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'toUserId'),
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'groupId'));
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -32542,6 +34158,12 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
       amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense(
           [void Function(
@@ -32558,7 +34180,10 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -32614,7 +34239,10 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -32627,6 +34255,9 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -32641,7 +34272,10 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -32687,6 +34321,18 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseBuilde
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseBuilder() {
     GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
         ._initializeBuilder(this);
@@ -32703,6 +34349,9 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseBuilde
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -32752,7 +34401,10 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseBuilde
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId,
                   r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense',
-                  'creatorId'));
+                  'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -34135,6 +35787,12 @@ class _$GsettleInGroupData_settleInGroup
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GsettleInGroupData_settleInGroup(
           [void Function(GsettleInGroupData_settleInGroupBuilder)? updates]) =>
@@ -34156,7 +35814,10 @@ class _$GsettleInGroupData_settleInGroup
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GsettleInGroupData_settleInGroup', 'G__typename');
@@ -34214,7 +35875,10 @@ class _$GsettleInGroupData_settleInGroup
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -34236,6 +35900,9 @@ class _$GsettleInGroupData_settleInGroup
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -34258,7 +35925,10 @@ class _$GsettleInGroupData_settleInGroup
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -34348,6 +36018,18 @@ class GsettleInGroupData_settleInGroupBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GsettleInGroupData_settleInGroupBuilder() {
     GsettleInGroupData_settleInGroup._initializeBuilder(this);
   }
@@ -34371,6 +36053,9 @@ class GsettleInGroupData_settleInGroupBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -34417,7 +36102,10 @@ class GsettleInGroupData_settleInGroupBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GsettleInGroupData_settleInGroup', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsettleInGroupData_settleInGroup', 'groupId'));
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsettleInGroupData_settleInGroup', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -34461,6 +36149,12 @@ class _$GsettleInGroupData_settleInGroup_expense
   final GsettleInGroupData_settleInGroup_expense_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GsettleInGroupData_settleInGroup_expense(
           [void Function(GsettleInGroupData_settleInGroup_expenseBuilder)?
@@ -34475,7 +36169,10 @@ class _$GsettleInGroupData_settleInGroup_expense
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GsettleInGroupData_settleInGroup_expense', 'G__typename');
@@ -34513,7 +36210,10 @@ class _$GsettleInGroupData_settleInGroup_expense
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -34526,6 +36226,9 @@ class _$GsettleInGroupData_settleInGroup_expense
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -34540,7 +36243,10 @@ class _$GsettleInGroupData_settleInGroup_expense
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -34582,6 +36288,18 @@ class GsettleInGroupData_settleInGroup_expenseBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GsettleInGroupData_settleInGroup_expenseBuilder() {
     GsettleInGroupData_settleInGroup_expense._initializeBuilder(this);
   }
@@ -34596,6 +36314,9 @@ class GsettleInGroupData_settleInGroup_expenseBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -34633,7 +36354,10 @@ class GsettleInGroupData_settleInGroup_expenseBuilder
                   category, r'GsettleInGroupData_settleInGroup_expense', 'category'),
               amount: amount.build(),
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GsettleInGroupData_settleInGroup_expense', 'creatorId'));
+                  r'GsettleInGroupData_settleInGroup_expense', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -35700,6 +37424,12 @@ class _$GsimplifyUserData_simplifyCrossGroup
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GsimplifyUserData_simplifyCrossGroup(
           [void Function(GsimplifyUserData_simplifyCrossGroupBuilder)?
@@ -35723,7 +37453,10 @@ class _$GsimplifyUserData_simplifyCrossGroup
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GsimplifyUserData_simplifyCrossGroup', 'G__typename');
@@ -35781,7 +37514,10 @@ class _$GsimplifyUserData_simplifyCrossGroup
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -35803,6 +37539,9 @@ class _$GsimplifyUserData_simplifyCrossGroup
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -35825,7 +37564,10 @@ class _$GsimplifyUserData_simplifyCrossGroup
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -35920,6 +37662,18 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GsimplifyUserData_simplifyCrossGroupBuilder() {
     GsimplifyUserData_simplifyCrossGroup._initializeBuilder(this);
   }
@@ -35943,6 +37697,9 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -35990,7 +37747,10 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GsimplifyUserData_simplifyCrossGroup', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsimplifyUserData_simplifyCrossGroup', 'groupId'));
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsimplifyUserData_simplifyCrossGroup', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -36036,6 +37796,12 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
   final GsimplifyUserData_simplifyCrossGroup_expense_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GsimplifyUserData_simplifyCrossGroup_expense(
           [void Function(GsimplifyUserData_simplifyCrossGroup_expenseBuilder)?
@@ -36051,7 +37817,10 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GsimplifyUserData_simplifyCrossGroup_expense', 'G__typename');
@@ -36089,7 +37858,10 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -36102,6 +37874,9 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -36116,7 +37891,10 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -36159,6 +37937,18 @@ class GsimplifyUserData_simplifyCrossGroup_expenseBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GsimplifyUserData_simplifyCrossGroup_expenseBuilder() {
     GsimplifyUserData_simplifyCrossGroup_expense._initializeBuilder(this);
   }
@@ -36173,6 +37963,9 @@ class GsimplifyUserData_simplifyCrossGroup_expenseBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -36212,10 +38005,11 @@ class GsimplifyUserData_simplifyCrossGroup_expenseBuilder
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GsimplifyUserData_simplifyCrossGroup_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId,
-                  r'GsimplifyUserData_simplifyCrossGroup_expense',
-                  'creatorId'));
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
+                  r'GsimplifyUserData_simplifyCrossGroup_expense', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -37301,6 +39095,12 @@ class _$GautoSettleWithUserData_autoSettleWithUser
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GautoSettleWithUserData_autoSettleWithUser(
           [void Function(GautoSettleWithUserData_autoSettleWithUserBuilder)?
@@ -37324,7 +39124,10 @@ class _$GautoSettleWithUserData_autoSettleWithUser
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GautoSettleWithUserData_autoSettleWithUser', 'G__typename');
@@ -37383,7 +39186,10 @@ class _$GautoSettleWithUserData_autoSettleWithUser
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -37405,6 +39211,9 @@ class _$GautoSettleWithUserData_autoSettleWithUser
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -37428,7 +39237,10 @@ class _$GautoSettleWithUserData_autoSettleWithUser
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -37529,6 +39341,18 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GautoSettleWithUserData_autoSettleWithUserBuilder() {
     GautoSettleWithUserData_autoSettleWithUser._initializeBuilder(this);
   }
@@ -37552,6 +39376,9 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -37600,7 +39427,10 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GautoSettleWithUserData_autoSettleWithUser', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GautoSettleWithUserData_autoSettleWithUser', 'groupId'));
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GautoSettleWithUserData_autoSettleWithUser', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -37646,6 +39476,12 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
   final GautoSettleWithUserData_autoSettleWithUser_expense_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GautoSettleWithUserData_autoSettleWithUser_expense(
           [void Function(
@@ -37662,7 +39498,10 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GautoSettleWithUserData_autoSettleWithUser_expense', 'G__typename');
@@ -37702,7 +39541,10 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -37715,6 +39557,9 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -37729,7 +39574,10 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -37773,6 +39621,18 @@ class GautoSettleWithUserData_autoSettleWithUser_expenseBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GautoSettleWithUserData_autoSettleWithUser_expenseBuilder() {
     GautoSettleWithUserData_autoSettleWithUser_expense._initializeBuilder(this);
   }
@@ -37787,6 +39647,9 @@ class GautoSettleWithUserData_autoSettleWithUser_expenseBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -37829,7 +39692,10 @@ class GautoSettleWithUserData_autoSettleWithUser_expenseBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId,
                   r'GautoSettleWithUserData_autoSettleWithUser_expense',
-                  'creatorId'));
+                  'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -38953,6 +40819,12 @@ class _$GtransactionWithUserData_getTransactionsWithUser
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GtransactionWithUserData_getTransactionsWithUser(
           [void Function(
@@ -38978,7 +40850,10 @@ class _$GtransactionWithUserData_getTransactionsWithUser
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GtransactionWithUserData_getTransactionsWithUser', 'G__typename');
@@ -39038,7 +40913,10 @@ class _$GtransactionWithUserData_getTransactionsWithUser
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -39060,6 +40938,9 @@ class _$GtransactionWithUserData_getTransactionsWithUser
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -39083,7 +40964,10 @@ class _$GtransactionWithUserData_getTransactionsWithUser
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -39190,6 +41074,18 @@ class GtransactionWithUserData_getTransactionsWithUserBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GtransactionWithUserData_getTransactionsWithUserBuilder() {
     GtransactionWithUserData_getTransactionsWithUser._initializeBuilder(this);
   }
@@ -39213,6 +41109,9 @@ class GtransactionWithUserData_getTransactionsWithUserBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -39262,7 +41161,10 @@ class GtransactionWithUserData_getTransactionsWithUserBuilder
                   toUserId, r'GtransactionWithUserData_getTransactionsWithUser', 'toUserId'),
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GtransactionWithUserData_getTransactionsWithUser', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GtransactionWithUserData_getTransactionsWithUser', 'groupId'));
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GtransactionWithUserData_getTransactionsWithUser', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -39308,6 +41210,12 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense
   final GtransactionWithUserData_getTransactionsWithUser_expense_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GtransactionWithUserData_getTransactionsWithUser_expense(
           [void Function(
@@ -39324,7 +41232,10 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -39372,7 +41283,10 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -39385,6 +41299,9 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -39399,7 +41316,10 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -39444,6 +41364,18 @@ class GtransactionWithUserData_getTransactionsWithUser_expenseBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GtransactionWithUserData_getTransactionsWithUser_expenseBuilder() {
     GtransactionWithUserData_getTransactionsWithUser_expense._initializeBuilder(
         this);
@@ -39459,6 +41391,9 @@ class GtransactionWithUserData_getTransactionsWithUser_expenseBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -39502,7 +41437,10 @@ class GtransactionWithUserData_getTransactionsWithUser_expenseBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId,
                   r'GtransactionWithUserData_getTransactionsWithUser_expense',
-                  'creatorId'));
+                  'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -40833,6 +42771,12 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
       amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense(
           [void Function(
@@ -40849,7 +42793,10 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -40905,7 +42852,10 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -40918,6 +42868,9 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -40932,7 +42885,10 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -40978,6 +42934,18 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuild
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder() {
     GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
         ._initializeBuilder(this);
@@ -40994,6 +42962,9 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuild
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -41043,7 +43014,10 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuild
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId,
                   r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
-                  'creatorId'));
+                  'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -41254,6 +43228,12 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split(
           [void Function(
@@ -41276,7 +43256,10 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -41354,7 +43337,10 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -41373,6 +43359,9 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -41393,7 +43382,10 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -41477,6 +43469,18 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder() {
     GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
         ._initializeBuilder(this);
@@ -41499,6 +43503,9 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -41555,7 +43562,10 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder
               toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'toUserId'),
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'groupId'));
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -42532,6 +44542,12 @@ class _$GcurrencyConvertData_convertCurrency
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GcurrencyConvertData_convertCurrency(
           [void Function(GcurrencyConvertData_convertCurrencyBuilder)?
@@ -42555,7 +44571,10 @@ class _$GcurrencyConvertData_convertCurrency
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GcurrencyConvertData_convertCurrency', 'G__typename');
@@ -42613,7 +44632,10 @@ class _$GcurrencyConvertData_convertCurrency
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -42635,6 +44657,9 @@ class _$GcurrencyConvertData_convertCurrency
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -42657,7 +44682,10 @@ class _$GcurrencyConvertData_convertCurrency
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -42752,6 +44780,18 @@ class GcurrencyConvertData_convertCurrencyBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GcurrencyConvertData_convertCurrencyBuilder() {
     GcurrencyConvertData_convertCurrency._initializeBuilder(this);
   }
@@ -42775,6 +44815,9 @@ class GcurrencyConvertData_convertCurrencyBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -42822,7 +44865,10 @@ class GcurrencyConvertData_convertCurrencyBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GcurrencyConvertData_convertCurrency', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GcurrencyConvertData_convertCurrency', 'groupId'));
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GcurrencyConvertData_convertCurrency', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -42868,6 +44914,12 @@ class _$GcurrencyConvertData_convertCurrency_expense
   final GcurrencyConvertData_convertCurrency_expense_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GcurrencyConvertData_convertCurrency_expense(
           [void Function(GcurrencyConvertData_convertCurrency_expenseBuilder)?
@@ -42883,7 +44935,10 @@ class _$GcurrencyConvertData_convertCurrency_expense
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GcurrencyConvertData_convertCurrency_expense', 'G__typename');
@@ -42921,7 +44976,10 @@ class _$GcurrencyConvertData_convertCurrency_expense
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -42934,6 +44992,9 @@ class _$GcurrencyConvertData_convertCurrency_expense
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -42948,7 +45009,10 @@ class _$GcurrencyConvertData_convertCurrency_expense
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -42991,6 +45055,18 @@ class GcurrencyConvertData_convertCurrency_expenseBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GcurrencyConvertData_convertCurrency_expenseBuilder() {
     GcurrencyConvertData_convertCurrency_expense._initializeBuilder(this);
   }
@@ -43005,6 +45081,9 @@ class GcurrencyConvertData_convertCurrency_expenseBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -43044,10 +45123,11 @@ class GcurrencyConvertData_convertCurrency_expenseBuilder
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GcurrencyConvertData_convertCurrency_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId,
-                  r'GcurrencyConvertData_convertCurrency_expense',
-                  'creatorId'));
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
+                  r'GcurrencyConvertData_convertCurrency_expense', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -44530,6 +46610,12 @@ class _$GgetTransactionsData_getTransactions_expense
   final GgetTransactionsData_getTransactions_expense_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GgetTransactionsData_getTransactions_expense(
           [void Function(GgetTransactionsData_getTransactions_expenseBuilder)?
@@ -44545,7 +46631,10 @@ class _$GgetTransactionsData_getTransactions_expense
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GgetTransactionsData_getTransactions_expense', 'G__typename');
@@ -44583,7 +46672,10 @@ class _$GgetTransactionsData_getTransactions_expense
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -44596,6 +46688,9 @@ class _$GgetTransactionsData_getTransactions_expense
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -44610,7 +46705,10 @@ class _$GgetTransactionsData_getTransactions_expense
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -44653,6 +46751,18 @@ class GgetTransactionsData_getTransactions_expenseBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GgetTransactionsData_getTransactions_expenseBuilder() {
     GgetTransactionsData_getTransactions_expense._initializeBuilder(this);
   }
@@ -44667,6 +46777,9 @@ class GgetTransactionsData_getTransactions_expenseBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -44706,10 +46819,11 @@ class GgetTransactionsData_getTransactions_expenseBuilder
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GgetTransactionsData_getTransactions_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId,
-                  r'GgetTransactionsData_getTransactions_expense',
-                  'creatorId'));
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
+                  r'GgetTransactionsData_getTransactions_expense', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -44898,6 +47012,12 @@ class _$GgetTransactionsData_getTransactions_split
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GgetTransactionsData_getTransactions_split(
           [void Function(GgetTransactionsData_getTransactions_splitBuilder)?
@@ -44918,7 +47038,10 @@ class _$GgetTransactionsData_getTransactions_split
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GgetTransactionsData_getTransactions_split', 'G__typename');
@@ -44970,7 +47093,10 @@ class _$GgetTransactionsData_getTransactions_split
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -44989,6 +47115,9 @@ class _$GgetTransactionsData_getTransactions_split
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -45009,7 +47138,10 @@ class _$GgetTransactionsData_getTransactions_split
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -45087,6 +47219,18 @@ class GgetTransactionsData_getTransactions_splitBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GgetTransactionsData_getTransactions_splitBuilder() {
     GgetTransactionsData_getTransactions_split._initializeBuilder(this);
   }
@@ -45107,6 +47251,9 @@ class GgetTransactionsData_getTransactions_splitBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -45152,7 +47299,10 @@ class GgetTransactionsData_getTransactions_splitBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GgetTransactionsData_getTransactions_split', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GgetTransactionsData_getTransactions_split', 'groupId'));
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GgetTransactionsData_getTransactions_split', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -45771,6 +47921,370 @@ class GsetNotificationTokenDataBuilder
                 setNotificationToken,
                 r'GsetNotificationTokenData',
                 'setNotificationToken'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetImageUploadUrlData extends GgetImageUploadUrlData {
+  @override
+  final String G__typename;
+  @override
+  final GgetImageUploadUrlData_uploadImage uploadImage;
+
+  factory _$GgetImageUploadUrlData(
+          [void Function(GgetImageUploadUrlDataBuilder)? updates]) =>
+      (new GgetImageUploadUrlDataBuilder()..update(updates))._build();
+
+  _$GgetImageUploadUrlData._(
+      {required this.G__typename, required this.uploadImage})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GgetImageUploadUrlData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        uploadImage, r'GgetImageUploadUrlData', 'uploadImage');
+  }
+
+  @override
+  GgetImageUploadUrlData rebuild(
+          void Function(GgetImageUploadUrlDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetImageUploadUrlDataBuilder toBuilder() =>
+      new GgetImageUploadUrlDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetImageUploadUrlData &&
+        G__typename == other.G__typename &&
+        uploadImage == other.uploadImage;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, uploadImage.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetImageUploadUrlData')
+          ..add('G__typename', G__typename)
+          ..add('uploadImage', uploadImage))
+        .toString();
+  }
+}
+
+class GgetImageUploadUrlDataBuilder
+    implements Builder<GgetImageUploadUrlData, GgetImageUploadUrlDataBuilder> {
+  _$GgetImageUploadUrlData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GgetImageUploadUrlData_uploadImageBuilder? _uploadImage;
+  GgetImageUploadUrlData_uploadImageBuilder get uploadImage =>
+      _$this._uploadImage ??= new GgetImageUploadUrlData_uploadImageBuilder();
+  set uploadImage(GgetImageUploadUrlData_uploadImageBuilder? uploadImage) =>
+      _$this._uploadImage = uploadImage;
+
+  GgetImageUploadUrlDataBuilder() {
+    GgetImageUploadUrlData._initializeBuilder(this);
+  }
+
+  GgetImageUploadUrlDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _uploadImage = $v.uploadImage.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetImageUploadUrlData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetImageUploadUrlData;
+  }
+
+  @override
+  void update(void Function(GgetImageUploadUrlDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetImageUploadUrlData build() => _build();
+
+  _$GgetImageUploadUrlData _build() {
+    _$GgetImageUploadUrlData _$result;
+    try {
+      _$result = _$v ??
+          new _$GgetImageUploadUrlData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GgetImageUploadUrlData', 'G__typename'),
+              uploadImage: uploadImage.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'uploadImage';
+        uploadImage.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GgetImageUploadUrlData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetImageUploadUrlData_uploadImage
+    extends GgetImageUploadUrlData_uploadImage {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String presignedUrl;
+
+  factory _$GgetImageUploadUrlData_uploadImage(
+          [void Function(GgetImageUploadUrlData_uploadImageBuilder)?
+              updates]) =>
+      (new GgetImageUploadUrlData_uploadImageBuilder()..update(updates))
+          ._build();
+
+  _$GgetImageUploadUrlData_uploadImage._(
+      {required this.G__typename, required this.id, required this.presignedUrl})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GgetImageUploadUrlData_uploadImage', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GgetImageUploadUrlData_uploadImage', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        presignedUrl, r'GgetImageUploadUrlData_uploadImage', 'presignedUrl');
+  }
+
+  @override
+  GgetImageUploadUrlData_uploadImage rebuild(
+          void Function(GgetImageUploadUrlData_uploadImageBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetImageUploadUrlData_uploadImageBuilder toBuilder() =>
+      new GgetImageUploadUrlData_uploadImageBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetImageUploadUrlData_uploadImage &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        presignedUrl == other.presignedUrl;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, presignedUrl.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetImageUploadUrlData_uploadImage')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('presignedUrl', presignedUrl))
+        .toString();
+  }
+}
+
+class GgetImageUploadUrlData_uploadImageBuilder
+    implements
+        Builder<GgetImageUploadUrlData_uploadImage,
+            GgetImageUploadUrlData_uploadImageBuilder> {
+  _$GgetImageUploadUrlData_uploadImage? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _presignedUrl;
+  String? get presignedUrl => _$this._presignedUrl;
+  set presignedUrl(String? presignedUrl) => _$this._presignedUrl = presignedUrl;
+
+  GgetImageUploadUrlData_uploadImageBuilder() {
+    GgetImageUploadUrlData_uploadImage._initializeBuilder(this);
+  }
+
+  GgetImageUploadUrlData_uploadImageBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _presignedUrl = $v.presignedUrl;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetImageUploadUrlData_uploadImage other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetImageUploadUrlData_uploadImage;
+  }
+
+  @override
+  void update(
+      void Function(GgetImageUploadUrlData_uploadImageBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetImageUploadUrlData_uploadImage build() => _build();
+
+  _$GgetImageUploadUrlData_uploadImage _build() {
+    final _$result = _$v ??
+        new _$GgetImageUploadUrlData_uploadImage._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GgetImageUploadUrlData_uploadImage', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetImageUploadUrlData_uploadImage', 'id'),
+            presignedUrl: BuiltValueNullFieldError.checkNotNull(presignedUrl,
+                r'GgetImageUploadUrlData_uploadImage', 'presignedUrl'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GUploadFieldsData extends GUploadFieldsData {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String presignedUrl;
+
+  factory _$GUploadFieldsData(
+          [void Function(GUploadFieldsDataBuilder)? updates]) =>
+      (new GUploadFieldsDataBuilder()..update(updates))._build();
+
+  _$GUploadFieldsData._(
+      {required this.G__typename, required this.id, required this.presignedUrl})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GUploadFieldsData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(id, r'GUploadFieldsData', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        presignedUrl, r'GUploadFieldsData', 'presignedUrl');
+  }
+
+  @override
+  GUploadFieldsData rebuild(void Function(GUploadFieldsDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GUploadFieldsDataBuilder toBuilder() =>
+      new GUploadFieldsDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GUploadFieldsData &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        presignedUrl == other.presignedUrl;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, presignedUrl.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GUploadFieldsData')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('presignedUrl', presignedUrl))
+        .toString();
+  }
+}
+
+class GUploadFieldsDataBuilder
+    implements Builder<GUploadFieldsData, GUploadFieldsDataBuilder> {
+  _$GUploadFieldsData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _presignedUrl;
+  String? get presignedUrl => _$this._presignedUrl;
+  set presignedUrl(String? presignedUrl) => _$this._presignedUrl = presignedUrl;
+
+  GUploadFieldsDataBuilder() {
+    GUploadFieldsData._initializeBuilder(this);
+  }
+
+  GUploadFieldsDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _presignedUrl = $v.presignedUrl;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GUploadFieldsData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GUploadFieldsData;
+  }
+
+  @override
+  void update(void Function(GUploadFieldsDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GUploadFieldsData build() => _build();
+
+  _$GUploadFieldsData _build() {
+    final _$result = _$v ??
+        new _$GUploadFieldsData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GUploadFieldsData', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GUploadFieldsData', 'id'),
+            presignedUrl: BuiltValueNullFieldError.checkNotNull(
+                presignedUrl, r'GUploadFieldsData', 'presignedUrl'));
     replace(_$result);
     return _$result;
   }
@@ -47575,6 +50089,12 @@ class _$GExpenseBasicData extends GExpenseBasicData {
   final GExpenseBasicData_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GExpenseBasicData(
           [void Function(GExpenseBasicDataBuilder)? updates]) =>
@@ -47587,7 +50107,10 @@ class _$GExpenseBasicData extends GExpenseBasicData {
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GExpenseBasicData', 'G__typename');
@@ -47621,7 +50144,10 @@ class _$GExpenseBasicData extends GExpenseBasicData {
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -47634,6 +50160,9 @@ class _$GExpenseBasicData extends GExpenseBasicData {
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -47647,7 +50176,10 @@ class _$GExpenseBasicData extends GExpenseBasicData {
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -47686,6 +50218,18 @@ class GExpenseBasicDataBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GExpenseBasicDataBuilder() {
     GExpenseBasicData._initializeBuilder(this);
   }
@@ -47700,6 +50244,9 @@ class GExpenseBasicDataBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -47736,7 +50283,10 @@ class GExpenseBasicDataBuilder
                   category, r'GExpenseBasicData', 'category'),
               amount: amount.build(),
               creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GExpenseBasicData', 'creatorId'));
+                  creatorId, r'GExpenseBasicData', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -47892,6 +50442,12 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
   @override
   final String creatorId;
   @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
+  @override
   final GExpenseFieldsData_creator creator;
   @override
   final BuiltList<GExpenseFieldsData_splits> splits;
@@ -47908,6 +50464,9 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
       required this.category,
       required this.amount,
       required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl,
       required this.creator,
       required this.splits})
       : super._() {
@@ -47950,6 +50509,9 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl &&
         creator == other.creator &&
         splits == other.splits;
   }
@@ -47964,6 +50526,9 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jc(_$hash, creator.hashCode);
     _$hash = $jc(_$hash, splits.hashCode);
     _$hash = $jf(_$hash);
@@ -47980,6 +50545,9 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl)
           ..add('creator', creator)
           ..add('splits', splits))
         .toString();
@@ -48020,6 +50588,18 @@ class GExpenseFieldsDataBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GExpenseFieldsData_creatorBuilder? _creator;
   GExpenseFieldsData_creatorBuilder get creator =>
       _$this._creator ??= new GExpenseFieldsData_creatorBuilder();
@@ -48046,6 +50626,9 @@ class GExpenseFieldsDataBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _creator = $v.creator.toBuilder();
       _splits = $v.splits.toBuilder();
       _$v = null;
@@ -48085,6 +50668,9 @@ class GExpenseFieldsDataBuilder
               amount: amount.build(),
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GExpenseFieldsData', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl,
               creator: creator.build(),
               splits: splits.build());
     } catch (_) {
@@ -48417,6 +51003,12 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GExpenseFieldsData_splits(
           [void Function(GExpenseFieldsData_splitsBuilder)? updates]) =>
@@ -48435,7 +51027,10 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GExpenseFieldsData_splits', 'G__typename');
@@ -48486,7 +51081,10 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -48505,6 +51103,9 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -48524,7 +51125,10 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -48594,6 +51198,18 @@ class GExpenseFieldsData_splitsBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GExpenseFieldsData_splitsBuilder() {
     GExpenseFieldsData_splits._initializeBuilder(this);
   }
@@ -48614,6 +51230,9 @@ class GExpenseFieldsData_splitsBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -48658,7 +51277,10 @@ class GExpenseFieldsData_splitsBuilder
                   creatorId, r'GExpenseFieldsData_splits', 'creatorId'),
               withGroupId: withGroupId,
               groupId:
-                  BuiltValueNullFieldError.checkNotNull(groupId, r'GExpenseFieldsData_splits', 'groupId'));
+                  BuiltValueNullFieldError.checkNotNull(groupId, r'GExpenseFieldsData_splits', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -49146,6 +51768,12 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
   @override
   final String creatorId;
   @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
+  @override
   final BuiltList<GNewExpenseFieldsData_splits> splits;
 
   factory _$GNewExpenseFieldsData(
@@ -49160,6 +51788,9 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
       required this.category,
       required this.amount,
       required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl,
       required this.splits})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -49199,6 +51830,9 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl &&
         splits == other.splits;
   }
 
@@ -49212,6 +51846,9 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jc(_$hash, splits.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -49227,6 +51864,9 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl)
           ..add('splits', splits))
         .toString();
   }
@@ -49266,6 +51906,18 @@ class GNewExpenseFieldsDataBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   ListBuilder<GNewExpenseFieldsData_splits>? _splits;
   ListBuilder<GNewExpenseFieldsData_splits> get splits =>
       _$this._splits ??= new ListBuilder<GNewExpenseFieldsData_splits>();
@@ -49286,6 +51938,9 @@ class GNewExpenseFieldsDataBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _splits = $v.splits.toBuilder();
       _$v = null;
     }
@@ -49324,6 +51979,9 @@ class GNewExpenseFieldsDataBuilder
               amount: amount.build(),
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GNewExpenseFieldsData', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl,
               splits: splits.build());
     } catch (_) {
       late String _$failedField;
@@ -49501,6 +52159,12 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GNewExpenseFieldsData_splits(
           [void Function(GNewExpenseFieldsData_splitsBuilder)? updates]) =>
@@ -49522,7 +52186,10 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GNewExpenseFieldsData_splits', 'G__typename');
@@ -49580,7 +52247,10 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -49602,6 +52272,9 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -49624,7 +52297,10 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -49713,6 +52389,18 @@ class GNewExpenseFieldsData_splitsBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GNewExpenseFieldsData_splitsBuilder() {
     GNewExpenseFieldsData_splits._initializeBuilder(this);
   }
@@ -49736,6 +52424,9 @@ class GNewExpenseFieldsData_splitsBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -49784,7 +52475,10 @@ class GNewExpenseFieldsData_splitsBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GNewExpenseFieldsData_splits', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GNewExpenseFieldsData_splits', 'groupId'));
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GNewExpenseFieldsData_splits', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -49828,6 +52522,12 @@ class _$GNewExpenseFieldsData_splits_expense
   final GNewExpenseFieldsData_splits_expense_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GNewExpenseFieldsData_splits_expense(
           [void Function(GNewExpenseFieldsData_splits_expenseBuilder)?
@@ -49842,7 +52542,10 @@ class _$GNewExpenseFieldsData_splits_expense
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GNewExpenseFieldsData_splits_expense', 'G__typename');
@@ -49879,7 +52582,10 @@ class _$GNewExpenseFieldsData_splits_expense
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -49892,6 +52598,9 @@ class _$GNewExpenseFieldsData_splits_expense
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -49905,7 +52614,10 @@ class _$GNewExpenseFieldsData_splits_expense
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -49947,6 +52659,18 @@ class GNewExpenseFieldsData_splits_expenseBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GNewExpenseFieldsData_splits_expenseBuilder() {
     GNewExpenseFieldsData_splits_expense._initializeBuilder(this);
   }
@@ -49961,6 +52685,9 @@ class GNewExpenseFieldsData_splits_expenseBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -49998,7 +52725,10 @@ class GNewExpenseFieldsData_splits_expenseBuilder
                   category, r'GNewExpenseFieldsData_splits_expense', 'category'),
               amount: amount.build(),
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GNewExpenseFieldsData_splits_expense', 'creatorId'));
+                  r'GNewExpenseFieldsData_splits_expense', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -51023,6 +53753,12 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GSplitFieldsBasicsData(
           [void Function(GSplitFieldsBasicsDataBuilder)? updates]) =>
@@ -51039,7 +53775,10 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GSplitFieldsBasicsData', 'G__typename');
@@ -51083,7 +53822,10 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -51100,6 +53842,9 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -51117,7 +53862,10 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -51174,6 +53922,18 @@ class GSplitFieldsBasicsDataBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GSplitFieldsBasicsDataBuilder() {
     GSplitFieldsBasicsData._initializeBuilder(this);
   }
@@ -51192,6 +53952,9 @@ class GSplitFieldsBasicsDataBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -51234,7 +53997,10 @@ class GSplitFieldsBasicsDataBuilder
                   creatorId, r'GSplitFieldsBasicsData', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(
-                  groupId, r'GSplitFieldsBasicsData', 'groupId'));
+                  groupId, r'GSplitFieldsBasicsData', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -51399,6 +54165,12 @@ class _$GSplitFieldsData extends GSplitFieldsData {
   @override
   final String groupId;
   @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
+  @override
   final GSplitFieldsData_fromUser fromUser;
   @override
   final GSplitFieldsData_toUser toUser;
@@ -51419,6 +54191,9 @@ class _$GSplitFieldsData extends GSplitFieldsData {
       required this.creatorId,
       this.withGroupId,
       required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl,
       required this.fromUser,
       required this.toUser})
       : super._() {
@@ -51468,6 +54243,9 @@ class _$GSplitFieldsData extends GSplitFieldsData {
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl &&
         fromUser == other.fromUser &&
         toUser == other.toUser;
   }
@@ -51486,6 +54264,9 @@ class _$GSplitFieldsData extends GSplitFieldsData {
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jc(_$hash, fromUser.hashCode);
     _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jf(_$hash);
@@ -51506,6 +54287,9 @@ class _$GSplitFieldsData extends GSplitFieldsData {
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl)
           ..add('fromUser', fromUser)
           ..add('toUser', toUser))
         .toString();
@@ -51563,6 +54347,18 @@ class GSplitFieldsDataBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GSplitFieldsData_fromUserBuilder? _fromUser;
   GSplitFieldsData_fromUserBuilder get fromUser =>
       _$this._fromUser ??= new GSplitFieldsData_fromUserBuilder();
@@ -51592,6 +54388,9 @@ class GSplitFieldsDataBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _fromUser = $v.fromUser.toBuilder();
       _toUser = $v.toUser.toBuilder();
       _$v = null;
@@ -51637,6 +54436,9 @@ class GSplitFieldsDataBuilder
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(
                   groupId, r'GSplitFieldsData', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl,
               fromUser: fromUser.build(),
               toUser: toUser.build());
     } catch (_) {
@@ -52128,6 +54930,12 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
   @override
   final String groupId;
   @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
+  @override
   final GSplitTransactionFieldsData_expense? expense;
   @override
   final GSplitTransactionFieldsData_group group;
@@ -52152,6 +54960,9 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
       required this.creatorId,
       this.withGroupId,
       required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl,
       this.expense,
       required this.group,
       required this.creator})
@@ -52210,6 +55021,9 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl &&
         expense == other.expense &&
         group == other.group &&
         creator == other.creator;
@@ -52231,6 +55045,9 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jc(_$hash, expense.hashCode);
     _$hash = $jc(_$hash, group.hashCode);
     _$hash = $jc(_$hash, creator.hashCode);
@@ -52254,6 +55071,9 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl)
           ..add('expense', expense)
           ..add('group', group)
           ..add('creator', creator))
@@ -52327,6 +55147,18 @@ class GSplitTransactionFieldsDataBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GSplitTransactionFieldsData_expenseBuilder? _expense;
   GSplitTransactionFieldsData_expenseBuilder get expense =>
       _$this._expense ??= new GSplitTransactionFieldsData_expenseBuilder();
@@ -52365,6 +55197,9 @@ class GSplitTransactionFieldsDataBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _expense = $v.expense?.toBuilder();
       _group = $v.group.toBuilder();
       _creator = $v.creator.toBuilder();
@@ -52414,6 +55249,9 @@ class GSplitTransactionFieldsDataBuilder
                   creatorId, r'GSplitTransactionFieldsData', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GSplitTransactionFieldsData', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl,
               expense: _expense?.build(),
               group: group.build(),
               creator: creator.build());
@@ -52917,6 +55755,12 @@ class _$GSplitTransactionFieldsData_expense
   final GSplitTransactionFieldsData_expense_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GSplitTransactionFieldsData_expense(
           [void Function(GSplitTransactionFieldsData_expenseBuilder)?
@@ -52931,7 +55775,10 @@ class _$GSplitTransactionFieldsData_expense
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GSplitTransactionFieldsData_expense', 'G__typename');
@@ -52968,7 +55815,10 @@ class _$GSplitTransactionFieldsData_expense
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -52981,6 +55831,9 @@ class _$GSplitTransactionFieldsData_expense
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -52994,7 +55847,10 @@ class _$GSplitTransactionFieldsData_expense
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -53036,6 +55892,18 @@ class GSplitTransactionFieldsData_expenseBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GSplitTransactionFieldsData_expenseBuilder() {
     GSplitTransactionFieldsData_expense._initializeBuilder(this);
   }
@@ -53050,6 +55918,9 @@ class GSplitTransactionFieldsData_expenseBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -53087,7 +55958,10 @@ class GSplitTransactionFieldsData_expenseBuilder
                   category, r'GSplitTransactionFieldsData_expense', 'category'),
               amount: amount.build(),
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GSplitTransactionFieldsData_expense', 'creatorId'));
+                  r'GSplitTransactionFieldsData_expense', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -54343,6 +57217,12 @@ class _$GGroupWithExpensesData_expenses
   final GGroupWithExpensesData_expenses_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GGroupWithExpensesData_expenses(
           [void Function(GGroupWithExpensesData_expensesBuilder)? updates]) =>
@@ -54357,7 +57237,10 @@ class _$GGroupWithExpensesData_expenses
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGroupWithExpensesData_expenses', 'G__typename');
@@ -54400,7 +57283,10 @@ class _$GGroupWithExpensesData_expenses
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -54415,6 +57301,9 @@ class _$GGroupWithExpensesData_expenses
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -54430,7 +57319,10 @@ class _$GGroupWithExpensesData_expenses
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -54484,6 +57376,18 @@ class GGroupWithExpensesData_expensesBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GGroupWithExpensesData_expensesBuilder() {
     GGroupWithExpensesData_expenses._initializeBuilder(this);
   }
@@ -54500,6 +57404,9 @@ class GGroupWithExpensesData_expensesBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -54538,7 +57445,10 @@ class GGroupWithExpensesData_expensesBuilder
                   category, r'GGroupWithExpensesData_expenses', 'category'),
               amount: amount.build(),
               creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GGroupWithExpensesData_expenses', 'creatorId'));
+                  creatorId, r'GGroupWithExpensesData_expenses', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -54754,6 +57664,12 @@ class _$GGroupWithExpensesData_expenses_splits
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GGroupWithExpensesData_expenses_splits(
           [void Function(GGroupWithExpensesData_expenses_splitsBuilder)?
@@ -54774,7 +57690,10 @@ class _$GGroupWithExpensesData_expenses_splits
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGroupWithExpensesData_expenses_splits', 'G__typename');
@@ -54826,7 +57745,10 @@ class _$GGroupWithExpensesData_expenses_splits
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -54845,6 +57767,9 @@ class _$GGroupWithExpensesData_expenses_splits
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -54865,7 +57790,10 @@ class _$GGroupWithExpensesData_expenses_splits
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -54940,6 +57868,18 @@ class GGroupWithExpensesData_expenses_splitsBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GGroupWithExpensesData_expenses_splitsBuilder() {
     GGroupWithExpensesData_expenses_splits._initializeBuilder(this);
   }
@@ -54960,6 +57900,9 @@ class GGroupWithExpensesData_expenses_splitsBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -55004,7 +57947,10 @@ class GGroupWithExpensesData_expenses_splitsBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GGroupWithExpensesData_expenses_splits', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GGroupWithExpensesData_expenses_splits', 'groupId'));
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GGroupWithExpensesData_expenses_splits', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -55790,6 +58736,12 @@ class _$GExpenseMixSplitFieldsData_expense
   final GExpenseMixSplitFieldsData_expense_amount amount;
   @override
   final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GExpenseMixSplitFieldsData_expense(
           [void Function(GExpenseMixSplitFieldsData_expenseBuilder)?
@@ -55804,7 +58756,10 @@ class _$GExpenseMixSplitFieldsData_expense
       required this.createdAt,
       required this.category,
       required this.amount,
-      required this.creatorId})
+      required this.creatorId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GExpenseMixSplitFieldsData_expense', 'G__typename');
@@ -55841,7 +58796,10 @@ class _$GExpenseMixSplitFieldsData_expense
         createdAt == other.createdAt &&
         category == other.category &&
         amount == other.amount &&
-        creatorId == other.creatorId;
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -55854,6 +58812,9 @@ class _$GExpenseMixSplitFieldsData_expense
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -55867,7 +58828,10 @@ class _$GExpenseMixSplitFieldsData_expense
           ..add('createdAt', createdAt)
           ..add('category', category)
           ..add('amount', amount)
-          ..add('creatorId', creatorId))
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -55908,6 +58872,18 @@ class GExpenseMixSplitFieldsData_expenseBuilder
   String? get creatorId => _$this._creatorId;
   set creatorId(String? creatorId) => _$this._creatorId = creatorId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GExpenseMixSplitFieldsData_expenseBuilder() {
     GExpenseMixSplitFieldsData_expense._initializeBuilder(this);
   }
@@ -55922,6 +58898,9 @@ class GExpenseMixSplitFieldsData_expenseBuilder
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -55959,7 +58938,10 @@ class GExpenseMixSplitFieldsData_expenseBuilder
                   category, r'GExpenseMixSplitFieldsData_expense', 'category'),
               amount: amount.build(),
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GExpenseMixSplitFieldsData_expense', 'creatorId'));
+                  r'GExpenseMixSplitFieldsData_expense', 'creatorId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {
@@ -56135,6 +59117,12 @@ class _$GExpenseMixSplitFieldsData_split
   final String? withGroupId;
   @override
   final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+  @override
+  final String? imageUrl;
 
   factory _$GExpenseMixSplitFieldsData_split(
           [void Function(GExpenseMixSplitFieldsData_splitBuilder)? updates]) =>
@@ -56153,7 +59141,10 @@ class _$GExpenseMixSplitFieldsData_split
       required this.toUserId,
       required this.creatorId,
       this.withGroupId,
-      required this.groupId})
+      required this.groupId,
+      this.note,
+      this.imageId,
+      this.imageUrl})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GExpenseMixSplitFieldsData_split', 'G__typename');
@@ -56204,7 +59195,10 @@ class _$GExpenseMixSplitFieldsData_split
         toUserId == other.toUserId &&
         creatorId == other.creatorId &&
         withGroupId == other.withGroupId &&
-        groupId == other.groupId;
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId &&
+        imageUrl == other.imageUrl;
   }
 
   @override
@@ -56223,6 +59217,9 @@ class _$GExpenseMixSplitFieldsData_split
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, withGroupId.hashCode);
     _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -56242,7 +59239,10 @@ class _$GExpenseMixSplitFieldsData_split
           ..add('toUserId', toUserId)
           ..add('creatorId', creatorId)
           ..add('withGroupId', withGroupId)
-          ..add('groupId', groupId))
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId)
+          ..add('imageUrl', imageUrl))
         .toString();
   }
 }
@@ -56314,6 +59314,18 @@ class GExpenseMixSplitFieldsData_splitBuilder
   String? get groupId => _$this._groupId;
   set groupId(String? groupId) => _$this._groupId = groupId;
 
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
   GExpenseMixSplitFieldsData_splitBuilder() {
     GExpenseMixSplitFieldsData_split._initializeBuilder(this);
   }
@@ -56334,6 +59346,9 @@ class GExpenseMixSplitFieldsData_splitBuilder
       _creatorId = $v.creatorId;
       _withGroupId = $v.withGroupId;
       _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -56377,7 +59392,10 @@ class GExpenseMixSplitFieldsData_splitBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GExpenseMixSplitFieldsData_split', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GExpenseMixSplitFieldsData_split', 'groupId'));
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GExpenseMixSplitFieldsData_split', 'groupId'),
+              note: note,
+              imageId: imageId,
+              imageUrl: imageUrl);
     } catch (_) {
       late String _$failedField;
       try {

@@ -1952,6 +1952,128 @@ abstract class GsetNotificationTokenReq
       );
 }
 
+abstract class GgetImageUploadUrlReq
+    implements
+        Built<GgetImageUploadUrlReq, GgetImageUploadUrlReqBuilder>,
+        _i1.OperationRequest<_i2.GgetImageUploadUrlData,
+            _i3.GgetImageUploadUrlVars> {
+  GgetImageUploadUrlReq._();
+
+  factory GgetImageUploadUrlReq(
+          [Function(GgetImageUploadUrlReqBuilder b) updates]) =
+      _$GgetImageUploadUrlReq;
+
+  static void _initializeBuilder(GgetImageUploadUrlReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'getImageUploadUrl',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GgetImageUploadUrlVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GgetImageUploadUrlData? Function(
+    _i2.GgetImageUploadUrlData?,
+    _i2.GgetImageUploadUrlData?,
+  )? get updateResult;
+  @override
+  _i2.GgetImageUploadUrlData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GgetImageUploadUrlData? parseData(Map<String, dynamic> json) =>
+      _i2.GgetImageUploadUrlData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GgetImageUploadUrlData, _i3.GgetImageUploadUrlVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GgetImageUploadUrlReq> get serializer =>
+      _$ggetImageUploadUrlReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GgetImageUploadUrlReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetImageUploadUrlReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GgetImageUploadUrlReq.serializer,
+        json,
+      );
+}
+
+abstract class GUploadFieldsReq
+    implements
+        Built<GUploadFieldsReq, GUploadFieldsReqBuilder>,
+        _i1.FragmentRequest<_i2.GUploadFieldsData, _i3.GUploadFieldsVars> {
+  GUploadFieldsReq._();
+
+  factory GUploadFieldsReq([Function(GUploadFieldsReqBuilder b) updates]) =
+      _$GUploadFieldsReq;
+
+  static void _initializeBuilder(GUploadFieldsReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'UploadFields';
+
+  @override
+  _i3.GUploadFieldsVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GUploadFieldsData? parseData(Map<String, dynamic> json) =>
+      _i2.GUploadFieldsData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  static Serializer<GUploadFieldsReq> get serializer =>
+      _$gUploadFieldsReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GUploadFieldsReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GUploadFieldsReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GUploadFieldsReq.serializer,
+        json,
+      );
+}
+
 abstract class GUserFieldsReq
     implements
         Built<GUserFieldsReq, GUserFieldsReqBuilder>,

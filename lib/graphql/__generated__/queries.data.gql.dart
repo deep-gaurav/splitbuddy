@@ -1434,6 +1434,12 @@ abstract class GgroupData_group_expenses
   GgroupData_group_expenses_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GgroupData_group_expenses> get serializer =>
       _$ggroupDataGroupExpensesSerializer;
 
@@ -1539,6 +1545,12 @@ abstract class GgroupData_group_expenses_splits
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GgroupData_group_expenses_splits> get serializer =>
       _$ggroupDataGroupExpensesSplitsSerializer;
 
@@ -2353,6 +2365,12 @@ abstract class Gadd_expenseData_addExpense
   Gadd_expenseData_addExpense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<Gadd_expenseData_addExpense> get serializer =>
       _$gaddExpenseDataAddExpenseSerializer;
 
@@ -2417,6 +2435,12 @@ abstract class Gadd_expenseData_addExpense_splits
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<Gadd_expenseData_addExpense_splits> get serializer =>
       _$gaddExpenseDataAddExpenseSplitsSerializer;
 
@@ -2466,6 +2490,12 @@ abstract class Gadd_expenseData_addExpense_splits_expense
   Gadd_expenseData_addExpense_splits_expense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<Gadd_expenseData_addExpense_splits_expense>
       get serializer => _$gaddExpenseDataAddExpenseSplitsExpenseSerializer;
 
@@ -3455,6 +3485,12 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_expense
   GcreateNonGroupExpenseData_addNonGroupExpense_expense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GcreateNonGroupExpenseData_addNonGroupExpense_expense>
       get serializer =>
           _$gcreateNonGroupExpenseDataAddNonGroupExpenseExpenseSerializer;
@@ -3531,6 +3567,12 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<
           GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits>
       get serializer =>
@@ -3588,6 +3630,12 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expe
       get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<
           GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense>
       get serializer =>
@@ -4042,6 +4090,12 @@ abstract class GsettleInGroupData_settleInGroup
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GsettleInGroupData_settleInGroup> get serializer =>
       _$gsettleInGroupDataSettleInGroupSerializer;
 
@@ -4090,6 +4144,12 @@ abstract class GsettleInGroupData_settleInGroup_expense
   GsettleInGroupData_settleInGroup_expense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GsettleInGroupData_settleInGroup_expense> get serializer =>
       _$gsettleInGroupDataSettleInGroupExpenseSerializer;
 
@@ -4443,6 +4503,12 @@ abstract class GsimplifyUserData_simplifyCrossGroup
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GsimplifyUserData_simplifyCrossGroup> get serializer =>
       _$gsimplifyUserDataSimplifyCrossGroupSerializer;
 
@@ -4491,6 +4557,12 @@ abstract class GsimplifyUserData_simplifyCrossGroup_expense
   GsimplifyUserData_simplifyCrossGroup_expense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GsimplifyUserData_simplifyCrossGroup_expense>
       get serializer => _$gsimplifyUserDataSimplifyCrossGroupExpenseSerializer;
 
@@ -4845,6 +4917,12 @@ abstract class GautoSettleWithUserData_autoSettleWithUser
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GautoSettleWithUserData_autoSettleWithUser>
       get serializer => _$gautoSettleWithUserDataAutoSettleWithUserSerializer;
 
@@ -4893,6 +4971,12 @@ abstract class GautoSettleWithUserData_autoSettleWithUser_expense
   GautoSettleWithUserData_autoSettleWithUser_expense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GautoSettleWithUserData_autoSettleWithUser_expense>
       get serializer =>
           _$gautoSettleWithUserDataAutoSettleWithUserExpenseSerializer;
@@ -5257,6 +5341,12 @@ abstract class GtransactionWithUserData_getTransactionsWithUser
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GtransactionWithUserData_getTransactionsWithUser>
       get serializer =>
           _$gtransactionWithUserDataGetTransactionsWithUserSerializer;
@@ -5307,6 +5397,12 @@ abstract class GtransactionWithUserData_getTransactionsWithUser_expense
   GtransactionWithUserData_getTransactionsWithUser_expense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GtransactionWithUserData_getTransactionsWithUser_expense>
       get serializer =>
           _$gtransactionWithUserDataGetTransactionsWithUserExpenseSerializer;
@@ -5717,6 +5813,12 @@ abstract class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_exp
       get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<
           GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense>
       get serializer =>
@@ -5837,6 +5939,12 @@ abstract class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_spl
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<
           GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split>
       get serializer =>
@@ -6159,6 +6267,12 @@ abstract class GcurrencyConvertData_convertCurrency
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GcurrencyConvertData_convertCurrency> get serializer =>
       _$gcurrencyConvertDataConvertCurrencySerializer;
 
@@ -6207,6 +6321,12 @@ abstract class GcurrencyConvertData_convertCurrency_expense
   GcurrencyConvertData_convertCurrency_expense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GcurrencyConvertData_convertCurrency_expense>
       get serializer => _$gcurrencyConvertDataConvertCurrencyExpenseSerializer;
 
@@ -6653,6 +6773,12 @@ abstract class GgetTransactionsData_getTransactions_expense
   GgetTransactionsData_getTransactions_expense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GgetTransactionsData_getTransactions_expense>
       get serializer => _$ggetTransactionsDataGetTransactionsExpenseSerializer;
 
@@ -6755,6 +6881,12 @@ abstract class GgetTransactionsData_getTransactions_split
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GgetTransactionsData_getTransactions_split>
       get serializer => _$ggetTransactionsDataGetTransactionsSplitSerializer;
 
@@ -6936,6 +7068,115 @@ abstract class GsetNotificationTokenData
   static GsetNotificationTokenData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GsetNotificationTokenData.serializer,
+        json,
+      );
+}
+
+abstract class GgetImageUploadUrlData
+    implements Built<GgetImageUploadUrlData, GgetImageUploadUrlDataBuilder> {
+  GgetImageUploadUrlData._();
+
+  factory GgetImageUploadUrlData(
+          [Function(GgetImageUploadUrlDataBuilder b) updates]) =
+      _$GgetImageUploadUrlData;
+
+  static void _initializeBuilder(GgetImageUploadUrlDataBuilder b) =>
+      b..G__typename = 'Mutation';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GgetImageUploadUrlData_uploadImage get uploadImage;
+  static Serializer<GgetImageUploadUrlData> get serializer =>
+      _$ggetImageUploadUrlDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetImageUploadUrlData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetImageUploadUrlData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetImageUploadUrlData.serializer,
+        json,
+      );
+}
+
+abstract class GgetImageUploadUrlData_uploadImage
+    implements
+        Built<GgetImageUploadUrlData_uploadImage,
+            GgetImageUploadUrlData_uploadImageBuilder>,
+        GUploadFields {
+  GgetImageUploadUrlData_uploadImage._();
+
+  factory GgetImageUploadUrlData_uploadImage(
+          [Function(GgetImageUploadUrlData_uploadImageBuilder b) updates]) =
+      _$GgetImageUploadUrlData_uploadImage;
+
+  static void _initializeBuilder(GgetImageUploadUrlData_uploadImageBuilder b) =>
+      b..G__typename = 'ImageUploadData';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get presignedUrl;
+  static Serializer<GgetImageUploadUrlData_uploadImage> get serializer =>
+      _$ggetImageUploadUrlDataUploadImageSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetImageUploadUrlData_uploadImage.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetImageUploadUrlData_uploadImage? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetImageUploadUrlData_uploadImage.serializer,
+        json,
+      );
+}
+
+abstract class GUploadFields {
+  String get G__typename;
+  String get id;
+  String get presignedUrl;
+  Map<String, dynamic> toJson();
+}
+
+abstract class GUploadFieldsData
+    implements
+        Built<GUploadFieldsData, GUploadFieldsDataBuilder>,
+        GUploadFields {
+  GUploadFieldsData._();
+
+  factory GUploadFieldsData([Function(GUploadFieldsDataBuilder b) updates]) =
+      _$GUploadFieldsData;
+
+  static void _initializeBuilder(GUploadFieldsDataBuilder b) =>
+      b..G__typename = 'ImageUploadData';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get presignedUrl;
+  static Serializer<GUploadFieldsData> get serializer =>
+      _$gUploadFieldsDataSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GUploadFieldsData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GUploadFieldsData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GUploadFieldsData.serializer,
         json,
       );
 }
@@ -7558,6 +7799,9 @@ abstract class GExpenseBasic {
   String get category;
   GExpenseBasic_amount get amount;
   String get creatorId;
+  String? get note;
+  String? get imageId;
+  String? get imageUrl;
   Map<String, dynamic> toJson();
 }
 
@@ -7599,6 +7843,12 @@ abstract class GExpenseBasicData
   GExpenseBasicData_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GExpenseBasicData> get serializer =>
       _$gExpenseBasicDataSerializer;
 
@@ -7667,6 +7917,12 @@ abstract class GExpenseFields implements GExpenseBasic {
   GExpenseFields_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   GExpenseFields_creator get creator;
   BuiltList<GExpenseFields_splits> get splits;
   @override
@@ -7729,6 +7985,12 @@ abstract class GExpenseFields_splits implements GSplitFields {
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   @override
   Map<String, dynamic> toJson();
 }
@@ -7809,6 +8071,12 @@ abstract class GExpenseFieldsData
   GExpenseFieldsData_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   @override
   GExpenseFieldsData_creator get creator;
   @override
@@ -7951,6 +8219,12 @@ abstract class GExpenseFieldsData_splits
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GExpenseFieldsData_splits> get serializer =>
       _$gExpenseFieldsDataSplitsSerializer;
 
@@ -8114,6 +8388,12 @@ abstract class GNewExpenseFields implements GExpenseBasic {
   GNewExpenseFields_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   BuiltList<GNewExpenseFields_splits> get splits;
   @override
   Map<String, dynamic> toJson();
@@ -8165,6 +8445,12 @@ abstract class GNewExpenseFields_splits implements GSplitTransactionFields {
   @override
   String get groupId;
   @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
+  @override
   Map<String, dynamic> toJson();
 }
 
@@ -8184,6 +8470,12 @@ abstract class GNewExpenseFields_splits_expense
   GNewExpenseFields_splits_expense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   @override
   Map<String, dynamic> toJson();
 }
@@ -8311,6 +8603,12 @@ abstract class GNewExpenseFieldsData
   @override
   String get creatorId;
   @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
+  @override
   BuiltList<GNewExpenseFieldsData_splits> get splits;
   static Serializer<GNewExpenseFieldsData> get serializer =>
       _$gNewExpenseFieldsDataSerializer;
@@ -8415,6 +8713,12 @@ abstract class GNewExpenseFieldsData_splits
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GNewExpenseFieldsData_splits> get serializer =>
       _$gNewExpenseFieldsDataSplitsSerializer;
 
@@ -8463,6 +8767,12 @@ abstract class GNewExpenseFieldsData_splits_expense
   GNewExpenseFieldsData_splits_expense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GNewExpenseFieldsData_splits_expense> get serializer =>
       _$gNewExpenseFieldsDataSplitsExpenseSerializer;
 
@@ -8795,6 +9105,9 @@ abstract class GSplitFieldsBasics {
   String get creatorId;
   String? get withGroupId;
   String get groupId;
+  String? get note;
+  String? get imageId;
+  String? get imageUrl;
   Map<String, dynamic> toJson();
 }
 
@@ -8845,6 +9158,12 @@ abstract class GSplitFieldsBasicsData
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GSplitFieldsBasicsData> get serializer =>
       _$gSplitFieldsBasicsDataSerializer;
 
@@ -8922,6 +9241,12 @@ abstract class GSplitFields implements GSplitFieldsBasics {
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   GSplitFields_fromUser get fromUser;
   GSplitFields_toUser get toUser;
   @override
@@ -9010,6 +9335,12 @@ abstract class GSplitFieldsData
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   @override
   GSplitFieldsData_fromUser get fromUser;
   @override
@@ -9181,6 +9512,12 @@ abstract class GSplitTransactionFields implements GSplitFields {
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   GSplitTransactionFields_expense? get expense;
   GSplitTransactionFields_group get group;
   GSplitTransactionFields_creator get creator;
@@ -9251,6 +9588,12 @@ abstract class GSplitTransactionFields_expense implements GExpenseBasic {
   GSplitTransactionFields_expense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   @override
   Map<String, dynamic> toJson();
 }
@@ -9336,6 +9679,12 @@ abstract class GSplitTransactionFieldsData
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   @override
   GSplitTransactionFieldsData_expense? get expense;
   @override
@@ -9522,6 +9871,12 @@ abstract class GSplitTransactionFieldsData_expense
   GSplitTransactionFieldsData_expense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GSplitTransactionFieldsData_expense> get serializer =>
       _$gSplitTransactionFieldsDataExpenseSerializer;
 
@@ -9762,6 +10117,12 @@ abstract class GGroupWithExpenses_expenses implements GExpenseFields {
   @override
   String get creatorId;
   @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
+  @override
   Map<String, dynamic> toJson();
 }
 
@@ -9811,6 +10172,12 @@ abstract class GGroupWithExpenses_expenses_splits
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   @override
   Map<String, dynamic> toJson();
 }
@@ -10131,6 +10498,12 @@ abstract class GGroupWithExpensesData_expenses
   GGroupWithExpensesData_expenses_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GGroupWithExpensesData_expenses> get serializer =>
       _$gGroupWithExpensesDataExpensesSerializer;
 
@@ -10238,6 +10611,12 @@ abstract class GGroupWithExpensesData_expenses_splits
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GGroupWithExpensesData_expenses_splits> get serializer =>
       _$gGroupWithExpensesDataExpensesSplitsSerializer;
 
@@ -10458,6 +10837,12 @@ abstract class GExpenseMixSplitFields_expense implements GExpenseBasic {
   @override
   String get creatorId;
   @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
+  @override
   Map<String, dynamic> toJson();
 }
 
@@ -10500,6 +10885,12 @@ abstract class GExpenseMixSplitFields_split implements GSplitFields {
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   @override
   Map<String, dynamic> toJson();
 }
@@ -10618,6 +11009,12 @@ abstract class GExpenseMixSplitFieldsData_expense
   GExpenseMixSplitFieldsData_expense_amount get amount;
   @override
   String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GExpenseMixSplitFieldsData_expense> get serializer =>
       _$gExpenseMixSplitFieldsDataExpenseSerializer;
 
@@ -10718,6 +11115,12 @@ abstract class GExpenseMixSplitFieldsData_split
   String? get withGroupId;
   @override
   String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  String? get imageUrl;
   static Serializer<GExpenseMixSplitFieldsData_split> get serializer =>
       _$gExpenseMixSplitFieldsDataSplitSerializer;
 

@@ -4,6 +4,31 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:gql/ast.dart' as _i1;
 
+const UploadFields = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'UploadFields'),
+  typeCondition: _i1.TypeConditionNode(
+      on: _i1.NamedTypeNode(
+    name: _i1.NameNode(value: 'ImageUploadData'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'id'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'presignedUrl'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+  ]),
+);
 const UserFields = _i1.FragmentDefinitionNode(
   name: _i1.NameNode(value: 'UserFields'),
   typeCondition: _i1.TypeConditionNode(
@@ -317,6 +342,27 @@ const ExpenseBasic = _i1.FragmentDefinitionNode(
       directives: [],
       selectionSet: null,
     ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'note'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'imageId'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'imageUrl'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
   ]),
 );
 const ExpenseFields = _i1.FragmentDefinitionNode(
@@ -482,6 +528,27 @@ const SplitFieldsBasics = _i1.FragmentDefinitionNode(
     ),
     _i1.FieldNode(
       name: _i1.NameNode(value: 'groupId'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'note'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'imageId'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'imageUrl'),
       alias: null,
       arguments: [],
       directives: [],
@@ -1172,6 +1239,24 @@ const add_expense = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'imageId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'note')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
@@ -1202,6 +1287,14 @@ const add_expense = _i1.OperationDefinitionNode(
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'category'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'category')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'note'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'note')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'imageId'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'imageId')),
         ),
       ],
       directives: [],
@@ -1468,6 +1561,24 @@ const createNonGroupExpense = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'imageId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'note')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
@@ -1494,6 +1605,14 @@ const createNonGroupExpense = _i1.OperationDefinitionNode(
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'category'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'category')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'note'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'note')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'imageId'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'imageId')),
         ),
       ],
       directives: [],
@@ -2040,7 +2159,43 @@ const setNotificationToken = _i1.OperationDefinitionNode(
     )
   ]),
 );
+const getImageUploadUrl = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.mutation,
+  name: _i1.NameNode(value: 'getImageUploadUrl'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'size')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    )
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'uploadImage'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'size'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'size')),
+        )
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'UploadFields'),
+          directives: [],
+        )
+      ]),
+    )
+  ]),
+);
 const document = _i1.DocumentNode(definitions: [
+  UploadFields,
   UserFields,
   AmountFields,
   CurrencyFields,
@@ -2082,4 +2237,5 @@ const document = _i1.DocumentNode(definitions: [
   changeName,
   getTransactions,
   setNotificationToken,
+  getImageUploadUrl,
 ]);

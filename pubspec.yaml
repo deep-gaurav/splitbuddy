@@ -65,6 +65,12 @@ dependencies:
   gql_dio_link: ^1.0.1+1
   graphql_query_compress: ^1.0.0
   flutter_animate: ^4.5.0
+  image_picker: ^1.0.7
+  flutter_avif: ^2.3.0
+  image_picker_android: ^0.8.9+3
+  image_picker_platform_interface: ^2.9.3
+  image: ^4.1.7
+  http_parser: ^4.0.2
   
 dev_dependencies:
   flutter_test:

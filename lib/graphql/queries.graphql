@@ -1,4 +1,8 @@
-# Write your query or mutation here
+fragment UploadFields on ImageUploadData {
+  id
+  presignedUrl
+}
+
 fragment UserFields on User {
   id
   name
@@ -60,6 +64,9 @@ fragment ExpenseBasic on Expense {
     ...AmountFields
   }
   creatorId
+  note
+  imageId
+  imageUrl
 }
 
 fragment ExpenseFields on Expense {
@@ -96,6 +103,9 @@ fragment SplitFieldsBasics on Split {
   creatorId
   withGroupId
   groupId
+  note
+  imageId
+  imageUrl
 }
 
 fragment SplitFields on Split {
@@ -236,6 +246,8 @@ mutation add_expense(
   $groupId: String!
   $currencyId: String!
   $category: String!
+  $imageId: String
+  $note: String
 ) {
   addExpense(
     title: $title
@@ -244,6 +256,8 @@ mutation add_expense(
     groupId: $groupId
     currencyId: $currencyId
     category: $category
+    note: $note
+    imageId: $imageId
   ) {
     ...NewExpenseFields
   }
@@ -283,8 +297,10 @@ mutation createNonGroupExpense(
   $title: String!
   $amount: Int!
   $nonGroupSplit: [SplitInputNonGroup!]!
-  $currencyId: String!,
+  $currencyId: String!
   $category: String!
+  $imageId: String
+  $note: String
 ) {
   addNonGroupExpense(
     title: $title
@@ -292,6 +308,8 @@ mutation createNonGroupExpense(
     splits: $nonGroupSplit
     currencyId: $currencyId
     category: $category
+    note: $note
+    imageId: $imageId
   ) {
     group {
       ...GroupFields
@@ -398,4 +416,10 @@ query getTransactions($fromTime: String, $limit: Int!) {
 
 mutation setNotificationToken($token: String!) {
   setNotificationToken(token: $token)
+}
+
+mutation getImageUploadUrl($size: Int!) {
+  uploadImage(size: $size) {
+    ...UploadFields
+  }
 }
