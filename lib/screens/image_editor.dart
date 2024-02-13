@@ -119,6 +119,8 @@ class _ImageEditorState extends State<ImageEditor> {
                 )
             ],
           ),
+          bottomNavigationBar: Text(
+              'Size of Image ${((attachedImage?.length ?? 0) / 1024).toStringAsFixed(2)}KB'),
         ),
         if (imageProgress != null)
           Positioned.fill(
