@@ -60,6 +60,8 @@ class _CreateExpenseState extends State<CreateExpense>
 
   Category? selectedCategory;
 
+  TextEditingController? noteController;
+
   @override
   void initState() {
     amountController.addListener(() {
@@ -282,46 +284,54 @@ class _CreateExpenseState extends State<CreateExpense>
     resetAmountFromPercentage();
   }
 
-  Future<void> uploadImage(
-      String presignedUrl, String name, Uint8List imageBytes,
+  Future<String?> uploadImage(Uint8List imageBytes,
       {Map<String, String>? additionalHeaders}) async {
+    var mainClient = await context.read<AppState>().client;
     final client = http.Client();
 
     try {
-      // Create an HTTP client with proper S3 compatibility and security (adjust if needed)
-
-      // Prepare the request with necessary headers
-      final response = await http.put(Uri.parse(presignedUrl),
-          headers: {
-            'Content-Length': imageBytes.length.toString(),
-            'Content-Type': 'image/avif'
-          },
-          body: imageBytes);
-
-      // Add any additional headers if provided
-      // if (additionalHeaders != null) {
-      //   request.headers.addAll(additionalHeaders);
-      // }
-
-      // // Send the request and handle the response
-      // final response = await client.send(request);
-
+      var presignedUrl = await mainClient.execute(
+          GgetImageUploadUrlReq((b) => b.vars..size = imageBytes.length));
+      if (presignedUrl.data?.uploadImage.presignedUrl == null) {
+        return null;
+      }
+      final response = await http.put(
+        Uri.parse(presignedUrl.data!.uploadImage.presignedUrl),
+        headers: {
+          'Content-Length': imageBytes.length.toString(),
+          'Content-Type': 'image/avif'
+        },
+        body: imageBytes,
+      );
       if (response.statusCode == 200) {
-        print('Image uploaded successfully!');
+        return presignedUrl.data!.uploadImage.id;
       } else {
-        print(
-            'Error uploading image: ${response.statusCode} ${response.reasonPhrase}');
+        return null;
       }
     } catch (error) {
-      print('Error: $error');
+      // print('Error: $error');
+      return null;
     } finally {
       client.close(); // Close the client to avoid resource leaks
     }
   }
 
+  Uint8List? selectedImage;
+
   pickImage() async {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const ImageEditor()));
+    var result = await Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ImageEditor(
+              initialImage: selectedImage,
+            )));
+    if (result is Uint8List) {
+      setState(() {
+        selectedImage = result;
+      });
+    } else if (result == false) {
+      setState(() {
+        selectedImage = null;
+      });
+    }
   }
 
   @override
@@ -549,6 +559,95 @@ class _CreateExpenseState extends State<CreateExpense>
                 ),
               ),
             ),
+            if (selectedImage != null)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  child: InkWell(
+                    onTap: pickImage,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Stack(
+                        fit: StackFit.passthrough,
+                        children: [
+                          SizedBox(
+                            height: 100,
+                            child: AvifImage.memory(
+                              selectedImage!,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const Positioned.fill(
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [Colors.transparent, Colors.black],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 5,
+                            left: 0,
+                            right: 0,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Attached Image',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.fontSize),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  const Icon(
+                                    Icons.edit,
+                                    color: Colors.white,
+                                    size: 18,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            if (noteController != null)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxHeight: 200,
+                    ),
+                    child: TextField(
+                      controller: noteController,
+                      maxLength: 300,
+                      maxLines: null,
+                      decoration: const InputDecoration(
+                        filled: true,
+                        // hintText: "Note",
+                        labelText: 'Note',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             SliverToBoxAdapter(
               child: Center(
                 child: ButtonBar(
@@ -557,15 +656,19 @@ class _CreateExpenseState extends State<CreateExpense>
                     ElevatedButton.icon(
                       onPressed: pickImage,
                       icon: const Icon(Icons.image),
-                      label: const Text(
-                        'Add Image',
+                      label: Text(
+                        selectedImage == null ? 'Add Image' : 'Edit Image',
                       ),
                     ),
                     ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          noteController = TextEditingController();
+                        });
+                      },
                       icon: const Icon(Icons.note),
-                      label: const Text(
-                        'Add Note',
+                      label: Text(
+                        noteController == null ? 'Add Note' : 'Edit Note',
                       ),
                     ),
                   ],
@@ -800,6 +903,10 @@ class _CreateExpenseState extends State<CreateExpense>
                   if (formKey.currentState?.validate() == true) {
                     var appstate = context.read<AppState>();
                     var nav = Navigator.of(context);
+                    var imageId = await uploadImage(selectedImage!);
+                    if (imageId == null) {
+                      throw "Image upload failed";
+                    }
                     if (expenseWith.value
                         case ExpenseWithGroup(group: var group)) {
                       var expense = await appstate.addExpense(
@@ -824,6 +931,10 @@ class _CreateExpenseState extends State<CreateExpense>
                             )
                             .toList(),
                         selectedCategory!.categoryId,
+                        note: noteController?.text.isNotEmpty == true
+                            ? noteController?.text
+                            : '',
+                        imageId: imageId,
                       );
                       nav.pop(expense);
                     } else if (expenseWith.value
@@ -836,6 +947,10 @@ class _CreateExpenseState extends State<CreateExpense>
                             ..title = nameController.text
                             ..currencyId = currentCurrency!.id
                             ..category = selectedCategory?.categoryId
+                            ..note = noteController?.text.isNotEmpty == true
+                                ? noteController?.text
+                                : ''
+                            ..imageId = imageId
                             ..nonGroupSplit = ListBuilder(
                               distribution
                                   .where((element) =>
@@ -880,19 +995,26 @@ class _CreateExpenseState extends State<CreateExpense>
         valueListenable: expenseWith,
         builder: (context, val, child) =>
             val != null ? child! : const SizedBox(),
-        child: ButtonBar(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            ButtonBar(
+            const Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                ElevatedButton.icon(
-                  onPressed: equalize,
-                  icon: const Icon(Icons.equalizer),
-                  label: const Text(
-                    'Split Equally',
-                  ),
-                ),
+                ButtonBar(
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: equalize,
+                      icon: const Icon(Icons.equalizer),
+                      label: const Text(
+                        'Split Equally',
+                      ),
+                    ),
+                  ],
+                )
               ],
-            )
+            ),
           ],
         ),
       ),

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:billdivide/state/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +11,8 @@ import 'package:image_picker_platform_interface/image_picker_platform_interface.
 import 'package:provider/provider.dart';
 
 class ImageEditor extends StatefulWidget {
-  const ImageEditor({super.key});
+  final Uint8List? initialImage;
+  const ImageEditor({super.key, this.initialImage});
 
   @override
   State<ImageEditor> createState() => _ImageEditorState();
@@ -67,6 +70,13 @@ class _ImageEditorState extends State<ImageEditor> {
 
   Future<Uint8List> resizeAndCompressToAvif(
       image.Image imageDecoded, int iteration) async {
+    if (max(imageDecoded.width, imageDecoded.height) > 1080) {
+      if (imageDecoded.width > imageDecoded.height) {
+        imageDecoded = image.copyResize(imageDecoded, width: 1080);
+      } else {
+        imageDecoded = image.copyResize(imageDecoded, height: 1080);
+      }
+    }
     setState(() {
       imageProgress = ('Converting Image #$iteration', null);
     });
@@ -88,11 +98,14 @@ class _ImageEditorState extends State<ImageEditor> {
 
   @override
   void initState() {
+    attachedImage = widget.initialImage;
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      var nav = Navigator.of(context);
-      await pickImage();
-      if (attachedImage == null && mounted) {
-        nav.pop();
+      if (attachedImage == null) {
+        var nav = Navigator.of(context);
+        await pickImage();
+        if (attachedImage == null && mounted) {
+          nav.pop();
+        }
       }
     });
     super.initState();
@@ -136,7 +149,7 @@ class _ImageEditorState extends State<ImageEditor> {
               ),
               ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pop(false);
                 },
                 icon: const Icon(Icons.delete),
                 label: const Text('Cancel'),
