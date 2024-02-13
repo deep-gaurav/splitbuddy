@@ -650,28 +650,50 @@ class _CreateExpenseState extends State<CreateExpense>
               ),
             SliverToBoxAdapter(
               child: Center(
-                child: ButtonBar(
-                  alignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton.icon(
-                      onPressed: pickImage,
-                      icon: const Icon(Icons.image),
-                      label: Text(
-                        selectedImage == null ? 'Add Image' : 'Edit Image',
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: ButtonBar(
+                    alignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: pickImage,
+                        icon: const Icon(Icons.image),
+                        label: Text(
+                          selectedImage == null ? 'Add Image' : 'Edit Image',
+                        ),
                       ),
-                    ),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        setState(() {
-                          noteController = TextEditingController();
-                        });
-                      },
-                      icon: const Icon(Icons.note),
-                      label: Text(
-                        noteController == null ? 'Add Note' : 'Edit Note',
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          if (noteController != null) {
+                            setState(() {
+                              noteController = null;
+                            });
+                          } else {
+                            setState(() {
+                              noteController = TextEditingController();
+                            });
+                          }
+                        },
+                        icon: const Icon(Icons.note),
+                        label: Text(
+                          noteController == null ? 'Add Note' : 'Remove Note',
+                        ),
                       ),
-                    ),
-                  ],
+                      ValueListenableBuilder(
+                        valueListenable: expenseWith,
+                        builder: (context, expenseWithValue, child) {
+                          return ElevatedButton.icon(
+                            onPressed:
+                                expenseWithValue != null ? equalize : null,
+                            icon: const Icon(Icons.equalizer),
+                            label: const Text(
+                              'Split Equally',
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -991,33 +1013,33 @@ class _CreateExpenseState extends State<CreateExpense>
               },
         label: const Text("Create"),
       ),
-      bottomNavigationBar: ValueListenableBuilder(
-        valueListenable: expenseWith,
-        builder: (context, val, child) =>
-            val != null ? child! : const SizedBox(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ButtonBar(
-                  children: [
-                    ElevatedButton.icon(
-                      onPressed: equalize,
-                      icon: const Icon(Icons.equalizer),
-                      label: const Text(
-                        'Split Equally',
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ],
-        ),
-      ),
+      // bottomNavigationBar: ValueListenableBuilder(
+      //   valueListenable: expenseWith,
+      //   builder: (context, val, child) =>
+      //       val != null ? child! : const SizedBox(),
+      //   child: Column(
+      //     mainAxisSize: MainAxisSize.min,
+      //     children: [
+      //       const Divider(),
+      //       Row(
+      //         mainAxisAlignment: MainAxisAlignment.end,
+      //         children: [
+      //           ButtonBar(
+      //             children: [
+      //               ElevatedButton.icon(
+      //                 onPressed: equalize,
+      //                 icon: const Icon(Icons.equalizer),
+      //                 label: const Text(
+      //                   'Split Equally',
+      //                 ),
+      //               ),
+      //             ],
+      //           )
+      //         ],
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
