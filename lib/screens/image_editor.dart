@@ -70,11 +70,12 @@ class _ImageEditorState extends State<ImageEditor> {
 
   Future<Uint8List> resizeAndCompressToAvif(
       image.Image imageDecoded, int iteration) async {
-    if (max(imageDecoded.width, imageDecoded.height) > 1080) {
+    const maxRes = 1920;
+    if (max(imageDecoded.width, imageDecoded.height) > maxRes) {
       if (imageDecoded.width > imageDecoded.height) {
-        imageDecoded = image.copyResize(imageDecoded, width: 1080);
+        imageDecoded = image.copyResize(imageDecoded, width: maxRes);
       } else {
-        imageDecoded = image.copyResize(imageDecoded, height: 1080);
+        imageDecoded = image.copyResize(imageDecoded, height: maxRes);
       }
     }
     setState(() {
