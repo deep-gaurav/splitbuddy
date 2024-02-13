@@ -68,9 +68,11 @@ class _UserPageState extends State<UserPage>
     if (_loading) {
       return;
     }
-    setState(() {
-      _loading = true;
-    });
+    if (mounted) {
+      setState(() {
+        _loading = true;
+      });
+    }
     try {
       var client = await context.read<AppState>().client;
       var result = await client.execute(

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:billdivide/extensions/num_extension.dart';
 import 'package:billdivide/models/expensecategory.dart';
+import 'package:billdivide/screens/image_editor.dart';
 import 'package:billdivide/screens/people_finder.dart';
 import 'package:billdivide/utils/color_utils.dart';
 import 'package:billdivide/utils/svg_icons.dart';
@@ -281,36 +282,6 @@ class _CreateExpenseState extends State<CreateExpense>
     resetAmountFromPercentage();
   }
 
-  bool imagePickingLock = false;
-  pickImage() async {
-    var client = await context.read<AppState>().client;
-    imagePickingLock = true;
-    try {
-      final ImagePickerPlatform imagePickerImplementation =
-          ImagePickerPlatform.instance;
-      if (imagePickerImplementation is ImagePickerAndroid) {
-        imagePickerImplementation.useAndroidPhotoPicker = true;
-      }
-      final ImagePicker picker = ImagePicker();
-      final XFile? imageFile =
-          await picker.pickImage(source: ImageSource.gallery);
-      if (imageFile != null) {
-        final decodedImage = image.decodeImage(await imageFile.readAsBytes());
-        if (decodedImage != null) {
-          final avifImage = await resizeAndCompressToAvif(decodedImage, 1);
-          var result = await client.execute(
-              GgetImageUploadUrlReq((b) => b.vars..size = avifImage.length));
-          var url = result.data?.uploadImage.presignedUrl;
-          if (url != null) {
-            uploadImage(url, result.data!.uploadImage.id, avifImage);
-          }
-        }
-      }
-    } finally {
-      imagePickingLock = false;
-    }
-  }
-
   Future<void> uploadImage(
       String presignedUrl, String name, Uint8List imageBytes,
       {Map<String, String>? additionalHeaders}) async {
@@ -348,22 +319,9 @@ class _CreateExpenseState extends State<CreateExpense>
     }
   }
 
-  Future<Uint8List> resizeAndCompressToAvif(
-      image.Image imageDecoded, int iteration) async {
-    var avif = await encodeAvif(image.encodePng(imageDecoded));
-    const maxSize = 1024 * 400;
-    if (avif.length < maxSize) {
-      return avif;
-    } else {
-      if (iteration >= 10) {
-        throw "Too many iteration";
-      }
-      return resizeAndCompressToAvif(
-        image.copyResize(imageDecoded,
-            width: (imageDecoded.width * 0.9).toInt()),
-        iteration + 1,
-      );
-    }
+  pickImage() async {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const ImageEditor()));
   }
 
   @override
