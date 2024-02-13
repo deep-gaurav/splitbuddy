@@ -72,6 +72,8 @@ class _UserPageState extends State<UserPage>
       setState(() {
         _loading = true;
       });
+    } else {
+      return;
     }
     try {
       var client = await context.read<AppState>().client;

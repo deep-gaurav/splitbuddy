@@ -120,8 +120,29 @@ class _ImageEditorState extends State<ImageEditor> {
                 )
             ],
           ),
-          bottomNavigationBar: Text(
-              'Size of Image ${((attachedImage?.length ?? 0) / 1024).toStringAsFixed(2)}KB'),
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () {
+              Navigator.of(context).pop(attachedImage);
+            },
+            label: const Text('Confirm'),
+            icon: const Icon(Icons.check),
+          ),
+          bottomNavigationBar: ButtonBar(
+            children: [
+              ElevatedButton.icon(
+                onPressed: pickImage,
+                icon: const Icon(Icons.edit),
+                label: const Text('Change'),
+              ),
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: const Icon(Icons.delete),
+                label: const Text('Cancel'),
+              ),
+            ],
+          ),
         ),
         if (imageProgress != null)
           Positioned.fill(
