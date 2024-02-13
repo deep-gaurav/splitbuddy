@@ -67,10 +67,10 @@ class _ImageEditorState extends State<ImageEditor> {
 
   Future<Uint8List> resizeAndCompressToAvif(
       image.Image imageDecoded, int iteration) async {
-    var avif = await encodeAvif(image.encodePng(imageDecoded));
     setState(() {
       imageProgress = ('Converting Image #$iteration', null);
     });
+    var avif = await encodeAvif(image.encodePng(imageDecoded));
     const maxSize = 1024 * 400;
     if (avif.length < maxSize) {
       return avif;
