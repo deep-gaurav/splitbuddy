@@ -108,6 +108,7 @@ class _ImageEditorState extends State<ImageEditor> {
             title: const Text('Add Image'),
           ),
           body: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               if (attachedImage != null)
                 Expanded(
