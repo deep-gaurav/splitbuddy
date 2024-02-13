@@ -17,6 +17,7 @@ class PeopleFinder extends StatefulWidget {
   final Widget Function(BuildContext, SearchController) builder;
   final bool canMultiSelect;
   final bool findGroups;
+  final bool hideSingleGroup;
   final ValueNotifier<ExpenseWith?>? people;
   final bool isEditable;
   final Future<bool> Function(ExpenseWith)? onDone;
@@ -31,6 +32,7 @@ class PeopleFinder extends StatefulWidget {
     this.isEditable = true,
     this.onDone,
     this.disableFilter,
+    this.hideSingleGroup = true,
   });
 
   @override
@@ -141,6 +143,7 @@ class _PeopleFinderState extends State<PeopleFinder> {
         final List<Widget> groupsList = <Widget>[
           if (widget.findGroups)
             ...groups
+                .where((element) => !element.isDirectPayment)
                 .where((element) => element
                     .getDisplayName(context.read())
                     .toLowerCase()
