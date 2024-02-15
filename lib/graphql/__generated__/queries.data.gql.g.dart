@@ -333,30 +333,31 @@ Serializer<GautoSettleWithUserData_autoSettleWithUser_amount>
     new _$GautoSettleWithUserData_autoSettleWithUser_amountSerializer();
 Serializer<GtransactionWithUserData> _$gtransactionWithUserDataSerializer =
     new _$GtransactionWithUserDataSerializer();
-Serializer<GtransactionWithUserData_getTransactionsWithUser>
-    _$gtransactionWithUserDataGetTransactionsWithUserSerializer =
-    new _$GtransactionWithUserData_getTransactionsWithUserSerializer();
-Serializer<GtransactionWithUserData_getTransactionsWithUser_expense>
-    _$gtransactionWithUserDataGetTransactionsWithUserExpenseSerializer =
-    new _$GtransactionWithUserData_getTransactionsWithUser_expenseSerializer();
-Serializer<GtransactionWithUserData_getTransactionsWithUser_expense_amount>
-    _$gtransactionWithUserDataGetTransactionsWithUserExpenseAmountSerializer =
-    new _$GtransactionWithUserData_getTransactionsWithUser_expense_amountSerializer();
-Serializer<GtransactionWithUserData_getTransactionsWithUser_group>
-    _$gtransactionWithUserDataGetTransactionsWithUserGroupSerializer =
-    new _$GtransactionWithUserData_getTransactionsWithUser_groupSerializer();
-Serializer<GtransactionWithUserData_getTransactionsWithUser_creator>
-    _$gtransactionWithUserDataGetTransactionsWithUserCreatorSerializer =
-    new _$GtransactionWithUserData_getTransactionsWithUser_creatorSerializer();
-Serializer<GtransactionWithUserData_getTransactionsWithUser_fromUser>
-    _$gtransactionWithUserDataGetTransactionsWithUserFromUserSerializer =
-    new _$GtransactionWithUserData_getTransactionsWithUser_fromUserSerializer();
-Serializer<GtransactionWithUserData_getTransactionsWithUser_toUser>
-    _$gtransactionWithUserDataGetTransactionsWithUserToUserSerializer =
-    new _$GtransactionWithUserData_getTransactionsWithUser_toUserSerializer();
-Serializer<GtransactionWithUserData_getTransactionsWithUser_amount>
-    _$gtransactionWithUserDataGetTransactionsWithUserAmountSerializer =
-    new _$GtransactionWithUserData_getTransactionsWithUser_amountSerializer();
+Serializer<GtransactionWithUserData_getTransactionsMixExpenseWithUser>
+    _$gtransactionWithUserDataGetTransactionsMixExpenseWithUserSerializer =
+    new _$GtransactionWithUserData_getTransactionsMixExpenseWithUserSerializer();
+Serializer<GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense>
+    _$gtransactionWithUserDataGetTransactionsMixExpenseWithUserExpenseSerializer =
+    new _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseSerializer();
+Serializer<
+        GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount>
+    _$gtransactionWithUserDataGetTransactionsMixExpenseWithUserExpenseAmountSerializer =
+    new _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountSerializer();
+Serializer<GtransactionWithUserData_getTransactionsMixExpenseWithUser_split>
+    _$gtransactionWithUserDataGetTransactionsMixExpenseWithUserSplitSerializer =
+    new _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitSerializer();
+Serializer<
+        GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser>
+    _$gtransactionWithUserDataGetTransactionsMixExpenseWithUserSplitFromUserSerializer =
+    new _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserSerializer();
+Serializer<
+        GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser>
+    _$gtransactionWithUserDataGetTransactionsMixExpenseWithUserSplitToUserSerializer =
+    new _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserSerializer();
+Serializer<
+        GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount>
+    _$gtransactionWithUserDataGetTransactionsMixExpenseWithUserSplitAmountSerializer =
+    new _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountSerializer();
 Serializer<GtransactionMixExpenseData> _$gtransactionMixExpenseDataSerializer =
     new _$GtransactionMixExpenseDataSerializer();
 Serializer<GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup>
@@ -450,6 +451,8 @@ Serializer<GgetImageUploadUrlData> _$ggetImageUploadUrlDataSerializer =
 Serializer<GgetImageUploadUrlData_uploadImage>
     _$ggetImageUploadUrlDataUploadImageSerializer =
     new _$GgetImageUploadUrlData_uploadImageSerializer();
+Serializer<GgetImageViewUrlData> _$ggetImageViewUrlDataSerializer =
+    new _$GgetImageViewUrlDataSerializer();
 Serializer<GUploadFieldsData> _$gUploadFieldsDataSerializer =
     new _$GUploadFieldsDataSerializer();
 Serializer<GUserFieldsData> _$gUserFieldsDataSerializer =
@@ -3192,13 +3195,6 @@ class _$GgroupData_group_expensesSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -3262,10 +3258,6 @@ class _$GgroupData_group_expensesSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -3447,13 +3439,6 @@ class _$GgroupData_group_expenses_splitsSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -3534,10 +3519,6 @@ class _$GgroupData_group_expenses_splitsSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -5024,13 +5005,6 @@ class _$Gadd_expenseData_addExpenseSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -5088,10 +5062,6 @@ class _$Gadd_expenseData_addExpenseSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -5197,13 +5167,6 @@ class _$Gadd_expenseData_addExpense_splitsSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -5304,10 +5267,6 @@ class _$Gadd_expenseData_addExpense_splitsSerializer
           result.imageId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
       }
     }
 
@@ -5368,13 +5327,6 @@ class _$Gadd_expenseData_addExpense_splits_expenseSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -5426,10 +5378,6 @@ class _$Gadd_expenseData_addExpense_splits_expenseSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -7101,13 +7049,6 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expenseSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -7167,10 +7108,6 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expenseSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -7279,13 +7216,6 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -7387,10 +7317,6 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsSerializer
           result.imageId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
       }
     }
 
@@ -7455,13 +7381,6 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseSeri
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -7514,10 +7433,6 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseSeri
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -8229,13 +8144,6 @@ class _$GsettleInGroupData_settleInGroupSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -8336,10 +8244,6 @@ class _$GsettleInGroupData_settleInGroupSerializer
           result.imageId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
       }
     }
 
@@ -8399,13 +8303,6 @@ class _$GsettleInGroupData_settleInGroup_expenseSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -8457,10 +8354,6 @@ class _$GsettleInGroupData_settleInGroup_expenseSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -9076,13 +8969,6 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -9183,10 +9069,6 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
           result.imageId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
       }
     }
 
@@ -9247,13 +9129,6 @@ class _$GsimplifyUserData_simplifyCrossGroup_expenseSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -9305,10 +9180,6 @@ class _$GsimplifyUserData_simplifyCrossGroup_expenseSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -9937,13 +9808,6 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -10044,10 +9908,6 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
           result.imageId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
       }
     }
 
@@ -10109,13 +9969,6 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expenseSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -10168,10 +10021,6 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expenseSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -10674,10 +10523,11 @@ class _$GtransactionWithUserDataSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'getTransactionsWithUser',
-      serializers.serialize(object.getTransactionsWithUser,
+      'getTransactionsMixExpenseWithUser',
+      serializers.serialize(object.getTransactionsMixExpenseWithUser,
           specifiedType: const FullType(BuiltList, const [
-            const FullType(GtransactionWithUserData_getTransactionsWithUser)
+            const FullType(
+                GtransactionWithUserData_getTransactionsMixExpenseWithUser)
           ])),
     ];
 
@@ -10700,11 +10550,13 @@ class _$GtransactionWithUserDataSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
-        case 'getTransactionsWithUser':
-          result.getTransactionsWithUser.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(GtransactionWithUserData_getTransactionsWithUser)
-              ]))! as BuiltList<Object?>);
+        case 'getTransactionsMixExpenseWithUser':
+          result.getTransactionsMixExpenseWithUser.replace(
+              serializers.deserialize(value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(
+                        GtransactionWithUserData_getTransactionsMixExpenseWithUser)
+                  ]))! as BuiltList<Object?>);
           break;
       }
     }
@@ -10713,47 +10565,300 @@ class _$GtransactionWithUserDataSerializer
   }
 }
 
-class _$GtransactionWithUserData_getTransactionsWithUserSerializer
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUserSerializer
     implements
-        StructuredSerializer<GtransactionWithUserData_getTransactionsWithUser> {
+        StructuredSerializer<
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser> {
   @override
   final Iterable<Type> types = const [
-    GtransactionWithUserData_getTransactionsWithUser,
-    _$GtransactionWithUserData_getTransactionsWithUser
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser,
+    _$GtransactionWithUserData_getTransactionsMixExpenseWithUser
   ];
   @override
-  final String wireName = 'GtransactionWithUserData_getTransactionsWithUser';
+  final String wireName =
+      'GtransactionWithUserData_getTransactionsMixExpenseWithUser';
 
   @override
   Iterable<Object?> serialize(Serializers serializers,
-      GtransactionWithUserData_getTransactionsWithUser object,
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'group',
-      serializers.serialize(object.group,
+    ];
+    Object? value;
+    value = object.expense;
+    if (value != null) {
+      result
+        ..add('expense')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense)));
+    }
+    value = object.split;
+    if (value != null) {
+      result
+        ..add('split')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                GtransactionWithUserData_getTransactionsMixExpenseWithUser_split)));
+    }
+    return result;
+  }
+
+  @override
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GtransactionWithUserData_getTransactionsMixExpenseWithUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'expense':
+          result.expense.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense))!
+              as GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense);
+          break;
+        case 'split':
+          result.split.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GtransactionWithUserData_getTransactionsMixExpenseWithUser_split))!
+              as GtransactionWithUserData_getTransactionsMixExpenseWithUser_split);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseSerializer
+    implements
+        StructuredSerializer<
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense> {
+  @override
+  final Iterable<Type> types = const [
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense,
+    _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
+  ];
+  @override
+  final String wireName =
+      'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'category',
+      serializers.serialize(object.category,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount,
           specifiedType: const FullType(
-              GtransactionWithUserData_getTransactionsWithUser_group)),
-      'creator',
-      serializers.serialize(object.creator,
-          specifiedType: const FullType(
-              GtransactionWithUserData_getTransactionsWithUser_creator)),
+              GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
+      deserialize(Serializers serializers, Iterable<Object?> serialized,
+          {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'category':
+          result.category = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount))!
+              as GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount);
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountSerializer
+    implements
+        StructuredSerializer<
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount> {
+  @override
+  final Iterable<Type> types = const [
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount,
+    _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount
+  ];
+  @override
+  final String wireName =
+      'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers,
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount
+          object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'currencyId',
+      serializers.serialize(object.currencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount
+      deserialize(Serializers serializers, Iterable<Object?> serialized,
+          {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'currencyId':
+          result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitSerializer
+    implements
+        StructuredSerializer<
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_split> {
+  @override
+  final Iterable<Type> types = const [
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser_split,
+    _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split
+  ];
+  @override
+  final String wireName =
+      'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser_split object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
       'fromUser',
       serializers.serialize(object.fromUser,
           specifiedType: const FullType(
-              GtransactionWithUserData_getTransactionsWithUser_fromUser)),
+              GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser)),
       'toUser',
       serializers.serialize(object.toUser,
           specifiedType: const FullType(
-              GtransactionWithUserData_getTransactionsWithUser_toUser)),
+              GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
       'amount',
       serializers.serialize(object.amount,
           specifiedType: const FullType(
-              GtransactionWithUserData_getTransactionsWithUser_amount)),
+              GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount)),
       'transactionType',
       serializers.serialize(object.transactionType,
           specifiedType: const FullType(_i3.GTransactionType)),
@@ -10774,14 +10879,6 @@ class _$GtransactionWithUserData_getTransactionsWithUserSerializer
           specifiedType: const FullType(String)),
     ];
     Object? value;
-    value = object.expense;
-    if (value != null) {
-      result
-        ..add('expense')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                GtransactionWithUserData_getTransactionsWithUser_expense)));
-    }
     value = object.transactionPartGroupId;
     if (value != null) {
       result
@@ -10810,22 +10907,15 @@ class _$GtransactionWithUserData_getTransactionsWithUserSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
   @override
-  GtransactionWithUserData_getTransactionsWithUser deserialize(
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result =
-        new GtransactionWithUserData_getTransactionsWithUserBuilder();
+        new GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -10837,35 +10927,17 @@ class _$GtransactionWithUserData_getTransactionsWithUserSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
-        case 'expense':
-          result.expense.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GtransactionWithUserData_getTransactionsWithUser_expense))!
-              as GtransactionWithUserData_getTransactionsWithUser_expense);
-          break;
-        case 'group':
-          result.group.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GtransactionWithUserData_getTransactionsWithUser_group))!
-              as GtransactionWithUserData_getTransactionsWithUser_group);
-          break;
-        case 'creator':
-          result.creator.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GtransactionWithUserData_getTransactionsWithUser_creator))!
-              as GtransactionWithUserData_getTransactionsWithUser_creator);
-          break;
         case 'fromUser':
           result.fromUser.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      GtransactionWithUserData_getTransactionsWithUser_fromUser))!
-              as GtransactionWithUserData_getTransactionsWithUser_fromUser);
+                      GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser))!
+              as GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser);
           break;
         case 'toUser':
           result.toUser.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      GtransactionWithUserData_getTransactionsWithUser_toUser))!
-              as GtransactionWithUserData_getTransactionsWithUser_toUser);
+                      GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser))!
+              as GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser);
           break;
         case 'id':
           result.id = serializers.deserialize(value,
@@ -10874,8 +10946,8 @@ class _$GtransactionWithUserData_getTransactionsWithUserSerializer
         case 'amount':
           result.amount.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      GtransactionWithUserData_getTransactionsWithUser_amount))!
-              as GtransactionWithUserData_getTransactionsWithUser_amount);
+                      GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount))!
+              as GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount);
           break;
         case 'transactionType':
           result.transactionType = serializers.deserialize(value,
@@ -10918,10 +10990,6 @@ class _$GtransactionWithUserData_getTransactionsWithUserSerializer
           result.imageId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
       }
     }
 
@@ -10929,279 +10997,24 @@ class _$GtransactionWithUserData_getTransactionsWithUserSerializer
   }
 }
 
-class _$GtransactionWithUserData_getTransactionsWithUser_expenseSerializer
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserSerializer
     implements
         StructuredSerializer<
-            GtransactionWithUserData_getTransactionsWithUser_expense> {
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser> {
   @override
   final Iterable<Type> types = const [
-    GtransactionWithUserData_getTransactionsWithUser_expense,
-    _$GtransactionWithUserData_getTransactionsWithUser_expense
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser,
+    _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser
   ];
   @override
   final String wireName =
-      'GtransactionWithUserData_getTransactionsWithUser_expense';
+      'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GtransactionWithUserData_getTransactionsWithUser_expense object,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'title',
-      serializers.serialize(object.title,
-          specifiedType: const FullType(String)),
-      'createdAt',
-      serializers.serialize(object.createdAt,
-          specifiedType: const FullType(String)),
-      'category',
-      serializers.serialize(object.category,
-          specifiedType: const FullType(String)),
-      'amount',
-      serializers.serialize(object.amount,
-          specifiedType: const FullType(
-              GtransactionWithUserData_getTransactionsWithUser_expense_amount)),
-      'creatorId',
-      serializers.serialize(object.creatorId,
-          specifiedType: const FullType(String)),
-    ];
-    Object? value;
-    value = object.note;
-    if (value != null) {
-      result
-        ..add('note')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.imageId;
-    if (value != null) {
-      result
-        ..add('imageId')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    return result;
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_expense deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result =
-        new GtransactionWithUserData_getTransactionsWithUser_expenseBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current! as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'title':
-          result.title = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'createdAt':
-          result.createdAt = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'category':
-          result.category = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'amount':
-          result.amount.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GtransactionWithUserData_getTransactionsWithUser_expense_amount))!
-              as GtransactionWithUserData_getTransactionsWithUser_expense_amount);
-          break;
-        case 'creatorId':
-          result.creatorId = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'note':
-          result.note = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageId':
-          result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
-class _$GtransactionWithUserData_getTransactionsWithUser_expense_amountSerializer
-    implements
-        StructuredSerializer<
-            GtransactionWithUserData_getTransactionsWithUser_expense_amount> {
-  @override
-  final Iterable<Type> types = const [
-    GtransactionWithUserData_getTransactionsWithUser_expense_amount,
-    _$GtransactionWithUserData_getTransactionsWithUser_expense_amount
-  ];
-  @override
-  final String wireName =
-      'GtransactionWithUserData_getTransactionsWithUser_expense_amount';
-
-  @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GtransactionWithUserData_getTransactionsWithUser_expense_amount object,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
-      'amount',
-      serializers.serialize(object.amount, specifiedType: const FullType(int)),
-      'currencyId',
-      serializers.serialize(object.currencyId,
-          specifiedType: const FullType(String)),
-    ];
-
-    return result;
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_expense_amount deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result =
-        new GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current! as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'amount':
-          result.amount = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
-          break;
-        case 'currencyId':
-          result.currencyId = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
-class _$GtransactionWithUserData_getTransactionsWithUser_groupSerializer
-    implements
-        StructuredSerializer<
-            GtransactionWithUserData_getTransactionsWithUser_group> {
-  @override
-  final Iterable<Type> types = const [
-    GtransactionWithUserData_getTransactionsWithUser_group,
-    _$GtransactionWithUserData_getTransactionsWithUser_group
-  ];
-  @override
-  final String wireName =
-      'GtransactionWithUserData_getTransactionsWithUser_group';
-
-  @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GtransactionWithUserData_getTransactionsWithUser_group object,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(String)),
-    ];
-    Object? value;
-    value = object.name;
-    if (value != null) {
-      result
-        ..add('name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    return result;
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_group deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result =
-        new GtransactionWithUserData_getTransactionsWithUser_groupBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current! as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
-class _$GtransactionWithUserData_getTransactionsWithUser_creatorSerializer
-    implements
-        StructuredSerializer<
-            GtransactionWithUserData_getTransactionsWithUser_creator> {
-  @override
-  final Iterable<Type> types = const [
-    GtransactionWithUserData_getTransactionsWithUser_creator,
-    _$GtransactionWithUserData_getTransactionsWithUser_creator
-  ];
-  @override
-  final String wireName =
-      'GtransactionWithUserData_getTransactionsWithUser_creator';
-
-  @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GtransactionWithUserData_getTransactionsWithUser_creator object,
+  Iterable<Object?> serialize(
+      Serializers serializers,
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser
+          object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -11239,11 +11052,11 @@ class _$GtransactionWithUserData_getTransactionsWithUser_creatorSerializer
   }
 
   @override
-  GtransactionWithUserData_getTransactionsWithUser_creator deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser
+      deserialize(Serializers serializers, Iterable<Object?> serialized,
+          {FullType specifiedType = FullType.unspecified}) {
     final result =
-        new GtransactionWithUserData_getTransactionsWithUser_creatorBuilder();
+        new GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -11282,22 +11095,24 @@ class _$GtransactionWithUserData_getTransactionsWithUser_creatorSerializer
   }
 }
 
-class _$GtransactionWithUserData_getTransactionsWithUser_fromUserSerializer
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserSerializer
     implements
         StructuredSerializer<
-            GtransactionWithUserData_getTransactionsWithUser_fromUser> {
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser> {
   @override
   final Iterable<Type> types = const [
-    GtransactionWithUserData_getTransactionsWithUser_fromUser,
-    _$GtransactionWithUserData_getTransactionsWithUser_fromUser
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser,
+    _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser
   ];
   @override
   final String wireName =
-      'GtransactionWithUserData_getTransactionsWithUser_fromUser';
+      'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GtransactionWithUserData_getTransactionsWithUser_fromUser object,
+  Iterable<Object?> serialize(
+      Serializers serializers,
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser
+          object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -11335,11 +11150,11 @@ class _$GtransactionWithUserData_getTransactionsWithUser_fromUserSerializer
   }
 
   @override
-  GtransactionWithUserData_getTransactionsWithUser_fromUser deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser
+      deserialize(Serializers serializers, Iterable<Object?> serialized,
+          {FullType specifiedType = FullType.unspecified}) {
     final result =
-        new GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder();
+        new GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -11378,118 +11193,24 @@ class _$GtransactionWithUserData_getTransactionsWithUser_fromUserSerializer
   }
 }
 
-class _$GtransactionWithUserData_getTransactionsWithUser_toUserSerializer
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountSerializer
     implements
         StructuredSerializer<
-            GtransactionWithUserData_getTransactionsWithUser_toUser> {
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount> {
   @override
   final Iterable<Type> types = const [
-    GtransactionWithUserData_getTransactionsWithUser_toUser,
-    _$GtransactionWithUserData_getTransactionsWithUser_toUser
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount,
+    _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount
   ];
   @override
   final String wireName =
-      'GtransactionWithUserData_getTransactionsWithUser_toUser';
+      'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GtransactionWithUserData_getTransactionsWithUser_toUser object,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'isSignedUp',
-      serializers.serialize(object.isSignedUp,
-          specifiedType: const FullType(bool)),
-    ];
-    Object? value;
-    value = object.name;
-    if (value != null) {
-      result
-        ..add('name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.phone;
-    if (value != null) {
-      result
-        ..add('phone')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.email;
-    if (value != null) {
-      result
-        ..add('email')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    return result;
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_toUser deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result =
-        new GtransactionWithUserData_getTransactionsWithUser_toUserBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current! as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
-          break;
-        case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'phone':
-          result.phone = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'email':
-          result.email = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'isSignedUp':
-          result.isSignedUp = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
-class _$GtransactionWithUserData_getTransactionsWithUser_amountSerializer
-    implements
-        StructuredSerializer<
-            GtransactionWithUserData_getTransactionsWithUser_amount> {
-  @override
-  final Iterable<Type> types = const [
-    GtransactionWithUserData_getTransactionsWithUser_amount,
-    _$GtransactionWithUserData_getTransactionsWithUser_amount
-  ];
-  @override
-  final String wireName =
-      'GtransactionWithUserData_getTransactionsWithUser_amount';
-
-  @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GtransactionWithUserData_getTransactionsWithUser_amount object,
+  Iterable<Object?> serialize(
+      Serializers serializers,
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount
+          object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -11506,11 +11227,11 @@ class _$GtransactionWithUserData_getTransactionsWithUser_amountSerializer
   }
 
   @override
-  GtransactionWithUserData_getTransactionsWithUser_amount deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount
+      deserialize(Serializers serializers, Iterable<Object?> serialized,
+          {FullType specifiedType = FullType.unspecified}) {
     final result =
-        new GtransactionWithUserData_getTransactionsWithUser_amountBuilder();
+        new GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -11732,13 +11453,6 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseSer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -11791,10 +11505,6 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseSer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -11954,13 +11664,6 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitSeria
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -12042,10 +11745,6 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitSeria
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -12578,13 +12277,6 @@ class _$GcurrencyConvertData_convertCurrencySerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -12685,10 +12377,6 @@ class _$GcurrencyConvertData_convertCurrencySerializer
           result.imageId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
       }
     }
 
@@ -12749,13 +12437,6 @@ class _$GcurrencyConvertData_convertCurrency_expenseSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -12807,10 +12488,6 @@ class _$GcurrencyConvertData_convertCurrency_expenseSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -13610,13 +13287,6 @@ class _$GgetTransactionsData_getTransactions_expenseSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -13668,10 +13338,6 @@ class _$GgetTransactionsData_getTransactions_expenseSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -13824,13 +13490,6 @@ class _$GgetTransactionsData_getTransactions_splitSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -13911,10 +13570,6 @@ class _$GgetTransactionsData_getTransactions_splitSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -14334,6 +13989,59 @@ class _$GgetImageUploadUrlData_uploadImageSerializer
           break;
         case 'presignedUrl':
           result.presignedUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetImageViewUrlDataSerializer
+    implements StructuredSerializer<GgetImageViewUrlData> {
+  @override
+  final Iterable<Type> types = const [
+    GgetImageViewUrlData,
+    _$GgetImageViewUrlData
+  ];
+  @override
+  final String wireName = 'GgetImageViewUrlData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetImageViewUrlData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'imageUrl',
+      serializers.serialize(object.imageUrl,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetImageViewUrlData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetImageViewUrlDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'imageUrl':
+          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
       }
@@ -15351,13 +15059,6 @@ class _$GExpenseBasicDataSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -15408,10 +15109,6 @@ class _$GExpenseBasicDataSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -15535,13 +15232,6 @@ class _$GExpenseFieldsDataSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -15592,10 +15282,6 @@ class _$GExpenseFieldsDataSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'creator':
@@ -15844,13 +15530,6 @@ class _$GExpenseFieldsData_splitsSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -15931,10 +15610,6 @@ class _$GExpenseFieldsData_splitsSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -16242,13 +15917,6 @@ class _$GNewExpenseFieldsDataSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -16299,10 +15967,6 @@ class _$GNewExpenseFieldsDataSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'splits':
@@ -16468,13 +16132,6 @@ class _$GNewExpenseFieldsData_splitsSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -16575,10 +16232,6 @@ class _$GNewExpenseFieldsData_splitsSerializer
           result.imageId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
       }
     }
 
@@ -16638,13 +16291,6 @@ class _$GNewExpenseFieldsData_splits_expenseSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -16696,10 +16342,6 @@ class _$GNewExpenseFieldsData_splits_expenseSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -17287,13 +16929,6 @@ class _$GSplitFieldsBasicsDataSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -17361,10 +16996,6 @@ class _$GSplitFieldsBasicsDataSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -17506,13 +17137,6 @@ class _$GSplitFieldsDataSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -17580,10 +17204,6 @@ class _$GSplitFieldsDataSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'fromUser':
@@ -17929,13 +17549,6 @@ class _$GSplitTransactionFieldsDataSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.expense;
     if (value != null) {
       result
@@ -18024,10 +17637,6 @@ class _$GSplitTransactionFieldsDataSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'expense':
@@ -18350,13 +17959,6 @@ class _$GSplitTransactionFieldsData_expenseSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -18408,10 +18010,6 @@ class _$GSplitTransactionFieldsData_expenseSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -19105,13 +18703,6 @@ class _$GGroupWithExpensesData_expensesSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -19175,10 +18766,6 @@ class _$GGroupWithExpensesData_expensesSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -19360,13 +18947,6 @@ class _$GGroupWithExpensesData_expenses_splitsSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -19447,10 +19027,6 @@ class _$GGroupWithExpensesData_expenses_splitsSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -19889,13 +19465,6 @@ class _$GExpenseMixSplitFieldsData_expenseSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -19947,10 +19516,6 @@ class _$GExpenseMixSplitFieldsData_expenseSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -20099,13 +19664,6 @@ class _$GExpenseMixSplitFieldsData_splitSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.imageUrl;
-    if (value != null) {
-      result
-        ..add('imageUrl')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     return result;
   }
 
@@ -20186,10 +19744,6 @@ class _$GExpenseMixSplitFieldsData_splitSerializer
           break;
         case 'imageId':
           result.imageId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'imageUrl':
-          result.imageUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -25569,8 +25123,6 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GgroupData_group_expenses(
           [void Function(GgroupData_group_expensesBuilder)? updates]) =>
@@ -25587,8 +25139,7 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgroupData_group_expenses', 'G__typename');
@@ -25633,8 +25184,7 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -25651,7 +25201,6 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -25669,8 +25218,7 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -25730,10 +25278,6 @@ class GgroupData_group_expensesBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GgroupData_group_expensesBuilder() {
     GgroupData_group_expenses._initializeBuilder(this);
   }
@@ -25752,7 +25296,6 @@ class GgroupData_group_expensesBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -25793,8 +25336,7 @@ class GgroupData_group_expensesBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GgroupData_group_expenses', 'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -26011,8 +25553,6 @@ class _$GgroupData_group_expenses_splits
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GgroupData_group_expenses_splits(
           [void Function(GgroupData_group_expenses_splitsBuilder)? updates]) =>
@@ -26033,8 +25573,7 @@ class _$GgroupData_group_expenses_splits
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GgroupData_group_expenses_splits', 'G__typename');
@@ -26087,8 +25626,7 @@ class _$GgroupData_group_expenses_splits
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -26109,7 +25647,6 @@ class _$GgroupData_group_expenses_splits
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -26131,8 +25668,7 @@ class _$GgroupData_group_expenses_splits
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -26212,10 +25748,6 @@ class GgroupData_group_expenses_splitsBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GgroupData_group_expenses_splitsBuilder() {
     GgroupData_group_expenses_splits._initializeBuilder(this);
   }
@@ -26238,7 +25770,6 @@ class GgroupData_group_expenses_splitsBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -26284,8 +25815,7 @@ class GgroupData_group_expenses_splitsBuilder
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GgroupData_group_expenses_splits', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -29188,8 +28718,6 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$Gadd_expenseData_addExpense(
           [void Function(Gadd_expenseData_addExpenseBuilder)? updates]) =>
@@ -29205,8 +28733,7 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'Gadd_expenseData_addExpense', 'G__typename');
@@ -29248,8 +28775,7 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -29265,7 +28791,6 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -29282,8 +28807,7 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -29338,10 +28862,6 @@ class Gadd_expenseData_addExpenseBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   Gadd_expenseData_addExpenseBuilder() {
     Gadd_expenseData_addExpense._initializeBuilder(this);
   }
@@ -29359,7 +28879,6 @@ class Gadd_expenseData_addExpenseBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -29399,8 +28918,7 @@ class Gadd_expenseData_addExpenseBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'Gadd_expenseData_addExpense', 'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -29458,8 +28976,6 @@ class _$Gadd_expenseData_addExpense_splits
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$Gadd_expenseData_addExpense_splits(
           [void Function(Gadd_expenseData_addExpense_splitsBuilder)?
@@ -29485,8 +29001,7 @@ class _$Gadd_expenseData_addExpense_splits
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'Gadd_expenseData_addExpense_splits', 'G__typename');
@@ -29546,8 +29061,7 @@ class _$Gadd_expenseData_addExpense_splits
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -29571,7 +29085,6 @@ class _$Gadd_expenseData_addExpense_splits
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -29596,8 +29109,7 @@ class _$Gadd_expenseData_addExpense_splits
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -29697,10 +29209,6 @@ class Gadd_expenseData_addExpense_splitsBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   Gadd_expenseData_addExpense_splitsBuilder() {
     Gadd_expenseData_addExpense_splits._initializeBuilder(this);
   }
@@ -29726,7 +29234,6 @@ class Gadd_expenseData_addExpense_splitsBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -29776,8 +29283,7 @@ class Gadd_expenseData_addExpense_splitsBuilder
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'Gadd_expenseData_addExpense_splits', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -29825,8 +29331,6 @@ class _$Gadd_expenseData_addExpense_splits_expense
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$Gadd_expenseData_addExpense_splits_expense(
           [void Function(Gadd_expenseData_addExpense_splits_expenseBuilder)?
@@ -29843,8 +29347,7 @@ class _$Gadd_expenseData_addExpense_splits_expense
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'Gadd_expenseData_addExpense_splits_expense', 'G__typename');
@@ -29884,8 +29387,7 @@ class _$Gadd_expenseData_addExpense_splits_expense
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -29900,7 +29402,6 @@ class _$Gadd_expenseData_addExpense_splits_expense
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -29917,8 +29418,7 @@ class _$Gadd_expenseData_addExpense_splits_expense
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -29969,10 +29469,6 @@ class Gadd_expenseData_addExpense_splits_expenseBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   Gadd_expenseData_addExpense_splits_expenseBuilder() {
     Gadd_expenseData_addExpense_splits_expense._initializeBuilder(this);
   }
@@ -29989,7 +29485,6 @@ class Gadd_expenseData_addExpense_splits_expenseBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -30030,8 +29525,7 @@ class Gadd_expenseData_addExpense_splits_expenseBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
                   r'Gadd_expenseData_addExpense_splits_expense', 'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -33424,8 +32918,6 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GcreateNonGroupExpenseData_addNonGroupExpense_expense(
           [void Function(
@@ -33445,8 +32937,7 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -33493,8 +32984,7 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -33510,7 +33000,6 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -33528,8 +33017,7 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -33592,10 +33080,6 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder() {
     GcreateNonGroupExpenseData_addNonGroupExpense_expense._initializeBuilder(
         this);
@@ -33614,7 +33098,6 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -33661,8 +33144,7 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
                   r'GcreateNonGroupExpenseData_addNonGroupExpense_expense',
                   'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -33728,8 +33210,6 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits(
           [void Function(
@@ -33757,8 +33237,7 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -33847,8 +33326,7 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -33872,7 +33350,6 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -33898,8 +33375,7 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -34020,10 +33496,6 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder() {
     GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
         ._initializeBuilder(this);
@@ -34051,7 +33523,6 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -34110,8 +33581,7 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -34162,8 +33632,6 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense(
           [void Function(
@@ -34182,8 +33650,7 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -34241,8 +33708,7 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -34257,7 +33723,6 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -34274,8 +33739,7 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -34329,10 +33793,6 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseBuilde
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseBuilder() {
     GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
         ._initializeBuilder(this);
@@ -34351,7 +33811,6 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseBuilde
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -34403,8 +33862,7 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseBuilde
                   r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense',
                   'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -35791,8 +35249,6 @@ class _$GsettleInGroupData_settleInGroup
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GsettleInGroupData_settleInGroup(
           [void Function(GsettleInGroupData_settleInGroupBuilder)? updates]) =>
@@ -35816,8 +35272,7 @@ class _$GsettleInGroupData_settleInGroup
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GsettleInGroupData_settleInGroup', 'G__typename');
@@ -35877,8 +35332,7 @@ class _$GsettleInGroupData_settleInGroup
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -35902,7 +35356,6 @@ class _$GsettleInGroupData_settleInGroup
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -35927,8 +35380,7 @@ class _$GsettleInGroupData_settleInGroup
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -36026,10 +35478,6 @@ class GsettleInGroupData_settleInGroupBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GsettleInGroupData_settleInGroupBuilder() {
     GsettleInGroupData_settleInGroup._initializeBuilder(this);
   }
@@ -36055,7 +35503,6 @@ class GsettleInGroupData_settleInGroupBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -36104,8 +35551,7 @@ class GsettleInGroupData_settleInGroupBuilder
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsettleInGroupData_settleInGroup', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -36153,8 +35599,6 @@ class _$GsettleInGroupData_settleInGroup_expense
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GsettleInGroupData_settleInGroup_expense(
           [void Function(GsettleInGroupData_settleInGroup_expenseBuilder)?
@@ -36171,8 +35615,7 @@ class _$GsettleInGroupData_settleInGroup_expense
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GsettleInGroupData_settleInGroup_expense', 'G__typename');
@@ -36212,8 +35655,7 @@ class _$GsettleInGroupData_settleInGroup_expense
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -36228,7 +35670,6 @@ class _$GsettleInGroupData_settleInGroup_expense
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -36245,8 +35686,7 @@ class _$GsettleInGroupData_settleInGroup_expense
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -36296,10 +35736,6 @@ class GsettleInGroupData_settleInGroup_expenseBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GsettleInGroupData_settleInGroup_expenseBuilder() {
     GsettleInGroupData_settleInGroup_expense._initializeBuilder(this);
   }
@@ -36316,7 +35752,6 @@ class GsettleInGroupData_settleInGroup_expenseBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -36356,8 +35791,7 @@ class GsettleInGroupData_settleInGroup_expenseBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
                   r'GsettleInGroupData_settleInGroup_expense', 'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -37428,8 +36862,6 @@ class _$GsimplifyUserData_simplifyCrossGroup
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GsimplifyUserData_simplifyCrossGroup(
           [void Function(GsimplifyUserData_simplifyCrossGroupBuilder)?
@@ -37455,8 +36887,7 @@ class _$GsimplifyUserData_simplifyCrossGroup
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GsimplifyUserData_simplifyCrossGroup', 'G__typename');
@@ -37516,8 +36947,7 @@ class _$GsimplifyUserData_simplifyCrossGroup
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -37541,7 +36971,6 @@ class _$GsimplifyUserData_simplifyCrossGroup
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -37566,8 +36995,7 @@ class _$GsimplifyUserData_simplifyCrossGroup
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -37670,10 +37098,6 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GsimplifyUserData_simplifyCrossGroupBuilder() {
     GsimplifyUserData_simplifyCrossGroup._initializeBuilder(this);
   }
@@ -37699,7 +37123,6 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -37749,8 +37172,7 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsimplifyUserData_simplifyCrossGroup', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -37800,8 +37222,6 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GsimplifyUserData_simplifyCrossGroup_expense(
           [void Function(GsimplifyUserData_simplifyCrossGroup_expenseBuilder)?
@@ -37819,8 +37239,7 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GsimplifyUserData_simplifyCrossGroup_expense', 'G__typename');
@@ -37860,8 +37279,7 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -37876,7 +37294,6 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -37893,8 +37310,7 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -37945,10 +37361,6 @@ class GsimplifyUserData_simplifyCrossGroup_expenseBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GsimplifyUserData_simplifyCrossGroup_expenseBuilder() {
     GsimplifyUserData_simplifyCrossGroup_expense._initializeBuilder(this);
   }
@@ -37965,7 +37377,6 @@ class GsimplifyUserData_simplifyCrossGroup_expenseBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -38008,8 +37419,7 @@ class GsimplifyUserData_simplifyCrossGroup_expenseBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
                   r'GsimplifyUserData_simplifyCrossGroup_expense', 'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -39099,8 +38509,6 @@ class _$GautoSettleWithUserData_autoSettleWithUser
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GautoSettleWithUserData_autoSettleWithUser(
           [void Function(GautoSettleWithUserData_autoSettleWithUserBuilder)?
@@ -39126,8 +38534,7 @@ class _$GautoSettleWithUserData_autoSettleWithUser
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GautoSettleWithUserData_autoSettleWithUser', 'G__typename');
@@ -39188,8 +38595,7 @@ class _$GautoSettleWithUserData_autoSettleWithUser
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -39213,7 +38619,6 @@ class _$GautoSettleWithUserData_autoSettleWithUser
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -39239,8 +38644,7 @@ class _$GautoSettleWithUserData_autoSettleWithUser
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -39349,10 +38753,6 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GautoSettleWithUserData_autoSettleWithUserBuilder() {
     GautoSettleWithUserData_autoSettleWithUser._initializeBuilder(this);
   }
@@ -39378,7 +38778,6 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -39429,8 +38828,7 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GautoSettleWithUserData_autoSettleWithUser', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -39480,8 +38878,6 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GautoSettleWithUserData_autoSettleWithUser_expense(
           [void Function(
@@ -39500,8 +38896,7 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GautoSettleWithUserData_autoSettleWithUser_expense', 'G__typename');
@@ -39543,8 +38938,7 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -39559,7 +38953,6 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -39576,8 +38969,7 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -39629,10 +39021,6 @@ class GautoSettleWithUserData_autoSettleWithUser_expenseBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GautoSettleWithUserData_autoSettleWithUser_expenseBuilder() {
     GautoSettleWithUserData_autoSettleWithUser_expense._initializeBuilder(this);
   }
@@ -39649,7 +39037,6 @@ class GautoSettleWithUserData_autoSettleWithUser_expenseBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -39694,8 +39081,7 @@ class GautoSettleWithUserData_autoSettleWithUser_expenseBuilder
                   r'GautoSettleWithUserData_autoSettleWithUser_expense',
                   'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -40663,20 +40049,21 @@ class _$GtransactionWithUserData extends GtransactionWithUserData {
   @override
   final String G__typename;
   @override
-  final BuiltList<GtransactionWithUserData_getTransactionsWithUser>
-      getTransactionsWithUser;
+  final BuiltList<GtransactionWithUserData_getTransactionsMixExpenseWithUser>
+      getTransactionsMixExpenseWithUser;
 
   factory _$GtransactionWithUserData(
           [void Function(GtransactionWithUserDataBuilder)? updates]) =>
       (new GtransactionWithUserDataBuilder()..update(updates))._build();
 
   _$GtransactionWithUserData._(
-      {required this.G__typename, required this.getTransactionsWithUser})
+      {required this.G__typename,
+      required this.getTransactionsMixExpenseWithUser})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GtransactionWithUserData', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(getTransactionsWithUser,
-        r'GtransactionWithUserData', 'getTransactionsWithUser');
+    BuiltValueNullFieldError.checkNotNull(getTransactionsMixExpenseWithUser,
+        r'GtransactionWithUserData', 'getTransactionsMixExpenseWithUser');
   }
 
   @override
@@ -40693,14 +40080,15 @@ class _$GtransactionWithUserData extends GtransactionWithUserData {
     if (identical(other, this)) return true;
     return other is GtransactionWithUserData &&
         G__typename == other.G__typename &&
-        getTransactionsWithUser == other.getTransactionsWithUser;
+        getTransactionsMixExpenseWithUser ==
+            other.getTransactionsMixExpenseWithUser;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, getTransactionsWithUser.hashCode);
+    _$hash = $jc(_$hash, getTransactionsMixExpenseWithUser.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -40709,7 +40097,8 @@ class _$GtransactionWithUserData extends GtransactionWithUserData {
   String toString() {
     return (newBuiltValueToStringHelper(r'GtransactionWithUserData')
           ..add('G__typename', G__typename)
-          ..add('getTransactionsWithUser', getTransactionsWithUser))
+          ..add('getTransactionsMixExpenseWithUser',
+              getTransactionsMixExpenseWithUser))
         .toString();
   }
 }
@@ -40723,15 +40112,18 @@ class GtransactionWithUserDataBuilder
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  ListBuilder<GtransactionWithUserData_getTransactionsWithUser>?
-      _getTransactionsWithUser;
-  ListBuilder<GtransactionWithUserData_getTransactionsWithUser>
-      get getTransactionsWithUser => _$this._getTransactionsWithUser ??=
-          new ListBuilder<GtransactionWithUserData_getTransactionsWithUser>();
-  set getTransactionsWithUser(
-          ListBuilder<GtransactionWithUserData_getTransactionsWithUser>?
-              getTransactionsWithUser) =>
-      _$this._getTransactionsWithUser = getTransactionsWithUser;
+  ListBuilder<GtransactionWithUserData_getTransactionsMixExpenseWithUser>?
+      _getTransactionsMixExpenseWithUser;
+  ListBuilder<GtransactionWithUserData_getTransactionsMixExpenseWithUser>
+      get getTransactionsMixExpenseWithUser =>
+          _$this._getTransactionsMixExpenseWithUser ??= new ListBuilder<
+              GtransactionWithUserData_getTransactionsMixExpenseWithUser>();
+  set getTransactionsMixExpenseWithUser(
+          ListBuilder<
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUser>?
+              getTransactionsMixExpenseWithUser) =>
+      _$this._getTransactionsMixExpenseWithUser =
+          getTransactionsMixExpenseWithUser;
 
   GtransactionWithUserDataBuilder() {
     GtransactionWithUserData._initializeBuilder(this);
@@ -40741,7 +40133,8 @@ class GtransactionWithUserDataBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _getTransactionsWithUser = $v.getTransactionsWithUser.toBuilder();
+      _getTransactionsMixExpenseWithUser =
+          $v.getTransactionsMixExpenseWithUser.toBuilder();
       _$v = null;
     }
     return this;
@@ -40768,12 +40161,13 @@ class GtransactionWithUserDataBuilder
           new _$GtransactionWithUserData._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename, r'GtransactionWithUserData', 'G__typename'),
-              getTransactionsWithUser: getTransactionsWithUser.build());
+              getTransactionsMixExpenseWithUser:
+                  getTransactionsMixExpenseWithUser.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'getTransactionsWithUser';
-        getTransactionsWithUser.build();
+        _$failedField = 'getTransactionsMixExpenseWithUser';
+        getTransactionsMixExpenseWithUser.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'GtransactionWithUserData', _$failedField, e.toString());
@@ -40785,24 +40179,618 @@ class GtransactionWithUserDataBuilder
   }
 }
 
-class _$GtransactionWithUserData_getTransactionsWithUser
-    extends GtransactionWithUserData_getTransactionsWithUser {
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser
+    extends GtransactionWithUserData_getTransactionsMixExpenseWithUser {
   @override
   final String G__typename;
   @override
-  final GtransactionWithUserData_getTransactionsWithUser_expense? expense;
+  final GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense?
+      expense;
   @override
-  final GtransactionWithUserData_getTransactionsWithUser_group group;
+  final GtransactionWithUserData_getTransactionsMixExpenseWithUser_split? split;
+
+  factory _$GtransactionWithUserData_getTransactionsMixExpenseWithUser(
+          [void Function(
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUserBuilder)?
+              updates]) =>
+      (new GtransactionWithUserData_getTransactionsMixExpenseWithUserBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser._(
+      {required this.G__typename, this.expense, this.split})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser',
+        'G__typename');
+  }
+
   @override
-  final GtransactionWithUserData_getTransactionsWithUser_creator creator;
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser rebuild(
+          void Function(
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
   @override
-  final GtransactionWithUserData_getTransactionsWithUser_fromUser fromUser;
+  GtransactionWithUserData_getTransactionsMixExpenseWithUserBuilder
+      toBuilder() =>
+          new GtransactionWithUserData_getTransactionsMixExpenseWithUserBuilder()
+            ..replace(this);
+
   @override
-  final GtransactionWithUserData_getTransactionsWithUser_toUser toUser;
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GtransactionWithUserData_getTransactionsMixExpenseWithUser &&
+        G__typename == other.G__typename &&
+        expense == other.expense &&
+        split == other.split;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, expense.hashCode);
+    _$hash = $jc(_$hash, split.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GtransactionWithUserData_getTransactionsMixExpenseWithUser')
+          ..add('G__typename', G__typename)
+          ..add('expense', expense)
+          ..add('split', split))
+        .toString();
+  }
+}
+
+class GtransactionWithUserData_getTransactionsMixExpenseWithUserBuilder
+    implements
+        Builder<GtransactionWithUserData_getTransactionsMixExpenseWithUser,
+            GtransactionWithUserData_getTransactionsMixExpenseWithUserBuilder> {
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder?
+      _expense;
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder
+      get expense => _$this._expense ??=
+          new GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder();
+  set expense(
+          GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder?
+              expense) =>
+      _$this._expense = expense;
+
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder?
+      _split;
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder
+      get split => _$this._split ??=
+          new GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder();
+  set split(
+          GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder?
+              split) =>
+      _$this._split = split;
+
+  GtransactionWithUserData_getTransactionsMixExpenseWithUserBuilder() {
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser
+        ._initializeBuilder(this);
+  }
+
+  GtransactionWithUserData_getTransactionsMixExpenseWithUserBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _expense = $v.expense?.toBuilder();
+      _split = $v.split?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GtransactionWithUserData_getTransactionsMixExpenseWithUser;
+  }
+
+  @override
+  void update(
+      void Function(
+              GtransactionWithUserData_getTransactionsMixExpenseWithUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser build() =>
+      _build();
+
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser _build() {
+    _$GtransactionWithUserData_getTransactionsMixExpenseWithUser _$result;
+    try {
+      _$result = _$v ??
+          new _$GtransactionWithUserData_getTransactionsMixExpenseWithUser._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GtransactionWithUserData_getTransactionsMixExpenseWithUser',
+                  'G__typename'),
+              expense: _expense?.build(),
+              split: _split?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'expense';
+        _expense?.build();
+        _$failedField = 'split';
+        _split?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GtransactionWithUserData_getTransactionsMixExpenseWithUser',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
+    extends GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense {
+  @override
+  final String G__typename;
   @override
   final String id;
   @override
-  final GtransactionWithUserData_getTransactionsWithUser_amount amount;
+  final String title;
+  @override
+  final String createdAt;
+  @override
+  final String category;
+  @override
+  final GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount
+      amount;
+  @override
+  final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+
+  factory _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense(
+          [void Function(
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder)?
+              updates]) =>
+      (new GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense._(
+      {required this.G__typename,
+      required this.id,
+      required this.title,
+      required this.createdAt,
+      required this.category,
+      required this.amount,
+      required this.creatorId,
+      this.note,
+      this.imageId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
+        'id');
+    BuiltValueNullFieldError.checkNotNull(
+        title,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
+        'title');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
+        'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        category,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
+        'category');
+    BuiltValueNullFieldError.checkNotNull(
+        amount,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
+        'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
+        'creatorId');
+  }
+
+  @override
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense rebuild(
+          void Function(
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder
+      toBuilder() =>
+          new GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        title == other.title &&
+        createdAt == other.createdAt &&
+        category == other.category &&
+        amount == other.amount &&
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, category.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('title', title)
+          ..add('createdAt', createdAt)
+          ..add('category', category)
+          ..add('amount', amount)
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId))
+        .toString();
+  }
+}
+
+class GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder
+    implements
+        Builder<
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense,
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder> {
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _category;
+  String? get category => _$this._category;
+  set category(String? category) => _$this._category = category;
+
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder?
+      _amount;
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder
+      get amount => _$this._amount ??=
+          new GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder();
+  set amount(
+          GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder?
+              amount) =>
+      _$this._amount = amount;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder() {
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
+        ._initializeBuilder(this);
+  }
+
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _title = $v.title;
+      _createdAt = $v.createdAt;
+      _category = $v.category;
+      _amount = $v.amount.toBuilder();
+      _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
+          other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other
+        as _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense;
+  }
+
+  @override
+  void update(
+      void Function(
+              GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense build() =>
+      _build();
+
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
+      _build() {
+    _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
+        _$result;
+    try {
+      _$result = _$v ??
+          new _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
+                  'G__typename'),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense', 'id'),
+              title: BuiltValueNullFieldError.checkNotNull(
+                  title, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense', 'title'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense', 'createdAt'),
+              category: BuiltValueNullFieldError.checkNotNull(
+                  category, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense', 'category'),
+              amount: amount.build(),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId,
+                  r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
+                  'creatorId'),
+              note: note,
+              imageId: imageId);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'amount';
+        amount.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount
+    extends GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount {
+  @override
+  final String G__typename;
+  @override
+  final int amount;
+  @override
+  final String currencyId;
+
+  factory _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount(
+          [void Function(
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder)?
+              updates]) =>
+      (new GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount._(
+      {required this.G__typename,
+      required this.amount,
+      required this.currencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        amount,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount',
+        'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        currencyId,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount',
+        'currencyId');
+  }
+
+  @override
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount rebuild(
+          void Function(
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder
+      toBuilder() =>
+          new GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount &&
+        G__typename == other.G__typename &&
+        amount == other.amount &&
+        currencyId == other.currencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount')
+          ..add('G__typename', G__typename)
+          ..add('amount', amount)
+          ..add('currencyId', currencyId))
+        .toString();
+  }
+}
+
+class GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder
+    implements
+        Builder<
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount,
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder> {
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount?
+      _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _currencyId;
+  String? get currencyId => _$this._currencyId;
+  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
+
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder() {
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount
+        ._initializeBuilder(this);
+  }
+
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _amount = $v.amount;
+      _currencyId = $v.currencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount
+          other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other
+        as _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount;
+  }
+
+  @override
+  void update(
+      void Function(
+              GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amountBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount
+      build() => _build();
+
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount
+      _build() {
+    final _$result = _$v ??
+        new _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount
+            ._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount',
+                'G__typename'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount,
+                r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount',
+                'amount'),
+            currencyId: BuiltValueNullFieldError.checkNotNull(
+                currencyId,
+                r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount',
+                'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split
+    extends GtransactionWithUserData_getTransactionsMixExpenseWithUser_split {
+  @override
+  final String G__typename;
+  @override
+  final GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser
+      fromUser;
+  @override
+  final GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser
+      toUser;
+  @override
+  final String id;
+  @override
+  final GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount
+      amount;
   @override
   final _i3.GTransactionType transactionType;
   @override
@@ -40823,22 +40811,17 @@ class _$GtransactionWithUserData_getTransactionsWithUser
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
-  factory _$GtransactionWithUserData_getTransactionsWithUser(
+  factory _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split(
           [void Function(
-                  GtransactionWithUserData_getTransactionsWithUserBuilder)?
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder)?
               updates]) =>
-      (new GtransactionWithUserData_getTransactionsWithUserBuilder()
+      (new GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder()
             ..update(updates))
           ._build();
 
-  _$GtransactionWithUserData_getTransactionsWithUser._(
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split._(
       {required this.G__typename,
-      this.expense,
-      required this.group,
-      required this.creator,
       required this.fromUser,
       required this.toUser,
       required this.id,
@@ -40852,56 +40835,73 @@ class _$GtransactionWithUserData_getTransactionsWithUser
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GtransactionWithUserData_getTransactionsWithUser', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        group, r'GtransactionWithUserData_getTransactionsWithUser', 'group');
-    BuiltValueNullFieldError.checkNotNull(creator,
-        r'GtransactionWithUserData_getTransactionsWithUser', 'creator');
-    BuiltValueNullFieldError.checkNotNull(fromUser,
-        r'GtransactionWithUserData_getTransactionsWithUser', 'fromUser');
+        G__typename,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+        'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        toUser, r'GtransactionWithUserData_getTransactionsWithUser', 'toUser');
+        fromUser,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+        'fromUser');
     BuiltValueNullFieldError.checkNotNull(
-        id, r'GtransactionWithUserData_getTransactionsWithUser', 'id');
+        toUser,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+        'toUser');
     BuiltValueNullFieldError.checkNotNull(
-        amount, r'GtransactionWithUserData_getTransactionsWithUser', 'amount');
-    BuiltValueNullFieldError.checkNotNull(transactionType,
-        r'GtransactionWithUserData_getTransactionsWithUser', 'transactionType');
-    BuiltValueNullFieldError.checkNotNull(createdAt,
-        r'GtransactionWithUserData_getTransactionsWithUser', 'createdAt');
-    BuiltValueNullFieldError.checkNotNull(fromUserId,
-        r'GtransactionWithUserData_getTransactionsWithUser', 'fromUserId');
-    BuiltValueNullFieldError.checkNotNull(toUserId,
-        r'GtransactionWithUserData_getTransactionsWithUser', 'toUserId');
-    BuiltValueNullFieldError.checkNotNull(creatorId,
-        r'GtransactionWithUserData_getTransactionsWithUser', 'creatorId');
-    BuiltValueNullFieldError.checkNotNull(groupId,
-        r'GtransactionWithUserData_getTransactionsWithUser', 'groupId');
+        id,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+        'id');
+    BuiltValueNullFieldError.checkNotNull(
+        amount,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+        'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionType,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+        'transactionType');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+        'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUserId,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+        'fromUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        toUserId,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+        'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+        'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+        'groupId');
   }
 
   @override
-  GtransactionWithUserData_getTransactionsWithUser rebuild(
-          void Function(GtransactionWithUserData_getTransactionsWithUserBuilder)
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split rebuild(
+          void Function(
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GtransactionWithUserData_getTransactionsWithUserBuilder toBuilder() =>
-      new GtransactionWithUserData_getTransactionsWithUserBuilder()
-        ..replace(this);
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder
+      toBuilder() =>
+          new GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder()
+            ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GtransactionWithUserData_getTransactionsWithUser &&
+    return other
+            is GtransactionWithUserData_getTransactionsMixExpenseWithUser_split &&
         G__typename == other.G__typename &&
-        expense == other.expense &&
-        group == other.group &&
-        creator == other.creator &&
         fromUser == other.fromUser &&
         toUser == other.toUser &&
         id == other.id &&
@@ -40915,17 +40915,13 @@ class _$GtransactionWithUserData_getTransactionsWithUser
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, expense.hashCode);
-    _$hash = $jc(_$hash, group.hashCode);
-    _$hash = $jc(_$hash, creator.hashCode);
     _$hash = $jc(_$hash, fromUser.hashCode);
     _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
@@ -40940,7 +40936,6 @@ class _$GtransactionWithUserData_getTransactionsWithUser
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -40948,11 +40943,8 @@ class _$GtransactionWithUserData_getTransactionsWithUser
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GtransactionWithUserData_getTransactionsWithUser')
+            r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split')
           ..add('G__typename', G__typename)
-          ..add('expense', expense)
-          ..add('group', group)
-          ..add('creator', creator)
           ..add('fromUser', fromUser)
           ..add('toUser', toUser)
           ..add('id', id)
@@ -40966,64 +40958,39 @@ class _$GtransactionWithUserData_getTransactionsWithUser
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
 
-class GtransactionWithUserData_getTransactionsWithUserBuilder
+class GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder
     implements
-        Builder<GtransactionWithUserData_getTransactionsWithUser,
-            GtransactionWithUserData_getTransactionsWithUserBuilder> {
-  _$GtransactionWithUserData_getTransactionsWithUser? _$v;
+        Builder<
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_split,
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder> {
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  GtransactionWithUserData_getTransactionsWithUser_expenseBuilder? _expense;
-  GtransactionWithUserData_getTransactionsWithUser_expenseBuilder get expense =>
-      _$this._expense ??=
-          new GtransactionWithUserData_getTransactionsWithUser_expenseBuilder();
-  set expense(
-          GtransactionWithUserData_getTransactionsWithUser_expenseBuilder?
-              expense) =>
-      _$this._expense = expense;
-
-  GtransactionWithUserData_getTransactionsWithUser_groupBuilder? _group;
-  GtransactionWithUserData_getTransactionsWithUser_groupBuilder get group =>
-      _$this._group ??=
-          new GtransactionWithUserData_getTransactionsWithUser_groupBuilder();
-  set group(
-          GtransactionWithUserData_getTransactionsWithUser_groupBuilder?
-              group) =>
-      _$this._group = group;
-
-  GtransactionWithUserData_getTransactionsWithUser_creatorBuilder? _creator;
-  GtransactionWithUserData_getTransactionsWithUser_creatorBuilder get creator =>
-      _$this._creator ??=
-          new GtransactionWithUserData_getTransactionsWithUser_creatorBuilder();
-  set creator(
-          GtransactionWithUserData_getTransactionsWithUser_creatorBuilder?
-              creator) =>
-      _$this._creator = creator;
-
-  GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder? _fromUser;
-  GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder?
+      _fromUser;
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder
       get fromUser => _$this._fromUser ??=
-          new GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder();
+          new GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder();
   set fromUser(
-          GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder?
+          GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder?
               fromUser) =>
       _$this._fromUser = fromUser;
 
-  GtransactionWithUserData_getTransactionsWithUser_toUserBuilder? _toUser;
-  GtransactionWithUserData_getTransactionsWithUser_toUserBuilder get toUser =>
-      _$this._toUser ??=
-          new GtransactionWithUserData_getTransactionsWithUser_toUserBuilder();
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder?
+      _toUser;
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder
+      get toUser => _$this._toUser ??=
+          new GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder();
   set toUser(
-          GtransactionWithUserData_getTransactionsWithUser_toUserBuilder?
+          GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder?
               toUser) =>
       _$this._toUser = toUser;
 
@@ -41031,12 +40998,13 @@ class GtransactionWithUserData_getTransactionsWithUserBuilder
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
 
-  GtransactionWithUserData_getTransactionsWithUser_amountBuilder? _amount;
-  GtransactionWithUserData_getTransactionsWithUser_amountBuilder get amount =>
-      _$this._amount ??=
-          new GtransactionWithUserData_getTransactionsWithUser_amountBuilder();
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder?
+      _amount;
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder
+      get amount => _$this._amount ??=
+          new GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder();
   set amount(
-          GtransactionWithUserData_getTransactionsWithUser_amountBuilder?
+          GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder?
               amount) =>
       _$this._amount = amount;
 
@@ -41082,21 +41050,16 @@ class GtransactionWithUserData_getTransactionsWithUserBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
-  GtransactionWithUserData_getTransactionsWithUserBuilder() {
-    GtransactionWithUserData_getTransactionsWithUser._initializeBuilder(this);
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder() {
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser_split
+        ._initializeBuilder(this);
   }
 
-  GtransactionWithUserData_getTransactionsWithUserBuilder get _$this {
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder
+      get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _expense = $v.expense?.toBuilder();
-      _group = $v.group.toBuilder();
-      _creator = $v.creator.toBuilder();
       _fromUser = $v.fromUser.toBuilder();
       _toUser = $v.toUser.toBuilder();
       _id = $v.id;
@@ -41111,69 +41074,65 @@ class GtransactionWithUserData_getTransactionsWithUserBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(GtransactionWithUserData_getTransactionsWithUser other) {
+  void replace(
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser_split other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GtransactionWithUserData_getTransactionsWithUser;
+    _$v = other
+        as _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split;
   }
 
   @override
   void update(
-      void Function(GtransactionWithUserData_getTransactionsWithUserBuilder)?
+      void Function(
+              GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GtransactionWithUserData_getTransactionsWithUser build() => _build();
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split build() =>
+      _build();
 
-  _$GtransactionWithUserData_getTransactionsWithUser _build() {
-    _$GtransactionWithUserData_getTransactionsWithUser _$result;
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split _build() {
+    _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split _$result;
     try {
       _$result = _$v ??
-          new _$GtransactionWithUserData_getTransactionsWithUser._(
+          new _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GtransactionWithUserData_getTransactionsWithUser', 'G__typename'),
-              expense: _expense?.build(),
-              group: group.build(),
-              creator: creator.build(),
+                  G__typename,
+                  r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+                  'G__typename'),
               fromUser: fromUser.build(),
               toUser: toUser.build(),
               id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GtransactionWithUserData_getTransactionsWithUser', 'id'),
+                  id, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split', 'id'),
               amount: amount.build(),
               transactionType: BuiltValueNullFieldError.checkNotNull(
                   transactionType,
-                  r'GtransactionWithUserData_getTransactionsWithUser',
+                  r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
                   'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
-                  createdAt, r'GtransactionWithUserData_getTransactionsWithUser', 'createdAt'),
+                  createdAt, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split', 'createdAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
-                  fromUserId, r'GtransactionWithUserData_getTransactionsWithUser', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GtransactionWithUserData_getTransactionsWithUser', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GtransactionWithUserData_getTransactionsWithUser', 'creatorId'),
+                  fromUserId,
+                  r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+                  'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GtransactionWithUserData_getTransactionsWithUser', 'groupId'),
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'expense';
-        _expense?.build();
-        _$failedField = 'group';
-        group.build();
-        _$failedField = 'creator';
-        creator.build();
         _$failedField = 'fromUser';
         fromUser.build();
         _$failedField = 'toUser';
@@ -41183,7 +41142,7 @@ class GtransactionWithUserData_getTransactionsWithUserBuilder
         amount.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GtransactionWithUserData_getTransactionsWithUser',
+            r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
             _$failedField,
             e.toString());
       }
@@ -41194,99 +41153,75 @@ class GtransactionWithUserData_getTransactionsWithUserBuilder
   }
 }
 
-class _$GtransactionWithUserData_getTransactionsWithUser_expense
-    extends GtransactionWithUserData_getTransactionsWithUser_expense {
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser
+    extends GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser {
   @override
   final String G__typename;
   @override
   final String id;
   @override
-  final String title;
+  final String? name;
   @override
-  final String createdAt;
+  final String? phone;
   @override
-  final String category;
+  final String? email;
   @override
-  final GtransactionWithUserData_getTransactionsWithUser_expense_amount amount;
-  @override
-  final String creatorId;
-  @override
-  final String? note;
-  @override
-  final String? imageId;
-  @override
-  final String? imageUrl;
+  final bool isSignedUp;
 
-  factory _$GtransactionWithUserData_getTransactionsWithUser_expense(
+  factory _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser(
           [void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_expenseBuilder)?
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder)?
               updates]) =>
-      (new GtransactionWithUserData_getTransactionsWithUser_expenseBuilder()
+      (new GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder()
             ..update(updates))
           ._build();
 
-  _$GtransactionWithUserData_getTransactionsWithUser_expense._(
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser._(
       {required this.G__typename,
       required this.id,
-      required this.title,
-      required this.createdAt,
-      required this.category,
-      required this.amount,
-      required this.creatorId,
-      this.note,
-      this.imageId,
-      this.imageUrl})
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
-        r'GtransactionWithUserData_getTransactionsWithUser_expense',
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser',
         'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        id, r'GtransactionWithUserData_getTransactionsWithUser_expense', 'id');
-    BuiltValueNullFieldError.checkNotNull(title,
-        r'GtransactionWithUserData_getTransactionsWithUser_expense', 'title');
+        id,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser',
+        'id');
     BuiltValueNullFieldError.checkNotNull(
-        createdAt,
-        r'GtransactionWithUserData_getTransactionsWithUser_expense',
-        'createdAt');
-    BuiltValueNullFieldError.checkNotNull(
-        category,
-        r'GtransactionWithUserData_getTransactionsWithUser_expense',
-        'category');
-    BuiltValueNullFieldError.checkNotNull(amount,
-        r'GtransactionWithUserData_getTransactionsWithUser_expense', 'amount');
-    BuiltValueNullFieldError.checkNotNull(
-        creatorId,
-        r'GtransactionWithUserData_getTransactionsWithUser_expense',
-        'creatorId');
+        isSignedUp,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser',
+        'isSignedUp');
   }
 
   @override
-  GtransactionWithUserData_getTransactionsWithUser_expense rebuild(
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser rebuild(
           void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_expenseBuilder)
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GtransactionWithUserData_getTransactionsWithUser_expenseBuilder toBuilder() =>
-      new GtransactionWithUserData_getTransactionsWithUser_expenseBuilder()
-        ..replace(this);
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder
+      toBuilder() =>
+          new GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder()
+            ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GtransactionWithUserData_getTransactionsWithUser_expense &&
+    return other
+            is GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser &&
         G__typename == other.G__typename &&
         id == other.id &&
-        title == other.title &&
-        createdAt == other.createdAt &&
-        category == other.category &&
-        amount == other.amount &&
-        creatorId == other.creatorId &&
-        note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
   }
 
   @override
@@ -41294,14 +41229,10 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, title.hashCode);
-    _$hash = $jc(_$hash, createdAt.hashCode);
-    _$hash = $jc(_$hash, category.hashCode);
-    _$hash = $jc(_$hash, amount.hashCode);
-    _$hash = $jc(_$hash, creatorId.hashCode);
-    _$hash = $jc(_$hash, note.hashCode);
-    _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -41309,26 +41240,24 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GtransactionWithUserData_getTransactionsWithUser_expense')
+            r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser')
           ..add('G__typename', G__typename)
           ..add('id', id)
-          ..add('title', title)
-          ..add('createdAt', createdAt)
-          ..add('category', category)
-          ..add('amount', amount)
-          ..add('creatorId', creatorId)
-          ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
         .toString();
   }
 }
 
-class GtransactionWithUserData_getTransactionsWithUser_expenseBuilder
+class GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder
     implements
-        Builder<GtransactionWithUserData_getTransactionsWithUser_expense,
-            GtransactionWithUserData_getTransactionsWithUser_expenseBuilder> {
-  _$GtransactionWithUserData_getTransactionsWithUser_expense? _$v;
+        Builder<
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser,
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder> {
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser?
+      _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -41338,129 +41267,286 @@ class GtransactionWithUserData_getTransactionsWithUser_expenseBuilder
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
 
-  String? _title;
-  String? get title => _$this._title;
-  set title(String? title) => _$this._title = title;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  String? _createdAt;
-  String? get createdAt => _$this._createdAt;
-  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
 
-  String? _category;
-  String? get category => _$this._category;
-  set category(String? category) => _$this._category = category;
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
 
-  GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder?
-      _amount;
-  GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder
-      get amount => _$this._amount ??=
-          new GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder();
-  set amount(
-          GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder?
-              amount) =>
-      _$this._amount = amount;
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
 
-  String? _creatorId;
-  String? get creatorId => _$this._creatorId;
-  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
-
-  String? _note;
-  String? get note => _$this._note;
-  set note(String? note) => _$this._note = note;
-
-  String? _imageId;
-  String? get imageId => _$this._imageId;
-  set imageId(String? imageId) => _$this._imageId = imageId;
-
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
-  GtransactionWithUserData_getTransactionsWithUser_expenseBuilder() {
-    GtransactionWithUserData_getTransactionsWithUser_expense._initializeBuilder(
-        this);
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder() {
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser
+        ._initializeBuilder(this);
   }
 
-  GtransactionWithUserData_getTransactionsWithUser_expenseBuilder get _$this {
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder
+      get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
       _id = $v.id;
-      _title = $v.title;
-      _createdAt = $v.createdAt;
-      _category = $v.category;
-      _amount = $v.amount.toBuilder();
-      _creatorId = $v.creatorId;
-      _note = $v.note;
-      _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(GtransactionWithUserData_getTransactionsWithUser_expense other) {
+  void replace(
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser
+          other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GtransactionWithUserData_getTransactionsWithUser_expense;
+    _$v = other
+        as _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser;
   }
 
   @override
   void update(
       void Function(
-              GtransactionWithUserData_getTransactionsWithUser_expenseBuilder)?
+              GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUserBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GtransactionWithUserData_getTransactionsWithUser_expense build() => _build();
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser
+      build() => _build();
 
-  _$GtransactionWithUserData_getTransactionsWithUser_expense _build() {
-    _$GtransactionWithUserData_getTransactionsWithUser_expense _$result;
-    try {
-      _$result = _$v ??
-          new _$GtransactionWithUserData_getTransactionsWithUser_expense._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GtransactionWithUserData_getTransactionsWithUser_expense',
-                  'G__typename'),
-              id: BuiltValueNullFieldError.checkNotNull(
-                  id, r'GtransactionWithUserData_getTransactionsWithUser_expense', 'id'),
-              title: BuiltValueNullFieldError.checkNotNull(
-                  title, r'GtransactionWithUserData_getTransactionsWithUser_expense', 'title'),
-              createdAt: BuiltValueNullFieldError.checkNotNull(
-                  createdAt, r'GtransactionWithUserData_getTransactionsWithUser_expense', 'createdAt'),
-              category: BuiltValueNullFieldError.checkNotNull(
-                  category, r'GtransactionWithUserData_getTransactionsWithUser_expense', 'category'),
-              amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId,
-                  r'GtransactionWithUserData_getTransactionsWithUser_expense',
-                  'creatorId'),
-              note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'amount';
-        amount.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'GtransactionWithUserData_getTransactionsWithUser_expense',
-            _$failedField,
-            e.toString());
-      }
-      rethrow;
-    }
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser
+      _build() {
+    final _$result = _$v ??
+        new _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser
+            ._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id,
+                r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser',
+                'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser',
+                'isSignedUp'));
     replace(_$result);
     return _$result;
   }
 }
 
-class _$GtransactionWithUserData_getTransactionsWithUser_expense_amount
-    extends GtransactionWithUserData_getTransactionsWithUser_expense_amount {
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser
+    extends GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser(
+          [void Function(
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder)?
+              updates]) =>
+      (new GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser',
+        'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser',
+        'isSignedUp');
+  }
+
+  @override
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser rebuild(
+          void Function(
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder
+      toBuilder() =>
+          new GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder
+    implements
+        Builder<
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser,
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder> {
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser?
+      _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder() {
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser
+        ._initializeBuilder(this);
+  }
+
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser
+          other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other
+        as _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser;
+  }
+
+  @override
+  void update(
+      void Function(
+              GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser
+      build() => _build();
+
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser
+      _build() {
+    final _$result = _$v ??
+        new _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser
+            ._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser',
+                'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id,
+                r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser',
+                'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(
+                isSignedUp,
+                r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser',
+                'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount
+    extends GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount {
   @override
   final String G__typename;
   @override
@@ -41468,51 +41554,51 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense_amount
   @override
   final String currencyId;
 
-  factory _$GtransactionWithUserData_getTransactionsWithUser_expense_amount(
+  factory _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount(
           [void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder)?
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder)?
               updates]) =>
-      (new GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder()
+      (new GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder()
             ..update(updates))
           ._build();
 
-  _$GtransactionWithUserData_getTransactionsWithUser_expense_amount._(
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount._(
       {required this.G__typename,
       required this.amount,
       required this.currencyId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
-        r'GtransactionWithUserData_getTransactionsWithUser_expense_amount',
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount',
         'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         amount,
-        r'GtransactionWithUserData_getTransactionsWithUser_expense_amount',
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount',
         'amount');
     BuiltValueNullFieldError.checkNotNull(
         currencyId,
-        r'GtransactionWithUserData_getTransactionsWithUser_expense_amount',
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount',
         'currencyId');
   }
 
   @override
-  GtransactionWithUserData_getTransactionsWithUser_expense_amount rebuild(
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount rebuild(
           void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder)
+                  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder
       toBuilder() =>
-          new GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder()
+          new GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder()
             ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other
-            is GtransactionWithUserData_getTransactionsWithUser_expense_amount &&
+            is GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount &&
         G__typename == other.G__typename &&
         amount == other.amount &&
         currencyId == other.currencyId;
@@ -41531,7 +41617,7 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense_amount
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GtransactionWithUserData_getTransactionsWithUser_expense_amount')
+            r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount')
           ..add('G__typename', G__typename)
           ..add('amount', amount)
           ..add('currencyId', currencyId))
@@ -41539,11 +41625,13 @@ class _$GtransactionWithUserData_getTransactionsWithUser_expense_amount
   }
 }
 
-class GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder
+class GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder
     implements
-        Builder<GtransactionWithUserData_getTransactionsWithUser_expense_amount,
-            GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder> {
-  _$GtransactionWithUserData_getTransactionsWithUser_expense_amount? _$v;
+        Builder<
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount,
+            GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder> {
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount?
+      _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -41557,12 +41645,12 @@ class GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder
   String? get currencyId => _$this._currencyId;
   set currencyId(String? currencyId) => _$this._currencyId = currencyId;
 
-  GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder() {
-    GtransactionWithUserData_getTransactionsWithUser_expense_amount
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder() {
+    GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount
         ._initializeBuilder(this);
   }
 
-  GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder
       get _$this {
     final $v = _$v;
     if ($v != null) {
@@ -41576,874 +41664,41 @@ class GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder
 
   @override
   void replace(
-      GtransactionWithUserData_getTransactionsWithUser_expense_amount other) {
+      GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount
+          other) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other
-        as _$GtransactionWithUserData_getTransactionsWithUser_expense_amount;
+        as _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount;
   }
 
   @override
   void update(
       void Function(
-              GtransactionWithUserData_getTransactionsWithUser_expense_amountBuilder)?
+              GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amountBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GtransactionWithUserData_getTransactionsWithUser_expense_amount build() =>
-      _build();
+  GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount
+      build() => _build();
 
-  _$GtransactionWithUserData_getTransactionsWithUser_expense_amount _build() {
+  _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount
+      _build() {
     final _$result = _$v ??
-        new _$GtransactionWithUserData_getTransactionsWithUser_expense_amount._(
+        new _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount
+            ._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
                 G__typename,
-                r'GtransactionWithUserData_getTransactionsWithUser_expense_amount',
+                r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount',
                 'G__typename'),
             amount: BuiltValueNullFieldError.checkNotNull(
                 amount,
-                r'GtransactionWithUserData_getTransactionsWithUser_expense_amount',
+                r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount',
                 'amount'),
             currencyId: BuiltValueNullFieldError.checkNotNull(
                 currencyId,
-                r'GtransactionWithUserData_getTransactionsWithUser_expense_amount',
-                'currencyId'));
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GtransactionWithUserData_getTransactionsWithUser_group
-    extends GtransactionWithUserData_getTransactionsWithUser_group {
-  @override
-  final String G__typename;
-  @override
-  final String id;
-  @override
-  final String? name;
-
-  factory _$GtransactionWithUserData_getTransactionsWithUser_group(
-          [void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_groupBuilder)?
-              updates]) =>
-      (new GtransactionWithUserData_getTransactionsWithUser_groupBuilder()
-            ..update(updates))
-          ._build();
-
-  _$GtransactionWithUserData_getTransactionsWithUser_group._(
-      {required this.G__typename, required this.id, this.name})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GtransactionWithUserData_getTransactionsWithUser_group',
-        'G__typename');
-    BuiltValueNullFieldError.checkNotNull(
-        id, r'GtransactionWithUserData_getTransactionsWithUser_group', 'id');
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_group rebuild(
-          void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_groupBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_groupBuilder toBuilder() =>
-      new GtransactionWithUserData_getTransactionsWithUser_groupBuilder()
-        ..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GtransactionWithUserData_getTransactionsWithUser_group &&
-        G__typename == other.G__typename &&
-        id == other.id &&
-        name == other.name;
-  }
-
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            r'GtransactionWithUserData_getTransactionsWithUser_group')
-          ..add('G__typename', G__typename)
-          ..add('id', id)
-          ..add('name', name))
-        .toString();
-  }
-}
-
-class GtransactionWithUserData_getTransactionsWithUser_groupBuilder
-    implements
-        Builder<GtransactionWithUserData_getTransactionsWithUser_group,
-            GtransactionWithUserData_getTransactionsWithUser_groupBuilder> {
-  _$GtransactionWithUserData_getTransactionsWithUser_group? _$v;
-
-  String? _G__typename;
-  String? get G__typename => _$this._G__typename;
-  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  GtransactionWithUserData_getTransactionsWithUser_groupBuilder() {
-    GtransactionWithUserData_getTransactionsWithUser_group._initializeBuilder(
-        this);
-  }
-
-  GtransactionWithUserData_getTransactionsWithUser_groupBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _G__typename = $v.G__typename;
-      _id = $v.id;
-      _name = $v.name;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GtransactionWithUserData_getTransactionsWithUser_group other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GtransactionWithUserData_getTransactionsWithUser_group;
-  }
-
-  @override
-  void update(
-      void Function(
-              GtransactionWithUserData_getTransactionsWithUser_groupBuilder)?
-          updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_group build() => _build();
-
-  _$GtransactionWithUserData_getTransactionsWithUser_group _build() {
-    final _$result = _$v ??
-        new _$GtransactionWithUserData_getTransactionsWithUser_group._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GtransactionWithUserData_getTransactionsWithUser_group',
-                'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id,
-                r'GtransactionWithUserData_getTransactionsWithUser_group',
-                'id'),
-            name: name);
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GtransactionWithUserData_getTransactionsWithUser_creator
-    extends GtransactionWithUserData_getTransactionsWithUser_creator {
-  @override
-  final String G__typename;
-  @override
-  final String id;
-  @override
-  final String? name;
-  @override
-  final String? phone;
-  @override
-  final String? email;
-  @override
-  final bool isSignedUp;
-
-  factory _$GtransactionWithUserData_getTransactionsWithUser_creator(
-          [void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_creatorBuilder)?
-              updates]) =>
-      (new GtransactionWithUserData_getTransactionsWithUser_creatorBuilder()
-            ..update(updates))
-          ._build();
-
-  _$GtransactionWithUserData_getTransactionsWithUser_creator._(
-      {required this.G__typename,
-      required this.id,
-      this.name,
-      this.phone,
-      this.email,
-      required this.isSignedUp})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GtransactionWithUserData_getTransactionsWithUser_creator',
-        'G__typename');
-    BuiltValueNullFieldError.checkNotNull(
-        id, r'GtransactionWithUserData_getTransactionsWithUser_creator', 'id');
-    BuiltValueNullFieldError.checkNotNull(
-        isSignedUp,
-        r'GtransactionWithUserData_getTransactionsWithUser_creator',
-        'isSignedUp');
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_creator rebuild(
-          void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_creatorBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_creatorBuilder toBuilder() =>
-      new GtransactionWithUserData_getTransactionsWithUser_creatorBuilder()
-        ..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GtransactionWithUserData_getTransactionsWithUser_creator &&
-        G__typename == other.G__typename &&
-        id == other.id &&
-        name == other.name &&
-        phone == other.phone &&
-        email == other.email &&
-        isSignedUp == other.isSignedUp;
-  }
-
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jc(_$hash, phone.hashCode);
-    _$hash = $jc(_$hash, email.hashCode);
-    _$hash = $jc(_$hash, isSignedUp.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            r'GtransactionWithUserData_getTransactionsWithUser_creator')
-          ..add('G__typename', G__typename)
-          ..add('id', id)
-          ..add('name', name)
-          ..add('phone', phone)
-          ..add('email', email)
-          ..add('isSignedUp', isSignedUp))
-        .toString();
-  }
-}
-
-class GtransactionWithUserData_getTransactionsWithUser_creatorBuilder
-    implements
-        Builder<GtransactionWithUserData_getTransactionsWithUser_creator,
-            GtransactionWithUserData_getTransactionsWithUser_creatorBuilder> {
-  _$GtransactionWithUserData_getTransactionsWithUser_creator? _$v;
-
-  String? _G__typename;
-  String? get G__typename => _$this._G__typename;
-  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  String? _phone;
-  String? get phone => _$this._phone;
-  set phone(String? phone) => _$this._phone = phone;
-
-  String? _email;
-  String? get email => _$this._email;
-  set email(String? email) => _$this._email = email;
-
-  bool? _isSignedUp;
-  bool? get isSignedUp => _$this._isSignedUp;
-  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
-
-  GtransactionWithUserData_getTransactionsWithUser_creatorBuilder() {
-    GtransactionWithUserData_getTransactionsWithUser_creator._initializeBuilder(
-        this);
-  }
-
-  GtransactionWithUserData_getTransactionsWithUser_creatorBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _G__typename = $v.G__typename;
-      _id = $v.id;
-      _name = $v.name;
-      _phone = $v.phone;
-      _email = $v.email;
-      _isSignedUp = $v.isSignedUp;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GtransactionWithUserData_getTransactionsWithUser_creator other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GtransactionWithUserData_getTransactionsWithUser_creator;
-  }
-
-  @override
-  void update(
-      void Function(
-              GtransactionWithUserData_getTransactionsWithUser_creatorBuilder)?
-          updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_creator build() => _build();
-
-  _$GtransactionWithUserData_getTransactionsWithUser_creator _build() {
-    final _$result = _$v ??
-        new _$GtransactionWithUserData_getTransactionsWithUser_creator._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GtransactionWithUserData_getTransactionsWithUser_creator',
-                'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id,
-                r'GtransactionWithUserData_getTransactionsWithUser_creator',
-                'id'),
-            name: name,
-            phone: phone,
-            email: email,
-            isSignedUp: BuiltValueNullFieldError.checkNotNull(
-                isSignedUp,
-                r'GtransactionWithUserData_getTransactionsWithUser_creator',
-                'isSignedUp'));
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GtransactionWithUserData_getTransactionsWithUser_fromUser
-    extends GtransactionWithUserData_getTransactionsWithUser_fromUser {
-  @override
-  final String G__typename;
-  @override
-  final String id;
-  @override
-  final String? name;
-  @override
-  final String? phone;
-  @override
-  final String? email;
-  @override
-  final bool isSignedUp;
-
-  factory _$GtransactionWithUserData_getTransactionsWithUser_fromUser(
-          [void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder)?
-              updates]) =>
-      (new GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder()
-            ..update(updates))
-          ._build();
-
-  _$GtransactionWithUserData_getTransactionsWithUser_fromUser._(
-      {required this.G__typename,
-      required this.id,
-      this.name,
-      this.phone,
-      this.email,
-      required this.isSignedUp})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GtransactionWithUserData_getTransactionsWithUser_fromUser',
-        'G__typename');
-    BuiltValueNullFieldError.checkNotNull(
-        id, r'GtransactionWithUserData_getTransactionsWithUser_fromUser', 'id');
-    BuiltValueNullFieldError.checkNotNull(
-        isSignedUp,
-        r'GtransactionWithUserData_getTransactionsWithUser_fromUser',
-        'isSignedUp');
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_fromUser rebuild(
-          void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder
-      toBuilder() =>
-          new GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder()
-            ..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GtransactionWithUserData_getTransactionsWithUser_fromUser &&
-        G__typename == other.G__typename &&
-        id == other.id &&
-        name == other.name &&
-        phone == other.phone &&
-        email == other.email &&
-        isSignedUp == other.isSignedUp;
-  }
-
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jc(_$hash, phone.hashCode);
-    _$hash = $jc(_$hash, email.hashCode);
-    _$hash = $jc(_$hash, isSignedUp.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            r'GtransactionWithUserData_getTransactionsWithUser_fromUser')
-          ..add('G__typename', G__typename)
-          ..add('id', id)
-          ..add('name', name)
-          ..add('phone', phone)
-          ..add('email', email)
-          ..add('isSignedUp', isSignedUp))
-        .toString();
-  }
-}
-
-class GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder
-    implements
-        Builder<GtransactionWithUserData_getTransactionsWithUser_fromUser,
-            GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder> {
-  _$GtransactionWithUserData_getTransactionsWithUser_fromUser? _$v;
-
-  String? _G__typename;
-  String? get G__typename => _$this._G__typename;
-  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  String? _phone;
-  String? get phone => _$this._phone;
-  set phone(String? phone) => _$this._phone = phone;
-
-  String? _email;
-  String? get email => _$this._email;
-  set email(String? email) => _$this._email = email;
-
-  bool? _isSignedUp;
-  bool? get isSignedUp => _$this._isSignedUp;
-  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
-
-  GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder() {
-    GtransactionWithUserData_getTransactionsWithUser_fromUser
-        ._initializeBuilder(this);
-  }
-
-  GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _G__typename = $v.G__typename;
-      _id = $v.id;
-      _name = $v.name;
-      _phone = $v.phone;
-      _email = $v.email;
-      _isSignedUp = $v.isSignedUp;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(
-      GtransactionWithUserData_getTransactionsWithUser_fromUser other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GtransactionWithUserData_getTransactionsWithUser_fromUser;
-  }
-
-  @override
-  void update(
-      void Function(
-              GtransactionWithUserData_getTransactionsWithUser_fromUserBuilder)?
-          updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_fromUser build() => _build();
-
-  _$GtransactionWithUserData_getTransactionsWithUser_fromUser _build() {
-    final _$result = _$v ??
-        new _$GtransactionWithUserData_getTransactionsWithUser_fromUser._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GtransactionWithUserData_getTransactionsWithUser_fromUser',
-                'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id,
-                r'GtransactionWithUserData_getTransactionsWithUser_fromUser',
-                'id'),
-            name: name,
-            phone: phone,
-            email: email,
-            isSignedUp: BuiltValueNullFieldError.checkNotNull(
-                isSignedUp,
-                r'GtransactionWithUserData_getTransactionsWithUser_fromUser',
-                'isSignedUp'));
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GtransactionWithUserData_getTransactionsWithUser_toUser
-    extends GtransactionWithUserData_getTransactionsWithUser_toUser {
-  @override
-  final String G__typename;
-  @override
-  final String id;
-  @override
-  final String? name;
-  @override
-  final String? phone;
-  @override
-  final String? email;
-  @override
-  final bool isSignedUp;
-
-  factory _$GtransactionWithUserData_getTransactionsWithUser_toUser(
-          [void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_toUserBuilder)?
-              updates]) =>
-      (new GtransactionWithUserData_getTransactionsWithUser_toUserBuilder()
-            ..update(updates))
-          ._build();
-
-  _$GtransactionWithUserData_getTransactionsWithUser_toUser._(
-      {required this.G__typename,
-      required this.id,
-      this.name,
-      this.phone,
-      this.email,
-      required this.isSignedUp})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GtransactionWithUserData_getTransactionsWithUser_toUser',
-        'G__typename');
-    BuiltValueNullFieldError.checkNotNull(
-        id, r'GtransactionWithUserData_getTransactionsWithUser_toUser', 'id');
-    BuiltValueNullFieldError.checkNotNull(
-        isSignedUp,
-        r'GtransactionWithUserData_getTransactionsWithUser_toUser',
-        'isSignedUp');
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_toUser rebuild(
-          void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_toUserBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_toUserBuilder toBuilder() =>
-      new GtransactionWithUserData_getTransactionsWithUser_toUserBuilder()
-        ..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GtransactionWithUserData_getTransactionsWithUser_toUser &&
-        G__typename == other.G__typename &&
-        id == other.id &&
-        name == other.name &&
-        phone == other.phone &&
-        email == other.email &&
-        isSignedUp == other.isSignedUp;
-  }
-
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jc(_$hash, phone.hashCode);
-    _$hash = $jc(_$hash, email.hashCode);
-    _$hash = $jc(_$hash, isSignedUp.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            r'GtransactionWithUserData_getTransactionsWithUser_toUser')
-          ..add('G__typename', G__typename)
-          ..add('id', id)
-          ..add('name', name)
-          ..add('phone', phone)
-          ..add('email', email)
-          ..add('isSignedUp', isSignedUp))
-        .toString();
-  }
-}
-
-class GtransactionWithUserData_getTransactionsWithUser_toUserBuilder
-    implements
-        Builder<GtransactionWithUserData_getTransactionsWithUser_toUser,
-            GtransactionWithUserData_getTransactionsWithUser_toUserBuilder> {
-  _$GtransactionWithUserData_getTransactionsWithUser_toUser? _$v;
-
-  String? _G__typename;
-  String? get G__typename => _$this._G__typename;
-  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  String? _phone;
-  String? get phone => _$this._phone;
-  set phone(String? phone) => _$this._phone = phone;
-
-  String? _email;
-  String? get email => _$this._email;
-  set email(String? email) => _$this._email = email;
-
-  bool? _isSignedUp;
-  bool? get isSignedUp => _$this._isSignedUp;
-  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
-
-  GtransactionWithUserData_getTransactionsWithUser_toUserBuilder() {
-    GtransactionWithUserData_getTransactionsWithUser_toUser._initializeBuilder(
-        this);
-  }
-
-  GtransactionWithUserData_getTransactionsWithUser_toUserBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _G__typename = $v.G__typename;
-      _id = $v.id;
-      _name = $v.name;
-      _phone = $v.phone;
-      _email = $v.email;
-      _isSignedUp = $v.isSignedUp;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GtransactionWithUserData_getTransactionsWithUser_toUser other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GtransactionWithUserData_getTransactionsWithUser_toUser;
-  }
-
-  @override
-  void update(
-      void Function(
-              GtransactionWithUserData_getTransactionsWithUser_toUserBuilder)?
-          updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_toUser build() => _build();
-
-  _$GtransactionWithUserData_getTransactionsWithUser_toUser _build() {
-    final _$result = _$v ??
-        new _$GtransactionWithUserData_getTransactionsWithUser_toUser._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GtransactionWithUserData_getTransactionsWithUser_toUser',
-                'G__typename'),
-            id: BuiltValueNullFieldError.checkNotNull(
-                id,
-                r'GtransactionWithUserData_getTransactionsWithUser_toUser',
-                'id'),
-            name: name,
-            phone: phone,
-            email: email,
-            isSignedUp: BuiltValueNullFieldError.checkNotNull(
-                isSignedUp,
-                r'GtransactionWithUserData_getTransactionsWithUser_toUser',
-                'isSignedUp'));
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GtransactionWithUserData_getTransactionsWithUser_amount
-    extends GtransactionWithUserData_getTransactionsWithUser_amount {
-  @override
-  final String G__typename;
-  @override
-  final int amount;
-  @override
-  final String currencyId;
-
-  factory _$GtransactionWithUserData_getTransactionsWithUser_amount(
-          [void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_amountBuilder)?
-              updates]) =>
-      (new GtransactionWithUserData_getTransactionsWithUser_amountBuilder()
-            ..update(updates))
-          ._build();
-
-  _$GtransactionWithUserData_getTransactionsWithUser_amount._(
-      {required this.G__typename,
-      required this.amount,
-      required this.currencyId})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GtransactionWithUserData_getTransactionsWithUser_amount',
-        'G__typename');
-    BuiltValueNullFieldError.checkNotNull(amount,
-        r'GtransactionWithUserData_getTransactionsWithUser_amount', 'amount');
-    BuiltValueNullFieldError.checkNotNull(
-        currencyId,
-        r'GtransactionWithUserData_getTransactionsWithUser_amount',
-        'currencyId');
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_amount rebuild(
-          void Function(
-                  GtransactionWithUserData_getTransactionsWithUser_amountBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_amountBuilder toBuilder() =>
-      new GtransactionWithUserData_getTransactionsWithUser_amountBuilder()
-        ..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GtransactionWithUserData_getTransactionsWithUser_amount &&
-        G__typename == other.G__typename &&
-        amount == other.amount &&
-        currencyId == other.currencyId;
-  }
-
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, amount.hashCode);
-    _$hash = $jc(_$hash, currencyId.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(
-            r'GtransactionWithUserData_getTransactionsWithUser_amount')
-          ..add('G__typename', G__typename)
-          ..add('amount', amount)
-          ..add('currencyId', currencyId))
-        .toString();
-  }
-}
-
-class GtransactionWithUserData_getTransactionsWithUser_amountBuilder
-    implements
-        Builder<GtransactionWithUserData_getTransactionsWithUser_amount,
-            GtransactionWithUserData_getTransactionsWithUser_amountBuilder> {
-  _$GtransactionWithUserData_getTransactionsWithUser_amount? _$v;
-
-  String? _G__typename;
-  String? get G__typename => _$this._G__typename;
-  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
-
-  int? _amount;
-  int? get amount => _$this._amount;
-  set amount(int? amount) => _$this._amount = amount;
-
-  String? _currencyId;
-  String? get currencyId => _$this._currencyId;
-  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
-
-  GtransactionWithUserData_getTransactionsWithUser_amountBuilder() {
-    GtransactionWithUserData_getTransactionsWithUser_amount._initializeBuilder(
-        this);
-  }
-
-  GtransactionWithUserData_getTransactionsWithUser_amountBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _G__typename = $v.G__typename;
-      _amount = $v.amount;
-      _currencyId = $v.currencyId;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GtransactionWithUserData_getTransactionsWithUser_amount other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GtransactionWithUserData_getTransactionsWithUser_amount;
-  }
-
-  @override
-  void update(
-      void Function(
-              GtransactionWithUserData_getTransactionsWithUser_amountBuilder)?
-          updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  GtransactionWithUserData_getTransactionsWithUser_amount build() => _build();
-
-  _$GtransactionWithUserData_getTransactionsWithUser_amount _build() {
-    final _$result = _$v ??
-        new _$GtransactionWithUserData_getTransactionsWithUser_amount._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GtransactionWithUserData_getTransactionsWithUser_amount',
-                'G__typename'),
-            amount: BuiltValueNullFieldError.checkNotNull(
-                amount,
-                r'GtransactionWithUserData_getTransactionsWithUser_amount',
-                'amount'),
-            currencyId: BuiltValueNullFieldError.checkNotNull(
-                currencyId,
-                r'GtransactionWithUserData_getTransactionsWithUser_amount',
+                r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount',
                 'currencyId'));
     replace(_$result);
     return _$result;
@@ -42775,8 +42030,6 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense(
           [void Function(
@@ -42795,8 +42048,7 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -42854,8 +42106,7 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -42870,7 +42121,6 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -42887,8 +42137,7 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -42942,10 +42191,6 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuild
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuilder() {
     GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
         ._initializeBuilder(this);
@@ -42964,7 +42209,6 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuild
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -43016,8 +42260,7 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuild
                   r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
                   'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -43232,8 +42475,6 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split(
           [void Function(
@@ -43258,8 +42499,7 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -43339,8 +42579,7 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -43361,7 +42600,6 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -43384,8 +42622,7 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -43477,10 +42714,6 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder() {
     GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
         ._initializeBuilder(this);
@@ -43505,7 +42738,6 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -43564,8 +42796,7 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -44546,8 +43777,6 @@ class _$GcurrencyConvertData_convertCurrency
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GcurrencyConvertData_convertCurrency(
           [void Function(GcurrencyConvertData_convertCurrencyBuilder)?
@@ -44573,8 +43802,7 @@ class _$GcurrencyConvertData_convertCurrency
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GcurrencyConvertData_convertCurrency', 'G__typename');
@@ -44634,8 +43862,7 @@ class _$GcurrencyConvertData_convertCurrency
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -44659,7 +43886,6 @@ class _$GcurrencyConvertData_convertCurrency
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -44684,8 +43910,7 @@ class _$GcurrencyConvertData_convertCurrency
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -44788,10 +44013,6 @@ class GcurrencyConvertData_convertCurrencyBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GcurrencyConvertData_convertCurrencyBuilder() {
     GcurrencyConvertData_convertCurrency._initializeBuilder(this);
   }
@@ -44817,7 +44038,6 @@ class GcurrencyConvertData_convertCurrencyBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -44867,8 +44087,7 @@ class GcurrencyConvertData_convertCurrencyBuilder
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GcurrencyConvertData_convertCurrency', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -44918,8 +44137,6 @@ class _$GcurrencyConvertData_convertCurrency_expense
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GcurrencyConvertData_convertCurrency_expense(
           [void Function(GcurrencyConvertData_convertCurrency_expenseBuilder)?
@@ -44937,8 +44154,7 @@ class _$GcurrencyConvertData_convertCurrency_expense
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GcurrencyConvertData_convertCurrency_expense', 'G__typename');
@@ -44978,8 +44194,7 @@ class _$GcurrencyConvertData_convertCurrency_expense
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -44994,7 +44209,6 @@ class _$GcurrencyConvertData_convertCurrency_expense
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -45011,8 +44225,7 @@ class _$GcurrencyConvertData_convertCurrency_expense
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -45063,10 +44276,6 @@ class GcurrencyConvertData_convertCurrency_expenseBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GcurrencyConvertData_convertCurrency_expenseBuilder() {
     GcurrencyConvertData_convertCurrency_expense._initializeBuilder(this);
   }
@@ -45083,7 +44292,6 @@ class GcurrencyConvertData_convertCurrency_expenseBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -45126,8 +44334,7 @@ class GcurrencyConvertData_convertCurrency_expenseBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
                   r'GcurrencyConvertData_convertCurrency_expense', 'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -46614,8 +45821,6 @@ class _$GgetTransactionsData_getTransactions_expense
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GgetTransactionsData_getTransactions_expense(
           [void Function(GgetTransactionsData_getTransactions_expenseBuilder)?
@@ -46633,8 +45838,7 @@ class _$GgetTransactionsData_getTransactions_expense
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GgetTransactionsData_getTransactions_expense', 'G__typename');
@@ -46674,8 +45878,7 @@ class _$GgetTransactionsData_getTransactions_expense
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -46690,7 +45893,6 @@ class _$GgetTransactionsData_getTransactions_expense
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -46707,8 +45909,7 @@ class _$GgetTransactionsData_getTransactions_expense
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -46759,10 +45960,6 @@ class GgetTransactionsData_getTransactions_expenseBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GgetTransactionsData_getTransactions_expenseBuilder() {
     GgetTransactionsData_getTransactions_expense._initializeBuilder(this);
   }
@@ -46779,7 +45976,6 @@ class GgetTransactionsData_getTransactions_expenseBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -46822,8 +46018,7 @@ class GgetTransactionsData_getTransactions_expenseBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
                   r'GgetTransactionsData_getTransactions_expense', 'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -47016,8 +46211,6 @@ class _$GgetTransactionsData_getTransactions_split
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GgetTransactionsData_getTransactions_split(
           [void Function(GgetTransactionsData_getTransactions_splitBuilder)?
@@ -47040,8 +46233,7 @@ class _$GgetTransactionsData_getTransactions_split
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
         r'GgetTransactionsData_getTransactions_split', 'G__typename');
@@ -47095,8 +46287,7 @@ class _$GgetTransactionsData_getTransactions_split
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -47117,7 +46308,6 @@ class _$GgetTransactionsData_getTransactions_split
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -47140,8 +46330,7 @@ class _$GgetTransactionsData_getTransactions_split
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -47227,10 +46416,6 @@ class GgetTransactionsData_getTransactions_splitBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GgetTransactionsData_getTransactions_splitBuilder() {
     GgetTransactionsData_getTransactions_split._initializeBuilder(this);
   }
@@ -47253,7 +46438,6 @@ class GgetTransactionsData_getTransactions_splitBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -47301,8 +46485,7 @@ class GgetTransactionsData_getTransactions_splitBuilder
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GgetTransactionsData_getTransactions_split', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -48167,6 +47350,111 @@ class GgetImageUploadUrlData_uploadImageBuilder
                 id, r'GgetImageUploadUrlData_uploadImage', 'id'),
             presignedUrl: BuiltValueNullFieldError.checkNotNull(presignedUrl,
                 r'GgetImageUploadUrlData_uploadImage', 'presignedUrl'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetImageViewUrlData extends GgetImageViewUrlData {
+  @override
+  final String G__typename;
+  @override
+  final String imageUrl;
+
+  factory _$GgetImageViewUrlData(
+          [void Function(GgetImageViewUrlDataBuilder)? updates]) =>
+      (new GgetImageViewUrlDataBuilder()..update(updates))._build();
+
+  _$GgetImageViewUrlData._({required this.G__typename, required this.imageUrl})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GgetImageViewUrlData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        imageUrl, r'GgetImageViewUrlData', 'imageUrl');
+  }
+
+  @override
+  GgetImageViewUrlData rebuild(
+          void Function(GgetImageViewUrlDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetImageViewUrlDataBuilder toBuilder() =>
+      new GgetImageViewUrlDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetImageViewUrlData &&
+        G__typename == other.G__typename &&
+        imageUrl == other.imageUrl;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, imageUrl.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetImageViewUrlData')
+          ..add('G__typename', G__typename)
+          ..add('imageUrl', imageUrl))
+        .toString();
+  }
+}
+
+class GgetImageViewUrlDataBuilder
+    implements Builder<GgetImageViewUrlData, GgetImageViewUrlDataBuilder> {
+  _$GgetImageViewUrlData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _imageUrl;
+  String? get imageUrl => _$this._imageUrl;
+  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
+
+  GgetImageViewUrlDataBuilder() {
+    GgetImageViewUrlData._initializeBuilder(this);
+  }
+
+  GgetImageViewUrlDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _imageUrl = $v.imageUrl;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetImageViewUrlData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetImageViewUrlData;
+  }
+
+  @override
+  void update(void Function(GgetImageViewUrlDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetImageViewUrlData build() => _build();
+
+  _$GgetImageViewUrlData _build() {
+    final _$result = _$v ??
+        new _$GgetImageViewUrlData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GgetImageViewUrlData', 'G__typename'),
+            imageUrl: BuiltValueNullFieldError.checkNotNull(
+                imageUrl, r'GgetImageViewUrlData', 'imageUrl'));
     replace(_$result);
     return _$result;
   }
@@ -50093,8 +49381,6 @@ class _$GExpenseBasicData extends GExpenseBasicData {
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GExpenseBasicData(
           [void Function(GExpenseBasicDataBuilder)? updates]) =>
@@ -50109,8 +49395,7 @@ class _$GExpenseBasicData extends GExpenseBasicData {
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GExpenseBasicData', 'G__typename');
@@ -50146,8 +49431,7 @@ class _$GExpenseBasicData extends GExpenseBasicData {
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -50162,7 +49446,6 @@ class _$GExpenseBasicData extends GExpenseBasicData {
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -50178,8 +49461,7 @@ class _$GExpenseBasicData extends GExpenseBasicData {
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -50226,10 +49508,6 @@ class GExpenseBasicDataBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GExpenseBasicDataBuilder() {
     GExpenseBasicData._initializeBuilder(this);
   }
@@ -50246,7 +49524,6 @@ class GExpenseBasicDataBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -50285,8 +49562,7 @@ class GExpenseBasicDataBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GExpenseBasicData', 'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -50446,8 +49722,6 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
   @override
   final String? imageId;
   @override
-  final String? imageUrl;
-  @override
   final GExpenseFieldsData_creator creator;
   @override
   final BuiltList<GExpenseFieldsData_splits> splits;
@@ -50466,7 +49740,6 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
       required this.creatorId,
       this.note,
       this.imageId,
-      this.imageUrl,
       required this.creator,
       required this.splits})
       : super._() {
@@ -50511,7 +49784,6 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
         creatorId == other.creatorId &&
         note == other.note &&
         imageId == other.imageId &&
-        imageUrl == other.imageUrl &&
         creator == other.creator &&
         splits == other.splits;
   }
@@ -50528,7 +49800,6 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jc(_$hash, creator.hashCode);
     _$hash = $jc(_$hash, splits.hashCode);
     _$hash = $jf(_$hash);
@@ -50547,7 +49818,6 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
           ..add('creatorId', creatorId)
           ..add('note', note)
           ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl)
           ..add('creator', creator)
           ..add('splits', splits))
         .toString();
@@ -50596,10 +49866,6 @@ class GExpenseFieldsDataBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GExpenseFieldsData_creatorBuilder? _creator;
   GExpenseFieldsData_creatorBuilder get creator =>
       _$this._creator ??= new GExpenseFieldsData_creatorBuilder();
@@ -50628,7 +49894,6 @@ class GExpenseFieldsDataBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _creator = $v.creator.toBuilder();
       _splits = $v.splits.toBuilder();
       _$v = null;
@@ -50670,7 +49935,6 @@ class GExpenseFieldsDataBuilder
                   creatorId, r'GExpenseFieldsData', 'creatorId'),
               note: note,
               imageId: imageId,
-              imageUrl: imageUrl,
               creator: creator.build(),
               splits: splits.build());
     } catch (_) {
@@ -51007,8 +50271,6 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GExpenseFieldsData_splits(
           [void Function(GExpenseFieldsData_splitsBuilder)? updates]) =>
@@ -51029,8 +50291,7 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GExpenseFieldsData_splits', 'G__typename');
@@ -51083,8 +50344,7 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -51105,7 +50365,6 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -51127,8 +50386,7 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -51206,10 +50464,6 @@ class GExpenseFieldsData_splitsBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GExpenseFieldsData_splitsBuilder() {
     GExpenseFieldsData_splits._initializeBuilder(this);
   }
@@ -51232,7 +50486,6 @@ class GExpenseFieldsData_splitsBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -51279,8 +50532,7 @@ class GExpenseFieldsData_splitsBuilder
               groupId:
                   BuiltValueNullFieldError.checkNotNull(groupId, r'GExpenseFieldsData_splits', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -51772,8 +51024,6 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
   @override
   final String? imageId;
   @override
-  final String? imageUrl;
-  @override
   final BuiltList<GNewExpenseFieldsData_splits> splits;
 
   factory _$GNewExpenseFieldsData(
@@ -51790,7 +51040,6 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
       required this.creatorId,
       this.note,
       this.imageId,
-      this.imageUrl,
       required this.splits})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -51832,7 +51081,6 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
         creatorId == other.creatorId &&
         note == other.note &&
         imageId == other.imageId &&
-        imageUrl == other.imageUrl &&
         splits == other.splits;
   }
 
@@ -51848,7 +51096,6 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jc(_$hash, splits.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -51866,7 +51113,6 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
           ..add('creatorId', creatorId)
           ..add('note', note)
           ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl)
           ..add('splits', splits))
         .toString();
   }
@@ -51914,10 +51160,6 @@ class GNewExpenseFieldsDataBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   ListBuilder<GNewExpenseFieldsData_splits>? _splits;
   ListBuilder<GNewExpenseFieldsData_splits> get splits =>
       _$this._splits ??= new ListBuilder<GNewExpenseFieldsData_splits>();
@@ -51940,7 +51182,6 @@ class GNewExpenseFieldsDataBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _splits = $v.splits.toBuilder();
       _$v = null;
     }
@@ -51981,7 +51222,6 @@ class GNewExpenseFieldsDataBuilder
                   creatorId, r'GNewExpenseFieldsData', 'creatorId'),
               note: note,
               imageId: imageId,
-              imageUrl: imageUrl,
               splits: splits.build());
     } catch (_) {
       late String _$failedField;
@@ -52163,8 +51403,6 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GNewExpenseFieldsData_splits(
           [void Function(GNewExpenseFieldsData_splitsBuilder)? updates]) =>
@@ -52188,8 +51426,7 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GNewExpenseFieldsData_splits', 'G__typename');
@@ -52249,8 +51486,7 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -52274,7 +51510,6 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -52299,8 +51534,7 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -52397,10 +51631,6 @@ class GNewExpenseFieldsData_splitsBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GNewExpenseFieldsData_splitsBuilder() {
     GNewExpenseFieldsData_splits._initializeBuilder(this);
   }
@@ -52426,7 +51656,6 @@ class GNewExpenseFieldsData_splitsBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -52477,8 +51706,7 @@ class GNewExpenseFieldsData_splitsBuilder
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GNewExpenseFieldsData_splits', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -52526,8 +51754,6 @@ class _$GNewExpenseFieldsData_splits_expense
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GNewExpenseFieldsData_splits_expense(
           [void Function(GNewExpenseFieldsData_splits_expenseBuilder)?
@@ -52544,8 +51770,7 @@ class _$GNewExpenseFieldsData_splits_expense
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GNewExpenseFieldsData_splits_expense', 'G__typename');
@@ -52584,8 +51809,7 @@ class _$GNewExpenseFieldsData_splits_expense
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -52600,7 +51824,6 @@ class _$GNewExpenseFieldsData_splits_expense
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -52616,8 +51839,7 @@ class _$GNewExpenseFieldsData_splits_expense
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -52667,10 +51889,6 @@ class GNewExpenseFieldsData_splits_expenseBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GNewExpenseFieldsData_splits_expenseBuilder() {
     GNewExpenseFieldsData_splits_expense._initializeBuilder(this);
   }
@@ -52687,7 +51905,6 @@ class GNewExpenseFieldsData_splits_expenseBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -52727,8 +51944,7 @@ class GNewExpenseFieldsData_splits_expenseBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
                   r'GNewExpenseFieldsData_splits_expense', 'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -53757,8 +52973,6 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GSplitFieldsBasicsData(
           [void Function(GSplitFieldsBasicsDataBuilder)? updates]) =>
@@ -53777,8 +52991,7 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GSplitFieldsBasicsData', 'G__typename');
@@ -53824,8 +53037,7 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -53844,7 +53056,6 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -53864,8 +53075,7 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -53930,10 +53140,6 @@ class GSplitFieldsBasicsDataBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GSplitFieldsBasicsDataBuilder() {
     GSplitFieldsBasicsData._initializeBuilder(this);
   }
@@ -53954,7 +53160,6 @@ class GSplitFieldsBasicsDataBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -53999,8 +53204,7 @@ class GSplitFieldsBasicsDataBuilder
               groupId: BuiltValueNullFieldError.checkNotNull(
                   groupId, r'GSplitFieldsBasicsData', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -54169,8 +53373,6 @@ class _$GSplitFieldsData extends GSplitFieldsData {
   @override
   final String? imageId;
   @override
-  final String? imageUrl;
-  @override
   final GSplitFieldsData_fromUser fromUser;
   @override
   final GSplitFieldsData_toUser toUser;
@@ -54193,7 +53395,6 @@ class _$GSplitFieldsData extends GSplitFieldsData {
       required this.groupId,
       this.note,
       this.imageId,
-      this.imageUrl,
       required this.fromUser,
       required this.toUser})
       : super._() {
@@ -54245,7 +53446,6 @@ class _$GSplitFieldsData extends GSplitFieldsData {
         groupId == other.groupId &&
         note == other.note &&
         imageId == other.imageId &&
-        imageUrl == other.imageUrl &&
         fromUser == other.fromUser &&
         toUser == other.toUser;
   }
@@ -54266,7 +53466,6 @@ class _$GSplitFieldsData extends GSplitFieldsData {
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jc(_$hash, fromUser.hashCode);
     _$hash = $jc(_$hash, toUser.hashCode);
     _$hash = $jf(_$hash);
@@ -54289,7 +53488,6 @@ class _$GSplitFieldsData extends GSplitFieldsData {
           ..add('groupId', groupId)
           ..add('note', note)
           ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl)
           ..add('fromUser', fromUser)
           ..add('toUser', toUser))
         .toString();
@@ -54355,10 +53553,6 @@ class GSplitFieldsDataBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GSplitFieldsData_fromUserBuilder? _fromUser;
   GSplitFieldsData_fromUserBuilder get fromUser =>
       _$this._fromUser ??= new GSplitFieldsData_fromUserBuilder();
@@ -54390,7 +53584,6 @@ class GSplitFieldsDataBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _fromUser = $v.fromUser.toBuilder();
       _toUser = $v.toUser.toBuilder();
       _$v = null;
@@ -54438,7 +53631,6 @@ class GSplitFieldsDataBuilder
                   groupId, r'GSplitFieldsData', 'groupId'),
               note: note,
               imageId: imageId,
-              imageUrl: imageUrl,
               fromUser: fromUser.build(),
               toUser: toUser.build());
     } catch (_) {
@@ -54934,8 +54126,6 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
   @override
   final String? imageId;
   @override
-  final String? imageUrl;
-  @override
   final GSplitTransactionFieldsData_expense? expense;
   @override
   final GSplitTransactionFieldsData_group group;
@@ -54962,7 +54152,6 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
       required this.groupId,
       this.note,
       this.imageId,
-      this.imageUrl,
       this.expense,
       required this.group,
       required this.creator})
@@ -55023,7 +54212,6 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
         groupId == other.groupId &&
         note == other.note &&
         imageId == other.imageId &&
-        imageUrl == other.imageUrl &&
         expense == other.expense &&
         group == other.group &&
         creator == other.creator;
@@ -55047,7 +54235,6 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jc(_$hash, expense.hashCode);
     _$hash = $jc(_$hash, group.hashCode);
     _$hash = $jc(_$hash, creator.hashCode);
@@ -55073,7 +54260,6 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
           ..add('groupId', groupId)
           ..add('note', note)
           ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl)
           ..add('expense', expense)
           ..add('group', group)
           ..add('creator', creator))
@@ -55155,10 +54341,6 @@ class GSplitTransactionFieldsDataBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GSplitTransactionFieldsData_expenseBuilder? _expense;
   GSplitTransactionFieldsData_expenseBuilder get expense =>
       _$this._expense ??= new GSplitTransactionFieldsData_expenseBuilder();
@@ -55199,7 +54381,6 @@ class GSplitTransactionFieldsDataBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _expense = $v.expense?.toBuilder();
       _group = $v.group.toBuilder();
       _creator = $v.creator.toBuilder();
@@ -55251,7 +54432,6 @@ class GSplitTransactionFieldsDataBuilder
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GSplitTransactionFieldsData', 'groupId'),
               note: note,
               imageId: imageId,
-              imageUrl: imageUrl,
               expense: _expense?.build(),
               group: group.build(),
               creator: creator.build());
@@ -55759,8 +54939,6 @@ class _$GSplitTransactionFieldsData_expense
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GSplitTransactionFieldsData_expense(
           [void Function(GSplitTransactionFieldsData_expenseBuilder)?
@@ -55777,8 +54955,7 @@ class _$GSplitTransactionFieldsData_expense
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GSplitTransactionFieldsData_expense', 'G__typename');
@@ -55817,8 +54994,7 @@ class _$GSplitTransactionFieldsData_expense
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -55833,7 +55009,6 @@ class _$GSplitTransactionFieldsData_expense
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -55849,8 +55024,7 @@ class _$GSplitTransactionFieldsData_expense
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -55900,10 +55074,6 @@ class GSplitTransactionFieldsData_expenseBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GSplitTransactionFieldsData_expenseBuilder() {
     GSplitTransactionFieldsData_expense._initializeBuilder(this);
   }
@@ -55920,7 +55090,6 @@ class GSplitTransactionFieldsData_expenseBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -55960,8 +55129,7 @@ class GSplitTransactionFieldsData_expenseBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
                   r'GSplitTransactionFieldsData_expense', 'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -57221,8 +56389,6 @@ class _$GGroupWithExpensesData_expenses
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GGroupWithExpensesData_expenses(
           [void Function(GGroupWithExpensesData_expensesBuilder)? updates]) =>
@@ -57239,8 +56405,7 @@ class _$GGroupWithExpensesData_expenses
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGroupWithExpensesData_expenses', 'G__typename');
@@ -57285,8 +56450,7 @@ class _$GGroupWithExpensesData_expenses
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -57303,7 +56467,6 @@ class _$GGroupWithExpensesData_expenses
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -57321,8 +56484,7 @@ class _$GGroupWithExpensesData_expenses
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -57384,10 +56546,6 @@ class GGroupWithExpensesData_expensesBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GGroupWithExpensesData_expensesBuilder() {
     GGroupWithExpensesData_expenses._initializeBuilder(this);
   }
@@ -57406,7 +56564,6 @@ class GGroupWithExpensesData_expensesBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -57447,8 +56604,7 @@ class GGroupWithExpensesData_expensesBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(
                   creatorId, r'GGroupWithExpensesData_expenses', 'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -57668,8 +56824,6 @@ class _$GGroupWithExpensesData_expenses_splits
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GGroupWithExpensesData_expenses_splits(
           [void Function(GGroupWithExpensesData_expenses_splitsBuilder)?
@@ -57692,8 +56846,7 @@ class _$GGroupWithExpensesData_expenses_splits
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GGroupWithExpensesData_expenses_splits', 'G__typename');
@@ -57747,8 +56900,7 @@ class _$GGroupWithExpensesData_expenses_splits
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -57769,7 +56921,6 @@ class _$GGroupWithExpensesData_expenses_splits
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -57792,8 +56943,7 @@ class _$GGroupWithExpensesData_expenses_splits
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -57876,10 +57026,6 @@ class GGroupWithExpensesData_expenses_splitsBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GGroupWithExpensesData_expenses_splitsBuilder() {
     GGroupWithExpensesData_expenses_splits._initializeBuilder(this);
   }
@@ -57902,7 +57048,6 @@ class GGroupWithExpensesData_expenses_splitsBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -57949,8 +57094,7 @@ class GGroupWithExpensesData_expenses_splitsBuilder
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GGroupWithExpensesData_expenses_splits', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -58740,8 +57884,6 @@ class _$GExpenseMixSplitFieldsData_expense
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GExpenseMixSplitFieldsData_expense(
           [void Function(GExpenseMixSplitFieldsData_expenseBuilder)?
@@ -58758,8 +57900,7 @@ class _$GExpenseMixSplitFieldsData_expense
       required this.amount,
       required this.creatorId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GExpenseMixSplitFieldsData_expense', 'G__typename');
@@ -58798,8 +57939,7 @@ class _$GExpenseMixSplitFieldsData_expense
         amount == other.amount &&
         creatorId == other.creatorId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -58814,7 +57954,6 @@ class _$GExpenseMixSplitFieldsData_expense
     _$hash = $jc(_$hash, creatorId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -58830,8 +57969,7 @@ class _$GExpenseMixSplitFieldsData_expense
           ..add('amount', amount)
           ..add('creatorId', creatorId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -58880,10 +58018,6 @@ class GExpenseMixSplitFieldsData_expenseBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GExpenseMixSplitFieldsData_expenseBuilder() {
     GExpenseMixSplitFieldsData_expense._initializeBuilder(this);
   }
@@ -58900,7 +58034,6 @@ class GExpenseMixSplitFieldsData_expenseBuilder
       _creatorId = $v.creatorId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -58940,8 +58073,7 @@ class GExpenseMixSplitFieldsData_expenseBuilder
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
                   r'GExpenseMixSplitFieldsData_expense', 'creatorId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {
@@ -59121,8 +58253,6 @@ class _$GExpenseMixSplitFieldsData_split
   final String? note;
   @override
   final String? imageId;
-  @override
-  final String? imageUrl;
 
   factory _$GExpenseMixSplitFieldsData_split(
           [void Function(GExpenseMixSplitFieldsData_splitBuilder)? updates]) =>
@@ -59143,8 +58273,7 @@ class _$GExpenseMixSplitFieldsData_split
       this.withGroupId,
       required this.groupId,
       this.note,
-      this.imageId,
-      this.imageUrl})
+      this.imageId})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GExpenseMixSplitFieldsData_split', 'G__typename');
@@ -59197,8 +58326,7 @@ class _$GExpenseMixSplitFieldsData_split
         withGroupId == other.withGroupId &&
         groupId == other.groupId &&
         note == other.note &&
-        imageId == other.imageId &&
-        imageUrl == other.imageUrl;
+        imageId == other.imageId;
   }
 
   @override
@@ -59219,7 +58347,6 @@ class _$GExpenseMixSplitFieldsData_split
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
-    _$hash = $jc(_$hash, imageUrl.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -59241,8 +58368,7 @@ class _$GExpenseMixSplitFieldsData_split
           ..add('withGroupId', withGroupId)
           ..add('groupId', groupId)
           ..add('note', note)
-          ..add('imageId', imageId)
-          ..add('imageUrl', imageUrl))
+          ..add('imageId', imageId))
         .toString();
   }
 }
@@ -59322,10 +58448,6 @@ class GExpenseMixSplitFieldsData_splitBuilder
   String? get imageId => _$this._imageId;
   set imageId(String? imageId) => _$this._imageId = imageId;
 
-  String? _imageUrl;
-  String? get imageUrl => _$this._imageUrl;
-  set imageUrl(String? imageUrl) => _$this._imageUrl = imageUrl;
-
   GExpenseMixSplitFieldsData_splitBuilder() {
     GExpenseMixSplitFieldsData_split._initializeBuilder(this);
   }
@@ -59348,7 +58470,6 @@ class GExpenseMixSplitFieldsData_splitBuilder
       _groupId = $v.groupId;
       _note = $v.note;
       _imageId = $v.imageId;
-      _imageUrl = $v.imageUrl;
       _$v = null;
     }
     return this;
@@ -59394,8 +58515,7 @@ class GExpenseMixSplitFieldsData_splitBuilder
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GExpenseMixSplitFieldsData_split', 'groupId'),
               note: note,
-              imageId: imageId,
-              imageUrl: imageUrl);
+              imageId: imageId);
     } catch (_) {
       late String _$failedField;
       try {

@@ -66,7 +66,6 @@ fragment ExpenseBasic on Expense {
   creatorId
   note
   imageId
-  imageUrl
 }
 
 fragment ExpenseFields on Expense {
@@ -105,7 +104,6 @@ fragment SplitFieldsBasics on Split {
   groupId
   note
   imageId
-  imageUrl
 }
 
 fragment SplitFields on Split {
@@ -357,12 +355,12 @@ mutation autoSettleWithUser(
 }
 
 query transactionWithUser($withUser: String!, $fromTime: String, $limit: Int!) {
-  getTransactionsWithUser(
+  getTransactionsMixExpenseWithUser(
     withUser: $withUser
     fromTime: $fromTime
     limit: $limit
   ) {
-    ...SplitTransactionFields
+    ...ExpenseMixSplitFields
   }
 }
 
@@ -422,4 +420,8 @@ mutation getImageUploadUrl($size: Int!) {
   uploadImage(size: $size) {
     ...UploadFields
   }
+}
+
+query getImageViewUrl($imageId: String!){
+  imageUrl(id:$imageId)
 }

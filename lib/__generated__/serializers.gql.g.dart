@@ -203,6 +203,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GgetImageUploadUrlData_uploadImage.serializer)
       ..add(GgetImageUploadUrlReq.serializer)
       ..add(GgetImageUploadUrlVars.serializer)
+      ..add(GgetImageViewUrlData.serializer)
+      ..add(GgetImageViewUrlReq.serializer)
+      ..add(GgetImageViewUrlVars.serializer)
       ..add(GgetTransactionsData.serializer)
       ..add(GgetTransactionsData_getTransactions.serializer)
       ..add(GgetTransactionsData_getTransactions_expense.serializer)
@@ -328,16 +331,24 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GtransactionMixExpenseReq.serializer)
       ..add(GtransactionMixExpenseVars.serializer)
       ..add(GtransactionWithUserData.serializer)
-      ..add(GtransactionWithUserData_getTransactionsWithUser.serializer)
-      ..add(GtransactionWithUserData_getTransactionsWithUser_amount.serializer)
-      ..add(GtransactionWithUserData_getTransactionsWithUser_creator.serializer)
-      ..add(GtransactionWithUserData_getTransactionsWithUser_expense.serializer)
-      ..add(GtransactionWithUserData_getTransactionsWithUser_expense_amount
+      ..add(
+          GtransactionWithUserData_getTransactionsMixExpenseWithUser.serializer)
+      ..add(GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
           .serializer)
       ..add(
-          GtransactionWithUserData_getTransactionsWithUser_fromUser.serializer)
-      ..add(GtransactionWithUserData_getTransactionsWithUser_group.serializer)
-      ..add(GtransactionWithUserData_getTransactionsWithUser_toUser.serializer)
+          GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount
+              .serializer)
+      ..add(GtransactionWithUserData_getTransactionsMixExpenseWithUser_split
+          .serializer)
+      ..add(
+          GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_amount
+              .serializer)
+      ..add(
+          GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_fromUser
+              .serializer)
+      ..add(
+          GtransactionWithUserData_getTransactionsMixExpenseWithUser_split_toUser
+              .serializer)
       ..add(GtransactionWithUserReq.serializer)
       ..add(GtransactionWithUserVars.serializer)
       ..add(GuserConfigData.serializer)
@@ -513,10 +524,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
               GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
-            const FullType(GtransactionWithUserData_getTransactionsWithUser)
+            const FullType(
+                GtransactionWithUserData_getTransactionsMixExpenseWithUser)
           ]),
           () => new ListBuilder<
-              GtransactionWithUserData_getTransactionsWithUser>())
+              GtransactionWithUserData_getTransactionsMixExpenseWithUser>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

@@ -56,6 +56,8 @@ Serializer<GsetNotificationTokenVars> _$gsetNotificationTokenVarsSerializer =
     new _$GsetNotificationTokenVarsSerializer();
 Serializer<GgetImageUploadUrlVars> _$ggetImageUploadUrlVarsSerializer =
     new _$GgetImageUploadUrlVarsSerializer();
+Serializer<GgetImageViewUrlVars> _$ggetImageViewUrlVarsSerializer =
+    new _$GgetImageViewUrlVarsSerializer();
 Serializer<GUploadFieldsVars> _$gUploadFieldsVarsSerializer =
     new _$GUploadFieldsVarsSerializer();
 Serializer<GUserFieldsVars> _$gUserFieldsVarsSerializer =
@@ -1381,6 +1383,52 @@ class _$GgetImageUploadUrlVarsSerializer
         case 'size':
           result.size = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetImageViewUrlVarsSerializer
+    implements StructuredSerializer<GgetImageViewUrlVars> {
+  @override
+  final Iterable<Type> types = const [
+    GgetImageViewUrlVars,
+    _$GgetImageViewUrlVars
+  ];
+  @override
+  final String wireName = 'GgetImageViewUrlVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetImageViewUrlVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'imageId',
+      serializers.serialize(object.imageId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetImageViewUrlVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetImageViewUrlVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -4417,6 +4465,93 @@ class GgetImageUploadUrlVarsBuilder
         new _$GgetImageUploadUrlVars._(
             size: BuiltValueNullFieldError.checkNotNull(
                 size, r'GgetImageUploadUrlVars', 'size'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetImageViewUrlVars extends GgetImageViewUrlVars {
+  @override
+  final String imageId;
+
+  factory _$GgetImageViewUrlVars(
+          [void Function(GgetImageViewUrlVarsBuilder)? updates]) =>
+      (new GgetImageViewUrlVarsBuilder()..update(updates))._build();
+
+  _$GgetImageViewUrlVars._({required this.imageId}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        imageId, r'GgetImageViewUrlVars', 'imageId');
+  }
+
+  @override
+  GgetImageViewUrlVars rebuild(
+          void Function(GgetImageViewUrlVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetImageViewUrlVarsBuilder toBuilder() =>
+      new GgetImageViewUrlVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetImageViewUrlVars && imageId == other.imageId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetImageViewUrlVars')
+          ..add('imageId', imageId))
+        .toString();
+  }
+}
+
+class GgetImageViewUrlVarsBuilder
+    implements Builder<GgetImageViewUrlVars, GgetImageViewUrlVarsBuilder> {
+  _$GgetImageViewUrlVars? _$v;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  GgetImageViewUrlVarsBuilder();
+
+  GgetImageViewUrlVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _imageId = $v.imageId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetImageViewUrlVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetImageViewUrlVars;
+  }
+
+  @override
+  void update(void Function(GgetImageViewUrlVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetImageViewUrlVars build() => _build();
+
+  _$GgetImageViewUrlVars _build() {
+    final _$result = _$v ??
+        new _$GgetImageViewUrlVars._(
+            imageId: BuiltValueNullFieldError.checkNotNull(
+                imageId, r'GgetImageViewUrlVars', 'imageId'));
     replace(_$result);
     return _$result;
   }

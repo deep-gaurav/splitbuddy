@@ -659,6 +659,30 @@ abstract class GgetImageUploadUrlVars
       );
 }
 
+abstract class GgetImageViewUrlVars
+    implements Built<GgetImageViewUrlVars, GgetImageViewUrlVarsBuilder> {
+  GgetImageViewUrlVars._();
+
+  factory GgetImageViewUrlVars(
+          [Function(GgetImageViewUrlVarsBuilder b) updates]) =
+      _$GgetImageViewUrlVars;
+
+  String get imageId;
+  static Serializer<GgetImageViewUrlVars> get serializer =>
+      _$ggetImageViewUrlVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetImageViewUrlVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetImageViewUrlVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetImageViewUrlVars.serializer,
+        json,
+      );
+}
+
 abstract class GUploadFieldsVars
     implements Built<GUploadFieldsVars, GUploadFieldsVarsBuilder> {
   GUploadFieldsVars._();

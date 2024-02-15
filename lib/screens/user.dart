@@ -97,72 +97,84 @@ class _UserPageState extends State<UserPage>
                 .jumpTo(_scrollController.position.maxScrollExtent - pos);
           });
         }
-        for (var transaction in result.data!.getTransactionsWithUser) {
-          if (transaction.transactionPartGroupId != null) {
-            var group = transactions.firstWhereOrNull((element) =>
-                (element is GroupedCrossSettlementTransactions &&
-                    element.groupId == transaction.transactionPartGroupId) ||
-                (element is GroupedPaidTransactions &&
-                    element.groupId == transaction.transactionPartGroupId) ||
-                (element is CurrencyConversionTransactions &&
-                    element.groupId == transaction.transactionPartGroupId));
-            if (group != null) {
-              switch (group) {
-                case SingleTransaction():
-                  break;
-                case GroupedPaidTransactions(transactions: var transactions):
-                  if (!transactions
-                      .any((element) => element.id == transaction.id)) {
-                    transactions.add(transaction);
-                  }
-                case GroupedCrossSettlementTransactions(
-                    transactions: var transactions
-                  ):
-                  if (!transactions
-                      .any((element) => element.id == transaction.id)) {
-                    transactions.add(transaction);
-                  }
+        for (var mix in result.data!.getTransactionsMixExpenseWithUser) {
+          var transaction = mix.split;
+          var expense = mix.expense;
+          if (transaction != null) {
+            if (transaction.transactionPartGroupId != null) {
+              var group = transactions.firstWhereOrNull((element) =>
+                  (element is GroupedCrossSettlementTransactions &&
+                      element.groupId == transaction.transactionPartGroupId) ||
+                  (element is GroupedPaidTransactions &&
+                      element.groupId == transaction.transactionPartGroupId) ||
+                  (element is CurrencyConversionTransactions &&
+                      element.groupId == transaction.transactionPartGroupId));
+              if (group != null) {
+                switch (group) {
+                  case SingleTransaction():
+                    break;
+                  case GroupedPaidTransactions(transactions: var transactions):
+                    if (!transactions
+                        .any((element) => element.id == transaction.id)) {
+                      transactions.add(transaction);
+                    }
+                  case GroupedCrossSettlementTransactions(
+                      transactions: var transactions
+                    ):
+                    if (!transactions
+                        .any((element) => element.id == transaction.id)) {
+                      transactions.add(transaction);
+                    }
 
-                case CurrencyConversionTransactions(
-                    transactions: var transactions
-                  ):
-                  if (!transactions
-                      .any((element) => element.id == transaction.id)) {
-                    transactions.add(transaction);
-                  }
+                  case CurrencyConversionTransactions(
+                      transactions: var transactions
+                    ):
+                    if (!transactions
+                        .any((element) => element.id == transaction.id)) {
+                      transactions.add(transaction);
+                    }
+                }
+              } else {
+                if (!transactions.any((element) =>
+                    element is SingleTransaction &&
+                    element.transaction?.id == transaction.id)) {
+                  transactions.add(
+                    transaction.transactionType ==
+                            GTransactionType.CROSS_GROUP_SETTLEMENT
+                        ? GroupedCrossSettlementTransactions(
+                            transactions: [transaction],
+                            groupId: transaction.transactionPartGroupId!)
+                        : transaction.transactionType ==
+                                GTransactionType.CURRENCY_CONVERSION
+                            ? CurrencyConversionTransactions(
+                                groupId: transaction.transactionPartGroupId!,
+                                transactions: [transaction],
+                              )
+                            : GroupedPaidTransactions(
+                                groupId: transaction.transactionPartGroupId!,
+                                transactions: [transaction],
+                              ),
+                  );
+                }
               }
-            } else {
-              if (!transactions.any((element) =>
-                  element is SingleTransaction &&
-                  element.transaction.id == transaction.id)) {
-                transactions.add(
-                  transaction.transactionType ==
-                          GTransactionType.CROSS_GROUP_SETTLEMENT
-                      ? GroupedCrossSettlementTransactions(
-                          transactions: [transaction],
-                          groupId: transaction.transactionPartGroupId!)
-                      : transaction.transactionType ==
-                              GTransactionType.CURRENCY_CONVERSION
-                          ? CurrencyConversionTransactions(
-                              groupId: transaction.transactionPartGroupId!,
-                              transactions: [transaction],
-                            )
-                          : GroupedPaidTransactions(
-                              groupId: transaction.transactionPartGroupId!,
-                              transactions: [transaction],
-                            ),
-                );
-              }
+            } else if (!transactions.any((element) =>
+                element is SingleTransaction &&
+                element.transaction?.id == transaction.id)) {
+              transactions.add(SingleTransaction(
+                  transaction: transaction, expenseBasic: expense));
             }
-          } else if (!transactions.any((element) =>
-              element is SingleTransaction &&
-              element.transaction.id == transaction.id)) {
-            transactions.add(SingleTransaction(transaction: transaction));
+          } else if (expense != null) {
+            if (!transactions.any((element) =>
+                element is SingleTransaction &&
+                element.expenseBasic?.id == expense.id)) {
+              transactions.add(SingleTransaction(
+                  transaction: transaction, expenseBasic: expense));
+            }
           }
         }
         generateGrouped();
-        if (result.data?.getTransactionsWithUser != null &&
-            result.data!.getTransactionsWithUser.isNotEmpty) {
+        if (result.data?.getTransactionsMixExpenseWithUser != null &&
+            result.data!.getTransactionsMixExpenseWithUser.isNotEmpty) {
           maintain.value = true;
         }
       }
@@ -339,8 +351,11 @@ class _UserPageState extends State<UserPage>
                 for (var split in expense.splits) {
                   if (!transactions.any((element) =>
                       element is SingleTransaction &&
-                      element.transaction.id == split.id)) {
-                    transactions.add(SingleTransaction(transaction: split));
+                      element.transaction?.id == split.id)) {
+                    transactions.add(SingleTransaction(
+                      transaction: split,
+                      expenseBasic: split.expense,
+                    ));
                   }
                 }
                 fetchData(forceFirst: true);
@@ -400,8 +415,11 @@ class _UserPageState extends State<UserPage>
             for (var split in expense) {
               if (!transactions.any((element) =>
                   element is SingleTransaction &&
-                  element.transaction.id == split.id)) {
-                transactions.add(SingleTransaction(transaction: split));
+                  element.transaction?.id == split.id)) {
+                transactions.add(SingleTransaction(
+                  transaction: split,
+                  expenseBasic: split.expense,
+                ));
               }
             }
             fetchData(forceFirst: true);
@@ -428,15 +446,13 @@ class UserTransactionCard extends StatelessWidget {
   const UserTransactionCard(
       {super.key, required this.maybeGroupTransaction, this.userGroup});
 
-  bool getIsReceiver(
-          BuildContext context, GSplitTransactionFields transaction) =>
+  bool getIsReceiver(BuildContext context, GSplitFields transaction) =>
       context.read<AppState>().user?.id == transaction.fromUser.id;
 
   bool isSelf(BuildContext context) =>
-      context.read<AppState>().user?.id == maybeGroupTransaction.creator.id;
+      context.read<AppState>().user?.id == maybeGroupTransaction.creatorId;
 
-  (TextSpan, Color?) getTitle(
-      BuildContext context, GSplitTransactionFields transaction) {
+  (TextSpan, Color?) getTitle(BuildContext context, GSplitFields transaction) {
     ColorScheme scheme = ColorUtils.getMainScheme(context);
     ColorScheme neutralYellow = ColorUtils.getNeutralYellow(context);
     ColorScheme neutralBlue = ColorUtils.getNeutralBlue(context);
@@ -520,12 +536,11 @@ class UserTransactionCard extends StatelessWidget {
     return (const TextSpan(), null);
   }
 
-  TextSpan? subTitle(
-      BuildContext context, GSplitTransactionFields transaction) {
+  TextSpan? subTitle(BuildContext context, GSplitFields transaction) {
     if (transaction.transactionType == GTransactionType.CASH_PAID ||
         transaction.transactionType == GTransactionType.EXPENSE_SPLIT ||
         transaction.transactionType == GTransactionType.CURRENCY_CONVERSION) {
-      if (transaction.group.id == userGroup?.id) {
+      if (transaction.groupId == userGroup?.id) {
         return const TextSpan(children: [
           TextSpan(text: 'in '),
           TextSpan(
@@ -536,10 +551,7 @@ class UserTransactionCard extends StatelessWidget {
         return TextSpan(children: [
           const TextSpan(text: 'in '),
           TextSpan(
-            text: transaction.group
-                    .getMainGroup(context.read())
-                    ?.getDisplayName(context.read()) ??
-                transaction.group.name,
+            text: context.read<AppState>().getGroupName(transaction.groupId),
             style: const TextStyle(
               fontStyle: FontStyle.italic,
             ),
@@ -575,7 +587,11 @@ class UserTransactionCard extends StatelessWidget {
               isSelf(context) ? Alignment.centerRight : Alignment.centerLeft,
           child: IntrinsicWidth(
             child: switch (maybeGroupTransaction) {
-              SingleTransaction(transaction: var transaction) => ChatBubble(
+              SingleTransaction(
+                transaction: var transaction,
+                expenseBasic: var expense
+              ) =>
+                ChatBubble(
                   clipper: ChatBubbleClipper1(
                     type: isSelf(context)
                         ? BubbleType.sendBubble
@@ -589,7 +605,12 @@ class UserTransactionCard extends StatelessWidget {
                     right: !isSelf(context) ? 0 : 15,
                   ),
                   elevation: 0,
-                  child: buildSingleTransaction(context, transaction)),
+                  child: buildSingleTransaction(
+                    context,
+                    transaction: transaction,
+                    expense: expense,
+                  ),
+                ),
               CurrencyConversionTransactions(transactions: var transactions) =>
                 ChatBubble(
                   clipper: ChatBubbleClipper1(
@@ -701,7 +722,7 @@ class UserTransactionCard extends StatelessWidget {
               GroupedPaidTransactions(
                 transactions: var transactions,
                 groupId: var groupedTransactionId,
-                creator: var creator,
+                creatorId: var creatorId,
                 total: var total,
                 createdAt: var createdAt
               ) =>
@@ -769,7 +790,7 @@ class UserTransactionCard extends StatelessWidget {
                         elevation: 0,
                         child: buildSingleTransaction(
                           context,
-                          transactions.first,
+                          transaction: transactions.first,
                         ),
                       ),
               GroupedCrossSettlementTransactions(
@@ -832,23 +853,23 @@ class UserTransactionCard extends StatelessWidget {
     );
   }
 
-  Widget buildSingleTransaction(
-      BuildContext context, GSplitTransactionFields transaction) {
+  Widget buildSingleTransaction(BuildContext context,
+      {GSplitFields? transaction, GExpenseBasic? expense}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SizedBox(
           height: 5,
         ),
-        if (transaction.expense != null)
-          ExpenseCard(expense: transaction.expense!),
-        TransactionCard(
-          title: getTitle(context, transaction).$1,
-          amountColor: getTitle(context, transaction).$2,
-          amount: transaction.amount,
-          createdAt: transaction.createdAt,
-          subtitle: subTitle(context, transaction),
-        ),
+        if (expense != null) ExpenseCard(expense: expense),
+        if (transaction != null)
+          TransactionCard(
+            title: getTitle(context, transaction).$1,
+            amountColor: getTitle(context, transaction).$2,
+            amount: transaction.amount,
+            createdAt: transaction.createdAt,
+            subtitle: subTitle(context, transaction),
+          ),
       ],
     );
   }

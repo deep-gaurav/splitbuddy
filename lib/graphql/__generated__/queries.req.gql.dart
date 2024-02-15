@@ -2028,6 +2028,81 @@ abstract class GgetImageUploadUrlReq
       );
 }
 
+abstract class GgetImageViewUrlReq
+    implements
+        Built<GgetImageViewUrlReq, GgetImageViewUrlReqBuilder>,
+        _i1
+        .OperationRequest<_i2.GgetImageViewUrlData, _i3.GgetImageViewUrlVars> {
+  GgetImageViewUrlReq._();
+
+  factory GgetImageViewUrlReq(
+      [Function(GgetImageViewUrlReqBuilder b) updates]) = _$GgetImageViewUrlReq;
+
+  static void _initializeBuilder(GgetImageViewUrlReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'getImageViewUrl',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GgetImageViewUrlVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GgetImageViewUrlData? Function(
+    _i2.GgetImageViewUrlData?,
+    _i2.GgetImageViewUrlData?,
+  )? get updateResult;
+  @override
+  _i2.GgetImageViewUrlData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GgetImageViewUrlData? parseData(Map<String, dynamic> json) =>
+      _i2.GgetImageViewUrlData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GgetImageViewUrlData, _i3.GgetImageViewUrlVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GgetImageViewUrlReq> get serializer =>
+      _$ggetImageViewUrlReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GgetImageViewUrlReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetImageViewUrlReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GgetImageViewUrlReq.serializer,
+        json,
+      );
+}
+
 abstract class GUploadFieldsReq
     implements
         Built<GUploadFieldsReq, GUploadFieldsReqBuilder>,

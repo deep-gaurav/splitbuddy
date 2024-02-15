@@ -100,6 +100,9 @@ class AppState extends ChangeNotifier {
     });
   }
 
+  GGroupFields? getGroupFromId(String id) =>
+      userGroups.firstWhereOrNull((e) => e.id == id);
+
   refresh(
     ReAuthClient client, {
     bool onlyUser = false,

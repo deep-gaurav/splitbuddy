@@ -356,13 +356,6 @@ const ExpenseBasic = _i1.FragmentDefinitionNode(
       directives: [],
       selectionSet: null,
     ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'imageUrl'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
   ]),
 );
 const ExpenseFields = _i1.FragmentDefinitionNode(
@@ -542,13 +535,6 @@ const SplitFieldsBasics = _i1.FragmentDefinitionNode(
     ),
     _i1.FieldNode(
       name: _i1.NameNode(value: 'imageId'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'imageUrl'),
       alias: null,
       arguments: [],
       directives: [],
@@ -1850,7 +1836,7 @@ const transactionWithUser = _i1.OperationDefinitionNode(
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
     _i1.FieldNode(
-      name: _i1.NameNode(value: 'getTransactionsWithUser'),
+      name: _i1.NameNode(value: 'getTransactionsMixExpenseWithUser'),
       alias: null,
       arguments: [
         _i1.ArgumentNode(
@@ -1869,7 +1855,7 @@ const transactionWithUser = _i1.OperationDefinitionNode(
       directives: [],
       selectionSet: _i1.SelectionSetNode(selections: [
         _i1.FragmentSpreadNode(
-          name: _i1.NameNode(value: 'SplitTransactionFields'),
+          name: _i1.NameNode(value: 'ExpenseMixSplitFields'),
           directives: [],
         )
       ]),
@@ -2194,6 +2180,36 @@ const getImageUploadUrl = _i1.OperationDefinitionNode(
     )
   ]),
 );
+const getImageViewUrl = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.query,
+  name: _i1.NameNode(value: 'getImageViewUrl'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'imageId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    )
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'imageUrl'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'id'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'imageId')),
+        )
+      ],
+      directives: [],
+      selectionSet: null,
+    )
+  ]),
+);
 const document = _i1.DocumentNode(definitions: [
   UploadFields,
   UserFields,
@@ -2238,4 +2254,5 @@ const document = _i1.DocumentNode(definitions: [
   getTransactions,
   setNotificationToken,
   getImageUploadUrl,
+  getImageViewUrl,
 ]);

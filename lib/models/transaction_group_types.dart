@@ -3,23 +3,24 @@ import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 
 sealed class TransactionCardTypes {
   String get createdAt;
-  GUserFields get creator;
+  String get creatorId;
 }
 
 class SingleTransaction extends TransactionCardTypes {
-  final GSplitTransactionFields transaction;
+  final GSplitFields? transaction;
+  final GExpenseBasic? expenseBasic;
 
-  SingleTransaction({required this.transaction});
-
-  @override
-  String get createdAt => transaction.createdAt;
+  SingleTransaction({this.transaction, this.expenseBasic});
 
   @override
-  GUserFields get creator => transaction.creator;
+  String get createdAt => transaction?.createdAt ?? expenseBasic!.createdAt;
+
+  @override
+  String get creatorId => transaction?.creatorId ?? expenseBasic!.creatorId;
 }
 
 class GroupedPaidTransactions extends TransactionCardTypes {
-  final List<GSplitTransactionFields> transactions;
+  final List<GSplitFields> transactions;
   final String groupId;
 
   GroupedPaidTransactions({
@@ -31,7 +32,7 @@ class GroupedPaidTransactions extends TransactionCardTypes {
   String get createdAt => transactions.first.createdAt;
 
   @override
-  GUserFields get creator => transactions.first.creator;
+  String get creatorId => transactions.first.creatorId;
 
   GAmountFields get total => GAmountFieldsData((b) => b
     ..currencyId = transactions.first.amount.currencyId
@@ -40,16 +41,15 @@ class GroupedPaidTransactions extends TransactionCardTypes {
 }
 
 class GroupedCrossSettlementTransactions extends TransactionCardTypes {
-  final List<GSplitTransactionFields> transactions;
+  final List<GSplitFields> transactions;
   final String groupId;
 
-  List<(GSplitTransactionFields, GSplitTransactionFields?)>
-      get transactionPairs {
-    List<(GSplitTransactionFields, GSplitTransactionFields?)> grouped = [];
+  List<(GSplitFields, GSplitFields?)> get transactionPairs {
+    List<(GSplitFields, GSplitFields?)> grouped = [];
     for (var transaction in transactions) {
       var similarTransactionIndex = grouped.indexWhere((element) =>
           element.$2 == null &&
-          element.$1.group.id != transaction.group.id &&
+          element.$1.groupId != transaction.groupId &&
           transaction.amount == element.$1.amount);
       if (similarTransactionIndex >= 0) {
         grouped[similarTransactionIndex] =
@@ -68,14 +68,14 @@ class GroupedCrossSettlementTransactions extends TransactionCardTypes {
   String get createdAt => transactions.first.createdAt;
 
   @override
-  GUserFields get creator => transactions.first.creator;
+  String get creatorId => transactions.first.creatorId;
 }
 
 class CurrencyConversionTransactions extends TransactionCardTypes {
-  final List<GSplitTransactionFields> transactions;
+  final List<GSplitFields> transactions;
   final String groupId;
 
-  (GSplitTransactionFields, GSplitTransactionFields?) get transactionPairs =>
+  (GSplitFields, GSplitFields?) get transactionPairs =>
       (transactions.first, transactions.elementAtOrNull(1));
 
   CurrencyConversionTransactions(
@@ -85,5 +85,5 @@ class CurrencyConversionTransactions extends TransactionCardTypes {
   String get createdAt => transactions.first.createdAt;
 
   @override
-  GUserFields get creator => transactions.first.creator;
+  String get creatorId => transactions.first.creatorId;
 }

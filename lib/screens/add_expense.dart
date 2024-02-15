@@ -925,9 +925,12 @@ class _CreateExpenseState extends State<CreateExpense>
                   if (formKey.currentState?.validate() == true) {
                     var appstate = context.read<AppState>();
                     var nav = Navigator.of(context);
-                    var imageId = await uploadImage(selectedImage!);
-                    if (imageId == null) {
-                      throw "Image upload failed";
+                    String? imageId;
+                    if (selectedImage != null) {
+                      imageId = await uploadImage(selectedImage!);
+                      if (imageId == null) {
+                        throw "Image upload failed";
+                      }
                     }
                     if (expenseWith.value
                         case ExpenseWithGroup(group: var group)) {

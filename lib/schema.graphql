@@ -25,7 +25,6 @@ type Expense {
   splits: [Split!]!
   imageId: String
   note: String
-  imageUrl: String
 }
 
 type ExpenseMixSplit {
@@ -122,6 +121,11 @@ type Query {
   findUserByEmail(email: String!): User!
   serverCommitId: String!
   overallOwed: [Amount!]!
+  getTransactionsMixExpenseWithUser(
+    withUser: String!
+    fromTime: String
+    limit: Int!
+  ): [ExpenseMixSplit!]!
   getTransactionsWithUser(
     withUser: String!
     fromTime: String
@@ -140,6 +144,7 @@ type Query {
     limit: Int!
   ): [ExpenseMixSplit!]!
   config: UserConfig!
+  imageUrl(id: String!): String!
 }
 
 type Registered {
@@ -171,7 +176,6 @@ type Split {
   withGroupId: String
   imageId: String
   note: String
-  imageUrl: String
 }
 
 input SplitInput {
