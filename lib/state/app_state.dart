@@ -293,7 +293,8 @@ class AppState extends ChangeNotifier {
         ..category = categoryId
         ..splits = ListBuilder(splits)
         ..groupId = groupId
-        ..imageId = imageId,
+        ..imageId = imageId
+        ..note = note,
     ));
     if (result.data != null) {
       refresh(client);
