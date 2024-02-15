@@ -58,6 +58,8 @@ Serializer<GgetImageUploadUrlVars> _$ggetImageUploadUrlVarsSerializer =
     new _$GgetImageUploadUrlVarsSerializer();
 Serializer<GgetImageViewUrlVars> _$ggetImageViewUrlVarsSerializer =
     new _$GgetImageViewUrlVarsSerializer();
+Serializer<GgetExpenseVars> _$ggetExpenseVarsSerializer =
+    new _$GgetExpenseVarsSerializer();
 Serializer<GUploadFieldsVars> _$gUploadFieldsVarsSerializer =
     new _$GUploadFieldsVarsSerializer();
 Serializer<GUserFieldsVars> _$gUserFieldsVarsSerializer =
@@ -1428,6 +1430,48 @@ class _$GgetImageViewUrlVarsSerializer
       switch (key) {
         case 'imageId':
           result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetExpenseVarsSerializer
+    implements StructuredSerializer<GgetExpenseVars> {
+  @override
+  final Iterable<Type> types = const [GgetExpenseVars, _$GgetExpenseVars];
+  @override
+  final String wireName = 'GgetExpenseVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GgetExpenseVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'expenseId',
+      serializers.serialize(object.expenseId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetExpenseVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetExpenseVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'expenseId':
+          result.expenseId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
       }
@@ -4552,6 +4596,91 @@ class GgetImageViewUrlVarsBuilder
         new _$GgetImageViewUrlVars._(
             imageId: BuiltValueNullFieldError.checkNotNull(
                 imageId, r'GgetImageViewUrlVars', 'imageId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetExpenseVars extends GgetExpenseVars {
+  @override
+  final String expenseId;
+
+  factory _$GgetExpenseVars([void Function(GgetExpenseVarsBuilder)? updates]) =>
+      (new GgetExpenseVarsBuilder()..update(updates))._build();
+
+  _$GgetExpenseVars._({required this.expenseId}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        expenseId, r'GgetExpenseVars', 'expenseId');
+  }
+
+  @override
+  GgetExpenseVars rebuild(void Function(GgetExpenseVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetExpenseVarsBuilder toBuilder() =>
+      new GgetExpenseVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetExpenseVars && expenseId == other.expenseId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, expenseId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetExpenseVars')
+          ..add('expenseId', expenseId))
+        .toString();
+  }
+}
+
+class GgetExpenseVarsBuilder
+    implements Builder<GgetExpenseVars, GgetExpenseVarsBuilder> {
+  _$GgetExpenseVars? _$v;
+
+  String? _expenseId;
+  String? get expenseId => _$this._expenseId;
+  set expenseId(String? expenseId) => _$this._expenseId = expenseId;
+
+  GgetExpenseVarsBuilder();
+
+  GgetExpenseVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _expenseId = $v.expenseId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetExpenseVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetExpenseVars;
+  }
+
+  @override
+  void update(void Function(GgetExpenseVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetExpenseVars build() => _build();
+
+  _$GgetExpenseVars _build() {
+    final _$result = _$v ??
+        new _$GgetExpenseVars._(
+            expenseId: BuiltValueNullFieldError.checkNotNull(
+                expenseId, r'GgetExpenseVars', 'expenseId'));
     replace(_$result);
     return _$result;
   }

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:billdivide/extensions/amount_extension.dart';
 import 'package:billdivide/mixins/notification_refresher.dart';
+import 'package:billdivide/screens/expense.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
 import 'package:collection/collection.dart';
 import 'package:dotted_line/dotted_line.dart';
@@ -73,6 +74,9 @@ class _GroupState extends State<Group>
 
   fetchData({bool forceFirst = false}) async {
     if (_loading) {
+      return;
+    }
+    if (!mounted) {
       return;
     }
     setState(() {
@@ -401,172 +405,174 @@ class _GroupState extends State<Group>
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.only(top: 10),
-                                        child: ChatBubble(
-                                          clipper: ChatBubbleClipper1(
-                                            type: isSelf
-                                                ? BubbleType.sendBubble
-                                                : BubbleType.receiverBubble,
-                                          ),
-                                          backGroundColor: isSelf
-                                              ? Theme.of(context)
-                                                  .colorScheme
-                                                  .secondaryContainer
-                                              : Theme.of(context)
-                                                  .colorScheme
-                                                  .tertiaryContainer,
-                                          padding: EdgeInsets.only(
-                                            left: isSelf ? 0 : 20,
-                                            right: !isSelf ? 0 : 15,
-                                          ),
-                                          elevation: 0,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(5),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.stretch,
-                                              children: [
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                if (creator != null &&
-                                                    !isSelf) ...[
-                                                  Row(
-                                                    children: [
-                                                      SizedBox(
-                                                        height: 20,
-                                                        width: 20,
-                                                        child: FittedBox(
-                                                          child: UserIconWidget(
-                                                            user: creator,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      Text(
-                                                        creator.displayName,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .labelMedium,
-                                                      ),
-                                                    ],
+                                        child: InkWell(
+                                          onTap: () {
+                                            if (mix
+                                                case Expense(
+                                                  expense: var expense
+                                                )) {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ExpensePage(
+                                                    expenseFields: expense,
+                                                    expenseWith:
+                                                        ExpenseWithGroup(
+                                                            group: group),
                                                   ),
+                                                ),
+                                              );
+                                            }
+                                          },
+                                          child: ChatBubble(
+                                            clipper: ChatBubbleClipper1(
+                                              type: isSelf
+                                                  ? BubbleType.sendBubble
+                                                  : BubbleType.receiverBubble,
+                                            ),
+                                            backGroundColor: isSelf
+                                                ? Theme.of(context)
+                                                    .colorScheme
+                                                    .secondaryContainer
+                                                : Theme.of(context)
+                                                    .colorScheme
+                                                    .tertiaryContainer,
+                                            padding: EdgeInsets.only(
+                                              left: isSelf ? 0 : 20,
+                                              right: !isSelf ? 0 : 15,
+                                            ),
+                                            elevation: 0,
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(5),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.stretch,
+                                                children: [
                                                   const SizedBox(
                                                     height: 5,
                                                   ),
-                                                ],
-                                                switch (mix) {
-                                                  Expense(
-                                                    expense: var expense,
-                                                    splits: var splits
-                                                  ) =>
-                                                    Column(
+                                                  if (creator != null &&
+                                                      !isSelf) ...[
+                                                    Row(
                                                       children: [
-                                                        ...[
-                                                          ExpenseCard(
-                                                              expense: expense),
-                                                          const SizedBox(
-                                                            height: 5,
-                                                            width: 5,
-                                                            child: DottedLine(),
-                                                          ),
-                                                          if (mix.splits
-                                                              .isNotEmpty) ...[
-                                                            ...splits.map(
-                                                              (split) =>
-                                                                  TransactionCard(
-                                                                title: getTitle(
-                                                                        context,
-                                                                        split)
-                                                                    .$1,
-                                                                amountColor: getTitle(
-                                                                        context,
-                                                                        split)
-                                                                    .$2,
-                                                                amount: split
-                                                                    .amount,
-                                                                elevation: 0,
-                                                                padding: const EdgeInsets
-                                                                    .symmetric(
-                                                                    horizontal:
-                                                                        20),
-                                                              ),
+                                                        SizedBox(
+                                                          height: 20,
+                                                          width: 20,
+                                                          child: FittedBox(
+                                                            child:
+                                                                UserIconWidget(
+                                                              user: creator,
                                                             ),
-                                                            const SizedBox(
-                                                              height: 5,
-                                                            )
-                                                          ] else
-                                                            const TransactionCard(
-                                                                title: TextSpan(
-                                                                    text:
-                                                                        'Not Involved')),
-                                                        ]
-                                                      ],
-                                                    ),
-                                                  Split(split: var splits) =>
-                                                    TransactionCard(
-                                                      title: getTitle(
-                                                              context, splits)
-                                                          .$1,
-                                                      amountColor: getTitle(
-                                                              context, splits)
-                                                          .$2,
-                                                      amount: splits.amount,
-                                                      elevation: 0,
-                                                    ),
-                                                  CurrencyConversion(
-                                                    splits: var splits
-                                                  ) =>
-                                                    Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .stretch,
-                                                      children: [
+                                                          ),
+                                                        ),
                                                         const SizedBox(
-                                                          height: 5,
+                                                          width: 10,
                                                         ),
                                                         Text(
-                                                          'Converted',
+                                                          creator.displayName,
                                                           style:
                                                               Theme.of(context)
                                                                   .textTheme
-                                                                  .titleMedium,
-                                                          textAlign:
-                                                              TextAlign.center,
+                                                                  .labelMedium,
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .symmetric(
-                                                                  horizontal:
-                                                                      20),
-                                                          child: AutoScroll(
-                                                            child: Row(
-                                                              children: [
-                                                                Text(
-                                                                  splits.first
-                                                                      .amount
-                                                                      .getPretty(
-                                                                          context),
-                                                                  style: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .headlineMedium
-                                                                      ?.copyWith(
-                                                                        fontWeight:
-                                                                            FontWeight.w800,
-                                                                        color: ColorUtils.getNeutralYellow(context)
-                                                                            .primary,
-                                                                      ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                  ],
+                                                  switch (mix) {
+                                                    Expense(
+                                                      expense: var expense,
+                                                      splits: var splits
+                                                    ) =>
+                                                      Column(
+                                                        children: [
+                                                          ...[
+                                                            ExpenseCard(
+                                                                expense:
+                                                                    expense),
+                                                            const SizedBox(
+                                                              height: 5,
+                                                              width: 5,
+                                                              child:
+                                                                  DottedLine(),
+                                                            ),
+                                                            if (mix.splits
+                                                                .isNotEmpty) ...[
+                                                              ...splits.map(
+                                                                (split) =>
+                                                                    TransactionCard(
+                                                                  title: getTitle(
+                                                                          context,
+                                                                          split)
+                                                                      .$1,
+                                                                  amountColor: getTitle(
+                                                                          context,
+                                                                          split)
+                                                                      .$2,
+                                                                  amount: split
+                                                                      .amount,
+                                                                  elevation: 0,
+                                                                  padding: const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          20),
                                                                 ),
-                                                                const Icon(Icons
-                                                                    .chevron_right),
-                                                                if (splits
-                                                                        .length >
-                                                                    1)
+                                                              ),
+                                                              const SizedBox(
+                                                                height: 5,
+                                                              )
+                                                            ] else
+                                                              const TransactionCard(
+                                                                  title: TextSpan(
+                                                                      text:
+                                                                          'Not Involved')),
+                                                          ]
+                                                        ],
+                                                      ),
+                                                    Split(split: var splits) =>
+                                                      TransactionCard(
+                                                        title: getTitle(
+                                                                context, splits)
+                                                            .$1,
+                                                        amountColor: getTitle(
+                                                                context, splits)
+                                                            .$2,
+                                                        amount: splits.amount,
+                                                        elevation: 0,
+                                                      ),
+                                                    CurrencyConversion(
+                                                      splits: var splits
+                                                    ) =>
+                                                      Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .stretch,
+                                                        children: [
+                                                          const SizedBox(
+                                                            height: 5,
+                                                          ),
+                                                          Text(
+                                                            'Converted',
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .titleMedium,
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .symmetric(
+                                                                    horizontal:
+                                                                        20),
+                                                            child: AutoScroll(
+                                                              child: Row(
+                                                                children: [
                                                                   Text(
-                                                                    splits[1]
+                                                                    splits.first
                                                                         .amount
                                                                         .getPretty(
                                                                             context),
@@ -581,54 +587,77 @@ class _GroupState extends State<Group>
                                                                               ColorUtils.getNeutralYellow(context).primary,
                                                                         ),
                                                                   ),
-                                                              ],
+                                                                  const Icon(Icons
+                                                                      .chevron_right),
+                                                                  if (splits
+                                                                          .length >
+                                                                      1)
+                                                                    Text(
+                                                                      splits[1]
+                                                                          .amount
+                                                                          .getPretty(
+                                                                              context),
+                                                                      style: Theme.of(
+                                                                              context)
+                                                                          .textTheme
+                                                                          .headlineMedium
+                                                                          ?.copyWith(
+                                                                            fontWeight:
+                                                                                FontWeight.w800,
+                                                                            color:
+                                                                                ColorUtils.getNeutralYellow(context).primary,
+                                                                          ),
+                                                                    ),
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
-                                                        ),
-                                                        if (splits.length > 1)
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .symmetric(
-                                                                    horizontal:
-                                                                        20),
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .stretch,
-                                                              children: [
-                                                                ...[
-                                                                  Text.rich(
-                                                                    getTitle(
-                                                                            context,
-                                                                            splits[1])
-                                                                        .$1,
-                                                                    style: Theme.of(
-                                                                            context)
-                                                                        .textTheme
-                                                                        .labelLarge,
-                                                                  ),
-                                                                  // Text.rich(
-                                                                  //   subTitle(
-                                                                  //           context,
-                                                                  //           transactions[1]) ??
-                                                                  //       const TextSpan(),
-                                                                  //   style: Theme.of(
-                                                                  //           context)
-                                                                  //       .textTheme
-                                                                  //       .labelLarge,
-                                                                  // ),
-                                                                  const SizedBox(
-                                                                    height: 15,
-                                                                  ),
-                                                                ]
-                                                              ],
+                                                          if (splits.length > 1)
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .symmetric(
+                                                                      horizontal:
+                                                                          20),
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .stretch,
+                                                                children: [
+                                                                  ...[
+                                                                    Text.rich(
+                                                                      getTitle(
+                                                                              context,
+                                                                              splits[1])
+                                                                          .$1,
+                                                                      style: Theme.of(
+                                                                              context)
+                                                                          .textTheme
+                                                                          .labelLarge,
+                                                                    ),
+                                                                    // Text.rich(
+                                                                    //   subTitle(
+                                                                    //           context,
+                                                                    //           transactions[1]) ??
+                                                                    //       const TextSpan(),
+                                                                    //   style: Theme.of(
+                                                                    //           context)
+                                                                    //       .textTheme
+                                                                    //       .labelLarge,
+                                                                    // ),
+                                                                    const SizedBox(
+                                                                      height:
+                                                                          15,
+                                                                    ),
+                                                                  ]
+                                                                ],
+                                                              ),
                                                             ),
-                                                          ),
-                                                      ],
-                                                    )
-                                                }
-                                              ],
+                                                        ],
+                                                      )
+                                                  }
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),

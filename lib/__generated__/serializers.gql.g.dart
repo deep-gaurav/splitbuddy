@@ -199,6 +199,16 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GcurrencyConvertData_convertCurrency_toUser.serializer)
       ..add(GcurrencyConvertReq.serializer)
       ..add(GcurrencyConvertVars.serializer)
+      ..add(GgetExpenseData.serializer)
+      ..add(GgetExpenseData_expenseById.serializer)
+      ..add(GgetExpenseData_expenseById_amount.serializer)
+      ..add(GgetExpenseData_expenseById_creator.serializer)
+      ..add(GgetExpenseData_expenseById_splits.serializer)
+      ..add(GgetExpenseData_expenseById_splits_amount.serializer)
+      ..add(GgetExpenseData_expenseById_splits_fromUser.serializer)
+      ..add(GgetExpenseData_expenseById_splits_toUser.serializer)
+      ..add(GgetExpenseReq.serializer)
+      ..add(GgetExpenseVars.serializer)
       ..add(GgetImageUploadUrlData.serializer)
       ..add(GgetImageUploadUrlData_uploadImage.serializer)
       ..add(GgetImageUploadUrlReq.serializer)
@@ -456,6 +466,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(GcurrencyConvertData_convertCurrency)]),
           () => new ListBuilder<GcurrencyConvertData_convertCurrency>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GgetExpenseData_expenseById_splits)]),
+          () => new ListBuilder<GgetExpenseData_expenseById_splits>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GgetTransactionsData_getTransactions)]),

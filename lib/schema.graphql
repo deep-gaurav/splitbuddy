@@ -116,6 +116,7 @@ type Query {
   user: UserAuth!
   group(id: String!): Group!
   userById(id: String!): User!
+  expenseById(id: String!): Expense!
   interactedUsers: [User!]!
   groups: [Group!]!
   findUserByEmail(email: String!): User!

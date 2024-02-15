@@ -2103,6 +2103,80 @@ abstract class GgetImageViewUrlReq
       );
 }
 
+abstract class GgetExpenseReq
+    implements
+        Built<GgetExpenseReq, GgetExpenseReqBuilder>,
+        _i1.OperationRequest<_i2.GgetExpenseData, _i3.GgetExpenseVars> {
+  GgetExpenseReq._();
+
+  factory GgetExpenseReq([Function(GgetExpenseReqBuilder b) updates]) =
+      _$GgetExpenseReq;
+
+  static void _initializeBuilder(GgetExpenseReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'getExpense',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GgetExpenseVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GgetExpenseData? Function(
+    _i2.GgetExpenseData?,
+    _i2.GgetExpenseData?,
+  )? get updateResult;
+  @override
+  _i2.GgetExpenseData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GgetExpenseData? parseData(Map<String, dynamic> json) =>
+      _i2.GgetExpenseData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GgetExpenseData, _i3.GgetExpenseVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GgetExpenseReq> get serializer =>
+      _$ggetExpenseReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GgetExpenseReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetExpenseReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GgetExpenseReq.serializer,
+        json,
+      );
+}
+
 abstract class GUploadFieldsReq
     implements
         Built<GUploadFieldsReq, GUploadFieldsReqBuilder>,

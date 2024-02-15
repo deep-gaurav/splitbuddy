@@ -3,6 +3,7 @@ import 'package:billdivide/extensions/num_extension.dart';
 import 'package:billdivide/mixins/notification_refresher.dart';
 import 'package:billdivide/models/expensecategory.dart';
 import 'package:billdivide/screens/currency_converter.dart';
+import 'package:billdivide/screens/expense.dart';
 import 'package:billdivide/screens/payment_currency_selector.dart';
 import 'package:billdivide/utils/svg_icons.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
@@ -261,6 +262,7 @@ class _UserPageState extends State<UserPage>
                           var ourUser = context.read<AppState>().user!;
 
                           return UserTransactionCard(
+                            user: user,
                             maybeGroupTransaction: transaction,
                             userGroup: context
                                 .read<AppState>()
@@ -442,9 +444,13 @@ class _UserPageState extends State<UserPage>
 class UserTransactionCard extends StatelessWidget {
   final TransactionCardTypes maybeGroupTransaction;
   final GGroupFields? userGroup;
+  final GUserFields user;
 
   const UserTransactionCard(
-      {super.key, required this.maybeGroupTransaction, this.userGroup});
+      {super.key,
+      required this.maybeGroupTransaction,
+      this.userGroup,
+      required this.user});
 
   bool getIsReceiver(BuildContext context, GSplitFields transaction) =>
       context.read<AppState>().user?.id == transaction.fromUser.id;
@@ -591,24 +597,45 @@ class UserTransactionCard extends StatelessWidget {
                 transaction: var transaction,
                 expenseBasic: var expense
               ) =>
-                ChatBubble(
-                  clipper: ChatBubbleClipper1(
-                    type: isSelf(context)
-                        ? BubbleType.sendBubble
-                        : BubbleType.receiverBubble,
-                  ),
-                  backGroundColor: isSelf(context)
-                      ? Theme.of(context).colorScheme.secondaryContainer
-                      : Theme.of(context).colorScheme.tertiaryContainer,
-                  padding: EdgeInsets.only(
-                    left: isSelf(context) ? 0 : 20,
-                    right: !isSelf(context) ? 0 : 15,
-                  ),
-                  elevation: 0,
-                  child: buildSingleTransaction(
-                    context,
-                    transaction: transaction,
-                    expense: expense,
+                InkWell(
+                  onTap: () async {
+                    if (expense != null) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ExpensePage(
+                            expenseFields: expense,
+                            expenseWith: ExpenseWithPeople(
+                              users: [
+                                UserWithUser(
+                                  user: context.read<AppState>().user!,
+                                ),
+                                UserWithUser(user: user),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  child: ChatBubble(
+                    clipper: ChatBubbleClipper1(
+                      type: isSelf(context)
+                          ? BubbleType.sendBubble
+                          : BubbleType.receiverBubble,
+                    ),
+                    backGroundColor: isSelf(context)
+                        ? Theme.of(context).colorScheme.secondaryContainer
+                        : Theme.of(context).colorScheme.tertiaryContainer,
+                    padding: EdgeInsets.only(
+                      left: isSelf(context) ? 0 : 20,
+                      right: !isSelf(context) ? 0 : 15,
+                    ),
+                    elevation: 0,
+                    child: buildSingleTransaction(
+                      context,
+                      transaction: transaction,
+                      expense: expense,
+                    ),
                   ),
                 ),
               CurrencyConversionTransactions(transactions: var transactions) =>
@@ -928,6 +955,34 @@ class ExpenseCard extends StatelessWidget {
                 ),
               ],
             ),
+            if (expense.imageId != null)
+              const Padding(
+                padding: EdgeInsets.only(top: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.image),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text('Attached Image'),
+                  ],
+                ),
+              ),
+            if (expense.note != null)
+              const Padding(
+                padding: EdgeInsets.only(top: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.note),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text('Attached Note'),
+                  ],
+                ),
+              ),
           ],
         ),
       ),

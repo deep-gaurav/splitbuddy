@@ -7111,6 +7111,369 @@ abstract class GgetImageViewUrlData
       );
 }
 
+abstract class GgetExpenseData
+    implements Built<GgetExpenseData, GgetExpenseDataBuilder> {
+  GgetExpenseData._();
+
+  factory GgetExpenseData([Function(GgetExpenseDataBuilder b) updates]) =
+      _$GgetExpenseData;
+
+  static void _initializeBuilder(GgetExpenseDataBuilder b) =>
+      b..G__typename = 'Query';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GgetExpenseData_expenseById get expenseById;
+  static Serializer<GgetExpenseData> get serializer =>
+      _$ggetExpenseDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetExpenseData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetExpenseData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetExpenseData.serializer,
+        json,
+      );
+}
+
+abstract class GgetExpenseData_expenseById
+    implements
+        Built<GgetExpenseData_expenseById, GgetExpenseData_expenseByIdBuilder>,
+        GExpenseFields {
+  GgetExpenseData_expenseById._();
+
+  factory GgetExpenseData_expenseById(
+          [Function(GgetExpenseData_expenseByIdBuilder b) updates]) =
+      _$GgetExpenseData_expenseById;
+
+  static void _initializeBuilder(GgetExpenseData_expenseByIdBuilder b) =>
+      b..G__typename = 'Expense';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  GgetExpenseData_expenseById_creator get creator;
+  @override
+  BuiltList<GgetExpenseData_expenseById_splits> get splits;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  String get category;
+  @override
+  GgetExpenseData_expenseById_amount get amount;
+  @override
+  String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  static Serializer<GgetExpenseData_expenseById> get serializer =>
+      _$ggetExpenseDataExpenseByIdSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetExpenseData_expenseById.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetExpenseData_expenseById? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetExpenseData_expenseById.serializer,
+        json,
+      );
+}
+
+abstract class GgetExpenseData_expenseById_creator
+    implements
+        Built<GgetExpenseData_expenseById_creator,
+            GgetExpenseData_expenseById_creatorBuilder>,
+        GExpenseFields_creator,
+        GUserFields {
+  GgetExpenseData_expenseById_creator._();
+
+  factory GgetExpenseData_expenseById_creator(
+          [Function(GgetExpenseData_expenseById_creatorBuilder b) updates]) =
+      _$GgetExpenseData_expenseById_creator;
+
+  static void _initializeBuilder(
+          GgetExpenseData_expenseById_creatorBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GgetExpenseData_expenseById_creator> get serializer =>
+      _$ggetExpenseDataExpenseByIdCreatorSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetExpenseData_expenseById_creator.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetExpenseData_expenseById_creator? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetExpenseData_expenseById_creator.serializer,
+        json,
+      );
+}
+
+abstract class GgetExpenseData_expenseById_splits
+    implements
+        Built<GgetExpenseData_expenseById_splits,
+            GgetExpenseData_expenseById_splitsBuilder>,
+        GExpenseFields_splits,
+        GSplitFields {
+  GgetExpenseData_expenseById_splits._();
+
+  factory GgetExpenseData_expenseById_splits(
+          [Function(GgetExpenseData_expenseById_splitsBuilder b) updates]) =
+      _$GgetExpenseData_expenseById_splits;
+
+  static void _initializeBuilder(GgetExpenseData_expenseById_splitsBuilder b) =>
+      b..G__typename = 'Split';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  GgetExpenseData_expenseById_splits_fromUser get fromUser;
+  @override
+  GgetExpenseData_expenseById_splits_toUser get toUser;
+  @override
+  String get id;
+  @override
+  GgetExpenseData_expenseById_splits_amount get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  String get fromUserId;
+  @override
+  String get toUserId;
+  @override
+  String get creatorId;
+  @override
+  String? get withGroupId;
+  @override
+  String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  static Serializer<GgetExpenseData_expenseById_splits> get serializer =>
+      _$ggetExpenseDataExpenseByIdSplitsSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetExpenseData_expenseById_splits.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetExpenseData_expenseById_splits? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetExpenseData_expenseById_splits.serializer,
+        json,
+      );
+}
+
+abstract class GgetExpenseData_expenseById_splits_fromUser
+    implements
+        Built<GgetExpenseData_expenseById_splits_fromUser,
+            GgetExpenseData_expenseById_splits_fromUserBuilder>,
+        GExpenseFields_splits_fromUser,
+        GSplitFields_fromUser,
+        GUserFields {
+  GgetExpenseData_expenseById_splits_fromUser._();
+
+  factory GgetExpenseData_expenseById_splits_fromUser(
+      [Function(GgetExpenseData_expenseById_splits_fromUserBuilder b)
+          updates]) = _$GgetExpenseData_expenseById_splits_fromUser;
+
+  static void _initializeBuilder(
+          GgetExpenseData_expenseById_splits_fromUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GgetExpenseData_expenseById_splits_fromUser>
+      get serializer => _$ggetExpenseDataExpenseByIdSplitsFromUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetExpenseData_expenseById_splits_fromUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetExpenseData_expenseById_splits_fromUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetExpenseData_expenseById_splits_fromUser.serializer,
+        json,
+      );
+}
+
+abstract class GgetExpenseData_expenseById_splits_toUser
+    implements
+        Built<GgetExpenseData_expenseById_splits_toUser,
+            GgetExpenseData_expenseById_splits_toUserBuilder>,
+        GExpenseFields_splits_toUser,
+        GSplitFields_toUser,
+        GUserFields {
+  GgetExpenseData_expenseById_splits_toUser._();
+
+  factory GgetExpenseData_expenseById_splits_toUser(
+      [Function(GgetExpenseData_expenseById_splits_toUserBuilder b)
+          updates]) = _$GgetExpenseData_expenseById_splits_toUser;
+
+  static void _initializeBuilder(
+          GgetExpenseData_expenseById_splits_toUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GgetExpenseData_expenseById_splits_toUser> get serializer =>
+      _$ggetExpenseDataExpenseByIdSplitsToUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetExpenseData_expenseById_splits_toUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetExpenseData_expenseById_splits_toUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetExpenseData_expenseById_splits_toUser.serializer,
+        json,
+      );
+}
+
+abstract class GgetExpenseData_expenseById_splits_amount
+    implements
+        Built<GgetExpenseData_expenseById_splits_amount,
+            GgetExpenseData_expenseById_splits_amountBuilder>,
+        GExpenseFields_splits_amount,
+        GSplitFields_amount,
+        GAmountFields {
+  GgetExpenseData_expenseById_splits_amount._();
+
+  factory GgetExpenseData_expenseById_splits_amount(
+      [Function(GgetExpenseData_expenseById_splits_amountBuilder b)
+          updates]) = _$GgetExpenseData_expenseById_splits_amount;
+
+  static void _initializeBuilder(
+          GgetExpenseData_expenseById_splits_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GgetExpenseData_expenseById_splits_amount> get serializer =>
+      _$ggetExpenseDataExpenseByIdSplitsAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetExpenseData_expenseById_splits_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetExpenseData_expenseById_splits_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetExpenseData_expenseById_splits_amount.serializer,
+        json,
+      );
+}
+
+abstract class GgetExpenseData_expenseById_amount
+    implements
+        Built<GgetExpenseData_expenseById_amount,
+            GgetExpenseData_expenseById_amountBuilder>,
+        GExpenseFields_amount,
+        GAmountFields {
+  GgetExpenseData_expenseById_amount._();
+
+  factory GgetExpenseData_expenseById_amount(
+          [Function(GgetExpenseData_expenseById_amountBuilder b) updates]) =
+      _$GgetExpenseData_expenseById_amount;
+
+  static void _initializeBuilder(GgetExpenseData_expenseById_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GgetExpenseData_expenseById_amount> get serializer =>
+      _$ggetExpenseDataExpenseByIdAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetExpenseData_expenseById_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetExpenseData_expenseById_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetExpenseData_expenseById_amount.serializer,
+        json,
+      );
+}
+
 abstract class GUploadFields {
   String get G__typename;
   String get id;

@@ -86,7 +86,14 @@ class AppState extends ChangeNotifier {
 
   Map<String, GCurrencyFields> currencies = {};
 
+  Map<String, Future<String?>> imageIdUrls = <String, Future<String?>>{};
+
   GCurrencyFields? defaultCurrency;
+
+  Future<String?> getImageUrl(String id) async {
+    var imageUrl = imageIdUrls[id] ?? _getImageUrl(id);
+    return imageUrl;
+  }
 
   StreamController<RemoteMessage> notificationSubscription =
       StreamController<RemoteMessage>.broadcast();
@@ -98,6 +105,12 @@ class AppState extends ChangeNotifier {
             currencies.entries,
       );
     });
+  }
+
+  Future<String?> _getImageUrl(String id) async {
+    var result = await (await client)
+        .execute(GgetImageViewUrlReq((b) => b.vars..imageId = id));
+    return result.data?.imageUrl;
   }
 
   GGroupFields? getGroupFromId(String id) =>

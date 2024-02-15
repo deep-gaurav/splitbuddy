@@ -453,6 +453,28 @@ Serializer<GgetImageUploadUrlData_uploadImage>
     new _$GgetImageUploadUrlData_uploadImageSerializer();
 Serializer<GgetImageViewUrlData> _$ggetImageViewUrlDataSerializer =
     new _$GgetImageViewUrlDataSerializer();
+Serializer<GgetExpenseData> _$ggetExpenseDataSerializer =
+    new _$GgetExpenseDataSerializer();
+Serializer<GgetExpenseData_expenseById> _$ggetExpenseDataExpenseByIdSerializer =
+    new _$GgetExpenseData_expenseByIdSerializer();
+Serializer<GgetExpenseData_expenseById_creator>
+    _$ggetExpenseDataExpenseByIdCreatorSerializer =
+    new _$GgetExpenseData_expenseById_creatorSerializer();
+Serializer<GgetExpenseData_expenseById_splits>
+    _$ggetExpenseDataExpenseByIdSplitsSerializer =
+    new _$GgetExpenseData_expenseById_splitsSerializer();
+Serializer<GgetExpenseData_expenseById_splits_fromUser>
+    _$ggetExpenseDataExpenseByIdSplitsFromUserSerializer =
+    new _$GgetExpenseData_expenseById_splits_fromUserSerializer();
+Serializer<GgetExpenseData_expenseById_splits_toUser>
+    _$ggetExpenseDataExpenseByIdSplitsToUserSerializer =
+    new _$GgetExpenseData_expenseById_splits_toUserSerializer();
+Serializer<GgetExpenseData_expenseById_splits_amount>
+    _$ggetExpenseDataExpenseByIdSplitsAmountSerializer =
+    new _$GgetExpenseData_expenseById_splits_amountSerializer();
+Serializer<GgetExpenseData_expenseById_amount>
+    _$ggetExpenseDataExpenseByIdAmountSerializer =
+    new _$GgetExpenseData_expenseById_amountSerializer();
 Serializer<GUploadFieldsData> _$gUploadFieldsDataSerializer =
     new _$GUploadFieldsDataSerializer();
 Serializer<GUserFieldsData> _$gUserFieldsDataSerializer =
@@ -14042,6 +14064,750 @@ class _$GgetImageViewUrlDataSerializer
           break;
         case 'imageUrl':
           result.imageUrl = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetExpenseDataSerializer
+    implements StructuredSerializer<GgetExpenseData> {
+  @override
+  final Iterable<Type> types = const [GgetExpenseData, _$GgetExpenseData];
+  @override
+  final String wireName = 'GgetExpenseData';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GgetExpenseData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'expenseById',
+      serializers.serialize(object.expenseById,
+          specifiedType: const FullType(GgetExpenseData_expenseById)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetExpenseData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetExpenseDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'expenseById':
+          result.expenseById.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GgetExpenseData_expenseById))!
+              as GgetExpenseData_expenseById);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetExpenseData_expenseByIdSerializer
+    implements StructuredSerializer<GgetExpenseData_expenseById> {
+  @override
+  final Iterable<Type> types = const [
+    GgetExpenseData_expenseById,
+    _$GgetExpenseData_expenseById
+  ];
+  @override
+  final String wireName = 'GgetExpenseData_expenseById';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetExpenseData_expenseById object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'creator',
+      serializers.serialize(object.creator,
+          specifiedType: const FullType(GgetExpenseData_expenseById_creator)),
+      'splits',
+      serializers.serialize(object.splits,
+          specifiedType: const FullType(BuiltList,
+              const [const FullType(GgetExpenseData_expenseById_splits)])),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'category',
+      serializers.serialize(object.category,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount,
+          specifiedType: const FullType(GgetExpenseData_expenseById_amount)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GgetExpenseData_expenseById deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetExpenseData_expenseByIdBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creator':
+          result.creator.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GgetExpenseData_expenseById_creator))!
+              as GgetExpenseData_expenseById_creator);
+          break;
+        case 'splits':
+          result.splits.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GgetExpenseData_expenseById_splits)
+              ]))! as BuiltList<Object?>);
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'category':
+          result.category = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GgetExpenseData_expenseById_amount))!
+              as GgetExpenseData_expenseById_amount);
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetExpenseData_expenseById_creatorSerializer
+    implements StructuredSerializer<GgetExpenseData_expenseById_creator> {
+  @override
+  final Iterable<Type> types = const [
+    GgetExpenseData_expenseById_creator,
+    _$GgetExpenseData_expenseById_creator
+  ];
+  @override
+  final String wireName = 'GgetExpenseData_expenseById_creator';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetExpenseData_expenseById_creator object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GgetExpenseData_expenseById_creator deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetExpenseData_expenseById_creatorBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetExpenseData_expenseById_splitsSerializer
+    implements StructuredSerializer<GgetExpenseData_expenseById_splits> {
+  @override
+  final Iterable<Type> types = const [
+    GgetExpenseData_expenseById_splits,
+    _$GgetExpenseData_expenseById_splits
+  ];
+  @override
+  final String wireName = 'GgetExpenseData_expenseById_splits';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetExpenseData_expenseById_splits object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType:
+              const FullType(GgetExpenseData_expenseById_splits_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType:
+              const FullType(GgetExpenseData_expenseById_splits_toUser)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount,
+          specifiedType:
+              const FullType(GgetExpenseData_expenseById_splits_amount)),
+      'transactionType',
+      serializers.serialize(object.transactionType,
+          specifiedType: const FullType(_i3.GTransactionType)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.transactionPartGroupId;
+    if (value != null) {
+      result
+        ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GgetExpenseData_expenseById_splits deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetExpenseData_expenseById_splitsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GgetExpenseData_expenseById_splits_fromUser))!
+              as GgetExpenseData_expenseById_splits_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GgetExpenseData_expenseById_splits_toUser))!
+              as GgetExpenseData_expenseById_splits_toUser);
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GgetExpenseData_expenseById_splits_amount))!
+              as GgetExpenseData_expenseById_splits_amount);
+          break;
+        case 'transactionType':
+          result.transactionType = serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GTransactionType))!
+              as _i3.GTransactionType;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionPartGroupId':
+          result.transactionPartGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetExpenseData_expenseById_splits_fromUserSerializer
+    implements
+        StructuredSerializer<GgetExpenseData_expenseById_splits_fromUser> {
+  @override
+  final Iterable<Type> types = const [
+    GgetExpenseData_expenseById_splits_fromUser,
+    _$GgetExpenseData_expenseById_splits_fromUser
+  ];
+  @override
+  final String wireName = 'GgetExpenseData_expenseById_splits_fromUser';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GgetExpenseData_expenseById_splits_fromUser object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GgetExpenseData_expenseById_splits_fromUser deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetExpenseData_expenseById_splits_fromUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetExpenseData_expenseById_splits_toUserSerializer
+    implements StructuredSerializer<GgetExpenseData_expenseById_splits_toUser> {
+  @override
+  final Iterable<Type> types = const [
+    GgetExpenseData_expenseById_splits_toUser,
+    _$GgetExpenseData_expenseById_splits_toUser
+  ];
+  @override
+  final String wireName = 'GgetExpenseData_expenseById_splits_toUser';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetExpenseData_expenseById_splits_toUser object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GgetExpenseData_expenseById_splits_toUser deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetExpenseData_expenseById_splits_toUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetExpenseData_expenseById_splits_amountSerializer
+    implements StructuredSerializer<GgetExpenseData_expenseById_splits_amount> {
+  @override
+  final Iterable<Type> types = const [
+    GgetExpenseData_expenseById_splits_amount,
+    _$GgetExpenseData_expenseById_splits_amount
+  ];
+  @override
+  final String wireName = 'GgetExpenseData_expenseById_splits_amount';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetExpenseData_expenseById_splits_amount object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'currencyId',
+      serializers.serialize(object.currencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetExpenseData_expenseById_splits_amount deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetExpenseData_expenseById_splits_amountBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'currencyId':
+          result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GgetExpenseData_expenseById_amountSerializer
+    implements StructuredSerializer<GgetExpenseData_expenseById_amount> {
+  @override
+  final Iterable<Type> types = const [
+    GgetExpenseData_expenseById_amount,
+    _$GgetExpenseData_expenseById_amount
+  ];
+  @override
+  final String wireName = 'GgetExpenseData_expenseById_amount';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GgetExpenseData_expenseById_amount object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'currencyId',
+      serializers.serialize(object.currencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GgetExpenseData_expenseById_amount deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GgetExpenseData_expenseById_amountBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'currencyId':
+          result.currencyId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
       }
@@ -47455,6 +48221,1459 @@ class GgetImageViewUrlDataBuilder
                 G__typename, r'GgetImageViewUrlData', 'G__typename'),
             imageUrl: BuiltValueNullFieldError.checkNotNull(
                 imageUrl, r'GgetImageViewUrlData', 'imageUrl'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetExpenseData extends GgetExpenseData {
+  @override
+  final String G__typename;
+  @override
+  final GgetExpenseData_expenseById expenseById;
+
+  factory _$GgetExpenseData([void Function(GgetExpenseDataBuilder)? updates]) =>
+      (new GgetExpenseDataBuilder()..update(updates))._build();
+
+  _$GgetExpenseData._({required this.G__typename, required this.expenseById})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GgetExpenseData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        expenseById, r'GgetExpenseData', 'expenseById');
+  }
+
+  @override
+  GgetExpenseData rebuild(void Function(GgetExpenseDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetExpenseDataBuilder toBuilder() =>
+      new GgetExpenseDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetExpenseData &&
+        G__typename == other.G__typename &&
+        expenseById == other.expenseById;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, expenseById.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetExpenseData')
+          ..add('G__typename', G__typename)
+          ..add('expenseById', expenseById))
+        .toString();
+  }
+}
+
+class GgetExpenseDataBuilder
+    implements Builder<GgetExpenseData, GgetExpenseDataBuilder> {
+  _$GgetExpenseData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GgetExpenseData_expenseByIdBuilder? _expenseById;
+  GgetExpenseData_expenseByIdBuilder get expenseById =>
+      _$this._expenseById ??= new GgetExpenseData_expenseByIdBuilder();
+  set expenseById(GgetExpenseData_expenseByIdBuilder? expenseById) =>
+      _$this._expenseById = expenseById;
+
+  GgetExpenseDataBuilder() {
+    GgetExpenseData._initializeBuilder(this);
+  }
+
+  GgetExpenseDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _expenseById = $v.expenseById.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetExpenseData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetExpenseData;
+  }
+
+  @override
+  void update(void Function(GgetExpenseDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetExpenseData build() => _build();
+
+  _$GgetExpenseData _build() {
+    _$GgetExpenseData _$result;
+    try {
+      _$result = _$v ??
+          new _$GgetExpenseData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GgetExpenseData', 'G__typename'),
+              expenseById: expenseById.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'expenseById';
+        expenseById.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GgetExpenseData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetExpenseData_expenseById extends GgetExpenseData_expenseById {
+  @override
+  final String G__typename;
+  @override
+  final GgetExpenseData_expenseById_creator creator;
+  @override
+  final BuiltList<GgetExpenseData_expenseById_splits> splits;
+  @override
+  final String id;
+  @override
+  final String title;
+  @override
+  final String createdAt;
+  @override
+  final String category;
+  @override
+  final GgetExpenseData_expenseById_amount amount;
+  @override
+  final String creatorId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+
+  factory _$GgetExpenseData_expenseById(
+          [void Function(GgetExpenseData_expenseByIdBuilder)? updates]) =>
+      (new GgetExpenseData_expenseByIdBuilder()..update(updates))._build();
+
+  _$GgetExpenseData_expenseById._(
+      {required this.G__typename,
+      required this.creator,
+      required this.splits,
+      required this.id,
+      required this.title,
+      required this.createdAt,
+      required this.category,
+      required this.amount,
+      required this.creatorId,
+      this.note,
+      this.imageId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GgetExpenseData_expenseById', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        creator, r'GgetExpenseData_expenseById', 'creator');
+    BuiltValueNullFieldError.checkNotNull(
+        splits, r'GgetExpenseData_expenseById', 'splits');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GgetExpenseData_expenseById', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        title, r'GgetExpenseData_expenseById', 'title');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt, r'GgetExpenseData_expenseById', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        category, r'GgetExpenseData_expenseById', 'category');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GgetExpenseData_expenseById', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GgetExpenseData_expenseById', 'creatorId');
+  }
+
+  @override
+  GgetExpenseData_expenseById rebuild(
+          void Function(GgetExpenseData_expenseByIdBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetExpenseData_expenseByIdBuilder toBuilder() =>
+      new GgetExpenseData_expenseByIdBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetExpenseData_expenseById &&
+        G__typename == other.G__typename &&
+        creator == other.creator &&
+        splits == other.splits &&
+        id == other.id &&
+        title == other.title &&
+        createdAt == other.createdAt &&
+        category == other.category &&
+        amount == other.amount &&
+        creatorId == other.creatorId &&
+        note == other.note &&
+        imageId == other.imageId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, creator.hashCode);
+    _$hash = $jc(_$hash, splits.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, category.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetExpenseData_expenseById')
+          ..add('G__typename', G__typename)
+          ..add('creator', creator)
+          ..add('splits', splits)
+          ..add('id', id)
+          ..add('title', title)
+          ..add('createdAt', createdAt)
+          ..add('category', category)
+          ..add('amount', amount)
+          ..add('creatorId', creatorId)
+          ..add('note', note)
+          ..add('imageId', imageId))
+        .toString();
+  }
+}
+
+class GgetExpenseData_expenseByIdBuilder
+    implements
+        Builder<GgetExpenseData_expenseById,
+            GgetExpenseData_expenseByIdBuilder> {
+  _$GgetExpenseData_expenseById? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GgetExpenseData_expenseById_creatorBuilder? _creator;
+  GgetExpenseData_expenseById_creatorBuilder get creator =>
+      _$this._creator ??= new GgetExpenseData_expenseById_creatorBuilder();
+  set creator(GgetExpenseData_expenseById_creatorBuilder? creator) =>
+      _$this._creator = creator;
+
+  ListBuilder<GgetExpenseData_expenseById_splits>? _splits;
+  ListBuilder<GgetExpenseData_expenseById_splits> get splits =>
+      _$this._splits ??= new ListBuilder<GgetExpenseData_expenseById_splits>();
+  set splits(ListBuilder<GgetExpenseData_expenseById_splits>? splits) =>
+      _$this._splits = splits;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _category;
+  String? get category => _$this._category;
+  set category(String? category) => _$this._category = category;
+
+  GgetExpenseData_expenseById_amountBuilder? _amount;
+  GgetExpenseData_expenseById_amountBuilder get amount =>
+      _$this._amount ??= new GgetExpenseData_expenseById_amountBuilder();
+  set amount(GgetExpenseData_expenseById_amountBuilder? amount) =>
+      _$this._amount = amount;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  GgetExpenseData_expenseByIdBuilder() {
+    GgetExpenseData_expenseById._initializeBuilder(this);
+  }
+
+  GgetExpenseData_expenseByIdBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _creator = $v.creator.toBuilder();
+      _splits = $v.splits.toBuilder();
+      _id = $v.id;
+      _title = $v.title;
+      _createdAt = $v.createdAt;
+      _category = $v.category;
+      _amount = $v.amount.toBuilder();
+      _creatorId = $v.creatorId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetExpenseData_expenseById other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetExpenseData_expenseById;
+  }
+
+  @override
+  void update(void Function(GgetExpenseData_expenseByIdBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetExpenseData_expenseById build() => _build();
+
+  _$GgetExpenseData_expenseById _build() {
+    _$GgetExpenseData_expenseById _$result;
+    try {
+      _$result = _$v ??
+          new _$GgetExpenseData_expenseById._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GgetExpenseData_expenseById', 'G__typename'),
+              creator: creator.build(),
+              splits: splits.build(),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GgetExpenseData_expenseById', 'id'),
+              title: BuiltValueNullFieldError.checkNotNull(
+                  title, r'GgetExpenseData_expenseById', 'title'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GgetExpenseData_expenseById', 'createdAt'),
+              category: BuiltValueNullFieldError.checkNotNull(
+                  category, r'GgetExpenseData_expenseById', 'category'),
+              amount: amount.build(),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId, r'GgetExpenseData_expenseById', 'creatorId'),
+              note: note,
+              imageId: imageId);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'creator';
+        creator.build();
+        _$failedField = 'splits';
+        splits.build();
+
+        _$failedField = 'amount';
+        amount.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GgetExpenseData_expenseById', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetExpenseData_expenseById_creator
+    extends GgetExpenseData_expenseById_creator {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GgetExpenseData_expenseById_creator(
+          [void Function(GgetExpenseData_expenseById_creatorBuilder)?
+              updates]) =>
+      (new GgetExpenseData_expenseById_creatorBuilder()..update(updates))
+          ._build();
+
+  _$GgetExpenseData_expenseById_creator._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GgetExpenseData_expenseById_creator', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GgetExpenseData_expenseById_creator', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GgetExpenseData_expenseById_creator', 'isSignedUp');
+  }
+
+  @override
+  GgetExpenseData_expenseById_creator rebuild(
+          void Function(GgetExpenseData_expenseById_creatorBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetExpenseData_expenseById_creatorBuilder toBuilder() =>
+      new GgetExpenseData_expenseById_creatorBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetExpenseData_expenseById_creator &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetExpenseData_expenseById_creator')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GgetExpenseData_expenseById_creatorBuilder
+    implements
+        Builder<GgetExpenseData_expenseById_creator,
+            GgetExpenseData_expenseById_creatorBuilder> {
+  _$GgetExpenseData_expenseById_creator? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GgetExpenseData_expenseById_creatorBuilder() {
+    GgetExpenseData_expenseById_creator._initializeBuilder(this);
+  }
+
+  GgetExpenseData_expenseById_creatorBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetExpenseData_expenseById_creator other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetExpenseData_expenseById_creator;
+  }
+
+  @override
+  void update(
+      void Function(GgetExpenseData_expenseById_creatorBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetExpenseData_expenseById_creator build() => _build();
+
+  _$GgetExpenseData_expenseById_creator _build() {
+    final _$result = _$v ??
+        new _$GgetExpenseData_expenseById_creator._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GgetExpenseData_expenseById_creator', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetExpenseData_expenseById_creator', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GgetExpenseData_expenseById_creator', 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetExpenseData_expenseById_splits
+    extends GgetExpenseData_expenseById_splits {
+  @override
+  final String G__typename;
+  @override
+  final GgetExpenseData_expenseById_splits_fromUser fromUser;
+  @override
+  final GgetExpenseData_expenseById_splits_toUser toUser;
+  @override
+  final String id;
+  @override
+  final GgetExpenseData_expenseById_splits_amount amount;
+  @override
+  final _i3.GTransactionType transactionType;
+  @override
+  final String createdAt;
+  @override
+  final String? transactionPartGroupId;
+  @override
+  final String fromUserId;
+  @override
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+
+  factory _$GgetExpenseData_expenseById_splits(
+          [void Function(GgetExpenseData_expenseById_splitsBuilder)?
+              updates]) =>
+      (new GgetExpenseData_expenseById_splitsBuilder()..update(updates))
+          ._build();
+
+  _$GgetExpenseData_expenseById_splits._(
+      {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
+      required this.id,
+      required this.amount,
+      required this.transactionType,
+      required this.createdAt,
+      this.transactionPartGroupId,
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId,
+      this.note,
+      this.imageId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GgetExpenseData_expenseById_splits', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser, r'GgetExpenseData_expenseById_splits', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'GgetExpenseData_expenseById_splits', 'toUser');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GgetExpenseData_expenseById_splits', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GgetExpenseData_expenseById_splits', 'amount');
+    BuiltValueNullFieldError.checkNotNull(transactionType,
+        r'GgetExpenseData_expenseById_splits', 'transactionType');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt, r'GgetExpenseData_expenseById_splits', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUserId, r'GgetExpenseData_expenseById_splits', 'fromUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        toUserId, r'GgetExpenseData_expenseById_splits', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GgetExpenseData_expenseById_splits', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GgetExpenseData_expenseById_splits', 'groupId');
+  }
+
+  @override
+  GgetExpenseData_expenseById_splits rebuild(
+          void Function(GgetExpenseData_expenseById_splitsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetExpenseData_expenseById_splitsBuilder toBuilder() =>
+      new GgetExpenseData_expenseById_splitsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetExpenseData_expenseById_splits &&
+        G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
+        id == other.id &&
+        amount == other.amount &&
+        transactionType == other.transactionType &&
+        createdAt == other.createdAt &&
+        transactionPartGroupId == other.transactionPartGroupId &&
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, transactionType.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetExpenseData_expenseById_splits')
+          ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
+          ..add('id', id)
+          ..add('amount', amount)
+          ..add('transactionType', transactionType)
+          ..add('createdAt', createdAt)
+          ..add('transactionPartGroupId', transactionPartGroupId)
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId))
+        .toString();
+  }
+}
+
+class GgetExpenseData_expenseById_splitsBuilder
+    implements
+        Builder<GgetExpenseData_expenseById_splits,
+            GgetExpenseData_expenseById_splitsBuilder> {
+  _$GgetExpenseData_expenseById_splits? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GgetExpenseData_expenseById_splits_fromUserBuilder? _fromUser;
+  GgetExpenseData_expenseById_splits_fromUserBuilder get fromUser =>
+      _$this._fromUser ??=
+          new GgetExpenseData_expenseById_splits_fromUserBuilder();
+  set fromUser(GgetExpenseData_expenseById_splits_fromUserBuilder? fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GgetExpenseData_expenseById_splits_toUserBuilder? _toUser;
+  GgetExpenseData_expenseById_splits_toUserBuilder get toUser =>
+      _$this._toUser ??= new GgetExpenseData_expenseById_splits_toUserBuilder();
+  set toUser(GgetExpenseData_expenseById_splits_toUserBuilder? toUser) =>
+      _$this._toUser = toUser;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  GgetExpenseData_expenseById_splits_amountBuilder? _amount;
+  GgetExpenseData_expenseById_splits_amountBuilder get amount =>
+      _$this._amount ??= new GgetExpenseData_expenseById_splits_amountBuilder();
+  set amount(GgetExpenseData_expenseById_splits_amountBuilder? amount) =>
+      _$this._amount = amount;
+
+  _i3.GTransactionType? _transactionType;
+  _i3.GTransactionType? get transactionType => _$this._transactionType;
+  set transactionType(_i3.GTransactionType? transactionType) =>
+      _$this._transactionType = transactionType;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _transactionPartGroupId;
+  String? get transactionPartGroupId => _$this._transactionPartGroupId;
+  set transactionPartGroupId(String? transactionPartGroupId) =>
+      _$this._transactionPartGroupId = transactionPartGroupId;
+
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
+
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  GgetExpenseData_expenseById_splitsBuilder() {
+    GgetExpenseData_expenseById_splits._initializeBuilder(this);
+  }
+
+  GgetExpenseData_expenseById_splitsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
+      _id = $v.id;
+      _amount = $v.amount.toBuilder();
+      _transactionType = $v.transactionType;
+      _createdAt = $v.createdAt;
+      _transactionPartGroupId = $v.transactionPartGroupId;
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetExpenseData_expenseById_splits other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetExpenseData_expenseById_splits;
+  }
+
+  @override
+  void update(
+      void Function(GgetExpenseData_expenseById_splitsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetExpenseData_expenseById_splits build() => _build();
+
+  _$GgetExpenseData_expenseById_splits _build() {
+    _$GgetExpenseData_expenseById_splits _$result;
+    try {
+      _$result = _$v ??
+          new _$GgetExpenseData_expenseById_splits._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GgetExpenseData_expenseById_splits', 'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GgetExpenseData_expenseById_splits', 'id'),
+              amount: amount.build(),
+              transactionType: BuiltValueNullFieldError.checkNotNull(
+                  transactionType, r'GgetExpenseData_expenseById_splits', 'transactionType'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GgetExpenseData_expenseById_splits', 'createdAt'),
+              transactionPartGroupId: transactionPartGroupId,
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GgetExpenseData_expenseById_splits', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GgetExpenseData_expenseById_splits', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId, r'GgetExpenseData_expenseById_splits', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GgetExpenseData_expenseById_splits', 'groupId'),
+              note: note,
+              imageId: imageId);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'fromUser';
+        fromUser.build();
+        _$failedField = 'toUser';
+        toUser.build();
+
+        _$failedField = 'amount';
+        amount.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GgetExpenseData_expenseById_splits', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetExpenseData_expenseById_splits_fromUser
+    extends GgetExpenseData_expenseById_splits_fromUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GgetExpenseData_expenseById_splits_fromUser(
+          [void Function(GgetExpenseData_expenseById_splits_fromUserBuilder)?
+              updates]) =>
+      (new GgetExpenseData_expenseById_splits_fromUserBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GgetExpenseData_expenseById_splits_fromUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GgetExpenseData_expenseById_splits_fromUser', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GgetExpenseData_expenseById_splits_fromUser', 'id');
+    BuiltValueNullFieldError.checkNotNull(isSignedUp,
+        r'GgetExpenseData_expenseById_splits_fromUser', 'isSignedUp');
+  }
+
+  @override
+  GgetExpenseData_expenseById_splits_fromUser rebuild(
+          void Function(GgetExpenseData_expenseById_splits_fromUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetExpenseData_expenseById_splits_fromUserBuilder toBuilder() =>
+      new GgetExpenseData_expenseById_splits_fromUserBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetExpenseData_expenseById_splits_fromUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GgetExpenseData_expenseById_splits_fromUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GgetExpenseData_expenseById_splits_fromUserBuilder
+    implements
+        Builder<GgetExpenseData_expenseById_splits_fromUser,
+            GgetExpenseData_expenseById_splits_fromUserBuilder> {
+  _$GgetExpenseData_expenseById_splits_fromUser? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GgetExpenseData_expenseById_splits_fromUserBuilder() {
+    GgetExpenseData_expenseById_splits_fromUser._initializeBuilder(this);
+  }
+
+  GgetExpenseData_expenseById_splits_fromUserBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetExpenseData_expenseById_splits_fromUser other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetExpenseData_expenseById_splits_fromUser;
+  }
+
+  @override
+  void update(
+      void Function(GgetExpenseData_expenseById_splits_fromUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetExpenseData_expenseById_splits_fromUser build() => _build();
+
+  _$GgetExpenseData_expenseById_splits_fromUser _build() {
+    final _$result = _$v ??
+        new _$GgetExpenseData_expenseById_splits_fromUser._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GgetExpenseData_expenseById_splits_fromUser', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetExpenseData_expenseById_splits_fromUser', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GgetExpenseData_expenseById_splits_fromUser', 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetExpenseData_expenseById_splits_toUser
+    extends GgetExpenseData_expenseById_splits_toUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GgetExpenseData_expenseById_splits_toUser(
+          [void Function(GgetExpenseData_expenseById_splits_toUserBuilder)?
+              updates]) =>
+      (new GgetExpenseData_expenseById_splits_toUserBuilder()..update(updates))
+          ._build();
+
+  _$GgetExpenseData_expenseById_splits_toUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GgetExpenseData_expenseById_splits_toUser', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GgetExpenseData_expenseById_splits_toUser', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GgetExpenseData_expenseById_splits_toUser', 'isSignedUp');
+  }
+
+  @override
+  GgetExpenseData_expenseById_splits_toUser rebuild(
+          void Function(GgetExpenseData_expenseById_splits_toUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetExpenseData_expenseById_splits_toUserBuilder toBuilder() =>
+      new GgetExpenseData_expenseById_splits_toUserBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetExpenseData_expenseById_splits_toUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GgetExpenseData_expenseById_splits_toUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GgetExpenseData_expenseById_splits_toUserBuilder
+    implements
+        Builder<GgetExpenseData_expenseById_splits_toUser,
+            GgetExpenseData_expenseById_splits_toUserBuilder> {
+  _$GgetExpenseData_expenseById_splits_toUser? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GgetExpenseData_expenseById_splits_toUserBuilder() {
+    GgetExpenseData_expenseById_splits_toUser._initializeBuilder(this);
+  }
+
+  GgetExpenseData_expenseById_splits_toUserBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetExpenseData_expenseById_splits_toUser other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetExpenseData_expenseById_splits_toUser;
+  }
+
+  @override
+  void update(
+      void Function(GgetExpenseData_expenseById_splits_toUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetExpenseData_expenseById_splits_toUser build() => _build();
+
+  _$GgetExpenseData_expenseById_splits_toUser _build() {
+    final _$result = _$v ??
+        new _$GgetExpenseData_expenseById_splits_toUser._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GgetExpenseData_expenseById_splits_toUser', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GgetExpenseData_expenseById_splits_toUser', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GgetExpenseData_expenseById_splits_toUser', 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetExpenseData_expenseById_splits_amount
+    extends GgetExpenseData_expenseById_splits_amount {
+  @override
+  final String G__typename;
+  @override
+  final int amount;
+  @override
+  final String currencyId;
+
+  factory _$GgetExpenseData_expenseById_splits_amount(
+          [void Function(GgetExpenseData_expenseById_splits_amountBuilder)?
+              updates]) =>
+      (new GgetExpenseData_expenseById_splits_amountBuilder()..update(updates))
+          ._build();
+
+  _$GgetExpenseData_expenseById_splits_amount._(
+      {required this.G__typename,
+      required this.amount,
+      required this.currencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GgetExpenseData_expenseById_splits_amount', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GgetExpenseData_expenseById_splits_amount', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        currencyId, r'GgetExpenseData_expenseById_splits_amount', 'currencyId');
+  }
+
+  @override
+  GgetExpenseData_expenseById_splits_amount rebuild(
+          void Function(GgetExpenseData_expenseById_splits_amountBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetExpenseData_expenseById_splits_amountBuilder toBuilder() =>
+      new GgetExpenseData_expenseById_splits_amountBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetExpenseData_expenseById_splits_amount &&
+        G__typename == other.G__typename &&
+        amount == other.amount &&
+        currencyId == other.currencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GgetExpenseData_expenseById_splits_amount')
+          ..add('G__typename', G__typename)
+          ..add('amount', amount)
+          ..add('currencyId', currencyId))
+        .toString();
+  }
+}
+
+class GgetExpenseData_expenseById_splits_amountBuilder
+    implements
+        Builder<GgetExpenseData_expenseById_splits_amount,
+            GgetExpenseData_expenseById_splits_amountBuilder> {
+  _$GgetExpenseData_expenseById_splits_amount? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _currencyId;
+  String? get currencyId => _$this._currencyId;
+  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
+
+  GgetExpenseData_expenseById_splits_amountBuilder() {
+    GgetExpenseData_expenseById_splits_amount._initializeBuilder(this);
+  }
+
+  GgetExpenseData_expenseById_splits_amountBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _amount = $v.amount;
+      _currencyId = $v.currencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetExpenseData_expenseById_splits_amount other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetExpenseData_expenseById_splits_amount;
+  }
+
+  @override
+  void update(
+      void Function(GgetExpenseData_expenseById_splits_amountBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetExpenseData_expenseById_splits_amount build() => _build();
+
+  _$GgetExpenseData_expenseById_splits_amount _build() {
+    final _$result = _$v ??
+        new _$GgetExpenseData_expenseById_splits_amount._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GgetExpenseData_expenseById_splits_amount', 'G__typename'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount, r'GgetExpenseData_expenseById_splits_amount', 'amount'),
+            currencyId: BuiltValueNullFieldError.checkNotNull(currencyId,
+                r'GgetExpenseData_expenseById_splits_amount', 'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GgetExpenseData_expenseById_amount
+    extends GgetExpenseData_expenseById_amount {
+  @override
+  final String G__typename;
+  @override
+  final int amount;
+  @override
+  final String currencyId;
+
+  factory _$GgetExpenseData_expenseById_amount(
+          [void Function(GgetExpenseData_expenseById_amountBuilder)?
+              updates]) =>
+      (new GgetExpenseData_expenseById_amountBuilder()..update(updates))
+          ._build();
+
+  _$GgetExpenseData_expenseById_amount._(
+      {required this.G__typename,
+      required this.amount,
+      required this.currencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GgetExpenseData_expenseById_amount', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GgetExpenseData_expenseById_amount', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        currencyId, r'GgetExpenseData_expenseById_amount', 'currencyId');
+  }
+
+  @override
+  GgetExpenseData_expenseById_amount rebuild(
+          void Function(GgetExpenseData_expenseById_amountBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GgetExpenseData_expenseById_amountBuilder toBuilder() =>
+      new GgetExpenseData_expenseById_amountBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GgetExpenseData_expenseById_amount &&
+        G__typename == other.G__typename &&
+        amount == other.amount &&
+        currencyId == other.currencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GgetExpenseData_expenseById_amount')
+          ..add('G__typename', G__typename)
+          ..add('amount', amount)
+          ..add('currencyId', currencyId))
+        .toString();
+  }
+}
+
+class GgetExpenseData_expenseById_amountBuilder
+    implements
+        Builder<GgetExpenseData_expenseById_amount,
+            GgetExpenseData_expenseById_amountBuilder> {
+  _$GgetExpenseData_expenseById_amount? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _currencyId;
+  String? get currencyId => _$this._currencyId;
+  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
+
+  GgetExpenseData_expenseById_amountBuilder() {
+    GgetExpenseData_expenseById_amount._initializeBuilder(this);
+  }
+
+  GgetExpenseData_expenseById_amountBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _amount = $v.amount;
+      _currencyId = $v.currencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GgetExpenseData_expenseById_amount other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GgetExpenseData_expenseById_amount;
+  }
+
+  @override
+  void update(
+      void Function(GgetExpenseData_expenseById_amountBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GgetExpenseData_expenseById_amount build() => _build();
+
+  _$GgetExpenseData_expenseById_amount _build() {
+    final _$result = _$v ??
+        new _$GgetExpenseData_expenseById_amount._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GgetExpenseData_expenseById_amount', 'G__typename'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount, r'GgetExpenseData_expenseById_amount', 'amount'),
+            currencyId: BuiltValueNullFieldError.checkNotNull(currencyId,
+                r'GgetExpenseData_expenseById_amount', 'currencyId'));
     replace(_$result);
     return _$result;
   }

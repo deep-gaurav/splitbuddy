@@ -683,6 +683,29 @@ abstract class GgetImageViewUrlVars
       );
 }
 
+abstract class GgetExpenseVars
+    implements Built<GgetExpenseVars, GgetExpenseVarsBuilder> {
+  GgetExpenseVars._();
+
+  factory GgetExpenseVars([Function(GgetExpenseVarsBuilder b) updates]) =
+      _$GgetExpenseVars;
+
+  String get expenseId;
+  static Serializer<GgetExpenseVars> get serializer =>
+      _$ggetExpenseVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetExpenseVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetExpenseVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetExpenseVars.serializer,
+        json,
+      );
+}
+
 abstract class GUploadFieldsVars
     implements Built<GUploadFieldsVars, GUploadFieldsVarsBuilder> {
   GUploadFieldsVars._();

@@ -425,3 +425,9 @@ mutation getImageUploadUrl($size: Int!) {
 query getImageViewUrl($imageId: String!){
   imageUrl(id:$imageId)
 }
+
+query getExpense($expenseId: String!){
+  expenseById(id:$expenseId){
+    ...ExpenseFields
+  }
+}
