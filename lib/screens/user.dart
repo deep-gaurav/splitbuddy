@@ -606,9 +606,6 @@ class UserTransactionCard extends StatelessWidget {
                             expenseFields: expense,
                             expenseWith: ExpenseWithPeople(
                               users: [
-                                UserWithUser(
-                                  user: context.read<AppState>().user!,
-                                ),
                                 UserWithUser(user: user),
                               ],
                             ),
