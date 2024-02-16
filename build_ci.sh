@@ -1,6 +1,7 @@
 #!/bin/bash
 
 git clone -b stable https://github.com/flutter/flutter.git
+./flutter/bin/flutter doctor
 ./flutter/bin/flutter clean
 ./flutter/bin/flutter pub get
 ./flutter/bin/flutter build web --release --base-href="/app/" --web-renderer html --no-web-resources-cdn --pwa-strategy none --dart-define "VAPID_KEY=$VAPID_KEY" --dart-define "ENDPOINT=$ENDPOINT"
