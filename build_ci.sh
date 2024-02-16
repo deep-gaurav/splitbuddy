@@ -1,7 +1,9 @@
 #!/bin/bash
 
 git clone https://github.com/flutter/flutter.git
-./flutter/bin/flutter channel stable
+cd flutter
+git checkout tags/3.16.9
+cd ..
 ./flutter/bin/flutter doctor
 ./flutter/bin/flutter clean
 ./flutter/bin/flutter pub get
