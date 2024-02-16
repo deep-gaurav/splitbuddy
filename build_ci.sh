@@ -1,6 +1,7 @@
 #!/bin/bash
 
-git clone -b beta https://github.com/flutter/flutter.git
+git clone https://github.com/flutter/flutter.git
+./flutter/bin/flutter channel stable
 ./flutter/bin/flutter doctor
 ./flutter/bin/flutter clean
 ./flutter/bin/flutter pub get
