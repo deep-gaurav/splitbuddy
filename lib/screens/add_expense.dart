@@ -284,38 +284,6 @@ class _CreateExpenseState extends State<CreateExpense>
     resetAmountFromPercentage();
   }
 
-  Future<String?> uploadImage(Uint8List imageBytes,
-      {Map<String, String>? additionalHeaders}) async {
-    var mainClient = await context.read<AppState>().client;
-    final client = http.Client();
-
-    try {
-      var presignedUrl = await mainClient.execute(
-          GgetImageUploadUrlReq((b) => b.vars..size = imageBytes.length));
-      if (presignedUrl.data?.uploadImage.presignedUrl == null) {
-        return null;
-      }
-      final response = await http.put(
-        Uri.parse(presignedUrl.data!.uploadImage.presignedUrl),
-        headers: {
-          'Content-Length': imageBytes.length.toString(),
-          'Content-Type': 'image/avif'
-        },
-        body: imageBytes,
-      );
-      if (response.statusCode == 200) {
-        return presignedUrl.data!.uploadImage.id;
-      } else {
-        return null;
-      }
-    } catch (error) {
-      // print('Error: $error');
-      return null;
-    } finally {
-      client.close(); // Close the client to avoid resource leaks
-    }
-  }
-
   Uint8List? selectedImage;
 
   pickImage() async {
@@ -927,7 +895,7 @@ class _CreateExpenseState extends State<CreateExpense>
                     var nav = Navigator.of(context);
                     String? imageId;
                     if (selectedImage != null) {
-                      imageId = await uploadImage(selectedImage!);
+                      imageId = await uploadImage(context, selectedImage!);
                       if (imageId == null) {
                         throw "Image upload failed";
                       }
@@ -1091,4 +1059,36 @@ class SearchBarChips extends StatelessWidget {
                 ),
             ],
           ));
+}
+
+Future<String?> uploadImage(BuildContext context, Uint8List imageBytes,
+    {Map<String, String>? additionalHeaders}) async {
+  var mainClient = await context.read<AppState>().client;
+  final client = http.Client();
+
+  try {
+    var presignedUrl = await mainClient.execute(
+        GgetImageUploadUrlReq((b) => b.vars..size = imageBytes.length));
+    if (presignedUrl.data?.uploadImage.presignedUrl == null) {
+      return null;
+    }
+    final response = await http.put(
+      Uri.parse(presignedUrl.data!.uploadImage.presignedUrl),
+      headers: {
+        'Content-Length': imageBytes.length.toString(),
+        'Content-Type': 'image/avif'
+      },
+      body: imageBytes,
+    );
+    if (response.statusCode == 200) {
+      return presignedUrl.data!.uploadImage.id;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    // print('Error: $error');
+    return null;
+  } finally {
+    client.close(); // Close the client to avoid resource leaks
+  }
 }

@@ -361,12 +361,16 @@ class AppState extends ChangeNotifier {
     required String groupId,
     required String currencyId,
     required int amount,
+    String? imageId,
+    String? note,
   }) async {
     var result = await (await client).execute(GsettleInGroupReq((b) => b.vars
       ..amount = amount
       ..groupId = groupId
       ..currencyId = currencyId
-      ..withUser = userId));
+      ..withUser = userId
+      ..imageId = imageId
+      ..note = note));
     if (result.data?.settleInGroup != null) {
       refresh(await client);
       return result.data!.settleInGroup;
@@ -379,12 +383,16 @@ class AppState extends ChangeNotifier {
     required String userId,
     required int amount,
     required String currencyId,
+    String? imageId,
+    String? note,
   }) async {
     var result =
         await (await client).execute(GautoSettleWithUserReq((b) => b.vars
           ..amount = amount
           ..currencyId = currencyId
-          ..withUser = userId));
+          ..withUser = userId
+          ..imageId = imageId
+          ..note = note));
     if (result.data?.autoSettleWithUser != null) {
       refresh(await client);
       return result.data!.autoSettleWithUser.toList();

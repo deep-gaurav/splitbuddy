@@ -632,6 +632,33 @@ const SplitTransactionFields = _i1.FragmentDefinitionNode(
     ),
   ]),
 );
+const SplitWithSiblings = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'SplitWithSiblings'),
+  typeCondition: _i1.TypeConditionNode(
+      on: _i1.NamedTypeNode(
+    name: _i1.NameNode(value: 'Split'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FragmentSpreadNode(
+      name: _i1.NameNode(value: 'SplitTransactionFields'),
+      directives: [],
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'siblings'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'SplitTransactionFields'),
+          directives: [],
+        )
+      ]),
+    ),
+  ]),
+);
 const GroupWithExpenses = _i1.FragmentDefinitionNode(
   name: _i1.NameNode(value: 'GroupWithExpenses'),
   typeCondition: _i1.TypeConditionNode(
@@ -1671,6 +1698,24 @@ const settleInGroup = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'imageId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'note')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
@@ -1693,6 +1738,14 @@ const settleInGroup = _i1.OperationDefinitionNode(
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'currencyId'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'imageId'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'imageId')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'note'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'note')),
         ),
       ],
       directives: [],
@@ -1771,6 +1824,24 @@ const autoSettleWithUser = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'imageId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'note')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
@@ -1789,6 +1860,14 @@ const autoSettleWithUser = _i1.OperationDefinitionNode(
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'currencyId'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'currencyId')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'imageId'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'imageId')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'note'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'note')),
         ),
       ],
       directives: [],
@@ -2245,6 +2324,41 @@ const getExpense = _i1.OperationDefinitionNode(
     )
   ]),
 );
+const splitFromid = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.query,
+  name: _i1.NameNode(value: 'splitFromid'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'splitId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    )
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'splitById'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'id'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'splitId')),
+        )
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'SplitWithSiblings'),
+          directives: [],
+        )
+      ]),
+    )
+  ]),
+);
 const document = _i1.DocumentNode(definitions: [
   UploadFields,
   UserFields,
@@ -2260,6 +2374,7 @@ const document = _i1.DocumentNode(definitions: [
   SplitFieldsBasics,
   SplitFields,
   SplitTransactionFields,
+  SplitWithSiblings,
   GroupWithExpenses,
   ExpenseMixSplitFields,
   user,
@@ -2291,4 +2406,5 @@ const document = _i1.DocumentNode(definitions: [
   getImageUploadUrl,
   getImageViewUrl,
   getExpense,
+  splitFromid,
 ]);

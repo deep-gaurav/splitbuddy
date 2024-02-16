@@ -393,6 +393,8 @@ abstract class GsettleInGroupVars
   String get groupId;
   int get amount;
   String get currencyId;
+  String? get imageId;
+  String? get note;
   static Serializer<GsettleInGroupVars> get serializer =>
       _$gsettleInGroupVarsSerializer;
 
@@ -442,6 +444,8 @@ abstract class GautoSettleWithUserVars
   String get withUser;
   int get amount;
   String get currencyId;
+  String? get imageId;
+  String? get note;
   static Serializer<GautoSettleWithUserVars> get serializer =>
       _$gautoSettleWithUserVarsSerializer;
 
@@ -702,6 +706,29 @@ abstract class GgetExpenseVars
   static GgetExpenseVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GgetExpenseVars.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidVars
+    implements Built<GsplitFromidVars, GsplitFromidVarsBuilder> {
+  GsplitFromidVars._();
+
+  factory GsplitFromidVars([Function(GsplitFromidVarsBuilder b) updates]) =
+      _$GsplitFromidVars;
+
+  String get splitId;
+  static Serializer<GsplitFromidVars> get serializer =>
+      _$gsplitFromidVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidVars.serializer,
         json,
       );
 }
@@ -1014,6 +1041,29 @@ abstract class GSplitTransactionFieldsVars
   static GSplitTransactionFieldsVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GSplitTransactionFieldsVars.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsVars
+    implements Built<GSplitWithSiblingsVars, GSplitWithSiblingsVarsBuilder> {
+  GSplitWithSiblingsVars._();
+
+  factory GSplitWithSiblingsVars(
+          [Function(GSplitWithSiblingsVarsBuilder b) updates]) =
+      _$GSplitWithSiblingsVars;
+
+  static Serializer<GSplitWithSiblingsVars> get serializer =>
+      _$gSplitWithSiblingsVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsVars.serializer,
         json,
       );
 }

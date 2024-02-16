@@ -97,6 +97,24 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GSplitTransactionFieldsData_toUser.serializer)
       ..add(GSplitTransactionFieldsReq.serializer)
       ..add(GSplitTransactionFieldsVars.serializer)
+      ..add(GSplitWithSiblingsData.serializer)
+      ..add(GSplitWithSiblingsData_amount.serializer)
+      ..add(GSplitWithSiblingsData_creator.serializer)
+      ..add(GSplitWithSiblingsData_expense.serializer)
+      ..add(GSplitWithSiblingsData_expense_amount.serializer)
+      ..add(GSplitWithSiblingsData_fromUser.serializer)
+      ..add(GSplitWithSiblingsData_group.serializer)
+      ..add(GSplitWithSiblingsData_siblings.serializer)
+      ..add(GSplitWithSiblingsData_siblings_amount.serializer)
+      ..add(GSplitWithSiblingsData_siblings_creator.serializer)
+      ..add(GSplitWithSiblingsData_siblings_expense.serializer)
+      ..add(GSplitWithSiblingsData_siblings_expense_amount.serializer)
+      ..add(GSplitWithSiblingsData_siblings_fromUser.serializer)
+      ..add(GSplitWithSiblingsData_siblings_group.serializer)
+      ..add(GSplitWithSiblingsData_siblings_toUser.serializer)
+      ..add(GSplitWithSiblingsData_toUser.serializer)
+      ..add(GSplitWithSiblingsReq.serializer)
+      ..add(GSplitWithSiblingsVars.serializer)
       ..add(GTransactionType.serializer)
       ..add(GUploadFieldsData.serializer)
       ..add(GUploadFieldsReq.serializer)
@@ -318,6 +336,25 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GsimplifyUserData_simplifyCrossGroup_toUser.serializer)
       ..add(GsimplifyUserReq.serializer)
       ..add(GsimplifyUserVars.serializer)
+      ..add(GsplitFromidData.serializer)
+      ..add(GsplitFromidData_splitById.serializer)
+      ..add(GsplitFromidData_splitById_amount.serializer)
+      ..add(GsplitFromidData_splitById_creator.serializer)
+      ..add(GsplitFromidData_splitById_expense.serializer)
+      ..add(GsplitFromidData_splitById_expense_amount.serializer)
+      ..add(GsplitFromidData_splitById_fromUser.serializer)
+      ..add(GsplitFromidData_splitById_group.serializer)
+      ..add(GsplitFromidData_splitById_siblings.serializer)
+      ..add(GsplitFromidData_splitById_siblings_amount.serializer)
+      ..add(GsplitFromidData_splitById_siblings_creator.serializer)
+      ..add(GsplitFromidData_splitById_siblings_expense.serializer)
+      ..add(GsplitFromidData_splitById_siblings_expense_amount.serializer)
+      ..add(GsplitFromidData_splitById_siblings_fromUser.serializer)
+      ..add(GsplitFromidData_splitById_siblings_group.serializer)
+      ..add(GsplitFromidData_splitById_siblings_toUser.serializer)
+      ..add(GsplitFromidData_splitById_toUser.serializer)
+      ..add(GsplitFromidReq.serializer)
+      ..add(GsplitFromidVars.serializer)
       ..add(GtransactionMixExpenseData.serializer)
       ..add(GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup
           .serializer)
@@ -418,6 +455,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(GSplitInputNonGroup)]),
           () => new ListBuilder<GSplitInputNonGroup>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GSplitWithSiblingsData_siblings)]),
+          () => new ListBuilder<GSplitWithSiblingsData_siblings>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(Gadd_expenseData_addExpense_splits)]),
@@ -529,6 +570,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(GsimplifyUserData_simplifyCrossGroup)]),
           () => new ListBuilder<GsimplifyUserData_simplifyCrossGroup>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GsplitFromidData_splitById_siblings)]),
+          () => new ListBuilder<GsplitFromidData_splitById_siblings>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(

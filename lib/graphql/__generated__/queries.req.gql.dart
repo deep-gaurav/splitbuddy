@@ -2177,6 +2177,80 @@ abstract class GgetExpenseReq
       );
 }
 
+abstract class GsplitFromidReq
+    implements
+        Built<GsplitFromidReq, GsplitFromidReqBuilder>,
+        _i1.OperationRequest<_i2.GsplitFromidData, _i3.GsplitFromidVars> {
+  GsplitFromidReq._();
+
+  factory GsplitFromidReq([Function(GsplitFromidReqBuilder b) updates]) =
+      _$GsplitFromidReq;
+
+  static void _initializeBuilder(GsplitFromidReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'splitFromid',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GsplitFromidVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GsplitFromidData? Function(
+    _i2.GsplitFromidData?,
+    _i2.GsplitFromidData?,
+  )? get updateResult;
+  @override
+  _i2.GsplitFromidData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GsplitFromidData? parseData(Map<String, dynamic> json) =>
+      _i2.GsplitFromidData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GsplitFromidData, _i3.GsplitFromidVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GsplitFromidReq> get serializer =>
+      _$gsplitFromidReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GsplitFromidReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GsplitFromidReq.serializer,
+        json,
+      );
+}
+
 abstract class GUploadFieldsReq
     implements
         Built<GUploadFieldsReq, GUploadFieldsReqBuilder>,
@@ -2823,6 +2897,54 @@ abstract class GSplitTransactionFieldsReq
   static GSplitTransactionFieldsReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GSplitTransactionFieldsReq.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsReq
+    implements
+        Built<GSplitWithSiblingsReq, GSplitWithSiblingsReqBuilder>,
+        _i1.FragmentRequest<_i2.GSplitWithSiblingsData,
+            _i3.GSplitWithSiblingsVars> {
+  GSplitWithSiblingsReq._();
+
+  factory GSplitWithSiblingsReq(
+          [Function(GSplitWithSiblingsReqBuilder b) updates]) =
+      _$GSplitWithSiblingsReq;
+
+  static void _initializeBuilder(GSplitWithSiblingsReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'SplitWithSiblings';
+
+  @override
+  _i3.GSplitWithSiblingsVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GSplitWithSiblingsData? parseData(Map<String, dynamic> json) =>
+      _i2.GSplitWithSiblingsData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  static Serializer<GSplitWithSiblingsReq> get serializer =>
+      _$gSplitWithSiblingsReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GSplitWithSiblingsReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GSplitWithSiblingsReq.serializer,
         json,
       );
 }

@@ -2,9 +2,12 @@ import 'dart:math';
 
 import 'package:billdivide/extensions/num_extension.dart';
 import 'package:billdivide/gen/assets.gen.dart';
+import 'package:billdivide/screens/add_expense.dart';
+import 'package:billdivide/screens/image_editor.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_avif/flutter_avif.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/extensions/group_extension.dart';
 import 'package:billdivide/extensions/user_extension.dart';
@@ -59,6 +62,9 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
 
   bool loading = false;
 
+  TextEditingController? noteController;
+  Uint8List? selectedImage;
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -68,6 +74,22 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
       }
     });
     super.initState();
+  }
+
+  pickImage() async {
+    var result = await Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ImageEditor(
+              initialImage: selectedImage,
+            )));
+    if (result is Uint8List) {
+      setState(() {
+        selectedImage = result;
+      });
+    } else if (result == false) {
+      setState(() {
+        selectedImage = null;
+      });
+    }
   }
 
   @override
@@ -304,6 +326,131 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
                       : null,
                 ),
               ),
+              if (selectedImage != null)
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 20),
+                    child: InkWell(
+                      onTap: pickImage,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Stack(
+                          fit: StackFit.passthrough,
+                          children: [
+                            SizedBox(
+                              height: 100,
+                              child: AvifImage.memory(
+                                selectedImage!,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            const Positioned.fill(
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [Colors.transparent, Colors.black],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 5,
+                              left: 0,
+                              right: 0,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Attached Image',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge
+                                              ?.fontSize),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    const Icon(
+                                      Icons.edit,
+                                      color: Colors.white,
+                                      size: 18,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              if (noteController != null)
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 20),
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxHeight: 200,
+                      ),
+                      child: TextField(
+                        controller: noteController,
+                        maxLength: 300,
+                        maxLines: null,
+                        decoration: const InputDecoration(
+                          filled: true,
+                          // hintText: "Note",
+                          labelText: 'Note',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              SliverToBoxAdapter(
+                child: Center(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: ButtonBar(
+                      alignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: pickImage,
+                          icon: const Icon(Icons.image),
+                          label: Text(
+                            selectedImage == null ? 'Add Image' : 'Edit Image',
+                          ),
+                        ),
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            if (noteController != null) {
+                              setState(() {
+                                noteController = null;
+                              });
+                            } else {
+                              setState(() {
+                                noteController = TextEditingController();
+                              });
+                            }
+                          },
+                          icon: const Icon(Icons.note),
+                          label: Text(
+                            noteController == null ? 'Add Note' : 'Remove Note',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ]
           ],
         ),
@@ -324,22 +471,35 @@ class _PaymentRecorderState extends State<PaymentRecorder> {
                     loading = true;
                   });
                   if (formKey.currentState!.validate()) {
+                    String? imageId;
+
                     var appState = context.read<AppState>();
                     var nav = Navigator.of(context);
+                    if (selectedImage != null) {
+                      imageId = await uploadImage(context, selectedImage!);
+                    }
                     if (widget.inGroup != null) {
                       var result = await appState.settleInGroup(
-                          userId: widget.withUser.id,
-                          currencyId: currency!.id,
-                          groupId: widget.inGroup!.id,
-                          amount:
-                              (amount * pow(10, currency!.decimals)).toInt());
+                        userId: widget.withUser.id,
+                        currencyId: currency!.id,
+                        groupId: widget.inGroup!.id,
+                        amount: (amount * pow(10, currency!.decimals)).toInt(),
+                        imageId: imageId,
+                        note: noteController?.text.trim().isNotEmpty == true
+                            ? noteController?.text.trim()
+                            : null,
+                      );
                       nav.pop(result);
                     } else {
                       var result = await appState.autoSettleWithUser(
-                          userId: widget.withUser.id,
-                          currencyId: currency!.id,
-                          amount:
-                              (amount * pow(10, currency!.decimals)).toInt());
+                        userId: widget.withUser.id,
+                        currencyId: currency!.id,
+                        amount: (amount * pow(10, currency!.decimals)).toInt(),
+                        imageId: imageId,
+                        note: noteController?.text.trim().isNotEmpty == true
+                            ? noteController?.text.trim()
+                            : null,
+                      );
                       nav.pop(result);
                     }
                   }

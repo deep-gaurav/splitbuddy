@@ -60,6 +60,8 @@ Serializer<GgetImageViewUrlVars> _$ggetImageViewUrlVarsSerializer =
     new _$GgetImageViewUrlVarsSerializer();
 Serializer<GgetExpenseVars> _$ggetExpenseVarsSerializer =
     new _$GgetExpenseVarsSerializer();
+Serializer<GsplitFromidVars> _$gsplitFromidVarsSerializer =
+    new _$GsplitFromidVarsSerializer();
 Serializer<GUploadFieldsVars> _$gUploadFieldsVarsSerializer =
     new _$GUploadFieldsVarsSerializer();
 Serializer<GUserFieldsVars> _$gUserFieldsVarsSerializer =
@@ -89,6 +91,8 @@ Serializer<GSplitFieldsVars> _$gSplitFieldsVarsSerializer =
 Serializer<GSplitTransactionFieldsVars>
     _$gSplitTransactionFieldsVarsSerializer =
     new _$GSplitTransactionFieldsVarsSerializer();
+Serializer<GSplitWithSiblingsVars> _$gSplitWithSiblingsVarsSerializer =
+    new _$GSplitWithSiblingsVarsSerializer();
 Serializer<GGroupWithExpensesVars> _$gGroupWithExpensesVarsSerializer =
     new _$GGroupWithExpensesVarsSerializer();
 Serializer<GExpenseMixSplitFieldsVars> _$gExpenseMixSplitFieldsVarsSerializer =
@@ -826,7 +830,21 @@ class _$GsettleInGroupVarsSerializer
       serializers.serialize(object.currencyId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -857,6 +875,14 @@ class _$GsettleInGroupVarsSerializer
         case 'currencyId':
           result.currencyId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -931,7 +957,21 @@ class _$GautoSettleWithUserVarsSerializer
       serializers.serialize(object.currencyId,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -958,6 +998,14 @@ class _$GautoSettleWithUserVarsSerializer
         case 'currencyId':
           result.currencyId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -1481,6 +1529,48 @@ class _$GgetExpenseVarsSerializer
   }
 }
 
+class _$GsplitFromidVarsSerializer
+    implements StructuredSerializer<GsplitFromidVars> {
+  @override
+  final Iterable<Type> types = const [GsplitFromidVars, _$GsplitFromidVars];
+  @override
+  final String wireName = 'GsplitFromidVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GsplitFromidVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'splitId',
+      serializers.serialize(object.splitId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GsplitFromidVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsplitFromidVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'splitId':
+          result.splitId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GUploadFieldsVarsSerializer
     implements StructuredSerializer<GUploadFieldsVars> {
   @override
@@ -1793,6 +1883,31 @@ class _$GSplitTransactionFieldsVarsSerializer
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     return new GSplitTransactionFieldsVarsBuilder().build();
+  }
+}
+
+class _$GSplitWithSiblingsVarsSerializer
+    implements StructuredSerializer<GSplitWithSiblingsVars> {
+  @override
+  final Iterable<Type> types = const [
+    GSplitWithSiblingsVars,
+    _$GSplitWithSiblingsVars
+  ];
+  @override
+  final String wireName = 'GSplitWithSiblingsVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GSplitWithSiblingsVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
+  }
+
+  @override
+  GSplitWithSiblingsVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GSplitWithSiblingsVarsBuilder().build();
   }
 }
 
@@ -3370,6 +3485,10 @@ class _$GsettleInGroupVars extends GsettleInGroupVars {
   final int amount;
   @override
   final String currencyId;
+  @override
+  final String? imageId;
+  @override
+  final String? note;
 
   factory _$GsettleInGroupVars(
           [void Function(GsettleInGroupVarsBuilder)? updates]) =>
@@ -3379,7 +3498,9 @@ class _$GsettleInGroupVars extends GsettleInGroupVars {
       {required this.withUser,
       required this.groupId,
       required this.amount,
-      required this.currencyId})
+      required this.currencyId,
+      this.imageId,
+      this.note})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         withUser, r'GsettleInGroupVars', 'withUser');
@@ -3407,7 +3528,9 @@ class _$GsettleInGroupVars extends GsettleInGroupVars {
         withUser == other.withUser &&
         groupId == other.groupId &&
         amount == other.amount &&
-        currencyId == other.currencyId;
+        currencyId == other.currencyId &&
+        imageId == other.imageId &&
+        note == other.note;
   }
 
   @override
@@ -3417,6 +3540,8 @@ class _$GsettleInGroupVars extends GsettleInGroupVars {
     _$hash = $jc(_$hash, groupId.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -3427,7 +3552,9 @@ class _$GsettleInGroupVars extends GsettleInGroupVars {
           ..add('withUser', withUser)
           ..add('groupId', groupId)
           ..add('amount', amount)
-          ..add('currencyId', currencyId))
+          ..add('currencyId', currencyId)
+          ..add('imageId', imageId)
+          ..add('note', note))
         .toString();
   }
 }
@@ -3452,6 +3579,14 @@ class GsettleInGroupVarsBuilder
   String? get currencyId => _$this._currencyId;
   set currencyId(String? currencyId) => _$this._currencyId = currencyId;
 
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
   GsettleInGroupVarsBuilder();
 
   GsettleInGroupVarsBuilder get _$this {
@@ -3461,6 +3596,8 @@ class GsettleInGroupVarsBuilder
       _groupId = $v.groupId;
       _amount = $v.amount;
       _currencyId = $v.currencyId;
+      _imageId = $v.imageId;
+      _note = $v.note;
       _$v = null;
     }
     return this;
@@ -3490,7 +3627,9 @@ class GsettleInGroupVarsBuilder
             amount: BuiltValueNullFieldError.checkNotNull(
                 amount, r'GsettleInGroupVars', 'amount'),
             currencyId: BuiltValueNullFieldError.checkNotNull(
-                currencyId, r'GsettleInGroupVars', 'currencyId'));
+                currencyId, r'GsettleInGroupVars', 'currencyId'),
+            imageId: imageId,
+            note: note);
     replace(_$result);
     return _$result;
   }
@@ -3589,13 +3728,21 @@ class _$GautoSettleWithUserVars extends GautoSettleWithUserVars {
   final int amount;
   @override
   final String currencyId;
+  @override
+  final String? imageId;
+  @override
+  final String? note;
 
   factory _$GautoSettleWithUserVars(
           [void Function(GautoSettleWithUserVarsBuilder)? updates]) =>
       (new GautoSettleWithUserVarsBuilder()..update(updates))._build();
 
   _$GautoSettleWithUserVars._(
-      {required this.withUser, required this.amount, required this.currencyId})
+      {required this.withUser,
+      required this.amount,
+      required this.currencyId,
+      this.imageId,
+      this.note})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         withUser, r'GautoSettleWithUserVars', 'withUser');
@@ -3620,7 +3767,9 @@ class _$GautoSettleWithUserVars extends GautoSettleWithUserVars {
     return other is GautoSettleWithUserVars &&
         withUser == other.withUser &&
         amount == other.amount &&
-        currencyId == other.currencyId;
+        currencyId == other.currencyId &&
+        imageId == other.imageId &&
+        note == other.note;
   }
 
   @override
@@ -3629,6 +3778,8 @@ class _$GautoSettleWithUserVars extends GautoSettleWithUserVars {
     _$hash = $jc(_$hash, withUser.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -3638,7 +3789,9 @@ class _$GautoSettleWithUserVars extends GautoSettleWithUserVars {
     return (newBuiltValueToStringHelper(r'GautoSettleWithUserVars')
           ..add('withUser', withUser)
           ..add('amount', amount)
-          ..add('currencyId', currencyId))
+          ..add('currencyId', currencyId)
+          ..add('imageId', imageId)
+          ..add('note', note))
         .toString();
   }
 }
@@ -3660,6 +3813,14 @@ class GautoSettleWithUserVarsBuilder
   String? get currencyId => _$this._currencyId;
   set currencyId(String? currencyId) => _$this._currencyId = currencyId;
 
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
   GautoSettleWithUserVarsBuilder();
 
   GautoSettleWithUserVarsBuilder get _$this {
@@ -3668,6 +3829,8 @@ class GautoSettleWithUserVarsBuilder
       _withUser = $v.withUser;
       _amount = $v.amount;
       _currencyId = $v.currencyId;
+      _imageId = $v.imageId;
+      _note = $v.note;
       _$v = null;
     }
     return this;
@@ -3695,7 +3858,9 @@ class GautoSettleWithUserVarsBuilder
             amount: BuiltValueNullFieldError.checkNotNull(
                 amount, r'GautoSettleWithUserVars', 'amount'),
             currencyId: BuiltValueNullFieldError.checkNotNull(
-                currencyId, r'GautoSettleWithUserVars', 'currencyId'));
+                currencyId, r'GautoSettleWithUserVars', 'currencyId'),
+            imageId: imageId,
+            note: note);
     replace(_$result);
     return _$result;
   }
@@ -4686,6 +4851,92 @@ class GgetExpenseVarsBuilder
   }
 }
 
+class _$GsplitFromidVars extends GsplitFromidVars {
+  @override
+  final String splitId;
+
+  factory _$GsplitFromidVars(
+          [void Function(GsplitFromidVarsBuilder)? updates]) =>
+      (new GsplitFromidVarsBuilder()..update(updates))._build();
+
+  _$GsplitFromidVars._({required this.splitId}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        splitId, r'GsplitFromidVars', 'splitId');
+  }
+
+  @override
+  GsplitFromidVars rebuild(void Function(GsplitFromidVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsplitFromidVarsBuilder toBuilder() =>
+      new GsplitFromidVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsplitFromidVars && splitId == other.splitId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, splitId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GsplitFromidVars')
+          ..add('splitId', splitId))
+        .toString();
+  }
+}
+
+class GsplitFromidVarsBuilder
+    implements Builder<GsplitFromidVars, GsplitFromidVarsBuilder> {
+  _$GsplitFromidVars? _$v;
+
+  String? _splitId;
+  String? get splitId => _$this._splitId;
+  set splitId(String? splitId) => _$this._splitId = splitId;
+
+  GsplitFromidVarsBuilder();
+
+  GsplitFromidVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _splitId = $v.splitId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsplitFromidVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsplitFromidVars;
+  }
+
+  @override
+  void update(void Function(GsplitFromidVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsplitFromidVars build() => _build();
+
+  _$GsplitFromidVars _build() {
+    final _$result = _$v ??
+        new _$GsplitFromidVars._(
+            splitId: BuiltValueNullFieldError.checkNotNull(
+                splitId, r'GsplitFromidVars', 'splitId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GUploadFieldsVars extends GUploadFieldsVars {
   factory _$GUploadFieldsVars(
           [void Function(GUploadFieldsVarsBuilder)? updates]) =>
@@ -5514,6 +5765,66 @@ class GSplitTransactionFieldsVarsBuilder
 
   _$GSplitTransactionFieldsVars _build() {
     final _$result = _$v ?? new _$GSplitTransactionFieldsVars._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GSplitWithSiblingsVars extends GSplitWithSiblingsVars {
+  factory _$GSplitWithSiblingsVars(
+          [void Function(GSplitWithSiblingsVarsBuilder)? updates]) =>
+      (new GSplitWithSiblingsVarsBuilder()..update(updates))._build();
+
+  _$GSplitWithSiblingsVars._() : super._();
+
+  @override
+  GSplitWithSiblingsVars rebuild(
+          void Function(GSplitWithSiblingsVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GSplitWithSiblingsVarsBuilder toBuilder() =>
+      new GSplitWithSiblingsVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GSplitWithSiblingsVars;
+  }
+
+  @override
+  int get hashCode {
+    return 952622154;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GSplitWithSiblingsVars').toString();
+  }
+}
+
+class GSplitWithSiblingsVarsBuilder
+    implements Builder<GSplitWithSiblingsVars, GSplitWithSiblingsVarsBuilder> {
+  _$GSplitWithSiblingsVars? _$v;
+
+  GSplitWithSiblingsVarsBuilder();
+
+  @override
+  void replace(GSplitWithSiblingsVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GSplitWithSiblingsVars;
+  }
+
+  @override
+  void update(void Function(GSplitWithSiblingsVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GSplitWithSiblingsVars build() => _build();
+
+  _$GSplitWithSiblingsVars _build() {
+    final _$result = _$v ?? new _$GSplitWithSiblingsVars._();
     replace(_$result);
     return _$result;
   }

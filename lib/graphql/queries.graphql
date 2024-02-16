@@ -129,6 +129,13 @@ fragment SplitTransactionFields on Split {
   }
 }
 
+fragment SplitWithSiblings on Split {
+  ...SplitTransactionFields
+  siblings{
+    ...SplitTransactionFields
+  }
+}
+
 fragment GroupWithExpenses on Group {
   ...GroupFields
   expenses(fromTime: $fromTime, limit: $limit) {
@@ -323,12 +330,16 @@ mutation settleInGroup(
   $groupId: String!
   $amount: Int!
   $currencyId: String!
+    $imageId: String,
+  $note: String
 ) {
   settleInGroup(
     toUser: $withUser
     groupId: $groupId
     amount: $amount
     currencyId: $currencyId
+        imageId:$imageId,
+    note:$note
   ) {
     ...SplitTransactionFields
   }
@@ -344,11 +355,15 @@ mutation autoSettleWithUser(
   $withUser: String!
   $amount: Int!
   $currencyId: String!
+  $imageId: String,
+  $note: String
 ) {
   autoSettleWithUser(
     withUser: $withUser
     amount: $amount
-    currencyId: $currencyId
+    currencyId: $currencyId,
+    imageId:$imageId,
+    note:$note
   ) {
     ...SplitTransactionFields
   }
@@ -429,5 +444,11 @@ query getImageViewUrl($imageId: String!){
 query getExpense($expenseId: String!){
   expenseById(id:$expenseId){
     ...ExpenseFields
+  }
+}
+
+query splitFromid($splitId: String!){
+  splitById(id:$splitId){
+    ...SplitWithSiblings
   }
 }

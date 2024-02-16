@@ -7474,6 +7474,797 @@ abstract class GgetExpenseData_expenseById_amount
       );
 }
 
+abstract class GsplitFromidData
+    implements Built<GsplitFromidData, GsplitFromidDataBuilder> {
+  GsplitFromidData._();
+
+  factory GsplitFromidData([Function(GsplitFromidDataBuilder b) updates]) =
+      _$GsplitFromidData;
+
+  static void _initializeBuilder(GsplitFromidDataBuilder b) =>
+      b..G__typename = 'Query';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GsplitFromidData_splitById get splitById;
+  static Serializer<GsplitFromidData> get serializer =>
+      _$gsplitFromidDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById
+    implements
+        Built<GsplitFromidData_splitById, GsplitFromidData_splitByIdBuilder>,
+        GSplitWithSiblings {
+  GsplitFromidData_splitById._();
+
+  factory GsplitFromidData_splitById(
+          [Function(GsplitFromidData_splitByIdBuilder b) updates]) =
+      _$GsplitFromidData_splitById;
+
+  static void _initializeBuilder(GsplitFromidData_splitByIdBuilder b) =>
+      b..G__typename = 'Split';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  BuiltList<GsplitFromidData_splitById_siblings> get siblings;
+  @override
+  GsplitFromidData_splitById_expense? get expense;
+  @override
+  GsplitFromidData_splitById_group get group;
+  @override
+  GsplitFromidData_splitById_creator get creator;
+  @override
+  GsplitFromidData_splitById_fromUser get fromUser;
+  @override
+  GsplitFromidData_splitById_toUser get toUser;
+  @override
+  String get id;
+  @override
+  GsplitFromidData_splitById_amount get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  String get fromUserId;
+  @override
+  String get toUserId;
+  @override
+  String get creatorId;
+  @override
+  String? get withGroupId;
+  @override
+  String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  static Serializer<GsplitFromidData_splitById> get serializer =>
+      _$gsplitFromidDataSplitByIdSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_siblings
+    implements
+        Built<GsplitFromidData_splitById_siblings,
+            GsplitFromidData_splitById_siblingsBuilder>,
+        GSplitWithSiblings_siblings,
+        GSplitTransactionFields {
+  GsplitFromidData_splitById_siblings._();
+
+  factory GsplitFromidData_splitById_siblings(
+          [Function(GsplitFromidData_splitById_siblingsBuilder b) updates]) =
+      _$GsplitFromidData_splitById_siblings;
+
+  static void _initializeBuilder(
+          GsplitFromidData_splitById_siblingsBuilder b) =>
+      b..G__typename = 'Split';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  GsplitFromidData_splitById_siblings_expense? get expense;
+  @override
+  GsplitFromidData_splitById_siblings_group get group;
+  @override
+  GsplitFromidData_splitById_siblings_creator get creator;
+  @override
+  GsplitFromidData_splitById_siblings_fromUser get fromUser;
+  @override
+  GsplitFromidData_splitById_siblings_toUser get toUser;
+  @override
+  String get id;
+  @override
+  GsplitFromidData_splitById_siblings_amount get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  String get fromUserId;
+  @override
+  String get toUserId;
+  @override
+  String get creatorId;
+  @override
+  String? get withGroupId;
+  @override
+  String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  static Serializer<GsplitFromidData_splitById_siblings> get serializer =>
+      _$gsplitFromidDataSplitByIdSiblingsSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_siblings.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_siblings? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_siblings.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_siblings_expense
+    implements
+        Built<GsplitFromidData_splitById_siblings_expense,
+            GsplitFromidData_splitById_siblings_expenseBuilder>,
+        GSplitWithSiblings_siblings_expense,
+        GSplitTransactionFields_expense,
+        GExpenseBasic {
+  GsplitFromidData_splitById_siblings_expense._();
+
+  factory GsplitFromidData_splitById_siblings_expense(
+      [Function(GsplitFromidData_splitById_siblings_expenseBuilder b)
+          updates]) = _$GsplitFromidData_splitById_siblings_expense;
+
+  static void _initializeBuilder(
+          GsplitFromidData_splitById_siblings_expenseBuilder b) =>
+      b..G__typename = 'Expense';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  String get category;
+  @override
+  GsplitFromidData_splitById_siblings_expense_amount get amount;
+  @override
+  String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  static Serializer<GsplitFromidData_splitById_siblings_expense>
+      get serializer => _$gsplitFromidDataSplitByIdSiblingsExpenseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_siblings_expense.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_siblings_expense? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_siblings_expense.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_siblings_expense_amount
+    implements
+        Built<GsplitFromidData_splitById_siblings_expense_amount,
+            GsplitFromidData_splitById_siblings_expense_amountBuilder>,
+        GSplitWithSiblings_siblings_expense_amount,
+        GSplitTransactionFields_expense_amount,
+        GExpenseBasic_amount,
+        GAmountFields {
+  GsplitFromidData_splitById_siblings_expense_amount._();
+
+  factory GsplitFromidData_splitById_siblings_expense_amount(
+      [Function(GsplitFromidData_splitById_siblings_expense_amountBuilder b)
+          updates]) = _$GsplitFromidData_splitById_siblings_expense_amount;
+
+  static void _initializeBuilder(
+          GsplitFromidData_splitById_siblings_expense_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GsplitFromidData_splitById_siblings_expense_amount>
+      get serializer =>
+          _$gsplitFromidDataSplitByIdSiblingsExpenseAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_siblings_expense_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_siblings_expense_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_siblings_expense_amount.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_siblings_group
+    implements
+        Built<GsplitFromidData_splitById_siblings_group,
+            GsplitFromidData_splitById_siblings_groupBuilder>,
+        GSplitWithSiblings_siblings_group,
+        GSplitTransactionFields_group,
+        GGroupBasic {
+  GsplitFromidData_splitById_siblings_group._();
+
+  factory GsplitFromidData_splitById_siblings_group(
+      [Function(GsplitFromidData_splitById_siblings_groupBuilder b)
+          updates]) = _$GsplitFromidData_splitById_siblings_group;
+
+  static void _initializeBuilder(
+          GsplitFromidData_splitById_siblings_groupBuilder b) =>
+      b..G__typename = 'Group';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  static Serializer<GsplitFromidData_splitById_siblings_group> get serializer =>
+      _$gsplitFromidDataSplitByIdSiblingsGroupSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_siblings_group.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_siblings_group? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_siblings_group.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_siblings_creator
+    implements
+        Built<GsplitFromidData_splitById_siblings_creator,
+            GsplitFromidData_splitById_siblings_creatorBuilder>,
+        GSplitWithSiblings_siblings_creator,
+        GSplitTransactionFields_creator,
+        GUserFields {
+  GsplitFromidData_splitById_siblings_creator._();
+
+  factory GsplitFromidData_splitById_siblings_creator(
+      [Function(GsplitFromidData_splitById_siblings_creatorBuilder b)
+          updates]) = _$GsplitFromidData_splitById_siblings_creator;
+
+  static void _initializeBuilder(
+          GsplitFromidData_splitById_siblings_creatorBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GsplitFromidData_splitById_siblings_creator>
+      get serializer => _$gsplitFromidDataSplitByIdSiblingsCreatorSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_siblings_creator.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_siblings_creator? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_siblings_creator.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_siblings_fromUser
+    implements
+        Built<GsplitFromidData_splitById_siblings_fromUser,
+            GsplitFromidData_splitById_siblings_fromUserBuilder>,
+        GSplitWithSiblings_siblings_fromUser,
+        GSplitTransactionFields_fromUser,
+        GUserFields {
+  GsplitFromidData_splitById_siblings_fromUser._();
+
+  factory GsplitFromidData_splitById_siblings_fromUser(
+      [Function(GsplitFromidData_splitById_siblings_fromUserBuilder b)
+          updates]) = _$GsplitFromidData_splitById_siblings_fromUser;
+
+  static void _initializeBuilder(
+          GsplitFromidData_splitById_siblings_fromUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GsplitFromidData_splitById_siblings_fromUser>
+      get serializer => _$gsplitFromidDataSplitByIdSiblingsFromUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_siblings_fromUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_siblings_fromUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_siblings_fromUser.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_siblings_toUser
+    implements
+        Built<GsplitFromidData_splitById_siblings_toUser,
+            GsplitFromidData_splitById_siblings_toUserBuilder>,
+        GSplitWithSiblings_siblings_toUser,
+        GSplitTransactionFields_toUser,
+        GUserFields {
+  GsplitFromidData_splitById_siblings_toUser._();
+
+  factory GsplitFromidData_splitById_siblings_toUser(
+      [Function(GsplitFromidData_splitById_siblings_toUserBuilder b)
+          updates]) = _$GsplitFromidData_splitById_siblings_toUser;
+
+  static void _initializeBuilder(
+          GsplitFromidData_splitById_siblings_toUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GsplitFromidData_splitById_siblings_toUser>
+      get serializer => _$gsplitFromidDataSplitByIdSiblingsToUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_siblings_toUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_siblings_toUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_siblings_toUser.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_siblings_amount
+    implements
+        Built<GsplitFromidData_splitById_siblings_amount,
+            GsplitFromidData_splitById_siblings_amountBuilder>,
+        GSplitWithSiblings_siblings_amount,
+        GSplitTransactionFields_amount,
+        GAmountFields {
+  GsplitFromidData_splitById_siblings_amount._();
+
+  factory GsplitFromidData_splitById_siblings_amount(
+      [Function(GsplitFromidData_splitById_siblings_amountBuilder b)
+          updates]) = _$GsplitFromidData_splitById_siblings_amount;
+
+  static void _initializeBuilder(
+          GsplitFromidData_splitById_siblings_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GsplitFromidData_splitById_siblings_amount>
+      get serializer => _$gsplitFromidDataSplitByIdSiblingsAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_siblings_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_siblings_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_siblings_amount.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_expense
+    implements
+        Built<GsplitFromidData_splitById_expense,
+            GsplitFromidData_splitById_expenseBuilder>,
+        GSplitWithSiblings_expense,
+        GExpenseBasic {
+  GsplitFromidData_splitById_expense._();
+
+  factory GsplitFromidData_splitById_expense(
+          [Function(GsplitFromidData_splitById_expenseBuilder b) updates]) =
+      _$GsplitFromidData_splitById_expense;
+
+  static void _initializeBuilder(GsplitFromidData_splitById_expenseBuilder b) =>
+      b..G__typename = 'Expense';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  String get category;
+  @override
+  GsplitFromidData_splitById_expense_amount get amount;
+  @override
+  String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  static Serializer<GsplitFromidData_splitById_expense> get serializer =>
+      _$gsplitFromidDataSplitByIdExpenseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_expense.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_expense? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_expense.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_expense_amount
+    implements
+        Built<GsplitFromidData_splitById_expense_amount,
+            GsplitFromidData_splitById_expense_amountBuilder>,
+        GSplitWithSiblings_expense_amount,
+        GExpenseBasic_amount,
+        GAmountFields {
+  GsplitFromidData_splitById_expense_amount._();
+
+  factory GsplitFromidData_splitById_expense_amount(
+      [Function(GsplitFromidData_splitById_expense_amountBuilder b)
+          updates]) = _$GsplitFromidData_splitById_expense_amount;
+
+  static void _initializeBuilder(
+          GsplitFromidData_splitById_expense_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GsplitFromidData_splitById_expense_amount> get serializer =>
+      _$gsplitFromidDataSplitByIdExpenseAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_expense_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_expense_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_expense_amount.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_group
+    implements
+        Built<GsplitFromidData_splitById_group,
+            GsplitFromidData_splitById_groupBuilder>,
+        GSplitWithSiblings_group,
+        GGroupBasic {
+  GsplitFromidData_splitById_group._();
+
+  factory GsplitFromidData_splitById_group(
+          [Function(GsplitFromidData_splitById_groupBuilder b) updates]) =
+      _$GsplitFromidData_splitById_group;
+
+  static void _initializeBuilder(GsplitFromidData_splitById_groupBuilder b) =>
+      b..G__typename = 'Group';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  static Serializer<GsplitFromidData_splitById_group> get serializer =>
+      _$gsplitFromidDataSplitByIdGroupSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_group.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_group? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_group.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_creator
+    implements
+        Built<GsplitFromidData_splitById_creator,
+            GsplitFromidData_splitById_creatorBuilder>,
+        GSplitWithSiblings_creator,
+        GUserFields {
+  GsplitFromidData_splitById_creator._();
+
+  factory GsplitFromidData_splitById_creator(
+          [Function(GsplitFromidData_splitById_creatorBuilder b) updates]) =
+      _$GsplitFromidData_splitById_creator;
+
+  static void _initializeBuilder(GsplitFromidData_splitById_creatorBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GsplitFromidData_splitById_creator> get serializer =>
+      _$gsplitFromidDataSplitByIdCreatorSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_creator.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_creator? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_creator.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_fromUser
+    implements
+        Built<GsplitFromidData_splitById_fromUser,
+            GsplitFromidData_splitById_fromUserBuilder>,
+        GSplitWithSiblings_fromUser,
+        GUserFields {
+  GsplitFromidData_splitById_fromUser._();
+
+  factory GsplitFromidData_splitById_fromUser(
+          [Function(GsplitFromidData_splitById_fromUserBuilder b) updates]) =
+      _$GsplitFromidData_splitById_fromUser;
+
+  static void _initializeBuilder(
+          GsplitFromidData_splitById_fromUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GsplitFromidData_splitById_fromUser> get serializer =>
+      _$gsplitFromidDataSplitByIdFromUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_fromUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_fromUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_fromUser.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_toUser
+    implements
+        Built<GsplitFromidData_splitById_toUser,
+            GsplitFromidData_splitById_toUserBuilder>,
+        GSplitWithSiblings_toUser,
+        GUserFields {
+  GsplitFromidData_splitById_toUser._();
+
+  factory GsplitFromidData_splitById_toUser(
+          [Function(GsplitFromidData_splitById_toUserBuilder b) updates]) =
+      _$GsplitFromidData_splitById_toUser;
+
+  static void _initializeBuilder(GsplitFromidData_splitById_toUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GsplitFromidData_splitById_toUser> get serializer =>
+      _$gsplitFromidDataSplitByIdToUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_toUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_toUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_toUser.serializer,
+        json,
+      );
+}
+
+abstract class GsplitFromidData_splitById_amount
+    implements
+        Built<GsplitFromidData_splitById_amount,
+            GsplitFromidData_splitById_amountBuilder>,
+        GSplitWithSiblings_amount,
+        GAmountFields {
+  GsplitFromidData_splitById_amount._();
+
+  factory GsplitFromidData_splitById_amount(
+          [Function(GsplitFromidData_splitById_amountBuilder b) updates]) =
+      _$GsplitFromidData_splitById_amount;
+
+  static void _initializeBuilder(GsplitFromidData_splitById_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GsplitFromidData_splitById_amount> get serializer =>
+      _$gsplitFromidDataSplitByIdAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromidData_splitById_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromidData_splitById_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromidData_splitById_amount.serializer,
+        json,
+      );
+}
+
 abstract class GUploadFields {
   String get G__typename;
   String get id;
@@ -10313,6 +11104,1084 @@ abstract class GSplitTransactionFieldsData_creator
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GSplitTransactionFieldsData_creator.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblings implements GSplitTransactionFields {
+  @override
+  String get G__typename;
+  @override
+  GSplitWithSiblings_expense? get expense;
+  @override
+  GSplitWithSiblings_group get group;
+  @override
+  GSplitWithSiblings_creator get creator;
+  @override
+  GSplitWithSiblings_fromUser get fromUser;
+  @override
+  GSplitWithSiblings_toUser get toUser;
+  @override
+  String get id;
+  @override
+  GSplitWithSiblings_amount get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  String get fromUserId;
+  @override
+  String get toUserId;
+  @override
+  String get creatorId;
+  @override
+  String? get withGroupId;
+  @override
+  String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  BuiltList<GSplitWithSiblings_siblings> get siblings;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_expense
+    implements GSplitTransactionFields_expense, GExpenseBasic {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  String get category;
+  @override
+  GSplitWithSiblings_expense_amount get amount;
+  @override
+  String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_expense_amount
+    implements
+        GSplitTransactionFields_expense_amount,
+        GExpenseBasic_amount,
+        GAmountFields {
+  @override
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_group
+    implements GSplitTransactionFields_group, GGroupBasic {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_creator
+    implements GSplitTransactionFields_creator, GUserFields {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_fromUser
+    implements GSplitTransactionFields_fromUser, GUserFields {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_toUser
+    implements GSplitTransactionFields_toUser, GUserFields {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_amount
+    implements GSplitTransactionFields_amount, GAmountFields {
+  @override
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_siblings implements GSplitTransactionFields {
+  @override
+  String get G__typename;
+  @override
+  GSplitWithSiblings_siblings_expense? get expense;
+  @override
+  GSplitWithSiblings_siblings_group get group;
+  @override
+  GSplitWithSiblings_siblings_creator get creator;
+  @override
+  GSplitWithSiblings_siblings_fromUser get fromUser;
+  @override
+  GSplitWithSiblings_siblings_toUser get toUser;
+  @override
+  String get id;
+  @override
+  GSplitWithSiblings_siblings_amount get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  String get fromUserId;
+  @override
+  String get toUserId;
+  @override
+  String get creatorId;
+  @override
+  String? get withGroupId;
+  @override
+  String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_siblings_expense
+    implements GSplitTransactionFields_expense, GExpenseBasic {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  String get category;
+  @override
+  GSplitWithSiblings_siblings_expense_amount get amount;
+  @override
+  String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_siblings_expense_amount
+    implements
+        GSplitTransactionFields_expense_amount,
+        GExpenseBasic_amount,
+        GAmountFields {
+  @override
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_siblings_group
+    implements GSplitTransactionFields_group, GGroupBasic {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_siblings_creator
+    implements GSplitTransactionFields_creator, GUserFields {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_siblings_fromUser
+    implements GSplitTransactionFields_fromUser, GUserFields {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_siblings_toUser
+    implements GSplitTransactionFields_toUser, GUserFields {
+  @override
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblings_siblings_amount
+    implements GSplitTransactionFields_amount, GAmountFields {
+  @override
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GSplitWithSiblingsData
+    implements
+        Built<GSplitWithSiblingsData, GSplitWithSiblingsDataBuilder>,
+        GSplitWithSiblings,
+        GSplitTransactionFields {
+  GSplitWithSiblingsData._();
+
+  factory GSplitWithSiblingsData(
+          [Function(GSplitWithSiblingsDataBuilder b) updates]) =
+      _$GSplitWithSiblingsData;
+
+  static void _initializeBuilder(GSplitWithSiblingsDataBuilder b) =>
+      b..G__typename = 'Split';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  GSplitWithSiblingsData_expense? get expense;
+  @override
+  GSplitWithSiblingsData_group get group;
+  @override
+  GSplitWithSiblingsData_creator get creator;
+  @override
+  GSplitWithSiblingsData_fromUser get fromUser;
+  @override
+  GSplitWithSiblingsData_toUser get toUser;
+  @override
+  String get id;
+  @override
+  GSplitWithSiblingsData_amount get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  String get fromUserId;
+  @override
+  String get toUserId;
+  @override
+  String get creatorId;
+  @override
+  String? get withGroupId;
+  @override
+  String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  @override
+  BuiltList<GSplitWithSiblingsData_siblings> get siblings;
+  static Serializer<GSplitWithSiblingsData> get serializer =>
+      _$gSplitWithSiblingsDataSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_expense
+    implements
+        Built<GSplitWithSiblingsData_expense,
+            GSplitWithSiblingsData_expenseBuilder>,
+        GSplitWithSiblings_expense,
+        GSplitTransactionFields_expense,
+        GExpenseBasic {
+  GSplitWithSiblingsData_expense._();
+
+  factory GSplitWithSiblingsData_expense(
+          [Function(GSplitWithSiblingsData_expenseBuilder b) updates]) =
+      _$GSplitWithSiblingsData_expense;
+
+  static void _initializeBuilder(GSplitWithSiblingsData_expenseBuilder b) =>
+      b..G__typename = 'Expense';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  String get category;
+  @override
+  GSplitWithSiblingsData_expense_amount get amount;
+  @override
+  String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  static Serializer<GSplitWithSiblingsData_expense> get serializer =>
+      _$gSplitWithSiblingsDataExpenseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_expense.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_expense? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_expense.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_expense_amount
+    implements
+        Built<GSplitWithSiblingsData_expense_amount,
+            GSplitWithSiblingsData_expense_amountBuilder>,
+        GSplitWithSiblings_expense_amount,
+        GSplitTransactionFields_expense_amount,
+        GExpenseBasic_amount,
+        GAmountFields {
+  GSplitWithSiblingsData_expense_amount._();
+
+  factory GSplitWithSiblingsData_expense_amount(
+          [Function(GSplitWithSiblingsData_expense_amountBuilder b) updates]) =
+      _$GSplitWithSiblingsData_expense_amount;
+
+  static void _initializeBuilder(
+          GSplitWithSiblingsData_expense_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GSplitWithSiblingsData_expense_amount> get serializer =>
+      _$gSplitWithSiblingsDataExpenseAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_expense_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_expense_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_expense_amount.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_group
+    implements
+        Built<GSplitWithSiblingsData_group,
+            GSplitWithSiblingsData_groupBuilder>,
+        GSplitWithSiblings_group,
+        GSplitTransactionFields_group,
+        GGroupBasic {
+  GSplitWithSiblingsData_group._();
+
+  factory GSplitWithSiblingsData_group(
+          [Function(GSplitWithSiblingsData_groupBuilder b) updates]) =
+      _$GSplitWithSiblingsData_group;
+
+  static void _initializeBuilder(GSplitWithSiblingsData_groupBuilder b) =>
+      b..G__typename = 'Group';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  static Serializer<GSplitWithSiblingsData_group> get serializer =>
+      _$gSplitWithSiblingsDataGroupSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_group.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_group? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_group.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_creator
+    implements
+        Built<GSplitWithSiblingsData_creator,
+            GSplitWithSiblingsData_creatorBuilder>,
+        GSplitWithSiblings_creator,
+        GSplitTransactionFields_creator,
+        GUserFields {
+  GSplitWithSiblingsData_creator._();
+
+  factory GSplitWithSiblingsData_creator(
+          [Function(GSplitWithSiblingsData_creatorBuilder b) updates]) =
+      _$GSplitWithSiblingsData_creator;
+
+  static void _initializeBuilder(GSplitWithSiblingsData_creatorBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GSplitWithSiblingsData_creator> get serializer =>
+      _$gSplitWithSiblingsDataCreatorSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_creator.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_creator? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_creator.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_fromUser
+    implements
+        Built<GSplitWithSiblingsData_fromUser,
+            GSplitWithSiblingsData_fromUserBuilder>,
+        GSplitWithSiblings_fromUser,
+        GSplitTransactionFields_fromUser,
+        GUserFields {
+  GSplitWithSiblingsData_fromUser._();
+
+  factory GSplitWithSiblingsData_fromUser(
+          [Function(GSplitWithSiblingsData_fromUserBuilder b) updates]) =
+      _$GSplitWithSiblingsData_fromUser;
+
+  static void _initializeBuilder(GSplitWithSiblingsData_fromUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GSplitWithSiblingsData_fromUser> get serializer =>
+      _$gSplitWithSiblingsDataFromUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_fromUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_fromUser? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_fromUser.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_toUser
+    implements
+        Built<GSplitWithSiblingsData_toUser,
+            GSplitWithSiblingsData_toUserBuilder>,
+        GSplitWithSiblings_toUser,
+        GSplitTransactionFields_toUser,
+        GUserFields {
+  GSplitWithSiblingsData_toUser._();
+
+  factory GSplitWithSiblingsData_toUser(
+          [Function(GSplitWithSiblingsData_toUserBuilder b) updates]) =
+      _$GSplitWithSiblingsData_toUser;
+
+  static void _initializeBuilder(GSplitWithSiblingsData_toUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GSplitWithSiblingsData_toUser> get serializer =>
+      _$gSplitWithSiblingsDataToUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_toUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_toUser? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_toUser.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_amount
+    implements
+        Built<GSplitWithSiblingsData_amount,
+            GSplitWithSiblingsData_amountBuilder>,
+        GSplitWithSiblings_amount,
+        GSplitTransactionFields_amount,
+        GAmountFields {
+  GSplitWithSiblingsData_amount._();
+
+  factory GSplitWithSiblingsData_amount(
+          [Function(GSplitWithSiblingsData_amountBuilder b) updates]) =
+      _$GSplitWithSiblingsData_amount;
+
+  static void _initializeBuilder(GSplitWithSiblingsData_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GSplitWithSiblingsData_amount> get serializer =>
+      _$gSplitWithSiblingsDataAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_amount? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_amount.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_siblings
+    implements
+        Built<GSplitWithSiblingsData_siblings,
+            GSplitWithSiblingsData_siblingsBuilder>,
+        GSplitWithSiblings_siblings,
+        GSplitTransactionFields {
+  GSplitWithSiblingsData_siblings._();
+
+  factory GSplitWithSiblingsData_siblings(
+          [Function(GSplitWithSiblingsData_siblingsBuilder b) updates]) =
+      _$GSplitWithSiblingsData_siblings;
+
+  static void _initializeBuilder(GSplitWithSiblingsData_siblingsBuilder b) =>
+      b..G__typename = 'Split';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  GSplitWithSiblingsData_siblings_expense? get expense;
+  @override
+  GSplitWithSiblingsData_siblings_group get group;
+  @override
+  GSplitWithSiblingsData_siblings_creator get creator;
+  @override
+  GSplitWithSiblingsData_siblings_fromUser get fromUser;
+  @override
+  GSplitWithSiblingsData_siblings_toUser get toUser;
+  @override
+  String get id;
+  @override
+  GSplitWithSiblingsData_siblings_amount get amount;
+  @override
+  _i3.GTransactionType get transactionType;
+  @override
+  String get createdAt;
+  @override
+  String? get transactionPartGroupId;
+  @override
+  String get fromUserId;
+  @override
+  String get toUserId;
+  @override
+  String get creatorId;
+  @override
+  String? get withGroupId;
+  @override
+  String get groupId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  static Serializer<GSplitWithSiblingsData_siblings> get serializer =>
+      _$gSplitWithSiblingsDataSiblingsSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_siblings.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_siblings? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_siblings.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_siblings_expense
+    implements
+        Built<GSplitWithSiblingsData_siblings_expense,
+            GSplitWithSiblingsData_siblings_expenseBuilder>,
+        GSplitWithSiblings_siblings_expense,
+        GSplitTransactionFields_expense,
+        GExpenseBasic {
+  GSplitWithSiblingsData_siblings_expense._();
+
+  factory GSplitWithSiblingsData_siblings_expense(
+      [Function(GSplitWithSiblingsData_siblings_expenseBuilder b)
+          updates]) = _$GSplitWithSiblingsData_siblings_expense;
+
+  static void _initializeBuilder(
+          GSplitWithSiblingsData_siblings_expenseBuilder b) =>
+      b..G__typename = 'Expense';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String get title;
+  @override
+  String get createdAt;
+  @override
+  String get category;
+  @override
+  GSplitWithSiblingsData_siblings_expense_amount get amount;
+  @override
+  String get creatorId;
+  @override
+  String? get note;
+  @override
+  String? get imageId;
+  static Serializer<GSplitWithSiblingsData_siblings_expense> get serializer =>
+      _$gSplitWithSiblingsDataSiblingsExpenseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_siblings_expense.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_siblings_expense? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_siblings_expense.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_siblings_expense_amount
+    implements
+        Built<GSplitWithSiblingsData_siblings_expense_amount,
+            GSplitWithSiblingsData_siblings_expense_amountBuilder>,
+        GSplitWithSiblings_siblings_expense_amount,
+        GSplitTransactionFields_expense_amount,
+        GExpenseBasic_amount,
+        GAmountFields {
+  GSplitWithSiblingsData_siblings_expense_amount._();
+
+  factory GSplitWithSiblingsData_siblings_expense_amount(
+      [Function(GSplitWithSiblingsData_siblings_expense_amountBuilder b)
+          updates]) = _$GSplitWithSiblingsData_siblings_expense_amount;
+
+  static void _initializeBuilder(
+          GSplitWithSiblingsData_siblings_expense_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GSplitWithSiblingsData_siblings_expense_amount>
+      get serializer => _$gSplitWithSiblingsDataSiblingsExpenseAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_siblings_expense_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_siblings_expense_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_siblings_expense_amount.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_siblings_group
+    implements
+        Built<GSplitWithSiblingsData_siblings_group,
+            GSplitWithSiblingsData_siblings_groupBuilder>,
+        GSplitWithSiblings_siblings_group,
+        GSplitTransactionFields_group,
+        GGroupBasic {
+  GSplitWithSiblingsData_siblings_group._();
+
+  factory GSplitWithSiblingsData_siblings_group(
+          [Function(GSplitWithSiblingsData_siblings_groupBuilder b) updates]) =
+      _$GSplitWithSiblingsData_siblings_group;
+
+  static void _initializeBuilder(
+          GSplitWithSiblingsData_siblings_groupBuilder b) =>
+      b..G__typename = 'Group';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  static Serializer<GSplitWithSiblingsData_siblings_group> get serializer =>
+      _$gSplitWithSiblingsDataSiblingsGroupSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_siblings_group.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_siblings_group? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_siblings_group.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_siblings_creator
+    implements
+        Built<GSplitWithSiblingsData_siblings_creator,
+            GSplitWithSiblingsData_siblings_creatorBuilder>,
+        GSplitWithSiblings_siblings_creator,
+        GSplitTransactionFields_creator,
+        GUserFields {
+  GSplitWithSiblingsData_siblings_creator._();
+
+  factory GSplitWithSiblingsData_siblings_creator(
+      [Function(GSplitWithSiblingsData_siblings_creatorBuilder b)
+          updates]) = _$GSplitWithSiblingsData_siblings_creator;
+
+  static void _initializeBuilder(
+          GSplitWithSiblingsData_siblings_creatorBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GSplitWithSiblingsData_siblings_creator> get serializer =>
+      _$gSplitWithSiblingsDataSiblingsCreatorSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_siblings_creator.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_siblings_creator? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_siblings_creator.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_siblings_fromUser
+    implements
+        Built<GSplitWithSiblingsData_siblings_fromUser,
+            GSplitWithSiblingsData_siblings_fromUserBuilder>,
+        GSplitWithSiblings_siblings_fromUser,
+        GSplitTransactionFields_fromUser,
+        GUserFields {
+  GSplitWithSiblingsData_siblings_fromUser._();
+
+  factory GSplitWithSiblingsData_siblings_fromUser(
+      [Function(GSplitWithSiblingsData_siblings_fromUserBuilder b)
+          updates]) = _$GSplitWithSiblingsData_siblings_fromUser;
+
+  static void _initializeBuilder(
+          GSplitWithSiblingsData_siblings_fromUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GSplitWithSiblingsData_siblings_fromUser> get serializer =>
+      _$gSplitWithSiblingsDataSiblingsFromUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_siblings_fromUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_siblings_fromUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_siblings_fromUser.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_siblings_toUser
+    implements
+        Built<GSplitWithSiblingsData_siblings_toUser,
+            GSplitWithSiblingsData_siblings_toUserBuilder>,
+        GSplitWithSiblings_siblings_toUser,
+        GSplitTransactionFields_toUser,
+        GUserFields {
+  GSplitWithSiblingsData_siblings_toUser._();
+
+  factory GSplitWithSiblingsData_siblings_toUser(
+          [Function(GSplitWithSiblingsData_siblings_toUserBuilder b) updates]) =
+      _$GSplitWithSiblingsData_siblings_toUser;
+
+  static void _initializeBuilder(
+          GSplitWithSiblingsData_siblings_toUserBuilder b) =>
+      b..G__typename = 'User';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get id;
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get email;
+  @override
+  bool get isSignedUp;
+  static Serializer<GSplitWithSiblingsData_siblings_toUser> get serializer =>
+      _$gSplitWithSiblingsDataSiblingsToUserSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_siblings_toUser.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_siblings_toUser? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_siblings_toUser.serializer,
+        json,
+      );
+}
+
+abstract class GSplitWithSiblingsData_siblings_amount
+    implements
+        Built<GSplitWithSiblingsData_siblings_amount,
+            GSplitWithSiblingsData_siblings_amountBuilder>,
+        GSplitWithSiblings_siblings_amount,
+        GSplitTransactionFields_amount,
+        GAmountFields {
+  GSplitWithSiblingsData_siblings_amount._();
+
+  factory GSplitWithSiblingsData_siblings_amount(
+          [Function(GSplitWithSiblingsData_siblings_amountBuilder b) updates]) =
+      _$GSplitWithSiblingsData_siblings_amount;
+
+  static void _initializeBuilder(
+          GSplitWithSiblingsData_siblings_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GSplitWithSiblingsData_siblings_amount> get serializer =>
+      _$gSplitWithSiblingsDataSiblingsAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSplitWithSiblingsData_siblings_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GSplitWithSiblingsData_siblings_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSplitWithSiblingsData_siblings_amount.serializer,
         json,
       );
 }
