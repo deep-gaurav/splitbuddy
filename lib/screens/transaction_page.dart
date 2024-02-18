@@ -90,7 +90,10 @@ class _TransactionPageState extends State<TransactionPage> {
                 ),
                 SliverToBoxAdapter(
                   child: Text(
-                    'From ${transactions?.firstOrNull?.fromUser.displayName}',
+                    context.read<AppState>().user?.id ==
+                            transactions?.firstOrNull?.fromUserId
+                        ? 'From ${transactions?.firstOrNull?.fromUser.displayName}'
+                        : 'To ${transactions?.firstOrNull?.fromUser.displayName}',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(),
                     textAlign: TextAlign.center,
                   ),
