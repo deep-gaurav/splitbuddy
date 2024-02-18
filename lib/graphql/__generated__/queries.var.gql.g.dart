@@ -62,6 +62,8 @@ Serializer<GgetExpenseVars> _$ggetExpenseVarsSerializer =
     new _$GgetExpenseVarsSerializer();
 Serializer<GsplitFromidVars> _$gsplitFromidVarsSerializer =
     new _$GsplitFromidVarsSerializer();
+Serializer<GsplitFromGroupVars> _$gsplitFromGroupVarsSerializer =
+    new _$GsplitFromGroupVarsSerializer();
 Serializer<GUploadFieldsVars> _$gUploadFieldsVarsSerializer =
     new _$GUploadFieldsVarsSerializer();
 Serializer<GUserFieldsVars> _$gUserFieldsVarsSerializer =
@@ -1562,6 +1564,52 @@ class _$GsplitFromidVarsSerializer
       switch (key) {
         case 'splitId':
           result.splitId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsplitFromGroupVarsSerializer
+    implements StructuredSerializer<GsplitFromGroupVars> {
+  @override
+  final Iterable<Type> types = const [
+    GsplitFromGroupVars,
+    _$GsplitFromGroupVars
+  ];
+  @override
+  final String wireName = 'GsplitFromGroupVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsplitFromGroupVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'partId',
+      serializers.serialize(object.partId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GsplitFromGroupVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsplitFromGroupVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'partId':
+          result.partId = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
       }
@@ -4932,6 +4980,93 @@ class GsplitFromidVarsBuilder
         new _$GsplitFromidVars._(
             splitId: BuiltValueNullFieldError.checkNotNull(
                 splitId, r'GsplitFromidVars', 'splitId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsplitFromGroupVars extends GsplitFromGroupVars {
+  @override
+  final String partId;
+
+  factory _$GsplitFromGroupVars(
+          [void Function(GsplitFromGroupVarsBuilder)? updates]) =>
+      (new GsplitFromGroupVarsBuilder()..update(updates))._build();
+
+  _$GsplitFromGroupVars._({required this.partId}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        partId, r'GsplitFromGroupVars', 'partId');
+  }
+
+  @override
+  GsplitFromGroupVars rebuild(
+          void Function(GsplitFromGroupVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsplitFromGroupVarsBuilder toBuilder() =>
+      new GsplitFromGroupVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsplitFromGroupVars && partId == other.partId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, partId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GsplitFromGroupVars')
+          ..add('partId', partId))
+        .toString();
+  }
+}
+
+class GsplitFromGroupVarsBuilder
+    implements Builder<GsplitFromGroupVars, GsplitFromGroupVarsBuilder> {
+  _$GsplitFromGroupVars? _$v;
+
+  String? _partId;
+  String? get partId => _$this._partId;
+  set partId(String? partId) => _$this._partId = partId;
+
+  GsplitFromGroupVarsBuilder();
+
+  GsplitFromGroupVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _partId = $v.partId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsplitFromGroupVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsplitFromGroupVars;
+  }
+
+  @override
+  void update(void Function(GsplitFromGroupVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsplitFromGroupVars build() => _build();
+
+  _$GsplitFromGroupVars _build() {
+    final _$result = _$v ??
+        new _$GsplitFromGroupVars._(
+            partId: BuiltValueNullFieldError.checkNotNull(
+                partId, r'GsplitFromGroupVars', 'partId'));
     replace(_$result);
     return _$result;
   }

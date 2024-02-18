@@ -524,6 +524,20 @@ Serializer<GsplitFromidData_splitById_toUser>
 Serializer<GsplitFromidData_splitById_amount>
     _$gsplitFromidDataSplitByIdAmountSerializer =
     new _$GsplitFromidData_splitById_amountSerializer();
+Serializer<GsplitFromGroupData> _$gsplitFromGroupDataSerializer =
+    new _$GsplitFromGroupDataSerializer();
+Serializer<GsplitFromGroupData_splitsByPart>
+    _$gsplitFromGroupDataSplitsByPartSerializer =
+    new _$GsplitFromGroupData_splitsByPartSerializer();
+Serializer<GsplitFromGroupData_splitsByPart_fromUser>
+    _$gsplitFromGroupDataSplitsByPartFromUserSerializer =
+    new _$GsplitFromGroupData_splitsByPart_fromUserSerializer();
+Serializer<GsplitFromGroupData_splitsByPart_toUser>
+    _$gsplitFromGroupDataSplitsByPartToUserSerializer =
+    new _$GsplitFromGroupData_splitsByPart_toUserSerializer();
+Serializer<GsplitFromGroupData_splitsByPart_amount>
+    _$gsplitFromGroupDataSplitsByPartAmountSerializer =
+    new _$GsplitFromGroupData_splitsByPart_amountSerializer();
 Serializer<GUploadFieldsData> _$gUploadFieldsDataSerializer =
     new _$GUploadFieldsDataSerializer();
 Serializer<GUserFieldsData> _$gUserFieldsDataSerializer =
@@ -16493,6 +16507,474 @@ class _$GsplitFromidData_splitById_amountSerializer
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GsplitFromidData_splitById_amountBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'currencyId':
+          result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsplitFromGroupDataSerializer
+    implements StructuredSerializer<GsplitFromGroupData> {
+  @override
+  final Iterable<Type> types = const [
+    GsplitFromGroupData,
+    _$GsplitFromGroupData
+  ];
+  @override
+  final String wireName = 'GsplitFromGroupData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsplitFromGroupData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'splitsByPart',
+      serializers.serialize(object.splitsByPart,
+          specifiedType: const FullType(BuiltList,
+              const [const FullType(GsplitFromGroupData_splitsByPart)])),
+    ];
+
+    return result;
+  }
+
+  @override
+  GsplitFromGroupData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsplitFromGroupDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'splitsByPart':
+          result.splitsByPart.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GsplitFromGroupData_splitsByPart)
+              ]))! as BuiltList<Object?>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsplitFromGroupData_splitsByPartSerializer
+    implements StructuredSerializer<GsplitFromGroupData_splitsByPart> {
+  @override
+  final Iterable<Type> types = const [
+    GsplitFromGroupData_splitsByPart,
+    _$GsplitFromGroupData_splitsByPart
+  ];
+  @override
+  final String wireName = 'GsplitFromGroupData_splitsByPart';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsplitFromGroupData_splitsByPart object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'fromUser',
+      serializers.serialize(object.fromUser,
+          specifiedType:
+              const FullType(GsplitFromGroupData_splitsByPart_fromUser)),
+      'toUser',
+      serializers.serialize(object.toUser,
+          specifiedType:
+              const FullType(GsplitFromGroupData_splitsByPart_toUser)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount,
+          specifiedType:
+              const FullType(GsplitFromGroupData_splitsByPart_amount)),
+      'transactionType',
+      serializers.serialize(object.transactionType,
+          specifiedType: const FullType(_i3.GTransactionType)),
+      'createdAt',
+      serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'fromUserId',
+      serializers.serialize(object.fromUserId,
+          specifiedType: const FullType(String)),
+      'toUserId',
+      serializers.serialize(object.toUserId,
+          specifiedType: const FullType(String)),
+      'creatorId',
+      serializers.serialize(object.creatorId,
+          specifiedType: const FullType(String)),
+      'groupId',
+      serializers.serialize(object.groupId,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.transactionPartGroupId;
+    if (value != null) {
+      result
+        ..add('transactionPartGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.withGroupId;
+    if (value != null) {
+      result
+        ..add('withGroupId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.note;
+    if (value != null) {
+      result
+        ..add('note')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.imageId;
+    if (value != null) {
+      result
+        ..add('imageId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GsplitFromGroupData_splitsByPart deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsplitFromGroupData_splitsByPartBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'fromUser':
+          result.fromUser.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GsplitFromGroupData_splitsByPart_fromUser))!
+              as GsplitFromGroupData_splitsByPart_fromUser);
+          break;
+        case 'toUser':
+          result.toUser.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GsplitFromGroupData_splitsByPart_toUser))!
+              as GsplitFromGroupData_splitsByPart_toUser);
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GsplitFromGroupData_splitsByPart_amount))!
+              as GsplitFromGroupData_splitsByPart_amount);
+          break;
+        case 'transactionType':
+          result.transactionType = serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GTransactionType))!
+              as _i3.GTransactionType;
+          break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionPartGroupId':
+          result.transactionPartGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'fromUserId':
+          result.fromUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'toUserId':
+          result.toUserId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'creatorId':
+          result.creatorId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'withGroupId':
+          result.withGroupId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'groupId':
+          result.groupId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'note':
+          result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'imageId':
+          result.imageId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsplitFromGroupData_splitsByPart_fromUserSerializer
+    implements StructuredSerializer<GsplitFromGroupData_splitsByPart_fromUser> {
+  @override
+  final Iterable<Type> types = const [
+    GsplitFromGroupData_splitsByPart_fromUser,
+    _$GsplitFromGroupData_splitsByPart_fromUser
+  ];
+  @override
+  final String wireName = 'GsplitFromGroupData_splitsByPart_fromUser';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsplitFromGroupData_splitsByPart_fromUser object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GsplitFromGroupData_splitsByPart_fromUser deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsplitFromGroupData_splitsByPart_fromUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsplitFromGroupData_splitsByPart_toUserSerializer
+    implements StructuredSerializer<GsplitFromGroupData_splitsByPart_toUser> {
+  @override
+  final Iterable<Type> types = const [
+    GsplitFromGroupData_splitsByPart_toUser,
+    _$GsplitFromGroupData_splitsByPart_toUser
+  ];
+  @override
+  final String wireName = 'GsplitFromGroupData_splitsByPart_toUser';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsplitFromGroupData_splitsByPart_toUser object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'isSignedUp',
+      serializers.serialize(object.isSignedUp,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.phone;
+    if (value != null) {
+      result
+        ..add('phone')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.email;
+    if (value != null) {
+      result
+        ..add('email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GsplitFromGroupData_splitsByPart_toUser deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsplitFromGroupData_splitsByPart_toUserBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'phone':
+          result.phone = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isSignedUp':
+          result.isSignedUp = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GsplitFromGroupData_splitsByPart_amountSerializer
+    implements StructuredSerializer<GsplitFromGroupData_splitsByPart_amount> {
+  @override
+  final Iterable<Type> types = const [
+    GsplitFromGroupData_splitsByPart_amount,
+    _$GsplitFromGroupData_splitsByPart_amount
+  ];
+  @override
+  final String wireName = 'GsplitFromGroupData_splitsByPart_amount';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GsplitFromGroupData_splitsByPart_amount object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'currencyId',
+      serializers.serialize(object.currencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GsplitFromGroupData_splitsByPart_amount deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GsplitFromGroupData_splitsByPart_amountBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -56032,6 +56514,907 @@ class GsplitFromidData_splitById_amountBuilder
                 amount, r'GsplitFromidData_splitById_amount', 'amount'),
             currencyId: BuiltValueNullFieldError.checkNotNull(currencyId,
                 r'GsplitFromidData_splitById_amount', 'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsplitFromGroupData extends GsplitFromGroupData {
+  @override
+  final String G__typename;
+  @override
+  final BuiltList<GsplitFromGroupData_splitsByPart> splitsByPart;
+
+  factory _$GsplitFromGroupData(
+          [void Function(GsplitFromGroupDataBuilder)? updates]) =>
+      (new GsplitFromGroupDataBuilder()..update(updates))._build();
+
+  _$GsplitFromGroupData._(
+      {required this.G__typename, required this.splitsByPart})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GsplitFromGroupData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        splitsByPart, r'GsplitFromGroupData', 'splitsByPart');
+  }
+
+  @override
+  GsplitFromGroupData rebuild(
+          void Function(GsplitFromGroupDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsplitFromGroupDataBuilder toBuilder() =>
+      new GsplitFromGroupDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsplitFromGroupData &&
+        G__typename == other.G__typename &&
+        splitsByPart == other.splitsByPart;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, splitsByPart.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GsplitFromGroupData')
+          ..add('G__typename', G__typename)
+          ..add('splitsByPart', splitsByPart))
+        .toString();
+  }
+}
+
+class GsplitFromGroupDataBuilder
+    implements Builder<GsplitFromGroupData, GsplitFromGroupDataBuilder> {
+  _$GsplitFromGroupData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  ListBuilder<GsplitFromGroupData_splitsByPart>? _splitsByPart;
+  ListBuilder<GsplitFromGroupData_splitsByPart> get splitsByPart =>
+      _$this._splitsByPart ??=
+          new ListBuilder<GsplitFromGroupData_splitsByPart>();
+  set splitsByPart(
+          ListBuilder<GsplitFromGroupData_splitsByPart>? splitsByPart) =>
+      _$this._splitsByPart = splitsByPart;
+
+  GsplitFromGroupDataBuilder() {
+    GsplitFromGroupData._initializeBuilder(this);
+  }
+
+  GsplitFromGroupDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _splitsByPart = $v.splitsByPart.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsplitFromGroupData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsplitFromGroupData;
+  }
+
+  @override
+  void update(void Function(GsplitFromGroupDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsplitFromGroupData build() => _build();
+
+  _$GsplitFromGroupData _build() {
+    _$GsplitFromGroupData _$result;
+    try {
+      _$result = _$v ??
+          new _$GsplitFromGroupData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GsplitFromGroupData', 'G__typename'),
+              splitsByPart: splitsByPart.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'splitsByPart';
+        splitsByPart.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GsplitFromGroupData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsplitFromGroupData_splitsByPart
+    extends GsplitFromGroupData_splitsByPart {
+  @override
+  final String G__typename;
+  @override
+  final GsplitFromGroupData_splitsByPart_fromUser fromUser;
+  @override
+  final GsplitFromGroupData_splitsByPart_toUser toUser;
+  @override
+  final String id;
+  @override
+  final GsplitFromGroupData_splitsByPart_amount amount;
+  @override
+  final _i3.GTransactionType transactionType;
+  @override
+  final String createdAt;
+  @override
+  final String? transactionPartGroupId;
+  @override
+  final String fromUserId;
+  @override
+  final String toUserId;
+  @override
+  final String creatorId;
+  @override
+  final String? withGroupId;
+  @override
+  final String groupId;
+  @override
+  final String? note;
+  @override
+  final String? imageId;
+
+  factory _$GsplitFromGroupData_splitsByPart(
+          [void Function(GsplitFromGroupData_splitsByPartBuilder)? updates]) =>
+      (new GsplitFromGroupData_splitsByPartBuilder()..update(updates))._build();
+
+  _$GsplitFromGroupData_splitsByPart._(
+      {required this.G__typename,
+      required this.fromUser,
+      required this.toUser,
+      required this.id,
+      required this.amount,
+      required this.transactionType,
+      required this.createdAt,
+      this.transactionPartGroupId,
+      required this.fromUserId,
+      required this.toUserId,
+      required this.creatorId,
+      this.withGroupId,
+      required this.groupId,
+      this.note,
+      this.imageId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GsplitFromGroupData_splitsByPart', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUser, r'GsplitFromGroupData_splitsByPart', 'fromUser');
+    BuiltValueNullFieldError.checkNotNull(
+        toUser, r'GsplitFromGroupData_splitsByPart', 'toUser');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GsplitFromGroupData_splitsByPart', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GsplitFromGroupData_splitsByPart', 'amount');
+    BuiltValueNullFieldError.checkNotNull(transactionType,
+        r'GsplitFromGroupData_splitsByPart', 'transactionType');
+    BuiltValueNullFieldError.checkNotNull(
+        createdAt, r'GsplitFromGroupData_splitsByPart', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        fromUserId, r'GsplitFromGroupData_splitsByPart', 'fromUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        toUserId, r'GsplitFromGroupData_splitsByPart', 'toUserId');
+    BuiltValueNullFieldError.checkNotNull(
+        creatorId, r'GsplitFromGroupData_splitsByPart', 'creatorId');
+    BuiltValueNullFieldError.checkNotNull(
+        groupId, r'GsplitFromGroupData_splitsByPart', 'groupId');
+  }
+
+  @override
+  GsplitFromGroupData_splitsByPart rebuild(
+          void Function(GsplitFromGroupData_splitsByPartBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsplitFromGroupData_splitsByPartBuilder toBuilder() =>
+      new GsplitFromGroupData_splitsByPartBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsplitFromGroupData_splitsByPart &&
+        G__typename == other.G__typename &&
+        fromUser == other.fromUser &&
+        toUser == other.toUser &&
+        id == other.id &&
+        amount == other.amount &&
+        transactionType == other.transactionType &&
+        createdAt == other.createdAt &&
+        transactionPartGroupId == other.transactionPartGroupId &&
+        fromUserId == other.fromUserId &&
+        toUserId == other.toUserId &&
+        creatorId == other.creatorId &&
+        withGroupId == other.withGroupId &&
+        groupId == other.groupId &&
+        note == other.note &&
+        imageId == other.imageId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, fromUser.hashCode);
+    _$hash = $jc(_$hash, toUser.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, transactionType.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
+    _$hash = $jc(_$hash, fromUserId.hashCode);
+    _$hash = $jc(_$hash, toUserId.hashCode);
+    _$hash = $jc(_$hash, creatorId.hashCode);
+    _$hash = $jc(_$hash, withGroupId.hashCode);
+    _$hash = $jc(_$hash, groupId.hashCode);
+    _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, imageId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GsplitFromGroupData_splitsByPart')
+          ..add('G__typename', G__typename)
+          ..add('fromUser', fromUser)
+          ..add('toUser', toUser)
+          ..add('id', id)
+          ..add('amount', amount)
+          ..add('transactionType', transactionType)
+          ..add('createdAt', createdAt)
+          ..add('transactionPartGroupId', transactionPartGroupId)
+          ..add('fromUserId', fromUserId)
+          ..add('toUserId', toUserId)
+          ..add('creatorId', creatorId)
+          ..add('withGroupId', withGroupId)
+          ..add('groupId', groupId)
+          ..add('note', note)
+          ..add('imageId', imageId))
+        .toString();
+  }
+}
+
+class GsplitFromGroupData_splitsByPartBuilder
+    implements
+        Builder<GsplitFromGroupData_splitsByPart,
+            GsplitFromGroupData_splitsByPartBuilder> {
+  _$GsplitFromGroupData_splitsByPart? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GsplitFromGroupData_splitsByPart_fromUserBuilder? _fromUser;
+  GsplitFromGroupData_splitsByPart_fromUserBuilder get fromUser =>
+      _$this._fromUser ??=
+          new GsplitFromGroupData_splitsByPart_fromUserBuilder();
+  set fromUser(GsplitFromGroupData_splitsByPart_fromUserBuilder? fromUser) =>
+      _$this._fromUser = fromUser;
+
+  GsplitFromGroupData_splitsByPart_toUserBuilder? _toUser;
+  GsplitFromGroupData_splitsByPart_toUserBuilder get toUser =>
+      _$this._toUser ??= new GsplitFromGroupData_splitsByPart_toUserBuilder();
+  set toUser(GsplitFromGroupData_splitsByPart_toUserBuilder? toUser) =>
+      _$this._toUser = toUser;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  GsplitFromGroupData_splitsByPart_amountBuilder? _amount;
+  GsplitFromGroupData_splitsByPart_amountBuilder get amount =>
+      _$this._amount ??= new GsplitFromGroupData_splitsByPart_amountBuilder();
+  set amount(GsplitFromGroupData_splitsByPart_amountBuilder? amount) =>
+      _$this._amount = amount;
+
+  _i3.GTransactionType? _transactionType;
+  _i3.GTransactionType? get transactionType => _$this._transactionType;
+  set transactionType(_i3.GTransactionType? transactionType) =>
+      _$this._transactionType = transactionType;
+
+  String? _createdAt;
+  String? get createdAt => _$this._createdAt;
+  set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _transactionPartGroupId;
+  String? get transactionPartGroupId => _$this._transactionPartGroupId;
+  set transactionPartGroupId(String? transactionPartGroupId) =>
+      _$this._transactionPartGroupId = transactionPartGroupId;
+
+  String? _fromUserId;
+  String? get fromUserId => _$this._fromUserId;
+  set fromUserId(String? fromUserId) => _$this._fromUserId = fromUserId;
+
+  String? _toUserId;
+  String? get toUserId => _$this._toUserId;
+  set toUserId(String? toUserId) => _$this._toUserId = toUserId;
+
+  String? _creatorId;
+  String? get creatorId => _$this._creatorId;
+  set creatorId(String? creatorId) => _$this._creatorId = creatorId;
+
+  String? _withGroupId;
+  String? get withGroupId => _$this._withGroupId;
+  set withGroupId(String? withGroupId) => _$this._withGroupId = withGroupId;
+
+  String? _groupId;
+  String? get groupId => _$this._groupId;
+  set groupId(String? groupId) => _$this._groupId = groupId;
+
+  String? _note;
+  String? get note => _$this._note;
+  set note(String? note) => _$this._note = note;
+
+  String? _imageId;
+  String? get imageId => _$this._imageId;
+  set imageId(String? imageId) => _$this._imageId = imageId;
+
+  GsplitFromGroupData_splitsByPartBuilder() {
+    GsplitFromGroupData_splitsByPart._initializeBuilder(this);
+  }
+
+  GsplitFromGroupData_splitsByPartBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _fromUser = $v.fromUser.toBuilder();
+      _toUser = $v.toUser.toBuilder();
+      _id = $v.id;
+      _amount = $v.amount.toBuilder();
+      _transactionType = $v.transactionType;
+      _createdAt = $v.createdAt;
+      _transactionPartGroupId = $v.transactionPartGroupId;
+      _fromUserId = $v.fromUserId;
+      _toUserId = $v.toUserId;
+      _creatorId = $v.creatorId;
+      _withGroupId = $v.withGroupId;
+      _groupId = $v.groupId;
+      _note = $v.note;
+      _imageId = $v.imageId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsplitFromGroupData_splitsByPart other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsplitFromGroupData_splitsByPart;
+  }
+
+  @override
+  void update(void Function(GsplitFromGroupData_splitsByPartBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsplitFromGroupData_splitsByPart build() => _build();
+
+  _$GsplitFromGroupData_splitsByPart _build() {
+    _$GsplitFromGroupData_splitsByPart _$result;
+    try {
+      _$result = _$v ??
+          new _$GsplitFromGroupData_splitsByPart._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GsplitFromGroupData_splitsByPart', 'G__typename'),
+              fromUser: fromUser.build(),
+              toUser: toUser.build(),
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'GsplitFromGroupData_splitsByPart', 'id'),
+              amount: amount.build(),
+              transactionType: BuiltValueNullFieldError.checkNotNull(
+                  transactionType, r'GsplitFromGroupData_splitsByPart', 'transactionType'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GsplitFromGroupData_splitsByPart', 'createdAt'),
+              transactionPartGroupId: transactionPartGroupId,
+              fromUserId: BuiltValueNullFieldError.checkNotNull(
+                  fromUserId, r'GsplitFromGroupData_splitsByPart', 'fromUserId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(
+                  toUserId, r'GsplitFromGroupData_splitsByPart', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(
+                  creatorId, r'GsplitFromGroupData_splitsByPart', 'creatorId'),
+              withGroupId: withGroupId,
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsplitFromGroupData_splitsByPart', 'groupId'),
+              note: note,
+              imageId: imageId);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'fromUser';
+        fromUser.build();
+        _$failedField = 'toUser';
+        toUser.build();
+
+        _$failedField = 'amount';
+        amount.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GsplitFromGroupData_splitsByPart', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsplitFromGroupData_splitsByPart_fromUser
+    extends GsplitFromGroupData_splitsByPart_fromUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GsplitFromGroupData_splitsByPart_fromUser(
+          [void Function(GsplitFromGroupData_splitsByPart_fromUserBuilder)?
+              updates]) =>
+      (new GsplitFromGroupData_splitsByPart_fromUserBuilder()..update(updates))
+          ._build();
+
+  _$GsplitFromGroupData_splitsByPart_fromUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GsplitFromGroupData_splitsByPart_fromUser', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GsplitFromGroupData_splitsByPart_fromUser', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GsplitFromGroupData_splitsByPart_fromUser', 'isSignedUp');
+  }
+
+  @override
+  GsplitFromGroupData_splitsByPart_fromUser rebuild(
+          void Function(GsplitFromGroupData_splitsByPart_fromUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsplitFromGroupData_splitsByPart_fromUserBuilder toBuilder() =>
+      new GsplitFromGroupData_splitsByPart_fromUserBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsplitFromGroupData_splitsByPart_fromUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GsplitFromGroupData_splitsByPart_fromUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GsplitFromGroupData_splitsByPart_fromUserBuilder
+    implements
+        Builder<GsplitFromGroupData_splitsByPart_fromUser,
+            GsplitFromGroupData_splitsByPart_fromUserBuilder> {
+  _$GsplitFromGroupData_splitsByPart_fromUser? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GsplitFromGroupData_splitsByPart_fromUserBuilder() {
+    GsplitFromGroupData_splitsByPart_fromUser._initializeBuilder(this);
+  }
+
+  GsplitFromGroupData_splitsByPart_fromUserBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsplitFromGroupData_splitsByPart_fromUser other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsplitFromGroupData_splitsByPart_fromUser;
+  }
+
+  @override
+  void update(
+      void Function(GsplitFromGroupData_splitsByPart_fromUserBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsplitFromGroupData_splitsByPart_fromUser build() => _build();
+
+  _$GsplitFromGroupData_splitsByPart_fromUser _build() {
+    final _$result = _$v ??
+        new _$GsplitFromGroupData_splitsByPart_fromUser._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GsplitFromGroupData_splitsByPart_fromUser', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GsplitFromGroupData_splitsByPart_fromUser', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GsplitFromGroupData_splitsByPart_fromUser', 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsplitFromGroupData_splitsByPart_toUser
+    extends GsplitFromGroupData_splitsByPart_toUser {
+  @override
+  final String G__typename;
+  @override
+  final String id;
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? email;
+  @override
+  final bool isSignedUp;
+
+  factory _$GsplitFromGroupData_splitsByPart_toUser(
+          [void Function(GsplitFromGroupData_splitsByPart_toUserBuilder)?
+              updates]) =>
+      (new GsplitFromGroupData_splitsByPart_toUserBuilder()..update(updates))
+          ._build();
+
+  _$GsplitFromGroupData_splitsByPart_toUser._(
+      {required this.G__typename,
+      required this.id,
+      this.name,
+      this.phone,
+      this.email,
+      required this.isSignedUp})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GsplitFromGroupData_splitsByPart_toUser', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        id, r'GsplitFromGroupData_splitsByPart_toUser', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        isSignedUp, r'GsplitFromGroupData_splitsByPart_toUser', 'isSignedUp');
+  }
+
+  @override
+  GsplitFromGroupData_splitsByPart_toUser rebuild(
+          void Function(GsplitFromGroupData_splitsByPart_toUserBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsplitFromGroupData_splitsByPart_toUserBuilder toBuilder() =>
+      new GsplitFromGroupData_splitsByPart_toUserBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsplitFromGroupData_splitsByPart_toUser &&
+        G__typename == other.G__typename &&
+        id == other.id &&
+        name == other.name &&
+        phone == other.phone &&
+        email == other.email &&
+        isSignedUp == other.isSignedUp;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, phone.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, isSignedUp.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GsplitFromGroupData_splitsByPart_toUser')
+          ..add('G__typename', G__typename)
+          ..add('id', id)
+          ..add('name', name)
+          ..add('phone', phone)
+          ..add('email', email)
+          ..add('isSignedUp', isSignedUp))
+        .toString();
+  }
+}
+
+class GsplitFromGroupData_splitsByPart_toUserBuilder
+    implements
+        Builder<GsplitFromGroupData_splitsByPart_toUser,
+            GsplitFromGroupData_splitsByPart_toUserBuilder> {
+  _$GsplitFromGroupData_splitsByPart_toUser? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _id;
+  String? get id => _$this._id;
+  set id(String? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _phone;
+  String? get phone => _$this._phone;
+  set phone(String? phone) => _$this._phone = phone;
+
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
+
+  bool? _isSignedUp;
+  bool? get isSignedUp => _$this._isSignedUp;
+  set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
+
+  GsplitFromGroupData_splitsByPart_toUserBuilder() {
+    GsplitFromGroupData_splitsByPart_toUser._initializeBuilder(this);
+  }
+
+  GsplitFromGroupData_splitsByPart_toUserBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _id = $v.id;
+      _name = $v.name;
+      _phone = $v.phone;
+      _email = $v.email;
+      _isSignedUp = $v.isSignedUp;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsplitFromGroupData_splitsByPart_toUser other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsplitFromGroupData_splitsByPart_toUser;
+  }
+
+  @override
+  void update(
+      void Function(GsplitFromGroupData_splitsByPart_toUserBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsplitFromGroupData_splitsByPart_toUser build() => _build();
+
+  _$GsplitFromGroupData_splitsByPart_toUser _build() {
+    final _$result = _$v ??
+        new _$GsplitFromGroupData_splitsByPart_toUser._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GsplitFromGroupData_splitsByPart_toUser', 'G__typename'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'GsplitFromGroupData_splitsByPart_toUser', 'id'),
+            name: name,
+            phone: phone,
+            email: email,
+            isSignedUp: BuiltValueNullFieldError.checkNotNull(isSignedUp,
+                r'GsplitFromGroupData_splitsByPart_toUser', 'isSignedUp'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GsplitFromGroupData_splitsByPart_amount
+    extends GsplitFromGroupData_splitsByPart_amount {
+  @override
+  final String G__typename;
+  @override
+  final int amount;
+  @override
+  final String currencyId;
+
+  factory _$GsplitFromGroupData_splitsByPart_amount(
+          [void Function(GsplitFromGroupData_splitsByPart_amountBuilder)?
+              updates]) =>
+      (new GsplitFromGroupData_splitsByPart_amountBuilder()..update(updates))
+          ._build();
+
+  _$GsplitFromGroupData_splitsByPart_amount._(
+      {required this.G__typename,
+      required this.amount,
+      required this.currencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GsplitFromGroupData_splitsByPart_amount', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GsplitFromGroupData_splitsByPart_amount', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        currencyId, r'GsplitFromGroupData_splitsByPart_amount', 'currencyId');
+  }
+
+  @override
+  GsplitFromGroupData_splitsByPart_amount rebuild(
+          void Function(GsplitFromGroupData_splitsByPart_amountBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GsplitFromGroupData_splitsByPart_amountBuilder toBuilder() =>
+      new GsplitFromGroupData_splitsByPart_amountBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GsplitFromGroupData_splitsByPart_amount &&
+        G__typename == other.G__typename &&
+        amount == other.amount &&
+        currencyId == other.currencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GsplitFromGroupData_splitsByPart_amount')
+          ..add('G__typename', G__typename)
+          ..add('amount', amount)
+          ..add('currencyId', currencyId))
+        .toString();
+  }
+}
+
+class GsplitFromGroupData_splitsByPart_amountBuilder
+    implements
+        Builder<GsplitFromGroupData_splitsByPart_amount,
+            GsplitFromGroupData_splitsByPart_amountBuilder> {
+  _$GsplitFromGroupData_splitsByPart_amount? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _currencyId;
+  String? get currencyId => _$this._currencyId;
+  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
+
+  GsplitFromGroupData_splitsByPart_amountBuilder() {
+    GsplitFromGroupData_splitsByPart_amount._initializeBuilder(this);
+  }
+
+  GsplitFromGroupData_splitsByPart_amountBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _amount = $v.amount;
+      _currencyId = $v.currencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GsplitFromGroupData_splitsByPart_amount other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GsplitFromGroupData_splitsByPart_amount;
+  }
+
+  @override
+  void update(
+      void Function(GsplitFromGroupData_splitsByPart_amountBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GsplitFromGroupData_splitsByPart_amount build() => _build();
+
+  _$GsplitFromGroupData_splitsByPart_amount _build() {
+    final _$result = _$v ??
+        new _$GsplitFromGroupData_splitsByPart_amount._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GsplitFromGroupData_splitsByPart_amount', 'G__typename'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount, r'GsplitFromGroupData_splitsByPart_amount', 'amount'),
+            currencyId: BuiltValueNullFieldError.checkNotNull(currencyId,
+                r'GsplitFromGroupData_splitsByPart_amount', 'currencyId'));
     replace(_$result);
     return _$result;
   }

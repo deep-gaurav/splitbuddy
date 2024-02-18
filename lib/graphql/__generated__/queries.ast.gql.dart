@@ -2359,6 +2359,41 @@ const splitFromid = _i1.OperationDefinitionNode(
     )
   ]),
 );
+const splitFromGroup = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.query,
+  name: _i1.NameNode(value: 'splitFromGroup'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'partId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    )
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'splitsByPart'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'partId'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'partId')),
+        )
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'SplitFields'),
+          directives: [],
+        )
+      ]),
+    )
+  ]),
+);
 const document = _i1.DocumentNode(definitions: [
   UploadFields,
   UserFields,
@@ -2407,4 +2442,5 @@ const document = _i1.DocumentNode(definitions: [
   getImageViewUrl,
   getExpense,
   splitFromid,
+  splitFromGroup,
 ]);

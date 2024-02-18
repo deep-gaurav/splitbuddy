@@ -122,6 +122,7 @@ type Query {
   userById(id: String!): User!
   expenseById(id: String!): Expense!
   splitById(id: String!): Split!
+  splitsByPart(partId: String!): [Split!]!
   interactedUsers: [User!]!
   groups: [Group!]!
   findUserByEmail(email: String!): User!

@@ -336,6 +336,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GsimplifyUserData_simplifyCrossGroup_toUser.serializer)
       ..add(GsimplifyUserReq.serializer)
       ..add(GsimplifyUserVars.serializer)
+      ..add(GsplitFromGroupData.serializer)
+      ..add(GsplitFromGroupData_splitsByPart.serializer)
+      ..add(GsplitFromGroupData_splitsByPart_amount.serializer)
+      ..add(GsplitFromGroupData_splitsByPart_fromUser.serializer)
+      ..add(GsplitFromGroupData_splitsByPart_toUser.serializer)
+      ..add(GsplitFromGroupReq.serializer)
+      ..add(GsplitFromGroupVars.serializer)
       ..add(GsplitFromidData.serializer)
       ..add(GsplitFromidData_splitById.serializer)
       ..add(GsplitFromidData_splitById_amount.serializer)
@@ -570,6 +577,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(GsimplifyUserData_simplifyCrossGroup)]),
           () => new ListBuilder<GsimplifyUserData_simplifyCrossGroup>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GsplitFromGroupData_splitsByPart)]),
+          () => new ListBuilder<GsplitFromGroupData_splitsByPart>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GsplitFromidData_splitById_siblings)]),

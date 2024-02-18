@@ -452,3 +452,9 @@ query splitFromid($splitId: String!){
     ...SplitWithSiblings
   }
 }
+
+query splitFromGroup($partId: String!){
+  splitsByPart(partId:$partId){
+    ...SplitFields
+  }
+}

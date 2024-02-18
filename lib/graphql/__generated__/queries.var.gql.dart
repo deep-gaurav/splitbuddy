@@ -733,6 +733,29 @@ abstract class GsplitFromidVars
       );
 }
 
+abstract class GsplitFromGroupVars
+    implements Built<GsplitFromGroupVars, GsplitFromGroupVarsBuilder> {
+  GsplitFromGroupVars._();
+
+  factory GsplitFromGroupVars(
+      [Function(GsplitFromGroupVarsBuilder b) updates]) = _$GsplitFromGroupVars;
+
+  String get partId;
+  static Serializer<GsplitFromGroupVars> get serializer =>
+      _$gsplitFromGroupVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GsplitFromGroupVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromGroupVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GsplitFromGroupVars.serializer,
+        json,
+      );
+}
+
 abstract class GUploadFieldsVars
     implements Built<GUploadFieldsVars, GUploadFieldsVarsBuilder> {
   GUploadFieldsVars._();

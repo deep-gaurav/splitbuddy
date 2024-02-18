@@ -60,6 +60,9 @@ class _TransactionHistoryState extends State<TransactionHistory>
     if (_loading) {
       return;
     }
+    if (!mounted) {
+      return;
+    }
     setState(() {
       _loading = true;
     });
@@ -283,7 +286,7 @@ class TransactionHisotryTransactionCard extends StatelessWidget {
                     color: neutralYellow.primary,
                   )),
               TextSpan(
-                text: split.toUser.shortName,
+                text: split.fromUser.shortName,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),

@@ -5,6 +5,7 @@ import 'package:billdivide/models/expensecategory.dart';
 import 'package:billdivide/screens/currency_converter.dart';
 import 'package:billdivide/screens/expense.dart';
 import 'package:billdivide/screens/payment_currency_selector.dart';
+import 'package:billdivide/screens/transaction_page.dart';
 import 'package:billdivide/utils/svg_icons.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
 import 'package:collection/collection.dart';
@@ -490,7 +491,7 @@ class UserTransactionCard extends StatelessWidget {
                   color: neutralYellow.primary,
                 )),
             TextSpan(
-              text: transaction.toUser.shortName,
+              text: transaction.fromUser.shortName,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
@@ -609,6 +610,14 @@ class UserTransactionCard extends StatelessWidget {
                                 UserWithUser(user: user),
                               ],
                             ),
+                          ),
+                        ),
+                      );
+                    } else if (transaction != null) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => TransactionPage(
+                            transaction: transaction,
                           ),
                         ),
                       );
@@ -750,73 +759,87 @@ class UserTransactionCard extends StatelessWidget {
                 total: var total,
                 createdAt: var createdAt
               ) =>
-                transactions.length > 1
-                    ? ChatBubble(
-                        clipper: ChatBubbleClipper1(
-                          type: isSelf(context)
-                              ? BubbleType.sendBubble
-                              : BubbleType.receiverBubble,
-                        ),
-                        backGroundColor: isSelf(context)
-                            ? Theme.of(context).colorScheme.secondaryContainer
-                            : Theme.of(context).colorScheme.tertiaryContainer,
-                        padding: EdgeInsets.only(
-                          left: isSelf(context) ? 0 : 20,
-                          right: !isSelf(context) ? 0 : 15,
-                        ),
-                        elevation: 0,
-                        child: TransactionCard(
-                          title: getTitle(context, transactions.first).$1,
-                          amountColor: getTitle(context, transactions.first).$2,
-                          amount: total,
-                          createdAt: createdAt,
-                          subtitle: const TextSpan(text: 'Payment split into'),
-                          body: [
-                            const Divider(),
-                            ...transactions.reversed.map(
-                              (split) => Row(
-                                children: [
-                                  Text(
-                                    split.amount.getPrettyAbs(context),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelLarge
-                                        ?.copyWith(fontWeight: FontWeight.bold),
-                                  ),
-                                  Expanded(
-                                    child: Text.rich(
-                                      getGroupName(context, split.groupId),
-                                      textAlign: TextAlign.end,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            )
-                          ],
-                        ),
-                      )
-                    : ChatBubble(
-                        clipper: ChatBubbleClipper1(
-                          type: isSelf(context)
-                              ? BubbleType.sendBubble
-                              : BubbleType.receiverBubble,
-                        ),
-                        backGroundColor: isSelf(context)
-                            ? Theme.of(context).colorScheme.secondaryContainer
-                            : Theme.of(context).colorScheme.tertiaryContainer,
-                        padding: EdgeInsets.only(
-                          left: isSelf(context) ? 0 : 20,
-                          right: !isSelf(context) ? 0 : 15,
-                        ),
-                        elevation: 0,
-                        child: buildSingleTransaction(
-                          context,
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => TransactionPage(
                           transaction: transactions.first,
                         ),
                       ),
+                    );
+                  },
+                  child: transactions.length > 1
+                      ? ChatBubble(
+                          clipper: ChatBubbleClipper1(
+                            type: isSelf(context)
+                                ? BubbleType.sendBubble
+                                : BubbleType.receiverBubble,
+                          ),
+                          backGroundColor: isSelf(context)
+                              ? Theme.of(context).colorScheme.secondaryContainer
+                              : Theme.of(context).colorScheme.tertiaryContainer,
+                          padding: EdgeInsets.only(
+                            left: isSelf(context) ? 0 : 20,
+                            right: !isSelf(context) ? 0 : 15,
+                          ),
+                          elevation: 0,
+                          child: TransactionCard(
+                            title: getTitle(context, transactions.first).$1,
+                            amountColor:
+                                getTitle(context, transactions.first).$2,
+                            amount: total,
+                            createdAt: createdAt,
+                            subtitle:
+                                const TextSpan(text: 'Payment split into'),
+                            body: [
+                              const Divider(),
+                              ...transactions.reversed.map(
+                                (split) => Row(
+                                  children: [
+                                    Text(
+                                      split.amount.getPrettyAbs(context),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelLarge
+                                          ?.copyWith(
+                                              fontWeight: FontWeight.bold),
+                                    ),
+                                    Expanded(
+                                      child: Text.rich(
+                                        getGroupName(context, split.groupId),
+                                        textAlign: TextAlign.end,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              )
+                            ],
+                          ),
+                        )
+                      : ChatBubble(
+                          clipper: ChatBubbleClipper1(
+                            type: isSelf(context)
+                                ? BubbleType.sendBubble
+                                : BubbleType.receiverBubble,
+                          ),
+                          backGroundColor: isSelf(context)
+                              ? Theme.of(context).colorScheme.secondaryContainer
+                              : Theme.of(context).colorScheme.tertiaryContainer,
+                          padding: EdgeInsets.only(
+                            left: isSelf(context) ? 0 : 20,
+                            right: !isSelf(context) ? 0 : 15,
+                          ),
+                          elevation: 0,
+                          child: buildSingleTransaction(
+                            context,
+                            transaction: transactions.first,
+                          ),
+                        ),
+                ),
               GroupedCrossSettlementTransactions(
                 createdAt: var createdAt,
                 transactionPairs: var transactionPairs
@@ -893,6 +916,8 @@ class UserTransactionCard extends StatelessWidget {
             amount: transaction.amount,
             createdAt: transaction.createdAt,
             subtitle: subTitle(context, transaction),
+            note: transaction.note,
+            imageId: transaction.imageId,
           ),
       ],
     );
@@ -996,6 +1021,8 @@ class TransactionCard extends StatelessWidget {
   final List<Widget> body;
   final EdgeInsets padding;
   final Color? amountColor;
+  final String? imageId;
+  final String? note;
 
   const TransactionCard({
     super.key,
@@ -1007,6 +1034,8 @@ class TransactionCard extends StatelessWidget {
     this.padding = const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
     this.body = const <Widget>[],
     this.amountColor,
+    this.imageId,
+    this.note,
   });
 
   @override
@@ -1064,6 +1093,34 @@ class TransactionCard extends StatelessWidget {
                     ),
                   ),
                 ),
+                if (imageId != null)
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.image),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text('Attached Image'),
+                      ],
+                    ),
+                  ),
+                if (note != null)
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.note),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text('Attached Note'),
+                      ],
+                    ),
+                  ),
                 ...body,
               ],
             ),

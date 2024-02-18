@@ -192,7 +192,7 @@ class _GroupState extends State<Group>
                     color: neutralYellow.primary,
                   )),
               TextSpan(
-                text: split.toUser.shortName,
+                text: split.fromUser.shortName,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),

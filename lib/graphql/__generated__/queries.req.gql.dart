@@ -2251,6 +2251,80 @@ abstract class GsplitFromidReq
       );
 }
 
+abstract class GsplitFromGroupReq
+    implements
+        Built<GsplitFromGroupReq, GsplitFromGroupReqBuilder>,
+        _i1.OperationRequest<_i2.GsplitFromGroupData, _i3.GsplitFromGroupVars> {
+  GsplitFromGroupReq._();
+
+  factory GsplitFromGroupReq([Function(GsplitFromGroupReqBuilder b) updates]) =
+      _$GsplitFromGroupReq;
+
+  static void _initializeBuilder(GsplitFromGroupReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'splitFromGroup',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GsplitFromGroupVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GsplitFromGroupData? Function(
+    _i2.GsplitFromGroupData?,
+    _i2.GsplitFromGroupData?,
+  )? get updateResult;
+  @override
+  _i2.GsplitFromGroupData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GsplitFromGroupData? parseData(Map<String, dynamic> json) =>
+      _i2.GsplitFromGroupData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GsplitFromGroupData, _i3.GsplitFromGroupVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GsplitFromGroupReq> get serializer =>
+      _$gsplitFromGroupReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GsplitFromGroupReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GsplitFromGroupReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GsplitFromGroupReq.serializer,
+        json,
+      );
+}
+
 abstract class GUploadFieldsReq
     implements
         Built<GUploadFieldsReq, GUploadFieldsReqBuilder>,

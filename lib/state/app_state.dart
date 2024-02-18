@@ -74,6 +74,9 @@ class AppState extends ChangeNotifier {
 
   Future<ReAuthClient> get client => _getClient();
 
+  GGroupFields? getGroup(String groupId) =>
+      userGroups.firstWhereOrNull((element) => element.id == groupId);
+
   String getGroupName(String groupId) =>
       userGroups
           .firstWhereOrNull((element) => element.id == groupId)
