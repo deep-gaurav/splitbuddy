@@ -18,4 +18,22 @@ extension AmountExtension on GAmountFields {
       '${context.select<AppState, Map<String, GCurrencyFields>>((state) => state.currencies)[currencyId]?.symbol}${getAmountFormatted(context.read())}';
   String getPrettyAbs(BuildContext context) =>
       '${context.select<AppState, Map<String, GCurrencyFields>>((state) => state.currencies)[currencyId]?.symbol}${getAmountFormatted(context.read()).abs()}';
+
+  GAmountFields convertTo(
+      String currencyId, Map<String, GCurrencyFields> currencies) {
+    var fromCurrency = currencies[this.currencyId];
+    var toCurrency = currencies[currencyId];
+    if (fromCurrency != toCurrency) {
+      var amount = ((this.amount.abs() *
+              pow(10, toCurrency!.decimals - fromCurrency!.decimals) /
+              fromCurrency.rate) *
+          toCurrency.rate);
+      var newVal = GAmountFieldsData((b) => b
+        ..currencyId = toCurrency.id
+        ..amount = amount.toInt());
+      return newVal;
+    } else {
+      return this;
+    }
+  }
 }

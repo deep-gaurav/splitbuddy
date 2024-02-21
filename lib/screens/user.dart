@@ -88,7 +88,7 @@ class _UserPageState extends State<UserPage>
           (b) => b.vars
             ..withUser = widget.initialUser.id
             ..limit = 10
-            ..skip = allData.length,
+            ..skip = forceFirst ? 0 : allData.length,
         ),
       );
       if (result.data != null) {
@@ -301,24 +301,27 @@ class _UserPageState extends State<UserPage>
               ),
               if (isSelf)
                 SliverToBoxAdapter(
-                  child: SpendAnalysis(
-                    key: Key(context.select<AppState, String>(
-                      (state) =>
-                          state.userGroups
-                              .firstWhereOrNull((element) =>
-                                  element.name == null &&
-                                  element.members.length == 1)
-                              ?.id ??
-                          'None',
-                    )),
-                    groupId: context.select<AppState, String>(
-                      (state) =>
-                          state.userGroups
-                              .firstWhereOrNull((element) =>
-                                  element.name == null &&
-                                  element.members.length == 1)
-                              ?.id ??
-                          'None',
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: SpendAnalysis(
+                      key: Key(context.select<AppState, String>(
+                        (state) =>
+                            state.userGroups
+                                .firstWhereOrNull((element) =>
+                                    element.name == null &&
+                                    element.members.length == 1)
+                                ?.id ??
+                            'None',
+                      )),
+                      groupId: context.select<AppState, String>(
+                        (state) =>
+                            state.userGroups
+                                .firstWhereOrNull((element) =>
+                                    element.name == null &&
+                                    element.members.length == 1)
+                                ?.id ??
+                            'None',
+                      ),
                     ),
                   ),
                 )

@@ -95,7 +95,7 @@ class _GroupState extends State<Group>
           (b) => b.vars
             ..groupId = widget.group.id
             ..limit = 10
-            ..skip = allData.length,
+            ..skip = forceFirst ? 0 : allData.length,
         ),
       );
       if (result.data != null) {
@@ -643,6 +643,11 @@ class _GroupState extends State<Group>
                       ),
                       SpendAnalysis(
                         groupId: group.id,
+                        type: SpendAnalysisType.pieGraph,
+                      ),
+                      SpendAnalysis(
+                        groupId: group.id,
+                        type: SpendAnalysisType.table,
                       ),
                     ],
                   ),

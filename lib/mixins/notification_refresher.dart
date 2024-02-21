@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 mixin NotificationRefresher<T extends StatefulWidget>
     on State<T>, WidgetsBindingObserver {
-  StreamSubscription<RemoteMessage>? subscription;
+  StreamSubscription<void>? subscription;
   @override
   void initState() {
     super.initState();

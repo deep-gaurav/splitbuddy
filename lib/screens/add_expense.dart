@@ -933,6 +933,8 @@ class _CreateExpenseState extends State<CreateExpense>
                             : null,
                         imageId: imageId,
                       );
+                      appstate.notificationSubscription.add(null);
+
                       nav.pop(expense);
                     } else if ((expenseWith.value is ExpenseWithPeople) ||
                         (expenseWith.value is ExpenseWithSelf)) {
@@ -975,7 +977,7 @@ class _CreateExpenseState extends State<CreateExpense>
                             ),
                         ),
                       );
-                      appstate.refresh((await appstate.client));
+                      appstate.notificationSubscription.add(null);
                       nav.pop(expense.data?.addNonGroupExpense.expense);
                     }
                   }

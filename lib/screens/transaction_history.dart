@@ -75,7 +75,7 @@ class _TransactionHistoryState extends State<TransactionHistory>
         GgetTransactionsReq(
           (b) => b.vars
             ..limit = 10
-            ..skip = allData.length,
+            ..skip = forceFirst ? 0 : allData.length,
         ),
       );
       if (result.data != null) {

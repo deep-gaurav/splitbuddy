@@ -72,6 +72,7 @@ dependencies:
   image: ^4.1.7
   http_parser: ^4.0.2
   flutter_carousel_widget: ^2.2.0
+  fl_chart: ^0.66.2
   
 dev_dependencies:
   flutter_test:

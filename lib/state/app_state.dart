@@ -43,6 +43,9 @@ class AppState extends ChangeNotifier {
     unawaited(() async {
       refresh(await _getClient());
     }());
+    notificationSubscription.stream.listen((event) async {
+      refresh(await client);
+    });
   }
 
   GUserFields? _user;
@@ -98,8 +101,8 @@ class AppState extends ChangeNotifier {
     return imageUrl;
   }
 
-  StreamController<RemoteMessage> notificationSubscription =
-      StreamController<RemoteMessage>.broadcast();
+  StreamController<void> notificationSubscription =
+      StreamController<void>.broadcast();
 
   refreshCurrencies() async {
     unAuthorizedClient.request(GcurrenciesReq()).listen((event) {
@@ -200,8 +203,7 @@ class AppState extends ChangeNotifier {
             );
       }
       FirebaseMessaging.onMessage.listen((event) async {
-        notificationSubscription.add(event);
-        refresh(await client);
+        notificationSubscription.add(null);
       });
     } catch (e) {
       // print(
