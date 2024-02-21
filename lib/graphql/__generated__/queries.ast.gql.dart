@@ -730,6 +730,36 @@ const ExpenseMixSplitFields = _i1.FragmentDefinitionNode(
     ),
   ]),
 );
+const CategorisedAmountFields = _i1.FragmentDefinitionNode(
+  name: _i1.NameNode(value: 'CategorisedAmountFields'),
+  typeCondition: _i1.TypeConditionNode(
+      on: _i1.NamedTypeNode(
+    name: _i1.NameNode(value: 'CategorisedAmount'),
+    isNonNull: false,
+  )),
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'category'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'amount'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'AmountFields'),
+          directives: [],
+        )
+      ]),
+    ),
+  ]),
+);
 const user = _i1.OperationDefinitionNode(
   type: _i1.OperationType.query,
   name: _i1.NameNode(value: 'user'),
@@ -1894,9 +1924,9 @@ const transactionWithUser = _i1.OperationDefinitionNode(
       directives: [],
     ),
     _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'skip')),
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
+        name: _i1.NameNode(value: 'Int'),
         isNonNull: false,
       ),
       defaultValue: _i1.DefaultValueNode(value: null),
@@ -1923,8 +1953,8 @@ const transactionWithUser = _i1.OperationDefinitionNode(
           value: _i1.VariableNode(name: _i1.NameNode(value: 'withUser')),
         ),
         _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'fromTime'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
+          name: _i1.NameNode(value: 'skip'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'skip')),
         ),
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'limit'),
@@ -1955,9 +1985,9 @@ const transactionMixExpense = _i1.OperationDefinitionNode(
       directives: [],
     ),
     _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'skip')),
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
+        name: _i1.NameNode(value: 'Int'),
         isNonNull: false,
       ),
       defaultValue: _i1.DefaultValueNode(value: null),
@@ -1984,8 +2014,8 @@ const transactionMixExpense = _i1.OperationDefinitionNode(
           value: _i1.VariableNode(name: _i1.NameNode(value: 'groupId')),
         ),
         _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'fromTime'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
+          name: _i1.NameNode(value: 'skip'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'skip')),
         ),
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'limit'),
@@ -2151,9 +2181,9 @@ const getTransactions = _i1.OperationDefinitionNode(
   name: _i1.NameNode(value: 'getTransactions'),
   variableDefinitions: [
     _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'skip')),
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
+        name: _i1.NameNode(value: 'Int'),
         isNonNull: false,
       ),
       defaultValue: _i1.DefaultValueNode(value: null),
@@ -2176,12 +2206,12 @@ const getTransactions = _i1.OperationDefinitionNode(
       alias: null,
       arguments: [
         _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'fromTime'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
-        ),
-        _i1.ArgumentNode(
           name: _i1.NameNode(value: 'limit'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'limit')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'skip'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'skip')),
         ),
       ],
       directives: [],
@@ -2394,6 +2424,54 @@ const splitFromGroup = _i1.OperationDefinitionNode(
     )
   ]),
 );
+const expenseSummaryCategorised = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.query,
+  name: _i1.NameNode(value: 'expenseSummaryCategorised'),
+  variableDefinitions: [
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'groupId')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+  ],
+  directives: [],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'expenseSummaryByCategory'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'groupId'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'groupId')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'fromTime'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'fromTime')),
+        ),
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FragmentSpreadNode(
+          name: _i1.NameNode(value: 'CategorisedAmountFields'),
+          directives: [],
+        )
+      ]),
+    )
+  ]),
+);
 const document = _i1.DocumentNode(definitions: [
   UploadFields,
   UserFields,
@@ -2412,6 +2490,7 @@ const document = _i1.DocumentNode(definitions: [
   SplitWithSiblings,
   GroupWithExpenses,
   ExpenseMixSplitFields,
+  CategorisedAmountFields,
   user,
   userConfig,
   groups,
@@ -2443,4 +2522,5 @@ const document = _i1.DocumentNode(definitions: [
   getExpense,
   splitFromid,
   splitFromGroup,
+  expenseSummaryCategorised,
 ]);

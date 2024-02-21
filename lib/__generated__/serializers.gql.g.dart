@@ -11,6 +11,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GAmountFieldsData.serializer)
       ..add(GAmountFieldsReq.serializer)
       ..add(GAmountFieldsVars.serializer)
+      ..add(GCategorisedAmountFieldsData.serializer)
+      ..add(GCategorisedAmountFieldsData_amount.serializer)
+      ..add(GCategorisedAmountFieldsReq.serializer)
+      ..add(GCategorisedAmountFieldsVars.serializer)
       ..add(GConfigFieldsData.serializer)
       ..add(GConfigFieldsReq.serializer)
       ..add(GConfigFieldsVars.serializer)
@@ -217,6 +221,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GcurrencyConvertData_convertCurrency_toUser.serializer)
       ..add(GcurrencyConvertReq.serializer)
       ..add(GcurrencyConvertVars.serializer)
+      ..add(GexpenseSummaryCategorisedData.serializer)
+      ..add(GexpenseSummaryCategorisedData_expenseSummaryByCategory.serializer)
+      ..add(GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount
+          .serializer)
+      ..add(GexpenseSummaryCategorisedReq.serializer)
+      ..add(GexpenseSummaryCategorisedVars.serializer)
       ..add(GgetExpenseData.serializer)
       ..add(GgetExpenseData_expenseById.serializer)
       ..add(GgetExpenseData_expenseById_amount.serializer)
@@ -514,6 +524,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(GcurrencyConvertData_convertCurrency)]),
           () => new ListBuilder<GcurrencyConvertData_convertCurrency>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GexpenseSummaryCategorisedData_expenseSummaryByCategory)
+          ]),
+          () => new ListBuilder<
+              GexpenseSummaryCategorisedData_expenseSummaryByCategory>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GgetExpenseData_expenseById_splits)]),

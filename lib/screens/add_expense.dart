@@ -82,6 +82,9 @@ class _CreateExpenseState extends State<CreateExpense>
           UserWithUser(user: context.read<AppState>().user!),
           ...users
         ],
+      ExpenseWithSelf() => [
+          UserWithUser(user: context.read<AppState>().user!),
+        ],
     };
     distribution.clear();
     for (var user in users) {
@@ -320,6 +323,7 @@ class _CreateExpenseState extends State<CreateExpense>
               padding: const EdgeInsets.symmetric(horizontal: 20),
               sliver: SliverToBoxAdapter(
                 child: PeopleFinder(
+                  showSelf: true,
                   canMultiSelect: true,
                   findGroups: true,
                   isEditable: widget.expenseWith == null,
@@ -924,14 +928,14 @@ class _CreateExpenseState extends State<CreateExpense>
                             )
                             .toList(),
                         selectedCategory!.categoryId,
-                        note: noteController?.text.isNotEmpty == true
+                        note: noteController?.text.trim().isNotEmpty == true
                             ? noteController?.text
-                            : '',
+                            : null,
                         imageId: imageId,
                       );
                       nav.pop(expense);
-                    } else if (expenseWith.value
-                        case ExpenseWithPeople(users: var users)) {
+                    } else if ((expenseWith.value is ExpenseWithPeople) ||
+                        (expenseWith.value is ExpenseWithSelf)) {
                       var expense = await (await appstate.client).execute(
                         GcreateNonGroupExpenseReq(
                           (b) => b.vars
@@ -940,9 +944,10 @@ class _CreateExpenseState extends State<CreateExpense>
                             ..title = nameController.text
                             ..currencyId = currentCurrency!.id
                             ..category = selectedCategory?.categoryId
-                            ..note = noteController?.text.isNotEmpty == true
-                                ? noteController?.text
-                                : ''
+                            ..note =
+                                noteController?.text.trim().isNotEmpty == true
+                                    ? noteController?.text
+                                    : null
                             ..imageId = imageId
                             ..nonGroupSplit = ListBuilder(
                               distribution
@@ -1051,6 +1056,21 @@ class SearchBarChips extends StatelessWidget {
                     child: GroupIconWidget(group: group),
                   ),
                   label: Text(group.getDisplayName(context.read())),
+                  onDeleted: canDelete
+                      ? () {
+                          expenseWith.value = null;
+                        }
+                      : null,
+                )
+              else if (expenseWithValue case ExpenseWithSelf())
+                Chip(
+                  avatar: FittedBox(
+                    child: UserIconWidget(
+                      user: context.read<AppState>().user!,
+                    ),
+                  ),
+                  label: Text(
+                      '${context.read<AppState>().user!.displayName} (Personal Expense)'),
                   onDeleted: canDelete
                       ? () {
                           expenseWith.value = null;

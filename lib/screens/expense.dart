@@ -10,6 +10,7 @@ import 'package:billdivide/state/app_state.dart';
 import 'package:billdivide/utils/svg_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class ExpensePage extends StatefulWidget {
@@ -75,7 +76,14 @@ class _ExpensePageState extends State<ExpensePage> {
           ),
           const SliverToBoxAdapter(
             child: SizedBox(
-              height: 30,
+              height: 20,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Text(
+              widget.expenseFields.title,
+              style: Theme.of(context).textTheme.headlineSmall,
+              textAlign: TextAlign.center,
             ),
           ),
           SliverToBoxAdapter(
@@ -92,14 +100,6 @@ class _ExpensePageState extends State<ExpensePage> {
               ],
             ),
           ),
-          if (widget.expenseFields.note != null)
-            SliverToBoxAdapter(
-              child: Text(
-                widget.expenseFields.title,
-                style: Theme.of(context).textTheme.headlineSmall,
-                textAlign: TextAlign.center,
-              ),
-            ),
           const SliverToBoxAdapter(
             child: SizedBox(
               height: 10,
@@ -111,7 +111,7 @@ class _ExpensePageState extends State<ExpensePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 24,
+                    height: 20,
                     child: SvgIcon(
                         asset: Category.categoryFromId(
                                 widget.expenseFields.category)
@@ -126,6 +126,52 @@ class _ExpensePageState extends State<ExpensePage> {
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ],
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 10,
+              ),
+              child: Text.rich(
+                TextSpan(text: 'Created by ', children: [
+                  WidgetSpan(
+                    alignment: PlaceholderAlignment.middle,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 5),
+                      child: SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: FittedBox(
+                          child: UserIconWidget(
+                            user: context
+                                .read<AppState>()
+                                .getUser(widget.expenseFields.creatorId)!,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextSpan(
+                      text: context
+                          .read<AppState>()
+                          .getUser(widget.expenseFields.creatorId)!
+                          .displayName,
+                      style: const TextStyle(fontWeight: FontWeight.bold))
+                ]),
+                style: Theme.of(context).textTheme.titleSmall,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Text(
+                DateFormat()
+                    .format(DateTime.parse(widget.expenseFields.createdAt)),
+                textAlign: TextAlign.center,
               ),
             ),
           ),
@@ -150,7 +196,7 @@ class _ExpensePageState extends State<ExpensePage> {
                   0)
             SliverToBoxAdapter(
               child: ExpenseSplitMember(
-                member: context.read<AppState>().user!,
+                member: expenseFields!.creator,
                 amount: GAmountFieldsData(
                   (b) => b
                     ..amount = (expenseFields!.amount.amount -

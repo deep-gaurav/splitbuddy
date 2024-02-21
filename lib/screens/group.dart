@@ -3,11 +3,14 @@ import 'dart:math';
 import 'package:billdivide/extensions/amount_extension.dart';
 import 'package:billdivide/mixins/notification_refresher.dart';
 import 'package:billdivide/screens/expense.dart';
+import 'package:billdivide/screens/transaction_page.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
+import 'package:billdivide/widgets/spend_analysis.dart';
 import 'package:collection/collection.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -57,6 +60,9 @@ class _GroupState extends State<Group>
   Map<String, List<GroupTransactionObject>> expenseGrouped = {};
   List<String> dates = [];
 
+  List<GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup> allData =
+      [];
+
   @override
   void initState() {
     _scrollController.addListener(() {
@@ -89,11 +95,11 @@ class _GroupState extends State<Group>
           (b) => b.vars
             ..groupId = widget.group.id
             ..limit = 10
-            ..fromTime = forceFirst ? null : expenses.lastOrNull?.createdAt,
+            ..skip = allData.length,
         ),
       );
       if (result.data != null) {
-        if (expenses.isEmpty && mounted) {
+        if (allData.isEmpty && mounted) {
           _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
           WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
             // await Future.delayed(Durations.short1);
@@ -101,6 +107,11 @@ class _GroupState extends State<Group>
               _scrollController.position.maxScrollExtent,
             );
           });
+        }
+        for (var trans in result.data!.getTransactionsMixExpenseWithGroup) {
+          if (!allData.any((element) => trans.isEqual(element))) {
+            allData.add(trans);
+          }
         }
         for (var trans in result.data!.getTransactionsMixExpenseWithGroup) {
           var expense = expenses.firstWhereOrNull((element) =>
@@ -126,8 +137,8 @@ class _GroupState extends State<Group>
               expenses.add(CurrencyConversion(splits: [trans.split!]));
             }
           } else if (trans.split != null) {
-            if (expenses.every((element) =>
-                element is Split && element.split.id != trans.split!.id)) {
+            if (!expenses.any((element) =>
+                element is Split && element.split.id == trans.split!.id)) {
               expenses.add(Split(split: trans.split!));
             }
           }
@@ -422,6 +433,16 @@ class _GroupState extends State<Group>
                                                   ),
                                                 ),
                                               );
+                                            } else if (mix
+                                                case Split(split: var split)) {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      TransactionPage(
+                                                    transaction: split,
+                                                  ),
+                                                ),
+                                              );
                                             }
                                           },
                                           child: ChatBubble(
@@ -523,7 +544,18 @@ class _GroupState extends State<Group>
                                                               const SizedBox(
                                                                 height: 5,
                                                               )
-                                                            ] else
+                                                            ] else if (expense
+                                                                    .creatorId ==
+                                                                context
+                                                                    .read<
+                                                                        AppState>()
+                                                                    .user!
+                                                                    .id)
+                                                              const TransactionCard(
+                                                                  title: TextSpan(
+                                                                      text:
+                                                                          'Settled with everyone'))
+                                                            else
                                                               const TransactionCard(
                                                                   title: TextSpan(
                                                                       text:
@@ -545,115 +577,15 @@ class _GroupState extends State<Group>
                                                     CurrencyConversion(
                                                       splits: var splits
                                                     ) =>
-                                                      Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .stretch,
-                                                        children: [
-                                                          const SizedBox(
-                                                            height: 5,
-                                                          ),
-                                                          Text(
-                                                            'Converted',
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .titleMedium,
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .symmetric(
-                                                                    horizontal:
-                                                                        20),
-                                                            child: AutoScroll(
-                                                              child: Row(
-                                                                children: [
-                                                                  Text(
-                                                                    splits.first
-                                                                        .amount
-                                                                        .getPretty(
-                                                                            context),
-                                                                    style: Theme.of(
-                                                                            context)
-                                                                        .textTheme
-                                                                        .headlineMedium
-                                                                        ?.copyWith(
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          color:
-                                                                              ColorUtils.getNeutralYellow(context).primary,
-                                                                        ),
-                                                                  ),
-                                                                  const Icon(Icons
-                                                                      .chevron_right),
-                                                                  if (splits
-                                                                          .length >
-                                                                      1)
-                                                                    Text(
-                                                                      splits[1]
-                                                                          .amount
-                                                                          .getPretty(
-                                                                              context),
-                                                                      style: Theme.of(
-                                                                              context)
-                                                                          .textTheme
-                                                                          .headlineMedium
-                                                                          ?.copyWith(
-                                                                            fontWeight:
-                                                                                FontWeight.w800,
-                                                                            color:
-                                                                                ColorUtils.getNeutralYellow(context).primary,
-                                                                          ),
-                                                                    ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          if (splits.length > 1)
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .symmetric(
-                                                                      horizontal:
-                                                                          20),
-                                                              child: Column(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .stretch,
-                                                                children: [
-                                                                  ...[
-                                                                    Text.rich(
-                                                                      getTitle(
-                                                                              context,
-                                                                              splits[1])
-                                                                          .$1,
-                                                                      style: Theme.of(
-                                                                              context)
-                                                                          .textTheme
-                                                                          .labelLarge,
-                                                                    ),
-                                                                    // Text.rich(
-                                                                    //   subTitle(
-                                                                    //           context,
-                                                                    //           transactions[1]) ??
-                                                                    //       const TextSpan(),
-                                                                    //   style: Theme.of(
-                                                                    //           context)
-                                                                    //       .textTheme
-                                                                    //       .labelLarge,
-                                                                    // ),
-                                                                    const SizedBox(
-                                                                      height:
-                                                                          15,
-                                                                    ),
-                                                                  ]
-                                                                ],
-                                                              ),
-                                                            ),
-                                                        ],
+                                                      CurrencyConversionCard(
+                                                        splits: splits,
+                                                        splitTitle: splits
+                                                                    .length >
+                                                                1
+                                                            ? getTitle(context,
+                                                                    splits[1])
+                                                                .$1
+                                                            : null,
                                                       )
                                                   }
                                                 ],
@@ -692,17 +624,30 @@ class _GroupState extends State<Group>
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: InkWell(
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => GroupMembersPage(
-                          initialGroup: group,
-                          onSettleTransaction: onSettleTransaction,
+                  child: ExpandableCarousel(
+                    options: CarouselOptions(),
+                    items: [
+                      InkWell(
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => GroupMembersPage(
+                              initialGroup: group,
+                              onSettleTransaction: onSettleTransaction,
+                            ),
+                          ),
+                        ),
+                        child: GroupSummaryWidget(
+                            scheme: scheme,
+                            group: group,
+                            neutralBlue: neutralBlue),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: SpendAnalysis(
+                          groupId: group.id,
                         ),
                       ),
-                    ),
-                    child: GroupSummaryWidget(
-                        scheme: scheme, group: group, neutralBlue: neutralBlue),
+                    ],
                   ),
                 ),
               ),
@@ -753,6 +698,77 @@ class _GroupState extends State<Group>
   @override
   void onNotificationRefresh() {
     fetchData(forceFirst: true);
+  }
+}
+
+class CurrencyConversionCard extends StatelessWidget {
+  const CurrencyConversionCard({
+    super.key,
+    required this.splits,
+    this.splitTitle,
+  });
+
+  final List<GSplitFields> splits;
+  final TextSpan? splitTitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SizedBox(
+          height: 5,
+        ),
+        Text(
+          'Converted',
+          style: Theme.of(context).textTheme.titleMedium,
+          textAlign: TextAlign.center,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: AutoScroll(
+            child: Row(
+              children: [
+                Text(
+                  splits.first.amount.getPretty(context),
+                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        fontWeight: FontWeight.w800,
+                        color: ColorUtils.getNeutralYellow(context).primary,
+                      ),
+                ),
+                const Icon(Icons.chevron_right),
+                if (splits.length > 1)
+                  Text(
+                    splits[1].amount.getPretty(context),
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          fontWeight: FontWeight.w800,
+                          color: ColorUtils.getNeutralYellow(context).primary,
+                        ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+        if (splits.length > 1)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ...[
+                  Text.rich(
+                    splitTitle!,
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                ]
+              ],
+            ),
+          ),
+      ],
+    );
   }
 }
 

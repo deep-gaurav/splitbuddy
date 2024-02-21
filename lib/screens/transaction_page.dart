@@ -1,3 +1,4 @@
+import 'package:billdivide/__generated__/schema.schema.gql.dart';
 import 'package:billdivide/extensions/amount_extension.dart';
 import 'package:billdivide/extensions/group_extension.dart';
 import 'package:billdivide/extensions/user_extension.dart';
@@ -9,6 +10,7 @@ import 'package:billdivide/state/app_state.dart';
 import 'package:billdivide/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class TransactionPage extends StatefulWidget {
@@ -35,13 +37,19 @@ class _TransactionPageState extends State<TransactionPage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      if (widget.transaction.transactionPartGroupId != null) {
-        var result = await (await context.read<AppState>().client).execute(
-            GsplitFromGroupReq((b) =>
-                b.vars..partId = widget.transaction.transactionPartGroupId));
-        if (mounted) {
+      if (widget.transaction.transactionType == GTransactionType.CASH_PAID) {
+        if (widget.transaction.transactionPartGroupId != null) {
+          var result = await (await context.read<AppState>().client).execute(
+              GsplitFromGroupReq((b) =>
+                  b.vars..partId = widget.transaction.transactionPartGroupId));
+          if (mounted) {
+            setState(() {
+              transactions = result.data?.splitsByPart.toList();
+            });
+          }
+        } else {
           setState(() {
-            transactions = result.data?.splitsByPart.toList();
+            transactions = [widget.transaction];
           });
         }
       } else {
@@ -96,6 +104,16 @@ class _TransactionPageState extends State<TransactionPage> {
                         : 'To ${transactions?.firstOrNull?.fromUser.displayName}',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(),
                     textAlign: TextAlign.center,
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Text(
+                      DateFormat()
+                          .format(DateTime.parse(widget.transaction.createdAt)),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
                 const SliverPadding(padding: EdgeInsets.only(top: 20)),

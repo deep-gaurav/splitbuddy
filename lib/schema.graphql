@@ -5,6 +5,11 @@ type Amount {
 
 union AuthResult = UserNotSignedUp | UserSignedUp
 
+type CategorisedAmount {
+  category: String!
+  amount: Amount!
+}
+
 type Currency {
   id: String!
   displayName: String!
@@ -130,28 +135,32 @@ type Query {
   overallOwed: [Amount!]!
   getTransactionsMixExpenseWithUser(
     withUser: String!
-    fromTime: String
+    skip: Int! = 0
     limit: Int!
   ): [ExpenseMixSplit!]!
   getTransactionsWithUser(
     withUser: String!
-    fromTime: String
+    skip: Int! = 0
     limit: Int!
   ): [Split!]!
   currencies: [Currency!]!
   getTransactionsWithGroup(
     withGroup: String!
-    fromTime: String
+    skip: Int! = 0
     limit: Int!
   ): [Split!]!
-  getTransactions(fromTime: String, limit: Int!): [ExpenseMixSplit!]!
+  getTransactions(limit: Int!, skip: Int! = 0): [ExpenseMixSplit!]!
   getTransactionsMixExpenseWithGroup(
     withGroup: String!
-    fromTime: String
     limit: Int!
+    skip: Int! = 0
   ): [ExpenseMixSplit!]!
   config: UserConfig!
   imageUrl(id: String!): String!
+  expenseSummaryByCategory(
+    groupId: String
+    fromTime: String!
+  ): [CategorisedAmount!]!
 }
 
 type Registered {

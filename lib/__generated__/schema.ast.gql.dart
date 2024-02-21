@@ -43,6 +43,31 @@ const AuthResult = _i1.UnionTypeDefinitionNode(
     ),
   ],
 );
+const CategorisedAmount = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'CategorisedAmount'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'category'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'amount'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Amount'),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
 const Currency = _i1.ObjectTypeDefinitionNode(
   name: _i1.NameNode(value: 'Currency'),
   directives: [],
@@ -1201,13 +1226,13 @@ const Query = _i1.ObjectTypeDefinitionNode(
           defaultValue: null,
         ),
         _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'fromTime'),
+          name: _i1.NameNode(value: 'skip'),
           directives: [],
           type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'String'),
-            isNonNull: false,
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
           ),
-          defaultValue: null,
+          defaultValue: _i1.IntValueNode(value: '0'),
         ),
         _i1.InputValueDefinitionNode(
           name: _i1.NameNode(value: 'limit'),
@@ -1241,13 +1266,13 @@ const Query = _i1.ObjectTypeDefinitionNode(
           defaultValue: null,
         ),
         _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'fromTime'),
+          name: _i1.NameNode(value: 'skip'),
           directives: [],
           type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'String'),
-            isNonNull: false,
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
           ),
-          defaultValue: null,
+          defaultValue: _i1.IntValueNode(value: '0'),
         ),
         _i1.InputValueDefinitionNode(
           name: _i1.NameNode(value: 'limit'),
@@ -1293,13 +1318,13 @@ const Query = _i1.ObjectTypeDefinitionNode(
           defaultValue: null,
         ),
         _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'fromTime'),
+          name: _i1.NameNode(value: 'skip'),
           directives: [],
           type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'String'),
-            isNonNull: false,
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
           ),
-          defaultValue: null,
+          defaultValue: _i1.IntValueNode(value: '0'),
         ),
         _i1.InputValueDefinitionNode(
           name: _i1.NameNode(value: 'limit'),
@@ -1324,15 +1349,6 @@ const Query = _i1.ObjectTypeDefinitionNode(
       directives: [],
       args: [
         _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'fromTime'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'String'),
-            isNonNull: false,
-          ),
-          defaultValue: null,
-        ),
-        _i1.InputValueDefinitionNode(
           name: _i1.NameNode(value: 'limit'),
           directives: [],
           type: _i1.NamedTypeNode(
@@ -1340,6 +1356,15 @@ const Query = _i1.ObjectTypeDefinitionNode(
             isNonNull: true,
           ),
           defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'skip'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
+          ),
+          defaultValue: _i1.IntValueNode(value: '0'),
         ),
       ],
       type: _i1.ListTypeNode(
@@ -1364,15 +1389,6 @@ const Query = _i1.ObjectTypeDefinitionNode(
           defaultValue: null,
         ),
         _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'fromTime'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'String'),
-            isNonNull: false,
-          ),
-          defaultValue: null,
-        ),
-        _i1.InputValueDefinitionNode(
           name: _i1.NameNode(value: 'limit'),
           directives: [],
           type: _i1.NamedTypeNode(
@@ -1380,6 +1396,15 @@ const Query = _i1.ObjectTypeDefinitionNode(
             isNonNull: true,
           ),
           defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'skip'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
+          ),
+          defaultValue: _i1.IntValueNode(value: '0'),
         ),
       ],
       type: _i1.ListTypeNode(
@@ -1415,6 +1440,37 @@ const Query = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'expenseSummaryByCategory'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'groupId'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: false,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'fromTime'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+      ],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'CategorisedAmount'),
+          isNonNull: true,
+        ),
         isNonNull: true,
       ),
     ),
@@ -1914,6 +1970,7 @@ const UserSignedUp = _i1.ObjectTypeDefinitionNode(
 const document = _i1.DocumentNode(definitions: [
   Amount,
   AuthResult,
+  CategorisedAmount,
   Currency,
   Expense,
   ExpenseMixSplit,

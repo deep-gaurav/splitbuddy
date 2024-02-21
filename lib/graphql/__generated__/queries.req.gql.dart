@@ -2325,6 +2325,84 @@ abstract class GsplitFromGroupReq
       );
 }
 
+abstract class GexpenseSummaryCategorisedReq
+    implements
+        Built<GexpenseSummaryCategorisedReq,
+            GexpenseSummaryCategorisedReqBuilder>,
+        _i1.OperationRequest<_i2.GexpenseSummaryCategorisedData,
+            _i3.GexpenseSummaryCategorisedVars> {
+  GexpenseSummaryCategorisedReq._();
+
+  factory GexpenseSummaryCategorisedReq(
+          [Function(GexpenseSummaryCategorisedReqBuilder b) updates]) =
+      _$GexpenseSummaryCategorisedReq;
+
+  static void _initializeBuilder(GexpenseSummaryCategorisedReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'expenseSummaryCategorised',
+    )
+    ..executeOnListen = true;
+
+  @override
+  _i3.GexpenseSummaryCategorisedVars get vars;
+  @override
+  _i4.Operation get operation;
+  @override
+  _i4.Request get execRequest => _i4.Request(
+        operation: operation,
+        variables: vars.toJson(),
+      );
+
+  @override
+  String? get requestId;
+  @override
+  @BuiltValueField(serialize: false)
+  _i2.GexpenseSummaryCategorisedData? Function(
+    _i2.GexpenseSummaryCategorisedData?,
+    _i2.GexpenseSummaryCategorisedData?,
+  )? get updateResult;
+  @override
+  _i2.GexpenseSummaryCategorisedData? get optimisticResponse;
+  @override
+  String? get updateCacheHandlerKey;
+  @override
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  @override
+  _i1.FetchPolicy? get fetchPolicy;
+  @override
+  bool get executeOnListen;
+  @override
+  _i2.GexpenseSummaryCategorisedData? parseData(Map<String, dynamic> json) =>
+      _i2.GexpenseSummaryCategorisedData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GexpenseSummaryCategorisedData,
+      _i3.GexpenseSummaryCategorisedVars> transformOperation(
+          _i4.Operation Function(_i4.Operation) transform) =>
+      this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GexpenseSummaryCategorisedReq> get serializer =>
+      _$gexpenseSummaryCategorisedReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GexpenseSummaryCategorisedReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GexpenseSummaryCategorisedReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GexpenseSummaryCategorisedReq.serializer,
+        json,
+      );
+}
+
 abstract class GUploadFieldsReq
     implements
         Built<GUploadFieldsReq, GUploadFieldsReqBuilder>,
@@ -3115,6 +3193,54 @@ abstract class GExpenseMixSplitFieldsReq
   static GExpenseMixSplitFieldsReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
         GExpenseMixSplitFieldsReq.serializer,
+        json,
+      );
+}
+
+abstract class GCategorisedAmountFieldsReq
+    implements
+        Built<GCategorisedAmountFieldsReq, GCategorisedAmountFieldsReqBuilder>,
+        _i1.FragmentRequest<_i2.GCategorisedAmountFieldsData,
+            _i3.GCategorisedAmountFieldsVars> {
+  GCategorisedAmountFieldsReq._();
+
+  factory GCategorisedAmountFieldsReq(
+          [Function(GCategorisedAmountFieldsReqBuilder b) updates]) =
+      _$GCategorisedAmountFieldsReq;
+
+  static void _initializeBuilder(GCategorisedAmountFieldsReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'CategorisedAmountFields';
+
+  @override
+  _i3.GCategorisedAmountFieldsVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GCategorisedAmountFieldsData? parseData(Map<String, dynamic> json) =>
+      _i2.GCategorisedAmountFieldsData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
+
+  static Serializer<GCategorisedAmountFieldsReq> get serializer =>
+      _$gCategorisedAmountFieldsReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GCategorisedAmountFieldsReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GCategorisedAmountFieldsReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GCategorisedAmountFieldsReq.serializer,
         json,
       );
 }

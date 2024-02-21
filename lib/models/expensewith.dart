@@ -23,6 +23,11 @@ class ExpenseWithPeople extends ExpenseWith {
   int get lengthOfUsers => users.length;
 }
 
+class ExpenseWithSelf extends ExpenseWith {
+  @override
+  int get lengthOfUsers => 1;
+}
+
 sealed class ShareableUser extends GUserFields {
   String get displayName;
   @override

@@ -471,7 +471,7 @@ abstract class GtransactionWithUserVars
       _$GtransactionWithUserVars;
 
   String get withUser;
-  String? get fromTime;
+  int? get skip;
   int get limit;
   static Serializer<GtransactionWithUserVars> get serializer =>
       _$gtransactionWithUserVarsSerializer;
@@ -498,7 +498,7 @@ abstract class GtransactionMixExpenseVars
       _$GtransactionMixExpenseVars;
 
   String get groupId;
-  String? get fromTime;
+  int? get skip;
   int get limit;
   static Serializer<GtransactionMixExpenseVars> get serializer =>
       _$gtransactionMixExpenseVarsSerializer;
@@ -597,7 +597,7 @@ abstract class GgetTransactionsVars
           [Function(GgetTransactionsVarsBuilder b) updates]) =
       _$GgetTransactionsVars;
 
-  String? get fromTime;
+  int? get skip;
   int get limit;
   static Serializer<GgetTransactionsVars> get serializer =>
       _$ggetTransactionsVarsSerializer;
@@ -752,6 +752,33 @@ abstract class GsplitFromGroupVars
   static GsplitFromGroupVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GsplitFromGroupVars.serializer,
+        json,
+      );
+}
+
+abstract class GexpenseSummaryCategorisedVars
+    implements
+        Built<GexpenseSummaryCategorisedVars,
+            GexpenseSummaryCategorisedVarsBuilder> {
+  GexpenseSummaryCategorisedVars._();
+
+  factory GexpenseSummaryCategorisedVars(
+          [Function(GexpenseSummaryCategorisedVarsBuilder b) updates]) =
+      _$GexpenseSummaryCategorisedVars;
+
+  String? get groupId;
+  String get fromTime;
+  static Serializer<GexpenseSummaryCategorisedVars> get serializer =>
+      _$gexpenseSummaryCategorisedVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GexpenseSummaryCategorisedVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GexpenseSummaryCategorisedVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GexpenseSummaryCategorisedVars.serializer,
         json,
       );
 }
@@ -1136,6 +1163,31 @@ abstract class GExpenseMixSplitFieldsVars
   static GExpenseMixSplitFieldsVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GExpenseMixSplitFieldsVars.serializer,
+        json,
+      );
+}
+
+abstract class GCategorisedAmountFieldsVars
+    implements
+        Built<GCategorisedAmountFieldsVars,
+            GCategorisedAmountFieldsVarsBuilder> {
+  GCategorisedAmountFieldsVars._();
+
+  factory GCategorisedAmountFieldsVars(
+          [Function(GCategorisedAmountFieldsVarsBuilder b) updates]) =
+      _$GCategorisedAmountFieldsVars;
+
+  static Serializer<GCategorisedAmountFieldsVars> get serializer =>
+      _$gCategorisedAmountFieldsVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GCategorisedAmountFieldsVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GCategorisedAmountFieldsVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GCategorisedAmountFieldsVars.serializer,
         json,
       );
 }

@@ -14,7 +14,8 @@ extension GroupBasicExtension on GGroupBasic {
 }
 
 extension GroupExtension on GGroupFields {
-  bool get isDirectPayment => name == null && members.length == 2;
+  bool get isDirectPayment => name == null && members.length <= 2;
+
   String getDisplayName(AppState appState) =>
       name ??
       (members.length == 2

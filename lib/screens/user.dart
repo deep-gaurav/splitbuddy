@@ -1,4 +1,5 @@
 import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/extensions/expense_mix.dart';
 import 'package:billdivide/extensions/num_extension.dart';
 import 'package:billdivide/mixins/notification_refresher.dart';
 import 'package:billdivide/models/expensecategory.dart';
@@ -31,7 +32,7 @@ import 'package:billdivide/state/app_state.dart';
 import 'package:billdivide/utils/color_utils.dart';
 
 class UserPage extends StatefulWidget {
-  final GUserPaysFields initialUser;
+  final GUserFields initialUser;
 
   const UserPage({super.key, required this.initialUser});
 
@@ -50,6 +51,8 @@ class _UserPageState extends State<UserPage>
   Map<String, List<TransactionCardTypes>> expenseGrouped = {};
   List<String> dates = [];
   ValueNotifier<bool> maintain = ValueNotifier(true);
+
+  List<GtransactionWithUserData_getTransactionsMixExpenseWithUser> allData = [];
 
   @override
   void initState() {
@@ -84,7 +87,7 @@ class _UserPageState extends State<UserPage>
           (b) => b.vars
             ..withUser = widget.initialUser.id
             ..limit = 10
-            ..fromTime = forceFirst ? null : transactions.lastOrNull?.createdAt,
+            ..skip = allData.length,
         ),
       );
       if (result.data != null) {
@@ -98,6 +101,12 @@ class _UserPageState extends State<UserPage>
             _scrollController
                 .jumpTo(_scrollController.position.maxScrollExtent - pos);
           });
+        }
+
+        for (var trans in result.data!.getTransactionsMixExpenseWithUser) {
+          if (!allData.any((element) => trans.isEqual(element))) {
+            allData.add(trans);
+          }
         }
         for (var mix in result.data!.getTransactionsMixExpenseWithUser) {
           var transaction = mix.split;
@@ -214,6 +223,9 @@ class _UserPageState extends State<UserPage>
     var user = context.select<AppState, GUserPaysFields>((state) => state
         .interactedUsers
         .firstWhere((element) => element.id == widget.initialUser.id));
+
+    var isSelf = (user.id == context.read<AppState>().user?.id);
+
     return Scaffold(
       body: Column(
         children: [
@@ -237,7 +249,8 @@ class _UserPageState extends State<UserPage>
                       ),
                       Expanded(
                         child: AutoScroll(
-                          child: Text(user.displayName),
+                          child: Text(
+                              '${user.displayName}${isSelf ? ' (You)' : ''}'),
                         ),
                       ),
                     ],
@@ -285,32 +298,33 @@ class _UserPageState extends State<UserPage>
                   ],
                 ),
               ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: UserSummaryWidget(
-                    user: user,
-                    onSimplify: (splitTransactions) {
-                      if (!transactions.any((element) =>
-                          element is GroupedCrossSettlementTransactions &&
-                          element.groupId ==
-                              splitTransactions
-                                  .first.transactionPartGroupId!)) {
-                        transactions.add(
-                          GroupedCrossSettlementTransactions(
-                            groupId:
-                                splitTransactions.first.transactionPartGroupId!,
-                            transactions: splitTransactions,
-                          ),
-                        );
-                      }
-                      fetchData(forceFirst: true);
-                      generateGrouped();
-                    },
+              if (!isSelf)
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 20),
+                    child: UserSummaryWidget(
+                      user: user,
+                      onSimplify: (splitTransactions) {
+                        if (!transactions.any((element) =>
+                            element is GroupedCrossSettlementTransactions &&
+                            element.groupId ==
+                                splitTransactions
+                                    .first.transactionPartGroupId!)) {
+                          transactions.add(
+                            GroupedCrossSettlementTransactions(
+                              groupId: splitTransactions
+                                  .first.transactionPartGroupId!,
+                              transactions: splitTransactions,
+                            ),
+                          );
+                        }
+                        fetchData(forceFirst: true);
+                        generateGrouped();
+                      },
+                    ),
                   ),
                 ),
-              ),
             ],
           )),
           const Divider(),
@@ -318,26 +332,27 @@ class _UserPageState extends State<UserPage>
       ),
       bottomNavigationBar: ButtonBar(
         children: [
-          ElevatedButton.icon(
-            onPressed: () async {
-              var result = await Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => CurrencyConverter(user: user),
-                ),
-              );
-              if (result is List<GSplitTransactionFields>) {
-                transactions.add(CurrencyConversionTransactions(
-                    transactions: result,
-                    groupId: result.first.transactionPartGroupId!));
-                fetchData(forceFirst: true);
-                generateGrouped();
-              }
-            },
-            icon: const Icon(Icons.currency_exchange_rounded),
-            label: const Text(
-              'Convert Currency',
+          if (!isSelf)
+            ElevatedButton.icon(
+              onPressed: () async {
+                var result = await Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => CurrencyConverter(user: user),
+                  ),
+                );
+                if (result is List<GSplitTransactionFields>) {
+                  transactions.add(CurrencyConversionTransactions(
+                      transactions: result,
+                      groupId: result.first.transactionPartGroupId!));
+                  fetchData(forceFirst: true);
+                  generateGrouped();
+                }
+              },
+              icon: const Icon(Icons.currency_exchange_rounded),
+              label: const Text(
+                'Convert Currency',
+              ),
             ),
-          ),
           ElevatedButton.icon(
             icon: const Icon(Icons.sell),
             onPressed: () async {
@@ -345,8 +360,9 @@ class _UserPageState extends State<UserPage>
                 MaterialPageRoute(
                   builder: (context) => CreateExpense(
                     searchGroup: true,
-                    expenseWith:
-                        ExpenseWithPeople(users: [UserWithUser(user: user)]),
+                    expenseWith: isSelf
+                        ? ExpenseWithSelf()
+                        : ExpenseWithPeople(users: [UserWithUser(user: user)]),
                   ),
                 ),
               );
@@ -371,68 +387,70 @@ class _UserPageState extends State<UserPage>
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        icon: const Icon(Icons.payments),
-        onPressed: () async {
-          dynamic expense;
-          if (user.toPay.length == 1) {
-            expense = await Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => PaymentRecorder(
-                  withUser: user,
-                  initialCurrencyId: user.toPay.first.currencyId,
-                  initialAmount: user.toPay.first
-                      .getAmountFormatted(context.read())
-                      .toPrettyFixed(
-                        context
-                            .read<AppState>()
-                            .currencies[user.toPay.first.currencyId]!
-                            .decimals,
+      floatingActionButton: isSelf
+          ? null
+          : FloatingActionButton.extended(
+              icon: const Icon(Icons.payments),
+              onPressed: () async {
+                dynamic expense;
+                if (user.toPay.length == 1) {
+                  expense = await Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => PaymentRecorder(
+                        withUser: user,
+                        initialCurrencyId: user.toPay.first.currencyId,
+                        initialAmount: user.toPay.first
+                            .getAmountFormatted(context.read())
+                            .toPrettyFixed(
+                              context
+                                  .read<AppState>()
+                                  .currencies[user.toPay.first.currencyId]!
+                                  .decimals,
+                            ),
                       ),
-                ),
-              ),
-            );
-          } else if (user.toPay.isEmpty) {
-            expense = await Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => PaymentRecorder(
-                  withUser: user,
-                  initialCurrencyId:
-                      context.read<AppState>().defaultCurrency!.id,
-                ),
-              ),
-            );
-          } else {
-            expense = await Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => PaymentCurrencySelector(
-                  user: user,
-                  toPay: user.toPay,
-                  toReceive: user.toReceive,
-                ),
-              ),
-            );
-          }
+                    ),
+                  );
+                } else if (user.toPay.isEmpty) {
+                  expense = await Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => PaymentRecorder(
+                        withUser: user,
+                        initialCurrencyId:
+                            context.read<AppState>().defaultCurrency!.id,
+                      ),
+                    ),
+                  );
+                } else {
+                  expense = await Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => PaymentCurrencySelector(
+                        user: user,
+                        toPay: user.toPay,
+                        toReceive: user.toReceive,
+                      ),
+                    ),
+                  );
+                }
 
-          if (expense is List<GSplitTransactionFields>) {
-            for (var split in expense) {
-              if (!transactions.any((element) =>
-                  element is SingleTransaction &&
-                  element.transaction?.id == split.id)) {
-                transactions.add(SingleTransaction(
-                  transaction: split,
-                  expenseBasic: split.expense,
-                ));
-              }
-            }
-            fetchData(forceFirst: true);
-            generateGrouped();
-          }
-        },
-        label: const Text(
-          "Record Payment",
-        ),
-      ),
+                if (expense is List<GSplitTransactionFields>) {
+                  for (var split in expense) {
+                    if (!transactions.any((element) =>
+                        element is SingleTransaction &&
+                        element.transaction?.id == split.id)) {
+                      transactions.add(SingleTransaction(
+                        transaction: split,
+                        expenseBasic: split.expense,
+                      ));
+                    }
+                  }
+                  fetchData(forceFirst: true);
+                  generateGrouped();
+                }
+              },
+              label: const Text(
+                "Record Payment",
+              ),
+            ),
     );
   }
 

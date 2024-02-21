@@ -152,6 +152,13 @@ fragment ExpenseMixSplitFields on ExpenseMixSplit {
   }
 }
 
+fragment CategorisedAmountFields on CategorisedAmount{
+  category
+  amount{
+    ...AmountFields
+  }
+}
+
 query user {
   user {
     __typename
@@ -369,10 +376,10 @@ mutation autoSettleWithUser(
   }
 }
 
-query transactionWithUser($withUser: String!, $fromTime: String, $limit: Int!) {
+query transactionWithUser($withUser: String!, $skip: Int, $limit: Int!) {
   getTransactionsMixExpenseWithUser(
     withUser: $withUser
-    fromTime: $fromTime
+    skip:$skip
     limit: $limit
   ) {
     ...ExpenseMixSplitFields
@@ -381,12 +388,12 @@ query transactionWithUser($withUser: String!, $fromTime: String, $limit: Int!) {
 
 query transactionMixExpense(
   $groupId: String!
-  $fromTime: String
+  $skip: Int
   $limit: Int!
 ) {
   getTransactionsMixExpenseWithGroup(
     withGroup: $groupId
-    fromTime: $fromTime
+    skip:$skip
     limit: $limit
   ) {
     ...ExpenseMixSplitFields
@@ -421,8 +428,8 @@ mutation changeName($name: String!) {
   }
 }
 
-query getTransactions($fromTime: String, $limit: Int!) {
-  getTransactions(fromTime: $fromTime, limit: $limit) {
+query getTransactions($skip: Int, $limit: Int!) {
+  getTransactions(limit: $limit, skip:$skip) {
     ...ExpenseMixSplitFields
   }
 }
@@ -456,5 +463,11 @@ query splitFromid($splitId: String!){
 query splitFromGroup($partId: String!){
   splitsByPart(partId:$partId){
     ...SplitFields
+  }
+}
+
+query expenseSummaryCategorised($groupId: String, $fromTime: String!){
+  expenseSummaryByCategory(groupId:$groupId, fromTime:$fromTime){
+    ...CategorisedAmountFields
   }
 }

@@ -67,6 +67,24 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
+        SliverToBoxAdapter(
+          child: Container(
+            margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+            child: ListTile(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => UserPage(
+                    initialUser: context.read<AppState>().user!,
+                  ),
+                ));
+              },
+              leading: UserIconWidget(user: context.read<AppState>().user!),
+              title:
+                  Text('${context.read<AppState>().user!.displayName} (You)'),
+              subtitle: const Text('Record your personal expenses'),
+            ),
+          ),
+        ),
         if (nonSelfUsrs.isNotEmpty)
           SliverList(
               delegate: SliverChildBuilderDelegate((context, index) {

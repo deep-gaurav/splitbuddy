@@ -18,6 +18,7 @@ class PeopleFinder extends StatefulWidget {
   final bool canMultiSelect;
   final bool findGroups;
   final bool hideSingleGroup;
+  final bool showSelf;
   final ValueNotifier<ExpenseWith?>? people;
   final bool isEditable;
   final Future<bool> Function(ExpenseWith)? onDone;
@@ -33,6 +34,7 @@ class PeopleFinder extends StatefulWidget {
     this.onDone,
     this.disableFilter,
     this.hideSingleGroup = true,
+    this.showSelf = false,
   });
 
   @override
@@ -132,6 +134,7 @@ class _PeopleFinderState extends State<PeopleFinder> {
       suggestionsBuilder:
           (BuildContext context, SearchController controller) async {
         final AppState appState = context.read<AppState>();
+        final GUserFields selfUser = appState.user!;
         GUserFields? searchUser;
         if (controller.text.isNotEmpty &&
             EmailValidator.validate(controller.text)) {
@@ -343,6 +346,30 @@ class _PeopleFinderState extends State<PeopleFinder> {
               leading: Icon(Icons.info),
               title: Text('Enter email address to invite user'),
             ),
+          if (widget.showSelf &&
+              selfUser.displayName
+                  .toLowerCase()
+                  .contains(controller.text.toLowerCase())) ...[
+            const ListTile(
+              dense: true,
+              title: Text('Self'),
+            ),
+            InkWell(
+              onTap: () {
+                expenseWith.value = ExpenseWithSelf();
+
+                controller.clear();
+                controller.closeView(null);
+              },
+              child: Card(
+                child: ListTile(
+                  leading: UserIconWidget(user: selfUser),
+                  title: Text(selfUser.displayName),
+                  subtitle: const Text('Personal Expense'),
+                ),
+              ),
+            )
+          ],
           if (groupsList.isNotEmpty) ...[
             const ListTile(
               dense: true,

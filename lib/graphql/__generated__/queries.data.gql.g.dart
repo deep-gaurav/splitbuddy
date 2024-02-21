@@ -538,6 +538,15 @@ Serializer<GsplitFromGroupData_splitsByPart_toUser>
 Serializer<GsplitFromGroupData_splitsByPart_amount>
     _$gsplitFromGroupDataSplitsByPartAmountSerializer =
     new _$GsplitFromGroupData_splitsByPart_amountSerializer();
+Serializer<GexpenseSummaryCategorisedData>
+    _$gexpenseSummaryCategorisedDataSerializer =
+    new _$GexpenseSummaryCategorisedDataSerializer();
+Serializer<GexpenseSummaryCategorisedData_expenseSummaryByCategory>
+    _$gexpenseSummaryCategorisedDataExpenseSummaryByCategorySerializer =
+    new _$GexpenseSummaryCategorisedData_expenseSummaryByCategorySerializer();
+Serializer<GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount>
+    _$gexpenseSummaryCategorisedDataExpenseSummaryByCategoryAmountSerializer =
+    new _$GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountSerializer();
 Serializer<GUploadFieldsData> _$gUploadFieldsDataSerializer =
     new _$GUploadFieldsDataSerializer();
 Serializer<GUserFieldsData> _$gUserFieldsDataSerializer =
@@ -758,6 +767,12 @@ Serializer<GExpenseMixSplitFieldsData_split_toUser>
 Serializer<GExpenseMixSplitFieldsData_split_amount>
     _$gExpenseMixSplitFieldsDataSplitAmountSerializer =
     new _$GExpenseMixSplitFieldsData_split_amountSerializer();
+Serializer<GCategorisedAmountFieldsData>
+    _$gCategorisedAmountFieldsDataSerializer =
+    new _$GCategorisedAmountFieldsDataSerializer();
+Serializer<GCategorisedAmountFieldsData_amount>
+    _$gCategorisedAmountFieldsDataAmountSerializer =
+    new _$GCategorisedAmountFieldsData_amountSerializer();
 
 class _$GuserDataSerializer implements StructuredSerializer<GuserData> {
   @override
@@ -17001,6 +17016,195 @@ class _$GsplitFromGroupData_splitsByPart_amountSerializer
   }
 }
 
+class _$GexpenseSummaryCategorisedDataSerializer
+    implements StructuredSerializer<GexpenseSummaryCategorisedData> {
+  @override
+  final Iterable<Type> types = const [
+    GexpenseSummaryCategorisedData,
+    _$GexpenseSummaryCategorisedData
+  ];
+  @override
+  final String wireName = 'GexpenseSummaryCategorisedData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GexpenseSummaryCategorisedData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'expenseSummaryByCategory',
+      serializers.serialize(object.expenseSummaryByCategory,
+          specifiedType: const FullType(BuiltList, const [
+            const FullType(
+                GexpenseSummaryCategorisedData_expenseSummaryByCategory)
+          ])),
+    ];
+
+    return result;
+  }
+
+  @override
+  GexpenseSummaryCategorisedData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GexpenseSummaryCategorisedDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'expenseSummaryByCategory':
+          result.expenseSummaryByCategory.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(
+                    GexpenseSummaryCategorisedData_expenseSummaryByCategory)
+              ]))! as BuiltList<Object?>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GexpenseSummaryCategorisedData_expenseSummaryByCategorySerializer
+    implements
+        StructuredSerializer<
+            GexpenseSummaryCategorisedData_expenseSummaryByCategory> {
+  @override
+  final Iterable<Type> types = const [
+    GexpenseSummaryCategorisedData_expenseSummaryByCategory,
+    _$GexpenseSummaryCategorisedData_expenseSummaryByCategory
+  ];
+  @override
+  final String wireName =
+      'GexpenseSummaryCategorisedData_expenseSummaryByCategory';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GexpenseSummaryCategorisedData_expenseSummaryByCategory object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'category',
+      serializers.serialize(object.category,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount,
+          specifiedType: const FullType(
+              GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'category':
+          result.category = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount))!
+              as GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountSerializer
+    implements
+        StructuredSerializer<
+            GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount> {
+  @override
+  final Iterable<Type> types = const [
+    GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount,
+    _$GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount
+  ];
+  @override
+  final String wireName =
+      'GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers,
+      GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'currencyId',
+      serializers.serialize(object.currencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'currencyId':
+          result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$GUploadFieldsDataSerializer
     implements StructuredSerializer<GUploadFieldsData> {
   @override
@@ -24464,6 +24668,127 @@ class _$GExpenseMixSplitFieldsData_split_amountSerializer
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GExpenseMixSplitFieldsData_split_amountBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'currencyId':
+          result.currencyId = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GCategorisedAmountFieldsDataSerializer
+    implements StructuredSerializer<GCategorisedAmountFieldsData> {
+  @override
+  final Iterable<Type> types = const [
+    GCategorisedAmountFieldsData,
+    _$GCategorisedAmountFieldsData
+  ];
+  @override
+  final String wireName = 'GCategorisedAmountFieldsData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GCategorisedAmountFieldsData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'category',
+      serializers.serialize(object.category,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount,
+          specifiedType: const FullType(GCategorisedAmountFieldsData_amount)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GCategorisedAmountFieldsData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GCategorisedAmountFieldsDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'category':
+          result.category = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'amount':
+          result.amount.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GCategorisedAmountFieldsData_amount))!
+              as GCategorisedAmountFieldsData_amount);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GCategorisedAmountFieldsData_amountSerializer
+    implements StructuredSerializer<GCategorisedAmountFieldsData_amount> {
+  @override
+  final Iterable<Type> types = const [
+    GCategorisedAmountFieldsData_amount,
+    _$GCategorisedAmountFieldsData_amount
+  ];
+  @override
+  final String wireName = 'GCategorisedAmountFieldsData_amount';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GCategorisedAmountFieldsData_amount object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'amount',
+      serializers.serialize(object.amount, specifiedType: const FullType(int)),
+      'currencyId',
+      serializers.serialize(object.currencyId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GCategorisedAmountFieldsData_amount deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GCategorisedAmountFieldsData_amountBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -57420,6 +57745,450 @@ class GsplitFromGroupData_splitsByPart_amountBuilder
   }
 }
 
+class _$GexpenseSummaryCategorisedData extends GexpenseSummaryCategorisedData {
+  @override
+  final String G__typename;
+  @override
+  final BuiltList<GexpenseSummaryCategorisedData_expenseSummaryByCategory>
+      expenseSummaryByCategory;
+
+  factory _$GexpenseSummaryCategorisedData(
+          [void Function(GexpenseSummaryCategorisedDataBuilder)? updates]) =>
+      (new GexpenseSummaryCategorisedDataBuilder()..update(updates))._build();
+
+  _$GexpenseSummaryCategorisedData._(
+      {required this.G__typename, required this.expenseSummaryByCategory})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GexpenseSummaryCategorisedData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(expenseSummaryByCategory,
+        r'GexpenseSummaryCategorisedData', 'expenseSummaryByCategory');
+  }
+
+  @override
+  GexpenseSummaryCategorisedData rebuild(
+          void Function(GexpenseSummaryCategorisedDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GexpenseSummaryCategorisedDataBuilder toBuilder() =>
+      new GexpenseSummaryCategorisedDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GexpenseSummaryCategorisedData &&
+        G__typename == other.G__typename &&
+        expenseSummaryByCategory == other.expenseSummaryByCategory;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, expenseSummaryByCategory.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GexpenseSummaryCategorisedData')
+          ..add('G__typename', G__typename)
+          ..add('expenseSummaryByCategory', expenseSummaryByCategory))
+        .toString();
+  }
+}
+
+class GexpenseSummaryCategorisedDataBuilder
+    implements
+        Builder<GexpenseSummaryCategorisedData,
+            GexpenseSummaryCategorisedDataBuilder> {
+  _$GexpenseSummaryCategorisedData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  ListBuilder<GexpenseSummaryCategorisedData_expenseSummaryByCategory>?
+      _expenseSummaryByCategory;
+  ListBuilder<GexpenseSummaryCategorisedData_expenseSummaryByCategory>
+      get expenseSummaryByCategory =>
+          _$this._expenseSummaryByCategory ??= new ListBuilder<
+              GexpenseSummaryCategorisedData_expenseSummaryByCategory>();
+  set expenseSummaryByCategory(
+          ListBuilder<GexpenseSummaryCategorisedData_expenseSummaryByCategory>?
+              expenseSummaryByCategory) =>
+      _$this._expenseSummaryByCategory = expenseSummaryByCategory;
+
+  GexpenseSummaryCategorisedDataBuilder() {
+    GexpenseSummaryCategorisedData._initializeBuilder(this);
+  }
+
+  GexpenseSummaryCategorisedDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _expenseSummaryByCategory = $v.expenseSummaryByCategory.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GexpenseSummaryCategorisedData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GexpenseSummaryCategorisedData;
+  }
+
+  @override
+  void update(void Function(GexpenseSummaryCategorisedDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GexpenseSummaryCategorisedData build() => _build();
+
+  _$GexpenseSummaryCategorisedData _build() {
+    _$GexpenseSummaryCategorisedData _$result;
+    try {
+      _$result = _$v ??
+          new _$GexpenseSummaryCategorisedData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                  r'GexpenseSummaryCategorisedData', 'G__typename'),
+              expenseSummaryByCategory: expenseSummaryByCategory.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'expenseSummaryByCategory';
+        expenseSummaryByCategory.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GexpenseSummaryCategorisedData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GexpenseSummaryCategorisedData_expenseSummaryByCategory
+    extends GexpenseSummaryCategorisedData_expenseSummaryByCategory {
+  @override
+  final String G__typename;
+  @override
+  final String category;
+  @override
+  final GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount amount;
+
+  factory _$GexpenseSummaryCategorisedData_expenseSummaryByCategory(
+          [void Function(
+                  GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder)?
+              updates]) =>
+      (new GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GexpenseSummaryCategorisedData_expenseSummaryByCategory._(
+      {required this.G__typename, required this.category, required this.amount})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GexpenseSummaryCategorisedData_expenseSummaryByCategory',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(category,
+        r'GexpenseSummaryCategorisedData_expenseSummaryByCategory', 'category');
+    BuiltValueNullFieldError.checkNotNull(amount,
+        r'GexpenseSummaryCategorisedData_expenseSummaryByCategory', 'amount');
+  }
+
+  @override
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory rebuild(
+          void Function(
+                  GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder toBuilder() =>
+      new GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GexpenseSummaryCategorisedData_expenseSummaryByCategory &&
+        G__typename == other.G__typename &&
+        category == other.category &&
+        amount == other.amount;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, category.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GexpenseSummaryCategorisedData_expenseSummaryByCategory')
+          ..add('G__typename', G__typename)
+          ..add('category', category)
+          ..add('amount', amount))
+        .toString();
+  }
+}
+
+class GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder
+    implements
+        Builder<GexpenseSummaryCategorisedData_expenseSummaryByCategory,
+            GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder> {
+  _$GexpenseSummaryCategorisedData_expenseSummaryByCategory? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _category;
+  String? get category => _$this._category;
+  set category(String? category) => _$this._category = category;
+
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder?
+      _amount;
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder
+      get amount => _$this._amount ??=
+          new GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder();
+  set amount(
+          GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder?
+              amount) =>
+      _$this._amount = amount;
+
+  GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder() {
+    GexpenseSummaryCategorisedData_expenseSummaryByCategory._initializeBuilder(
+        this);
+  }
+
+  GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _category = $v.category;
+      _amount = $v.amount.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GexpenseSummaryCategorisedData_expenseSummaryByCategory other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GexpenseSummaryCategorisedData_expenseSummaryByCategory;
+  }
+
+  @override
+  void update(
+      void Function(
+              GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory build() => _build();
+
+  _$GexpenseSummaryCategorisedData_expenseSummaryByCategory _build() {
+    _$GexpenseSummaryCategorisedData_expenseSummaryByCategory _$result;
+    try {
+      _$result = _$v ??
+          new _$GexpenseSummaryCategorisedData_expenseSummaryByCategory._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename,
+                  r'GexpenseSummaryCategorisedData_expenseSummaryByCategory',
+                  'G__typename'),
+              category: BuiltValueNullFieldError.checkNotNull(
+                  category,
+                  r'GexpenseSummaryCategorisedData_expenseSummaryByCategory',
+                  'category'),
+              amount: amount.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'amount';
+        amount.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GexpenseSummaryCategorisedData_expenseSummaryByCategory',
+            _$failedField,
+            e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount
+    extends GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount {
+  @override
+  final String G__typename;
+  @override
+  final int amount;
+  @override
+  final String currencyId;
+
+  factory _$GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount(
+          [void Function(
+                  GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder)?
+              updates]) =>
+      (new GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount._(
+      {required this.G__typename,
+      required this.amount,
+      required this.currencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        amount,
+        r'GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount',
+        'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        currencyId,
+        r'GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount',
+        'currencyId');
+  }
+
+  @override
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount rebuild(
+          void Function(
+                  GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder
+      toBuilder() =>
+          new GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount &&
+        G__typename == other.G__typename &&
+        amount == other.amount &&
+        currencyId == other.currencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount')
+          ..add('G__typename', G__typename)
+          ..add('amount', amount)
+          ..add('currencyId', currencyId))
+        .toString();
+  }
+}
+
+class GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder
+    implements
+        Builder<GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount,
+            GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder> {
+  _$GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _currencyId;
+  String? get currencyId => _$this._currencyId;
+  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
+
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder() {
+    GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount
+        ._initializeBuilder(this);
+  }
+
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _amount = $v.amount;
+      _currencyId = $v.currencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other
+        as _$GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount;
+  }
+
+  @override
+  void update(
+      void Function(
+              GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount build() =>
+      _build();
+
+  _$GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount _build() {
+    final _$result = _$v ??
+        new _$GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount',
+                'G__typename'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount,
+                r'GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount',
+                'amount'),
+            currencyId: BuiltValueNullFieldError.checkNotNull(
+                currencyId,
+                r'GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount',
+                'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GUploadFieldsData extends GUploadFieldsData {
   @override
   final String G__typename;
@@ -71903,6 +72672,270 @@ class GExpenseMixSplitFieldsData_split_amountBuilder
                 amount, r'GExpenseMixSplitFieldsData_split_amount', 'amount'),
             currencyId: BuiltValueNullFieldError.checkNotNull(currencyId,
                 r'GExpenseMixSplitFieldsData_split_amount', 'currencyId'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GCategorisedAmountFieldsData extends GCategorisedAmountFieldsData {
+  @override
+  final String G__typename;
+  @override
+  final String category;
+  @override
+  final GCategorisedAmountFieldsData_amount amount;
+
+  factory _$GCategorisedAmountFieldsData(
+          [void Function(GCategorisedAmountFieldsDataBuilder)? updates]) =>
+      (new GCategorisedAmountFieldsDataBuilder()..update(updates))._build();
+
+  _$GCategorisedAmountFieldsData._(
+      {required this.G__typename, required this.category, required this.amount})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GCategorisedAmountFieldsData', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        category, r'GCategorisedAmountFieldsData', 'category');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GCategorisedAmountFieldsData', 'amount');
+  }
+
+  @override
+  GCategorisedAmountFieldsData rebuild(
+          void Function(GCategorisedAmountFieldsDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GCategorisedAmountFieldsDataBuilder toBuilder() =>
+      new GCategorisedAmountFieldsDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GCategorisedAmountFieldsData &&
+        G__typename == other.G__typename &&
+        category == other.category &&
+        amount == other.amount;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, category.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GCategorisedAmountFieldsData')
+          ..add('G__typename', G__typename)
+          ..add('category', category)
+          ..add('amount', amount))
+        .toString();
+  }
+}
+
+class GCategorisedAmountFieldsDataBuilder
+    implements
+        Builder<GCategorisedAmountFieldsData,
+            GCategorisedAmountFieldsDataBuilder> {
+  _$GCategorisedAmountFieldsData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _category;
+  String? get category => _$this._category;
+  set category(String? category) => _$this._category = category;
+
+  GCategorisedAmountFieldsData_amountBuilder? _amount;
+  GCategorisedAmountFieldsData_amountBuilder get amount =>
+      _$this._amount ??= new GCategorisedAmountFieldsData_amountBuilder();
+  set amount(GCategorisedAmountFieldsData_amountBuilder? amount) =>
+      _$this._amount = amount;
+
+  GCategorisedAmountFieldsDataBuilder() {
+    GCategorisedAmountFieldsData._initializeBuilder(this);
+  }
+
+  GCategorisedAmountFieldsDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _category = $v.category;
+      _amount = $v.amount.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GCategorisedAmountFieldsData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GCategorisedAmountFieldsData;
+  }
+
+  @override
+  void update(void Function(GCategorisedAmountFieldsDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GCategorisedAmountFieldsData build() => _build();
+
+  _$GCategorisedAmountFieldsData _build() {
+    _$GCategorisedAmountFieldsData _$result;
+    try {
+      _$result = _$v ??
+          new _$GCategorisedAmountFieldsData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GCategorisedAmountFieldsData', 'G__typename'),
+              category: BuiltValueNullFieldError.checkNotNull(
+                  category, r'GCategorisedAmountFieldsData', 'category'),
+              amount: amount.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'amount';
+        amount.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GCategorisedAmountFieldsData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GCategorisedAmountFieldsData_amount
+    extends GCategorisedAmountFieldsData_amount {
+  @override
+  final String G__typename;
+  @override
+  final int amount;
+  @override
+  final String currencyId;
+
+  factory _$GCategorisedAmountFieldsData_amount(
+          [void Function(GCategorisedAmountFieldsData_amountBuilder)?
+              updates]) =>
+      (new GCategorisedAmountFieldsData_amountBuilder()..update(updates))
+          ._build();
+
+  _$GCategorisedAmountFieldsData_amount._(
+      {required this.G__typename,
+      required this.amount,
+      required this.currencyId})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, r'GCategorisedAmountFieldsData_amount', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        amount, r'GCategorisedAmountFieldsData_amount', 'amount');
+    BuiltValueNullFieldError.checkNotNull(
+        currencyId, r'GCategorisedAmountFieldsData_amount', 'currencyId');
+  }
+
+  @override
+  GCategorisedAmountFieldsData_amount rebuild(
+          void Function(GCategorisedAmountFieldsData_amountBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GCategorisedAmountFieldsData_amountBuilder toBuilder() =>
+      new GCategorisedAmountFieldsData_amountBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GCategorisedAmountFieldsData_amount &&
+        G__typename == other.G__typename &&
+        amount == other.amount &&
+        currencyId == other.currencyId;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, currencyId.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GCategorisedAmountFieldsData_amount')
+          ..add('G__typename', G__typename)
+          ..add('amount', amount)
+          ..add('currencyId', currencyId))
+        .toString();
+  }
+}
+
+class GCategorisedAmountFieldsData_amountBuilder
+    implements
+        Builder<GCategorisedAmountFieldsData_amount,
+            GCategorisedAmountFieldsData_amountBuilder> {
+  _$GCategorisedAmountFieldsData_amount? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _amount;
+  int? get amount => _$this._amount;
+  set amount(int? amount) => _$this._amount = amount;
+
+  String? _currencyId;
+  String? get currencyId => _$this._currencyId;
+  set currencyId(String? currencyId) => _$this._currencyId = currencyId;
+
+  GCategorisedAmountFieldsData_amountBuilder() {
+    GCategorisedAmountFieldsData_amount._initializeBuilder(this);
+  }
+
+  GCategorisedAmountFieldsData_amountBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _amount = $v.amount;
+      _currencyId = $v.currencyId;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GCategorisedAmountFieldsData_amount other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GCategorisedAmountFieldsData_amount;
+  }
+
+  @override
+  void update(
+      void Function(GCategorisedAmountFieldsData_amountBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GCategorisedAmountFieldsData_amount build() => _build();
+
+  _$GCategorisedAmountFieldsData_amount _build() {
+    final _$result = _$v ??
+        new _$GCategorisedAmountFieldsData_amount._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GCategorisedAmountFieldsData_amount', 'G__typename'),
+            amount: BuiltValueNullFieldError.checkNotNull(
+                amount, r'GCategorisedAmountFieldsData_amount', 'amount'),
+            currencyId: BuiltValueNullFieldError.checkNotNull(currencyId,
+                r'GCategorisedAmountFieldsData_amount', 'currencyId'));
     replace(_$result);
     return _$result;
   }

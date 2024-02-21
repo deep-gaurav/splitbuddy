@@ -1,5 +1,6 @@
 import 'package:billdivide/__generated__/schema.schema.gql.dart';
 import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/extensions/expense_mix.dart';
 import 'package:billdivide/extensions/group_extension.dart';
 import 'package:billdivide/extensions/group_obj.dart';
 import 'package:billdivide/extensions/user_extension.dart';
@@ -41,6 +42,8 @@ class _TransactionHistoryState extends State<TransactionHistory>
   Map<String, List<GroupTransactionObject>> expenseGrouped = {};
   List<String> dates = [];
 
+  List<GgetTransactionsData_getTransactions> allData = [];
+
   @override
   void initState() {
     _scrollController.addListener(() {
@@ -72,7 +75,7 @@ class _TransactionHistoryState extends State<TransactionHistory>
         GgetTransactionsReq(
           (b) => b.vars
             ..limit = 10
-            ..fromTime = forceFirst ? null : expenses.lastOrNull?.createdAt,
+            ..skip = allData.length,
         ),
       );
       if (result.data != null) {
@@ -84,6 +87,12 @@ class _TransactionHistoryState extends State<TransactionHistory>
               _scrollController.position.maxScrollExtent,
             );
           });
+        }
+
+        for (var trans in result.data!.getTransactions) {
+          if (!allData.any((element) => trans.isEqual(element))) {
+            allData.add(trans);
+          }
         }
         for (var trans in result.data!.getTransactions) {
           var expense = expenses.firstWhereOrNull((element) =>
@@ -109,8 +118,8 @@ class _TransactionHistoryState extends State<TransactionHistory>
               expenses.add(CurrencyConversion(splits: [trans.split!]));
             }
           } else if (trans.split != null) {
-            if (expenses.every((element) =>
-                element is Split && element.split.id != trans.split!.id)) {
+            if (!expenses.any((element) =>
+                element is Split && element.split.id == trans.split!.id)) {
               expenses.add(Split(split: trans.split!));
             }
           }

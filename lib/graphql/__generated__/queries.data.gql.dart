@@ -8487,6 +8487,126 @@ abstract class GsplitFromGroupData_splitsByPart_amount
       );
 }
 
+abstract class GexpenseSummaryCategorisedData
+    implements
+        Built<GexpenseSummaryCategorisedData,
+            GexpenseSummaryCategorisedDataBuilder> {
+  GexpenseSummaryCategorisedData._();
+
+  factory GexpenseSummaryCategorisedData(
+          [Function(GexpenseSummaryCategorisedDataBuilder b) updates]) =
+      _$GexpenseSummaryCategorisedData;
+
+  static void _initializeBuilder(GexpenseSummaryCategorisedDataBuilder b) =>
+      b..G__typename = 'Query';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  BuiltList<GexpenseSummaryCategorisedData_expenseSummaryByCategory>
+      get expenseSummaryByCategory;
+  static Serializer<GexpenseSummaryCategorisedData> get serializer =>
+      _$gexpenseSummaryCategorisedDataSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GexpenseSummaryCategorisedData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GexpenseSummaryCategorisedData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GexpenseSummaryCategorisedData.serializer,
+        json,
+      );
+}
+
+abstract class GexpenseSummaryCategorisedData_expenseSummaryByCategory
+    implements
+        Built<GexpenseSummaryCategorisedData_expenseSummaryByCategory,
+            GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder>,
+        GCategorisedAmountFields {
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory._();
+
+  factory GexpenseSummaryCategorisedData_expenseSummaryByCategory(
+      [Function(
+              GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder b)
+          updates]) = _$GexpenseSummaryCategorisedData_expenseSummaryByCategory;
+
+  static void _initializeBuilder(
+          GexpenseSummaryCategorisedData_expenseSummaryByCategoryBuilder b) =>
+      b..G__typename = 'CategorisedAmount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get category;
+  @override
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount get amount;
+  static Serializer<GexpenseSummaryCategorisedData_expenseSummaryByCategory>
+      get serializer =>
+          _$gexpenseSummaryCategorisedDataExpenseSummaryByCategorySerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GexpenseSummaryCategorisedData_expenseSummaryByCategory.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GexpenseSummaryCategorisedData_expenseSummaryByCategory? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GexpenseSummaryCategorisedData_expenseSummaryByCategory.serializer,
+        json,
+      );
+}
+
+abstract class GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount
+    implements
+        Built<GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount,
+            GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder>,
+        GCategorisedAmountFields_amount,
+        GAmountFields {
+  GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount._();
+
+  factory GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount(
+          [Function(
+                  GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder
+                      b)
+              updates]) =
+      _$GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount;
+
+  static void _initializeBuilder(
+          GexpenseSummaryCategorisedData_expenseSummaryByCategory_amountBuilder
+              b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<
+          GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount>
+      get serializer =>
+          _$gexpenseSummaryCategorisedDataExpenseSummaryByCategoryAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount
+            .serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount?
+      fromJson(Map<String, dynamic> json) => _i1.serializers.deserializeWith(
+            GexpenseSummaryCategorisedData_expenseSummaryByCategory_amount
+                .serializer,
+            json,
+          );
+}
+
 abstract class GUploadFields {
   String get G__typename;
   String get id;
@@ -13641,6 +13761,101 @@ abstract class GExpenseMixSplitFieldsData_split_amount
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GExpenseMixSplitFieldsData_split_amount.serializer,
+        json,
+      );
+}
+
+abstract class GCategorisedAmountFields {
+  String get G__typename;
+  String get category;
+  GCategorisedAmountFields_amount get amount;
+  Map<String, dynamic> toJson();
+}
+
+abstract class GCategorisedAmountFields_amount implements GAmountFields {
+  @override
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  @override
+  Map<String, dynamic> toJson();
+}
+
+abstract class GCategorisedAmountFieldsData
+    implements
+        Built<GCategorisedAmountFieldsData,
+            GCategorisedAmountFieldsDataBuilder>,
+        GCategorisedAmountFields {
+  GCategorisedAmountFieldsData._();
+
+  factory GCategorisedAmountFieldsData(
+          [Function(GCategorisedAmountFieldsDataBuilder b) updates]) =
+      _$GCategorisedAmountFieldsData;
+
+  static void _initializeBuilder(GCategorisedAmountFieldsDataBuilder b) =>
+      b..G__typename = 'CategorisedAmount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  String get category;
+  @override
+  GCategorisedAmountFieldsData_amount get amount;
+  static Serializer<GCategorisedAmountFieldsData> get serializer =>
+      _$gCategorisedAmountFieldsDataSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GCategorisedAmountFieldsData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GCategorisedAmountFieldsData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GCategorisedAmountFieldsData.serializer,
+        json,
+      );
+}
+
+abstract class GCategorisedAmountFieldsData_amount
+    implements
+        Built<GCategorisedAmountFieldsData_amount,
+            GCategorisedAmountFieldsData_amountBuilder>,
+        GCategorisedAmountFields_amount,
+        GAmountFields {
+  GCategorisedAmountFieldsData_amount._();
+
+  factory GCategorisedAmountFieldsData_amount(
+          [Function(GCategorisedAmountFieldsData_amountBuilder b) updates]) =
+      _$GCategorisedAmountFieldsData_amount;
+
+  static void _initializeBuilder(
+          GCategorisedAmountFieldsData_amountBuilder b) =>
+      b..G__typename = 'Amount';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  int get amount;
+  @override
+  String get currencyId;
+  static Serializer<GCategorisedAmountFieldsData_amount> get serializer =>
+      _$gCategorisedAmountFieldsDataAmountSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GCategorisedAmountFieldsData_amount.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GCategorisedAmountFieldsData_amount? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GCategorisedAmountFieldsData_amount.serializer,
         json,
       );
 }
