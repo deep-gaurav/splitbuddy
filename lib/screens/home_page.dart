@@ -5,6 +5,7 @@ import 'package:billdivide/gen/assets.gen.dart';
 import 'package:billdivide/screens/transaction_history.dart';
 import 'package:billdivide/screens/user_setting.dart';
 import 'package:billdivide/utils/color_utils.dart';
+import 'package:billdivide/widgets/spend_analysis.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -67,6 +68,12 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
+        const SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: SpendAnalysis(),
+          ),
+        ),
         SliverToBoxAdapter(
           child: Container(
             margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
@@ -85,13 +92,22 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        if (nonSelfUsrs.isNotEmpty)
+        if (nonSelfUsrs.isNotEmpty) ...[
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 30, top: 20),
+              child: Text(
+                'Friends',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+          ),
           SliverList(
               delegate: SliverChildBuilderDelegate((context, index) {
             var user = nonSelfUsrs.elementAt(index);
             return HomeUserTile(user: user, scheme: scheme);
           }, childCount: nonSelfUsrs.length))
-        else
+        ] else
           SliverFillRemaining(
             hasScrollBody: false,
             child: Column(
