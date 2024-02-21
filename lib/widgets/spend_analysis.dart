@@ -26,7 +26,6 @@ class _SpendAnalysisState extends State<SpendAnalysis> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      var id = context.read<AppState>().user?.id;
       var client = await context.read<AppState>().client;
       var monthStart =
           DateTime.utc(DateTime.now().year, DateTime.now().month, 1)
@@ -39,8 +38,10 @@ class _SpendAnalysisState extends State<SpendAnalysis> {
         ),
       );
       if (mounted) {
-        categorisedSpends =
-            response.data?.expenseSummaryByCategory.toList() ?? [];
+        setState(() {
+          categorisedSpends =
+              response.data?.expenseSummaryByCategory.toList() ?? [];
+        });
       }
     });
     super.initState();
@@ -62,140 +63,71 @@ class _SpendAnalysisState extends State<SpendAnalysis> {
                     fontWeight: FontWeight.w600,
                   ),
             ),
-            // Row(
-            //   children: [
-            //     if (user.toReceive.isNotEmpty)
-            //       Expanded(
-            //           child: AutoScroll(
-            //         child: Row(
-            //           children: [
-            //             Column(
-            //               crossAxisAlignment: CrossAxisAlignment.end,
-            //               children: [
-            //                 ...user.toReceive.map(
-            //                   (amount) => Text(
-            //                     amount.getPrettyAbs(context),
-            //                     style: Theme.of(context)
-            //                         .textTheme
-            //                         .titleLarge
-            //                         ?.copyWith(
-            //                           fontWeight: FontWeight.bold,
-            //                           color: scheme.primary,
-            //                         ),
-            //                   ),
-            //                 ),
-            //               ],
-            //             ),
-            //             const SizedBox(
-            //               width: 10,
-            //             ),
-            //             Icon(
-            //               Icons.call_received,
-            //               color: scheme.primary,
-            //             ),
-            //             const SizedBox(
-            //               width: 5,
-            //             ),
-            //             Text(
-            //               'To Receive',
-            //               style: TextStyle(color: scheme.primary),
-            //             ),
-            //           ],
-            //         ),
-            //       )),
-            //     if (user.toPay.isNotEmpty)
-            //       Expanded(
-            //         child: AutoScroll(
-            //           child: Row(
-            //             children: [
-            //               Column(
-            //                 crossAxisAlignment: CrossAxisAlignment.end,
-            //                 children: [
-            //                   ...user.toPay.map(
-            //                     (amount) => Text(
-            //                       amount.getPrettyAbs(context),
-            //                       style: Theme.of(context)
-            //                           .textTheme
-            //                           .titleLarge
-            //                           ?.copyWith(
-            //                             fontWeight: FontWeight.bold,
-            //                             color: scheme.error,
-            //                           ),
-            //                     ),
-            //                   )
-            //                 ],
-            //               ),
-            //               const SizedBox(
-            //                 width: 10,
-            //               ),
-            //               Icon(
-            //                 Icons.call_made,
-            //                 color: scheme.error,
-            //               ),
-            //               const SizedBox(
-            //                 width: 5,
-            //               ),
-            //               Text(
-            //                 'To Pay',
-            //                 style: TextStyle(
-            //                   color: scheme.error,
-            //                 ),
-            //               ),
-            //             ],
-            //           ),
-            //         ),
-            //       )
-            //   ],
-            // ),
             const Divider(),
-            ...categorisedSpends
+            if (categorisedSpends
                 .where((element) => element.amount.amount != 0)
-                .map<Widget>(
-              (element) {
-                var category = Category.categoryFromId(element.category);
+                .isNotEmpty)
+              ...categorisedSpends
+                  .where((element) => element.amount.amount != 0)
+                  .map<Widget>(
+                (element) {
+                  var category = Category.categoryFromId(element.category);
 
-                return Align(
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        height: 25,
-                        width: 25,
-                        child: FittedBox(
-                          child: SvgIcon(asset: category.iconPath),
+                  return Align(
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 25,
+                          width: 25,
+                          child: FittedBox(
+                            child: SvgIcon(asset: category.iconPath),
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        category.displayName,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
+                        const SizedBox(
+                          width: 10,
                         ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          element.amount.getPretty(context),
-                          style:
-                              Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                          textAlign: TextAlign.end,
+                        Text(
+                          category.displayName,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
+                        Expanded(
+                          child: Text(
+                            element.amount.getPretty(context),
+                            style:
+                                Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                            textAlign: TextAlign.end,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ).intersperse(
+                const SizedBox(
+                  height: 10,
+                ),
+              )
+            else
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'No expenses this month',
+                      style: TextStyle(
+                        color: neutralBlue.primary,
                       ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ).intersperse(
-              const SizedBox(
-                height: 10,
+                    ),
+                  ],
+                ),
               ),
-            ),
             const SizedBox(
               height: 5,
             ),

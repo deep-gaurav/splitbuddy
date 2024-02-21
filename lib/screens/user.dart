@@ -9,6 +9,7 @@ import 'package:billdivide/screens/payment_currency_selector.dart';
 import 'package:billdivide/screens/transaction_page.dart';
 import 'package:billdivide/utils/svg_icons.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
+import 'package:billdivide/widgets/spend_analysis.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
@@ -298,7 +299,30 @@ class _UserPageState extends State<UserPage>
                   ],
                 ),
               ),
-              if (!isSelf)
+              if (isSelf)
+                SliverToBoxAdapter(
+                  child: SpendAnalysis(
+                    key: Key(context.select<AppState, String>(
+                      (state) =>
+                          state.userGroups
+                              .firstWhereOrNull((element) =>
+                                  element.name == null &&
+                                  element.members.length == 1)
+                              ?.id ??
+                          'None',
+                    )),
+                    groupId: context.select<AppState, String>(
+                      (state) =>
+                          state.userGroups
+                              .firstWhereOrNull((element) =>
+                                  element.name == null &&
+                                  element.members.length == 1)
+                              ?.id ??
+                          'None',
+                    ),
+                  ),
+                )
+              else
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(

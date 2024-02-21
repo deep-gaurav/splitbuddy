@@ -641,11 +641,8 @@ class _GroupState extends State<Group>
                             group: group,
                             neutralBlue: neutralBlue),
                       ),
-                      InkWell(
-                        onTap: () {},
-                        child: SpendAnalysis(
-                          groupId: group.id,
-                        ),
+                      SpendAnalysis(
+                        groupId: group.id,
                       ),
                     ],
                   ),
