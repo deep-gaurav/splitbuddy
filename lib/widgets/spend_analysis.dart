@@ -87,11 +87,38 @@ class _SpendAnalysisState extends State<SpendAnalysis>
                   CategorisedSpendChart(categorisedSpends: categorisedSpends),
                 SpendAnalysisType.table => SpendCategoryAmountTable(
                     categorisedSpends: categorisedSpends),
-                SpendAnalysisType.all => ExpandableCarousel(items: [
-                    CategorisedSpendChart(categorisedSpends: categorisedSpends),
-                    SpendCategoryAmountTable(
-                        categorisedSpends: categorisedSpends)
-                  ], options: CarouselOptions(viewportFraction: 1)),
+                SpendAnalysisType.all => ExpandableCarousel(
+                    items: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: CategorisedSpendChart(
+                            categorisedSpends: categorisedSpends),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: SpendCategoryAmountTable(
+                            categorisedSpends: categorisedSpends),
+                      )
+                    ],
+                    options: CarouselOptions(
+                      viewportFraction: 1,
+                      slideIndicator: CircularSlideIndicator(
+                        padding: EdgeInsets.zero,
+                        currentIndicatorColor: switch (
+                            Theme.of(context).brightness) {
+                          Brightness.dark => null,
+                          Brightness.light =>
+                            Theme.of(context).colorScheme.primary,
+                        },
+                        indicatorBackgroundColor: switch (
+                            Theme.of(context).brightness) {
+                          Brightness.dark => null,
+                          Brightness.light =>
+                            Theme.of(context).colorScheme.primaryContainer,
+                        },
+                      ),
+                    ),
+                  ),
               }
             else
               Text.rich(

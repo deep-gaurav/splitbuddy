@@ -625,7 +625,23 @@ class _GroupState extends State<Group>
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: ExpandableCarousel(
-                    options: CarouselOptions(),
+                    options: CarouselOptions(
+                      slideIndicator: CircularSlideIndicator(
+                        padding: EdgeInsets.zero,
+                        currentIndicatorColor: switch (
+                            Theme.of(context).brightness) {
+                          Brightness.dark => null,
+                          Brightness.light =>
+                            Theme.of(context).colorScheme.primary,
+                        },
+                        indicatorBackgroundColor: switch (
+                            Theme.of(context).brightness) {
+                          Brightness.dark => null,
+                          Brightness.light =>
+                            Theme.of(context).colorScheme.primaryContainer,
+                        },
+                      ),
+                    ),
                     items: [
                       InkWell(
                         onTap: () => Navigator.of(context).push(
