@@ -301,14 +301,7 @@ class _$GsignupVarsSerializer implements StructuredSerializer<GsignupVars> {
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
     ];
-    Object? value;
-    value = object.upi_id;
-    if (value != null) {
-      result
-        ..add('upi_id')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
+
     return result;
   }
 
@@ -326,10 +319,6 @@ class _$GsignupVarsSerializer implements StructuredSerializer<GsignupVars> {
         case 'name':
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
-          break;
-        case 'upi_id':
-          result.upi_id = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -2581,13 +2570,11 @@ class GgroupVarsBuilder implements Builder<GgroupVars, GgroupVarsBuilder> {
 class _$GsignupVars extends GsignupVars {
   @override
   final String name;
-  @override
-  final String? upi_id;
 
   factory _$GsignupVars([void Function(GsignupVarsBuilder)? updates]) =>
       (new GsignupVarsBuilder()..update(updates))._build();
 
-  _$GsignupVars._({required this.name, this.upi_id}) : super._() {
+  _$GsignupVars._({required this.name}) : super._() {
     BuiltValueNullFieldError.checkNotNull(name, r'GsignupVars', 'name');
   }
 
@@ -2601,23 +2588,20 @@ class _$GsignupVars extends GsignupVars {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GsignupVars && name == other.name && upi_id == other.upi_id;
+    return other is GsignupVars && name == other.name;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jc(_$hash, upi_id.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GsignupVars')
-          ..add('name', name)
-          ..add('upi_id', upi_id))
+    return (newBuiltValueToStringHelper(r'GsignupVars')..add('name', name))
         .toString();
   }
 }
@@ -2629,17 +2613,12 @@ class GsignupVarsBuilder implements Builder<GsignupVars, GsignupVarsBuilder> {
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
 
-  String? _upi_id;
-  String? get upi_id => _$this._upi_id;
-  set upi_id(String? upi_id) => _$this._upi_id = upi_id;
-
   GsignupVarsBuilder();
 
   GsignupVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _name = $v.name;
-      _upi_id = $v.upi_id;
       _$v = null;
     }
     return this;
@@ -2663,8 +2642,7 @@ class GsignupVarsBuilder implements Builder<GsignupVars, GsignupVarsBuilder> {
     final _$result = _$v ??
         new _$GsignupVars._(
             name: BuiltValueNullFieldError.checkNotNull(
-                name, r'GsignupVars', 'name'),
-            upi_id: upi_id);
+                name, r'GsignupVars', 'name'));
     replace(_$result);
     return _$result;
   }

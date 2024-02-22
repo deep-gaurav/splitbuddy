@@ -229,8 +229,8 @@ query group($fromTime: String, $limit: Int!, $groupId: String!) {
   }
 }
 
-mutation signup($name: String!, $upi_id: String) {
-  signup(name: $name, upiId: $upi_id) {
+mutation signup($name: String!) {
+  signup(name: $name) {
     user {
       ...UserFields
     }

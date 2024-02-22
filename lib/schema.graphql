@@ -60,7 +60,7 @@ type Mutation {
   sendEmailOtp(email: String!): Boolean!
   verifyOtp(email: String!, otp: String!): AuthResult!
   refreshToken(refreshToken: String!): UserSignedUp!
-  signup(name: String!, upiId: String): SignupSuccess!
+  signup(name: String!): SignupSuccess!
   createGroup(name: String!): Group!
   setNotificationToken(token: String!): String!
   addToGroupByEmail(groupId: String!, email: String!): String!

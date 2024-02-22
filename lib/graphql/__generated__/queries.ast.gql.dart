@@ -1077,16 +1077,7 @@ const signup = _i1.OperationDefinitionNode(
       ),
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
-    ),
-    _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'upi_id')),
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
-        isNonNull: false,
-      ),
-      defaultValue: _i1.DefaultValueNode(value: null),
-      directives: [],
-    ),
+    )
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
@@ -1097,11 +1088,7 @@ const signup = _i1.OperationDefinitionNode(
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'name'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'name')),
-        ),
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'upiId'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'upi_id')),
-        ),
+        )
       ],
       directives: [],
       selectionSet: _i1.SelectionSetNode(selections: [

@@ -164,7 +164,6 @@ abstract class GsignupVars implements Built<GsignupVars, GsignupVarsBuilder> {
   factory GsignupVars([Function(GsignupVarsBuilder b) updates]) = _$GsignupVars;
 
   String get name;
-  String? get upi_id;
   static Serializer<GsignupVars> get serializer => _$gsignupVarsSerializer;
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
