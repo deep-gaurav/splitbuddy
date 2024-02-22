@@ -221,11 +221,7 @@ class AppState extends ChangeNotifier {
 
   Future<GUserFields> signup(String name, String upiId) async {
     var result = await (await _getClient()).execute(
-      GsignupReq(
-        (b) => b.vars
-          ..name = name
-          ..upi_id = upiId,
-      ),
+      GsignupReq((b) => b.vars..name = name),
     );
     if (result.data?.signup != null) {
       await SecureStorageHelper.getInstance().storeTokens(
