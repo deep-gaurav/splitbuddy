@@ -221,9 +221,10 @@ class _UserPageState extends State<UserPage>
 
   @override
   Widget build(BuildContext context) {
-    var user = context.select<AppState, GUserPaysFields>((state) => state
-        .interactedUsers
-        .firstWhere((element) => element.id == widget.initialUser.id));
+    var user = context.select<AppState, GUserFields?>((state) =>
+            state.interactedUsers.firstWhereOrNull(
+                (element) => element.id == widget.initialUser.id)) ??
+        (context.read<AppState>().user!);
 
     var isSelf = (user.id == context.read<AppState>().user?.id);
 
@@ -331,7 +332,7 @@ class _UserPageState extends State<UserPage>
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 20),
                     child: UserSummaryWidget(
-                      user: user,
+                      user: (user as GUserPaysFields),
                       onSimplify: (splitTransactions) {
                         if (!transactions.any((element) =>
                             element is GroupedCrossSettlementTransactions &&
@@ -364,7 +365,8 @@ class _UserPageState extends State<UserPage>
               onPressed: () async {
                 var result = await Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => CurrencyConverter(user: user),
+                    builder: (context) =>
+                        CurrencyConverter(user: (user as GUserPaysFields)),
                   ),
                 );
                 if (result is List<GSplitTransactionFields>) {
@@ -420,7 +422,7 @@ class _UserPageState extends State<UserPage>
               icon: const Icon(Icons.payments),
               onPressed: () async {
                 dynamic expense;
-                if (user.toPay.length == 1) {
+                if ((user as GUserPaysFields).toPay.length == 1) {
                   expense = await Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => PaymentRecorder(
