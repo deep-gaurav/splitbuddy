@@ -4,18 +4,12 @@ import 'package:billdivide/extensions/num_extension.dart';
 import 'package:billdivide/models/expensecategory.dart';
 import 'package:billdivide/screens/image_editor.dart';
 import 'package:billdivide/screens/people_finder.dart';
-import 'package:billdivide/utils/color_utils.dart';
 import 'package:billdivide/utils/svg_icons.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_avif/flutter_avif.dart';
-import 'package:http_parser/http_parser.dart';
-import 'package:image/image.dart' as image;
-import 'package:image_picker/image_picker.dart';
-import 'package:image_picker_android/image_picker_android.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/__generated__/schema.schema.gql.dart';
 import 'package:billdivide/extensions/group_extension.dart';
@@ -26,7 +20,6 @@ import 'package:billdivide/models/expensewith.dart';
 import 'package:billdivide/screens/groups_page.dart';
 import 'package:billdivide/screens/home_page.dart';
 import 'package:billdivide/state/app_state.dart';
-import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 import 'package:http/http.dart' as http;
 
 class CreateExpense extends StatefulWidget {

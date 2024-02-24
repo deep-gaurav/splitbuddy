@@ -3,6 +3,12 @@
 
 import 'package:billdivide/__generated__/schema.schema.gql.dart'
     show GSplitInput, GSplitInputNonGroup, GTransactionType;
+import 'package:billdivide/graphql/__generated__/client_version.data.gql.dart'
+    show GsupportedClientConstraintsData;
+import 'package:billdivide/graphql/__generated__/client_version.req.gql.dart'
+    show GsupportedClientConstraintsReq;
+import 'package:billdivide/graphql/__generated__/client_version.var.gql.dart'
+    show GsupportedClientConstraintsVars;
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart'
     show
         GrefreshData_user,
@@ -754,6 +760,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GsplitFromidData_splitById_toUser,
   GsplitFromidReq,
   GsplitFromidVars,
+  GsupportedClientConstraintsData,
+  GsupportedClientConstraintsReq,
+  GsupportedClientConstraintsVars,
   GtransactionMixExpenseData,
   GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup,
   GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense,

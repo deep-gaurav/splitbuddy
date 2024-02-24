@@ -201,10 +201,10 @@ class _UserPageState extends State<UserPage>
 
   generateGrouped() {
     expenseGrouped = {};
-    transactions.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+    transactions.sort((a, b) => b.transactionAt.compareTo(a.transactionAt));
     for (var transaction in transactions) {
       var date = DateFormat('d MMM y')
-          .format(DateTime.parse(transaction.createdAt).toLocal());
+          .format(DateTime.parse(transaction.transactionAt).toLocal());
       if (expenseGrouped[date] == null) {
         expenseGrouped[date] = [transaction];
       } else {
@@ -790,7 +790,7 @@ class UserTransactionCard extends StatelessWidget {
                         right: 15,
                         child: Text(
                           DateFormat("h:mm a").format(
-                            DateTime.parse(transactions.first.createdAt)
+                            DateTime.parse(transactions.first.transactionAt)
                                 .toLocal(),
                           ),
                           style: Theme.of(context).textTheme.labelSmall,
@@ -804,7 +804,7 @@ class UserTransactionCard extends StatelessWidget {
                 groupId: var groupedTransactionId,
                 creatorId: var creatorId,
                 total: var total,
-                createdAt: var createdAt
+                transactionAt: var transactionAt
               ) =>
                 InkWell(
                   onTap: () {
@@ -836,7 +836,7 @@ class UserTransactionCard extends StatelessWidget {
                             amountColor:
                                 getTitle(context, transactions.first).$2,
                             amount: total,
-                            createdAt: createdAt,
+                            transactionAt: transactionAt,
                             subtitle:
                                 const TextSpan(text: 'Payment split into'),
                             body: [
@@ -888,7 +888,7 @@ class UserTransactionCard extends StatelessWidget {
                         ),
                 ),
               GroupedCrossSettlementTransactions(
-                createdAt: var createdAt,
+                transactionAt: var transactionAt,
                 transactionPairs: var transactionPairs
               ) =>
                 Column(
@@ -930,7 +930,7 @@ class UserTransactionCard extends StatelessWidget {
                             right: 10,
                             child: Text(
                               DateFormat("h:mm a").format(
-                                DateTime.parse(createdAt).toLocal(),
+                                DateTime.parse(transactionAt).toLocal(),
                               ),
                               style: Theme.of(context).textTheme.labelSmall,
                             ),
@@ -961,7 +961,7 @@ class UserTransactionCard extends StatelessWidget {
             title: getTitle(context, transaction).$1,
             amountColor: getTitle(context, transaction).$2,
             amount: transaction.amount,
-            createdAt: transaction.createdAt,
+            transactionAt: transaction.transactionAt,
             subtitle: subTitle(context, transaction),
             note: transaction.note,
             imageId: transaction.imageId,
@@ -1064,7 +1064,7 @@ class TransactionCard extends StatelessWidget {
   final TextSpan title;
   final GAmountFields? amount;
   final TextSpan? subtitle;
-  final String? createdAt;
+  final String? transactionAt;
   final List<Widget> body;
   final EdgeInsets padding;
   final Color? amountColor;
@@ -1077,7 +1077,7 @@ class TransactionCard extends StatelessWidget {
     required this.title,
     this.amount,
     this.subtitle,
-    this.createdAt,
+    this.transactionAt,
     this.padding = const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
     this.body = const <Widget>[],
     this.amountColor,
@@ -1172,13 +1172,13 @@ class TransactionCard extends StatelessWidget {
               ],
             ),
           ),
-          if (createdAt != null)
+          if (transactionAt != null)
             Positioned(
               bottom: -5,
               right: -5,
               child: Text(
                 DateFormat("h:mm a").format(
-                  DateTime.parse(createdAt!).toLocal(),
+                  DateTime.parse(transactionAt!).toLocal(),
                 ),
                 style: Theme.of(context).textTheme.labelSmall,
               ),

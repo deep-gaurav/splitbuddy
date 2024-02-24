@@ -1,4 +1,5 @@
 import 'package:billdivide/state/customization_provider.dart';
+import 'package:billdivide/widgets/update_required_dialog.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -57,50 +58,61 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return DynamicColorBuilder(builder: (light, dark) {
-      return Selector<AppState, AuthStates>(
-        builder: (context, val, child) {
-          return DynamicColorBuilder(
-            builder: (lightDynamic, darkDynamic) =>
-                Selector<Customization, (ThemeMode, Color?)>(
-              selector: (context, customization) =>
-                  (customization.themeMode, customization.themeColor),
-              builder: (context, customizations, child) => MaterialApp(
-                themeMode: customizations.$1,
-                debugShowCheckedModeBanner: false,
-                title: 'BillDivide',
-                theme: _buildTheme(
-                  Brightness.light,
-                  customizations.$2 != null
-                      ? ColorScheme.fromSeed(
-                          seedColor: customizations.$2!,
-                          brightness: Brightness.light,
-                        )
-                      : lightDynamic,
-                ),
-                darkTheme: _buildTheme(
-                  Brightness.dark,
-                  customizations.$2 != null
-                      ? ColorScheme.fromSeed(
-                          seedColor: customizations.$2!,
-                          brightness: Brightness.dark,
-                        )
-                      : darkDynamic,
-                ),
-                home: switch (val) {
-                  AuthStates.loading => const Scaffold(
-                      body: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    ),
-                  AuthStates.unAuthorized => const PhoneEntryScreen(),
-                  AuthStates.authorizedRequiresSignup => const SignupScreen(),
-                  AuthStates.authorized => const HomeScreen(),
-                },
-              ),
+      return DynamicColorBuilder(
+        builder: (lightDynamic, darkDynamic) =>
+            Selector<Customization, (ThemeMode, Color?)>(
+          selector: (context, customization) =>
+              (customization.themeMode, customization.themeColor),
+          builder: (context, customizations, child) => MaterialApp(
+            themeMode: customizations.$1,
+            debugShowCheckedModeBanner: false,
+            title: 'BillDivide',
+            theme: _buildTheme(
+              Brightness.light,
+              customizations.$2 != null
+                  ? ColorScheme.fromSeed(
+                      seedColor: customizations.$2!,
+                      brightness: Brightness.light,
+                    )
+                  : lightDynamic,
             ),
-          );
-        },
-        selector: (_, appstate) => appstate.authState,
+            darkTheme: _buildTheme(
+              Brightness.dark,
+              customizations.$2 != null
+                  ? ColorScheme.fromSeed(
+                      seedColor: customizations.$2!,
+                      brightness: Brightness.dark,
+                    )
+                  : darkDynamic,
+            ),
+            home: Selector<AppState, AppConnectionState>(
+              selector: (context, state) => state.connectionState,
+              builder: (context, val, child) {
+                return switch (val) {
+                  AppConnectionState.connected =>
+                    Selector<AppState, AuthStates>(
+                      selector: (context, state) => state.authState,
+                      builder: (context, val, child) {
+                        return switch (val) {
+                          AuthStates.loading => const Scaffold(
+                              body: Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                          AuthStates.unAuthorized => const PhoneEntryScreen(),
+                          AuthStates.authorizedRequiresSignup =>
+                            const SignupScreen(),
+                          AuthStates.authorized => const HomeScreen(),
+                        };
+                      },
+                    ),
+                  AppConnectionState.updateRequried =>
+                    const UpdateRequiredScreen(),
+                };
+              },
+            ),
+          ),
+        ),
       );
     });
   }

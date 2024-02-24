@@ -59,6 +59,8 @@ fragment ExpenseBasic on Expense {
   id
   title
   createdAt
+  updatedAt
+  transactionAt
   category
   amount {
     ...AmountFields
@@ -96,6 +98,8 @@ fragment SplitFieldsBasics on Split {
   }
   transactionType
   createdAt
+  updatedAt
+  transactionAt
   transactionPartGroupId
   fromUserId
   toUserId

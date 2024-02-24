@@ -1,10 +1,14 @@
 import 'dart:async';
 
+import 'package:billdivide/gen/assets.gen.dart';
+import 'package:billdivide/graphql/__generated__/client_version.req.gql.dart';
+import 'package:billdivide/nocache/nocachestore.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:collection/collection.dart';
 import 'package:ferry/ferry.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import 'package:billdivide/__generated__/schema.schema.gql.dart';
@@ -14,6 +18,8 @@ import 'package:billdivide/extensions/group_extension.dart';
 import 'package:billdivide/extensions/user_extension.dart';
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 import 'package:billdivide/graphql/__generated__/queries.req.gql.dart';
+import 'package:pub_semver/pub_semver.dart';
+import 'package:pubspec_parse/pubspec_parse.dart';
 
 enum AuthStates {
   loading,
@@ -22,8 +28,11 @@ enum AuthStates {
   authorized,
 }
 
+enum AppConnectionState { connected, updateRequried }
+
 class AppState extends ChangeNotifier {
   static Client unAuthorizedClient = Client(
+    cache: Cache(store: NoStore()),
     link: HttpLink(
       const String.fromEnvironment(
         'ENDPOINT',
@@ -39,6 +48,7 @@ class AppState extends ChangeNotifier {
   }
 
   AppState() {
+    verifyAppSupport();
     refreshCurrencies();
     unawaited(() async {
       refresh(await _getClient());
@@ -52,6 +62,7 @@ class AppState extends ChangeNotifier {
   GrefreshData_user? _auth;
 
   AuthStates authState = AuthStates.loading;
+  AppConnectionState connectionState = AppConnectionState.connected;
 
   GUserFields? get user =>
       _user ??
@@ -121,6 +132,22 @@ class AppState extends ChangeNotifier {
 
   GGroupFields? getGroupFromId(String id) =>
       userGroups.firstWhereOrNull((e) => e.id == id);
+
+  verifyAppSupport() async {
+    var pubspecString = await rootBundle.loadString(Assets.pubspec);
+    var pubspec = Pubspec.parse(pubspecString);
+    unAuthorizedClient
+        .request(GsupportedClientConstraintsReq())
+        .listen((event) {
+      if (event.data?.supportedClient != null) {
+        if (!VersionConstraint.parse(event.data!.supportedClient)
+            .allows(pubspec.version!)) {
+          connectionState = AppConnectionState.updateRequried;
+          notifyListeners();
+        }
+      }
+    });
+  }
 
   refresh(
     ReAuthClient client, {

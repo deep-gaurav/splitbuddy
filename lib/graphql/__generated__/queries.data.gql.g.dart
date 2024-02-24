@@ -3317,6 +3317,12 @@ class _$GgroupData_group_expensesSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -3383,6 +3389,14 @@ class _$GgroupData_group_expensesSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -3544,6 +3558,12 @@ class _$GgroupData_group_expenses_splitsSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -3634,6 +3654,14 @@ class _$GgroupData_group_expenses_splitsSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'transactionPartGroupId':
@@ -5127,6 +5155,12 @@ class _$Gadd_expenseData_addExpenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -5187,6 +5221,14 @@ class _$Gadd_expenseData_addExpenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -5263,6 +5305,12 @@ class _$Gadd_expenseData_addExpense_splitsSerializer
           specifiedType: const FullType(_i3.GTransactionType)),
       'createdAt',
       serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
           specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
@@ -5382,6 +5430,14 @@ class _$Gadd_expenseData_addExpense_splitsSerializer
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
         case 'transactionPartGroupId':
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -5448,6 +5504,12 @@ class _$Gadd_expenseData_addExpense_splits_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -5503,6 +5565,14 @@ class _$Gadd_expenseData_addExpense_splits_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -7170,6 +7240,12 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -7233,6 +7309,14 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -7312,6 +7396,12 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsSerializer
           specifiedType: const FullType(_i3.GTransactionType)),
       'createdAt',
       serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
           specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
@@ -7432,6 +7522,14 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsSerializer
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
         case 'transactionPartGroupId':
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -7502,6 +7600,12 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseSeri
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -7558,6 +7662,14 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseSeri
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -8241,6 +8353,12 @@ class _$GsettleInGroupData_settleInGroupSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -8359,6 +8477,14 @@ class _$GsettleInGroupData_settleInGroupSerializer
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
         case 'transactionPartGroupId':
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -8424,6 +8550,12 @@ class _$GsettleInGroupData_settleInGroup_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -8479,6 +8611,14 @@ class _$GsettleInGroupData_settleInGroup_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -9066,6 +9206,12 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -9184,6 +9330,14 @@ class _$GsimplifyUserData_simplifyCrossGroupSerializer
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
         case 'transactionPartGroupId':
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -9250,6 +9404,12 @@ class _$GsimplifyUserData_simplifyCrossGroup_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -9305,6 +9465,14 @@ class _$GsimplifyUserData_simplifyCrossGroup_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -9905,6 +10073,12 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -10023,6 +10197,14 @@ class _$GautoSettleWithUserData_autoSettleWithUserSerializer
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
         case 'transactionPartGroupId':
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -10090,6 +10272,12 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -10146,6 +10334,14 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -10819,6 +11015,12 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseSerial
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -10875,6 +11077,14 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseSerial
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -11012,6 +11222,12 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitSerializ
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -11103,6 +11319,14 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitSerializ
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'transactionPartGroupId':
@@ -11574,6 +11798,12 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseSer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -11630,6 +11860,14 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseSer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -11769,6 +12007,12 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitSeria
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -11860,6 +12104,14 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitSeria
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'transactionPartGroupId':
@@ -12374,6 +12626,12 @@ class _$GcurrencyConvertData_convertCurrencySerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -12492,6 +12750,14 @@ class _$GcurrencyConvertData_convertCurrencySerializer
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
         case 'transactionPartGroupId':
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -12558,6 +12824,12 @@ class _$GcurrencyConvertData_convertCurrency_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -12613,6 +12885,14 @@ class _$GcurrencyConvertData_convertCurrency_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -13408,6 +13688,12 @@ class _$GgetTransactionsData_getTransactions_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -13463,6 +13749,14 @@ class _$GgetTransactionsData_getTransactions_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -13595,6 +13889,12 @@ class _$GgetTransactionsData_getTransactions_splitSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -13685,6 +13985,14 @@ class _$GgetTransactionsData_getTransactions_splitSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'transactionPartGroupId':
@@ -14281,6 +14589,12 @@ class _$GgetExpenseData_expenseByIdSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -14347,6 +14661,14 @@ class _$GgetExpenseData_expenseByIdSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -14508,6 +14830,12 @@ class _$GgetExpenseData_expenseById_splitsSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -14598,6 +14926,14 @@ class _$GgetExpenseData_expenseById_splitsSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'transactionPartGroupId':
@@ -15037,6 +15373,12 @@ class _$GsplitFromidData_splitByIdSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -15160,6 +15502,14 @@ class _$GsplitFromidData_splitByIdSerializer
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
         case 'transactionPartGroupId':
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -15244,6 +15594,12 @@ class _$GsplitFromidData_splitById_siblingsSerializer
           specifiedType: const FullType(_i3.GTransactionType)),
       'createdAt',
       serializers.serialize(object.createdAt,
+          specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
           specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
@@ -15363,6 +15719,14 @@ class _$GsplitFromidData_splitById_siblingsSerializer
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
         case 'transactionPartGroupId':
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -15429,6 +15793,12 @@ class _$GsplitFromidData_splitById_siblings_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -15484,6 +15854,14 @@ class _$GsplitFromidData_splitById_siblings_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -16005,6 +16383,12 @@ class _$GsplitFromidData_splitById_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -16060,6 +16444,14 @@ class _$GsplitFromidData_splitById_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -16642,6 +17034,12 @@ class _$GsplitFromGroupData_splitsByPartSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -16732,6 +17130,14 @@ class _$GsplitFromGroupData_splitsByPartSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'transactionPartGroupId':
@@ -18188,6 +18594,12 @@ class _$GExpenseBasicDataSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -18242,6 +18654,14 @@ class _$GExpenseBasicDataSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -18354,6 +18774,12 @@ class _$GExpenseFieldsDataSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -18415,6 +18841,14 @@ class _$GExpenseFieldsDataSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -18642,6 +19076,12 @@ class _$GExpenseFieldsData_splitsSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -18732,6 +19172,14 @@ class _$GExpenseFieldsData_splitsSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'transactionPartGroupId':
@@ -19042,6 +19490,12 @@ class _$GNewExpenseFieldsDataSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -19100,6 +19554,14 @@ class _$GNewExpenseFieldsDataSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -19236,6 +19698,12 @@ class _$GNewExpenseFieldsData_splitsSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -19354,6 +19822,14 @@ class _$GNewExpenseFieldsData_splitsSerializer
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
         case 'transactionPartGroupId':
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -19419,6 +19895,12 @@ class _$GNewExpenseFieldsData_splits_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -19474,6 +19956,14 @@ class _$GNewExpenseFieldsData_splits_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -20041,6 +20531,12 @@ class _$GSplitFieldsBasicsDataSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -20118,6 +20614,14 @@ class _$GSplitFieldsBasicsDataSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'transactionPartGroupId':
@@ -20243,6 +20747,12 @@ class _$GSplitFieldsDataSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -20326,6 +20836,14 @@ class _$GSplitFieldsDataSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'transactionPartGroupId':
@@ -20655,6 +21173,12 @@ class _$GSplitTransactionFieldsDataSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -20759,6 +21283,14 @@ class _$GSplitTransactionFieldsDataSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'transactionPartGroupId':
@@ -21087,6 +21619,12 @@ class _$GSplitTransactionFieldsData_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -21142,6 +21680,14 @@ class _$GSplitTransactionFieldsData_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -21429,6 +21975,12 @@ class _$GSplitWithSiblingsDataSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -21547,6 +22099,14 @@ class _$GSplitWithSiblingsDataSerializer
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
         case 'transactionPartGroupId':
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -21618,6 +22178,12 @@ class _$GSplitWithSiblingsData_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -21672,6 +22238,14 @@ class _$GSplitWithSiblingsData_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -22205,6 +22779,12 @@ class _$GSplitWithSiblingsData_siblingsSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -22323,6 +22903,14 @@ class _$GSplitWithSiblingsData_siblingsSerializer
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
         case 'transactionPartGroupId':
           result.transactionPartGroupId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -22388,6 +22976,12 @@ class _$GSplitWithSiblingsData_siblings_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -22443,6 +23037,14 @@ class _$GSplitWithSiblingsData_siblings_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -23375,6 +23977,12 @@ class _$GGroupWithExpensesData_expensesSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -23442,6 +24050,14 @@ class _$GGroupWithExpensesData_expensesSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -23603,6 +24219,12 @@ class _$GGroupWithExpensesData_expenses_splitsSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -23693,6 +24315,14 @@ class _$GGroupWithExpensesData_expenses_splitsSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'transactionPartGroupId':
@@ -24137,6 +24767,12 @@ class _$GExpenseMixSplitFieldsData_expenseSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -24192,6 +24828,14 @@ class _$GExpenseMixSplitFieldsData_expenseSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'category':
@@ -24320,6 +24964,12 @@ class _$GExpenseMixSplitFieldsData_splitSerializer
       'createdAt',
       serializers.serialize(object.createdAt,
           specifiedType: const FullType(String)),
+      'updatedAt',
+      serializers.serialize(object.updatedAt,
+          specifiedType: const FullType(String)),
+      'transactionAt',
+      serializers.serialize(object.transactionAt,
+          specifiedType: const FullType(String)),
       'fromUserId',
       serializers.serialize(object.fromUserId,
           specifiedType: const FullType(String)),
@@ -24410,6 +25060,14 @@ class _$GExpenseMixSplitFieldsData_splitSerializer
           break;
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'updatedAt':
+          result.updatedAt = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
         case 'transactionPartGroupId':
@@ -29933,6 +30591,10 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GgroupData_group_expenses_amount amount;
@@ -29954,6 +30616,8 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -29972,6 +30636,10 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
         title, r'GgroupData_group_expenses', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GgroupData_group_expenses', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GgroupData_group_expenses', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GgroupData_group_expenses', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GgroupData_group_expenses', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -29999,6 +30667,8 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -30015,6 +30685,8 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -30033,6 +30705,8 @@ class _$GgroupData_group_expenses extends GgroupData_group_expenses {
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -30075,6 +30749,15 @@ class GgroupData_group_expensesBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _category;
   String? get category => _$this._category;
   set category(String? category) => _$this._category = category;
@@ -30110,6 +30793,8 @@ class GgroupData_group_expensesBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -30149,6 +30834,10 @@ class GgroupData_group_expensesBuilder
                   title, r'GgroupData_group_expenses', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GgroupData_group_expenses', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GgroupData_group_expenses', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GgroupData_group_expenses', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GgroupData_group_expenses', 'category'),
               amount: amount.build(),
@@ -30357,6 +31046,10 @@ class _$GgroupData_group_expenses_splits
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -30385,6 +31078,8 @@ class _$GgroupData_group_expenses_splits
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -30408,6 +31103,10 @@ class _$GgroupData_group_expenses_splits
         r'GgroupData_group_expenses_splits', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GgroupData_group_expenses_splits', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GgroupData_group_expenses_splits', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GgroupData_group_expenses_splits', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GgroupData_group_expenses_splits', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -30438,6 +31137,8 @@ class _$GgroupData_group_expenses_splits
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -30458,6 +31159,8 @@ class _$GgroupData_group_expenses_splits
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -30480,6 +31183,8 @@ class _$GgroupData_group_expenses_splits
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -30534,6 +31239,15 @@ class GgroupData_group_expenses_splitsBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -30581,6 +31295,8 @@ class GgroupData_group_expenses_splitsBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -30624,13 +31340,15 @@ class GgroupData_group_expenses_splitsBuilder
                   transactionType, r'GgroupData_group_expenses_splits', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GgroupData_group_expenses_splits', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GgroupData_group_expenses_splits', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GgroupData_group_expenses_splits', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GgroupData_group_expenses_splits', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GgroupData_group_expenses_splits', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GgroupData_group_expenses_splits', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GgroupData_group_expenses_splits', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GgroupData_group_expenses_splits', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GgroupData_group_expenses_splits', 'groupId'),
               note: note,
@@ -33528,6 +34246,10 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final Gadd_expenseData_addExpense_amount amount;
@@ -33548,6 +34270,8 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -33564,6 +34288,10 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
         title, r'Gadd_expenseData_addExpense', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'Gadd_expenseData_addExpense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'Gadd_expenseData_addExpense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'Gadd_expenseData_addExpense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'Gadd_expenseData_addExpense', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -33590,6 +34318,8 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -33605,6 +34335,8 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -33622,6 +34354,8 @@ class _$Gadd_expenseData_addExpense extends Gadd_expenseData_addExpense {
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -33659,6 +34393,15 @@ class Gadd_expenseData_addExpenseBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _category;
   String? get category => _$this._category;
   set category(String? category) => _$this._category = category;
@@ -33693,6 +34436,8 @@ class Gadd_expenseData_addExpenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -33731,11 +34476,15 @@ class Gadd_expenseData_addExpenseBuilder
                   title, r'Gadd_expenseData_addExpense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'Gadd_expenseData_addExpense', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'Gadd_expenseData_addExpense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'Gadd_expenseData_addExpense', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'Gadd_expenseData_addExpense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'Gadd_expenseData_addExpense', 'creatorId'),
+              creatorId:
+                  BuiltValueNullFieldError.checkNotNull(creatorId, r'Gadd_expenseData_addExpense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -33780,6 +34529,10 @@ class _$Gadd_expenseData_addExpense_splits
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -33813,6 +34566,8 @@ class _$Gadd_expenseData_addExpense_splits
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -33840,6 +34595,10 @@ class _$Gadd_expenseData_addExpense_splits
         r'Gadd_expenseData_addExpense_splits', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'Gadd_expenseData_addExpense_splits', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'Gadd_expenseData_addExpense_splits', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'Gadd_expenseData_addExpense_splits', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'Gadd_expenseData_addExpense_splits', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -33873,6 +34632,8 @@ class _$Gadd_expenseData_addExpense_splits
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -33896,6 +34657,8 @@ class _$Gadd_expenseData_addExpense_splits
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -33921,6 +34684,8 @@ class _$Gadd_expenseData_addExpense_splits
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -33995,6 +34760,15 @@ class Gadd_expenseData_addExpense_splitsBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -34045,6 +34819,8 @@ class Gadd_expenseData_addExpense_splitsBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -34092,13 +34868,15 @@ class Gadd_expenseData_addExpense_splitsBuilder
                   transactionType, r'Gadd_expenseData_addExpense_splits', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'Gadd_expenseData_addExpense_splits', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'Gadd_expenseData_addExpense_splits', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'Gadd_expenseData_addExpense_splits', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'Gadd_expenseData_addExpense_splits', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'Gadd_expenseData_addExpense_splits', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'Gadd_expenseData_addExpense_splits', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'Gadd_expenseData_addExpense_splits', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'Gadd_expenseData_addExpense_splits', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'Gadd_expenseData_addExpense_splits', 'groupId'),
               note: note,
@@ -34141,6 +34919,10 @@ class _$Gadd_expenseData_addExpense_splits_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final Gadd_expenseData_addExpense_splits_expense_amount amount;
@@ -34162,6 +34944,8 @@ class _$Gadd_expenseData_addExpense_splits_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -34176,6 +34960,10 @@ class _$Gadd_expenseData_addExpense_splits_expense
         title, r'Gadd_expenseData_addExpense_splits_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'Gadd_expenseData_addExpense_splits_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'Gadd_expenseData_addExpense_splits_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'Gadd_expenseData_addExpense_splits_expense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'Gadd_expenseData_addExpense_splits_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -34202,6 +34990,8 @@ class _$Gadd_expenseData_addExpense_splits_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -34216,6 +35006,8 @@ class _$Gadd_expenseData_addExpense_splits_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -34233,6 +35025,8 @@ class _$Gadd_expenseData_addExpense_splits_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -34263,6 +35057,15 @@ class Gadd_expenseData_addExpense_splits_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -34299,6 +35102,8 @@ class Gadd_expenseData_addExpense_splits_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -34330,19 +35135,22 @@ class Gadd_expenseData_addExpense_splits_expenseBuilder
     try {
       _$result = _$v ??
           new _$Gadd_expenseData_addExpense_splits_expense._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'Gadd_expenseData_addExpense_splits_expense', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'Gadd_expenseData_addExpense_splits_expense', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'Gadd_expenseData_addExpense_splits_expense', 'id'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'Gadd_expenseData_addExpense_splits_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'Gadd_expenseData_addExpense_splits_expense', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'Gadd_expenseData_addExpense_splits_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'Gadd_expenseData_addExpense_splits_expense', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'Gadd_expenseData_addExpense_splits_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'Gadd_expenseData_addExpense_splits_expense', 'creatorId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'Gadd_expenseData_addExpense_splits_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -37728,6 +38536,10 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GcreateNonGroupExpenseData_addNonGroupExpense_expense_amount amount;
@@ -37752,6 +38564,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -37770,6 +38584,12 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(createdAt,
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(updatedAt,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense',
+        'transactionAt');
     BuiltValueNullFieldError.checkNotNull(category,
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(amount,
@@ -37799,6 +38619,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -37814,6 +38636,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -37832,6 +38656,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -37874,6 +38700,15 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _category;
   String? get category => _$this._category;
   set category(String? category) => _$this._category = category;
@@ -37912,6 +38747,8 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -37945,9 +38782,7 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
       _$result = _$v ??
           new _$GcreateNonGroupExpenseData_addNonGroupExpense_expense._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GcreateNonGroupExpenseData_addNonGroupExpense_expense',
-                  'G__typename'),
+                  G__typename, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'G__typename'),
               splits: splits.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'id'),
@@ -37955,13 +38790,15 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expenseBuilder
                   title, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'createdAt'),
-              category: BuiltValueNullFieldError.checkNotNull(
-                  category, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'category'),
-              amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId,
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt,
                   r'GcreateNonGroupExpenseData_addNonGroupExpense_expense',
-                  'creatorId'),
+                  'transactionAt'),
+              category: BuiltValueNullFieldError.checkNotNull(category, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'category'),
+              amount: amount.build(),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -38014,6 +38851,10 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -38049,6 +38890,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -38092,6 +38935,14 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
         createdAt,
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
         'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+        'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
+        'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId,
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
@@ -38138,6 +38989,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -38161,6 +39014,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -38187,6 +39042,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -38282,6 +39139,15 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -38334,6 +39200,8 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -38390,11 +39258,13 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splitsBuilder
                   'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'createdAt'),
-              transactionPartGroupId: transactionPartGroupId,
-              fromUserId: BuiltValueNullFieldError.checkNotNull(
-                  fromUserId,
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt,
                   r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits',
-                  'fromUserId'),
+                  'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(transactionAt, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'transactionAt'),
+              transactionPartGroupId: transactionPartGroupId,
+              fromUserId: BuiltValueNullFieldError.checkNotNull(fromUserId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'fromUserId'),
               toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'toUserId'),
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits', 'creatorId'),
               withGroupId: withGroupId,
@@ -38441,6 +39311,10 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense_amount
@@ -38465,6 +39339,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -38487,6 +39363,14 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
         createdAt,
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense',
         'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense',
+        'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt,
+        r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense',
+        'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category,
         r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense',
@@ -38523,6 +39407,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -38537,6 +39423,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -38554,6 +39442,8 @@ class _$GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -38585,6 +39475,15 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseBuilde
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -38625,6 +39524,8 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseBuilde
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -38673,13 +39574,15 @@ class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expenseBuilde
                   title, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense', 'createdAt'),
-              category: BuiltValueNullFieldError.checkNotNull(
-                  category, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense', 'category'),
-              amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId,
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt,
                   r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense',
-                  'creatorId'),
+                  'transactionAt'),
+              category: BuiltValueNullFieldError.checkNotNull(category, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense', 'category'),
+              amount: amount.build(),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -40053,6 +40956,10 @@ class _$GsettleInGroupData_settleInGroup
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -40084,6 +40991,8 @@ class _$GsettleInGroupData_settleInGroup
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -40111,6 +41020,10 @@ class _$GsettleInGroupData_settleInGroup
         r'GsettleInGroupData_settleInGroup', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GsettleInGroupData_settleInGroup', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GsettleInGroupData_settleInGroup', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GsettleInGroupData_settleInGroup', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GsettleInGroupData_settleInGroup', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -40144,6 +41057,8 @@ class _$GsettleInGroupData_settleInGroup
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -40167,6 +41082,8 @@ class _$GsettleInGroupData_settleInGroup
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -40192,6 +41109,8 @@ class _$GsettleInGroupData_settleInGroup
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -40264,6 +41183,15 @@ class GsettleInGroupData_settleInGroupBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -40314,6 +41242,8 @@ class GsettleInGroupData_settleInGroupBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -40360,13 +41290,15 @@ class GsettleInGroupData_settleInGroupBuilder
                   transactionType, r'GsettleInGroupData_settleInGroup', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GsettleInGroupData_settleInGroup', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GsettleInGroupData_settleInGroup', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GsettleInGroupData_settleInGroup', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GsettleInGroupData_settleInGroup', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GsettleInGroupData_settleInGroup', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GsettleInGroupData_settleInGroup', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GsettleInGroupData_settleInGroup', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GsettleInGroupData_settleInGroup', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsettleInGroupData_settleInGroup', 'groupId'),
               note: note,
@@ -40409,6 +41341,10 @@ class _$GsettleInGroupData_settleInGroup_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GsettleInGroupData_settleInGroup_expense_amount amount;
@@ -40430,6 +41366,8 @@ class _$GsettleInGroupData_settleInGroup_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -40444,6 +41382,10 @@ class _$GsettleInGroupData_settleInGroup_expense
         title, r'GsettleInGroupData_settleInGroup_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GsettleInGroupData_settleInGroup_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GsettleInGroupData_settleInGroup_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'GsettleInGroupData_settleInGroup_expense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GsettleInGroupData_settleInGroup_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -40470,6 +41412,8 @@ class _$GsettleInGroupData_settleInGroup_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -40484,6 +41428,8 @@ class _$GsettleInGroupData_settleInGroup_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -40501,6 +41447,8 @@ class _$GsettleInGroupData_settleInGroup_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -40531,6 +41479,15 @@ class GsettleInGroupData_settleInGroup_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -40566,6 +41523,8 @@ class GsettleInGroupData_settleInGroup_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -40596,19 +41555,22 @@ class GsettleInGroupData_settleInGroup_expenseBuilder
     try {
       _$result = _$v ??
           new _$GsettleInGroupData_settleInGroup_expense._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GsettleInGroupData_settleInGroup_expense', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GsettleInGroupData_settleInGroup_expense', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GsettleInGroupData_settleInGroup_expense', 'id'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'GsettleInGroupData_settleInGroup_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GsettleInGroupData_settleInGroup_expense', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GsettleInGroupData_settleInGroup_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GsettleInGroupData_settleInGroup_expense', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GsettleInGroupData_settleInGroup_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GsettleInGroupData_settleInGroup_expense', 'creatorId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GsettleInGroupData_settleInGroup_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -41666,6 +42628,10 @@ class _$GsimplifyUserData_simplifyCrossGroup
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -41699,6 +42665,8 @@ class _$GsimplifyUserData_simplifyCrossGroup
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -41726,6 +42694,10 @@ class _$GsimplifyUserData_simplifyCrossGroup
         r'GsimplifyUserData_simplifyCrossGroup', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GsimplifyUserData_simplifyCrossGroup', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GsimplifyUserData_simplifyCrossGroup', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'GsimplifyUserData_simplifyCrossGroup', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GsimplifyUserData_simplifyCrossGroup', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -41759,6 +42731,8 @@ class _$GsimplifyUserData_simplifyCrossGroup
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -41782,6 +42756,8 @@ class _$GsimplifyUserData_simplifyCrossGroup
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -41807,6 +42783,8 @@ class _$GsimplifyUserData_simplifyCrossGroup
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -41884,6 +42862,15 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -41934,6 +42921,8 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -41981,13 +42970,15 @@ class GsimplifyUserData_simplifyCrossGroupBuilder
                   transactionType, r'GsimplifyUserData_simplifyCrossGroup', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GsimplifyUserData_simplifyCrossGroup', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GsimplifyUserData_simplifyCrossGroup', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GsimplifyUserData_simplifyCrossGroup', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GsimplifyUserData_simplifyCrossGroup', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GsimplifyUserData_simplifyCrossGroup', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GsimplifyUserData_simplifyCrossGroup', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GsimplifyUserData_simplifyCrossGroup', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GsimplifyUserData_simplifyCrossGroup', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsimplifyUserData_simplifyCrossGroup', 'groupId'),
               note: note,
@@ -42032,6 +43023,10 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GsimplifyUserData_simplifyCrossGroup_expense_amount amount;
@@ -42054,6 +43049,8 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -42068,6 +43065,10 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
         title, r'GsimplifyUserData_simplifyCrossGroup_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(createdAt,
         r'GsimplifyUserData_simplifyCrossGroup_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(updatedAt,
+        r'GsimplifyUserData_simplifyCrossGroup_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'GsimplifyUserData_simplifyCrossGroup_expense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GsimplifyUserData_simplifyCrossGroup_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -42094,6 +43095,8 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -42108,6 +43111,8 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -42125,6 +43130,8 @@ class _$GsimplifyUserData_simplifyCrossGroup_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -42155,6 +43162,15 @@ class GsimplifyUserData_simplifyCrossGroup_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -42191,6 +43207,8 @@ class GsimplifyUserData_simplifyCrossGroup_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -42223,20 +43241,21 @@ class GsimplifyUserData_simplifyCrossGroup_expenseBuilder
       _$result = _$v ??
           new _$GsimplifyUserData_simplifyCrossGroup_expense._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GsimplifyUserData_simplifyCrossGroup_expense',
-                  'G__typename'),
+                  G__typename, r'GsimplifyUserData_simplifyCrossGroup_expense', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GsimplifyUserData_simplifyCrossGroup_expense', 'id'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'GsimplifyUserData_simplifyCrossGroup_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GsimplifyUserData_simplifyCrossGroup_expense', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GsimplifyUserData_simplifyCrossGroup_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GsimplifyUserData_simplifyCrossGroup_expense', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GsimplifyUserData_simplifyCrossGroup_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GsimplifyUserData_simplifyCrossGroup_expense', 'creatorId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GsimplifyUserData_simplifyCrossGroup_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -43313,6 +44332,10 @@ class _$GautoSettleWithUserData_autoSettleWithUser
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -43346,6 +44369,8 @@ class _$GautoSettleWithUserData_autoSettleWithUser
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -43373,6 +44398,10 @@ class _$GautoSettleWithUserData_autoSettleWithUser
         r'GautoSettleWithUserData_autoSettleWithUser', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GautoSettleWithUserData_autoSettleWithUser', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GautoSettleWithUserData_autoSettleWithUser', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'GautoSettleWithUserData_autoSettleWithUser', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(fromUserId,
         r'GautoSettleWithUserData_autoSettleWithUser', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -43407,6 +44436,8 @@ class _$GautoSettleWithUserData_autoSettleWithUser
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -43430,6 +44461,8 @@ class _$GautoSettleWithUserData_autoSettleWithUser
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -43456,6 +44489,8 @@ class _$GautoSettleWithUserData_autoSettleWithUser
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -43539,6 +44574,15 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -43589,6 +44633,8 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -43637,13 +44683,15 @@ class GautoSettleWithUserData_autoSettleWithUserBuilder
                   transactionType, r'GautoSettleWithUserData_autoSettleWithUser', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GautoSettleWithUserData_autoSettleWithUser', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GautoSettleWithUserData_autoSettleWithUser', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GautoSettleWithUserData_autoSettleWithUser', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GautoSettleWithUserData_autoSettleWithUser', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GautoSettleWithUserData_autoSettleWithUser', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GautoSettleWithUserData_autoSettleWithUser', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GautoSettleWithUserData_autoSettleWithUser', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GautoSettleWithUserData_autoSettleWithUser', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GautoSettleWithUserData_autoSettleWithUser', 'groupId'),
               note: note,
@@ -43688,6 +44736,10 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GautoSettleWithUserData_autoSettleWithUser_expense_amount amount;
@@ -43711,6 +44763,8 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -43725,6 +44779,10 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
         title, r'GautoSettleWithUserData_autoSettleWithUser_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(createdAt,
         r'GautoSettleWithUserData_autoSettleWithUser_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(updatedAt,
+        r'GautoSettleWithUserData_autoSettleWithUser_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'GautoSettleWithUserData_autoSettleWithUser_expense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(category,
         r'GautoSettleWithUserData_autoSettleWithUser_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(amount,
@@ -43753,6 +44811,8 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -43767,6 +44827,8 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -43784,6 +44846,8 @@ class _$GautoSettleWithUserData_autoSettleWithUser_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -43814,6 +44878,15 @@ class GautoSettleWithUserData_autoSettleWithUser_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -43851,6 +44924,8 @@ class GautoSettleWithUserData_autoSettleWithUser_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -43892,13 +44967,15 @@ class GautoSettleWithUserData_autoSettleWithUser_expenseBuilder
                   title, r'GautoSettleWithUserData_autoSettleWithUser_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GautoSettleWithUserData_autoSettleWithUser_expense', 'createdAt'),
-              category: BuiltValueNullFieldError.checkNotNull(
-                  category, r'GautoSettleWithUserData_autoSettleWithUser_expense', 'category'),
-              amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId,
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GautoSettleWithUserData_autoSettleWithUser_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt,
                   r'GautoSettleWithUserData_autoSettleWithUser_expense',
-                  'creatorId'),
+                  'transactionAt'),
+              category: BuiltValueNullFieldError.checkNotNull(category, r'GautoSettleWithUserData_autoSettleWithUser_expense', 'category'),
+              amount: amount.build(),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GautoSettleWithUserData_autoSettleWithUser_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -45176,6 +46253,10 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount
@@ -45200,6 +46281,8 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -45222,6 +46305,14 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
         createdAt,
         r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
         'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
+        'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
+        'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category,
         r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
@@ -45258,6 +46349,8 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -45272,6 +46365,8 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -45289,6 +46384,8 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -45320,6 +46417,15 @@ class GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -45360,6 +46466,8 @@ class GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -45408,13 +46516,15 @@ class GtransactionWithUserData_getTransactionsMixExpenseWithUser_expenseBuilder
                   title, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense', 'createdAt'),
-              category: BuiltValueNullFieldError.checkNotNull(
-                  category, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense', 'category'),
-              amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId,
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt,
                   r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense',
-                  'creatorId'),
+                  'transactionAt'),
+              category: BuiltValueNullFieldError.checkNotNull(category, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense', 'category'),
+              amount: amount.build(),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -45615,6 +46725,10 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -45647,6 +46761,8 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -45684,6 +46800,14 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split
         createdAt,
         r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
         'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+        'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt,
+        r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
+        'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId,
         r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
@@ -45727,6 +46851,8 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -45747,6 +46873,8 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -45770,6 +46898,8 @@ class _$GtransactionWithUserData_getTransactionsMixExpenseWithUser_split
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -45836,6 +46966,15 @@ class GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -45885,6 +47024,8 @@ class GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -45938,11 +47079,13 @@ class GtransactionWithUserData_getTransactionsMixExpenseWithUser_splitBuilder
                   'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split', 'createdAt'),
-              transactionPartGroupId: transactionPartGroupId,
-              fromUserId: BuiltValueNullFieldError.checkNotNull(
-                  fromUserId,
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt,
                   r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split',
-                  'fromUserId'),
+                  'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(transactionAt, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split', 'transactionAt'),
+              transactionPartGroupId: transactionPartGroupId,
+              fromUserId: BuiltValueNullFieldError.checkNotNull(fromUserId, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split', 'fromUserId'),
               toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split', 'toUserId'),
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GtransactionWithUserData_getTransactionsMixExpenseWithUser_split', 'creatorId'),
               withGroupId: withGroupId,
@@ -46839,6 +47982,10 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense_amount
@@ -46863,6 +48010,8 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -46885,6 +48034,14 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
         createdAt,
         r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
         'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
+        'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
+        'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category,
         r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
@@ -46921,6 +48078,8 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -46935,6 +48094,8 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -46952,6 +48113,8 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -46983,6 +48146,15 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuild
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -47023,6 +48195,8 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuild
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -47071,13 +48245,15 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expenseBuild
                   title, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense', 'createdAt'),
-              category: BuiltValueNullFieldError.checkNotNull(
-                  category, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense', 'category'),
-              amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId,
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt,
                   r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense',
-                  'creatorId'),
+                  'transactionAt'),
+              category: BuiltValueNullFieldError.checkNotNull(category, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense', 'category'),
+              amount: amount.build(),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -47279,6 +48455,10 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -47311,6 +48491,8 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -47348,6 +48530,14 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
         createdAt,
         r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
         'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+        'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt,
+        r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
+        'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId,
         r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
@@ -47391,6 +48581,8 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -47411,6 +48603,8 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -47434,6 +48628,8 @@ class _$GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -47500,6 +48696,15 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -47549,6 +48754,8 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -47605,11 +48812,13 @@ class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_splitBuilder
                   'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'createdAt'),
-              transactionPartGroupId: transactionPartGroupId,
-              fromUserId: BuiltValueNullFieldError.checkNotNull(
-                  fromUserId,
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt,
                   r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split',
-                  'fromUserId'),
+                  'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(transactionAt, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'transactionAt'),
+              transactionPartGroupId: transactionPartGroupId,
+              fromUserId: BuiltValueNullFieldError.checkNotNull(fromUserId, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'fromUserId'),
               toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'toUserId'),
               creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_split', 'creatorId'),
               withGroupId: withGroupId,
@@ -48581,6 +49790,10 @@ class _$GcurrencyConvertData_convertCurrency
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -48614,6 +49827,8 @@ class _$GcurrencyConvertData_convertCurrency
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -48641,6 +49856,10 @@ class _$GcurrencyConvertData_convertCurrency
         r'GcurrencyConvertData_convertCurrency', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GcurrencyConvertData_convertCurrency', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GcurrencyConvertData_convertCurrency', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'GcurrencyConvertData_convertCurrency', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GcurrencyConvertData_convertCurrency', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -48674,6 +49893,8 @@ class _$GcurrencyConvertData_convertCurrency
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -48697,6 +49918,8 @@ class _$GcurrencyConvertData_convertCurrency
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -48722,6 +49945,8 @@ class _$GcurrencyConvertData_convertCurrency
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -48799,6 +50024,15 @@ class GcurrencyConvertData_convertCurrencyBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -48849,6 +50083,8 @@ class GcurrencyConvertData_convertCurrencyBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -48896,13 +50132,15 @@ class GcurrencyConvertData_convertCurrencyBuilder
                   transactionType, r'GcurrencyConvertData_convertCurrency', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GcurrencyConvertData_convertCurrency', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GcurrencyConvertData_convertCurrency', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GcurrencyConvertData_convertCurrency', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GcurrencyConvertData_convertCurrency', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GcurrencyConvertData_convertCurrency', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GcurrencyConvertData_convertCurrency', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GcurrencyConvertData_convertCurrency', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GcurrencyConvertData_convertCurrency', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GcurrencyConvertData_convertCurrency', 'groupId'),
               note: note,
@@ -48947,6 +50185,10 @@ class _$GcurrencyConvertData_convertCurrency_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GcurrencyConvertData_convertCurrency_expense_amount amount;
@@ -48969,6 +50211,8 @@ class _$GcurrencyConvertData_convertCurrency_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -48983,6 +50227,10 @@ class _$GcurrencyConvertData_convertCurrency_expense
         title, r'GcurrencyConvertData_convertCurrency_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(createdAt,
         r'GcurrencyConvertData_convertCurrency_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(updatedAt,
+        r'GcurrencyConvertData_convertCurrency_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'GcurrencyConvertData_convertCurrency_expense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GcurrencyConvertData_convertCurrency_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -49009,6 +50257,8 @@ class _$GcurrencyConvertData_convertCurrency_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -49023,6 +50273,8 @@ class _$GcurrencyConvertData_convertCurrency_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -49040,6 +50292,8 @@ class _$GcurrencyConvertData_convertCurrency_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -49070,6 +50324,15 @@ class GcurrencyConvertData_convertCurrency_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -49106,6 +50369,8 @@ class GcurrencyConvertData_convertCurrency_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -49138,20 +50403,21 @@ class GcurrencyConvertData_convertCurrency_expenseBuilder
       _$result = _$v ??
           new _$GcurrencyConvertData_convertCurrency_expense._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GcurrencyConvertData_convertCurrency_expense',
-                  'G__typename'),
+                  G__typename, r'GcurrencyConvertData_convertCurrency_expense', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GcurrencyConvertData_convertCurrency_expense', 'id'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'GcurrencyConvertData_convertCurrency_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GcurrencyConvertData_convertCurrency_expense', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GcurrencyConvertData_convertCurrency_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GcurrencyConvertData_convertCurrency_expense', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GcurrencyConvertData_convertCurrency_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GcurrencyConvertData_convertCurrency_expense', 'creatorId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GcurrencyConvertData_convertCurrency_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -50631,6 +51897,10 @@ class _$GgetTransactionsData_getTransactions_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GgetTransactionsData_getTransactions_expense_amount amount;
@@ -50653,6 +51923,8 @@ class _$GgetTransactionsData_getTransactions_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -50667,6 +51939,10 @@ class _$GgetTransactionsData_getTransactions_expense
         title, r'GgetTransactionsData_getTransactions_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(createdAt,
         r'GgetTransactionsData_getTransactions_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(updatedAt,
+        r'GgetTransactionsData_getTransactions_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'GgetTransactionsData_getTransactions_expense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GgetTransactionsData_getTransactions_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -50693,6 +51969,8 @@ class _$GgetTransactionsData_getTransactions_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -50707,6 +51985,8 @@ class _$GgetTransactionsData_getTransactions_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -50724,6 +52004,8 @@ class _$GgetTransactionsData_getTransactions_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -50754,6 +52036,15 @@ class GgetTransactionsData_getTransactions_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -50790,6 +52081,8 @@ class GgetTransactionsData_getTransactions_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -50822,20 +52115,21 @@ class GgetTransactionsData_getTransactions_expenseBuilder
       _$result = _$v ??
           new _$GgetTransactionsData_getTransactions_expense._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GgetTransactionsData_getTransactions_expense',
-                  'G__typename'),
+                  G__typename, r'GgetTransactionsData_getTransactions_expense', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GgetTransactionsData_getTransactions_expense', 'id'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'GgetTransactionsData_getTransactions_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GgetTransactionsData_getTransactions_expense', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GgetTransactionsData_getTransactions_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GgetTransactionsData_getTransactions_expense', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GgetTransactionsData_getTransactions_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GgetTransactionsData_getTransactions_expense', 'creatorId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GgetTransactionsData_getTransactions_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -51015,6 +52309,10 @@ class _$GgetTransactionsData_getTransactions_split
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -51045,6 +52343,8 @@ class _$GgetTransactionsData_getTransactions_split
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -51068,6 +52368,10 @@ class _$GgetTransactionsData_getTransactions_split
         r'GgetTransactionsData_getTransactions_split', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GgetTransactionsData_getTransactions_split', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GgetTransactionsData_getTransactions_split', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'GgetTransactionsData_getTransactions_split', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(fromUserId,
         r'GgetTransactionsData_getTransactions_split', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -51099,6 +52403,8 @@ class _$GgetTransactionsData_getTransactions_split
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -51119,6 +52425,8 @@ class _$GgetTransactionsData_getTransactions_split
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -51142,6 +52450,8 @@ class _$GgetTransactionsData_getTransactions_split
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -51202,6 +52512,15 @@ class GgetTransactionsData_getTransactions_splitBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -51249,6 +52568,8 @@ class GgetTransactionsData_getTransactions_splitBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -51294,13 +52615,15 @@ class GgetTransactionsData_getTransactions_splitBuilder
                   transactionType, r'GgetTransactionsData_getTransactions_split', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GgetTransactionsData_getTransactions_split', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GgetTransactionsData_getTransactions_split', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GgetTransactionsData_getTransactions_split', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GgetTransactionsData_getTransactions_split', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GgetTransactionsData_getTransactions_split', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GgetTransactionsData_getTransactions_split', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GgetTransactionsData_getTransactions_split', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GgetTransactionsData_getTransactions_split', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GgetTransactionsData_getTransactions_split', 'groupId'),
               note: note,
@@ -52410,6 +53733,10 @@ class _$GgetExpenseData_expenseById extends GgetExpenseData_expenseById {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GgetExpenseData_expenseById_amount amount;
@@ -52431,6 +53758,8 @@ class _$GgetExpenseData_expenseById extends GgetExpenseData_expenseById {
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -52449,6 +53778,10 @@ class _$GgetExpenseData_expenseById extends GgetExpenseData_expenseById {
         title, r'GgetExpenseData_expenseById', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GgetExpenseData_expenseById', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GgetExpenseData_expenseById', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GgetExpenseData_expenseById', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GgetExpenseData_expenseById', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -52476,6 +53809,8 @@ class _$GgetExpenseData_expenseById extends GgetExpenseData_expenseById {
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -52492,6 +53827,8 @@ class _$GgetExpenseData_expenseById extends GgetExpenseData_expenseById {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -52510,6 +53847,8 @@ class _$GgetExpenseData_expenseById extends GgetExpenseData_expenseById {
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -52553,6 +53892,15 @@ class GgetExpenseData_expenseByIdBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _category;
   String? get category => _$this._category;
   set category(String? category) => _$this._category = category;
@@ -52588,6 +53936,8 @@ class GgetExpenseData_expenseByIdBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -52627,11 +53977,15 @@ class GgetExpenseData_expenseByIdBuilder
                   title, r'GgetExpenseData_expenseById', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GgetExpenseData_expenseById', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GgetExpenseData_expenseById', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GgetExpenseData_expenseById', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GgetExpenseData_expenseById', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GgetExpenseData_expenseById', 'creatorId'),
+              creatorId:
+                  BuiltValueNullFieldError.checkNotNull(creatorId, r'GgetExpenseData_expenseById', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -52836,6 +54190,10 @@ class _$GgetExpenseData_expenseById_splits
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -52866,6 +54224,8 @@ class _$GgetExpenseData_expenseById_splits
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -52889,6 +54249,10 @@ class _$GgetExpenseData_expenseById_splits
         r'GgetExpenseData_expenseById_splits', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GgetExpenseData_expenseById_splits', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GgetExpenseData_expenseById_splits', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GgetExpenseData_expenseById_splits', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GgetExpenseData_expenseById_splits', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -52919,6 +54283,8 @@ class _$GgetExpenseData_expenseById_splits
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -52939,6 +54305,8 @@ class _$GgetExpenseData_expenseById_splits
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -52961,6 +54329,8 @@ class _$GgetExpenseData_expenseById_splits
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -53015,6 +54385,15 @@ class GgetExpenseData_expenseById_splitsBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -53062,6 +54441,8 @@ class GgetExpenseData_expenseById_splitsBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -53106,13 +54487,15 @@ class GgetExpenseData_expenseById_splitsBuilder
                   transactionType, r'GgetExpenseData_expenseById_splits', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GgetExpenseData_expenseById_splits', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GgetExpenseData_expenseById_splits', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GgetExpenseData_expenseById_splits', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GgetExpenseData_expenseById_splits', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GgetExpenseData_expenseById_splits', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GgetExpenseData_expenseById_splits', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GgetExpenseData_expenseById_splits', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GgetExpenseData_expenseById_splits', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GgetExpenseData_expenseById_splits', 'groupId'),
               note: note,
@@ -53874,6 +55257,10 @@ class _$GsplitFromidData_splitById extends GsplitFromidData_splitById {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -53906,6 +55293,8 @@ class _$GsplitFromidData_splitById extends GsplitFromidData_splitById {
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -53935,6 +55324,10 @@ class _$GsplitFromidData_splitById extends GsplitFromidData_splitById {
         transactionType, r'GsplitFromidData_splitById', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GsplitFromidData_splitById', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GsplitFromidData_splitById', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GsplitFromidData_splitById', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GsplitFromidData_splitById', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -53969,6 +55362,8 @@ class _$GsplitFromidData_splitById extends GsplitFromidData_splitById {
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -53993,6 +55388,8 @@ class _$GsplitFromidData_splitById extends GsplitFromidData_splitById {
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -54019,6 +55416,8 @@ class _$GsplitFromidData_splitById extends GsplitFromidData_splitById {
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -54096,6 +55495,15 @@ class GsplitFromidData_splitByIdBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -54147,6 +55555,8 @@ class GsplitFromidData_splitByIdBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -54194,16 +55604,18 @@ class GsplitFromidData_splitByIdBuilder
                   transactionType, r'GsplitFromidData_splitById', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GsplitFromidData_splitById', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GsplitFromidData_splitById', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GsplitFromidData_splitById', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GsplitFromidData_splitById', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GsplitFromidData_splitById', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GsplitFromidData_splitById', 'creatorId'),
+              toUserId:
+                  BuiltValueNullFieldError.checkNotNull(toUserId, r'GsplitFromidData_splitById', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GsplitFromidData_splitById', 'creatorId'),
               withGroupId: withGroupId,
-              groupId:
-                  BuiltValueNullFieldError.checkNotNull(groupId, r'GsplitFromidData_splitById', 'groupId'),
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsplitFromidData_splitById', 'groupId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -54258,6 +55670,10 @@ class _$GsplitFromidData_splitById_siblings
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -54291,6 +55707,8 @@ class _$GsplitFromidData_splitById_siblings
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -54318,6 +55736,10 @@ class _$GsplitFromidData_splitById_siblings
         r'GsplitFromidData_splitById_siblings', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GsplitFromidData_splitById_siblings', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GsplitFromidData_splitById_siblings', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GsplitFromidData_splitById_siblings', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GsplitFromidData_splitById_siblings', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -54351,6 +55773,8 @@ class _$GsplitFromidData_splitById_siblings
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -54374,6 +55798,8 @@ class _$GsplitFromidData_splitById_siblings
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -54399,6 +55825,8 @@ class _$GsplitFromidData_splitById_siblings
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -54475,6 +55903,15 @@ class GsplitFromidData_splitById_siblingsBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -54525,6 +55962,8 @@ class GsplitFromidData_splitById_siblingsBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -54572,13 +56011,15 @@ class GsplitFromidData_splitById_siblingsBuilder
                   transactionType, r'GsplitFromidData_splitById_siblings', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GsplitFromidData_splitById_siblings', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GsplitFromidData_splitById_siblings', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GsplitFromidData_splitById_siblings', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GsplitFromidData_splitById_siblings', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GsplitFromidData_splitById_siblings', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GsplitFromidData_splitById_siblings', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GsplitFromidData_splitById_siblings', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GsplitFromidData_splitById_siblings', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsplitFromidData_splitById_siblings', 'groupId'),
               note: note,
@@ -54623,6 +56064,10 @@ class _$GsplitFromidData_splitById_siblings_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GsplitFromidData_splitById_siblings_expense_amount amount;
@@ -54645,6 +56090,8 @@ class _$GsplitFromidData_splitById_siblings_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -54659,6 +56106,10 @@ class _$GsplitFromidData_splitById_siblings_expense
         title, r'GsplitFromidData_splitById_siblings_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GsplitFromidData_splitById_siblings_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GsplitFromidData_splitById_siblings_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'GsplitFromidData_splitById_siblings_expense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GsplitFromidData_splitById_siblings_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -54685,6 +56136,8 @@ class _$GsplitFromidData_splitById_siblings_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -54699,6 +56152,8 @@ class _$GsplitFromidData_splitById_siblings_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -54716,6 +56171,8 @@ class _$GsplitFromidData_splitById_siblings_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -54746,6 +56203,15 @@ class GsplitFromidData_splitById_siblings_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -54782,6 +56248,8 @@ class GsplitFromidData_splitById_siblings_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -54814,20 +56282,21 @@ class GsplitFromidData_splitById_siblings_expenseBuilder
       _$result = _$v ??
           new _$GsplitFromidData_splitById_siblings_expense._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GsplitFromidData_splitById_siblings_expense',
-                  'G__typename'),
+                  G__typename, r'GsplitFromidData_splitById_siblings_expense', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GsplitFromidData_splitById_siblings_expense', 'id'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'GsplitFromidData_splitById_siblings_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GsplitFromidData_splitById_siblings_expense', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GsplitFromidData_splitById_siblings_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GsplitFromidData_splitById_siblings_expense', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GsplitFromidData_splitById_siblings_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GsplitFromidData_splitById_siblings_expense', 'creatorId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GsplitFromidData_splitById_siblings_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -55760,6 +57229,10 @@ class _$GsplitFromidData_splitById_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GsplitFromidData_splitById_expense_amount amount;
@@ -55781,6 +57254,8 @@ class _$GsplitFromidData_splitById_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -55795,6 +57270,10 @@ class _$GsplitFromidData_splitById_expense
         title, r'GsplitFromidData_splitById_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GsplitFromidData_splitById_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GsplitFromidData_splitById_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GsplitFromidData_splitById_expense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GsplitFromidData_splitById_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -55820,6 +57299,8 @@ class _$GsplitFromidData_splitById_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -55834,6 +57315,8 @@ class _$GsplitFromidData_splitById_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -55850,6 +57333,8 @@ class _$GsplitFromidData_splitById_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -55880,6 +57365,15 @@ class GsplitFromidData_splitById_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -55914,6 +57408,8 @@ class GsplitFromidData_splitById_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -55944,19 +57440,24 @@ class GsplitFromidData_splitById_expenseBuilder
     try {
       _$result = _$v ??
           new _$GsplitFromidData_splitById_expense._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GsplitFromidData_splitById_expense', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GsplitFromidData_splitById_expense', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GsplitFromidData_splitById_expense', 'id'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'GsplitFromidData_splitById_expense', 'title'),
-              createdAt: BuiltValueNullFieldError.checkNotNull(createdAt,
-                  r'GsplitFromidData_splitById_expense', 'createdAt'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GsplitFromidData_splitById_expense', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GsplitFromidData_splitById_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt,
+                  r'GsplitFromidData_splitById_expense',
+                  'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GsplitFromidData_splitById_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GsplitFromidData_splitById_expense', 'creatorId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GsplitFromidData_splitById_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -56983,6 +58484,10 @@ class _$GsplitFromGroupData_splitsByPart
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -57011,6 +58516,8 @@ class _$GsplitFromGroupData_splitsByPart
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -57034,6 +58541,10 @@ class _$GsplitFromGroupData_splitsByPart
         r'GsplitFromGroupData_splitsByPart', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GsplitFromGroupData_splitsByPart', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GsplitFromGroupData_splitsByPart', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GsplitFromGroupData_splitsByPart', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GsplitFromGroupData_splitsByPart', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -57064,6 +58575,8 @@ class _$GsplitFromGroupData_splitsByPart
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -57084,6 +58597,8 @@ class _$GsplitFromGroupData_splitsByPart
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -57106,6 +58621,8 @@ class _$GsplitFromGroupData_splitsByPart
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -57160,6 +58677,15 @@ class GsplitFromGroupData_splitsByPartBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -57207,6 +58733,8 @@ class GsplitFromGroupData_splitsByPartBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -57250,13 +58778,15 @@ class GsplitFromGroupData_splitsByPartBuilder
                   transactionType, r'GsplitFromGroupData_splitsByPart', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GsplitFromGroupData_splitsByPart', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GsplitFromGroupData_splitsByPart', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GsplitFromGroupData_splitsByPart', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GsplitFromGroupData_splitsByPart', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GsplitFromGroupData_splitsByPart', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GsplitFromGroupData_splitsByPart', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GsplitFromGroupData_splitsByPart', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GsplitFromGroupData_splitsByPart', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GsplitFromGroupData_splitsByPart', 'groupId'),
               note: note,
@@ -60101,6 +61631,10 @@ class _$GExpenseBasicData extends GExpenseBasicData {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GExpenseBasicData_amount amount;
@@ -60120,6 +61654,8 @@ class _$GExpenseBasicData extends GExpenseBasicData {
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -60132,6 +61668,10 @@ class _$GExpenseBasicData extends GExpenseBasicData {
     BuiltValueNullFieldError.checkNotNull(title, r'GExpenseBasicData', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GExpenseBasicData', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GExpenseBasicData', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GExpenseBasicData', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GExpenseBasicData', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -60156,6 +61696,8 @@ class _$GExpenseBasicData extends GExpenseBasicData {
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -60170,6 +61712,8 @@ class _$GExpenseBasicData extends GExpenseBasicData {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -60186,6 +61730,8 @@ class _$GExpenseBasicData extends GExpenseBasicData {
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -60214,6 +61760,15 @@ class GExpenseBasicDataBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -60248,6 +61803,8 @@ class GExpenseBasicDataBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -60285,6 +61842,10 @@ class GExpenseBasicDataBuilder
                   title, r'GExpenseBasicData', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GExpenseBasicData', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GExpenseBasicData', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GExpenseBasicData', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GExpenseBasicData', 'category'),
               amount: amount.build(),
@@ -60441,6 +62002,10 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GExpenseFieldsData_amount amount;
@@ -60464,6 +62029,8 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -60479,6 +62046,10 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
         title, r'GExpenseFieldsData', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GExpenseFieldsData', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GExpenseFieldsData', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GExpenseFieldsData', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GExpenseFieldsData', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -60508,6 +62079,8 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -60524,6 +62097,8 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -60542,6 +62117,8 @@ class _$GExpenseFieldsData extends GExpenseFieldsData {
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -60572,6 +62149,15 @@ class GExpenseFieldsDataBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -60618,6 +62204,8 @@ class GExpenseFieldsDataBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -60657,6 +62245,10 @@ class GExpenseFieldsDataBuilder
                   title, r'GExpenseFieldsData', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GExpenseFieldsData', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GExpenseFieldsData', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GExpenseFieldsData', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GExpenseFieldsData', 'category'),
               amount: amount.build(),
@@ -60985,6 +62577,10 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -61013,6 +62609,8 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -61036,6 +62634,10 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
         transactionType, r'GExpenseFieldsData_splits', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GExpenseFieldsData_splits', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GExpenseFieldsData_splits', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GExpenseFieldsData_splits', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GExpenseFieldsData_splits', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -61066,6 +62668,8 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -61086,6 +62690,8 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -61108,6 +62714,8 @@ class _$GExpenseFieldsData_splits extends GExpenseFieldsData_splits {
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -61160,6 +62768,15 @@ class GExpenseFieldsData_splitsBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -61207,6 +62824,8 @@ class GExpenseFieldsData_splitsBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -61250,16 +62869,18 @@ class GExpenseFieldsData_splitsBuilder
                   transactionType, r'GExpenseFieldsData_splits', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GExpenseFieldsData_splits', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GExpenseFieldsData_splits', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GExpenseFieldsData_splits', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GExpenseFieldsData_splits', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GExpenseFieldsData_splits', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GExpenseFieldsData_splits', 'creatorId'),
+              toUserId:
+                  BuiltValueNullFieldError.checkNotNull(toUserId, r'GExpenseFieldsData_splits', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GExpenseFieldsData_splits', 'creatorId'),
               withGroupId: withGroupId,
-              groupId:
-                  BuiltValueNullFieldError.checkNotNull(groupId, r'GExpenseFieldsData_splits', 'groupId'),
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GExpenseFieldsData_splits', 'groupId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -61743,6 +63364,10 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GNewExpenseFieldsData_amount amount;
@@ -61764,6 +63389,8 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -61778,6 +63405,10 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
         title, r'GNewExpenseFieldsData', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GNewExpenseFieldsData', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GNewExpenseFieldsData', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GNewExpenseFieldsData', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GNewExpenseFieldsData', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -61805,6 +63436,8 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -61820,6 +63453,8 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -61837,6 +63472,8 @@ class _$GNewExpenseFieldsData extends GNewExpenseFieldsData {
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -61866,6 +63503,15 @@ class GNewExpenseFieldsDataBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -61906,6 +63552,8 @@ class GNewExpenseFieldsDataBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -61944,6 +63592,10 @@ class GNewExpenseFieldsDataBuilder
                   title, r'GNewExpenseFieldsData', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GNewExpenseFieldsData', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GNewExpenseFieldsData', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GNewExpenseFieldsData', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GNewExpenseFieldsData', 'category'),
               amount: amount.build(),
@@ -62117,6 +63769,10 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -62148,6 +63804,8 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -62175,6 +63833,10 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
         transactionType, r'GNewExpenseFieldsData_splits', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GNewExpenseFieldsData_splits', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GNewExpenseFieldsData_splits', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GNewExpenseFieldsData_splits', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GNewExpenseFieldsData_splits', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -62208,6 +63870,8 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -62231,6 +63895,8 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -62256,6 +63922,8 @@ class _$GNewExpenseFieldsData_splits extends GNewExpenseFieldsData_splits {
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -62327,6 +63995,15 @@ class GNewExpenseFieldsData_splitsBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -62377,6 +64054,8 @@ class GNewExpenseFieldsData_splitsBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -62425,13 +64104,15 @@ class GNewExpenseFieldsData_splitsBuilder
                   'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GNewExpenseFieldsData_splits', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GNewExpenseFieldsData_splits', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GNewExpenseFieldsData_splits', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GNewExpenseFieldsData_splits', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GNewExpenseFieldsData_splits', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GNewExpenseFieldsData_splits', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GNewExpenseFieldsData_splits', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GNewExpenseFieldsData_splits', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GNewExpenseFieldsData_splits', 'groupId'),
               note: note,
@@ -62474,6 +64155,10 @@ class _$GNewExpenseFieldsData_splits_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GNewExpenseFieldsData_splits_expense_amount amount;
@@ -62495,6 +64180,8 @@ class _$GNewExpenseFieldsData_splits_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -62509,6 +64196,10 @@ class _$GNewExpenseFieldsData_splits_expense
         title, r'GNewExpenseFieldsData_splits_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GNewExpenseFieldsData_splits_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GNewExpenseFieldsData_splits_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'GNewExpenseFieldsData_splits_expense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GNewExpenseFieldsData_splits_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -62534,6 +64225,8 @@ class _$GNewExpenseFieldsData_splits_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -62548,6 +64241,8 @@ class _$GNewExpenseFieldsData_splits_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -62564,6 +64259,8 @@ class _$GNewExpenseFieldsData_splits_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -62594,6 +64291,15 @@ class GNewExpenseFieldsData_splits_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -62629,6 +64335,8 @@ class GNewExpenseFieldsData_splits_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -62659,19 +64367,24 @@ class GNewExpenseFieldsData_splits_expenseBuilder
     try {
       _$result = _$v ??
           new _$GNewExpenseFieldsData_splits_expense._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GNewExpenseFieldsData_splits_expense', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GNewExpenseFieldsData_splits_expense', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GNewExpenseFieldsData_splits_expense', 'id'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'GNewExpenseFieldsData_splits_expense', 'title'),
-              createdAt: BuiltValueNullFieldError.checkNotNull(createdAt,
-                  r'GNewExpenseFieldsData_splits_expense', 'createdAt'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GNewExpenseFieldsData_splits_expense', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GNewExpenseFieldsData_splits_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt,
+                  r'GNewExpenseFieldsData_splits_expense',
+                  'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GNewExpenseFieldsData_splits_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GNewExpenseFieldsData_splits_expense', 'creatorId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GNewExpenseFieldsData_splits_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -63687,6 +65400,10 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -63713,6 +65430,8 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -63731,6 +65450,10 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
         transactionType, r'GSplitFieldsBasicsData', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GSplitFieldsBasicsData', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GSplitFieldsBasicsData', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GSplitFieldsBasicsData', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GSplitFieldsBasicsData', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -63759,6 +65482,8 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -63777,6 +65502,8 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -63797,6 +65524,8 @@ class _$GSplitFieldsBasicsData extends GSplitFieldsBasicsData {
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -63835,6 +65564,15 @@ class GSplitFieldsBasicsDataBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
@@ -63881,6 +65619,8 @@ class GSplitFieldsBasicsDataBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -63922,16 +65662,18 @@ class GSplitFieldsBasicsDataBuilder
                   transactionType, r'GSplitFieldsBasicsData', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GSplitFieldsBasicsData', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GSplitFieldsBasicsData', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GSplitFieldsBasicsData', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GSplitFieldsBasicsData', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GSplitFieldsBasicsData', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GSplitFieldsBasicsData', 'creatorId'),
+              toUserId:
+                  BuiltValueNullFieldError.checkNotNull(toUserId, r'GSplitFieldsBasicsData', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GSplitFieldsBasicsData', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(
-                  groupId, r'GSplitFieldsBasicsData', 'groupId'),
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GSplitFieldsBasicsData', 'groupId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -64086,6 +65828,10 @@ class _$GSplitFieldsData extends GSplitFieldsData {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -64116,6 +65862,8 @@ class _$GSplitFieldsData extends GSplitFieldsData {
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -64136,6 +65884,10 @@ class _$GSplitFieldsData extends GSplitFieldsData {
         transactionType, r'GSplitFieldsData', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GSplitFieldsData', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GSplitFieldsData', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GSplitFieldsData', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GSplitFieldsData', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -64167,6 +65919,8 @@ class _$GSplitFieldsData extends GSplitFieldsData {
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -64187,6 +65941,8 @@ class _$GSplitFieldsData extends GSplitFieldsData {
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -64209,6 +65965,8 @@ class _$GSplitFieldsData extends GSplitFieldsData {
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -64248,6 +66006,15 @@ class GSplitFieldsDataBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
@@ -64305,6 +66072,8 @@ class GSplitFieldsDataBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -64348,16 +66117,19 @@ class GSplitFieldsDataBuilder
                   transactionType, r'GSplitFieldsData', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GSplitFieldsData', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GSplitFieldsData', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GSplitFieldsData', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GSplitFieldsData', 'fromUserId'),
               toUserId: BuiltValueNullFieldError.checkNotNull(
                   toUserId, r'GSplitFieldsData', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GSplitFieldsData', 'creatorId'),
+              creatorId:
+                  BuiltValueNullFieldError.checkNotNull(creatorId, r'GSplitFieldsData', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(
-                  groupId, r'GSplitFieldsData', 'groupId'),
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GSplitFieldsData', 'groupId'),
               note: note,
               imageId: imageId,
               fromUser: fromUser.build(),
@@ -64839,6 +66611,10 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -64873,6 +66649,8 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -64899,6 +66677,10 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
         transactionType, r'GSplitTransactionFieldsData', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GSplitTransactionFieldsData', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GSplitTransactionFieldsData', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GSplitTransactionFieldsData', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GSplitTransactionFieldsData', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -64933,6 +66715,8 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -64956,6 +66740,8 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -64981,6 +66767,8 @@ class _$GSplitTransactionFieldsData extends GSplitTransactionFieldsData {
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -65036,6 +66824,15 @@ class GSplitTransactionFieldsDataBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
@@ -65102,6 +66899,8 @@ class GSplitTransactionFieldsDataBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -65145,18 +66944,19 @@ class GSplitTransactionFieldsDataBuilder
                   id, r'GSplitTransactionFieldsData', 'id'),
               amount: amount.build(),
               transactionType: BuiltValueNullFieldError.checkNotNull(
-                  transactionType,
-                  r'GSplitTransactionFieldsData',
-                  'transactionType'),
+                  transactionType, r'GSplitTransactionFieldsData', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GSplitTransactionFieldsData', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GSplitTransactionFieldsData', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GSplitTransactionFieldsData', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GSplitTransactionFieldsData', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GSplitTransactionFieldsData', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GSplitTransactionFieldsData', 'creatorId'),
+              toUserId:
+                  BuiltValueNullFieldError.checkNotNull(toUserId, r'GSplitTransactionFieldsData', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GSplitTransactionFieldsData', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GSplitTransactionFieldsData', 'groupId'),
               note: note,
@@ -65659,6 +67459,10 @@ class _$GSplitTransactionFieldsData_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GSplitTransactionFieldsData_expense_amount amount;
@@ -65680,6 +67484,8 @@ class _$GSplitTransactionFieldsData_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -65694,6 +67500,10 @@ class _$GSplitTransactionFieldsData_expense
         title, r'GSplitTransactionFieldsData_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GSplitTransactionFieldsData_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GSplitTransactionFieldsData_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GSplitTransactionFieldsData_expense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GSplitTransactionFieldsData_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -65719,6 +67529,8 @@ class _$GSplitTransactionFieldsData_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -65733,6 +67545,8 @@ class _$GSplitTransactionFieldsData_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -65749,6 +67563,8 @@ class _$GSplitTransactionFieldsData_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -65779,6 +67595,15 @@ class GSplitTransactionFieldsData_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -65814,6 +67639,8 @@ class GSplitTransactionFieldsData_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -65844,19 +67671,24 @@ class GSplitTransactionFieldsData_expenseBuilder
     try {
       _$result = _$v ??
           new _$GSplitTransactionFieldsData_expense._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GSplitTransactionFieldsData_expense', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GSplitTransactionFieldsData_expense', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GSplitTransactionFieldsData_expense', 'id'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'GSplitTransactionFieldsData_expense', 'title'),
-              createdAt: BuiltValueNullFieldError.checkNotNull(createdAt,
-                  r'GSplitTransactionFieldsData_expense', 'createdAt'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GSplitTransactionFieldsData_expense', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GSplitTransactionFieldsData_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt,
+                  r'GSplitTransactionFieldsData_expense',
+                  'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GSplitTransactionFieldsData_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GSplitTransactionFieldsData_expense', 'creatorId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GSplitTransactionFieldsData_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -66316,6 +68148,10 @@ class _$GSplitWithSiblingsData extends GSplitWithSiblingsData {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -66349,6 +68185,8 @@ class _$GSplitWithSiblingsData extends GSplitWithSiblingsData {
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -66376,6 +68214,10 @@ class _$GSplitWithSiblingsData extends GSplitWithSiblingsData {
         transactionType, r'GSplitWithSiblingsData', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GSplitWithSiblingsData', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GSplitWithSiblingsData', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GSplitWithSiblingsData', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GSplitWithSiblingsData', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -66411,6 +68253,8 @@ class _$GSplitWithSiblingsData extends GSplitWithSiblingsData {
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -66435,6 +68279,8 @@ class _$GSplitWithSiblingsData extends GSplitWithSiblingsData {
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -66461,6 +68307,8 @@ class _$GSplitWithSiblingsData extends GSplitWithSiblingsData {
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -66531,6 +68379,15 @@ class GSplitWithSiblingsDataBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -66587,6 +68444,8 @@ class GSplitWithSiblingsDataBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -66634,16 +68493,18 @@ class GSplitWithSiblingsDataBuilder
                   transactionType, r'GSplitWithSiblingsData', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GSplitWithSiblingsData', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GSplitWithSiblingsData', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GSplitWithSiblingsData', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GSplitWithSiblingsData', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GSplitWithSiblingsData', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GSplitWithSiblingsData', 'creatorId'),
+              toUserId:
+                  BuiltValueNullFieldError.checkNotNull(toUserId, r'GSplitWithSiblingsData', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GSplitWithSiblingsData', 'creatorId'),
               withGroupId: withGroupId,
-              groupId: BuiltValueNullFieldError.checkNotNull(
-                  groupId, r'GSplitWithSiblingsData', 'groupId'),
+              groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GSplitWithSiblingsData', 'groupId'),
               note: note,
               imageId: imageId,
               siblings: siblings.build());
@@ -66687,6 +68548,10 @@ class _$GSplitWithSiblingsData_expense extends GSplitWithSiblingsData_expense {
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GSplitWithSiblingsData_expense_amount amount;
@@ -66706,6 +68571,8 @@ class _$GSplitWithSiblingsData_expense extends GSplitWithSiblingsData_expense {
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -66720,6 +68587,10 @@ class _$GSplitWithSiblingsData_expense extends GSplitWithSiblingsData_expense {
         title, r'GSplitWithSiblingsData_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GSplitWithSiblingsData_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GSplitWithSiblingsData_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GSplitWithSiblingsData_expense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GSplitWithSiblingsData_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -66745,6 +68616,8 @@ class _$GSplitWithSiblingsData_expense extends GSplitWithSiblingsData_expense {
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -66759,6 +68632,8 @@ class _$GSplitWithSiblingsData_expense extends GSplitWithSiblingsData_expense {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -66775,6 +68650,8 @@ class _$GSplitWithSiblingsData_expense extends GSplitWithSiblingsData_expense {
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -66805,6 +68682,15 @@ class GSplitWithSiblingsData_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -66839,6 +68725,8 @@ class GSplitWithSiblingsData_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -66868,19 +68756,23 @@ class GSplitWithSiblingsData_expenseBuilder
     try {
       _$result = _$v ??
           new _$GSplitWithSiblingsData_expense._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GSplitWithSiblingsData_expense', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GSplitWithSiblingsData_expense', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GSplitWithSiblingsData_expense', 'id'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'GSplitWithSiblingsData_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GSplitWithSiblingsData_expense', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GSplitWithSiblingsData_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GSplitWithSiblingsData_expense', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GSplitWithSiblingsData_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GSplitWithSiblingsData_expense', 'creatorId'),
+              creatorId:
+                  BuiltValueNullFieldError.checkNotNull(creatorId, r'GSplitWithSiblingsData_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -67776,6 +69668,10 @@ class _$GSplitWithSiblingsData_siblings
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -67807,6 +69703,8 @@ class _$GSplitWithSiblingsData_siblings
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -67834,6 +69732,10 @@ class _$GSplitWithSiblingsData_siblings
         transactionType, r'GSplitWithSiblingsData_siblings', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GSplitWithSiblingsData_siblings', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GSplitWithSiblingsData_siblings', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GSplitWithSiblingsData_siblings', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GSplitWithSiblingsData_siblings', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -67867,6 +69769,8 @@ class _$GSplitWithSiblingsData_siblings
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -67890,6 +69794,8 @@ class _$GSplitWithSiblingsData_siblings
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -67915,6 +69821,8 @@ class _$GSplitWithSiblingsData_siblings
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -67987,6 +69895,15 @@ class GSplitWithSiblingsData_siblingsBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -68037,6 +69954,8 @@ class GSplitWithSiblingsData_siblingsBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -68083,13 +70002,15 @@ class GSplitWithSiblingsData_siblingsBuilder
                   transactionType, r'GSplitWithSiblingsData_siblings', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GSplitWithSiblingsData_siblings', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GSplitWithSiblingsData_siblings', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GSplitWithSiblingsData_siblings', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GSplitWithSiblingsData_siblings', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GSplitWithSiblingsData_siblings', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GSplitWithSiblingsData_siblings', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GSplitWithSiblingsData_siblings', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GSplitWithSiblingsData_siblings', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GSplitWithSiblingsData_siblings', 'groupId'),
               note: note,
@@ -68132,6 +70053,10 @@ class _$GSplitWithSiblingsData_siblings_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GSplitWithSiblingsData_siblings_expense_amount amount;
@@ -68153,6 +70078,8 @@ class _$GSplitWithSiblingsData_siblings_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -68167,6 +70094,10 @@ class _$GSplitWithSiblingsData_siblings_expense
         title, r'GSplitWithSiblingsData_siblings_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GSplitWithSiblingsData_siblings_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GSplitWithSiblingsData_siblings_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'GSplitWithSiblingsData_siblings_expense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GSplitWithSiblingsData_siblings_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -68193,6 +70124,8 @@ class _$GSplitWithSiblingsData_siblings_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -68207,6 +70140,8 @@ class _$GSplitWithSiblingsData_siblings_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -68224,6 +70159,8 @@ class _$GSplitWithSiblingsData_siblings_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -68254,6 +70191,15 @@ class GSplitWithSiblingsData_siblings_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -68289,6 +70235,8 @@ class GSplitWithSiblingsData_siblings_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -68319,19 +70267,22 @@ class GSplitWithSiblingsData_siblings_expenseBuilder
     try {
       _$result = _$v ??
           new _$GSplitWithSiblingsData_siblings_expense._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GSplitWithSiblingsData_siblings_expense', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GSplitWithSiblingsData_siblings_expense', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GSplitWithSiblingsData_siblings_expense', 'id'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'GSplitWithSiblingsData_siblings_expense', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GSplitWithSiblingsData_siblings_expense', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GSplitWithSiblingsData_siblings_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GSplitWithSiblingsData_siblings_expense', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GSplitWithSiblingsData_siblings_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GSplitWithSiblingsData_siblings_expense', 'creatorId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GSplitWithSiblingsData_siblings_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -70057,6 +72008,10 @@ class _$GGroupWithExpensesData_expenses
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GGroupWithExpensesData_expenses_amount amount;
@@ -70078,6 +72033,8 @@ class _$GGroupWithExpensesData_expenses
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -70096,6 +72053,10 @@ class _$GGroupWithExpensesData_expenses
         title, r'GGroupWithExpensesData_expenses', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GGroupWithExpensesData_expenses', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GGroupWithExpensesData_expenses', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GGroupWithExpensesData_expenses', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GGroupWithExpensesData_expenses', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -70123,6 +72084,8 @@ class _$GGroupWithExpensesData_expenses
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -70139,6 +72102,8 @@ class _$GGroupWithExpensesData_expenses
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -70157,6 +72122,8 @@ class _$GGroupWithExpensesData_expenses
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -70201,6 +72168,15 @@ class GGroupWithExpensesData_expensesBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _category;
   String? get category => _$this._category;
   set category(String? category) => _$this._category = category;
@@ -70236,6 +72212,8 @@ class GGroupWithExpensesData_expensesBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -70265,8 +72243,8 @@ class GGroupWithExpensesData_expensesBuilder
     try {
       _$result = _$v ??
           new _$GGroupWithExpensesData_expenses._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GGroupWithExpensesData_expenses', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GGroupWithExpensesData_expenses', 'G__typename'),
               creator: creator.build(),
               splits: splits.build(),
               id: BuiltValueNullFieldError.checkNotNull(
@@ -70275,11 +72253,15 @@ class GGroupWithExpensesData_expensesBuilder
                   title, r'GGroupWithExpensesData_expenses', 'title'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GGroupWithExpensesData_expenses', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GGroupWithExpensesData_expenses', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GGroupWithExpensesData_expenses', 'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GGroupWithExpensesData_expenses', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GGroupWithExpensesData_expenses', 'creatorId'),
+              creatorId:
+                  BuiltValueNullFieldError.checkNotNull(creatorId, r'GGroupWithExpensesData_expenses', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -70486,6 +72468,10 @@ class _$GGroupWithExpensesData_expenses_splits
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -70516,6 +72502,8 @@ class _$GGroupWithExpensesData_expenses_splits
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -70539,6 +72527,10 @@ class _$GGroupWithExpensesData_expenses_splits
         r'GGroupWithExpensesData_expenses_splits', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GGroupWithExpensesData_expenses_splits', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GGroupWithExpensesData_expenses_splits', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(transactionAt,
+        r'GGroupWithExpensesData_expenses_splits', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GGroupWithExpensesData_expenses_splits', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -70570,6 +72562,8 @@ class _$GGroupWithExpensesData_expenses_splits
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -70590,6 +72584,8 @@ class _$GGroupWithExpensesData_expenses_splits
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -70613,6 +72609,8 @@ class _$GGroupWithExpensesData_expenses_splits
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -70670,6 +72668,15 @@ class GGroupWithExpensesData_expenses_splitsBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -70717,6 +72724,8 @@ class GGroupWithExpensesData_expenses_splitsBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -70761,13 +72770,15 @@ class GGroupWithExpensesData_expenses_splitsBuilder
                   transactionType, r'GGroupWithExpensesData_expenses_splits', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GGroupWithExpensesData_expenses_splits', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GGroupWithExpensesData_expenses_splits', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GGroupWithExpensesData_expenses_splits', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GGroupWithExpensesData_expenses_splits', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GGroupWithExpensesData_expenses_splits', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GGroupWithExpensesData_expenses_splits', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GGroupWithExpensesData_expenses_splits', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GGroupWithExpensesData_expenses_splits', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GGroupWithExpensesData_expenses_splits', 'groupId'),
               note: note,
@@ -71552,6 +73563,10 @@ class _$GExpenseMixSplitFieldsData_expense
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String category;
   @override
   final GExpenseMixSplitFieldsData_expense_amount amount;
@@ -71573,6 +73588,8 @@ class _$GExpenseMixSplitFieldsData_expense
       required this.id,
       required this.title,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       required this.category,
       required this.amount,
       required this.creatorId,
@@ -71587,6 +73604,10 @@ class _$GExpenseMixSplitFieldsData_expense
         title, r'GExpenseMixSplitFieldsData_expense', 'title');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GExpenseMixSplitFieldsData_expense', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GExpenseMixSplitFieldsData_expense', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GExpenseMixSplitFieldsData_expense', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         category, r'GExpenseMixSplitFieldsData_expense', 'category');
     BuiltValueNullFieldError.checkNotNull(
@@ -71612,6 +73633,8 @@ class _$GExpenseMixSplitFieldsData_expense
         id == other.id &&
         title == other.title &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         category == other.category &&
         amount == other.amount &&
         creatorId == other.creatorId &&
@@ -71626,6 +73649,8 @@ class _$GExpenseMixSplitFieldsData_expense
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, creatorId.hashCode);
@@ -71642,6 +73667,8 @@ class _$GExpenseMixSplitFieldsData_expense
           ..add('id', id)
           ..add('title', title)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('category', category)
           ..add('amount', amount)
           ..add('creatorId', creatorId)
@@ -71672,6 +73699,15 @@ class GExpenseMixSplitFieldsData_expenseBuilder
   String? _createdAt;
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
+
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
 
   String? _category;
   String? get category => _$this._category;
@@ -71706,6 +73742,8 @@ class GExpenseMixSplitFieldsData_expenseBuilder
       _id = $v.id;
       _title = $v.title;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _category = $v.category;
       _amount = $v.amount.toBuilder();
       _creatorId = $v.creatorId;
@@ -71736,19 +73774,24 @@ class GExpenseMixSplitFieldsData_expenseBuilder
     try {
       _$result = _$v ??
           new _$GExpenseMixSplitFieldsData_expense._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GExpenseMixSplitFieldsData_expense', 'G__typename'),
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, r'GExpenseMixSplitFieldsData_expense', 'G__typename'),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GExpenseMixSplitFieldsData_expense', 'id'),
               title: BuiltValueNullFieldError.checkNotNull(
                   title, r'GExpenseMixSplitFieldsData_expense', 'title'),
-              createdAt: BuiltValueNullFieldError.checkNotNull(createdAt,
-                  r'GExpenseMixSplitFieldsData_expense', 'createdAt'),
+              createdAt: BuiltValueNullFieldError.checkNotNull(
+                  createdAt, r'GExpenseMixSplitFieldsData_expense', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GExpenseMixSplitFieldsData_expense', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt,
+                  r'GExpenseMixSplitFieldsData_expense',
+                  'transactionAt'),
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GExpenseMixSplitFieldsData_expense', 'category'),
               amount: amount.build(),
-              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId,
-                  r'GExpenseMixSplitFieldsData_expense', 'creatorId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GExpenseMixSplitFieldsData_expense', 'creatorId'),
               note: note,
               imageId: imageId);
     } catch (_) {
@@ -71915,6 +73958,10 @@ class _$GExpenseMixSplitFieldsData_split
   @override
   final String createdAt;
   @override
+  final String updatedAt;
+  @override
+  final String transactionAt;
+  @override
   final String? transactionPartGroupId;
   @override
   final String fromUserId;
@@ -71943,6 +73990,8 @@ class _$GExpenseMixSplitFieldsData_split
       required this.amount,
       required this.transactionType,
       required this.createdAt,
+      required this.updatedAt,
+      required this.transactionAt,
       this.transactionPartGroupId,
       required this.fromUserId,
       required this.toUserId,
@@ -71966,6 +74015,10 @@ class _$GExpenseMixSplitFieldsData_split
         r'GExpenseMixSplitFieldsData_split', 'transactionType');
     BuiltValueNullFieldError.checkNotNull(
         createdAt, r'GExpenseMixSplitFieldsData_split', 'createdAt');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedAt, r'GExpenseMixSplitFieldsData_split', 'updatedAt');
+    BuiltValueNullFieldError.checkNotNull(
+        transactionAt, r'GExpenseMixSplitFieldsData_split', 'transactionAt');
     BuiltValueNullFieldError.checkNotNull(
         fromUserId, r'GExpenseMixSplitFieldsData_split', 'fromUserId');
     BuiltValueNullFieldError.checkNotNull(
@@ -71996,6 +74049,8 @@ class _$GExpenseMixSplitFieldsData_split
         amount == other.amount &&
         transactionType == other.transactionType &&
         createdAt == other.createdAt &&
+        updatedAt == other.updatedAt &&
+        transactionAt == other.transactionAt &&
         transactionPartGroupId == other.transactionPartGroupId &&
         fromUserId == other.fromUserId &&
         toUserId == other.toUserId &&
@@ -72016,6 +74071,8 @@ class _$GExpenseMixSplitFieldsData_split
     _$hash = $jc(_$hash, amount.hashCode);
     _$hash = $jc(_$hash, transactionType.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
+    _$hash = $jc(_$hash, updatedAt.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jc(_$hash, transactionPartGroupId.hashCode);
     _$hash = $jc(_$hash, fromUserId.hashCode);
     _$hash = $jc(_$hash, toUserId.hashCode);
@@ -72038,6 +74095,8 @@ class _$GExpenseMixSplitFieldsData_split
           ..add('amount', amount)
           ..add('transactionType', transactionType)
           ..add('createdAt', createdAt)
+          ..add('updatedAt', updatedAt)
+          ..add('transactionAt', transactionAt)
           ..add('transactionPartGroupId', transactionPartGroupId)
           ..add('fromUserId', fromUserId)
           ..add('toUserId', toUserId)
@@ -72092,6 +74151,15 @@ class GExpenseMixSplitFieldsData_splitBuilder
   String? get createdAt => _$this._createdAt;
   set createdAt(String? createdAt) => _$this._createdAt = createdAt;
 
+  String? _updatedAt;
+  String? get updatedAt => _$this._updatedAt;
+  set updatedAt(String? updatedAt) => _$this._updatedAt = updatedAt;
+
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   String? _transactionPartGroupId;
   String? get transactionPartGroupId => _$this._transactionPartGroupId;
   set transactionPartGroupId(String? transactionPartGroupId) =>
@@ -72139,6 +74207,8 @@ class GExpenseMixSplitFieldsData_splitBuilder
       _amount = $v.amount.toBuilder();
       _transactionType = $v.transactionType;
       _createdAt = $v.createdAt;
+      _updatedAt = $v.updatedAt;
+      _transactionAt = $v.transactionAt;
       _transactionPartGroupId = $v.transactionPartGroupId;
       _fromUserId = $v.fromUserId;
       _toUserId = $v.toUserId;
@@ -72182,13 +74252,15 @@ class GExpenseMixSplitFieldsData_splitBuilder
                   transactionType, r'GExpenseMixSplitFieldsData_split', 'transactionType'),
               createdAt: BuiltValueNullFieldError.checkNotNull(
                   createdAt, r'GExpenseMixSplitFieldsData_split', 'createdAt'),
+              updatedAt: BuiltValueNullFieldError.checkNotNull(
+                  updatedAt, r'GExpenseMixSplitFieldsData_split', 'updatedAt'),
+              transactionAt: BuiltValueNullFieldError.checkNotNull(
+                  transactionAt, r'GExpenseMixSplitFieldsData_split', 'transactionAt'),
               transactionPartGroupId: transactionPartGroupId,
               fromUserId: BuiltValueNullFieldError.checkNotNull(
                   fromUserId, r'GExpenseMixSplitFieldsData_split', 'fromUserId'),
-              toUserId: BuiltValueNullFieldError.checkNotNull(
-                  toUserId, r'GExpenseMixSplitFieldsData_split', 'toUserId'),
-              creatorId: BuiltValueNullFieldError.checkNotNull(
-                  creatorId, r'GExpenseMixSplitFieldsData_split', 'creatorId'),
+              toUserId: BuiltValueNullFieldError.checkNotNull(toUserId, r'GExpenseMixSplitFieldsData_split', 'toUserId'),
+              creatorId: BuiltValueNullFieldError.checkNotNull(creatorId, r'GExpenseMixSplitFieldsData_split', 'creatorId'),
               withGroupId: withGroupId,
               groupId: BuiltValueNullFieldError.checkNotNull(groupId, r'GExpenseMixSplitFieldsData_split', 'groupId'),
               note: note,

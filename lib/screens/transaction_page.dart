@@ -110,8 +110,8 @@ class _TransactionPageState extends State<TransactionPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: Text(
-                      DateFormat()
-                          .format(DateTime.parse(widget.transaction.createdAt)),
+                      DateFormat().format(
+                          DateTime.parse(widget.transaction.transactionAt)),
                       textAlign: TextAlign.center,
                     ),
                   ),

@@ -1429,6 +1429,10 @@ abstract class GgroupData_group_expenses
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GgroupData_group_expenses_amount get amount;
@@ -1531,6 +1535,10 @@ abstract class GgroupData_group_expenses_splits
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -2356,6 +2364,10 @@ abstract class Gadd_expenseData_addExpense
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   Gadd_expenseData_addExpense_amount get amount;
@@ -2418,6 +2430,10 @@ abstract class Gadd_expenseData_addExpense_splits
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -2476,6 +2492,10 @@ abstract class Gadd_expenseData_addExpense_splits_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -3470,6 +3490,10 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_expense
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GcreateNonGroupExpenseData_addNonGroupExpense_expense_amount get amount;
@@ -3544,6 +3568,10 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -3609,6 +3637,10 @@ abstract class GcreateNonGroupExpenseData_addNonGroupExpense_expense_splits_expe
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -4063,6 +4095,10 @@ abstract class GsettleInGroupData_settleInGroup
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -4120,6 +4156,10 @@ abstract class GsettleInGroupData_settleInGroup_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -4472,6 +4512,10 @@ abstract class GsimplifyUserData_simplifyCrossGroup
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -4529,6 +4573,10 @@ abstract class GsimplifyUserData_simplifyCrossGroup_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -4882,6 +4930,10 @@ abstract class GautoSettleWithUserData_autoSettleWithUser
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -4939,6 +4991,10 @@ abstract class GautoSettleWithUserData_autoSettleWithUser_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -5340,6 +5396,10 @@ abstract class GtransactionWithUserData_getTransactionsMixExpenseWithUser_expens
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GtransactionWithUserData_getTransactionsMixExpenseWithUser_expense_amount
@@ -5457,6 +5517,10 @@ abstract class GtransactionWithUserData_getTransactionsMixExpenseWithUser_split
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -5762,6 +5826,10 @@ abstract class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_exp
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_expense_amount
@@ -5880,6 +5948,10 @@ abstract class GtransactionMixExpenseData_getTransactionsMixExpenseWithGroup_spl
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -6207,6 +6279,10 @@ abstract class GcurrencyConvertData_convertCurrency
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -6264,6 +6340,10 @@ abstract class GcurrencyConvertData_convertCurrency_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -6715,6 +6795,10 @@ abstract class GgetTransactionsData_getTransactions_expense
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GgetTransactionsData_getTransactions_expense_amount get amount;
@@ -6814,6 +6898,10 @@ abstract class GgetTransactionsData_getTransactions_split
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -7166,6 +7254,10 @@ abstract class GgetExpenseData_expenseById
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GgetExpenseData_expenseById_amount get amount;
@@ -7267,6 +7359,10 @@ abstract class GgetExpenseData_expenseById_splits
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -7539,6 +7635,10 @@ abstract class GsplitFromidData_splitById
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -7608,6 +7708,10 @@ abstract class GsplitFromidData_splitById_siblings
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -7666,6 +7770,10 @@ abstract class GsplitFromidData_splitById_siblings_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -7983,6 +8091,10 @@ abstract class GsplitFromidData_splitById_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -8322,6 +8434,10 @@ abstract class GsplitFromGroupData_splitsByPart
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -9264,6 +9380,8 @@ abstract class GExpenseBasic {
   String get id;
   String get title;
   String get createdAt;
+  String get updatedAt;
+  String get transactionAt;
   String get category;
   GExpenseBasic_amount get amount;
   String get creatorId;
@@ -9304,6 +9422,10 @@ abstract class GExpenseBasicData
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -9377,6 +9499,10 @@ abstract class GExpenseFields implements GExpenseBasic {
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GExpenseFields_amount get amount;
@@ -9436,6 +9562,10 @@ abstract class GExpenseFields_splits implements GSplitFields {
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -9526,6 +9656,10 @@ abstract class GExpenseFieldsData
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -9666,6 +9800,10 @@ abstract class GExpenseFieldsData_splits
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -9840,6 +9978,10 @@ abstract class GNewExpenseFields implements GExpenseBasic {
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GNewExpenseFields_amount get amount;
@@ -9888,6 +10030,10 @@ abstract class GNewExpenseFields_splits implements GSplitTransactionFields {
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -9917,6 +10063,10 @@ abstract class GNewExpenseFields_splits_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -10048,6 +10198,10 @@ abstract class GNewExpenseFieldsData
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GNewExpenseFieldsData_amount get amount;
@@ -10151,6 +10305,10 @@ abstract class GNewExpenseFieldsData_splits
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -10208,6 +10366,10 @@ abstract class GNewExpenseFieldsData_splits_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -10544,6 +10706,8 @@ abstract class GSplitFieldsBasics {
   GSplitFieldsBasics_amount get amount;
   _i3.GTransactionType get transactionType;
   String get createdAt;
+  String get updatedAt;
+  String get transactionAt;
   String? get transactionPartGroupId;
   String get fromUserId;
   String get toUserId;
@@ -10590,6 +10754,10 @@ abstract class GSplitFieldsBasicsData
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -10671,6 +10839,10 @@ abstract class GSplitFields implements GSplitFieldsBasics {
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -10763,6 +10935,10 @@ abstract class GSplitFieldsData
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -10939,6 +11115,10 @@ abstract class GSplitTransactionFields implements GSplitFields {
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -11018,6 +11198,10 @@ abstract class GSplitTransactionFields_expense implements GExpenseBasic {
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -11101,6 +11285,10 @@ abstract class GSplitTransactionFieldsData
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -11298,6 +11486,10 @@ abstract class GSplitTransactionFieldsData_expense
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GSplitTransactionFieldsData_expense_amount get amount;
@@ -11472,6 +11664,10 @@ abstract class GSplitWithSiblings implements GSplitTransactionFields {
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -11502,6 +11698,10 @@ abstract class GSplitWithSiblings_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -11631,6 +11831,10 @@ abstract class GSplitWithSiblings_siblings implements GSplitTransactionFields {
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -11660,6 +11864,10 @@ abstract class GSplitWithSiblings_siblings_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -11803,6 +12011,10 @@ abstract class GSplitWithSiblingsData
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -11861,6 +12073,10 @@ abstract class GSplitWithSiblingsData_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -12179,6 +12395,10 @@ abstract class GSplitWithSiblingsData_siblings
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String? get transactionPartGroupId;
   @override
   String get fromUserId;
@@ -12236,6 +12456,10 @@ abstract class GSplitWithSiblingsData_siblings_expense
   String get title;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String get category;
   @override
@@ -12619,6 +12843,10 @@ abstract class GGroupWithExpenses_expenses implements GExpenseFields {
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GGroupWithExpenses_expenses_amount get amount;
@@ -12666,6 +12894,10 @@ abstract class GGroupWithExpenses_expenses_splits
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -12997,6 +13229,10 @@ abstract class GGroupWithExpensesData_expenses
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GGroupWithExpensesData_expenses_amount get amount;
@@ -13101,6 +13337,10 @@ abstract class GGroupWithExpensesData_expenses_splits
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -13331,6 +13571,10 @@ abstract class GExpenseMixSplitFields_expense implements GExpenseBasic {
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GExpenseMixSplitFields_expense_amount get amount;
@@ -13371,6 +13615,10 @@ abstract class GExpenseMixSplitFields_split implements GSplitFields {
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override
@@ -13500,6 +13748,10 @@ abstract class GExpenseMixSplitFieldsData_expense
   @override
   String get createdAt;
   @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
+  @override
   String get category;
   @override
   GExpenseMixSplitFieldsData_expense_amount get amount;
@@ -13597,6 +13849,10 @@ abstract class GExpenseMixSplitFieldsData_split
   _i3.GTransactionType get transactionType;
   @override
   String get createdAt;
+  @override
+  String get updatedAt;
+  @override
+  String get transactionAt;
   @override
   String? get transactionPartGroupId;
   @override

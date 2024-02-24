@@ -76,6 +76,9 @@ class Assets {
   static const AssetGenImage imagesWelcome =
       AssetGenImage('assets/images/welcome.webp');
 
+  /// File path: pubspec.yaml
+  static const String pubspec = 'pubspec.yaml';
+
   /// List of all assets
   static List<dynamic> get values => [
         iconsBookSvgrepoCom,
@@ -94,7 +97,8 @@ class Assets {
         iconsSunSvgrepoCom,
         iconsSyncSvgrepoCom,
         imagesAssist,
-        imagesWelcome
+        imagesWelcome,
+        pubspec
       ];
 }
 

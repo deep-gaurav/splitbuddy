@@ -141,11 +141,11 @@ class _TransactionHistoryState extends State<TransactionHistory>
   }
 
   generateGrouped() {
-    expenses.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+    expenses.sort((a, b) => b.transactionAt.compareTo(a.transactionAt));
     expenseGrouped.clear();
     for (var expense in expenses) {
       var date = DateFormat('d MMM y')
-          .format(DateTime.parse(expense.createdAt).toLocal());
+          .format(DateTime.parse(expense.transactionAt).toLocal());
       if (expenseGrouped[date] == null) {
         expenseGrouped[date] = [expense];
       } else {
@@ -643,7 +643,7 @@ class TransactionHisotryTransactionCard extends StatelessWidget {
                 right: 20,
                 child: Text(
                   DateFormat("h:mm a").format(
-                    DateTime.parse(mix.createdAt).toLocal(),
+                    DateTime.parse(mix.transactionAt).toLocal(),
                   ),
                   style: Theme.of(context).textTheme.labelSmall,
                 ),

@@ -170,7 +170,7 @@ class _ExpensePageState extends State<ExpensePage> {
               padding: const EdgeInsets.only(top: 10),
               child: Text(
                 DateFormat()
-                    .format(DateTime.parse(widget.expenseFields.createdAt)),
+                    .format(DateTime.parse(widget.expenseFields.transactionAt)),
                 textAlign: TextAlign.center,
               ),
             ),

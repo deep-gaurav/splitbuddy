@@ -30,6 +30,8 @@ type Expense {
   splits: [Split!]!
   imageId: String
   note: String
+  updatedAt: String!
+  transactionAt: String!
 }
 
 type ExpenseMixSplit {
@@ -122,6 +124,7 @@ type OwedInGroup {
 
 type Query {
   ping: String!
+  supportedClient: String!
   user: UserAuth!
   group(id: String!): Group!
   userById(id: String!): User!
@@ -193,6 +196,8 @@ type Split {
   imageId: String
   note: String
   siblings: [Split!]!
+  updatedAt: String!
+  transactionAt: String!
 }
 
 input SplitInput {

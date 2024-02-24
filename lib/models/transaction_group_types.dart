@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 
 sealed class TransactionCardTypes {
-  String get createdAt;
+  String get transactionAt;
   String get creatorId;
 }
 
@@ -13,10 +13,11 @@ class SingleTransaction extends TransactionCardTypes {
   SingleTransaction({this.transaction, this.expenseBasic});
 
   @override
-  String get createdAt => transaction?.createdAt ?? expenseBasic!.createdAt;
+  String get transactionAt =>
+      expenseBasic?.transactionAt ?? transaction!.transactionAt;
 
   @override
-  String get creatorId => transaction?.creatorId ?? expenseBasic!.creatorId;
+  String get creatorId => expenseBasic?.creatorId ?? transaction!.creatorId;
 }
 
 class GroupedPaidTransactions extends TransactionCardTypes {
@@ -29,7 +30,7 @@ class GroupedPaidTransactions extends TransactionCardTypes {
   });
 
   @override
-  String get createdAt => transactions.first.createdAt;
+  String get transactionAt => transactions.first.transactionAt;
 
   @override
   String get creatorId => transactions.first.creatorId;
@@ -65,7 +66,7 @@ class GroupedCrossSettlementTransactions extends TransactionCardTypes {
       {required this.transactions, required this.groupId});
 
   @override
-  String get createdAt => transactions.first.createdAt;
+  String get transactionAt => transactions.first.transactionAt;
 
   @override
   String get creatorId => transactions.first.creatorId;
@@ -82,7 +83,7 @@ class CurrencyConversionTransactions extends TransactionCardTypes {
       {required this.transactions, required this.groupId});
 
   @override
-  String get createdAt => transactions.first.createdAt;
+  String get transactionAt => transactions.first.transactionAt;
 
   @override
   String get creatorId => transactions.first.creatorId;
