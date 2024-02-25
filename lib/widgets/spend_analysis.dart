@@ -6,6 +6,7 @@ import 'package:billdivide/mixins/notification_refresher.dart';
 import 'package:billdivide/models/expensecategory.dart';
 import 'package:billdivide/state/app_state.dart';
 import 'package:billdivide/utils/color_utils.dart';
+import 'package:billdivide/utils/demo_data.dart';
 import 'package:billdivide/utils/svg_icons.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -14,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 enum SpendAnalysisType { pieGraph, table, all }
 
@@ -30,7 +32,7 @@ class SpendAnalysis extends StatefulWidget {
 
 class _SpendAnalysisState extends State<SpendAnalysis>
     with WidgetsBindingObserver, NotificationRefresher {
-  List<GCategorisedAmountFields> categorisedSpends = [];
+  List<GCategorisedAmountFields>? categorisedSpends;
 
   @override
   void initState() {
@@ -81,25 +83,105 @@ class _SpendAnalysisState extends State<SpendAnalysis>
                   ),
             ),
             const Divider(),
-            if (categorisedSpends
+            if (categorisedSpends == null)
+              Shimmer(
+                gradient: switch (Theme.of(context).brightness) {
+                  Brightness.dark => kShimmerGradientDark,
+                  Brightness.light => kShimmerGradientLight,
+                },
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: AspectRatio(
+                        aspectRatio: 1,
+                        child: Stack(
+                          children: [
+                            PieChart(
+                              PieChartData(
+                                sections: [
+                                  PieChartSectionData(
+                                    color: Colors.black,
+                                    value: 10,
+                                  ),
+                                  PieChartSectionData(
+                                    color: Colors.black,
+                                    value: 7,
+                                  ),
+                                  PieChartSectionData(
+                                    color: Colors.black,
+                                    value: 3,
+                                  )
+                                ],
+                              ),
+                            ),
+                            const Positioned.fill(
+                                child: Center(
+                              child: Text('Loading...'),
+                            ))
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ...List.generate(3, (index) => index).map(
+                          (e) => Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: Row(
+                              children: [
+                                const SizedBox(
+                                  width: 14,
+                                  height: 14,
+                                  child: DecoratedBox(
+                                      decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    shape: BoxShape.circle,
+                                  )),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                SizedBox(
+                                  width: 80,
+                                  height: 8,
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+                                        color: Colors.black,
+                                        borderRadius: BorderRadius.circular(8)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            else if (categorisedSpends!
                 .where((element) => element.amount.amount != 0)
                 .isNotEmpty)
               switch (widget.type) {
                 SpendAnalysisType.pieGraph =>
-                  CategorisedSpendChart(categorisedSpends: categorisedSpends),
+                  CategorisedSpendChart(categorisedSpends: categorisedSpends!),
                 SpendAnalysisType.table => SpendCategoryAmountTable(
-                    categorisedSpends: categorisedSpends),
+                    categorisedSpends: categorisedSpends!),
                 SpendAnalysisType.all => ExpandableCarousel(
                     items: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 20),
                         child: CategorisedSpendChart(
-                            categorisedSpends: categorisedSpends),
+                            categorisedSpends: categorisedSpends!),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 20),
                         child: SpendCategoryAmountTable(
-                            categorisedSpends: categorisedSpends),
+                            categorisedSpends: categorisedSpends!),
                       )
                     ],
                     options: CarouselOptions(
