@@ -157,9 +157,9 @@ class _TransactionHistoryState extends State<TransactionHistory>
           var transIndex = expenses.indexWhere((element) =>
               element is Split && element.split.id == trans.split!.id);
           if (transIndex != -1) {
-            expenses.add(Split(split: trans.split!));
-          } else {
             expenses[transIndex] = Split(split: trans.split!);
+          } else {
+            expenses.add(Split(split: trans.split!));
           }
         }
       }

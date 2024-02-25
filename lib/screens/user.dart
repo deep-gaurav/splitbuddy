@@ -1051,7 +1051,11 @@ class UserTransactionCard extends StatelessWidget {
         const SizedBox(
           height: 5,
         ),
-        if (expense != null) ExpenseCard(expense: expense),
+        if (expense != null)
+          ExpenseCard(
+            expense: expense,
+            transactionAt: transaction == null ? expense.transactionAt : null,
+          ),
         if (transaction != null)
           TransactionCard(
             title: getTitle(context, transaction).$1,
@@ -1069,88 +1073,109 @@ class UserTransactionCard extends StatelessWidget {
 
 class ExpenseCard extends StatelessWidget {
   final GExpenseBasic expense;
+  final String? transactionAt;
 
-  const ExpenseCard({super.key, required this.expense});
+  const ExpenseCard({super.key, required this.expense, this.transactionAt});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      decoration: const BoxDecoration(
-        // color: Theme.of(context).highlightColor,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(5)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+    return Stack(
+      fit: StackFit.passthrough,
+      children: [
+        Container(
+          padding: EdgeInsets.only(bottom: transactionAt != null ? 8 : 0),
+          margin: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: const BoxDecoration(
+            // color: Theme.of(context).highlightColor,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(5)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Column(
               children: [
-                SvgIcon(
-                  asset: Category.categoryFromId(expense.category).iconPath,
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  expense.title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.copyWith(fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
-            const Divider(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text('Expense\nAmount',
-                    textAlign: TextAlign.end,
-                    style: Theme.of(context).textTheme.labelSmall),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  expense.amount.getPretty(context),
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.onSurface),
-                ),
-              ],
-            ),
-            if (expense.imageId != null)
-              const Padding(
-                padding: EdgeInsets.only(top: 5),
-                child: Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.image),
-                    SizedBox(
+                    SvgIcon(
+                      asset: Category.categoryFromId(expense.category).iconPath,
+                    ),
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text('Attached Image'),
+                    Text(
+                      expense.title,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(fontWeight: FontWeight.w600),
+                    ),
                   ],
                 ),
-              ),
-            if (expense.note != null)
-              const Padding(
-                padding: EdgeInsets.only(top: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                const Divider(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Icon(Icons.note),
-                    SizedBox(
+                    Text('Expense\nAmount',
+                        textAlign: TextAlign.end,
+                        style: Theme.of(context).textTheme.labelSmall),
+                    const SizedBox(
                       width: 5,
                     ),
-                    Text('Attached Note'),
+                    Text(
+                      expense.amount.getPretty(context),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall
+                          ?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: Theme.of(context).colorScheme.onSurface),
+                    ),
                   ],
                 ),
-              ),
-          ],
+                if (expense.imageId != null)
+                  const Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.image),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text('Attached Image'),
+                      ],
+                    ),
+                  ),
+                if (expense.note != null)
+                  const Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.note),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text('Attached Note'),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+          ),
         ),
-      ),
+        if (transactionAt != null)
+          Positioned(
+            bottom: 3,
+            right: 20,
+            child: Text(
+              DateFormat("h:mm a").format(
+                DateTime.parse(transactionAt!).toLocal(),
+              ),
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
+          ),
+      ],
     );
   }
 }
