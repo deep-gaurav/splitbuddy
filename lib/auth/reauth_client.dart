@@ -122,4 +122,8 @@ class ReAuthClient {
       // // print(e);
     }
   }
+
+  logOut() {
+    _cachedClient.cache.store.clear();
+  }
 }

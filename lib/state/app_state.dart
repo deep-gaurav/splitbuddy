@@ -521,6 +521,7 @@ class AppState extends ChangeNotifier {
   logout() async {
     authState = AuthStates.unAuthorized;
     await SecureStorageHelper.getInstance().resetTokens();
+    (await client).logOut();
     notifyListeners();
   }
 }
