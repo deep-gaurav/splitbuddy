@@ -640,6 +640,15 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
             isBlock: false,
           ),
         ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'transactionAt'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: false,
+          ),
+          defaultValue: null,
+        ),
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'NonGroupExpense'),
@@ -727,6 +736,15 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
             value: '"MISC".to_string()',
             isBlock: false,
           ),
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'transactionAt'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: false,
+          ),
+          defaultValue: null,
         ),
       ],
       type: _i1.NamedTypeNode(

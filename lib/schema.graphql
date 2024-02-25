@@ -74,6 +74,7 @@ type Mutation {
     note: String
     imageId: String
     category: String! = "\"MISC\".to_string()"
+    transactionAt: String
   ): NonGroupExpense!
   addExpense(
     groupId: String!
@@ -84,6 +85,7 @@ type Mutation {
     note: String
     imageId: String
     category: String! = "\"MISC\".to_string()"
+    transactionAt: String
   ): Expense!
   settleInGroup(
     toUser: String!

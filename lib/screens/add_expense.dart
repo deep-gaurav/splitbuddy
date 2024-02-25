@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:billdivide/extensions/datetime_extension.dart';
 import 'package:billdivide/extensions/num_extension.dart';
 import 'package:billdivide/models/expensecategory.dart';
 import 'package:billdivide/screens/image_editor.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_avif/flutter_avif.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:billdivide/__generated__/schema.schema.gql.dart';
 import 'package:billdivide/extensions/group_extension.dart';
@@ -55,6 +57,8 @@ class _CreateExpenseState extends State<CreateExpense>
   Category? selectedCategory;
 
   TextEditingController? noteController;
+
+  DateTime? transactionAt;
 
   @override
   void initState() {
@@ -359,7 +363,7 @@ class _CreateExpenseState extends State<CreateExpense>
             ),
             const SliverToBoxAdapter(
               child: SizedBox(
-                height: 30,
+                height: 10,
               ),
             ),
             SliverToBoxAdapter(
@@ -525,6 +529,43 @@ class _CreateExpenseState extends State<CreateExpense>
                 ),
               ),
             ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+                child: TextButton.icon(
+                  onPressed: () async {
+                    var today = DateTime.now();
+                    var currentDateTime = transactionAt ?? today;
+                    var selectedDate = await showDatePicker(
+                      context: context,
+                      initialDate: currentDateTime,
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(today.year + 1)
+                          .subtract(const Duration(days: 1)),
+                    );
+                    if (selectedDate != null) {
+                      var currentTime = TimeOfDay.fromDateTime(currentDateTime);
+                      var selectedTime = await showTimePicker(
+                        // ignore: use_build_context_synchronously
+                        context: context, initialTime: currentTime,
+                      );
+                      if (selectedTime != null && mounted) {
+                        setState(() {
+                          transactionAt =
+                              selectedDate.replaceTimeWith(selectedTime);
+                        });
+                      }
+                    }
+                  },
+                  icon: const Icon(Icons.edit_calendar),
+                  label: Text(
+                    DateFormat().format(
+                      transactionAt ?? DateTime.now(),
+                    ),
+                  ),
+                ),
+              ),
+            ),
             if (selectedImage != null)
               SliverToBoxAdapter(
                 child: Padding(
@@ -650,10 +691,10 @@ class _CreateExpenseState extends State<CreateExpense>
                         ValueListenableBuilder(
                           valueListenable: expenseWith,
                           builder: (context, expenseWithValue, child) {
-                            if (expenseWithValue is! ExpenseWithSelf) {
+                            if (expenseWithValue != null &&
+                                expenseWithValue is! ExpenseWithSelf) {
                               return ElevatedButton.icon(
-                                onPressed:
-                                    expenseWithValue != null ? equalize : null,
+                                onPressed: equalize,
                                 icon: const Icon(Icons.equalizer),
                                 label: const Text(
                                   'Split Equally',
@@ -935,55 +976,47 @@ class _CreateExpenseState extends State<CreateExpense>
                             ? noteController?.text
                             : null,
                         imageId: imageId,
+                        transactionAt: transactionAt,
                       );
                       appstate.notificationSubscription.add(null);
 
                       nav.pop(expense);
                     } else if ((expenseWith.value is ExpenseWithPeople) ||
                         (expenseWith.value is ExpenseWithSelf)) {
-                      var expense =
-                          await (await appstate.client).executeNonCache(
-                        GcreateNonGroupExpenseReq((b) {
-                          b.vars
-                            ..amount = amountReprToamount(
-                                amountController.text, currentCurrency!)
-                            ..title = nameController.text
-                            ..currencyId = currentCurrency!.id
-                            ..category = selectedCategory?.categoryId
-                            ..note =
-                                noteController?.text.trim().isNotEmpty == true
-                                    ? noteController?.text
-                                    : null
-                            ..imageId = imageId
-                            ..nonGroupSplit = ListBuilder(
-                              distribution
-                                  .where((element) =>
-                                      element.$1.id != appstate.user!.id)
-                                  .map(
-                                    (e) => GSplitInputNonGroup(
-                                      (b) {
-                                        b.amount = e.$2
-                                            ? amountReprToamount(
-                                                e.$3.text, currentCurrency!)
-                                            : 0;
-                                        switch (e.$1) {
-                                          case UserWithEmail(
-                                              email: final email
-                                            ):
-                                            b.email = email;
-                                          case UserWithUser(user: final user):
-                                            b.userId = user.id;
-                                        }
-                                      },
-                                    ),
-                                  )
-                                  .toList(),
-                            );
-                          b.fetchPolicy = FetchPolicy.NetworkOnly;
-                        }),
+                      var expense = await appstate.addNonGroupExpense(
+                        title: nameController.text,
+                        amount: amountReprToamount(
+                            amountController.text, currentCurrency!),
+                        currencyId: currentCurrency!.id,
+                        splits: distribution
+                            .where(
+                                (element) => element.$1.id != appstate.user!.id)
+                            .map(
+                              (e) => GSplitInputNonGroup(
+                                (b) {
+                                  b.amount = e.$2
+                                      ? amountReprToamount(
+                                          e.$3.text, currentCurrency!)
+                                      : 0;
+                                  switch (e.$1) {
+                                    case UserWithEmail(email: final email):
+                                      b.email = email;
+                                    case UserWithUser(user: final user):
+                                      b.userId = user.id;
+                                  }
+                                },
+                              ),
+                            )
+                            .toList(),
+                        categoryId: selectedCategory!.categoryId,
+                        imageId: imageId,
+                        transactionAt: transactionAt,
+                        note: noteController?.text.trim().isNotEmpty == true
+                            ? noteController?.text
+                            : null,
                       );
                       appstate.notificationSubscription.add(null);
-                      nav.pop(expense.data?.addNonGroupExpense.expense);
+                      nav.pop(expense.expense);
                     }
                   }
                 } finally {

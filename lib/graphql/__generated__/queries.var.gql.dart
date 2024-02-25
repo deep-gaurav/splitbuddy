@@ -240,6 +240,7 @@ abstract class Gadd_expenseVars
   String get category;
   String? get imageId;
   String? get note;
+  String? get transactionAt;
   static Serializer<Gadd_expenseVars> get serializer =>
       _$gaddExpenseVarsSerializer;
 
@@ -366,6 +367,7 @@ abstract class GcreateNonGroupExpenseVars
   String get category;
   String? get imageId;
   String? get note;
+  String? get transactionAt;
   static Serializer<GcreateNonGroupExpenseVars> get serializer =>
       _$gcreateNonGroupExpenseVarsSerializer;
 

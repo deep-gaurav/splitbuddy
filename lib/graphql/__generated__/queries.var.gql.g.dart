@@ -462,6 +462,13 @@ class _$Gadd_expenseVarsSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.transactionAt;
+    if (value != null) {
+      result
+        ..add('transactionAt')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -509,6 +516,10 @@ class _$Gadd_expenseVarsSerializer
           break;
         case 'note':
           result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -751,6 +762,13 @@ class _$GcreateNonGroupExpenseVarsSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.transactionAt;
+    if (value != null) {
+      result
+        ..add('transactionAt')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -794,6 +812,10 @@ class _$GcreateNonGroupExpenseVarsSerializer
           break;
         case 'note':
           result.note = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'transactionAt':
+          result.transactionAt = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -2851,6 +2873,8 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
   final String? imageId;
   @override
   final String? note;
+  @override
+  final String? transactionAt;
 
   factory _$Gadd_expenseVars(
           [void Function(Gadd_expenseVarsBuilder)? updates]) =>
@@ -2864,7 +2888,8 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
       required this.currencyId,
       required this.category,
       this.imageId,
-      this.note})
+      this.note,
+      this.transactionAt})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(title, r'Gadd_expenseVars', 'title');
     BuiltValueNullFieldError.checkNotNull(
@@ -2898,7 +2923,8 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
         currencyId == other.currencyId &&
         category == other.category &&
         imageId == other.imageId &&
-        note == other.note;
+        note == other.note &&
+        transactionAt == other.transactionAt;
   }
 
   @override
@@ -2912,6 +2938,7 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -2926,7 +2953,8 @@ class _$Gadd_expenseVars extends Gadd_expenseVars {
           ..add('currencyId', currencyId)
           ..add('category', category)
           ..add('imageId', imageId)
-          ..add('note', note))
+          ..add('note', note)
+          ..add('transactionAt', transactionAt))
         .toString();
   }
 }
@@ -2968,6 +2996,11 @@ class Gadd_expenseVarsBuilder
   String? get note => _$this._note;
   set note(String? note) => _$this._note = note;
 
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   Gadd_expenseVarsBuilder();
 
   Gadd_expenseVarsBuilder get _$this {
@@ -2981,6 +3014,7 @@ class Gadd_expenseVarsBuilder
       _category = $v.category;
       _imageId = $v.imageId;
       _note = $v.note;
+      _transactionAt = $v.transactionAt;
       _$v = null;
     }
     return this;
@@ -3017,7 +3051,8 @@ class Gadd_expenseVarsBuilder
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'Gadd_expenseVars', 'category'),
               imageId: imageId,
-              note: note);
+              note: note,
+              transactionAt: transactionAt);
     } catch (_) {
       late String _$failedField;
       try {
@@ -3413,6 +3448,8 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
   final String? imageId;
   @override
   final String? note;
+  @override
+  final String? transactionAt;
 
   factory _$GcreateNonGroupExpenseVars(
           [void Function(GcreateNonGroupExpenseVarsBuilder)? updates]) =>
@@ -3425,7 +3462,8 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
       required this.currencyId,
       required this.category,
       this.imageId,
-      this.note})
+      this.note,
+      this.transactionAt})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         title, r'GcreateNonGroupExpenseVars', 'title');
@@ -3458,7 +3496,8 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
         currencyId == other.currencyId &&
         category == other.category &&
         imageId == other.imageId &&
-        note == other.note;
+        note == other.note &&
+        transactionAt == other.transactionAt;
   }
 
   @override
@@ -3471,6 +3510,7 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, imageId.hashCode);
     _$hash = $jc(_$hash, note.hashCode);
+    _$hash = $jc(_$hash, transactionAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -3484,7 +3524,8 @@ class _$GcreateNonGroupExpenseVars extends GcreateNonGroupExpenseVars {
           ..add('currencyId', currencyId)
           ..add('category', category)
           ..add('imageId', imageId)
-          ..add('note', note))
+          ..add('note', note)
+          ..add('transactionAt', transactionAt))
         .toString();
   }
 }
@@ -3524,6 +3565,11 @@ class GcreateNonGroupExpenseVarsBuilder
   String? get note => _$this._note;
   set note(String? note) => _$this._note = note;
 
+  String? _transactionAt;
+  String? get transactionAt => _$this._transactionAt;
+  set transactionAt(String? transactionAt) =>
+      _$this._transactionAt = transactionAt;
+
   GcreateNonGroupExpenseVarsBuilder();
 
   GcreateNonGroupExpenseVarsBuilder get _$this {
@@ -3536,6 +3582,7 @@ class GcreateNonGroupExpenseVarsBuilder
       _category = $v.category;
       _imageId = $v.imageId;
       _note = $v.note;
+      _transactionAt = $v.transactionAt;
       _$v = null;
     }
     return this;
@@ -3570,7 +3617,8 @@ class GcreateNonGroupExpenseVarsBuilder
               category: BuiltValueNullFieldError.checkNotNull(
                   category, r'GcreateNonGroupExpenseVars', 'category'),
               imageId: imageId,
-              note: note);
+              note: note,
+              transactionAt: transactionAt);
     } catch (_) {
       late String _$failedField;
       try {

@@ -39,6 +39,9 @@ class ReAuthClient {
   }
 
   static Client _getClientWithToken(Dio dio, Cache cache) => Client(
+        defaultFetchPolicies: {
+          OperationType.query: FetchPolicy.CacheAndNetwork,
+        },
         cache: cache,
         link: kIsWeb
             ? HttpLink(

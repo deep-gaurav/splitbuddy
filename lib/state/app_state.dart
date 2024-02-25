@@ -344,6 +344,7 @@ class AppState extends ChangeNotifier {
     String categoryId, {
     String? note,
     String? imageId,
+    DateTime? transactionAt,
   }) async {
     var client = await _getClient();
     var result = await client.executeNonCache(Gadd_expenseReq(
@@ -356,13 +357,47 @@ class AppState extends ChangeNotifier {
           ..splits = ListBuilder(splits)
           ..groupId = groupId
           ..imageId = imageId
-          ..note = note;
+          ..note = note
+          ..transactionAt = transactionAt?.toIso8601String();
         b.fetchPolicy = FetchPolicy.NetworkOnly;
       },
     ));
     if (result.data != null) {
       refresh(client);
       return result.data!.addExpense;
+    } else {
+      throw result;
+    }
+  }
+
+  Future<GcreateNonGroupExpenseData_addNonGroupExpense> addNonGroupExpense({
+    String? note,
+    String? imageId,
+    DateTime? transactionAt,
+    required String title,
+    required int amount,
+    required String currencyId,
+    required List<GSplitInputNonGroup> splits,
+    required String categoryId,
+  }) async {
+    var client = await _getClient();
+    var result = await client.executeNonCache(GcreateNonGroupExpenseReq(
+      (b) {
+        b.vars
+          ..title = title
+          ..amount = amount
+          ..currencyId = currencyId
+          ..category = categoryId
+          ..nonGroupSplit = ListBuilder(splits)
+          ..imageId = imageId
+          ..note = note
+          ..transactionAt = transactionAt?.toIso8601String();
+        b.fetchPolicy = FetchPolicy.NetworkOnly;
+      },
+    ));
+    if (result.data != null) {
+      refresh(client);
+      return result.data!.addNonGroupExpense;
     } else {
       throw result;
     }

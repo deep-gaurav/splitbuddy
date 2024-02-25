@@ -264,6 +264,7 @@ mutation add_expense(
   $category: String!
   $imageId: String
   $note: String
+  $transactionAt: String
 ) {
   addExpense(
     title: $title
@@ -274,6 +275,7 @@ mutation add_expense(
     category: $category
     note: $note
     imageId: $imageId
+    transactionAt: $transactionAt
   ) {
     ...NewExpenseFields
   }
@@ -317,6 +319,7 @@ mutation createNonGroupExpense(
   $category: String!
   $imageId: String
   $note: String
+  $transactionAt: String
 ) {
   addNonGroupExpense(
     title: $title
@@ -326,6 +329,7 @@ mutation createNonGroupExpense(
     category: $category
     note: $note
     imageId: $imageId
+    transactionAt: $transactionAt
   ) {
     group {
       ...GroupFields
