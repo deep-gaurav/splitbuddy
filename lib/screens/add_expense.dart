@@ -5,6 +5,7 @@ import 'package:billdivide/extensions/num_extension.dart';
 import 'package:billdivide/models/expensecategory.dart';
 import 'package:billdivide/screens/image_editor.dart';
 import 'package:billdivide/screens/people_finder.dart';
+import 'package:billdivide/utils/error_parset.dart';
 import 'package:billdivide/utils/svg_icons.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:ferry/typed_links.dart';
@@ -1019,6 +1020,11 @@ class _CreateExpenseState extends State<CreateExpense>
                       nav.pop(expense.expense);
                     }
                   }
+                } catch (e) {
+                  if (context.mounted) {
+                    showErrorSnackBar(context, e);
+                  }
+                  //ignore
                 } finally {
                   if (mounted) {
                     setState(() {

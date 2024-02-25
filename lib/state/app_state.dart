@@ -358,7 +358,7 @@ class AppState extends ChangeNotifier {
           ..groupId = groupId
           ..imageId = imageId
           ..note = note
-          ..transactionAt = transactionAt?.toIso8601String();
+          ..transactionAt = transactionAt?.toUtc().toIso8601String();
         b.fetchPolicy = FetchPolicy.NetworkOnly;
       },
     ));
@@ -391,7 +391,7 @@ class AppState extends ChangeNotifier {
           ..nonGroupSplit = ListBuilder(splits)
           ..imageId = imageId
           ..note = note
-          ..transactionAt = transactionAt?.toIso8601String();
+          ..transactionAt = transactionAt?.toUtc().toIso8601String();
         b.fetchPolicy = FetchPolicy.NetworkOnly;
       },
     ));
