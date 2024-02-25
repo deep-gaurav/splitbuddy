@@ -34,14 +34,16 @@ class _ExpensePageState extends State<ExpensePage> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       (await context.read<AppState>().client)
-          .execute(GgetExpenseReq(
+          .executeCached(GgetExpenseReq(
               (b) => b.vars..expenseId = widget.expenseFields.id))
           .then((value) {
-        if (value.data?.expenseById != null && mounted) {
-          setState(() {
-            expenseFields = value.data?.expenseById;
-          });
-        }
+        value.listen((value) {
+          if (value.data?.expenseById != null && mounted) {
+            setState(() {
+              expenseFields = value.data?.expenseById;
+            });
+          }
+        });
       });
     });
     super.initState();

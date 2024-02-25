@@ -138,9 +138,9 @@ class _PeopleFinderState extends State<PeopleFinder> {
         GUserFields? searchUser;
         if (controller.text.isNotEmpty &&
             EmailValidator.validate(controller.text)) {
-          final result = await (await appState.client).execute(
+          final result = await (await appState.client).executeCached(
               GsearchUserByEmailReq((b) => b.vars..email = controller.text));
-          searchUser = result.data?.findUserByEmail;
+          searchUser = (await result.first).data?.findUserByEmail;
         }
         final groups = appState.userGroups;
         final List<Widget> groupsList = <Widget>[

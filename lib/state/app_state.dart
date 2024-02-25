@@ -71,20 +71,27 @@ class AppState extends ChangeNotifier {
           : null);
 
   UnmodifiableListView<GGroupFields> get userGroups =>
-      UnmodifiableListView(_userGroups);
+      UnmodifiableListView(_userGroups ?? []);
 
-  List<GGroupFields> _userGroups = [];
+  List<GGroupFields>? _userGroups;
 
-  List<GrefreshData_interactedUsers> _interactedUsers = [];
+  List<GrefreshData_interactedUsers>? _interactedUsers;
 
-  List<GAmountFields> get toPay => _interactedUsers
-      .fold([], (previousValue, element) => previousValue + element.toPay);
+  bool get isUsersLoading => _interactedUsers == null;
+  bool get isGroupsLoading => _userGroups == null;
 
-  List<GAmountFields> get toReceive => _interactedUsers
-      .fold([], (previousValue, element) => previousValue + element.toReceive);
+  List<GAmountFields> get toPay =>
+      _interactedUsers?.fold<List<GAmountFields>>(
+          [], (previousValue, element) => previousValue + element.toPay) ??
+      [];
+
+  List<GAmountFields> get toReceive =>
+      _interactedUsers?.fold<List<GAmountFields>>(
+          [], (previousValue, element) => previousValue + element.toReceive) ??
+      [];
 
   UnmodifiableListView<GUserPaysFields> get interactedUsers =>
-      UnmodifiableListView(_interactedUsers);
+      UnmodifiableListView(_interactedUsers ?? []);
 
   Future<ReAuthClient> get client => _getClient();
 
@@ -125,8 +132,10 @@ class AppState extends ChangeNotifier {
   }
 
   Future<String?> _getImageUrl(String id) async {
-    var result = await (await client)
-        .execute(GgetImageViewUrlReq((b) => b.vars..imageId = id));
+    var result = await (await client).executeNonCache(GgetImageViewUrlReq((b) {
+      b.vars.imageId = id;
+      b.fetchPolicy = FetchPolicy.NetworkOnly;
+    }));
     return result.data?.imageUrl;
   }
 
@@ -154,38 +163,42 @@ class AppState extends ChangeNotifier {
     bool onlyUser = false,
   }) {
     if (onlyUser) {
-      client.execute(GuserReq()).then((value) {
-        if (value.data?.user == null) {
-          authState = AuthStates.unAuthorized;
-        } else if (value.data?.user is GuserData_user__asUnregistered) {
-          authState = AuthStates.authorizedRequiresSignup;
-        } else if (value.data?.user is GuserData_user__asRegistered) {
-          authState = AuthStates.authorized;
-          refresh(client);
-        }
-        notifyListeners();
+      client.executeCached(GuserReq()).then((value) {
+        value.listen((value) {
+          if (value.data?.user == null) {
+            authState = AuthStates.unAuthorized;
+          } else if (value.data?.user is GuserData_user__asUnregistered) {
+            authState = AuthStates.authorizedRequiresSignup;
+          } else if (value.data?.user is GuserData_user__asRegistered) {
+            authState = AuthStates.authorized;
+            refresh(client);
+          }
+          notifyListeners();
+        });
       });
     } else {
-      client.execute(GrefreshReq()).then((value) {
-        _auth = value.data?.user;
-        if (value.data?.user == null) {
-          authState = AuthStates.unAuthorized;
-        } else if (value.data?.user is GrefreshData_user__asUnregistered) {
-          authState = AuthStates.authorizedRequiresSignup;
-        } else if (value.data?.user is GrefreshData_user__asRegistered) {
-          authState = AuthStates.authorized;
-        }
+      client.executeCached(GrefreshReq()).then((value) {
+        value.listen((value) {
+          _auth = value.data?.user;
+          if (value.data?.user == null) {
+            authState = AuthStates.unAuthorized;
+          } else if (value.data?.user is GrefreshData_user__asUnregistered) {
+            authState = AuthStates.authorizedRequiresSignup;
+          } else if (value.data?.user is GrefreshData_user__asRegistered) {
+            authState = AuthStates.authorized;
+          }
 
-        if (value.data?.config.defaultCurrencyId != null) {
-          defaultCurrency = currencies[value.data!.config.defaultCurrencyId];
-        }
+          if (value.data?.config.defaultCurrencyId != null) {
+            defaultCurrency = currencies[value.data!.config.defaultCurrencyId];
+          }
 
-        _userGroups = [];
-        _userGroups.addAll(value.data?.groups.toList() ?? []);
-        _interactedUsers = [];
-        _interactedUsers.addAll(value.data?.interactedUsers ?? []);
+          _userGroups = [];
+          _userGroups!.addAll(value.data?.groups.toList() ?? []);
+          _interactedUsers = [];
+          _interactedUsers!.addAll(value.data?.interactedUsers ?? []);
 
-        notifyListeners();
+          notifyListeners();
+        });
       });
     }
     // print("refreshing");
@@ -204,8 +217,10 @@ class AppState extends ChangeNotifier {
       final fcmToken =
           await FirebaseMessaging.instance.getToken(vapidKey: vapidKey);
       // print("Received notification token $fcmToken");
-      (await client)
-          .execute(GsetNotificationTokenReq((b) => b.vars..token = fcmToken));
+      (await client).executeNonCache(GsetNotificationTokenReq((b) {
+        b.vars.token = fcmToken;
+        b.fetchPolicy = FetchPolicy.NetworkOnly;
+      }));
       FlutterLocalNotificationsPlugin localNotificationsPlugin =
           FlutterLocalNotificationsPlugin();
       await localNotificationsPlugin.initialize(
@@ -239,16 +254,21 @@ class AppState extends ChangeNotifier {
     }
   }
 
-  Future<List<GGroupFields>> getGroups() async {
-    final groups = await (await _getClient()).execute(GgroupsReq());
-    _userGroups = groups.data?.groups.toList() ?? _userGroups;
-    notifyListeners();
-    return _userGroups;
+  Future<Stream<List<GGroupFields>>> getGroups() async {
+    final groups = await (await _getClient()).executeCached(GgroupsReq());
+
+    return groups.map((event) {
+      _userGroups = event.data?.groups.toList() ?? _userGroups;
+      return _userGroups ?? [];
+    });
   }
 
   Future<GUserFields> signup(String name, String upiId) async {
-    var result = await (await _getClient()).execute(
-      GsignupReq((b) => b.vars..name = name),
+    var result = await (await _getClient()).executeNonCache(
+      GsignupReq((b) {
+        b.vars.name = name;
+        b.fetchPolicy = FetchPolicy.NetworkOnly;
+      }),
     );
     if (result.data?.signup != null) {
       await SecureStorageHelper.getInstance().storeTokens(
@@ -263,8 +283,11 @@ class AppState extends ChangeNotifier {
   }
 
   Future<GGroupFields> createGroup(String name) async {
-    var result = await (await _getClient())
-        .execute(Gcreate_groupReq((b) => b.vars..name = name));
+    var result =
+        await (await _getClient()).executeNonCache(Gcreate_groupReq((b) {
+      b.vars.name = name;
+      b.fetchPolicy = FetchPolicy.NetworkOnly;
+    }));
 
     if (result.data != null) {
       var newgroup = <GGroupFields>[
@@ -281,17 +304,27 @@ class AppState extends ChangeNotifier {
 
   Future<GGroupFields> addMemberToGroup(String email, String group) async {
     var result =
-        await (await _getClient()).execute(Gadd_to_groupReq((b) => b.vars
-          ..groupId = group
-          ..email = email));
+        await (await _getClient()).executeNonCache(Gadd_to_groupReq((b) {
+      b.vars
+        ..groupId = group
+        ..email = email;
+      b.fetchPolicy = FetchPolicy.NetworkOnly;
+    }));
 
     if (result.data != null) {
-      var newgroup = await (await _getClient()).execute(GgroupReq((b) => b.vars
-        ..groupId = group
-        ..limit = 10));
+      var newgroup = await (await _getClient()).executeNonCache(GgroupReq((b) {
+        b.vars
+          ..groupId = group
+          ..limit = 10;
+        b.fetchPolicy = FetchPolicy.NetworkOnly;
+      }));
       var index =
-          _userGroups.indexWhere((e) => e.id == newgroup.data!.group.id);
-      _userGroups[index] = newgroup.data!.group;
+          _userGroups?.indexWhere((e) => e.id == newgroup.data!.group.id);
+      if (index != null) {
+        _userGroups![index] = newgroup.data!.group;
+      } else {
+        _userGroups = [newgroup.data!.group];
+      }
 
       refresh(await _getClient());
 
@@ -313,16 +346,19 @@ class AppState extends ChangeNotifier {
     String? imageId,
   }) async {
     var client = await _getClient();
-    var result = await client.execute(Gadd_expenseReq(
-      (b) => b.vars
-        ..title = title
-        ..amount = amount
-        ..currencyId = currencyId
-        ..category = categoryId
-        ..splits = ListBuilder(splits)
-        ..groupId = groupId
-        ..imageId = imageId
-        ..note = note,
+    var result = await client.executeNonCache(Gadd_expenseReq(
+      (b) {
+        b.vars
+          ..title = title
+          ..amount = amount
+          ..currencyId = currencyId
+          ..category = categoryId
+          ..splits = ListBuilder(splits)
+          ..groupId = groupId
+          ..imageId = imageId
+          ..note = note;
+        b.fetchPolicy = FetchPolicy.NetworkOnly;
+      },
     ));
     if (result.data != null) {
       refresh(client);
@@ -374,8 +410,10 @@ class AppState extends ChangeNotifier {
 
   Future<List<GSplitTransactionFields>> simplifyUser(
       {required String userId}) async {
-    var result = await (await client)
-        .execute(GsimplifyUserReq((b) => b.vars..withUser = userId));
+    var result = await (await client).executeNonCache(GsimplifyUserReq((b) {
+      b.vars.withUser = userId;
+      b.fetchPolicy = FetchPolicy.NetworkOnly;
+    }));
     if (result.data?.simplifyCrossGroup != null) {
       refresh(await client);
       return result.data!.simplifyCrossGroup.toList();
@@ -392,13 +430,16 @@ class AppState extends ChangeNotifier {
     String? imageId,
     String? note,
   }) async {
-    var result = await (await client).execute(GsettleInGroupReq((b) => b.vars
-      ..amount = amount
-      ..groupId = groupId
-      ..currencyId = currencyId
-      ..withUser = userId
-      ..imageId = imageId
-      ..note = note));
+    var result = await (await client).executeNonCache(GsettleInGroupReq((b) {
+      b.vars
+        ..amount = amount
+        ..groupId = groupId
+        ..currencyId = currencyId
+        ..withUser = userId
+        ..imageId = imageId
+        ..note = note;
+      b.fetchPolicy = FetchPolicy.NetworkOnly;
+    }));
     if (result.data?.settleInGroup != null) {
       refresh(await client);
       return result.data!.settleInGroup;
@@ -415,12 +456,15 @@ class AppState extends ChangeNotifier {
     String? note,
   }) async {
     var result =
-        await (await client).execute(GautoSettleWithUserReq((b) => b.vars
-          ..amount = amount
-          ..currencyId = currencyId
-          ..withUser = userId
-          ..imageId = imageId
-          ..note = note));
+        await (await client).executeNonCache(GautoSettleWithUserReq((b) {
+      b.vars
+        ..amount = amount
+        ..currencyId = currencyId
+        ..withUser = userId
+        ..imageId = imageId
+        ..note = note;
+      b.fetchPolicy = FetchPolicy.NetworkOnly;
+    }));
     if (result.data?.autoSettleWithUser != null) {
       refresh(await client);
       return result.data!.autoSettleWithUser.toList();
@@ -435,11 +479,14 @@ class AppState extends ChangeNotifier {
     required String toCurrencyId,
     required String groupId,
   }) async {
-    var result = await (await client).execute(GcurrencyConvertReq((b) => b.vars
-      ..withUser = userId
-      ..fromCurrencyId = fromCurrencyId
-      ..toCurrencyId = toCurrencyId
-      ..groupId = groupId));
+    var result = await (await client).executeNonCache(GcurrencyConvertReq((b) {
+      b.vars
+        ..withUser = userId
+        ..fromCurrencyId = fromCurrencyId
+        ..toCurrencyId = toCurrencyId
+        ..groupId = groupId;
+      b.fetchPolicy = FetchPolicy.NetworkOnly;
+    }));
     if (result.data?.convertCurrency != null) {
       refresh(await client);
       return result.data!.convertCurrency.toList();
@@ -449,8 +496,10 @@ class AppState extends ChangeNotifier {
   }
 
   Future<GUserFields> changeName({required String name}) async {
-    var result = await (await client)
-        .execute(GchangeNameReq((b) => b.vars..name = name));
+    var result = await (await client).executeNonCache(GchangeNameReq((b) {
+      b.vars.name = name;
+      b.fetchPolicy = FetchPolicy.NetworkOnly;
+    }));
     _user = result.data?.changeName;
     notifyListeners();
     return user!;
@@ -458,8 +507,11 @@ class AppState extends ChangeNotifier {
 
   Future<GCurrencyFields> changeDefaultCurrency(
       {required String currencyId}) async {
-    var result = await (await client).execute(
-        GsetDefaultCurrencyReq((b) => b.vars..currencyId = currencyId));
+    var result =
+        await (await client).executeNonCache(GsetDefaultCurrencyReq((b) {
+      b.vars.currencyId = currencyId;
+      b.fetchPolicy = FetchPolicy.NetworkOnly;
+    }));
     defaultCurrency =
         currencies[result.data?.setDefaultCurrency.defaultCurrencyId];
     notifyListeners();

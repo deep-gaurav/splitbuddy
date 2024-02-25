@@ -76,6 +76,7 @@ dependencies:
   pubspec_parse: ^1.2.3
   pub_semver: ^2.1.4
   url_launcher: ^6.2.5
+  shimmer: ^3.0.0
   
 dev_dependencies:
   flutter_test:

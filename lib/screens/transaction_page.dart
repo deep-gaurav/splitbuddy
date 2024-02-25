@@ -39,14 +39,16 @@ class _TransactionPageState extends State<TransactionPage> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       if (widget.transaction.transactionType == GTransactionType.CASH_PAID) {
         if (widget.transaction.transactionPartGroupId != null) {
-          var result = await (await context.read<AppState>().client).execute(
-              GsplitFromGroupReq((b) =>
+          var result = await (await context.read<AppState>().client)
+              .executeCached(GsplitFromGroupReq((b) =>
                   b.vars..partId = widget.transaction.transactionPartGroupId));
-          if (mounted) {
-            setState(() {
-              transactions = result.data?.splitsByPart.toList();
-            });
-          }
+          result.listen((result) {
+            if (mounted) {
+              setState(() {
+                transactions = result.data?.splitsByPart.toList();
+              });
+            }
+          });
         } else {
           setState(() {
             transactions = [widget.transaction];

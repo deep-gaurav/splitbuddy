@@ -5,6 +5,7 @@ import 'package:billdivide/gen/assets.gen.dart';
 import 'package:billdivide/screens/transaction_history.dart';
 import 'package:billdivide/screens/user_setting.dart';
 import 'package:billdivide/utils/color_utils.dart';
+import 'package:billdivide/utils/demo_data.dart';
 import 'package:billdivide/widgets/spend_analysis.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import 'package:billdivide/extensions/user_extension.dart';
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 import 'package:billdivide/screens/user.dart';
 import 'package:billdivide/state/app_state.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -23,6 +25,8 @@ class HomePage extends StatelessWidget {
     final ColorScheme scheme = ColorUtils.getMainScheme(context);
     var users = context.select<AppState, UnmodifiableListView<GUserPaysFields>>(
         (state) => state.interactedUsers);
+    var isUsersLoading =
+        context.select<AppState, bool>((value) => value.isUsersLoading);
     GUserPaysFields? selfUser;
     try {
       selfUser = users.firstWhere(
@@ -31,8 +35,9 @@ class HomePage extends StatelessWidget {
       // no self user
     }
     var nonSelfUsrs = users.where(
-      (element) => element.id != context.read<AppState>().user?.id,
+      (element) => element.id != selfUser?.id,
     );
+
     return CustomScrollView(
       slivers: [
         SliverAppBar.medium(
@@ -92,7 +97,72 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        if (nonSelfUsrs.isNotEmpty) ...[
+        if (isUsersLoading) ...[
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 30, top: 20),
+              child: Text(
+                'Friends',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+          ),
+          SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+            return Shimmer(
+              gradient: switch (Theme.of(context).brightness) {
+                Brightness.dark => kShimmerGradientDark,
+                Brightness.light => kShimmerGradientLight,
+              },
+              child: Container(
+                margin: const EdgeInsets.only(top: 10, left: 20, right: 20),
+                child: ListTile(
+                  leading: const SizedBox(
+                    width: 40,
+                    height: 40,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                  title: FractionallySizedBox(
+                    alignment: Alignment.centerLeft,
+                    widthFactor: 0.4,
+                    child: SizedBox(
+                      height: 10,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      FractionallySizedBox(
+                        alignment: Alignment.centerLeft,
+                        widthFactor: 0.8,
+                        child: SizedBox(
+                          height: 10,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }, childCount: 3))
+        ] else if (nonSelfUsrs.isNotEmpty) ...[
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.only(left: 30, top: 20),

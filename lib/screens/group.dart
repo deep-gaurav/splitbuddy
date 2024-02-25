@@ -1,19 +1,24 @@
 import 'dart:math';
 
 import 'package:billdivide/extensions/amount_extension.dart';
+import 'package:billdivide/graphql/__generated__/queries.var.gql.dart';
 import 'package:billdivide/mixins/notification_refresher.dart';
+import 'package:billdivide/models/transaction_group_types.dart';
 import 'package:billdivide/screens/expense.dart';
 import 'package:billdivide/screens/transaction_page.dart';
+import 'package:billdivide/utils/demo_data.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
 import 'package:billdivide/widgets/spend_analysis.dart';
 import 'package:collection/collection.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:dynamic_color/dynamic_color.dart';
+import 'package:ferry_exec/src/operation_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:billdivide/__generated__/schema.schema.gql.dart';
 import 'package:billdivide/extensions/expense_mix.dart';
@@ -51,6 +56,7 @@ class _GroupState extends State<Group>
   final ScrollController _scrollController = ScrollController();
 
   bool _loading = false;
+  bool _ended = false;
 
   ColorScheme get scheme => ColorUtils.getMainScheme(context);
   ColorScheme get neutralYellow => ColorUtils.getNeutralYellow(context);
@@ -79,6 +85,9 @@ class _GroupState extends State<Group>
   }
 
   fetchData({bool forceFirst = false}) async {
+    if (_ended && !forceFirst) {
+      return;
+    }
     if (_loading) {
       return;
     }
@@ -90,7 +99,7 @@ class _GroupState extends State<Group>
     });
     try {
       var client = await context.read<AppState>().client;
-      var result = await client.execute(
+      var result = await client.executeCached(
         GtransactionMixExpenseReq(
           (b) => b.vars
             ..groupId = widget.group.id
@@ -98,64 +107,84 @@ class _GroupState extends State<Group>
             ..skip = forceFirst ? 0 : allData.length,
         ),
       );
-      if (result.data != null) {
-        if (allData.isEmpty && mounted) {
-          _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-          WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-            // await Future.delayed(Durations.short1);
-            _scrollController.jumpTo(
-              _scrollController.position.maxScrollExtent,
-            );
-          });
-        }
-        for (var trans in result.data!.getTransactionsMixExpenseWithGroup) {
-          if (!allData.any((element) => trans.isEqual(element))) {
-            allData.add(trans);
-          }
-        }
-        for (var trans in result.data!.getTransactionsMixExpenseWithGroup) {
-          var expense = expenses.firstWhereOrNull((element) =>
-              element is Expense && (element.expense.id == trans.expense?.id));
-          if (trans.expense != null && expense == null) {
-            expense ??= Expense(expense: trans.expense!, splits: []);
-            expenses.add(expense);
-          }
-          if (expense != null && trans.split != null) {
-            if ((expense as Expense)
-                .splits
-                .every((element) => element.id != trans.split!.id)) {
-              expense.splits.add(trans.split!);
-            }
-          } else if (trans.split?.transactionType ==
-              GTransactionType.CURRENCY_CONVERSION) {
-            if (expenses.firstWhereOrNull((element) =>
-                    element is CurrencyConversion &&
-                    element.partGroupId == trans.split!.transactionPartGroupId)
-                case CurrencyConversion(splits: var splits)) {
-              splits.add(trans.split!);
-            } else {
-              expenses.add(CurrencyConversion(splits: [trans.split!]));
-            }
-          } else if (trans.split != null) {
-            if (!expenses.any((element) =>
-                element is Split && element.split.id == trans.split!.id)) {
-              expenses.add(Split(split: trans.split!));
-            }
-          }
-        }
-
-        if (result.data?.getTransactionsMixExpenseWithGroup != null &&
-            result.data!.getTransactionsMixExpenseWithGroup.isNotEmpty) {
-          maintain.value = true;
-        }
-        generateGrouped();
-      }
+      processResult(await result.first);
+      result.listen((result) {
+        processResult(result);
+      });
     } finally {
       if (mounted) {
         setState(() {
           _loading = false;
         });
       }
+    }
+  }
+
+  void processResult(
+      OperationResponse<GtransactionMixExpenseData, GtransactionMixExpenseVars>
+          result) {
+    if (result.data != null) {
+      if (result.data!.getTransactionsMixExpenseWithGroup.isEmpty && mounted) {
+        setState(() {
+          _ended = true;
+        });
+      }
+      if (allData.isEmpty && mounted) {
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+          // await Future.delayed(Durations.short1);
+          _scrollController.jumpTo(
+            _scrollController.position.maxScrollExtent,
+          );
+        });
+      }
+      for (var trans in result.data!.getTransactionsMixExpenseWithGroup) {
+        if (!allData.any((element) => trans.isEqual(element))) {
+          allData.add(trans);
+        }
+      }
+      for (var trans in result.data!.getTransactionsMixExpenseWithGroup) {
+        var expense = expenses.firstWhereOrNull((element) =>
+            element is Expense && (element.expense.id == trans.expense?.id));
+        if (trans.expense != null && expense == null) {
+          expense ??= Expense(expense: trans.expense!, splits: []);
+          expenses.add(expense);
+        }
+        if (expense != null && trans.split != null) {
+          var splitIndex = (expense as Expense)
+              .splits
+              .indexWhere((element) => element.id == trans.split!.id);
+          if (splitIndex != -1) {
+            expense.splits[splitIndex] = trans.split!;
+          } else {
+            expense.splits.add(trans.split!);
+          }
+        } else if (trans.split?.transactionType ==
+            GTransactionType.CURRENCY_CONVERSION) {
+          if (expenses.firstWhereOrNull((element) =>
+                  element is CurrencyConversion &&
+                  element.partGroupId == trans.split!.transactionPartGroupId)
+              case CurrencyConversion(splits: var splits)) {
+            splits.add(trans.split!);
+          } else {
+            expenses.add(CurrencyConversion(splits: [trans.split!]));
+          }
+        } else if (trans.split != null) {
+          var splitIndex = expenses.indexWhere((element) =>
+              element is Split && element.split.id == trans.split!.id);
+          if (splitIndex != -1) {
+            expenses[splitIndex] = Split(split: trans.split!);
+          } else {
+            expenses.add(Split(split: trans.split!));
+          }
+        }
+      }
+
+      if (result.data?.getTransactionsMixExpenseWithGroup != null &&
+          result.data!.getTransactionsMixExpenseWithGroup.isNotEmpty) {
+        maintain.value = true;
+      }
+      generateGrouped();
     }
   }
 
@@ -373,7 +402,25 @@ class _GroupState extends State<Group>
                   ),
                 ),
               ),
-              if (expenseGrouped.isEmpty)
+              if (_loading)
+                SliverList.builder(
+                  itemCount: 3,
+                  itemBuilder: (context, i) {
+                    return Shimmer(
+                      gradient: switch (Theme.of(context).brightness) {
+                        Brightness.dark => kShimmerGradientDark,
+                        Brightness.light => kShimmerGradientLight,
+                      },
+                      child: UserTransactionCard(
+                        user: context.read<AppState>().user!,
+                        maybeGroupTransaction: SingleTransaction(
+                          expenseBasic: getDemoExpense,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              if (expenseGrouped.isEmpty && !_loading)
                 const SliverFillRemaining()
               else ...[
                 const SliverPadding(padding: EdgeInsets.only(top: 40)),

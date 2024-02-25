@@ -12,7 +12,8 @@ import 'package:gql_http_link/gql_http_link.dart';
 import 'package:graphql_query_compress/graphql_query_compress.dart';
 
 class ReAuthClient {
-  late Client _client;
+  late Client _cachedClient;
+
   Dio dio;
 
   late Function() onLogout;
@@ -26,15 +27,19 @@ class ReAuthClient {
               idleTimeout: const Duration(seconds: 10),
             ),
           ) {
-    _client = _getClientWithToken(dio);
+    _cachedClient = _getClientWithToken(
+        dio,
+        Cache(
+          store: MemoryStore(),
+        ));
   }
 
   static Future<ReAuthClient> getClient(Function() onLogout) async {
     return ReAuthClient._init(onLogout);
   }
 
-  static Client _getClientWithToken(Dio dio) => Client(
-        cache: Cache(store: NoStore()),
+  static Client _getClientWithToken(Dio dio, Cache cache) => Client(
+        cache: cache,
         link: kIsWeb
             ? HttpLink(
                 const String.fromEnvironment(
@@ -52,11 +57,11 @@ class ReAuthClient {
               ),
       );
 
-  Future<OperationResponse<TData, TVars>> execute<TData, TVars>(
+  Future<OperationResponse<TData, TVars>> executeNonCache<TData, TVars>(
       OperationRequest<TData, TVars> request,
       [NextTypedLink<TData, TVars>? forward,
       bool canRefresh = true]) async {
-    final response = await _client.request(request, forward).first;
+    final response = await _cachedClient.request(request, forward).first;
     final bool isErrored = (response.graphqlErrors ?? [])
         .any((element) => element.message == "Unauthorized");
     if (isErrored) {
@@ -65,13 +70,40 @@ class ReAuthClient {
             await SecureStorageHelper.getInstance().getRefreshToken();
         if (refreshToken != null) {
           await refreshTokens(refreshToken);
-          return execute(request, forward, false);
+          return executeNonCache(request, forward, false);
         }
       } else {
         onLogout();
       }
     }
     return response;
+  }
+
+  Future<Stream<OperationResponse<TData, TVars>>> executeCached<TData, TVars>(
+      OperationRequest<TData, TVars> request,
+      [NextTypedLink<TData, TVars>? forward,
+      bool canRefresh = true]) async {
+    final response = _cachedClient.request(request, forward);
+    return response.asyncMap((response) async {
+      final bool isErrored = (response.graphqlErrors ?? [])
+          .any((element) => element.message == "Unauthorized");
+      if (isErrored) {
+        if (canRefresh) {
+          final refreshToken =
+              await SecureStorageHelper.getInstance().getRefreshToken();
+          if (refreshToken != null) {
+            if (_cachedClient.cache.identify(request) != null) {
+              _cachedClient.cache.evict(_cachedClient.cache.identify(request)!);
+            }
+            await refreshTokens(refreshToken);
+            return executeNonCache(request, forward, false);
+          }
+        } else {
+          onLogout();
+        }
+      }
+      return response;
+    });
   }
 
   refreshTokens(String refreshToken) async {
@@ -85,7 +117,6 @@ class ReAuthClient {
           accessToken: response.data!.refreshToken.accessToken,
           refreshToken: response.data!.refreshToken.refreshToken,
         );
-        _client = _getClientWithToken(dio);
       }
     } catch (e) {
       // // print(e);

@@ -6,6 +6,7 @@ import 'package:billdivide/screens/image_editor.dart';
 import 'package:billdivide/screens/people_finder.dart';
 import 'package:billdivide/utils/svg_icons.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:ferry/typed_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -614,50 +615,57 @@ class _CreateExpenseState extends State<CreateExpense>
                 ),
               ),
             SliverToBoxAdapter(
-              child: Center(
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: ButtonBar(
-                    alignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton.icon(
-                        onPressed: pickImage,
-                        icon: const Icon(Icons.image),
-                        label: Text(
-                          selectedImage == null ? 'Add Image' : 'Edit Image',
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Center(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: ButtonBar(
+                      alignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: pickImage,
+                          icon: const Icon(Icons.image),
+                          label: Text(
+                            selectedImage == null ? 'Add Image' : 'Edit Image',
+                          ),
                         ),
-                      ),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          if (noteController != null) {
-                            setState(() {
-                              noteController = null;
-                            });
-                          } else {
-                            setState(() {
-                              noteController = TextEditingController();
-                            });
-                          }
-                        },
-                        icon: const Icon(Icons.note),
-                        label: Text(
-                          noteController == null ? 'Add Note' : 'Remove Note',
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            if (noteController != null) {
+                              setState(() {
+                                noteController = null;
+                              });
+                            } else {
+                              setState(() {
+                                noteController = TextEditingController();
+                              });
+                            }
+                          },
+                          icon: const Icon(Icons.note),
+                          label: Text(
+                            noteController == null ? 'Add Note' : 'Remove Note',
+                          ),
                         ),
-                      ),
-                      ValueListenableBuilder(
-                        valueListenable: expenseWith,
-                        builder: (context, expenseWithValue, child) {
-                          return ElevatedButton.icon(
-                            onPressed:
-                                expenseWithValue != null ? equalize : null,
-                            icon: const Icon(Icons.equalizer),
-                            label: const Text(
-                              'Split Equally',
-                            ),
-                          );
-                        },
-                      ),
-                    ],
+                        ValueListenableBuilder(
+                          valueListenable: expenseWith,
+                          builder: (context, expenseWithValue, child) {
+                            if (expenseWithValue is! ExpenseWithSelf) {
+                              return ElevatedButton.icon(
+                                onPressed:
+                                    expenseWithValue != null ? equalize : null,
+                                icon: const Icon(Icons.equalizer),
+                                label: const Text(
+                                  'Split Equally',
+                                ),
+                              );
+                            } else {
+                              return const SizedBox();
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -665,7 +673,8 @@ class _CreateExpenseState extends State<CreateExpense>
             ValueListenableBuilder(
               valueListenable: expenseWith,
               builder: (context, expenseWithValue, child) {
-                if (expenseWithValue == null) {
+                if (expenseWithValue == null ||
+                    expenseWithValue is ExpenseWithSelf) {
                   return const SliverToBoxAdapter();
                 }
                 return SliverToBoxAdapter(
@@ -686,7 +695,8 @@ class _CreateExpenseState extends State<CreateExpense>
             ValueListenableBuilder(
               valueListenable: expenseWith,
               builder: (context, expenseWithValue, child) {
-                if (expenseWithValue == null) {
+                if (expenseWithValue == null ||
+                    expenseWithValue is ExpenseWithSelf) {
                   return const SliverToBoxAdapter();
                 }
                 return SliverList(
@@ -931,9 +941,10 @@ class _CreateExpenseState extends State<CreateExpense>
                       nav.pop(expense);
                     } else if ((expenseWith.value is ExpenseWithPeople) ||
                         (expenseWith.value is ExpenseWithSelf)) {
-                      var expense = await (await appstate.client).execute(
-                        GcreateNonGroupExpenseReq(
-                          (b) => b.vars
+                      var expense =
+                          await (await appstate.client).executeNonCache(
+                        GcreateNonGroupExpenseReq((b) {
+                          b.vars
                             ..amount = amountReprToamount(
                                 amountController.text, currentCurrency!)
                             ..title = nameController.text
@@ -967,8 +978,9 @@ class _CreateExpenseState extends State<CreateExpense>
                                     ),
                                   )
                                   .toList(),
-                            ),
-                        ),
+                            );
+                          b.fetchPolicy = FetchPolicy.NetworkOnly;
+                        }),
                       );
                       appstate.notificationSubscription.add(null);
                       nav.pop(expense.data?.addNonGroupExpense.expense);
@@ -1082,8 +1094,11 @@ Future<String?> uploadImage(BuildContext context, Uint8List imageBytes,
   final client = http.Client();
 
   try {
-    var presignedUrl = await mainClient.execute(
-        GgetImageUploadUrlReq((b) => b.vars..size = imageBytes.length));
+    var presignedUrl =
+        await mainClient.executeNonCache(GgetImageUploadUrlReq((b) {
+      b.vars.size = imageBytes.length;
+      b.fetchPolicy = FetchPolicy.NetworkOnly;
+    }));
     if (presignedUrl.data?.uploadImage.presignedUrl == null) {
       return null;
     }

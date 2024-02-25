@@ -2,6 +2,7 @@ import 'package:billdivide/extensions/amount_extension.dart';
 import 'package:billdivide/gen/assets.gen.dart';
 import 'package:billdivide/screens/home_page.dart';
 import 'package:billdivide/utils/color_utils.dart';
+import 'package:billdivide/utils/demo_data.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +13,7 @@ import 'package:billdivide/extensions/user_extension.dart';
 import 'package:billdivide/graphql/__generated__/queries.data.gql.dart';
 import 'package:billdivide/screens/group.dart';
 import 'package:billdivide/state/app_state.dart';
+import 'package:shimmer/shimmer.dart';
 
 class GroupsPage extends StatelessWidget {
   const GroupsPage({super.key});
@@ -28,12 +30,75 @@ class GroupsPage extends StatelessWidget {
               "Groups",
             ),
           ),
-          Selector<AppState, List<GGroupFields>>(
-            selector: (context, state) => state.userGroups
-                .where((element) => !element.isDirectPayment)
-                .toList(),
-            builder: (context, groups, child) {
-              if (groups.isNotEmpty) {
+          Selector<AppState, (bool, List<GGroupFields>)>(
+            selector: (context, state) => (
+              state.isGroupsLoading,
+              state.userGroups
+                  .where((element) => !element.isDirectPayment)
+                  .toList()
+            ),
+            builder: (context, groupsAndLoading, child) {
+              var isGroupsLoading = groupsAndLoading.$1;
+              var groups = groupsAndLoading.$2;
+              if (isGroupsLoading) {
+                return SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                  return Shimmer(
+                    gradient: switch (Theme.of(context).brightness) {
+                      Brightness.dark => kShimmerGradientDark,
+                      Brightness.light => kShimmerGradientLight,
+                    },
+                    child: Container(
+                      margin:
+                          const EdgeInsets.only(top: 10, left: 20, right: 20),
+                      child: ListTile(
+                        leading: const SizedBox(
+                          width: 40,
+                          height: 40,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5)),
+                            ),
+                          ),
+                        ),
+                        title: FractionallySizedBox(
+                          alignment: Alignment.centerLeft,
+                          widthFactor: 0.4,
+                          child: SizedBox(
+                            height: 10,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            FractionallySizedBox(
+                              alignment: Alignment.centerLeft,
+                              widthFactor: 0.8,
+                              child: SizedBox(
+                                height: 10,
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }, childCount: 3));
+              } else if (groups.isNotEmpty) {
                 return SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {

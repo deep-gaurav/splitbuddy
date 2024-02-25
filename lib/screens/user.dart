@@ -1,20 +1,25 @@
 import 'package:billdivide/extensions/amount_extension.dart';
 import 'package:billdivide/extensions/expense_mix.dart';
 import 'package:billdivide/extensions/num_extension.dart';
+import 'package:billdivide/graphql/__generated__/queries.var.gql.dart';
 import 'package:billdivide/mixins/notification_refresher.dart';
 import 'package:billdivide/models/expensecategory.dart';
 import 'package:billdivide/screens/currency_converter.dart';
 import 'package:billdivide/screens/expense.dart';
 import 'package:billdivide/screens/payment_currency_selector.dart';
 import 'package:billdivide/screens/transaction_page.dart';
+import 'package:billdivide/utils/demo_data.dart';
 import 'package:billdivide/utils/svg_icons.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
 import 'package:billdivide/widgets/spend_analysis.dart';
 import 'package:collection/collection.dart';
+import 'package:ferry_exec/src/operation_response.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:billdivide/__generated__/schema.schema.gql.dart';
 import 'package:billdivide/extensions/group_extension.dart';
@@ -48,6 +53,7 @@ class _UserPageState extends State<UserPage>
   final ScrollController _scrollController = ScrollController();
 
   bool _loading = false;
+  bool _ended = false;
 
   Map<String, List<TransactionCardTypes>> expenseGrouped = {};
   List<String> dates = [];
@@ -74,6 +80,9 @@ class _UserPageState extends State<UserPage>
     if (_loading) {
       return;
     }
+    if (_ended && !forceFirst) {
+      return;
+    }
     if (mounted) {
       setState(() {
         _loading = true;
@@ -83,7 +92,7 @@ class _UserPageState extends State<UserPage>
     }
     try {
       var client = await context.read<AppState>().client;
-      var result = await client.execute(
+      var result = await client.executeCached(
         GtransactionWithUserReq(
           (b) => b.vars
             ..withUser = widget.initialUser.id
@@ -91,110 +100,169 @@ class _UserPageState extends State<UserPage>
             ..skip = forceFirst ? 0 : allData.length,
         ),
       );
-      if (result.data != null) {
-        if (transactions.isEmpty) {
-          var pos = _scrollController.position.maxScrollExtent -
-              _scrollController.position.pixels;
-
-          _scrollController
-              .jumpTo(_scrollController.position.maxScrollExtent - pos);
-          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-            _scrollController
-                .jumpTo(_scrollController.position.maxScrollExtent - pos);
-          });
-        }
-
-        for (var trans in result.data!.getTransactionsMixExpenseWithUser) {
-          if (!allData.any((element) => trans.isEqual(element))) {
-            allData.add(trans);
-          }
-        }
-        for (var mix in result.data!.getTransactionsMixExpenseWithUser) {
-          var transaction = mix.split;
-          var expense = mix.expense;
-          if (transaction != null) {
-            if (transaction.transactionPartGroupId != null) {
-              var group = transactions.firstWhereOrNull((element) =>
-                  (element is GroupedCrossSettlementTransactions &&
-                      element.groupId == transaction.transactionPartGroupId) ||
-                  (element is GroupedPaidTransactions &&
-                      element.groupId == transaction.transactionPartGroupId) ||
-                  (element is CurrencyConversionTransactions &&
-                      element.groupId == transaction.transactionPartGroupId));
-              if (group != null) {
-                switch (group) {
-                  case SingleTransaction():
-                    break;
-                  case GroupedPaidTransactions(transactions: var transactions):
-                    if (!transactions
-                        .any((element) => element.id == transaction.id)) {
-                      transactions.add(transaction);
-                    }
-                  case GroupedCrossSettlementTransactions(
-                      transactions: var transactions
-                    ):
-                    if (!transactions
-                        .any((element) => element.id == transaction.id)) {
-                      transactions.add(transaction);
-                    }
-
-                  case CurrencyConversionTransactions(
-                      transactions: var transactions
-                    ):
-                    if (!transactions
-                        .any((element) => element.id == transaction.id)) {
-                      transactions.add(transaction);
-                    }
-                }
-              } else {
-                if (!transactions.any((element) =>
-                    element is SingleTransaction &&
-                    element.transaction?.id == transaction.id)) {
-                  transactions.add(
-                    transaction.transactionType ==
-                            GTransactionType.CROSS_GROUP_SETTLEMENT
-                        ? GroupedCrossSettlementTransactions(
-                            transactions: [transaction],
-                            groupId: transaction.transactionPartGroupId!)
-                        : transaction.transactionType ==
-                                GTransactionType.CURRENCY_CONVERSION
-                            ? CurrencyConversionTransactions(
-                                groupId: transaction.transactionPartGroupId!,
-                                transactions: [transaction],
-                              )
-                            : GroupedPaidTransactions(
-                                groupId: transaction.transactionPartGroupId!,
-                                transactions: [transaction],
-                              ),
-                  );
-                }
-              }
-            } else if (!transactions.any((element) =>
-                element is SingleTransaction &&
-                element.transaction?.id == transaction.id)) {
-              transactions.add(SingleTransaction(
-                  transaction: transaction, expenseBasic: expense));
-            }
-          } else if (expense != null) {
-            if (!transactions.any((element) =>
-                element is SingleTransaction &&
-                element.expenseBasic?.id == expense.id)) {
-              transactions.add(SingleTransaction(
-                  transaction: transaction, expenseBasic: expense));
-            }
-          }
-        }
-        generateGrouped();
-        if (result.data?.getTransactionsMixExpenseWithUser != null &&
-            result.data!.getTransactionsMixExpenseWithUser.isNotEmpty) {
-          maintain.value = true;
-        }
-      }
+      processResult(await result.first);
+      result.listen((event) {
+        processResult(event);
+      });
     } finally {
       if (mounted) {
         setState(() {
           _loading = false;
         });
+      }
+    }
+  }
+
+  void processResult(
+      OperationResponse<GtransactionWithUserData, GtransactionWithUserVars>
+          result) {
+    if (result.data != null) {
+      if (result.data!.getTransactionsMixExpenseWithUser.isEmpty && mounted) {
+        setState(() {
+          _ended = true;
+        });
+      }
+
+      if (transactions.isEmpty) {
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          try {
+            var pos = _scrollController.position.maxScrollExtent -
+                _scrollController.position.pixels;
+
+            _scrollController
+                .jumpTo(_scrollController.position.maxScrollExtent - pos);
+            _scrollController
+                .jumpTo(_scrollController.position.maxScrollExtent - pos);
+          } catch (e) {
+            //ignore
+          }
+        });
+      }
+
+      for (var trans in result.data!.getTransactionsMixExpenseWithUser) {
+        var tranIndex = allData.indexWhere((element) => trans.isEqual(element));
+        if (tranIndex != -1) {
+          allData[tranIndex] = trans;
+        } else {
+          allData.add(trans);
+        }
+      }
+      for (var mix in result.data!.getTransactionsMixExpenseWithUser) {
+        var transaction = mix.split;
+        var expense = mix.expense;
+        if (transaction != null) {
+          if (transaction.transactionPartGroupId != null) {
+            var group = transactions.firstWhereOrNull((element) =>
+                (element is GroupedCrossSettlementTransactions &&
+                    element.groupId == transaction.transactionPartGroupId) ||
+                (element is GroupedPaidTransactions &&
+                    element.groupId == transaction.transactionPartGroupId) ||
+                (element is CurrencyConversionTransactions &&
+                    element.groupId == transaction.transactionPartGroupId));
+            if (group != null) {
+              switch (group) {
+                case SingleTransaction():
+                  break;
+                case GroupedPaidTransactions(transactions: var transactions):
+                  var transIndex = transactions
+                      .indexWhere((element) => element.id == transaction.id);
+                  if (transIndex != -1) {
+                    transactions[transIndex] = transaction;
+                  } else {
+                    transactions.add(transaction);
+                  }
+                case GroupedCrossSettlementTransactions(
+                    transactions: var transactions
+                  ):
+                  var transIndex = transactions
+                      .indexWhere((element) => element.id == transaction.id);
+                  if (transIndex != -1) {
+                    transactions[transIndex] = transaction;
+                  } else {
+                    transactions.add(transaction);
+                  }
+
+                case CurrencyConversionTransactions(
+                    transactions: var transactions
+                  ):
+                  var transIndex = transactions
+                      .indexWhere((element) => element.id == transaction.id);
+                  if (transIndex != -1) {
+                    transactions[transIndex] = transaction;
+                  } else {
+                    transactions.add(transaction);
+                  }
+              }
+            } else {
+              var transIndex = transactions.indexWhere((element) =>
+                  element is SingleTransaction &&
+                  element.transaction?.id == transaction.id);
+
+              if (transIndex != -1) {
+                transactions[transIndex] = transaction.transactionType ==
+                        GTransactionType.CROSS_GROUP_SETTLEMENT
+                    ? GroupedCrossSettlementTransactions(
+                        transactions: [transaction],
+                        groupId: transaction.transactionPartGroupId!)
+                    : transaction.transactionType ==
+                            GTransactionType.CURRENCY_CONVERSION
+                        ? CurrencyConversionTransactions(
+                            groupId: transaction.transactionPartGroupId!,
+                            transactions: [transaction],
+                          )
+                        : GroupedPaidTransactions(
+                            groupId: transaction.transactionPartGroupId!,
+                            transactions: [transaction],
+                          );
+              } else {
+                transactions.add(
+                  transaction.transactionType ==
+                          GTransactionType.CROSS_GROUP_SETTLEMENT
+                      ? GroupedCrossSettlementTransactions(
+                          transactions: [transaction],
+                          groupId: transaction.transactionPartGroupId!)
+                      : transaction.transactionType ==
+                              GTransactionType.CURRENCY_CONVERSION
+                          ? CurrencyConversionTransactions(
+                              groupId: transaction.transactionPartGroupId!,
+                              transactions: [transaction],
+                            )
+                          : GroupedPaidTransactions(
+                              groupId: transaction.transactionPartGroupId!,
+                              transactions: [transaction],
+                            ),
+                );
+              }
+            }
+          } else {
+            var transIndex = transactions.indexWhere((element) =>
+                element is SingleTransaction &&
+                element.transaction?.id == transaction.id);
+            if (transIndex != -1) {
+              transactions[transIndex] = SingleTransaction(
+                  transaction: transaction, expenseBasic: expense);
+            } else {
+              transactions.add(SingleTransaction(
+                  transaction: transaction, expenseBasic: expense));
+            }
+          }
+        } else if (expense != null) {
+          var transIndex = transactions.indexWhere((element) =>
+              element is SingleTransaction &&
+              element.expenseBasic?.id == expense.id);
+          if (transIndex != -1) {
+            transactions[transIndex] = SingleTransaction(
+                transaction: transaction, expenseBasic: expense);
+          } else {
+            transactions.add(SingleTransaction(
+                transaction: transaction, expenseBasic: expense));
+          }
+        }
+      }
+      generateGrouped();
+      if (result.data?.getTransactionsMixExpenseWithUser != null &&
+          result.data!.getTransactionsMixExpenseWithUser.isNotEmpty) {
+        maintain.value = true;
       }
     }
   }
@@ -216,7 +284,9 @@ class _UserPageState extends State<UserPage>
         .parse(a)
         .compareTo(DateFormat('d MMM y').parse(b)));
 
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
@@ -259,6 +329,24 @@ class _UserPageState extends State<UserPage>
                   ),
                 ),
               ),
+              if (_loading)
+                SliverList.builder(
+                  itemCount: 3,
+                  itemBuilder: (context, i) {
+                    return Shimmer(
+                      gradient: switch (Theme.of(context).brightness) {
+                        Brightness.dark => kShimmerGradientDark,
+                        Brightness.light => kShimmerGradientLight,
+                      },
+                      child: UserTransactionCard(
+                        user: context.read<AppState>().user!,
+                        maybeGroupTransaction: SingleTransaction(
+                          expenseBasic: getDemoExpense,
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ...dates.map(
                 (entry) => MultiSliver(
                   pushPinnedChildren: true,
@@ -396,14 +484,22 @@ class _UserPageState extends State<UserPage>
                 ),
               );
               if (expense is GNewExpenseFields) {
-                for (var split in expense.splits) {
+                if (expense.splits.isNotEmpty) {
+                  for (var split in expense.splits) {
+                    if (!transactions.any((element) =>
+                        element is SingleTransaction &&
+                        element.transaction?.id == split.id)) {
+                      transactions.add(SingleTransaction(
+                        transaction: split,
+                        expenseBasic: split.expense,
+                      ));
+                    }
+                  }
+                } else {
                   if (!transactions.any((element) =>
                       element is SingleTransaction &&
-                      element.transaction?.id == split.id)) {
-                    transactions.add(SingleTransaction(
-                      transaction: split,
-                      expenseBasic: split.expense,
-                    ));
+                      element.expenseBasic?.id == expense.id)) {
+                    transactions.add(SingleTransaction(expenseBasic: expense));
                   }
                 }
                 fetchData(forceFirst: true);

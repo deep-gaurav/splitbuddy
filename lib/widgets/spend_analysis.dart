@@ -47,19 +47,21 @@ class _SpendAnalysisState extends State<SpendAnalysis>
     var client = await context.read<AppState>().client;
     var monthStart = DateTime.utc(DateTime.now().year, DateTime.now().month, 1)
         .toIso8601String();
-    var response = await client.execute(
+    var response = await client.executeCached(
       GexpenseSummaryCategorisedReq(
         (b) => b.vars
           ..fromTime = monthStart
           ..groupId = widget.groupId,
       ),
     );
-    if (mounted) {
-      setState(() {
-        categorisedSpends =
-            response.data?.expenseSummaryByCategory.toList() ?? [];
-      });
-    }
+    response.listen((response) {
+      if (mounted) {
+        setState(() {
+          categorisedSpends =
+              response.data?.expenseSummaryByCategory.toList() ?? [];
+        });
+      }
+    });
   }
 
   @override
