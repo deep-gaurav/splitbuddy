@@ -180,7 +180,8 @@ class AppState extends ChangeNotifier {
       client.executeCached(GrefreshReq()).then((value) {
         value.listen((value) {
           _auth = value.data?.user;
-          if (value.data?.user == null) {
+          if (value.data?.user == null &&
+              authState != AuthStates.authorizedRequiresSignup) {
             authState = AuthStates.unAuthorized;
           } else if (value.data?.user is GrefreshData_user__asUnregistered) {
             authState = AuthStates.authorizedRequiresSignup;
