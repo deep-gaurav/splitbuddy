@@ -23,10 +23,10 @@ class Expense extends GroupTransactionObject {
   String get groupId => splits.first.groupId;
 }
 
-class Split extends GroupTransactionObject {
+class SplitObj extends GroupTransactionObject {
   final GSplitFields split;
 
-  Split({required this.split});
+  SplitObj({required this.split});
 
   @override
   String get transactionAt => split.transactionAt;

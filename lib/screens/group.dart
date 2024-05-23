@@ -171,11 +171,11 @@ class _GroupState extends State<Group>
           }
         } else if (trans.split != null) {
           var splitIndex = expenses.indexWhere((element) =>
-              element is Split && element.split.id == trans.split!.id);
+              element is SplitObj && element.split.id == trans.split!.id);
           if (splitIndex != -1) {
-            expenses[splitIndex] = Split(split: trans.split!);
+            expenses[splitIndex] = SplitObj(split: trans.split!);
           } else {
-            expenses.add(Split(split: trans.split!));
+            expenses.add(SplitObj(split: trans.split!));
           }
         }
       }
@@ -190,7 +190,7 @@ class _GroupState extends State<Group>
 
   onSettleTransaction(GSplitTransactionFields transactionFields) {
     expenses.add(
-      Split(split: transactionFields),
+      SplitObj(split: transactionFields),
     );
     fetchData(forceFirst: true);
     generateGrouped();
@@ -481,7 +481,9 @@ class _GroupState extends State<Group>
                                                 ),
                                               );
                                             } else if (mix
-                                                case Split(split: var split)) {
+                                                case SplitObj(
+                                                  split: var split
+                                                )) {
                                               Navigator.of(context).push(
                                                 MaterialPageRoute(
                                                   builder: (context) =>
@@ -610,7 +612,9 @@ class _GroupState extends State<Group>
                                                           ]
                                                         ],
                                                       ),
-                                                    Split(split: var splits) =>
+                                                    SplitObj(
+                                                      split: var splits
+                                                    ) =>
                                                       TransactionCard(
                                                         title: getTitle(
                                                                 context, splits)

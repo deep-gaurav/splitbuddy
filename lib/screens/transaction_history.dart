@@ -155,11 +155,11 @@ class _TransactionHistoryState extends State<TransactionHistory>
           }
         } else if (trans.split != null) {
           var transIndex = expenses.indexWhere((element) =>
-              element is Split && element.split.id == trans.split!.id);
+              element is SplitObj && element.split.id == trans.split!.id);
           if (transIndex != -1) {
-            expenses[transIndex] = Split(split: trans.split!);
+            expenses[transIndex] = SplitObj(split: trans.split!);
           } else {
-            expenses.add(Split(split: trans.split!));
+            expenses.add(SplitObj(split: trans.split!));
           }
         }
       }
@@ -591,7 +591,7 @@ class TransactionHisotryTransactionCard extends StatelessWidget {
                                 ]
                               ],
                             ),
-                          Split(split: var splits) => TransactionCard(
+                          SplitObj(split: var splits) => TransactionCard(
                               title: getTitle(context, splits).$1,
                               amountColor: getTitle(context, splits).$2,
                               amount: splits.amount,
