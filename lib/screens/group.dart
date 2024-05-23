@@ -445,7 +445,7 @@ class _GroupState extends State<Group>
 
                             var creator =
                                 context.read<AppState>().getUser(mix.creatorId);
-                            bool isInvoled = (mix is Split) ||
+                            bool isInvoled = (mix is SplitObj) ||
                                 (mix is Expense && mix.splits.isNotEmpty);
 
                             return FractionallySizedBox(

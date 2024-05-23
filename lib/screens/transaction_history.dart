@@ -252,7 +252,7 @@ class _TransactionHistoryState extends State<TransactionHistory>
                               var creator = context
                                   .read<AppState>()
                                   .getUser(mix.creatorId);
-                              bool isInvoled = (mix is Split) ||
+                              bool isInvoled = (mix is SplitObj) ||
                                   (mix is Expense && mix.splits.isNotEmpty);
 
                               return TransactionHisotryTransactionCard(
