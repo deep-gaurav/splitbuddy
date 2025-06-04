@@ -9,6 +9,7 @@ import 'package:billdivide/utils/color_utils.dart';
 import 'package:billdivide/utils/demo_data.dart';
 import 'package:billdivide/utils/svg_icons.dart';
 import 'package:billdivide/widgets/auto_scroll.dart';
+import 'package:billdivide/widgets/monthy_spend_analysis.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -203,7 +204,8 @@ class _SpendAnalysisState extends State<SpendAnalysis>
                                         categorisedSpendsSinceBeginning!),
                               ],
                             ),
-                          )
+                          ),
+                        const MonthlySpendingBreakdown()
                       ],
                       options: ExpandableCarouselOptions(
                         viewportFraction: 1,
