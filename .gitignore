@@ -5,9 +5,11 @@
 *.swp
 .DS_Store
 .atom/
+.build/
 .buildlog/
 .history
 .svn/
+.swiftpm/
 migrate_working_dir/
 
 # IntelliJ related
@@ -43,7 +45,9 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-
 .local.env
 /android/key.properties
 /android/play-store-credentials.json
+
+# FVM Version Cache
+.fvm/

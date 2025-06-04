@@ -172,37 +172,37 @@ class _SpendAnalysisState extends State<SpendAnalysis>
                 SpendAnalysisType.table => SpendCategoryAmountTable(
                     categorisedSpends: categorisedSpends!),
                 SpendAnalysisType.all => ExpandableCarousel(
-                    items: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: CategorisedSpendChart(
-                            categorisedSpends: categorisedSpends!),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: SpendCategoryAmountTable(
-                            categorisedSpends: categorisedSpends!),
-                      )
-                    ],
-                    options: CarouselOptions(
-                      viewportFraction: 1,
-                      slideIndicator: CircularSlideIndicator(
-                        padding: EdgeInsets.zero,
-                        currentIndicatorColor: switch (
-                            Theme.of(context).brightness) {
-                          Brightness.dark => null,
-                          Brightness.light =>
-                            Theme.of(context).colorScheme.primary,
-                        },
-                        indicatorBackgroundColor: switch (
-                            Theme.of(context).brightness) {
-                          Brightness.dark => null,
-                          Brightness.light =>
-                            Theme.of(context).colorScheme.primaryContainer,
-                        },
-                      ),
-                    ),
-                  ),
+                      items: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: CategorisedSpendChart(
+                              categorisedSpends: categorisedSpends!),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: SpendCategoryAmountTable(
+                              categorisedSpends: categorisedSpends!),
+                        )
+                      ],
+                      options: ExpandableCarouselOptions(
+                        viewportFraction: 1,
+                        slideIndicator: CircularSlideIndicator(
+                            slideIndicatorOptions: SlideIndicatorOptions(
+                          padding: EdgeInsets.zero,
+                          currentIndicatorColor: switch (
+                              Theme.of(context).brightness) {
+                            Brightness.dark => Colors.white,
+                            Brightness.light =>
+                              Theme.of(context).colorScheme.primary,
+                          },
+                          indicatorBackgroundColor: switch (
+                              Theme.of(context).brightness) {
+                            Brightness.dark => const Color(0x66FFFFFF),
+                            Brightness.light =>
+                              Theme.of(context).colorScheme.primaryContainer,
+                          },
+                        )),
+                      )),
               }
             else
               Text.rich(

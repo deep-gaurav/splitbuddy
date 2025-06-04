@@ -676,22 +676,23 @@ class _GroupState extends State<Group>
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: ExpandableCarousel(
-                    options: CarouselOptions(
+                    options: ExpandableCarouselOptions(
                       slideIndicator: CircularSlideIndicator(
+                          slideIndicatorOptions: SlideIndicatorOptions(
                         padding: EdgeInsets.zero,
                         currentIndicatorColor: switch (
                             Theme.of(context).brightness) {
-                          Brightness.dark => null,
+                          Brightness.dark => Colors.white,
                           Brightness.light =>
                             Theme.of(context).colorScheme.primary,
                         },
                         indicatorBackgroundColor: switch (
                             Theme.of(context).brightness) {
-                          Brightness.dark => null,
+                          Brightness.dark => const Color(0x66FFFFFF),
                           Brightness.light =>
                             Theme.of(context).colorScheme.primaryContainer,
                         },
-                      ),
+                      )),
                     ),
                     items: [
                       InkWell(
@@ -724,7 +725,7 @@ class _GroupState extends State<Group>
           )),
         ],
       ),
-      bottomNavigationBar: ButtonBar(
+      bottomNavigationBar: OverflowBar(
         children: [
           ElevatedButton.icon(
             icon: const Icon(Icons.sell),
