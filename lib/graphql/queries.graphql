@@ -26,7 +26,6 @@ fragment CurrencyFields on Currency {
 
 fragment UserPaysFields on User {
   ...UserFields
-  upiIds
   owes {
     groupId
     amount {

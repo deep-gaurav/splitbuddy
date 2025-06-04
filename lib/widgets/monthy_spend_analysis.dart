@@ -48,7 +48,8 @@ class _MonthlySpendingBreakdownState extends State<MonthlySpendingBreakdown>
     if (defaultCurrency == null) return;
 
     // First, get total since beginning to know when to stop
-    var beginning = DateTime.fromMillisecondsSinceEpoch(0).toIso8601String();
+    var beginning =
+        DateTime.fromMillisecondsSinceEpoch(0).toUtc().toIso8601String();
     var totalResponse = await client.executeCached(
       GexpenseSummaryCategorisedReq(
         (b) => b.vars
@@ -85,7 +86,7 @@ class _MonthlySpendingBreakdownState extends State<MonthlySpendingBreakdown>
       var monthResponse = await client.executeCached(
         GexpenseSummaryCategorisedReq(
           (b) => b.vars
-            ..fromTime = monthStart.toIso8601String()
+            ..fromTime = monthStart.toUtc().toIso8601String()
             ..groupId = widget.groupId,
         ),
       );

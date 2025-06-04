@@ -160,13 +160,6 @@ const UserPaysFields = _i1.FragmentDefinitionNode(
       directives: [],
     ),
     _i1.FieldNode(
-      name: _i1.NameNode(value: 'upiIds'),
-      alias: null,
-      arguments: [],
-      directives: [],
-      selectionSet: null,
-    ),
-    _i1.FieldNode(
       name: _i1.NameNode(value: 'owes'),
       alias: null,
       arguments: [],

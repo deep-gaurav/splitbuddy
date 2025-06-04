@@ -480,6 +480,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
               const [const FullType(GSplitWithSiblingsData_siblings)]),
           () => new ListBuilder<GSplitWithSiblingsData_siblings>())
       ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(GUserPaysFieldsData_owes)]),
+          () => new ListBuilder<GUserPaysFieldsData_owes>())
+      ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(Gadd_expenseData_addExpense_splits)]),
           () => new ListBuilder<Gadd_expenseData_addExpense_splits>())
@@ -574,6 +578,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
               const [const FullType(Ginteracted_usersData_interactedUsers)]),
           () => new ListBuilder<Ginteracted_usersData_interactedUsers>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(Ginteracted_usersData_interactedUsers_owes)
+          ]),
+          () => new ListBuilder<Ginteracted_usersData_interactedUsers_owes>())
+      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GrefreshData_groups)]),
           () => new ListBuilder<GrefreshData_groups>())
@@ -593,6 +602,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(GrefreshData_groups_members_owedInGroup)]),
           () => new ListBuilder<GrefreshData_groups_members_owedInGroup>())
+      ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GrefreshData_interactedUsers_owes)]),
+          () => new ListBuilder<GrefreshData_interactedUsers_owes>())
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GsimplifyUserData_simplifyCrossGroup)]),
@@ -618,29 +631,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
                 GtransactionWithUserData_getTransactionsMixExpenseWithUser)
           ]),
           () => new ListBuilder<
-              GtransactionWithUserData_getTransactionsMixExpenseWithUser>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(
-              BuiltList, const [const FullType(GUserPaysFieldsData_owes)]),
-          () => new ListBuilder<GUserPaysFieldsData_owes>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(Ginteracted_usersData_interactedUsers_owes)
-          ]),
-          () => new ListBuilder<Ginteracted_usersData_interactedUsers_owes>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(GrefreshData_interactedUsers_owes)]),
-          () => new ListBuilder<GrefreshData_interactedUsers_owes>()))
+              GtransactionWithUserData_getTransactionsMixExpenseWithUser>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

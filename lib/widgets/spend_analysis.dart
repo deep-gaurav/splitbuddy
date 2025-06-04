@@ -70,7 +70,7 @@ class _SpendAnalysisState extends State<SpendAnalysis>
     });
 
     // Fetch data since beginning (Unix epoch)
-    var beginning = DateTime.fromMillisecondsSinceEpoch(0).toIso8601String();
+    var beginning = DateTime(2023, 1, 1).toUtc().toIso8601String();
     var responseBeginning = await client.executeCached(
       GexpenseSummaryCategorisedReq(
         (b) => b.vars

@@ -1691,10 +1691,6 @@ class _$Ginteracted_usersData_interactedUsersSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'upiIds',
-      serializers.serialize(object.upiIds,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
       'owes',
       serializers.serialize(object.owes,
           specifiedType: const FullType(BuiltList, const [
@@ -1746,12 +1742,6 @@ class _$Ginteracted_usersData_interactedUsersSerializer
         case '__typename':
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
-          break;
-        case 'upiIds':
-          result.upiIds.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
           break;
         case 'owes':
           result.owes.replace(serializers.deserialize(value,
@@ -2716,10 +2706,6 @@ class _$GrefreshData_interactedUsersSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'upiIds',
-      serializers.serialize(object.upiIds,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
       'owes',
       serializers.serialize(object.owes,
           specifiedType: const FullType(BuiltList,
@@ -2770,12 +2756,6 @@ class _$GrefreshData_interactedUsersSerializer
         case '__typename':
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
-          break;
-        case 'upiIds':
-          result.upiIds.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
           break;
         case 'owes':
           result.owes.replace(serializers.deserialize(value,
@@ -17911,10 +17891,6 @@ class _$GUserPaysFieldsDataSerializer
       'isSignedUp',
       serializers.serialize(object.isSignedUp,
           specifiedType: const FullType(bool)),
-      'upiIds',
-      serializers.serialize(object.upiIds,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
       'owes',
       serializers.serialize(object.owes,
           specifiedType: const FullType(
@@ -17980,12 +17956,6 @@ class _$GUserPaysFieldsDataSerializer
         case 'isSignedUp':
           result.isSignedUp = serializers.deserialize(value,
               specifiedType: const FullType(bool))! as bool;
-          break;
-        case 'upiIds':
-          result.upiIds.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
           break;
         case 'owes':
           result.owes.replace(serializers.deserialize(value,
@@ -27290,8 +27260,6 @@ class _$Ginteracted_usersData_interactedUsers
   @override
   final String G__typename;
   @override
-  final BuiltList<String> upiIds;
-  @override
   final BuiltList<Ginteracted_usersData_interactedUsers_owes> owes;
   @override
   final String id;
@@ -27312,7 +27280,6 @@ class _$Ginteracted_usersData_interactedUsers
 
   _$Ginteracted_usersData_interactedUsers._(
       {required this.G__typename,
-      required this.upiIds,
       required this.owes,
       required this.id,
       this.name,
@@ -27322,8 +27289,6 @@ class _$Ginteracted_usersData_interactedUsers
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'Ginteracted_usersData_interactedUsers', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(
-        upiIds, r'Ginteracted_usersData_interactedUsers', 'upiIds');
     BuiltValueNullFieldError.checkNotNull(
         owes, r'Ginteracted_usersData_interactedUsers', 'owes');
     BuiltValueNullFieldError.checkNotNull(
@@ -27347,7 +27312,6 @@ class _$Ginteracted_usersData_interactedUsers
     if (identical(other, this)) return true;
     return other is Ginteracted_usersData_interactedUsers &&
         G__typename == other.G__typename &&
-        upiIds == other.upiIds &&
         owes == other.owes &&
         id == other.id &&
         name == other.name &&
@@ -27360,7 +27324,6 @@ class _$Ginteracted_usersData_interactedUsers
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, upiIds.hashCode);
     _$hash = $jc(_$hash, owes.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
@@ -27376,7 +27339,6 @@ class _$Ginteracted_usersData_interactedUsers
     return (newBuiltValueToStringHelper(
             r'Ginteracted_usersData_interactedUsers')
           ..add('G__typename', G__typename)
-          ..add('upiIds', upiIds)
           ..add('owes', owes)
           ..add('id', id)
           ..add('name', name)
@@ -27396,11 +27358,6 @@ class Ginteracted_usersData_interactedUsersBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
-
-  ListBuilder<String>? _upiIds;
-  ListBuilder<String> get upiIds =>
-      _$this._upiIds ??= new ListBuilder<String>();
-  set upiIds(ListBuilder<String>? upiIds) => _$this._upiIds = upiIds;
 
   ListBuilder<Ginteracted_usersData_interactedUsers_owes>? _owes;
   ListBuilder<Ginteracted_usersData_interactedUsers_owes> get owes =>
@@ -27437,7 +27394,6 @@ class Ginteracted_usersData_interactedUsersBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _upiIds = $v.upiIds.toBuilder();
       _owes = $v.owes.toBuilder();
       _id = $v.id;
       _name = $v.name;
@@ -27471,7 +27427,6 @@ class Ginteracted_usersData_interactedUsersBuilder
           new _$Ginteracted_usersData_interactedUsers._(
               G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
                   r'Ginteracted_usersData_interactedUsers', 'G__typename'),
-              upiIds: upiIds.build(),
               owes: owes.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'Ginteracted_usersData_interactedUsers', 'id'),
@@ -27483,8 +27438,6 @@ class Ginteracted_usersData_interactedUsersBuilder
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'upiIds';
-        upiIds.build();
         _$failedField = 'owes';
         owes.build();
       } catch (e) {
@@ -29345,8 +29298,6 @@ class _$GrefreshData_interactedUsers extends GrefreshData_interactedUsers {
   @override
   final String G__typename;
   @override
-  final BuiltList<String> upiIds;
-  @override
   final BuiltList<GrefreshData_interactedUsers_owes> owes;
   @override
   final String id;
@@ -29365,7 +29316,6 @@ class _$GrefreshData_interactedUsers extends GrefreshData_interactedUsers {
 
   _$GrefreshData_interactedUsers._(
       {required this.G__typename,
-      required this.upiIds,
       required this.owes,
       required this.id,
       this.name,
@@ -29375,8 +29325,6 @@ class _$GrefreshData_interactedUsers extends GrefreshData_interactedUsers {
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GrefreshData_interactedUsers', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(
-        upiIds, r'GrefreshData_interactedUsers', 'upiIds');
     BuiltValueNullFieldError.checkNotNull(
         owes, r'GrefreshData_interactedUsers', 'owes');
     BuiltValueNullFieldError.checkNotNull(
@@ -29399,7 +29347,6 @@ class _$GrefreshData_interactedUsers extends GrefreshData_interactedUsers {
     if (identical(other, this)) return true;
     return other is GrefreshData_interactedUsers &&
         G__typename == other.G__typename &&
-        upiIds == other.upiIds &&
         owes == other.owes &&
         id == other.id &&
         name == other.name &&
@@ -29412,7 +29359,6 @@ class _$GrefreshData_interactedUsers extends GrefreshData_interactedUsers {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, upiIds.hashCode);
     _$hash = $jc(_$hash, owes.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
@@ -29427,7 +29373,6 @@ class _$GrefreshData_interactedUsers extends GrefreshData_interactedUsers {
   String toString() {
     return (newBuiltValueToStringHelper(r'GrefreshData_interactedUsers')
           ..add('G__typename', G__typename)
-          ..add('upiIds', upiIds)
           ..add('owes', owes)
           ..add('id', id)
           ..add('name', name)
@@ -29447,11 +29392,6 @@ class GrefreshData_interactedUsersBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
-
-  ListBuilder<String>? _upiIds;
-  ListBuilder<String> get upiIds =>
-      _$this._upiIds ??= new ListBuilder<String>();
-  set upiIds(ListBuilder<String>? upiIds) => _$this._upiIds = upiIds;
 
   ListBuilder<GrefreshData_interactedUsers_owes>? _owes;
   ListBuilder<GrefreshData_interactedUsers_owes> get owes =>
@@ -29487,7 +29427,6 @@ class GrefreshData_interactedUsersBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _upiIds = $v.upiIds.toBuilder();
       _owes = $v.owes.toBuilder();
       _id = $v.id;
       _name = $v.name;
@@ -29520,7 +29459,6 @@ class GrefreshData_interactedUsersBuilder
           new _$GrefreshData_interactedUsers._(
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename, r'GrefreshData_interactedUsers', 'G__typename'),
-              upiIds: upiIds.build(),
               owes: owes.build(),
               id: BuiltValueNullFieldError.checkNotNull(
                   id, r'GrefreshData_interactedUsers', 'id'),
@@ -29532,8 +29470,6 @@ class GrefreshData_interactedUsersBuilder
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'upiIds';
-        upiIds.build();
         _$failedField = 'owes';
         owes.build();
       } catch (e) {
@@ -60292,8 +60228,6 @@ class _$GUserPaysFieldsData extends GUserPaysFieldsData {
   @override
   final bool isSignedUp;
   @override
-  final BuiltList<String> upiIds;
-  @override
   final BuiltList<GUserPaysFieldsData_owes> owes;
 
   factory _$GUserPaysFieldsData(
@@ -60307,7 +60241,6 @@ class _$GUserPaysFieldsData extends GUserPaysFieldsData {
       this.phone,
       this.email,
       required this.isSignedUp,
-      required this.upiIds,
       required this.owes})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -60315,8 +60248,6 @@ class _$GUserPaysFieldsData extends GUserPaysFieldsData {
     BuiltValueNullFieldError.checkNotNull(id, r'GUserPaysFieldsData', 'id');
     BuiltValueNullFieldError.checkNotNull(
         isSignedUp, r'GUserPaysFieldsData', 'isSignedUp');
-    BuiltValueNullFieldError.checkNotNull(
-        upiIds, r'GUserPaysFieldsData', 'upiIds');
     BuiltValueNullFieldError.checkNotNull(owes, r'GUserPaysFieldsData', 'owes');
   }
 
@@ -60339,7 +60270,6 @@ class _$GUserPaysFieldsData extends GUserPaysFieldsData {
         phone == other.phone &&
         email == other.email &&
         isSignedUp == other.isSignedUp &&
-        upiIds == other.upiIds &&
         owes == other.owes;
   }
 
@@ -60352,7 +60282,6 @@ class _$GUserPaysFieldsData extends GUserPaysFieldsData {
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
     _$hash = $jc(_$hash, isSignedUp.hashCode);
-    _$hash = $jc(_$hash, upiIds.hashCode);
     _$hash = $jc(_$hash, owes.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -60367,7 +60296,6 @@ class _$GUserPaysFieldsData extends GUserPaysFieldsData {
           ..add('phone', phone)
           ..add('email', email)
           ..add('isSignedUp', isSignedUp)
-          ..add('upiIds', upiIds)
           ..add('owes', owes))
         .toString();
   }
@@ -60401,11 +60329,6 @@ class GUserPaysFieldsDataBuilder
   bool? get isSignedUp => _$this._isSignedUp;
   set isSignedUp(bool? isSignedUp) => _$this._isSignedUp = isSignedUp;
 
-  ListBuilder<String>? _upiIds;
-  ListBuilder<String> get upiIds =>
-      _$this._upiIds ??= new ListBuilder<String>();
-  set upiIds(ListBuilder<String>? upiIds) => _$this._upiIds = upiIds;
-
   ListBuilder<GUserPaysFieldsData_owes>? _owes;
   ListBuilder<GUserPaysFieldsData_owes> get owes =>
       _$this._owes ??= new ListBuilder<GUserPaysFieldsData_owes>();
@@ -60424,7 +60347,6 @@ class GUserPaysFieldsDataBuilder
       _phone = $v.phone;
       _email = $v.email;
       _isSignedUp = $v.isSignedUp;
-      _upiIds = $v.upiIds.toBuilder();
       _owes = $v.owes.toBuilder();
       _$v = null;
     }
@@ -60459,13 +60381,10 @@ class GUserPaysFieldsDataBuilder
               email: email,
               isSignedUp: BuiltValueNullFieldError.checkNotNull(
                   isSignedUp, r'GUserPaysFieldsData', 'isSignedUp'),
-              upiIds: upiIds.build(),
               owes: owes.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'upiIds';
-        upiIds.build();
         _$failedField = 'owes';
         owes.build();
       } catch (e) {

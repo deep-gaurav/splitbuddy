@@ -546,8 +546,6 @@ abstract class Ginteracted_usersData_interactedUsers
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   @override
-  BuiltList<String> get upiIds;
-  @override
   BuiltList<Ginteracted_usersData_interactedUsers_owes> get owes;
   @override
   String get id;
@@ -1113,8 +1111,6 @@ abstract class GrefreshData_interactedUsers
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  @override
-  BuiltList<String> get upiIds;
   @override
   BuiltList<GrefreshData_interactedUsers_owes> get owes;
   @override
@@ -8920,7 +8916,6 @@ abstract class GUserPaysFields implements GUserFields {
   String? get email;
   @override
   bool get isSignedUp;
-  BuiltList<String> get upiIds;
   BuiltList<GUserPaysFields_owes> get owes;
   @override
   Map<String, dynamic> toJson();
@@ -8970,8 +8965,6 @@ abstract class GUserPaysFieldsData
   String? get email;
   @override
   bool get isSignedUp;
-  @override
-  BuiltList<String> get upiIds;
   @override
   BuiltList<GUserPaysFieldsData_owes> get owes;
   static Serializer<GUserPaysFieldsData> get serializer =>
