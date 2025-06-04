@@ -33,6 +33,7 @@ class SpendAnalysis extends StatefulWidget {
 class _SpendAnalysisState extends State<SpendAnalysis>
     with WidgetsBindingObserver, NotificationRefresher {
   List<GCategorisedAmountFields>? categorisedSpends;
+  List<GCategorisedAmountFields>? categorisedSpendsSinceBeginning;
 
   @override
   void initState() {
@@ -47,19 +48,39 @@ class _SpendAnalysisState extends State<SpendAnalysis>
       return;
     }
     var client = await context.read<AppState>().client;
+
+    // Fetch data for this month
     var monthStart = DateTime.utc(DateTime.now().year, DateTime.now().month, 1)
         .toIso8601String();
-    var response = await client.executeCached(
+    var responseMonth = await client.executeCached(
       GexpenseSummaryCategorisedReq(
         (b) => b.vars
           ..fromTime = monthStart
           ..groupId = widget.groupId,
       ),
     );
-    response.listen((response) {
+    responseMonth.listen((response) {
       if (mounted) {
         setState(() {
           categorisedSpends =
+              response.data?.expenseSummaryByCategory.toList() ?? [];
+        });
+      }
+    });
+
+    // Fetch data since beginning (Unix epoch)
+    var beginning = DateTime.fromMillisecondsSinceEpoch(0).toIso8601String();
+    var responseBeginning = await client.executeCached(
+      GexpenseSummaryCategorisedReq(
+        (b) => b.vars
+          ..fromTime = beginning
+          ..groupId = widget.groupId,
+      ),
+    );
+    responseBeginning.listen((response) {
+      if (mounted) {
+        setState(() {
+          categorisedSpendsSinceBeginning =
               response.data?.expenseSummaryByCategory.toList() ?? [];
         });
       }
@@ -77,92 +98,14 @@ class _SpendAnalysisState extends State<SpendAnalysis>
         child: Column(
           children: [
             Text(
-              'This Month Spends',
+              'Spend Analysis',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
             ),
             const Divider(),
             if (categorisedSpends == null)
-              Shimmer(
-                gradient: switch (Theme.of(context).brightness) {
-                  Brightness.dark => kShimmerGradientDark,
-                  Brightness.light => kShimmerGradientLight,
-                },
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: AspectRatio(
-                        aspectRatio: 1,
-                        child: Stack(
-                          children: [
-                            PieChart(
-                              PieChartData(
-                                sections: [
-                                  PieChartSectionData(
-                                    color: Colors.black,
-                                    value: 10,
-                                  ),
-                                  PieChartSectionData(
-                                    color: Colors.black,
-                                    value: 7,
-                                  ),
-                                  PieChartSectionData(
-                                    color: Colors.black,
-                                    value: 3,
-                                  )
-                                ],
-                              ),
-                            ),
-                            const Positioned.fill(
-                                child: Center(
-                              child: Text('Loading...'),
-                            ))
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ...List.generate(3, (index) => index).map(
-                          (e) => Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: Row(
-                              children: [
-                                const SizedBox(
-                                  width: 14,
-                                  height: 14,
-                                  child: DecoratedBox(
-                                      decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    shape: BoxShape.circle,
-                                  )),
-                                ),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                SizedBox(
-                                  width: 80,
-                                  height: 8,
-                                  child: DecoratedBox(
-                                    decoration: BoxDecoration(
-                                        color: Colors.black,
-                                        borderRadius: BorderRadius.circular(8)),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
+              _buildShimmerContent()
             else if (categorisedSpends!
                 .where((element) => element.amount.amount != 0)
                 .isNotEmpty)
@@ -175,14 +118,92 @@ class _SpendAnalysisState extends State<SpendAnalysis>
                       items: [
                         Padding(
                           padding: const EdgeInsets.only(bottom: 20),
-                          child: CategorisedSpendChart(
-                              categorisedSpends: categorisedSpends!),
+                          child: Column(
+                            children: [
+                              Text(
+                                'This month',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              CategorisedSpendChart(
+                                  categorisedSpends: categorisedSpends!),
+                            ],
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 20),
-                          child: SpendCategoryAmountTable(
-                              categorisedSpends: categorisedSpends!),
-                        )
+                          child: Column(
+                            children: [
+                              Text(
+                                'This month',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              SpendCategoryAmountTable(
+                                  categorisedSpends: categorisedSpends!),
+                            ],
+                          ),
+                        ),
+                        if (categorisedSpendsSinceBeginning != null)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Since beginning',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                CategorisedSpendChart(
+                                    categorisedSpends:
+                                        categorisedSpendsSinceBeginning!),
+                              ],
+                            ),
+                          ),
+                        if (categorisedSpendsSinceBeginning != null)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 20),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Since beginning',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                SpendCategoryAmountTable(
+                                    categorisedSpends:
+                                        categorisedSpendsSinceBeginning!),
+                              ],
+                            ),
+                          )
                       ],
                       options: ExpandableCarouselOptions(
                         viewportFraction: 1,
@@ -217,11 +238,90 @@ class _SpendAnalysisState extends State<SpendAnalysis>
                   ],
                 ),
               ),
-            const SizedBox(
-              height: 5,
-            ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildShimmerContent() {
+    return Shimmer(
+      gradient: switch (Theme.of(context).brightness) {
+        Brightness.dark => kShimmerGradientDark,
+        Brightness.light => kShimmerGradientLight,
+      },
+      child: Row(
+        children: [
+          Expanded(
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: Stack(
+                children: [
+                  PieChart(
+                    PieChartData(
+                      sections: [
+                        PieChartSectionData(
+                          color: Colors.black,
+                          value: 10,
+                        ),
+                        PieChartSectionData(
+                          color: Colors.black,
+                          value: 7,
+                        ),
+                        PieChartSectionData(
+                          color: Colors.black,
+                          value: 3,
+                        )
+                      ],
+                    ),
+                  ),
+                  const Positioned.fill(
+                      child: Center(
+                    child: Text('Loading...'),
+                  ))
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ...List.generate(3, (index) => index).map(
+                (e) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 14,
+                        height: 14,
+                        child: DecoratedBox(
+                            decoration: BoxDecoration(
+                          color: Colors.black,
+                          shape: BoxShape.circle,
+                        )),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      SizedBox(
+                        width: 80,
+                        height: 8,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius: BorderRadius.circular(8)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
